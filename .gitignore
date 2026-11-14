@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.*
+
+# Dependencies
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Sandbox outputs (test project; only its placeholder is tracked)
+sandbox/*
+!sandbox/.gitkeep
+
+# Test and browser artifacts
+test-results/
+playwright-report/
+coverage/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Owner's source project document (kept local, not published)
+*.pdf
