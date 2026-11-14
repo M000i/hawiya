@@ -12,6 +12,11 @@
   box-sizing: border-box;
 }
 
+/* The hidden attribute must win over component display rules (flex/grid). */
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -213,6 +218,69 @@ body {
 .radius-row output {
   min-inline-size: 3.5em;
   font-variant-numeric: tabular-nums;
+}
+
+.export-btn,
+.secondary-btn {
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.export-btn {
+  inline-size: 100%;
+  color: #ffffff;
+  background: var(--fg);
+  border: 1px solid var(--fg);
+}
+
+.export-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.secondary-btn {
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.export-result {
+  margin-block-start: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.export-status {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bg);
+  border-inline-start: 4px solid var(--muted);
+}
+
+.export-status[data-tone="ok"] {
+  border-inline-start-color: #15803d;
+}
+
+.export-status[data-tone="warn"] {
+  border-inline-start-color: #b45309;
+}
+
+.export-actions,
+.download-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.copy-fallback {
+  inline-size: 100%;
+  min-block-size: 160px;
+  font: 12px/1.5 ui-monospace, monospace;
+  text-align: start;
 }
 
 .preview-wrap h2 {

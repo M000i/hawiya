@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hawiya</title>
+    <link rel="icon" href="data:," />
     <link rel="stylesheet" href="css/picker.css" />
   </head>
   <body>
@@ -44,6 +45,20 @@
             <output id="radius-value" for="radius-input"></output>
           </div>
         </fieldset>
+
+        <section class="group export" aria-labelledby="export-title">
+          <h2 id="export-title">التصدير</h2>
+          <button type="button" id="export-btn" class="export-btn">تصدير</button>
+          <div id="export-result" class="export-result" hidden>
+            <p id="export-status" class="export-status" role="status" aria-live="polite"></p>
+            <div class="export-actions" id="export-actions">
+              <button type="button" id="copy-btn" class="secondary-btn">انسخ للوكيل</button>
+              <div id="download-list" class="download-list"></div>
+            </div>
+            <p id="copy-status" class="note" role="status" aria-live="polite"></p>
+            <textarea id="copy-fallback" class="copy-fallback" readonly hidden aria-label="نص النتيجة للنسخ اليدوي" dir="ltr"></textarea>
+          </div>
+        </section>
       </form>
 
       <section class="preview-wrap" aria-labelledby="preview-title">
@@ -53,7 +68,9 @@
     </div>
 
     <script src="js/core/generate.js"></script>
+    <script src="js/core/export-format.js"></script>
     <script src="js/ui/preview.js"></script>
     <script src="js/ui/app.js"></script>
+    <script src="js/ui/export.js"></script>
   </body>
 </html>
