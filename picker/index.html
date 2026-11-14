@@ -4,36 +4,55 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hawiya</title>
-    <style>
-      :root {
-        color-scheme: light dark;
-        --bg: #ffffff;
-        --fg: #111827;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #111827;
-          --fg: #f9fafb;
-        }
-      }
-      body {
-        margin: 0;
-        min-block-size: 100vh;
-        display: grid;
-        place-items: center;
-        background: var(--bg);
-        color: var(--fg);
-        font-family: system-ui, sans-serif;
-      }
-      h1 {
-        margin: 0;
-        font-size: 3rem;
-      }
-    </style>
+    <link rel="stylesheet" href="css/picker.css" />
   </head>
   <body>
-    <main>
+    <header class="top">
       <h1>Hawiya</h1>
-    </main>
+      <p class="sub">نسخة تجريبية: هوية واحدة وثلاثة اختيارات</p>
+    </header>
+
+    <div class="layout">
+      <form class="controls" id="controls" autocomplete="off">
+        <section class="group" aria-labelledby="identity-title">
+          <h2 id="identity-title">الهوية الجاهزة</h2>
+          <button type="button" class="identity" id="identity-btn" aria-pressed="true">
+            <span class="identity-name">مؤسسي هادئ</span>
+            <span class="identity-hint">أزرق محايد، خط واضح، زوايا معتدلة</span>
+          </button>
+        </section>
+
+        <fieldset class="group">
+          <legend>اللون الأساسي</legend>
+          <div class="swatches" id="swatches"></div>
+          <label class="custom-color">
+            <span>لون مخصص</span>
+            <input type="color" id="color-input" name="color-custom" />
+          </label>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>الخط</legend>
+          <div class="fonts" id="fonts"></div>
+          <p class="note">الخطوط تُحمَّل من Google Fonts وتحتاج اتصالًا بالإنترنت.</p>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>الزوايا</legend>
+          <div class="radius-row">
+            <input type="range" id="radius-input" name="radius" min="0" max="24" step="2" />
+            <output id="radius-value" for="radius-input"></output>
+          </div>
+        </fieldset>
+      </form>
+
+      <section class="preview-wrap" aria-labelledby="preview-title">
+        <h2 id="preview-title">المعاينة</h2>
+        <div id="preview" class="preview"></div>
+      </section>
+    </div>
+
+    <script src="js/ui/preview.js"></script>
+    <script src="js/ui/app.js"></script>
   </body>
 </html>
