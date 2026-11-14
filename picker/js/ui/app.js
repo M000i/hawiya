@@ -41,22 +41,6 @@
     document.head.appendChild(link);
   }
 
-  /* Prototype-only text color pick for the button; the real contrast module comes in task 1.2. */
-  function luminance(hex) {
-    var n = parseInt(hex.slice(1), 16);
-    var rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(function (c) {
-      c = c / 255;
-      return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-    });
-    return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
-  }
-  function onColor(hex) {
-    var l = luminance(hex);
-    var withWhite = 1.05 / (l + 0.05);
-    var withBlack = (l + 0.05) / 0.05;
-    return withWhite >= withBlack ? '#ffffff' : '#111827';
-  }
-
   function isHex(v) {
     return /^#[0-9a-f]{6}$/i.test(v);
   }
@@ -121,13 +105,20 @@
     els.identityBtn.setAttribute('aria-pressed', String(state.identity === IDENTITY.id));
   }
 
+  /* The exact input the generator receives; the preview reads the generator's own derived values. */
+  H.getGeneratorInput = function () {
+    return { name: 'مؤسسي هادئ', primary: state.color, fontFamily: FONTS[state.font].label, radius: state.radius };
+  };
+
   function render() {
     syncControls();
+    var d = H.generate.derive(H.getGeneratorInput());
     H.preview.render({
-      primary: state.color,
-      onPrimary: onColor(state.color),
+      primary: d.primary,
+      onPrimary: d.onPrimary,
+      accentText: d.accentText,
       fontFamily: FONTS[state.font].family,
-      radius: state.radius
+      radius: d.radius.md
     });
     document.dispatchEvent(new CustomEvent('hawiya:change', { detail: H.getState() }));
   }

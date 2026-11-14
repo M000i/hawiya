@@ -13,7 +13,7 @@
     '  border: 1px solid #e5e7eb; border-radius: calc(var(--h-radius) * 1.5);',
     '  box-shadow: 0 1px 3px rgba(0,0,0,.08); }',
     '.badge { display: inline-block; padding: 2px 10px; font-size: 13px;',
-    '  color: var(--h-primary); border: 1px solid var(--h-primary);',
+    '  color: var(--h-accent-text); border: 1px solid var(--h-primary);',
     '  border-radius: var(--h-radius); }',
     'h3 { margin: 12px 0 4px; font-size: 22px; font-weight: 700; }',
     'p { margin: 0 0 16px; color: #4b5563; font-size: 15px; }',
@@ -26,7 +26,7 @@
     '  border-radius: var(--h-radius); }',
     '.primary { background: var(--h-primary); color: var(--h-on-primary);',
     '  border: 1px solid var(--h-primary); }',
-    '.secondary { background: transparent; color: var(--h-primary);',
+    '.secondary { background: transparent; color: var(--h-accent-text);',
     '  border: 1px solid var(--h-primary); }'
   ].join('\n');
 
@@ -55,11 +55,12 @@
       root.innerHTML = '<style>' + STYLE + '</style>' + MARKUP;
     },
 
-    /* tokens: { primary, onPrimary, fontFamily, radius } */
+    /* tokens: { primary, onPrimary, accentText, fontFamily, radius } */
     render: function (tokens) {
       if (!host) return;
       host.style.setProperty('--h-primary', tokens.primary);
       host.style.setProperty('--h-on-primary', tokens.onPrimary);
+      host.style.setProperty('--h-accent-text', tokens.accentText);
       host.style.setProperty('--h-font', tokens.fontFamily);
       host.style.setProperty('--h-radius', tokens.radius + 'px');
     }
