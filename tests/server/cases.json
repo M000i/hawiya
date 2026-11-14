@@ -1,5 +1,5 @@
 {
-  "about": "Shared, language-neutral cases for the save server. Run against scripts/serve.js (task 0.4) and scripts/serve.py (task 0.5). Placeholders: {TOKEN} valid token, {ORIGIN} http://127.0.0.1:<port>. Paths in setup/expect are relative to the project dir; '../outside' is a sibling dir outside the project. Request flags: chunked = send body without Content-Length; hold = chunked body (no Content-Length), send a little, never finish; reset = send the request then reset the TCP connection without reading the reply; delayBeforeMs = wait before sending. setup.readonlyProject = make the project dir read-only.",
+  "about": "Shared, language-neutral cases for the save server. Run against scripts/serve.js (task 0.4) and scripts/serve.py (task 0.5). Placeholders: {TOKEN} valid token, {ORIGIN} http://127.0.0.1:<port>. Paths in setup/expect are relative to the project dir; '../outside' is a sibling dir outside the project. Request flags: chunked = send body without Content-Length; hold = chunked body (no Content-Length), send a little, never finish; reset = send the request then reset the TCP connection without reading the reply; delayBeforeMs = wait before sending; smuggle = refused POST whose body is a full GET request, exactly one response allowed; raw = exact bytes sent on a socket ({HOST}, {TOKEN}, {LEN_INNER} filled in), expectStatus null = no reply bytes at all, omitted = any, maxResponses = cap on status lines, expectNotContains = text that must not appear in the reply; any raw reply must start with an HTTP status line. Case flag closeStdoutAfterReady = the test stops reading the server's output after the ready line. setup.readonlyProject = make the project dir read-only.",
   "fixtures": {
     "identity": "{\n  \"schemaVersion\": \"0.1-prototype\",\n  \"name\": \"T\"\n}\n",
     "design": "---\nversion: alpha\nname: \"T\"\ncolors:\n  primary: \"#2563eb\"\n---\n\n# T\n"
@@ -221,6 +221,141 @@
         }
       ],
       "expect": { "absent": ["design"], "exits": false }
+    },
+    {
+      "name": "the unread body of a refused request is never handled as a second request (smuggling)",
+      "requests": [{ "method": "POST", "path": "/nope", "smuggle": true, "expectStatus": 405 }],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "an HTTP/0.9 request never gets page content and does not stop the server",
+      "requests": [
+        { "raw": "GET /\r\n\r\n", "expectNotContains": "Hawiya", "maxResponses": 1 },
+        { "method": "GET", "path": "/", "expectStatus": 200 }
+      ],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "smuggling: unknown Transfer-Encoding never yields a second response",
+      "requests": [
+        {
+          "raw": "POST /nope HTTP/1.1\r\nHost: {HOST}\r\nConnection: keep-alive\r\nTransfer-Encoding: gzip\r\n\r\nGET / HTTP/1.1\r\nHost: {HOST}\r\n\r\n",
+          "maxResponses": 1
+        },
+        { "method": "GET", "path": "/", "expectStatus": 200 }
+      ],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "smuggling: two Content-Length headers never yield a second response",
+      "requests": [
+        {
+          "raw": "POST /nope HTTP/1.1\r\nHost: {HOST}\r\nConnection: keep-alive\r\nContent-Length: 0\r\nContent-Length: {LEN_INNER}\r\n\r\nGET / HTTP/1.1\r\nHost: {HOST}\r\n\r\n",
+          "maxResponses": 1
+        }
+      ],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "smuggling: negative Content-Length never yields a second response",
+      "requests": [
+        {
+          "raw": "POST /nope HTTP/1.1\r\nHost: {HOST}\r\nConnection: keep-alive\r\nContent-Length: -5\r\n\r\nGET / HTTP/1.1\r\nHost: {HOST}\r\n\r\n",
+          "maxResponses": 1
+        }
+      ],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "smuggling: Content-Length together with chunked never yields a second response",
+      "requests": [
+        {
+          "raw": "POST /nope HTTP/1.1\r\nHost: {HOST}\r\nConnection: keep-alive\r\nContent-Length: 5\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nGET / HTTP/1.1\r\nHost: {HOST}\r\n\r\n",
+          "maxResponses": 1
+        }
+      ],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "a malformed chunk size (0x1b) never saves anything",
+      "requests": [
+        {
+          "raw": "POST /api/export HTTP/1.1\r\nHost: {HOST}\r\nX-Hawiya-Token: {TOKEN}\r\nContent-Type: application/json\r\nTransfer-Encoding: chunked\r\n\r\n0x1b\r\n{\"files\":{\"DESIGN.md\":\"x\"}}\r\n0\r\n\r\n",
+          "maxResponses": 1
+        }
+      ],
+      "expect": { "absent": ["design/DESIGN.md"], "exits": false }
+    },
+    {
+      "name": "TRACE and unknown methods are refused and the server keeps running",
+      "requests": [
+        { "method": "TRACE", "path": "/", "expectStatus": 405 },
+        { "raw": "FOO / HTTP/1.1\r\nHost: {HOST}\r\n\r\n", "maxResponses": 1 },
+        { "method": "GET", "path": "/", "expectStatus": 200 }
+      ],
+      "expect": { "exits": false }
+    },
+    {
+      "name": "identity.json with NaN is not valid JSON and is rejected",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "bodyRaw": "{\"files\":{\"identity.json\":\"{\\\"a\\\": NaN}\"}}",
+          "expectStatus": 400
+        },
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "bodyRaw": "{\"files\":{\"DESIGN.md\":\"x\"},\"n\":-Infinity}",
+          "expectStatus": 400
+        }
+      ],
+      "expect": { "absent": ["design"], "exits": false }
+    },
+    {
+      "name": "a lone surrogate in file content is written as U+FFFD (valid UTF-8)",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "bodyRaw": "{\"files\":{\"DESIGN.md\":\"a\\ud800b\"}}",
+          "expectStatus": 200
+        }
+      ],
+      "expect": { "files": { "design/DESIGN.md": "a�b" }, "exits": true, "exitCode": 0 }
+    },
+    {
+      "name": "the server still exits after saving when the agent stopped reading its output",
+      "closeStdoutAfterReady": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "body": { "files": { "DESIGN.md": "@design" } },
+          "expectStatus": 200
+        }
+      ],
+      "expect": { "files": { "design/DESIGN.md": "@design" }, "exits": true }
+    },
+    {
+      "name": "the server still exits after five wrong tokens when the agent stopped reading its output",
+      "closeStdoutAfterReady": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "wrong" },
+          "body": { "files": { "identity.json": "@identity" } },
+          "repeat": 5,
+          "expectStatus": 401
+        }
+      ],
+      "expect": { "absent": ["design"], "exits": true }
     },
     {
       "name": "save completes and the server exits 0 even if the client resets the connection",
