@@ -1,0 +1,179 @@
+[
+  {
+    "id": "icons-lucide-outline",
+    "element": "icons",
+    "kind": "curated",
+    "name": {
+      "ar": "لوسيد بخط عادي",
+      "en": "Lucide, regular stroke"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "icon": {
+        "size": {
+          "$type": "dimension",
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          }
+        },
+        "strokeWidth": {
+          "$type": "number",
+          "$value": 2
+        }
+      }
+    },
+    "extras": {
+      "library": "lucide",
+      "weight": "regular",
+      "fill": "outline",
+      "container": "none"
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Direction icons (arrows, chevrons, undo/redo) are mirrored in RTL; clocks, media and checks are not."
+    },
+    "source": {
+      "name": "Lucide",
+      "url": "https://github.com/lucide-icons/lucide",
+      "license": "ISC"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "icons-phosphor-regular",
+    "element": "icons",
+    "kind": "curated",
+    "name": {
+      "ar": "فوسفور بوزن عادي",
+      "en": "Phosphor, regular"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.7,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "icon": {
+        "size": {
+          "$type": "dimension",
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          }
+        },
+        "strokeWidth": {
+          "$type": "number",
+          "$value": 1.5
+        }
+      }
+    },
+    "extras": {
+      "library": "phosphor",
+      "weight": "regular",
+      "fill": "outline",
+      "container": "none"
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Direction icons (arrows, chevrons, undo/redo) are mirrored in RTL; clocks, media and checks are not."
+    },
+    "source": {
+      "name": "Phosphor Icons",
+      "url": "https://github.com/phosphor-icons/core",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "icons-tabler-outline",
+    "element": "icons",
+    "kind": "curated",
+    "name": {
+      "ar": "تابلر بخط عادي",
+      "en": "Tabler, regular stroke"
+    },
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "icon": {
+        "size": {
+          "$type": "dimension",
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          }
+        },
+        "strokeWidth": {
+          "$type": "number",
+          "$value": 2
+        }
+      }
+    },
+    "extras": {
+      "library": "tabler",
+      "weight": "regular",
+      "fill": "outline",
+      "container": "none"
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Direction icons (arrows, chevrons, undo/redo) are mirrored in RTL; clocks, media and checks are not."
+    },
+    "source": {
+      "name": "Tabler Icons",
+      "url": "https://github.com/tabler/tabler-icons",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]

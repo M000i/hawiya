@@ -1,0 +1,249 @@
+[
+  {
+    "id": "pair-plex-arabic-plex-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "بلكس العربي مع بلكس",
+      "en": "IBM Plex Sans Arabic + IBM Plex Sans"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.6,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "IBM Plex Sans Arabic",
+      "latin": "IBM Plex Sans",
+      "numeralsFont": "IBM Plex Sans Arabic",
+      "latinSizeAdjust": 1,
+      "sources": [
+        "plex"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic and Latin designed together. Size adjustment and Eastern Arabic digits are measured in task 2.11."
+    },
+    "source": {
+      "name": "IBM Plex",
+      "url": "https://github.com/IBM/plex",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "pair-noto-sans-arabic-noto-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "نوتو العربي مع نوتو",
+      "en": "Noto Sans Arabic + Noto Sans"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Sans Arabic",
+            "Noto Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Sans Arabic",
+            "Noto Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Sans Arabic",
+            "Noto Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Noto Sans Arabic",
+      "latin": "Noto Sans",
+      "numeralsFont": "Noto Sans Arabic",
+      "latinSizeAdjust": 1,
+      "sources": [
+        "noto-arabic",
+        "noto-latin"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Same family in both scripts. Size adjustment and Eastern Arabic digits are measured in task 2.11."
+    },
+    "source": {
+      "name": "Noto Sans Arabic",
+      "url": "https://github.com/notofonts/arabic",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "pair-cairo",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "القاهرة",
+      "en": "Cairo"
+    },
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.7,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Cairo",
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Cairo",
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Cairo",
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Cairo",
+      "latin": "Cairo",
+      "numeralsFont": "Cairo",
+      "latinSizeAdjust": 1,
+      "sources": [
+        "cairo"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "One font with Arabic and Latin letters. Eastern Arabic digits are measured in task 2.11."
+    },
+    "source": {
+      "name": "Cairo",
+      "url": "https://github.com/Gue3bara/Cairo",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]

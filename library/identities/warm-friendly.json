@@ -1,0 +1,28 @@
+{
+  "id": "warm-friendly",
+  "name": {
+    "ar": "ودود دافئ",
+    "en": "Warm and friendly"
+  },
+  "description": {
+    "ar": "أخضر مزرق مع كهرماني وخط القاهرة وزوايا دائرية، لصفحات ثنائية اللغة.",
+    "en": "Teal with amber, Cairo and round corners, for bilingual pages."
+  },
+  "tags": [
+    "soft",
+    "playful"
+  ],
+  "templates": {
+    "colors": "palette-teal",
+    "modes": "modes-light-first",
+    "fonts": "pair-cairo",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-round",
+    "shadows": "shadow-soft",
+    "icons": "icons-phosphor-regular",
+    "buttons": "button-soft",
+    "cards": "card-elevated",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "minimal",
+    "name": {
+      "ar": "بسيط",
+      "en": "Minimal"
+    }
+  },
+  {
+    "id": "corporate",
+    "name": {
+      "ar": "مؤسسي",
+      "en": "Corporate"
+    }
+  },
+  {
+    "id": "editorial",
+    "name": {
+      "ar": "تحريري",
+      "en": "Editorial"
+    }
+  },
+  {
+    "id": "playful",
+    "name": {
+      "ar": "مرح",
+      "en": "Playful"
+    }
+  },
+  {
+    "id": "luxury",
+    "name": {
+      "ar": "فاخر",
+      "en": "Luxury"
+    }
+  },
+  {
+    "id": "glass",
+    "name": {
+      "ar": "زجاجي",
+      "en": "Glass"
+    }
+  },
+  {
+    "id": "brutalist",
+    "name": {
+      "ar": "خام",
+      "en": "Brutalist"
+    }
+  },
+  {
+    "id": "neumorphic",
+    "name": {
+      "ar": "نيومورفي",
+      "en": "Neumorphic"
+    }
+  },
+  {
+    "id": "retro",
+    "name": {
+      "ar": "كلاسيكي قديم",
+      "en": "Retro"
+    }
+  },
+  {
+    "id": "material",
+    "name": {
+      "ar": "ماتيريال",
+      "en": "Material"
+    }
+  },
+  {
+    "id": "cupertino",
+    "name": {
+      "ar": "شبيه iOS",
+      "en": "Cupertino"
+    }
+  },
+  {
+    "id": "fluent",
+    "name": {
+      "ar": "شبيه ويندوز",
+      "en": "Fluent"
+    }
+  },
+  {
+    "id": "technical",
+    "name": {
+      "ar": "تقني",
+      "en": "Technical"
+    }
+  },
+  {
+    "id": "data-dense",
+    "name": {
+      "ar": "كثيف البيانات",
+      "en": "Data-dense"
+    }
+  },
+  {
+    "id": "vivid",
+    "name": {
+      "ar": "زاهٍ",
+      "en": "Vivid"
+    }
+  },
+  {
+    "id": "soft",
+    "name": {
+      "ar": "ناعم",
+      "en": "Soft"
+    }
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "modes-system",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "يتبع إعداد الجهاز",
+      "en": "Follow the device"
+    },
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "system"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "modes-light-first",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "فاتح أولًا",
+      "en": "Light first"
+    },
+    "tags": [
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "light"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "modes-dark-first",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "داكن أولًا",
+      "en": "Dark first"
+    },
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "dark"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]

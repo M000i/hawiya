@@ -1,0 +1,79 @@
+{
+  "allowed": [
+    {
+      "id": "MIT",
+      "name": "MIT License"
+    },
+    {
+      "id": "ISC",
+      "name": "ISC License"
+    },
+    {
+      "id": "Apache-2.0",
+      "name": "Apache License 2.0"
+    },
+    {
+      "id": "OFL-1.1",
+      "name": "SIL Open Font License 1.1"
+    },
+    {
+      "id": "CC0-1.0",
+      "name": "Creative Commons Zero 1.0"
+    },
+    {
+      "id": "CC-BY-4.0",
+      "name": "Creative Commons Attribution 4.0",
+      "note": "Allowed only with the source named in THIRD_PARTY_NOTICES."
+    }
+  ],
+  "forbiddenSources": [
+    {
+      "name": "React Bits",
+      "reason": "MIT + Commons Clause forbids redistribution, even as a port."
+    },
+    {
+      "name": "Aceternity UI",
+      "reason": "Forbids redistribution, even when modified."
+    },
+    {
+      "name": "Remix Icon",
+      "reason": "New custom license since January 2026 forbids distributing it as an icon set."
+    },
+    {
+      "name": "Animate.css",
+      "reason": "Hippocratic License, not open source in the accepted sense."
+    },
+    {
+      "name": "GSAP",
+      "reason": "Not open source; it may only be named as an option in the output."
+    },
+    {
+      "name": "easings.net",
+      "reason": "GPL-3.0; easing curves come from Open Props instead."
+    },
+    {
+      "name": "Hover.css",
+      "reason": "Free for personal use only."
+    },
+    {
+      "name": "SVG Backgrounds",
+      "reason": "Forbids redistribution or use in a similar tool; link only."
+    },
+    {
+      "name": "Haikei",
+      "reason": "Forbids redistribution or use in a similar tool; link only."
+    },
+    {
+      "name": "loading.io",
+      "reason": "Forbids redistribution or use in a similar tool; link only."
+    },
+    {
+      "name": "unDraw",
+      "reason": "Forbids redistribution or use in a similar tool; link only."
+    },
+    {
+      "name": "Apple assets (SF Symbols, SF fonts)",
+      "reason": "Reference only; iOS-like values are written by this project."
+    }
+  ]
+}

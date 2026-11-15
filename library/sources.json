@@ -1,0 +1,85 @@
+[
+  {
+    "id": "hawiya",
+    "name": "Hawiya",
+    "url": "https://github.com/hawiya/hawiya",
+    "license": "MIT",
+    "licenseFile": "https://github.com/hawiya/hawiya/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-15",
+    "use": "Values designed for this project.",
+    "note": "Placeholder address until the real repository exists (backlog B-031)."
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS",
+    "url": "https://github.com/tailwindlabs/tailwindcss",
+    "license": "MIT",
+    "licenseFile": "https://github.com/tailwindlabs/tailwindcss/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-15",
+    "use": "Color values from the v3 default palette."
+  },
+  {
+    "id": "plex",
+    "name": "IBM Plex",
+    "url": "https://github.com/IBM/plex",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/IBM/plex/blob/master/LICENSE.txt",
+    "licenseReadAt": "2026-11-15",
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "noto-arabic",
+    "name": "Noto Sans Arabic",
+    "url": "https://github.com/notofonts/arabic",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/notofonts/arabic/blob/main/OFL.txt",
+    "licenseReadAt": "2026-11-15",
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "noto-latin",
+    "name": "Noto Sans",
+    "url": "https://github.com/notofonts/latin-greek-cyrillic",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/notofonts/latin-greek-cyrillic/blob/main/OFL.txt",
+    "licenseReadAt": "2026-11-15",
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "cairo",
+    "name": "Cairo",
+    "url": "https://github.com/Gue3bara/Cairo",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/cairo/OFL.txt",
+    "licenseReadAt": "2026-11-15",
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "lucide",
+    "name": "Lucide",
+    "url": "https://github.com/lucide-icons/lucide",
+    "license": "ISC",
+    "licenseFile": "https://github.com/lucide-icons/lucide/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-15",
+    "use": "Icon set (named only; icons are not copied yet).",
+    "note": "Some icons derive from Feather (MIT); both notices are kept."
+  },
+  {
+    "id": "phosphor",
+    "name": "Phosphor Icons",
+    "url": "https://github.com/phosphor-icons/core",
+    "license": "MIT",
+    "licenseFile": "https://github.com/phosphor-icons/core/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-15",
+    "use": "Icon set (named only; icons are not copied yet)."
+  },
+  {
+    "id": "tabler",
+    "name": "Tabler Icons",
+    "url": "https://github.com/tabler/tabler-icons",
+    "license": "MIT",
+    "licenseFile": "https://github.com/tabler/tabler-icons/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-15",
+    "use": "Icon set (named only; icons are not copied yet)."
+  }
+]

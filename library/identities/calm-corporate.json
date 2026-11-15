@@ -1,0 +1,28 @@
+{
+  "id": "calm-corporate",
+  "name": {
+    "ar": "مؤسسي هادئ",
+    "en": "Calm corporate"
+  },
+  "description": {
+    "ar": "ألوان زرقاء هادئة وخط بلكس وزوايا متوسطة، لتطبيقات الأعمال العربية.",
+    "en": "Quiet blue colors, IBM Plex and medium corners, for Arabic business apps."
+  },
+  "tags": [
+    "corporate",
+    "minimal"
+  ],
+  "templates": {
+    "colors": "palette-blue",
+    "modes": "modes-system",
+    "fonts": "pair-plex-arabic-plex-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-medium",
+    "shadows": "shadow-soft",
+    "icons": "icons-lucide-outline",
+    "buttons": "button-solid",
+    "cards": "card-bordered",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-rtl"
+  }
+}

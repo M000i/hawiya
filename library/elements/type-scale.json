@@ -1,0 +1,221 @@
+[
+  {
+    "id": "scale-minor-third",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "سلّم هادئ (1.2)",
+      "en": "Minor third (1.2)"
+    },
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.7,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.2
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 6
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.7
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.5
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "scale-major-third",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "سلّم متوازن (1.25)",
+      "en": "Major third (1.25)"
+    },
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.25
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 6
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.7
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.5
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "scale-perfect-fourth",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "سلّم واضح (1.333)",
+      "en": "Perfect fourth (1.333)"
+    },
+    "tags": [
+      "editorial",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.3,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.333
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 6
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.8
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.5
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]

@@ -1,0 +1,215 @@
+[
+  {
+    "id": "palette-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أزرق وبنفسجي",
+      "en": "Blue and violet"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1451,
+              0.3882,
+              0.9216
+            ],
+            "hex": "#2563eb"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4863,
+              0.2275,
+              0.9294
+            ],
+            "hex": "#7c3aed"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 blue-600 / violet-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "palette-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أخضر مزرق وكهرماني",
+      "en": "Teal and amber"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0588,
+              0.4627,
+              0.4314
+            ],
+            "hex": "#0f766e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.851,
+              0.4667,
+              0.0235
+            ],
+            "hex": "#d97706"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 teal-700 / amber-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "palette-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "وردي ونيلي",
+      "en": "Rose and indigo"
+    },
+    "tags": [
+      "vivid",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8824,
+              0.1137,
+              0.2824
+            ],
+            "hex": "#e11d48"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3098,
+              0.2745,
+              0.898
+            ],
+            "hex": "#4f46e5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 rose-600 / indigo-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]

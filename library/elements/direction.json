@@ -1,0 +1,185 @@
+[
+  {
+    "id": "direction-rtl",
+    "element": "direction",
+    "kind": "setting",
+    "name": {
+      "ar": "عربي من اليمين",
+      "en": "Arabic, right to left"
+    },
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0,
+      "intensity": 0
+    },
+    "tokens": {
+      "direction": {
+        "$value": "rtl"
+      }
+    },
+    "extras": {
+      "language": "ar",
+      "numerals": "latn",
+      "calendar": "gregory",
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "direction-ltr",
+    "element": "direction",
+    "kind": "setting",
+    "name": {
+      "ar": "إنجليزي من اليسار",
+      "en": "English, left to right"
+    },
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0,
+      "intensity": 0
+    },
+    "tokens": {
+      "direction": {
+        "$value": "ltr"
+      }
+    },
+    "extras": {
+      "language": "en",
+      "numerals": "latn",
+      "calendar": "gregory",
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "direction-both",
+    "element": "direction",
+    "kind": "setting",
+    "name": {
+      "ar": "ثنائي اللغة",
+      "en": "Bilingual"
+    },
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0,
+      "intensity": 0
+    },
+    "tokens": {
+      "direction": {
+        "$value": "both"
+      }
+    },
+    "extras": {
+      "language": "ar+en",
+      "numerals": "latn",
+      "calendar": "gregory",
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]
