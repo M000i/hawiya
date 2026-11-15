@@ -4,8 +4,12 @@
  *
  * 1. generate.valueFiles(identity)  (task 1.8) - the final generator, from a full identity (schema/identity.schema.json):
  *      -> { "identity.json", "tokens.json", "tokens.css", "theme.css" }   (strings, each ending with one newline)
- *    The identity is checked first with validate.js (browser: load schemas.js and validate.js before calling it);
+ *    The identity is checked first with validate.js (browser: load schemas.js, validate.js and contrast.js first);
  *    an invalid identity throws, with the checker's errors on error.errors. Nothing is written from unchecked data.
+ *
+ *    generate.designMd(identity)  (task 1.9) - the full DESIGN.md (format: @google/design.md, version alpha), from the
+ *    same checked identity. Browser: also load contrast.js. generate.uiColors(colorSet) gives the focus-ring and
+ *    control-border colors it uses (both reach 3:1 against background and surface when the identity allows it).
  *
  * 2. generate(input) / generate.derive(input)  (task 0.3) - the PROTOTYPE generator still used by the phase-0 page:
  *      Input: { name, primary: "#rrggbb", fontFamily: string, radius: integer px 0..64 }
@@ -16,13 +20,13 @@
   var api;
   if (typeof module === 'object' && module && module.exports && typeof require === 'function') {
     api = factory(function () {
-      return { validate: require('./validate.js'), schemas: require('./schemas.js') };
+      return { validate: require('./validate.js'), schemas: require('./schemas.js'), contrast: require('./contrast.js') };
     });
     module.exports = api;
   } else {
     api = factory(function () {
       var H = root.Hawiya || {};
-      return { validate: H.validate, schemas: H.schemas };
+      return { validate: H.validate, schemas: H.schemas, contrast: H.contrast };
     });
     root.Hawiya = root.Hawiya || {};
     root.Hawiya.generate = api;
@@ -462,6 +466,9 @@
       ROLES.forEach(function (role) {
         g[kebab(role)] = { $value: dtcgColor(t.color[mode][role]) };
       });
+      var ui = uiColors(t.color[mode]);
+      g['focus-ring'] = { $value: dtcgColor(ui.focusRing), $description: 'Keyboard focus outline; reaches 3:1 against background and surface when the identity allows it.' };
+      g['control-border'] = { $value: dtcgColor(ui.controlBorder), $description: 'Boundaries of inputs and secondary buttons (not the decorative border).' };
       color[mode] = g;
     });
     color.ramp = { $description: 'Eleven-step ramps (50 lightest, 950 darkest), shared by both modes.' };
@@ -580,6 +587,9 @@
     ROLES.forEach(function (role) {
       out.push(['--color-' + kebab(role), t.color[mode][role]]);
     });
+    var ui = uiColors(t.color[mode]);
+    out.push(['--color-focus-ring', ui.focusRing]);
+    out.push(['--color-control-border', ui.controlBorder]);
     return out;
   }
 
@@ -733,6 +743,412 @@
       'theme.css': themeCss(id)
     };
   }
+
+  /* =================================================================================================
+   * DESIGN.md (task 1.9): front matter tokens (format "alpha" of @google/design.md) + written guidance
+   * ================================================================================================= */
+
+  // Arabic text kept as code points so this source file stays plain ASCII (output must not depend on page charset).
+  function cp() {
+    return String.fromCharCode.apply(null, arguments);
+  }
+  var AR_SECTION = 'Arabic & Direction (' + cp(0x627, 0x644, 0x639, 0x631, 0x628, 0x64a, 0x20, 0x648, 0x627, 0x644, 0x627, 0x62a, 0x62c, 0x627, 0x647) + ')';
+  var EASTERN_DIGITS = cp(0x660, 0x661, 0x662, 0x663, 0x664, 0x665, 0x666, 0x667, 0x668, 0x669);
+  var NON_TEXT_MIN = 3; // WCAG 1.4.11: focus rings and control borders
+  function textMin(id) {
+    return id.project.contrast === 'AAA' ? 7 : 4.5;
+  }
+
+  var TYPE_LABEL = { landing: 'landing page', website: 'website', 'web-app': 'web application', dashboard: 'dashboard', 'html-page': 'single HTML page' };
+  var LANGUAGE_LABEL = { ar: 'Arabic', en: 'English', 'ar+en': 'Arabic and English' };
+  var DIRECTION_LABEL = { rtl: 'right-to-left', ltr: 'left-to-right', both: 'both directions (Arabic pages right-to-left, English pages left-to-right)' };
+  var ROLE_USE = {
+    primary: 'Main action fill (one main action per screen), selected states.',
+    onPrimary: 'Text and icons on primary.',
+    secondary: 'Second accent: badges, secondary highlights.',
+    onSecondary: 'Text and icons on secondary.',
+    accentText: 'Links and accent-colored text on background and surface.',
+    background: 'Page background.',
+    surface: 'Cards, inputs, panels and secondary buttons.',
+    onSurface: 'Body text and headings.',
+    mutedText: 'Captions, helper text, metadata.',
+    border: 'Dividers and decorative borders (not for control boundaries).',
+    success: 'Success state: icons, borders, fills.',
+    warning: 'Warning state: icons, borders, fills.',
+    danger: 'Error and destructive state: icons, borders, fills.',
+    info: 'Information state: icons, borders, fills.'
+  };
+  var MOTION_TEXT = {
+    none: 'No animation. State changes (hover, open, close, page changes) are instant; never animate movement.',
+    subtle: 'Short fades and color changes only: 120-180ms, ease-out. Movement at most 4px. Nothing loops.',
+    medium: 'Fades plus small movement: 180-250ms, ease-out for entering, ease-in for leaving. Movement at most 8px.',
+    strong: 'Expressive entrances and transitions: 250-400ms with ease-in-out. Larger movement and scale are allowed for key moments, never for every element.'
+  };
+  var CONTAINER_TEXT = {
+    none: 'no container (the icon alone)',
+    circle: 'a circular container',
+    square: 'a square container with sharp corners',
+    rounded: 'a square container with the md corner radius'
+  };
+
+  function c() {
+    var d = deps();
+    if (!d.contrast) fail('load contrast.js before generate.js to build the export files');
+    return d.contrast;
+  }
+
+  // First candidate that reaches `min` against both background and surface; else the best of them.
+  function pickNonText(set, candidates) {
+    var ct = c();
+    var best = null;
+    var bestMin = -1;
+    for (var i = 0; i < candidates.length; i++) {
+      var hex = candidates[i];
+      var m = Math.min(ct.ratio(hex, set.background), ct.ratio(hex, set.surface));
+      if (m >= NON_TEXT_MIN) return hex;
+      if (m > bestMin) {
+        best = hex;
+        bestMin = m;
+      }
+    }
+    return best;
+  }
+
+  // Focus ring: primary when it reaches 3:1, else accent text (an AA text color always does). Control borders
+  // (inputs, secondary buttons): border when it reaches 3:1, else muted text.
+  function uiColors(set) {
+    return {
+      focusRing: pickNonText(set, [set.primary, set.accentText, set.onSurface]),
+      controlBorder: pickNonText(set, [set.border, set.mutedText, set.onSurface])
+    };
+  }
+
+  // The family that draws the digits: Latin digits come from the first family of the stack (Latin first),
+  // Eastern Arabic digits from the Arabic family.
+  function numeralsFontName(id) {
+    var ref = id.tokens.font.numerals;
+    return id.extensions.numerals === 'arab' ? ref.arabic || ref.latin : ref.latin || ref.arabic;
+  }
+
+  function mainFontName(id, role) {
+    var ref = id.tokens.font[role];
+    return id.project.language === 'en' ? ref.latin || ref.arabic : ref.arabic || ref.latin;
+  }
+
+  function shown(a, b) {
+    var ct = c();
+    return a + ' on ' + b + ': ' + ct.display(ct.ratio(a, b)) + ':1';
+  }
+
+  function pct(x) {
+    return Math.round(x * 10000) / 100 + '%';
+  }
+
+  function belowMark(a, b, min) {
+    var r = c().ratio(a, b);
+    if (r >= min) return '';
+    if (min === NON_TEXT_MIN || r < 3) return ' (below ' + (min === NON_TEXT_MIN ? NON_TEXT_MIN : 3) + ':1: do not use)';
+    return ' (below the ' + min + ':1 target: large text only)';
+  }
+
+  function list(items) {
+    return items
+      .map(function (x) {
+        return '`' + x + '`';
+      })
+      .join(', ');
+  }
+
+  function fullDesignMd(identity) {
+    var schema = checkIdentity(identity);
+    var id = canonical(schema, schema, identity);
+    var t = id.tokens;
+    var ext = id.extensions;
+    var ui = { light: uiColors(t.color.light), dark: uiColors(t.color.dark) };
+    var names = sizeNames(t.typeScale);
+    var lh = mainLineHeight(id);
+    var hasBelow = names.indexOf('sm') !== -1;
+    var TEXT_MIN = textMin(id);
+
+    /* ----- front matter ----- */
+    var y = ['---', 'version: alpha', 'name: ' + q(id.name)];
+    y.push('description: ' + q('Design identity for a ' + TYPE_LABEL[id.project.type] + ' (' + LANGUAGE_LABEL[id.project.language] + ', ' + id.project.direction + '), generated by Hawiya.'));
+    y.push('colors:');
+    [['light', ''], ['dark', 'dark-']].forEach(function (m) {
+      ROLES.forEach(function (role) {
+        y.push('  ' + m[1] + kebab(role) + ': ' + q(t.color[m[0]][role]));
+      });
+      y.push('  ' + m[1] + 'focus-ring: ' + q(ui[m[0]].focusRing));
+      y.push('  ' + m[1] + 'control-border: ' + q(ui[m[0]].controlBorder));
+    });
+    y.push('typography:');
+    function typo(name, role, px, weight, extra) {
+      y.push('  ' + name + ':');
+      y.push('    fontFamily: ' + q(role === 'numerals' ? numeralsFontName(id) : mainFontName(id, role)));
+      y.push('    fontSize: ' + q(px + 'px'));
+      y.push('    fontWeight: ' + weight);
+      y.push('    lineHeight: ' + q(String(lh))); // quoted: the pinned tool drops a bare number when reading it back
+      if (extra) y.push('    fontFeature: ' + q(extra));
+    }
+    for (var i = t.typeScale.steps.length - 1; i >= 0; i--) {
+      var nm = names[i];
+      var px = t.typeScale.steps[i];
+      if (nm === 'base') {
+        typo('body-md', 'body', px, 400);
+        typo('label-md', 'body', px, 600);
+        typo('numeric-md', 'numerals', px, 400, '"tnum" 1');
+      } else if (nm === 'sm' || /xs$/.test(nm)) {
+        typo('body-' + nm, 'body', px, 400);
+      } else {
+        typo('headline-' + nm, 'heading', px, 700);
+      }
+    }
+    y.push('rounded:');
+    RADII.forEach(function (r) {
+      y.push('  ' + r + ': ' + q(t.radius[r] + 'px'));
+    });
+    y.push('spacing:');
+    y.push('  unit: ' + q(t.spacing.unit + 'px'));
+    t.spacing.scale.forEach(function (sp, k) {
+      y.push('  space-' + k + ': ' + q(sp + 'px'));
+    });
+    y.push('components:');
+    function comp(name, props) {
+      y.push('  ' + name + ':');
+      props.forEach(function (pp) {
+        y.push('    ' + pp[0] + ': ' + q(pp[1]));
+      });
+    }
+    var smallText = hasBelow ? '{typography.body-sm}' : '{typography.body-md}';
+    [['', ''], ['-dark', 'dark-']].forEach(function (m) {
+      var col = function (n) {
+        return '{colors.' + m[1] + n + '}';
+      };
+      comp('page' + m[0], [['backgroundColor', col('background')], ['textColor', col('on-surface')], ['typography', '{typography.body-md}']]);
+      comp('button-primary' + m[0], [['backgroundColor', col('primary')], ['textColor', col('on-primary')], ['typography', '{typography.label-md}'], ['rounded', '{rounded.md}']]);
+      comp('button-secondary' + m[0], [['backgroundColor', col('surface')], ['textColor', col('accent-text')], ['typography', '{typography.label-md}'], ['rounded', '{rounded.md}']]);
+      comp('badge-secondary' + m[0], [['backgroundColor', col('secondary')], ['textColor', col('on-secondary')], ['typography', '{typography.label-md}'], ['rounded', '{rounded.full}']]);
+      comp('card' + m[0], [['backgroundColor', col('surface')], ['textColor', col('on-surface')], ['rounded', '{rounded.lg}']]);
+      comp('caption' + m[0], [['backgroundColor', col('surface')], ['textColor', col('muted-text')], ['typography', smallText]]);
+      comp('link' + m[0], [['backgroundColor', col('background')], ['textColor', col('accent-text')], ['typography', '{typography.body-md}']]);
+      comp('input-field' + m[0], [['backgroundColor', col('surface')], ['textColor', col('on-surface')], ['typography', '{typography.body-md}'], ['rounded', '{rounded.md}']]);
+      comp('control-outline' + m[0], [['backgroundColor', col('control-border')], ['width', '1px']]);
+      comp('focus-ring' + m[0], [['backgroundColor', col('focus-ring')], ['width', '2px']]);
+      comp('divider' + m[0], [['backgroundColor', col('border')], ['height', '1px']]);
+      ['success', 'warning', 'danger', 'info'].forEach(function (st) {
+        comp('status-' + st + m[0], [['backgroundColor', col(st)], ['size', '8px']]);
+      });
+    });
+    y.push('---');
+
+    /* ----- prose ----- */
+    var title = proseName(id.name).replace(/[~&$@]/g, ' ').replace(/:\/\//g, ' ').replace(/\bwww\./gi, 'www ').replace(/\s+/g, ' ').trim() || 'Hawiya identity';
+    var b = ['# ' + title, ''];
+
+    b.push('## Overview', '');
+    b.push(
+      'A design identity for a ' + TYPE_LABEL[id.project.type] + ' in ' + LANGUAGE_LABEL[id.project.language] + ', written ' +
+        DIRECTION_LABEL[id.project.direction] + '. The tokens above are normative; `tokens.css`, `theme.css` (Tailwind v4) and `tokens.json` next to this file carry the same values for code. Where this file is silent, stay plain and consistent rather than decorative.'
+    );
+    b.push('');
+    b.push('- Platform: web. Contrast target: WCAG ' + id.project.contrast + ' (' + (id.project.contrast === 'AAA' ? '7:1' : '4.5:1') + ' for body text).');
+    b.push('- Button style: `' + ext.components.button + '`. Card style: `' + ext.components.card + '`.');
+    if (id.autoFilled.length) b.push('- Filled in automatically (refine freely, keep the tokens): ' + list(id.autoFilled) + '.');
+    if (id.leaveToAI.length) b.push('- Left to your judgment, within these tokens: ' + list(id.leaveToAI) + '.');
+    b.push('');
+
+    b.push('## Colors', '');
+    b.push('Two modes share the same roles. In the tokens above the light value has the plain name (`primary`) and the dark value a `dark-` prefix (`dark-primary`). In code both live under one variable (`--color-primary` in tokens.css, `bg-primary` in Tailwind) that switches with the mode.');
+    b.push('');
+    b.push('| Role | Light | Dark | Use |', '|---|---|---|---|');
+    ROLES.forEach(function (role) {
+      b.push('| `' + kebab(role) + '` | ' + t.color.light[role] + ' | ' + t.color.dark[role] + ' | ' + ROLE_USE[role] + ' |');
+    });
+    b.push('| `focus-ring` | ' + ui.light.focusRing + ' | ' + ui.dark.focusRing + ' | Keyboard focus outline. |');
+    b.push('| `control-border` | ' + ui.light.controlBorder + ' | ' + ui.dark.controlBorder + ' | Boundaries of inputs and secondary buttons. |');
+    b.push('');
+    b.push('Measured contrast (WCAG 2). The ' + id.project.contrast + ' target is ' + TEXT_MIN + ':1 for body text' + (TEXT_MIN === 7 ? ' and 4.5:1 for large text (24px, or 18.66px bold)' : ' and 3:1 for large text') + '; focus rings and control borders need ' + NON_TEXT_MIN + ':1. A pair below the body-text target is marked and may carry large text only:');
+    b.push('');
+    ['light', 'dark'].forEach(function (mode) {
+      var s = t.color[mode];
+      var pairs = [
+        ['Text on primary', s.onPrimary, s.primary, TEXT_MIN],
+        ['Text on secondary', s.onSecondary, s.secondary, TEXT_MIN],
+        ['Body text on background', s.onSurface, s.background, TEXT_MIN],
+        ['Body text on surface', s.onSurface, s.surface, TEXT_MIN],
+        ['Muted text on surface', s.mutedText, s.surface, TEXT_MIN],
+        ['Accent text on background', s.accentText, s.background, TEXT_MIN],
+        ['Focus ring on background', ui[mode].focusRing, s.background, NON_TEXT_MIN],
+        ['Control border on background', ui[mode].controlBorder, s.background, NON_TEXT_MIN]
+      ];
+      b.push('- **' + (mode === 'light' ? 'Light' : 'Dark') + ':** ' + pairs.map(function (pr) {
+        return pr[0] + ' `' + shown(pr[1], pr[2]) + '`' + belowMark(pr[1], pr[2], pr[3]);
+      }).join('; ') + '.');
+    });
+    b.push('');
+    b.push('Status colors (success, warning, danger, info) are for icons, borders and fills. Use one as text only where it reaches ' + TEXT_MIN + ':1 against both background and surface (shown: against the background):');
+    b.push('');
+    ['light', 'dark'].forEach(function (mode) {
+      var s = t.color[mode];
+      var ct = c();
+      b.push('- **' + (mode === 'light' ? 'Light' : 'Dark') + ':** ' + ['success', 'warning', 'danger', 'info'].map(function (st) {
+        var ok = Math.min(ct.ratio(s[st], s.background), ct.ratio(s[st], s.surface)) >= TEXT_MIN;
+        return st + ' `' + shown(s[st], s.background) + '` (' + (ok ? 'text allowed' : 'not for text') + ')';
+      }).join('; ') + '.');
+    });
+    b.push('');
+    b.push('Focus ring: `--color-focus-ring` (Tailwind `outline-focus-ring`), the primary color when it reaches ' + NON_TEXT_MIN + ':1 against background and surface, otherwise a role with more contrast (accent text, then body text). Control boundaries: `--color-control-border` (Tailwind `border-control-border`), never the lighter decorative `border`. Both switch with the mode like every other color.');
+    var weakUi = [];
+    ['light', 'dark'].forEach(function (mode) {
+      var s = t.color[mode];
+      ['focusRing', 'controlBorder'].forEach(function (k) {
+        if (Math.min(c().ratio(ui[mode][k], s.background), c().ratio(ui[mode][k], s.surface)) < NON_TEXT_MIN) weakUi.push(mode + ' ' + (k === 'focusRing' ? 'focus ring' : 'control border'));
+      });
+    });
+    if (weakUi.length) b.push('', '**Warning:** no color of this identity reaches ' + NON_TEXT_MIN + ':1 for: ' + weakUi.join(', ') + '. Adjust the colors before building.');
+    var weakText = [];
+    ['light', 'dark'].forEach(function (mode) {
+      var s = t.color[mode];
+      [['text on primary', s.onPrimary, s.primary], ['text on secondary', s.onSecondary, s.secondary], ['body text on background', s.onSurface, s.background],
+        ['body text on surface', s.onSurface, s.surface], ['muted text on surface', s.mutedText, s.surface], ['accent text on background', s.accentText, s.background]].forEach(function (pr) {
+        if (c().ratio(pr[1], pr[2]) < TEXT_MIN) weakText.push(mode + ' ' + pr[0]);
+      });
+    });
+    if (weakText.length) {
+      b.push('', '**Warning:** this identity does not meet the ' + id.project.contrast + ' target (' + TEXT_MIN + ':1) for: ' + weakText.join(', ') + '. The components above still use these pairs at normal text size, so the result meets ' + (TEXT_MIN === 7 ? 'AA, not AAA' : 'neither target') + '. Adjust the colors (or choose AA) before building.');
+    }
+    b.push('');
+    b.push('Eleven-step ramps for tints and shades, the same in both modes (50 lightest, 950 darkest; `--color-primary-50` ... `--color-primary-950` in tokens.css):');
+    b.push('');
+    RAMPS.forEach(function (r) {
+      b.push('- **' + r + ':** ' + t.color.ramps[r].join(', ') + '.');
+    });
+    b.push('');
+
+    b.push('## Typography', '');
+    FONT_ROLES.forEach(function (role) {
+      var ref = t.font[role];
+      var parts = [];
+      if (ref.arabic) parts.push('Arabic **' + ref.arabic + '**');
+      if (ref.latin) parts.push('Latin **' + ref.latin + '**');
+      var line = '- **' + role.charAt(0).toUpperCase() + role.slice(1) + ':** ' + parts.join(', ') + ', then `' + ref.fallback.join(', ') + '`.';
+      if (ref.arabic && ref.latin && hasOwn(ref, 'latinSizeAdjust')) {
+        line += ' Latin size adjustment: **' + ref.latinSizeAdjust + '** (the Latin family drawn at ' + pct(ref.latinSizeAdjust) + ' so it looks the same size as the Arabic one).';
+      }
+      b.push(line);
+    });
+    b.push('');
+    var adjusted = FONT_ROLES.filter(function (role) {
+      var ref = t.font[role];
+      return ref.arabic && ref.latin && hasOwn(ref, 'latinSizeAdjust');
+    });
+    if (adjusted.length) {
+      b.push('');
+      b.push('Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family (for example `size-adjust: ' + pct(t.font[adjusted[0]].latinSizeAdjust) + ';` when self-hosting the font or copying the Google Fonts `@font-face` rules). It scales only that family\'s letters wherever they appear, so it needs no extra markup and never compounds. If two roles use the same Latin family with different values, give each its own `@font-face` family name.');
+    }
+    b.push('');
+    b.push('Load the fonts from Google Fonts. Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).');
+    b.push('');
+    b.push('Line height: ' + t.font.lineHeight.ar + ' for Arabic text and ' + t.font.lineHeight.en + ' for Latin text (`--line-height-ar`, `--line-height-en`). Arabic needs the extra height for its marks and descenders.');
+    b.push('');
+    b.push('Type scale (base ' + t.typeScale.base + 'px, ratio ' + t.typeScale.ratio + '): ' + t.typeScale.steps.map(function (sp, k) {
+      return names[k] + ' ' + sp + 'px';
+    }).join(', ') + '. Headings use weight 700, labels 600, body 400. Use only these sizes.');
+    b.push('');
+
+    b.push('## Layout', '');
+    b.push('Spacing comes from a ' + t.spacing.unit + 'px unit. Allowed steps, with the tokens.css variable and the Tailwind multiplier: ' + t.spacing.scale.map(function (sp, k) {
+      var mult = sp / t.spacing.unit;
+      return sp + 'px (`--space-' + k + '`' + (Math.floor(mult) === mult ? ', `p-' + mult + '`' : '') + ')';
+    }).join(', ') + '. Use no other gaps: in Tailwind the number is a multiple of the unit, not the step index.');
+    b.push('');
+    b.push('Lay out with logical properties only (`margin-inline-start`, `padding-inline-end`, `inset-inline-start`, `text-align: start`), so the same CSS works in both directions. Group related content in cards; keep the reading column comfortable (about 60-75 characters of Latin text).');
+    b.push('');
+
+    b.push('## Elevation & Depth', '');
+    b.push('Shadows per mode (CSS `box-shadow` values; `--shadow-sm|md|lg` in tokens.css). Dark values apply when the system prefers dark unless the page sets `<html data-theme="light">`, and always with `<html data-theme="dark">`.');
+    b.push('');
+    ['light', 'dark'].forEach(function (mode) {
+      b.push('- **' + (mode === 'light' ? 'Light' : 'Dark') + ':** ' + SIZES.map(function (sz) {
+        var layers = t.shadow[mode][sz];
+        return sz + ' ' + (layers.length ? '`' + cssShadow(layers) + '`' : 'no shadow');
+      }).join('; ') + '.');
+    });
+    b.push('');
+    b.push('Use sm for controls, md for cards and menus, lg for dialogs. Where a mode has no shadow, separate layers with surface color and borders instead.');
+    b.push('');
+
+    b.push('## Shapes', '');
+    b.push('Corner radius: sm ' + t.radius.sm + 'px (small controls, tags), md ' + t.radius.md + 'px (buttons, inputs), lg ' + t.radius.lg + 'px (cards, dialogs), full for pills and avatars. An element is never rounder than the container around it.');
+    b.push('');
+
+    b.push('## Components', '');
+    b.push('Every component has a `-dark` twin in the tokens above with the dark colors.');
+    b.push('');
+    b.push('- **Primary button:** primary fill, on-primary text, label-md, rounded md. One per screen.');
+    b.push('- **Secondary button:** surface fill, accent-text text, 1px control-border outline, rounded md.');
+    b.push('- **Card:** surface fill, on-surface text, rounded lg, 1px border or the md shadow.');
+    b.push('- **Input field:** surface fill, on-surface text, 1px control-border outline, rounded md; muted-text for helper text and placeholders.');
+    b.push('- **Badge:** secondary fill, on-secondary text, rounded full.');
+    b.push('- **Link:** accent-text, underlined.');
+    b.push('- **Focus:** every interactive element shows a 2px focus-ring outline with a 2px offset on keyboard focus (`:focus-visible`).');
+    b.push('- **Status:** a status color as an icon, border or 8px dot next to the message; the message text stays on-surface.');
+    b.push('');
+
+    b.push("## Do's and Don'ts", '');
+    b.push('- Do use the primary color for the single main action on each screen.');
+    b.push('- Do keep body text at ' + TEXT_MIN + ':1 or more (WCAG ' + id.project.contrast + '), and focus rings and control borders at ' + NON_TEXT_MIN + ':1 or more.');
+    b.push('- Do use only the colors, sizes, radii, shadows and spacing steps defined here; if Tailwind is used, ignore its default palette and scales.');
+    b.push('- Do use CSS logical properties (`margin-inline-start`, `padding-inline-end`, `inset-inline-start`), never `left` / `right`.');
+    b.push("- Don't add letter-spacing, uppercase or italic to Arabic text.");
+    b.push("- Don't add fonts, colors or icon sets that are not listed here.");
+    b.push('');
+
+    b.push('## Iconography', '');
+    b.push('Use the **' + ext.icons.library + '** icon set only, weight **' + ext.icons.weight + '**, **' + ext.icons.fill + '** style, with **' + ext.icons.container + '** container (' + CONTAINER_TEXT[ext.icons.container] + '). Size icons with the text (1em to 1.25em) and color them with `currentColor`. Mirroring rules are in the Arabic & Direction section.');
+    b.push('');
+
+    b.push('## Motion', '');
+    b.push('Motion level: **' + ext.motion + '**. ' + MOTION_TEXT[ext.motion]);
+    b.push('');
+    b.push('Always honor `prefers-reduced-motion: reduce`: then nothing moves (instant changes or plain fades under 100ms).');
+    b.push('');
+
+    var arNu = ext.numerals === 'arab' ? 'arab' : 'latn';
+    var calStr = '-u-ca-' + ext.calendar;
+    b.push('## Numbers & Calendar', '');
+    if (ext.numerals === 'arab') {
+      b.push('Digits: **Eastern Arabic** (' + EASTERN_DIGITS + ') in Arabic text, Western digits (0123456789) in English text. Format numbers with `new Intl.NumberFormat("ar-u-nu-arab")` in Arabic text and `new Intl.NumberFormat("en-u-nu-latn")` in English text.');
+    } else {
+      b.push('Digits: **Western** (0123456789), also in Arabic text. Format numbers with `new Intl.NumberFormat("ar-u-nu-latn")` in Arabic text and `new Intl.NumberFormat("en-u-nu-latn")` in English text.');
+    }
+    var digits = t.font.numerals.easternArabicDigits;
+    b.push('');
+    var digitsNote = '';
+    if (ext.numerals === 'arab') {
+      digitsNote = digits === true ? 'It draws Eastern Arabic digits.' : digits === false ? 'It does not draw Eastern Arabic digits; they fall back to the next font in the stack.' : 'Whether it draws Eastern Arabic digits was not tested.';
+    }
+    b.push('Numbers font: ' + numeralsFontName(id) + ' draws the digits (`--font-numerals`). ' + digitsNote + (digitsNote ? ' ' : '') + 'In tables and figures that must line up, use `font-variant-numeric: tabular-nums` (the numeric-md token).');
+    b.push('');
+    b.push('Calendar: **' + (ext.calendar === 'islamic-umalqura' ? 'Hijri (Umm al-Qura)' : 'Gregorian') + '**. Format dates with `new Intl.DateTimeFormat("ar' + calStr + '-nu-' + arNu + '")` in Arabic text and `new Intl.DateTimeFormat("en' + calStr + '-nu-latn")` in English text.');
+    b.push('');
+
+    b.push('## ' + AR_SECTION, '');
+    if (id.project.language === 'ar') b.push('- Pages: `<html lang="ar" dir="rtl">`.');
+    else if (id.project.language === 'en') b.push('- Pages: `<html lang="en" dir="ltr">`; Arabic passages inside get `lang="ar" dir="rtl"`.');
+    else b.push('- Arabic pages: `<html lang="ar" dir="rtl">`; English pages: `<html lang="en" dir="ltr">`. A passage in the other language gets its own `lang` and `dir`.');
+    b.push('- Use logical properties only: `margin-inline-start` / `margin-inline-end`, `padding-inline-*`, `inset-inline-start` / `inset-inline-end`, `border-inline-*`, `text-align: start` / `end`. Never physical left / right values.');
+    b.push('- Mirror in right-to-left: ' + list(ext.rtl.mirror) + ' (for example `.icon-' + ext.rtl.mirror[0] + ':dir(rtl) { scale: -1 1; }`: `:dir()` follows the nearest `dir`, so icons inside a left-to-right passage stay as they are, and the `scale` property keeps any other transform).');
+    b.push('- Never mirror: ' + list(ext.rtl.neverMirror) + '.');
+    b.push('- Arabic text: line height ' + t.font.lineHeight.ar + '; no letter-spacing, uppercase or italic; never break or justify words letter by letter.');
+    b.push('- Latin snippets inside Arabic text (emails, URLs, code, product names) go in `<bdi>` or an element with `dir="ltr"` (add `lang="en"` for English words), so their order stays correct.');
+    b.push('');
+
+    return y.join('\n') + '\n\n' + b.join('\n').replace(/\n+$/, '') + '\n';
+  }
+
+  generate.designMd = fullDesignMd;
+  generate.uiColors = uiColors;
 
   generate.valueFiles = valueFiles;
   generate.sizeNames = sizeNames;
