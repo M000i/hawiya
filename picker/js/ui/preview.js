@@ -21,7 +21,7 @@
 
   var BASE = [
     ':host { all: initial; display: block; }',
-    '.scene { box-sizing: border-box; min-block-size: 100%; font-family: var(--font-body); font-size: var(--sc-body);',
+    '.scene { box-sizing: border-box; min-block-size: 100%; container-type: inline-size; font-family: var(--font-body); font-size: var(--sc-body);',
     '  line-height: var(--line-height); color: var(--color-on-surface); background: var(--color-background);',
     '  border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden;',
     // Rules the tool puts on the host element itself win over :host, so the scene resets what it would inherit.
@@ -133,6 +133,15 @@
         mode: M,
         el: el,
         brand: identity.name,
+        // Numbers in the preview language; Arabic uses the identity's digits (latn or arab).
+        num: function (n, opts) {
+          var locale = L === 'ar' ? 'ar-u-nu-' + identity.extensions.numerals : 'en-u-nu-latn';
+          try {
+            return new Intl.NumberFormat(locale, opts).format(n);
+          } catch (e) {
+            return String(n);
+          }
+        },
         button: function (label) {
           return button ? fromRecipe(button.recipe, { label: label }) : el('button', null, label);
         },
@@ -162,6 +171,11 @@
     setLang: function (l) {
       if (l !== 'ar' && l !== 'en') return;
       chosen.lang = l;
+      draw();
+    },
+    setScene: function (name) {
+      if (!H.scenes || !Object.prototype.hasOwnProperty.call(H.scenes, name)) return;
+      sceneName = name;
       draw();
     },
     setMode: function (m) {

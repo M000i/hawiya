@@ -37,16 +37,30 @@ test('cssVariables gives, for each mode, exactly the declarations tokens.css mak
   assert.throws(() => generate.cssVariables(ready('calm-corporate'), 'dim'), /mode must be light or dark/);
 });
 
-test('the landing scene has the same sample text structure in Arabic and English', () => {
-  const ctx = { self: {} };
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'picker/scenes/landing.js'), 'utf8'), ctx);
-  const T = ctx.self.Hawiya.scenes.landing.text;
-  const shape = (o) => JSON.stringify(o, (k, v) => (typeof v === 'string' ? 's' : v));
-  assert.equal(shape(T.en), shape(T.ar));
-  assert.match(JSON.stringify(T.ar), /[؀-ۿ]/);
-  assert.doesNotMatch(JSON.stringify(T.en), /[؀-ۿ]/);
-  // The scene builds DOM with text only.
-  const src = fs.readFileSync(path.join(__dirname, '..', 'picker/scenes/landing.js'), 'utf8');
-  assert.doesNotMatch(src, /innerHTML|insertAdjacentHTML|outerHTML/);
-  assert.doesNotMatch(src, /(margin|padding|border)-(left|right)|text-align:\s*(left|right)|[^-]left:|[^-]right:/);
-});
+for (const name of ['landing', 'dashboard', 'form', 'mobile']) {
+  test(`the ${name} scene has the same sample text structure in Arabic and English, text-only DOM, logical CSS`, () => {
+    const file = path.join(__dirname, '..', `picker/scenes/${name}.js`);
+    const ctx = { self: {} };
+    vm.runInNewContext(fs.readFileSync(file, 'utf8'), ctx);
+    const scene = ctx.self.Hawiya.scenes[name];
+    const T = scene.text;
+    const shape = (o) => JSON.stringify(o, (k, v) => (typeof v === 'string' ? 's' : typeof v === 'number' ? 'n' : v));
+    assert.equal(shape(T.en), shape(T.ar));
+    assert.match(JSON.stringify(T.ar), /[\u0600-\u06FF]/);
+    assert.doesNotMatch(JSON.stringify(T.en), /[\u0600-\u06FF]/);
+    const src = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(src, /innerHTML|insertAdjacentHTML|outerHTML|document\.write/);
+    assert.doesNotMatch(
+      scene.css,
+      /(margin|padding|border|inset)-(left|right)|text-align:\s*(left|right)|(^|[\s;{])(left|right):|float:\s*(left|right)/
+    );
+    // Only the identity's variables (and the scene sizes the engine sets) are used.
+    const known = new Set(
+      generate
+        .cssVariables(ready('calm-corporate'), 'light')
+        .map((p) => p[0])
+        .concat(['--sc-small', '--sc-body', '--sc-h3', '--sc-h2', '--sc-h1'])
+    );
+    for (const m of scene.css.matchAll(/var\((--[a-z0-9-]+)\)/g)) assert.ok(known.has(m[1]), `${name}: ${m[1]}`);
+  });
+}

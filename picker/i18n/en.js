@@ -76,6 +76,12 @@
   'preview.modeLabel': 'Preview mode',
   'preview.light': 'Light',
   'preview.dark': 'Dark',
+  'preview.sceneLabel': 'Preview scene',
+  'preview.scene.landing': 'Landing page',
+  'preview.scene.dashboard': 'Dashboard',
+  'preview.scene.form': 'Form',
+  'preview.scene.mobile': 'Mobile',
+  'preview.approximate': 'Approximate',
 
   'export.title': 'Export',
   'export.button': 'Export',

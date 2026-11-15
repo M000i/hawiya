@@ -127,6 +127,35 @@
             </div>
           </div>
         </div>
+        <div class="preview-scenes">
+          <div class="seg seg-scenes" role="group" data-i18n-attr="aria-label:preview.sceneLabel">
+            <button
+              type="button"
+              data-preview-scene="landing"
+              aria-pressed="false"
+              data-i18n="preview.scene.landing"
+            ></button>
+            <button
+              type="button"
+              data-preview-scene="dashboard"
+              aria-pressed="false"
+              data-i18n="preview.scene.dashboard"
+            ></button>
+            <button
+              type="button"
+              data-preview-scene="form"
+              aria-pressed="false"
+              data-i18n="preview.scene.form"
+            ></button>
+            <button
+              type="button"
+              data-preview-scene="mobile"
+              aria-pressed="false"
+              data-i18n="preview.scene.mobile"
+            ></button>
+          </div>
+          <span class="approx-badge" id="approx-badge" data-i18n="preview.approximate" hidden></span>
+        </div>
         <div id="preview" class="preview"></div>
         <p class="note" id="mobile-notice" data-i18n="notice.mobile"></p>
       </section>
@@ -158,6 +187,9 @@
     <script src="js/core/generate.js"></script>
     <script src="js/core/export-format.js"></script>
     <script src="scenes/landing.js"></script>
+    <script src="scenes/dashboard.js"></script>
+    <script src="scenes/form.js"></script>
+    <script src="scenes/mobile.js"></script>
     <script src="js/ui/preview.js"></script>
     <script src="js/ui/storage.js"></script>
     <script src="js/ui/state.js"></script>

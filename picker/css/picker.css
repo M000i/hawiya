@@ -458,3 +458,28 @@ body {
   color: #ffffff;
   background: var(--fg);
 }
+
+/* Scene switcher and the "approximate" label of the mobile scene (task 2.7). */
+.preview-scenes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-block-end: 8px;
+}
+
+.seg-scenes {
+  flex-wrap: wrap;
+  border-radius: 12px;
+}
+
+.approx-badge {
+  padding-block: 2px;
+  padding-inline: 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #b45309;
+  border-radius: 999px;
+}

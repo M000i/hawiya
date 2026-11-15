@@ -74,6 +74,12 @@
   'preview.modeLabel': 'وضع المعاينة',
   'preview.light': 'فاتح',
   'preview.dark': 'داكن',
+  'preview.sceneLabel': 'مشهد المعاينة',
+  'preview.scene.landing': 'صفحة هبوط',
+  'preview.scene.dashboard': 'داشبورد',
+  'preview.scene.form': 'نموذج',
+  'preview.scene.mobile': 'جوال',
+  'preview.approximate': 'تقريبي',
 
   'export.title': 'التصدير',
   'export.button': 'تصدير',

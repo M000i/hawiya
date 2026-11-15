@@ -245,7 +245,17 @@
         H.preview.setMode(b.getAttribute('data-preview-mode'));
       });
     });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-preview-scene]'), function (b) {
+      b.addEventListener('click', function () {
+        H.preview.setScene(b.getAttribute('data-preview-scene'));
+      });
+    });
     document.addEventListener('hawiya:preview', function (e) {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-preview-scene]'), function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-preview-scene') === e.detail.scene));
+      });
+      // The mobile scene is a layout in a fixed-width frame, not a device simulation (R-034).
+      document.getElementById('approx-badge').hidden = e.detail.scene !== 'mobile';
       Array.prototype.forEach.call(document.querySelectorAll('[data-preview-lang]'), function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute('data-preview-lang') === e.detail.lang));
       });
