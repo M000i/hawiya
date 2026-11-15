@@ -32,13 +32,15 @@ layout file, existing CSS/theme files. Decide:
 - brand colors: up to 3 existing brand/primary colors as lowercase `#rrggbb` (convert rgb/hsl), or none.
 
 ## Step 2 — Existing identity
-If `<project>/design/` contains any of the six output files, list them and ask whether to replace them.
+If `<project>/design` exists but is not a plain folder (a symlink/shortcut or a file), stop: tell the user and
+write nothing. If `<project>/design/` contains any of the six output files, list them and ask whether to replace them.
 - User says no → stop the whole skill; write nothing.
 - User says yes → move those files (never delete) into `<project>/design/backup-<YYYYMMDD-HHMMSS>/`
   (local time), then continue.
 
 ## Step 3 — Session file
-Write `<project>/design/hawiya-session.json` (create `design/` if needed; overwriting an older session file is fine).
+Write `<project>/design/hawiya-session.json` (create `design/` if needed; overwriting an older session file is
+fine, but if it is a symlink, delete only the link first — never write through a link).
 Shape only — fill in YOUR Step 1 results, never copy these example values:
 ```json
 { "type": "dashboard", "language": "ar+en", "tags": ["corporate"], "brandColors": ["#7c3aed"] }
@@ -64,8 +66,9 @@ Open the URL in the user's default browser (`open "<url>"` macOS, `xdg-open "<ur
 `start "" "<url>"` Windows) and show it in the chat: "اختر ما يعجبك ثم اضغط «تصدير»".
 Then wait for the process to exit. If your environment tells you when a background command finishes, end your
 turn and wait for that; otherwise wait on the process with a long timeout. It closes itself 60 minutes after
-the last activity. If the user cancels in chat, stop the process and end the skill. Its last output line is
-the outcome:
+the last activity. If the user cancels in chat, stop the process and end the skill. If instead the user pastes
+a Hawiya export in chat (the page offers this when saving fails), stop the process and go to Step 5 with that
+text. Otherwise, the server's last output line is the outcome:
 - `{"status":"saved","written":[…]}` → the files are already in `<project>/design/`. Go to Step 6.
 - `{"status":"closed","reason":…}`, or the process ended without either line → nothing was saved. Tell the
   user, offer Tier 3 (or Tier 2 if you have such a browser), and end the skill if they decline.
