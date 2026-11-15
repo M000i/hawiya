@@ -3,7 +3,7 @@
  *  1. Opened from the local save server (http://127.0.0.1:<port>/#token=...): POST the files; the server writes design/.
  *  2. Always: publish the result where an agent's browser tools can read it:
  *       window.hawiyaExport (object), <script type="application/json" id="hawiya-export">, html[data-hawiya-export="ready"].
- *  3. Always: "انسخ للوكيل" (text for the chat) and one download button per file.
+ *  3. Always: "Copy for the agent" (text for the chat) and one download button per file.
  * If tier 1 fails for any reason, tiers 2 and 3 are already on screen and the choices are untouched.
  */
 (function () {
@@ -17,48 +17,25 @@
   var uncertain = false; // a save failed without an HTTP answer: it may still land on disk, so never send another
   var SAVE_TIMEOUT_MS = 20000;
 
-  var MSG = {
-    saving: 'جارٍ الحفظ في مشروعك…',
-    saved: function (names) {
-      return 'حُفظت الملفات في مجلد design داخل مشروعك: ' + names.join('، ') + '. يمكنك إغلاق هذه الصفحة.';
-    },
-    savedOlder: function (names) {
-      return (
-        'حُفظ في مجلد design تصديرك السابق (' + names.join('، ') + ')، لا اختياراتك الحالية، لأنك غيّرت اختيارًا أثناء الحفظ. ' +
-        'لنقل اختياراتك الحالية اضغط «تصدير» ثم استخدم «انسخ للوكيل» أو التنزيل.'
-      );
-    },
-    alreadySaved:
-      'الحفظ التلقائي تم مرة واحدة وأُغلق خادم الحفظ. لنقل هذه النسخة الجديدة استخدم «انسخ للوكيل» أو التنزيل.',
-    previousPending:
-      'حفظ سابق ما زال ينتظر رد الخادم، فلم يُرسل هذا التصدير. «انسخ للوكيل» والتنزيل أدناه لاختياراتك الحالية.',
-    changed: 'غيّرت اختيارًا بعد آخر تصدير. اضغط «تصدير» من جديد لتحصل على النسخة الحالية.',
-    pressExportFirst: 'اضغط «تصدير» أولًا لتظهر أزرار النسخ والتنزيل لاختياراتك الحالية.',
-    uncertain:
-      'لم يُعرف مصير محاولة الحفظ السابقة، وقد تصل نسخة سابقة إلى مجلد design. لذلك لن يُرسل حفظ جديد: انقل اختياراتك الحالية بـ«انسخ للوكيل» أو التنزيل، وأخبر الوكيل أن يستبدل ما في design إن وجده.',
-    changedDuringSave:
-      'غيّرت اختيارًا أثناء الحفظ: ما يُحفظ الآن هو النسخة السابقة. انتظر النتيجة هنا، ثم اضغط «تصدير» للنسخة الحالية.',
-    exists:
-      'في مجلد design ملفات هوية سابقة، ولم يُستبدل أي شيء. استخدم «انسخ للوكيل» أو التنزيل، وسيسألك الوكيل قبل الاستبدال.',
-    notFolder:
-      'design في مشروعك ليس مجلدًا عاديًا (ربما رابط لمكان آخر)، فلم يُكتب أي شيء. استخدم «انسخ للوكيل» أو التنزيل وأخبر الوكيل بذلك.',
-    badToken: 'رابط الحفظ لم يعد صالحًا، فلم يُحفظ شيء. استخدم «انسخ للوكيل» أو التنزيل.',
-    unreachable:
-      'تعذّر الاتصال بخادم الحفظ أو انقطع قبل أن يرد. إن لم تجد الملفات في مجلد design فاستخدم «انسخ للوكيل» أو التنزيل؛ اختياراتك باقية.',
-    timeout:
-      'لم يرد خادم الحفظ خلال 20 ثانية، فلا نعرف إن كان الحفظ قد تم. تحقق من مجلد design، أو استخدم «انسخ للوكيل» أو التنزيل.',
-    failed: function (status) {
-      return 'تعذّر الحفظ التلقائي (رمز ' + status + ')، فلم يُحفظ شيء. استخدم «انسخ للوكيل» أو التنزيل.';
-    },
-    fileMode:
-      'الصفحة مفتوحة كملف، فلا يوجد حفظ تلقائي. النتيجة جاهزة للوكيل داخل هذه الصفحة، أو استخدم «انسخ للوكيل» أو التنزيل.',
-    generateFailed: 'تعذّر تجهيز الملفات من اختياراتك. غيّر أي اختيار ثم أعد المحاولة.',
-    copied: 'نُسخت. الصقها في محادثة الوكيل.',
-    copyManual: 'تعذّر النسخ التلقائي. النص محدد أمامك؛ انسخه يدويًا (⌘C أو Ctrl+C) والصقه في محادثة الوكيل.',
-    download: function (name) {
-      return 'تنزيل ' + name;
-    }
-  };
+  var t = H.i18n.t;
+
+  /*
+   * Messages are i18n keys (picker/i18n/, prefix "export."). A shown message is kept as its parts
+   * ([key, params] pairs) so a language switch redraws it in the new language.
+   */
+  var shown = { status: null, tone: 'info', copy: null };
+
+  function text(parts) {
+    return parts
+      .map(function (p) {
+        var params = p[1];
+        if (params && params.names) {
+          params = { names: params.names.join(t('export.listSeparator')) };
+        }
+        return t('export.' + p[0], params);
+      })
+      .join(' ');
+  }
 
   /* Token only when served by our local server; it lives in the URL fragment, never sent over the network. */
   function serverToken() {
@@ -67,9 +44,24 @@
     return t && /^[A-Za-z0-9_-]{20,256}$/.test(t) ? t : null;
   }
 
-  function setStatus(text, tone) {
-    els.status.textContent = text;
-    els.status.setAttribute('data-tone', tone || 'info');
+  function setStatus(parts, tone) {
+    shown.status = parts;
+    shown.tone = tone || 'info';
+    els.status.textContent = text(parts);
+    els.status.setAttribute('data-tone', shown.tone);
+  }
+
+  function setCopyStatus(parts) {
+    shown.copy = parts;
+    els.copyStatus.textContent = parts ? text(parts) : '';
+  }
+
+  function relabel() {
+    if (shown.status) els.status.textContent = text(shown.status);
+    if (shown.copy) els.copyStatus.textContent = text(shown.copy);
+    Array.prototype.forEach.call(els.downloads.querySelectorAll('button[data-file]'), function (b) {
+      b.textContent = t('export.download', { name: b.getAttribute('data-file') });
+    });
   }
 
   /* ---------- tier 2: publish for agents ---------- */
@@ -104,7 +96,8 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'secondary-btn';
-      b.textContent = MSG.download(name);
+      b.setAttribute('data-file', name);
+      b.textContent = t('export.download', { name: name });
       b.addEventListener('click', function () {
         var type = /\.json$/.test(name) ? 'application/json' : /\.html$/.test(name) ? 'text/html' : 'text/markdown';
         var url = URL.createObjectURL(new Blob([files[name]], { type: type + ';charset=utf-8' }));
@@ -128,18 +121,18 @@
     els.fallback.hidden = false;
     els.fallback.focus();
     els.fallback.select();
-    els.copyStatus.textContent = MSG.copyManual;
+    setCopyStatus([['copyManual']]);
   }
 
   function onCopy() {
     if (!current) return;
     var text = current.text;
-    els.copyStatus.textContent = '';
+    setCopyStatus(null);
     if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
       navigator.clipboard.writeText(text).then(
         function () {
           els.fallback.hidden = true;
-          els.copyStatus.textContent = MSG.copied;
+          setCopyStatus([['copied']]);
         },
         function () {
           showManualCopy(text);
@@ -154,7 +147,7 @@
 
   /* Sends `bundle`; the outcome is shown even if the choices changed meanwhile (the panel stays visible). */
   function saveToServer(token, bundle) {
-    setStatus(MSG.saving, 'info');
+    setStatus([['saving']], 'info');
     var controller = typeof AbortController === 'function' ? new AbortController() : null;
     var timedOut = false;
     var timer = setTimeout(function () {
@@ -167,8 +160,8 @@
       return current !== null && JSON.stringify(current.bundle.files) === sentKey;
     };
     // A failure message that points at copy/download must not do so while those buttons are hidden.
-    var warn = function (msg) {
-      setStatus(current === null ? msg + ' ' + MSG.pressExportFirst : msg, 'warn');
+    var warn = function (part) {
+      setStatus(current === null ? [part, ['pressExportFirst']] : [part], 'warn');
     };
 
     return fetch('/api/export', {
@@ -191,14 +184,14 @@
               els.result.hidden = false;
               if (res.status === 200 && data && Array.isArray(data.written)) {
                 savedByServer = true;
-                if (stillCurrent()) setStatus(MSG.saved(data.written), 'ok');
-                else setStatus(MSG.savedOlder(data.written), 'warn'); // already says to press export
+                if (stillCurrent()) setStatus([['saved', { names: data.written }]], 'ok');
+                else setStatus([['savedOlder', { names: data.written }]], 'warn'); // already says to press export
               } else if (res.status === 409) {
-                warn(data && Array.isArray(data.existing) ? MSG.exists : MSG.notFolder);
+                warn(data && Array.isArray(data.existing) ? ['exists'] : ['notFolder']);
               } else if (res.status === 401) {
-                warn(MSG.badToken);
+                warn(['badToken']);
               } else {
-                warn(MSG.failed(res.status));
+                warn(['failed', { status: res.status }]);
               }
             });
         },
@@ -206,7 +199,7 @@
           // No HTTP answer: the server may still have written (or still write) this bundle.
           uncertain = true;
           els.result.hidden = false;
-          warn(timedOut ? MSG.timeout : MSG.unreachable);
+          warn(timedOut ? ['timeout'] : ['unreachable']);
         }
       )
       .then(function () {
@@ -227,7 +220,7 @@
       els.actions.hidden = true;
       els.fallback.hidden = true;
       els.result.hidden = false;
-      setStatus(MSG.generateFailed, 'warn');
+      setStatus([['generateFailed']], 'warn');
       return;
     }
 
@@ -236,15 +229,15 @@
     buildDownloads(files);
     els.actions.hidden = false;
     els.fallback.hidden = true;
-    els.copyStatus.textContent = '';
+    setCopyStatus(null);
     els.result.hidden = false;
 
     var token = serverToken();
-    if (!token) return setStatus(MSG.fileMode, 'info');
-    if (savedByServer) return setStatus(MSG.alreadySaved, 'warn');
-    if (uncertain) return setStatus(MSG.uncertain, 'warn');
+    if (!token) return setStatus([['fileMode']], 'info');
+    if (savedByServer) return setStatus([['alreadySaved']], 'warn');
+    if (uncertain) return setStatus([['uncertain']], 'warn');
     // Never block the button: while an earlier save is pending, copy/download still serve the current choices.
-    if (inFlight) return setStatus(MSG.previousPending, 'warn');
+    if (inFlight) return setStatus([['previousPending']], 'warn');
 
     var sent = current.bundle;
     inFlight = sent;
@@ -263,9 +256,9 @@
     unpublish();
     els.actions.hidden = true;
     els.fallback.hidden = true;
-    els.copyStatus.textContent = '';
-    if (inFlight) setStatus(MSG.changedDuringSave, 'warn');
-    else setStatus(MSG.changed, 'info');
+    setCopyStatus(null);
+    if (inFlight) setStatus([['changedDuringSave']], 'warn');
+    else setStatus([['changed']], 'info');
   }
 
   function init() {
@@ -280,6 +273,7 @@
     els.button.addEventListener('click', onExport);
     els.copy.addEventListener('click', onCopy);
     document.addEventListener('hawiya:change', onChange);
+    document.addEventListener('hawiya:lang', relabel);
   }
 
   if (document.readyState === 'loading') {

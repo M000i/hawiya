@@ -3,70 +3,102 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hawiya</title>
+    <title></title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="css/picker.css" />
   </head>
   <body>
+    <!-- Every visible text comes from picker/i18n/ (data-i18n); this file holds none (task 2.3). -->
     <header class="top">
-      <h1>Hawiya</h1>
-      <p class="sub">نسخة تجريبية: هوية واحدة وثلاثة اختيارات</p>
+      <div class="brand">
+        <h1 data-i18n="app.name"></h1>
+        <p class="sub" data-i18n="app.tagline"></p>
+        <p class="stage" data-i18n="app.stage"></p>
+      </div>
+      <button
+        type="button"
+        class="lang-toggle"
+        id="lang-toggle"
+        data-i18n="lang.switchTo"
+        data-i18n-attr="aria-label:lang.switchLabel"
+      ></button>
     </header>
 
-    <div class="layout">
+    <p class="notice" id="fonts-notice" role="note" data-i18n="notice.fonts"></p>
+
+    <main class="layout">
       <form class="controls" id="controls" autocomplete="off">
         <section class="group" aria-labelledby="identity-title">
-          <h2 id="identity-title">الهوية الجاهزة</h2>
+          <h2 id="identity-title" data-i18n="identity.title"></h2>
           <button type="button" class="identity" id="identity-btn" aria-pressed="true">
-            <span class="identity-name">مؤسسي هادئ</span>
-            <span class="identity-hint">أزرق محايد، خط واضح، زوايا معتدلة</span>
+            <span class="identity-name" data-i18n="identity.calm.name"></span>
+            <span class="identity-hint" data-i18n="identity.calm.hint"></span>
           </button>
         </section>
 
         <fieldset class="group">
-          <legend>اللون الأساسي</legend>
+          <legend data-i18n="color.legend"></legend>
           <div class="swatches" id="swatches"></div>
           <label class="custom-color">
-            <span>لون مخصص</span>
+            <span data-i18n="color.custom"></span>
             <input type="color" id="color-input" name="color-custom" />
           </label>
         </fieldset>
 
         <fieldset class="group">
-          <legend>الخط</legend>
+          <legend data-i18n="font.legend"></legend>
           <div class="fonts" id="fonts"></div>
-          <p class="note">الخطوط تُحمَّل من Google Fonts وتحتاج اتصالًا بالإنترنت.</p>
         </fieldset>
 
         <fieldset class="group">
-          <legend>الزوايا</legend>
+          <legend data-i18n="radius.legend"></legend>
           <div class="radius-row">
-            <input type="range" id="radius-input" name="radius" min="0" max="24" step="2" />
+            <input
+              type="range"
+              id="radius-input"
+              name="radius"
+              min="0"
+              max="24"
+              step="2"
+              data-i18n-attr="aria-label:radius.legend"
+            />
             <output id="radius-value" for="radius-input"></output>
           </div>
         </fieldset>
 
         <section class="group export" aria-labelledby="export-title">
-          <h2 id="export-title">التصدير</h2>
-          <button type="button" id="export-btn" class="export-btn">تصدير</button>
+          <h2 id="export-title" data-i18n="export.title"></h2>
+          <button type="button" id="export-btn" class="export-btn" data-i18n="export.button"></button>
           <div id="export-result" class="export-result" hidden>
             <p id="export-status" class="export-status" role="status" aria-live="polite"></p>
             <div class="export-actions" id="export-actions">
-              <button type="button" id="copy-btn" class="secondary-btn">انسخ للوكيل</button>
+              <button type="button" id="copy-btn" class="secondary-btn" data-i18n="export.copy"></button>
               <div id="download-list" class="download-list"></div>
             </div>
             <p id="copy-status" class="note" role="status" aria-live="polite"></p>
-            <textarea id="copy-fallback" class="copy-fallback" readonly hidden aria-label="نص النتيجة للنسخ اليدوي" dir="ltr"></textarea>
+            <textarea
+              id="copy-fallback"
+              class="copy-fallback"
+              readonly
+              hidden
+              data-i18n-attr="aria-label:export.copyFallbackLabel"
+              dir="ltr"
+            ></textarea>
           </div>
         </section>
       </form>
 
       <section class="preview-wrap" aria-labelledby="preview-title">
-        <h2 id="preview-title">المعاينة</h2>
+        <h2 id="preview-title" data-i18n="preview.title"></h2>
         <div id="preview" class="preview"></div>
+        <p class="note" id="mobile-notice" data-i18n="notice.mobile"></p>
       </section>
-    </div>
+    </main>
 
+    <script src="i18n/ar.js"></script>
+    <script src="i18n/en.js"></script>
+    <script src="js/ui/i18n.js"></script>
+    <script src="data/identities.js"></script>
     <script src="js/core/generate.js"></script>
     <script src="js/core/export-format.js"></script>
     <script src="js/ui/preview.js"></script>

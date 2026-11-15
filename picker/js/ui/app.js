@@ -4,12 +4,15 @@
 
   var H = (window.Hawiya = window.Hawiya || {});
 
+  var t = H.i18n.t;
+
+  // Labels are i18n keys (picker/i18n/); the text follows the interface language.
   var SWATCHES = [
-    { value: '#2563eb', name: 'أزرق' },
-    { value: '#0f766e', name: 'أخضر مزرق' },
-    { value: '#7c3aed', name: 'بنفسجي' },
-    { value: '#b91c1c', name: 'أحمر' },
-    { value: '#1f2937', name: 'فحمي' }
+    { value: '#2563eb', key: 'color.blue' },
+    { value: '#0f766e', key: 'color.teal' },
+    { value: '#7c3aed', key: 'color.violet' },
+    { value: '#b91c1c', key: 'color.red' },
+    { value: '#1f2937', key: 'color.charcoal' }
   ];
 
   var FONTS = {
@@ -23,7 +26,7 @@
   };
 
   var IDENTITY = {
-    id: 'calm-corporate',
+    id: 'calm-corporate', // its name in the generated files comes from the library (picker/data/identities.js)
     color: '#2563eb',
     font: 'ibm-plex-sans-arabic',
     radius: 8
@@ -56,10 +59,10 @@
       input.name = 'color';
       input.value = s.value;
       input.id = 'swatch-' + i;
-      input.setAttribute('aria-label', s.name);
+      input.setAttribute('data-i18n-attr', 'aria-label:' + s.key);
       var dot = document.createElement('span');
       dot.style.background = s.value;
-      dot.title = s.name;
+      dot.setAttribute('data-i18n-attr', 'title:' + s.key);
       label.appendChild(input);
       label.appendChild(dot);
       els.swatches.appendChild(label);
@@ -79,7 +82,7 @@
       var sample = document.createElement('span');
       sample.className = 'font-sample';
       sample.style.fontFamily = f.family + ', system-ui, sans-serif';
-      sample.textContent = 'هوية واضحة';
+      sample.setAttribute('data-i18n', 'font.sample');
       var name = document.createElement('span');
       name.className = 'font-label';
       name.textContent = f.label;
@@ -101,13 +104,20 @@
       r.checked = r.value === state.font;
     });
     els.radiusInput.value = String(state.radius);
-    els.radiusValue.textContent = state.radius + ' px';
+    els.radiusValue.textContent = t('radius.value', { value: state.radius });
     els.identityBtn.setAttribute('aria-pressed', String(state.identity === IDENTITY.id));
+  }
+
+  /* The ready identity's name as stored in the library; the generated files keep the Arabic name. */
+  function identityName() {
+    var list = (H.data && H.data.identities) || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === IDENTITY.id) return list[i].name.ar;
+    throw new Error('ready identity ' + IDENTITY.id + ' is missing from picker/data/identities.js');
   }
 
   /* The exact input the generator receives; the preview reads the generator's own derived values. */
   H.getGeneratorInput = function () {
-    return { name: 'مؤسسي هادئ', primary: state.color, fontFamily: FONTS[state.font].label, radius: state.radius };
+    return { name: identityName(), primary: state.color, fontFamily: FONTS[state.font].label, radius: state.radius };
   };
 
   function render() {
@@ -128,9 +138,7 @@
       state[k] = patch[k];
     });
     var matches =
-      state.color.toLowerCase() === IDENTITY.color &&
-      state.font === IDENTITY.font &&
-      state.radius === IDENTITY.radius;
+      state.color.toLowerCase() === IDENTITY.color && state.font === IDENTITY.font && state.radius === IDENTITY.radius;
     state.identity = matches ? IDENTITY.id : null;
     render();
   }
@@ -149,6 +157,12 @@
 
     buildSwatches();
     buildFonts();
+    H.i18n.apply(els.swatches);
+    H.i18n.apply(els.fonts);
+    document.addEventListener('hawiya:lang', function () {
+      // apply() already refreshed every data-i18n element; only computed text is left.
+      els.radiusValue.textContent = t('radius.value', { value: state.radius });
+    });
     H.preview.mount(document.getElementById('preview'));
 
     els.swatches.addEventListener('change', function (e) {

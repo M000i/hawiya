@@ -1011,7 +1011,13 @@
           "method": "GET",
           "path": "/",
           "expectStatus": 200,
-          "expectBodyContains": "Hawiya"
+          "expectBodyContains": ["id=\"lang-toggle\"", "i18n/ar.js", "i18n/en.js"]
+        },
+        {
+          "method": "GET",
+          "path": "/i18n/en.js",
+          "expectStatus": 200,
+          "expectBodyContains": "'app.name': 'Hawiya'"
         }
       ],
       "expect": {

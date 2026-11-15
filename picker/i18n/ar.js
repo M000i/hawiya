@@ -1,0 +1,81 @@
+/*
+ * Arabic interface text (R-032). Every string the tool shows comes from here or from en.js;
+ * both files must have the same keys and the same {placeholders} (tests/i18n.test.js).
+ * Browser: window.Hawiya.i18nData.ar. Node: module.exports.
+ */
+(function (root, dict) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = dict;
+  } else {
+    root.Hawiya = root.Hawiya || {};
+    root.Hawiya.i18nData = root.Hawiya.i18nData || {};
+    root.Hawiya.i18nData.ar = dict;
+  }
+})(typeof self !== 'undefined' ? self : this, {
+  'app.title': 'هوية — اختيار هوية الواجهة',
+  'app.name': 'هوية',
+  'app.tagline': 'اختر هوية واجهة تطبيقك، ثم صدّرها ملفات يفهمها وكيلك.',
+  'app.stage': 'نسخة تجريبية: هوية واحدة وثلاثة اختيارات.',
+
+  'lang.switchTo': 'English',
+  'lang.switchLabel': 'اعرض الصفحة بالإنجليزية',
+
+  'notice.fonts': 'الخطوط تُحمَّل من Google Fonts، فتحتاج اتصالًا بالإنترنت. ولا تتصل الصفحة بأي موقع آخر على الإنترنت.',
+  'notice.mobile': 'مشهد الجوال تقريبي، وليس محاكاة دقيقة لجهاز حقيقي.',
+
+  'identity.title': 'الهوية الجاهزة',
+  'identity.calm.name': 'مؤسسي هادئ',
+  'identity.calm.hint': 'أزرق محايد، خط واضح، زوايا معتدلة',
+
+  'color.legend': 'اللون الأساسي',
+  'color.custom': 'لون مخصص',
+  'color.blue': 'أزرق',
+  'color.teal': 'أخضر مزرق',
+  'color.violet': 'بنفسجي',
+  'color.red': 'أحمر',
+  'color.charcoal': 'فحمي',
+
+  'font.legend': 'الخط',
+  'font.sample': 'هوية واضحة',
+
+  'radius.legend': 'الزوايا',
+  'radius.value': '{value} px',
+
+  'preview.title': 'المعاينة',
+
+  'export.title': 'التصدير',
+  'export.button': 'تصدير',
+  'export.copy': 'انسخ للوكيل',
+  'export.copyFallbackLabel': 'نص النتيجة للنسخ اليدوي',
+  'export.download': 'تنزيل {name}',
+  'export.listSeparator': '، ',
+  'export.saving': 'جارٍ الحفظ في مشروعك…',
+  'export.saved': 'حُفظت الملفات في مجلد design داخل مشروعك: {names}. يمكنك إغلاق هذه الصفحة.',
+  'export.savedOlder':
+    'حُفظ في مجلد design تصديرك السابق ({names})، لا اختياراتك الحالية، لأنك غيّرت اختيارًا أثناء الحفظ. لنقل اختياراتك الحالية اضغط «تصدير» ثم استخدم «انسخ للوكيل» أو التنزيل.',
+  'export.alreadySaved':
+    'الحفظ التلقائي تم مرة واحدة وأُغلق خادم الحفظ. لنقل هذه النسخة الجديدة استخدم «انسخ للوكيل» أو التنزيل.',
+  'export.previousPending':
+    'حفظ سابق ما زال ينتظر رد الخادم، فلم يُرسل هذا التصدير. «انسخ للوكيل» والتنزيل أدناه لاختياراتك الحالية.',
+  'export.changed': 'غيّرت اختيارًا بعد آخر تصدير. اضغط «تصدير» من جديد لتحصل على النسخة الحالية.',
+  'export.pressExportFirst': 'اضغط «تصدير» أولًا لتظهر أزرار النسخ والتنزيل لاختياراتك الحالية.',
+  'export.uncertain':
+    'لم يُعرف مصير محاولة الحفظ السابقة، وقد تصل نسخة سابقة إلى مجلد design. لذلك لن يُرسل حفظ جديد: انقل اختياراتك الحالية بـ«انسخ للوكيل» أو التنزيل، وأخبر الوكيل أن يستبدل ما في design إن وجده.',
+  'export.changedDuringSave':
+    'غيّرت اختيارًا أثناء الحفظ: ما يُحفظ الآن هو النسخة السابقة. انتظر النتيجة هنا، ثم اضغط «تصدير» للنسخة الحالية.',
+  'export.exists':
+    'في مجلد design ملفات هوية سابقة، ولم يُستبدل أي شيء. استخدم «انسخ للوكيل» أو التنزيل، وسيسألك الوكيل قبل الاستبدال.',
+  'export.notFolder':
+    'design في مشروعك ليس مجلدًا عاديًا (ربما رابط لمكان آخر)، فلم يُكتب أي شيء. استخدم «انسخ للوكيل» أو التنزيل وأخبر الوكيل بذلك.',
+  'export.badToken': 'رابط الحفظ لم يعد صالحًا، فلم يُحفظ شيء. استخدم «انسخ للوكيل» أو التنزيل.',
+  'export.unreachable':
+    'تعذّر الاتصال بخادم الحفظ أو انقطع قبل أن يرد. إن لم تجد الملفات في مجلد design فاستخدم «انسخ للوكيل» أو التنزيل؛ اختياراتك باقية.',
+  'export.timeout':
+    'لم يرد خادم الحفظ خلال 20 ثانية، فلا نعرف إن كان الحفظ قد تم. تحقق من مجلد design، أو استخدم «انسخ للوكيل» أو التنزيل.',
+  'export.failed': 'تعذّر الحفظ التلقائي (رمز {status})، فلم يُحفظ شيء. استخدم «انسخ للوكيل» أو التنزيل.',
+  'export.fileMode':
+    'الصفحة مفتوحة كملف، فلا يوجد حفظ تلقائي. النتيجة جاهزة للوكيل داخل هذه الصفحة، أو استخدم «انسخ للوكيل» أو التنزيل.',
+  'export.generateFailed': 'تعذّر تجهيز الملفات من اختياراتك. غيّر أي اختيار ثم أعد المحاولة.',
+  'export.copied': 'نُسخت. الصقها في محادثة الوكيل.',
+  'export.copyManual': 'تعذّر النسخ التلقائي. النص محدد أمامك؛ انسخه يدويًا (⌘C أو Ctrl+C) والصقه في محادثة الوكيل.'
+});

@@ -1,0 +1,9 @@
+node_modules/
+sandbox/
+test-results/
+playwright-report/
+picker/data/
+picker/js/core/schemas.js
+tests/fixtures/expected/
+*.md
+*.pdf

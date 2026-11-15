@@ -26,8 +26,49 @@ body {
 }
 
 .top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   padding-block: 24px 8px;
   padding-inline: 24px;
+}
+
+/* English text needs less leading than Arabic (R-091 keeps 1.6 to 1.8 for Arabic). */
+:root:lang(en) body {
+  line-height: 1.5;
+}
+
+.lang-toggle {
+  flex: none;
+  font: inherit;
+  font-weight: 700;
+  padding-block: 6px;
+  padding-inline: 14px;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.stage {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.notice {
+  margin-block: 8px 0;
+  margin-inline: 24px;
+  padding-block: 8px;
+  padding-inline: 12px;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--focus);
+  border-radius: 8px;
+  font-size: 0.875rem;
 }
 
 .top h1 {
@@ -55,6 +96,9 @@ body {
   }
   .top {
     padding-inline: 16px;
+  }
+  .notice {
+    margin-inline: 16px;
   }
 }
 
@@ -103,7 +147,7 @@ body {
   cursor: pointer;
 }
 
-.identity[aria-pressed="true"] {
+.identity[aria-pressed='true'] {
   border-color: var(--fg);
 }
 
@@ -261,11 +305,11 @@ body {
   border-inline-start: 4px solid var(--muted);
 }
 
-.export-status[data-tone="ok"] {
+.export-status[data-tone='ok'] {
   border-inline-start-color: #15803d;
 }
 
-.export-status[data-tone="warn"] {
+.export-status[data-tone='warn'] {
   border-inline-start-color: #b45309;
 }
 
@@ -279,7 +323,9 @@ body {
 .copy-fallback {
   inline-size: 100%;
   min-block-size: 160px;
-  font: 12px/1.5 ui-monospace, monospace;
+  font:
+    12px/1.5 ui-monospace,
+    monospace;
   text-align: start;
 }
 

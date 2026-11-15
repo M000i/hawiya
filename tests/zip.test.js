@@ -98,7 +98,7 @@ test('unzip tests the archive with no warning, and the extracted files equal the
 });
 
 test('the macOS Finder engine (ditto) and Python zipfile open it the same way', (t) => {
-  const [f, b] = BUNDLES[0];
+  const [, b] = BUNDLES[0];
   const { dir, file } = tmpZip(zip.designZip(b));
   try {
     if (have('ditto')) {
