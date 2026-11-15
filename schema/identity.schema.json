@@ -20,10 +20,10 @@
       "const": 1
     },
     "name": {
-      "description": "Display name. Forbidden: control, text-direction, zero-width-space, line/paragraph-separator and BOM characters, lone surrogates, angle brackets. Must contain at least one visible character. Written with explicit character classes only (no '.', '\\\\s', '\\\\S') so JavaScript and Python regex engines agree.",
+      "description": "Display name. Forbidden: control, text-direction, zero-width-space, line/paragraph-separator and BOM characters, lone surrogates, angle brackets. Must contain at least one visible character. Written with explicit character classes only (no '.', '\\\\s', '\\\\S') so JavaScript and Python regex engines agree. Shaped so regex engines check it in linear time: optional leading spaces, then the first visible character, then any allowed characters (the same strings as before).",
       "type": "string",
       "maxLength": 80,
-      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>]*[^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u202f\\u205f\\u3000][^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>]*$"
+      "pattern": "^[\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u202f\\u205f\\u3000]*[^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u202f\\u205f\\u3000][^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>]*$"
     },
     "project": {
       "type": "object",
