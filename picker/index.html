@@ -25,6 +25,7 @@
     </header>
 
     <p class="notice" id="fonts-notice" role="note" data-i18n="notice.fonts"></p>
+    <p class="notice notice-warn" id="storage-warning" role="alert" data-i18n="storage.unavailable" hidden></p>
 
     <main class="layout">
       <form class="controls" id="controls" autocomplete="off">
@@ -66,6 +67,30 @@
           </div>
         </fieldset>
 
+        <section class="group saved" aria-labelledby="saved-title">
+          <h2 id="saved-title" data-i18n="saved.title"></h2>
+          <label class="field" for="identity-name">
+            <span data-i18n="saved.nameLabel"></span>
+            <input
+              type="text"
+              id="identity-name"
+              name="identity-name"
+              maxlength="80"
+              dir="auto"
+              autocomplete="off"
+              aria-describedby="identity-name-error"
+            />
+          </label>
+          <p class="field-error" id="identity-name-error" data-i18n="saved.nameInvalid" hidden></p>
+          <div class="saved-actions">
+            <button type="button" id="save-btn" class="secondary-btn" data-i18n="saved.save"></button>
+            <button type="button" id="save-new-btn" class="secondary-btn" data-i18n="saved.saveNew"></button>
+          </div>
+          <p class="note" id="saved-note" role="status" aria-live="polite"></p>
+          <p class="note" id="saved-empty" data-i18n="saved.empty"></p>
+          <ul class="saved-list" id="saved-list"></ul>
+        </section>
+
         <section class="group export" aria-labelledby="export-title">
           <h2 id="export-title" data-i18n="export.title"></h2>
           <button type="button" id="export-btn" class="export-btn" data-i18n="export.button"></button>
@@ -98,10 +123,31 @@
     <script src="i18n/ar.js"></script>
     <script src="i18n/en.js"></script>
     <script src="js/ui/i18n.js"></script>
+    <script src="data/colors.js"></script>
+    <script src="data/modes.js"></script>
+    <script src="data/fonts.js"></script>
+    <script src="data/type-scale.js"></script>
+    <script src="data/radius.js"></script>
+    <script src="data/shadows.js"></script>
+    <script src="data/icons.js"></script>
+    <script src="data/buttons.js"></script>
+    <script src="data/cards.js"></script>
+    <script src="data/spacing.js"></script>
+    <script src="data/direction.js"></script>
     <script src="data/identities.js"></script>
+    <script src="js/core/color.js"></script>
+    <script src="js/core/contrast.js"></script>
+    <script src="js/core/ramp.js"></script>
+    <script src="js/core/modes.js"></script>
+    <script src="js/core/scale.js"></script>
+    <script src="js/core/schemas.js"></script>
+    <script src="js/core/validate.js"></script>
+    <script src="js/core/resolve.js"></script>
     <script src="js/core/generate.js"></script>
     <script src="js/core/export-format.js"></script>
     <script src="js/ui/preview.js"></script>
+    <script src="js/ui/storage.js"></script>
+    <script src="js/ui/state.js"></script>
     <script src="js/ui/app.js"></script>
     <script src="js/ui/export.js"></script>
   </body>

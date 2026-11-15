@@ -15,7 +15,7 @@
     "test:golden": "node --test tests/golden.test.js",
     "test:e2e": "playwright test",
     "lint": "eslint",
-    "format:check": "prettier --check picker/i18n picker/js/ui picker/index.html picker/css tests/e2e tests/i18n.test.js playwright.config.js eslint.config.js picker/js/core/resolve.js tests/resolve.test.js"
+    "format:check": "prettier --check picker/i18n picker/js/ui picker/index.html picker/css tests/e2e tests/i18n.test.js playwright.config.js eslint.config.js picker/js/core/resolve.js tests/resolve.test.js tests/storage.test.js"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

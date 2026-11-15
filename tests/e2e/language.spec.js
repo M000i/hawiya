@@ -93,7 +93,7 @@ test('the language key flips every text and the direction, and back', async ({ p
   // Arabic: only brand and technical names stay in Latin letters.
   const latin = new Set((await visibleText(page)).match(LATIN_WORD));
   for (const word of latin)
-    expect(['Google', 'Fonts', 'design', 'px', 'IBM', 'Plex', 'Sans', 'Arabic', 'Cairo', 'Tajawal']).toContain(word);
+    expect(['Google', 'Fonts', 'design', 'px', 'IBM', 'Plex', 'Sans', 'Arabic', 'Cairo', 'Noto']).toContain(word);
   expect(errors).toEqual([]);
 });
 

@@ -349,3 +349,68 @@ body {
     animation: none !important;
   }
 }
+
+/* Storage notice and the saved identities panel (task 2.5). */
+.notice-warn {
+  border-inline-start-color: #b45309;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  margin-block-end: 8px;
+}
+
+.field input {
+  font: inherit;
+  padding-block: 8px;
+  padding-inline: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.field-error {
+  margin: 0 0 8px;
+  color: #b91c1c;
+  font-size: 0.8125rem;
+}
+
+.saved-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.saved-list {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saved-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  padding-block: 8px;
+  padding-inline: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.saved-item[aria-current='true'] {
+  border-color: var(--fg);
+}
+
+.saved-name {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.saved-meta {
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}

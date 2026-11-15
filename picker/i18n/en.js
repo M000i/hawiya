@@ -41,6 +41,34 @@
   'radius.legend': 'Corners',
   'radius.value': '{value} px',
 
+  'storage.unavailable':
+    'This browser does not allow saving right now, so your choices will not stay after the page is closed. Choosing, previewing and exporting work as usual.',
+  'saved.title': 'My saved identities',
+  'saved.nameLabel': 'Identity name',
+  'saved.nameInvalid': 'Type a name with at least one visible character, without < or >, and at most 80 characters.',
+  'saved.save': 'Save',
+  'saved.saveNew': 'Save as a new copy',
+  'saved.empty': 'No saved identities yet. Your current choices are saved automatically as a draft.',
+  'saved.unnamed': '(no name)',
+  'saved.open': 'Open',
+  'saved.openNamed': 'Open the identity {name}',
+  'saved.older': 'Saved in an older format; it cannot be opened in this version and stays saved as it is.',
+  'saved.newer': 'Saved in a newer format than this page; it cannot be opened here and stays saved as it is.',
+  'saved.damaged': 'Could not be read; it cannot be opened and stays saved as it is.',
+  'saved.full':
+    "The browser's storage is full, so the last change was not saved. Choosing and exporting work as usual.",
+  'saved.failed': 'Could not save in this browser. Export is still available.',
+  'saved.created': 'Saved “{name}”.',
+  'saved.updated': 'Updated “{name}”.',
+  'saved.opened': 'Opened “{name}”. Your changes are saved automatically; press “Save” to update it in the list.',
+  'saved.missing':
+    'This identity cannot be opened: some of its choices are no longer in the library. It stays saved as it is.',
+  'saved.cannotOpen': 'This identity cannot be opened in this version. It stays saved as it is.',
+  'saved.listUnreadable':
+    'The saved identities list in this browser could not be read (perhaps another version of the page saved it). Nothing in it was deleted: on the next save it is moved, unchanged, to a side copy in the browser.',
+  'saved.draftUnreadable':
+    'The previous draft could not be read, so the page started from the ready identity. Its old copy is still in the browser and was not deleted.',
+
   'preview.title': 'Preview',
 
   'export.title': 'Export',

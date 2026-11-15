@@ -1,9 +1,12 @@
-/* Prototype controller: one identity, three choices (color, font, radius). */
+/*
+ * Prototype controls (color, font, corners) on top of the real choices (task 2.5): every control edits
+ * H.state (one template per element plus adjustments), so each change is part of the identity that is saved
+ * as the draft. The full galleries replace these controls in tasks 2.8 to 2.13.
+ */
 (function () {
   'use strict';
 
   var H = (window.Hawiya = window.Hawiya || {});
-
   var t = H.i18n.t;
 
   // Labels are i18n keys (picker/i18n/); the text follows the interface language.
@@ -14,41 +17,48 @@
     { value: '#b91c1c', key: 'color.red' },
     { value: '#1f2937', key: 'color.charcoal' }
   ];
+  var STARTER = 'calm-corporate';
 
-  var FONTS = {
-    'ibm-plex-sans-arabic': {
-      label: 'IBM Plex Sans Arabic',
-      family: '"IBM Plex Sans Arabic"',
-      query: 'IBM+Plex+Sans+Arabic:wght@400;700'
-    },
-    cairo: { label: 'Cairo', family: '"Cairo"', query: 'Cairo:wght@400;700' },
-    tajawal: { label: 'Tajawal', family: '"Tajawal"', query: 'Tajawal:wght@400;700' }
-  };
-
-  var IDENTITY = {
-    id: 'calm-corporate', // its name in the generated files comes from the library (picker/data/identities.js)
-    color: '#2563eb',
-    font: 'ibm-plex-sans-arabic',
-    radius: 8
-  };
-
-  var state = { identity: IDENTITY.id, color: IDENTITY.color, font: IDENTITY.font, radius: IDENTITY.radius };
-
-  var loadedFonts = {};
-  function loadFont(key) {
-    if (loadedFonts[key]) return;
-    loadedFonts[key] = true;
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[key].query + '&display=swap';
-    document.head.appendChild(link);
-  }
+  var els = {};
 
   function isHex(v) {
     return /^#[0-9a-f]{6}$/i.test(v);
   }
 
-  var els = {};
+  function template(element, id) {
+    var list = H.data.templates[element] || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+
+  function families(fontTemplate) {
+    var ex = fontTemplate.extras || {};
+    var names = [];
+    [ex.arabic, ex.latin].forEach(function (n) {
+      if (typeof n === 'string' && names.indexOf(n) === -1) names.push(n);
+    });
+    return names;
+  }
+
+  var loadedFonts = {};
+  function loadFont(name) {
+    if (loadedFonts[name] || !/^[A-Za-z0-9 ]+$/.test(name)) return;
+    loadedFonts[name] = true;
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=' + name.replace(/ /g, '+') + ':wght@400;700&display=swap';
+    document.head.appendChild(link);
+  }
+
+  function cssFamily(fontTemplate) {
+    return (
+      families(fontTemplate)
+        .map(function (n) {
+          return '"' + n + '"';
+        })
+        .join(', ') + ', system-ui, sans-serif'
+    );
+  }
 
   function buildSwatches() {
     SWATCHES.forEach(function (s, i) {
@@ -70,22 +80,21 @@
   }
 
   function buildFonts() {
-    Object.keys(FONTS).forEach(function (key) {
-      loadFont(key);
-      var f = FONTS[key];
+    H.data.templates.fonts.forEach(function (f) {
+      families(f).forEach(loadFont);
       var label = document.createElement('label');
       label.className = 'font-option';
       var input = document.createElement('input');
       input.type = 'radio';
       input.name = 'font';
-      input.value = key;
+      input.value = f.id;
       var sample = document.createElement('span');
       sample.className = 'font-sample';
-      sample.style.fontFamily = f.family + ', system-ui, sans-serif';
+      sample.style.fontFamily = cssFamily(f);
       sample.setAttribute('data-i18n', 'font.sample');
       var name = document.createElement('span');
       name.className = 'font-label';
-      name.textContent = f.label;
+      name.textContent = families(f).join(' + '); // font family names are the same in both languages
       label.appendChild(input);
       label.appendChild(sample);
       label.appendChild(name);
@@ -93,59 +102,112 @@
     });
   }
 
-  function syncControls() {
-    var radios = els.swatches.querySelectorAll('input[name="color"]');
-    Array.prototype.forEach.call(radios, function (r) {
-      r.checked = r.value.toLowerCase() === state.color.toLowerCase();
-    });
-    els.colorInput.value = state.color;
-    var fontRadios = els.fonts.querySelectorAll('input[name="font"]');
-    Array.prototype.forEach.call(fontRadios, function (r) {
-      r.checked = r.value === state.font;
-    });
-    els.radiusInput.value = String(state.radius);
-    els.radiusValue.textContent = t('radius.value', { value: state.radius });
-    els.identityBtn.setAttribute('aria-pressed', String(state.identity === IDENTITY.id));
+  /* What the controls show, read from the built identity (never from stored values). */
+  function view() {
+    var c = H.state.choices();
+    var id = H.state.identity();
+    return {
+      choices: c,
+      identity: id,
+      color: id.tokens.color.light.primary,
+      font: c.selections.fonts.template,
+      radius: id.tokens.radius.md
+    };
   }
 
-  /* The ready identity's name as stored in the library; the generated files keep the Arabic name. */
-  function identityName() {
-    var list = (H.data && H.data.identities) || [];
-    for (var i = 0; i < list.length; i++) if (list[i].id === IDENTITY.id) return list[i].name.ar;
-    throw new Error('ready identity ' + IDENTITY.id + ' is missing from picker/data/identities.js');
+  function isStarter(c) {
+    var ready = null;
+    H.data.identities.forEach(function (i) {
+      if (i.id === STARTER) ready = i;
+    });
+    if (!ready) return false;
+    return H.resolve.ELEMENTS.every(function (e) {
+      var s = c.selections[e];
+      return s && s.template === ready.templates[e] && !s.overrides;
+    });
   }
 
-  /* The exact input the generator receives; the preview reads the generator's own derived values. */
+  function syncControls(v) {
+    Array.prototype.forEach.call(els.swatches.querySelectorAll('input[name="color"]'), function (r) {
+      r.checked = r.value.toLowerCase() === v.color;
+    });
+    els.colorInput.value = v.color;
+    Array.prototype.forEach.call(els.fonts.querySelectorAll('input[name="font"]'), function (r) {
+      r.checked = r.value === v.font;
+    });
+    els.radiusInput.value = String(v.radius);
+    els.radiusValue.textContent = t('radius.value', { value: v.radius });
+    els.identityBtn.setAttribute('aria-pressed', String(isStarter(v.choices)));
+  }
+
+  /* The exact input the phase-0 generator (export until task 2.21) receives. */
   H.getGeneratorInput = function () {
-    return { name: identityName(), primary: state.color, fontFamily: FONTS[state.font].label, radius: state.radius };
+    var v = view();
+    var f = template('fonts', v.font);
+    return { name: v.choices.name, primary: v.color, fontFamily: families(f)[0], radius: v.radius };
   };
 
   function render() {
-    syncControls();
-    var d = H.generate.derive(H.getGeneratorInput());
+    var v = view();
+    syncControls(v);
+    var light = v.identity.tokens.color.light;
     H.preview.render({
-      primary: d.primary,
-      onPrimary: d.onPrimary,
-      accentText: d.accentText,
-      fontFamily: FONTS[state.font].family,
-      radius: d.radius.md
+      primary: light.primary,
+      onPrimary: light.onPrimary,
+      accentText: light.accentText,
+      fontFamily: cssFamily(template('fonts', v.font)),
+      radius: v.radius
     });
     document.dispatchEvent(new CustomEvent('hawiya:change', { detail: H.getState() }));
   }
 
-  function update(patch) {
-    Object.keys(patch).forEach(function (k) {
-      state[k] = patch[k];
-    });
-    var matches =
-      state.color.toLowerCase() === IDENTITY.color && state.font === IDENTITY.font && state.radius === IDENTITY.radius;
-    state.identity = matches ? IDENTITY.id : null;
-    render();
+  H.getState = function () {
+    var v = view();
+    return { choices: v.choices, color: v.color, font: v.font, radius: v.radius };
+  };
+
+  /* Set an adjustment, or drop it when it equals the template's own value. */
+  function setOverride(c, element, key, value, templateValue) {
+    var s = c.selections[element];
+    var ov = s.overrides || {};
+    if (value === templateValue) delete ov[key];
+    else ov[key] = value;
+    if (Object.keys(ov).length) s.overrides = ov;
+    else delete s.overrides;
   }
 
-  H.getState = function () {
-    return { identity: state.identity, color: state.color, font: state.font, radius: state.radius };
-  };
+  function setColor(hex) {
+    H.state.change(function (c) {
+      var tpl = template('colors', c.selections.colors.template);
+      setOverride(c, 'colors', 'primary', hex.toLowerCase(), tpl.tokens.color.primary.$value.hex.toLowerCase());
+    });
+  }
+
+  function setRadius(px) {
+    H.state.change(function (c) {
+      var tpl = template('radius', c.selections.radius.template);
+      setOverride(c, 'radius', 'md', px, tpl.tokens.radius.md.$value.value);
+    });
+  }
+
+  function setFont(id) {
+    H.state.change(function (c) {
+      c.selections.fonts = { template: id };
+    });
+  }
+
+  function useStarter() {
+    var ready = null;
+    H.data.identities.forEach(function (i) {
+      if (i.id === STARTER) ready = i;
+    });
+    if (!ready) return;
+    H.state.change(function (c) {
+      H.resolve.ELEMENTS.forEach(function (e) {
+        c.selections[e] = { template: ready.templates[e] };
+      });
+    });
+  }
 
   function init() {
     els.swatches = document.getElementById('swatches');
@@ -161,26 +223,29 @@
     H.i18n.apply(els.fonts);
     document.addEventListener('hawiya:lang', function () {
       // apply() already refreshed every data-i18n element; only computed text is left.
-      els.radiusValue.textContent = t('radius.value', { value: state.radius });
+      els.radiusValue.textContent = t('radius.value', { value: view().radius });
     });
     H.preview.mount(document.getElementById('preview'));
 
     els.swatches.addEventListener('change', function (e) {
-      if (e.target.name === 'color' && isHex(e.target.value)) update({ color: e.target.value.toLowerCase() });
+      if (e.target.name === 'color' && isHex(e.target.value)) setColor(e.target.value);
     });
     els.colorInput.addEventListener('input', function (e) {
-      if (isHex(e.target.value)) update({ color: e.target.value.toLowerCase() });
+      if (isHex(e.target.value)) setColor(e.target.value);
     });
     els.fonts.addEventListener('change', function (e) {
-      if (e.target.name === 'font' && FONTS[e.target.value]) update({ font: e.target.value });
+      if (e.target.name === 'font' && template('fonts', e.target.value)) setFont(e.target.value);
     });
     els.radiusInput.addEventListener('input', function (e) {
       var v = parseInt(e.target.value, 10);
-      if (!isNaN(v)) update({ radius: v });
+      if (!isNaN(v)) setRadius(v);
     });
-    els.identityBtn.addEventListener('click', function () {
-      update({ color: IDENTITY.color, font: IDENTITY.font, radius: IDENTITY.radius });
+    els.identityBtn.addEventListener('click', useStarter);
+    // The choices live in a <form> for grouping only: Enter in a text field must not reload the page.
+    document.getElementById('controls').addEventListener('submit', function (e) {
+      e.preventDefault();
     });
+    document.addEventListener('hawiya:state', render);
 
     render();
   }
