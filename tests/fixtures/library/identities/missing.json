@@ -1,0 +1,20 @@
+{
+  "id": "missing",
+  "name": {
+    "ar": "ناقصة",
+    "en": "Missing"
+  },
+  "templates": {
+    "colors": "colors-basic",
+    "modes": "modes-basic",
+    "fonts": "pair-plex-arabic-plex-sans",
+    "type-scale": "type-scale-basic",
+    "radius": "radius-soft",
+    "shadows": "shadows-basic",
+    "icons": "icons-basic",
+    "buttons": "button-nope",
+    "cards": "cards-basic",
+    "spacing": "spacing-basic",
+    "direction": "direction-basic"
+  }
+}

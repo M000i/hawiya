@@ -474,5 +474,5 @@
     return null;
   }
 
-  return { NAMES: NAMES, MAX_DEPTH: MAX_DEPTH, MAX_ERRORS: MAX_ERRORS, compile: compile, check: check, checkText: checkText, charLength: charLength, deepEqual: deepEqual };
+  return { NAMES: NAMES, MAX_DEPTH: MAX_DEPTH, MAX_ERRORS: MAX_ERRORS, compile: compile, check: check, checkText: checkText, charLength: charLength, deepEqual: deepEqual, duplicateKey: duplicateKey };
 });

@@ -1,0 +1,105 @@
+[
+  {
+    "id": "button-ghost",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "زر شفاف (مسودة)",
+      "en": "Ghost button (draft)"
+    },
+    "tags": [
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 10,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<button class=\"hw-btn\" type=\"button\">{label}</button>",
+      "css": ".hw-btn{background:var(--hw-primary);color:var(--hw-on-primary);border-radius:var(--hw-radius-md);padding-block:10px;padding-inline:18px;transition:background .15s}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}"
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://example.com/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "button-solid",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "زر ممتلئ",
+      "en": "Solid button"
+    },
+    "tags": [
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 10,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<button class=\"hw-btn\" type=\"button\">{label}</button>",
+      "css": ".hw-btn{background:var(--hw-primary);color:var(--hw-on-primary);border-radius:var(--hw-radius-md);padding-block:10px;padding-inline:18px;transition:background .15s}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}"
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://example.com/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-15"
+    }
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "id": "calm",
+  "name": {
+    "ar": "هادئ",
+    "en": "Calm"
+  },
+  "description": {
+    "ar": "هوية هادئة للتجربة",
+    "en": "A calm test identity"
+  },
+  "tags": [
+    "minimal",
+    "soft"
+  ],
+  "templates": {
+    "colors": "colors-basic",
+    "modes": "modes-basic",
+    "fonts": "pair-plex-arabic-plex-sans",
+    "type-scale": "type-scale-basic",
+    "radius": "radius-soft",
+    "shadows": "shadows-basic",
+    "icons": "icons-basic",
+    "buttons": "button-solid",
+    "cards": "cards-basic",
+    "spacing": "spacing-basic",
+    "direction": "direction-basic"
+  }
+}
