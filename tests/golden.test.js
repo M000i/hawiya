@@ -77,3 +77,24 @@ test('G-03 contrast: #777777 on #FFFFFF = 4.48:1, fails AA', () => {
   assert.equal(r.AA, false);
   assert.equal(r.AAA, false);
 });
+
+test('T-2.4 identity: primary #3B82F6 with a type scale of base 16 and ratio 1.25 → #3B82F6 in the primary ramp; sizes 16, 20, 25, 31.25, 39.06', () => {
+  const resolve = require('../picker/js/core/resolve.js');
+  const validate = require('../picker/js/core/validate.js');
+  const build = require('../tools/build.js');
+  const path = require('node:path');
+  const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
+  const calm = data.identities.find((i) => i.id === 'calm-corporate');
+  const selections = {};
+  for (const [element, template] of Object.entries(calm.templates)) selections[element] = { template };
+  selections.colors.overrides = { primary: '#3B82F6' };
+  const identity = resolve.resolve({ name: 'Golden', selections }, data);
+
+  assert.equal(validate.check('identity', identity).valid, true);
+  assert.ok(identity.tokens.color.ramps.primary.map((h) => h.toUpperCase()).includes('#3B82F6'));
+  assert.equal(identity.tokens.color.light.primary.toUpperCase(), '#3B82F6');
+  assert.equal(identity.tokens.typeScale.base, 16);
+  assert.equal(identity.tokens.typeScale.ratio, 1.25);
+  // The template has one size below the base (captions); the golden sizes are the base and the four above it.
+  assert.deepEqual(identity.tokens.typeScale.steps, [12.8, 16, 20, 25, 31.25, 39.06]);
+});
