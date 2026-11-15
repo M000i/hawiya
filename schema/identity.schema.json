@@ -1,0 +1,679 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hawiya:schema:identity:1",
+  "title": "Hawiya identity",
+  "description": "design/identity.json, the base file every other output is generated from (R-070). No dates or randomness: same choices, same bytes (R-077). The prototype format (schemaVersion \"0.1-prototype\") is not accepted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "name",
+    "project",
+    "tokens",
+    "extensions",
+    "selections",
+    "autoFilled",
+    "leaveToAI"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "name": {
+      "description": "Display name. Forbidden: control, text-direction, zero-width-space, line/paragraph-separator and BOM characters, lone surrogates, angle brackets. Must contain at least one visible character. Written with explicit character classes only (no '.', '\\\\s', '\\\\S') so JavaScript and Python regex engines agree.",
+      "type": "string",
+      "maxLength": 80,
+      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>]*[^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u202f\\u205f\\u3000][^\\u0000-\\u001f\\u007f-\\u009f\\u061c\\u200b\\u200e\\u200f\\u2028\\u2029\\u202a-\\u202e\\u2066-\\u2069\\ufeff\\ud800-\\udfff<>]*$"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "direction",
+        "platform",
+        "type",
+        "contrast"
+      ],
+      "properties": {
+        "language": {
+          "enum": [
+            "ar",
+            "en",
+            "ar+en"
+          ]
+        },
+        "direction": {
+          "description": "both = bilingual project (RTL and LTR pages).",
+          "enum": [
+            "rtl",
+            "ltr",
+            "both"
+          ]
+        },
+        "platform": {
+          "description": "First version: web only.",
+          "enum": [
+            "web"
+          ]
+        },
+        "type": {
+          "enum": [
+            "landing",
+            "website",
+            "web-app",
+            "dashboard",
+            "html-page"
+          ]
+        },
+        "contrast": {
+          "enum": [
+            "AA",
+            "AAA"
+          ]
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "color",
+        "font",
+        "typeScale",
+        "radius",
+        "shadow",
+        "spacing"
+      ],
+      "properties": {
+        "color": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "light",
+            "dark",
+            "ramps"
+          ],
+          "properties": {
+            "light": {
+              "$ref": "#/$defs/colorSet"
+            },
+            "dark": {
+              "$ref": "#/$defs/colorSet"
+            },
+            "ramps": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "primary",
+                "secondary",
+                "neutral"
+              ],
+              "properties": {
+                "primary": {
+                  "$ref": "#/$defs/ramp"
+                },
+                "secondary": {
+                  "$ref": "#/$defs/ramp"
+                },
+                "neutral": {
+                  "$ref": "#/$defs/ramp"
+                }
+              }
+            }
+          }
+        },
+        "font": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "heading",
+            "body",
+            "numerals",
+            "lineHeight"
+          ],
+          "properties": {
+            "heading": {
+              "$ref": "#/$defs/fontRef"
+            },
+            "body": {
+              "$ref": "#/$defs/fontRef"
+            },
+            "numerals": {
+              "$ref": "#/$defs/fontRef"
+            },
+            "lineHeight": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ar",
+                "en"
+              ],
+              "properties": {
+                "ar": {
+                  "description": "Default 1.6..1.8 (R-091); lower values are allowed with a warning.",
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                },
+                "en": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            }
+          }
+        },
+        "typeScale": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "base",
+            "ratio",
+            "steps"
+          ],
+          "properties": {
+            "base": {
+              "type": "number",
+              "minimum": 10,
+              "maximum": 32
+            },
+            "ratio": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 6,
+                "maximum": 200
+              },
+              "minItems": 3,
+              "maxItems": 12
+            }
+          }
+        },
+        "radius": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sm",
+            "md",
+            "lg",
+            "full"
+          ],
+          "properties": {
+            "sm": {
+              "$ref": "#/$defs/radiusPx"
+            },
+            "md": {
+              "$ref": "#/$defs/radiusPx"
+            },
+            "lg": {
+              "$ref": "#/$defs/radiusPx"
+            },
+            "full": {
+              "const": 9999
+            }
+          }
+        },
+        "shadow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "light",
+            "dark"
+          ],
+          "properties": {
+            "light": {
+              "$ref": "#/$defs/shadowSet"
+            },
+            "dark": {
+              "$ref": "#/$defs/shadowSet"
+            }
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unit",
+            "scale"
+          ],
+          "properties": {
+            "unit": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 8
+            },
+            "scale": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 256
+              },
+              "minItems": 3,
+              "maxItems": 16
+            }
+          }
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "icons",
+        "components",
+        "motion",
+        "numerals",
+        "calendar",
+        "rtl"
+      ],
+      "properties": {
+        "icons": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "library",
+            "weight",
+            "fill",
+            "container"
+          ],
+          "properties": {
+            "library": {
+              "$ref": "#/$defs/id"
+            },
+            "weight": {
+              "$ref": "#/$defs/id"
+            },
+            "fill": {
+              "enum": [
+                "outline",
+                "filled",
+                "duotone"
+              ]
+            },
+            "container": {
+              "enum": [
+                "none",
+                "circle",
+                "square",
+                "rounded"
+              ]
+            }
+          }
+        },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "button",
+            "card"
+          ],
+          "properties": {
+            "button": {
+              "$ref": "#/$defs/id"
+            },
+            "card": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        },
+        "motion": {
+          "enum": [
+            "none",
+            "subtle",
+            "medium",
+            "strong"
+          ]
+        },
+        "numerals": {
+          "description": "latn = 0123456789, arab = Eastern Arabic digits.",
+          "enum": [
+            "latn",
+            "arab"
+          ]
+        },
+        "calendar": {
+          "enum": [
+            "gregory",
+            "islamic-umalqura"
+          ]
+        },
+        "rtl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "logicalProperties",
+            "mirror",
+            "neverMirror"
+          ],
+          "properties": {
+            "logicalProperties": {
+              "const": true
+            },
+            "mirror": {
+              "$ref": "#/$defs/idListNonEmpty"
+            },
+            "neverMirror": {
+              "$ref": "#/$defs/idListNonEmpty"
+            }
+          }
+        }
+      }
+    },
+    "selections": {
+      "description": "The template chosen for each element, plus any adjustment made on top of it.",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/element"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "template"
+        ],
+        "properties": {
+          "template": {
+            "$ref": "#/$defs/id"
+          },
+          "overrides": {
+            "description": "Flat adjustments on top of the template: safe keys, scalar values only.",
+            "type": "object",
+            "maxProperties": 20,
+            "propertyNames": {
+              "$ref": "#/$defs/overrideKey"
+            },
+            "additionalProperties": {
+              "type": [
+                "number",
+                "boolean",
+                "string"
+              ],
+              "minimum": -10000,
+              "maximum": 10000,
+              "maxLength": 100,
+              "pattern": "^[A-Za-z0-9 #%.,-]*$"
+            }
+          }
+        }
+      }
+    },
+    "autoFilled": {
+      "description": "Elements filled by «كمّل الباقي عني».",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/element"
+      },
+      "uniqueItems": true
+    },
+    "leaveToAI": {
+      "$ref": "#/$defs/idList"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "idList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "maxItems": 30,
+      "uniqueItems": true
+    },
+    "hex": {
+      "type": "string",
+      "pattern": "^#[0-9a-f]{6}$"
+    },
+    "ramp": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hex"
+      },
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "colorSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "onPrimary",
+        "secondary",
+        "onSecondary",
+        "accentText",
+        "background",
+        "surface",
+        "onSurface",
+        "mutedText",
+        "border",
+        "success",
+        "warning",
+        "danger",
+        "info"
+      ],
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/hex"
+        },
+        "onPrimary": {
+          "$ref": "#/$defs/hex"
+        },
+        "secondary": {
+          "$ref": "#/$defs/hex"
+        },
+        "onSecondary": {
+          "$ref": "#/$defs/hex"
+        },
+        "accentText": {
+          "$ref": "#/$defs/hex"
+        },
+        "background": {
+          "$ref": "#/$defs/hex"
+        },
+        "surface": {
+          "$ref": "#/$defs/hex"
+        },
+        "onSurface": {
+          "$ref": "#/$defs/hex"
+        },
+        "mutedText": {
+          "$ref": "#/$defs/hex"
+        },
+        "border": {
+          "$ref": "#/$defs/hex"
+        },
+        "success": {
+          "$ref": "#/$defs/hex"
+        },
+        "warning": {
+          "$ref": "#/$defs/hex"
+        },
+        "danger": {
+          "$ref": "#/$defs/hex"
+        },
+        "info": {
+          "$ref": "#/$defs/hex"
+        }
+      }
+    },
+    "fontRef": {
+      "description": "One font role. Bilingual pairs set both arabic and latin (R-043); which ones the project language needs is a rule checked by the rules engine (R-026).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fallback"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "arabic"
+          ]
+        },
+        {
+          "required": [
+            "latin"
+          ]
+        }
+      ],
+      "properties": {
+        "arabic": {
+          "$ref": "#/$defs/familyName"
+        },
+        "latin": {
+          "$ref": "#/$defs/familyName"
+        },
+        "fallback": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "system-ui",
+              "sans-serif",
+              "serif",
+              "monospace",
+              "ui-sans-serif",
+              "ui-serif",
+              "ui-monospace"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "latinSizeAdjust": {
+          "description": "Size of the Latin font relative to the Arabic one so both look the same size (R-090).",
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2
+        },
+        "easternArabicDigits": {
+          "description": "Whether the font draws Eastern Arabic digits (R-094); recorded after a real test.",
+          "type": "boolean"
+        }
+      }
+    },
+    "radiusPx": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 64
+    },
+    "shadowSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "properties": {
+        "sm": {
+          "$ref": "#/$defs/shadowValue"
+        },
+        "md": {
+          "$ref": "#/$defs/shadowValue"
+        },
+        "lg": {
+          "$ref": "#/$defs/shadowValue"
+        }
+      }
+    },
+    "element": {
+      "enum": [
+        "colors",
+        "modes",
+        "fonts",
+        "type-scale",
+        "radius",
+        "shadows",
+        "icons",
+        "buttons",
+        "cards",
+        "spacing",
+        "direction"
+      ]
+    },
+    "familyName": {
+      "description": "Plain font family name only (no quotes or CSS syntax).",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9 -]{0,58}[A-Za-z0-9])?$"
+    },
+    "shadowLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y",
+        "blur",
+        "spread",
+        "color",
+        "alpha"
+      ],
+      "properties": {
+        "x": {
+          "type": "integer",
+          "minimum": -64,
+          "maximum": 64
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -64,
+          "maximum": 64
+        },
+        "blur": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 128
+        },
+        "spread": {
+          "type": "integer",
+          "minimum": -64,
+          "maximum": 64
+        },
+        "color": {
+          "$ref": "#/$defs/hex"
+        },
+        "alpha": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "inset": {
+          "type": "boolean"
+        }
+      }
+    },
+    "shadowValue": {
+      "description": "Shadow layers; an empty list means no shadow. Structured so it can never break the generated CSS.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/shadowLayer"
+      },
+      "maxItems": 4
+    },
+    "idListNonEmpty": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/id"
+      },
+      "minItems": 1,
+      "maxItems": 30,
+      "uniqueItems": true
+    },
+    "overrideKey": {
+      "description": "Like id, but never a key that every JavaScript object already has.",
+      "type": "string",
+      "pattern": "^(?!constructor$|prototype$)[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "maxLength": 64
+    }
+  }
+}

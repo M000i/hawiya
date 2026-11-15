@@ -1,0 +1,333 @@
+{
+ "about": "Each case = one valid file from ./valid with exactly one change. Paths are dot-separated; numeric segments index arrays. 'set' replaces or adds a value, 'delete' removes a key. 'at' = the only place (JSON Pointer) where the error must be reported.",
+ "cases": [
+  {
+   "reason": "missing id",
+   "base": "radius-soft.json",
+   "delete": [
+    "id"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "id with uppercase letters",
+   "base": "radius-soft.json",
+   "set": {
+    "id": "Radius-Soft"
+   },
+   "at": "/id"
+  },
+  {
+   "reason": "id with a path separator",
+   "base": "radius-soft.json",
+   "set": {
+    "id": "../radius"
+   },
+   "at": "/id"
+  },
+  {
+   "reason": "id longer than 64 characters",
+   "base": "radius-soft.json",
+   "set": {
+    "id": "r-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+   },
+   "at": "/id"
+  },
+  {
+   "reason": "unknown element",
+   "base": "radius-soft.json",
+   "set": {
+    "element": "borders"
+   },
+   "at": "/element"
+  },
+  {
+   "reason": "ready identities are not templates",
+   "base": "radius-soft.json",
+   "set": {
+    "element": "identity"
+   },
+   "at": "/element"
+  },
+  {
+   "reason": "unknown kind",
+   "base": "radius-soft.json",
+   "set": {
+    "kind": "fancy"
+   },
+   "at": "/kind"
+  },
+  {
+   "reason": "missing English name",
+   "base": "radius-soft.json",
+   "delete": [
+    "name.en"
+   ],
+   "at": "/name"
+  },
+  {
+   "reason": "empty Arabic name",
+   "base": "radius-soft.json",
+   "set": {
+    "name.ar": ""
+   },
+   "at": "/name/ar"
+  },
+  {
+   "reason": "unknown tag",
+   "base": "radius-soft.json",
+   "set": {
+    "tags.0": "fancy"
+   },
+   "at": "/tags/0"
+  },
+  {
+   "reason": "no tags",
+   "base": "radius-soft.json",
+   "set": {
+    "tags": []
+   },
+   "at": "/tags"
+  },
+  {
+   "reason": "duplicate tag",
+   "base": "radius-soft.json",
+   "set": {
+    "tags": [
+     "soft",
+     "soft"
+    ]
+   },
+   "at": "/tags"
+  },
+  {
+   "reason": "unknown platform",
+   "base": "radius-soft.json",
+   "set": {
+    "platforms": [
+     "tv"
+    ]
+   },
+   "at": "/platforms/0"
+  },
+  {
+   "reason": "no platforms",
+   "base": "radius-soft.json",
+   "set": {
+    "platforms": []
+   },
+   "at": "/platforms"
+  },
+  {
+   "reason": "metric above 1",
+   "base": "radius-soft.json",
+   "set": {
+    "metrics.roundness": 1.2
+   },
+   "at": "/metrics/roundness"
+  },
+  {
+   "reason": "metric below 0",
+   "base": "radius-soft.json",
+   "set": {
+    "metrics.density": -0.1
+   },
+   "at": "/metrics/density"
+  },
+  {
+   "reason": "metric as text",
+   "base": "radius-soft.json",
+   "set": {
+    "metrics.intensity": "0.3"
+   },
+   "at": "/metrics/intensity"
+  },
+  {
+   "reason": "missing metric",
+   "base": "radius-soft.json",
+   "delete": [
+    "metrics.intensity"
+   ],
+   "at": "/metrics"
+  },
+  {
+   "reason": "empty tokens",
+   "base": "radius-soft.json",
+   "set": {
+    "tokens": {}
+   },
+   "at": "/tokens"
+  },
+  {
+   "reason": "tokens not an object",
+   "base": "radius-soft.json",
+   "set": {
+    "tokens": "radius: 12px"
+   },
+   "at": "/tokens"
+  },
+  {
+   "reason": "composite without recipe",
+   "base": "button-solid.json",
+   "delete": [
+    "recipe"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "recipe without css",
+   "base": "button-solid.json",
+   "delete": [
+    "recipe.css"
+   ],
+   "at": "/recipe"
+  },
+  {
+   "reason": "non-composite with a recipe",
+   "base": "radius-soft.json",
+   "set": {
+    "recipe": {
+     "html": "<b>x</b>",
+     "css": "b{}"
+    }
+   },
+   "at": ""
+  },
+  {
+   "reason": "unknown contrast level",
+   "base": "radius-soft.json",
+   "set": {
+    "a11y.contrast": "A"
+   },
+   "at": "/a11y/contrast"
+  },
+  {
+   "reason": "missing reduced-motion field",
+   "base": "button-solid.json",
+   "delete": [
+    "a11y.reducedMotion"
+   ],
+   "at": "/a11y"
+  },
+  {
+   "reason": "rtl support not a boolean",
+   "base": "radius-soft.json",
+   "set": {
+    "rtl.supported": "yes"
+   },
+   "at": "/rtl/supported"
+  },
+  {
+   "reason": "missing source license",
+   "base": "radius-soft.json",
+   "delete": [
+    "source.license"
+   ],
+   "at": "/source"
+  },
+  {
+   "reason": "source url not https",
+   "base": "radius-soft.json",
+   "set": {
+    "source.url": "http://example.com/x"
+   },
+   "at": "/source/url"
+  },
+  {
+   "reason": "source url with a space",
+   "base": "radius-soft.json",
+   "set": {
+    "source.url": "https://example.com/a b"
+   },
+   "at": "/source/url"
+  },
+  {
+   "reason": "license with spaces",
+   "base": "radius-soft.json",
+   "set": {
+    "source.license": "MIT or whatever"
+   },
+   "at": "/source/license"
+  },
+  {
+   "reason": "unknown status",
+   "base": "button-solid.json",
+   "set": {
+    "status.state": "approved"
+   },
+   "at": "/status/state"
+  },
+  {
+   "reason": "reviewed without a date",
+   "base": "radius-soft.json",
+   "delete": [
+    "status.reviewedAt"
+   ],
+   "at": "/status"
+  },
+  {
+   "reason": "draft with a review date",
+   "base": "button-solid.json",
+   "set": {
+    "status.reviewedAt": "2026-11-15"
+   },
+   "at": "/status"
+  },
+  {
+   "reason": "review date in the wrong format",
+   "base": "radius-soft.json",
+   "set": {
+    "status.reviewedAt": "15/11/2026"
+   },
+   "at": "/status/reviewedAt"
+  },
+  {
+   "reason": "unknown top-level key",
+   "base": "radius-soft.json",
+   "set": {
+    "author": "someone"
+   },
+   "at": ""
+  },
+  {
+   "reason": "unknown key inside metrics",
+   "base": "radius-soft.json",
+   "set": {
+    "metrics.weight": 0.5
+   },
+   "at": "/metrics"
+  },
+  {
+   "reason": "review date with Arabic-Indic digits",
+   "base": "radius-soft.json",
+   "set": {
+    "status.reviewedAt": "٢٠٢٦-11-15"
+   },
+   "at": "/status/reviewedAt"
+  },
+  {
+   "reason": "id with a trailing new line",
+   "base": "radius-soft.json",
+   "set": {
+    "id": "radius-soft\n"
+   },
+   "at": "/id"
+  },
+  {
+   "reason": "metric as a boolean",
+   "base": "radius-soft.json",
+   "set": {
+    "metrics.density": true
+   },
+   "at": "/metrics/density"
+  },
+  {
+   "reason": "rtl support as the number 1",
+   "base": "radius-soft.json",
+   "set": {
+    "rtl.supported": 1
+   },
+   "at": "/rtl/supported"
+  }
+ ]
+}

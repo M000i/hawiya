@@ -1,0 +1,43 @@
+{
+  "id": "direction-rtl",
+  "element": "direction",
+  "kind": "setting",
+  "name": {
+    "ar": "من اليمين لليسار",
+    "en": "Right to left"
+  },
+  "tags": [
+    "minimal"
+  ],
+  "platforms": [
+    "web",
+    "desktop",
+    "extension",
+    "mobile"
+  ],
+  "metrics": {
+    "roundness": 0,
+    "density": 0,
+    "intensity": 0
+  },
+  "tokens": {
+    "direction": {
+      "$value": "rtl"
+    }
+  },
+  "a11y": {
+    "contrast": "n/a",
+    "reducedMotion": null
+  },
+  "rtl": {
+    "supported": true
+  },
+  "source": {
+    "name": "Hawiya",
+    "url": "https://example.com/hawiya",
+    "license": "MIT"
+  },
+  "status": {
+    "state": "draft"
+  }
+}

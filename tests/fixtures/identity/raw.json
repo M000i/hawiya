@@ -1,0 +1,82 @@
+{
+  "about": "Raw-text cases for the hand-written validators (1.7 JavaScript, 1.13 Python): things a parsed-object mutation cannot express. Take the text of ./valid/<base>, replace the single occurrence of 'find' with 'with', parse it with the language's standard JSON parser (a parse failure counts as rejected), then validate. 'valid' is the expected verdict.",
+  "cases": [
+    {
+      "reason": "integer written as 4.0 is still an integer",
+      "valid": true,
+      "base": "identity-ar-web-app.json",
+      "find": "\"unit\": 4,",
+      "with": "\"unit\": 4.0,"
+    },
+    {
+      "reason": "name of exactly 80 emoji is within the limit (characters, not UTF-16 units)",
+      "valid": true,
+      "base": "identity-ar-web-app.json",
+      "find": "\"name\": \"مؤسسي هادئ\"",
+      "with": "\"name\": \"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀\""
+    },
+    {
+      "reason": "NaN is not JSON",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"ratio\": 1.25",
+      "with": "\"ratio\": NaN"
+    },
+    {
+      "reason": "Infinity is not JSON",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"base\": 16,",
+      "with": "\"base\": Infinity,"
+    },
+    {
+      "reason": "__proto__ key at the top level",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"schemaVersion\": 1,",
+      "with": "\"__proto__\": {\"polluted\": 1}, \"schemaVersion\": 1,"
+    },
+    {
+      "reason": "constructor key at the top level",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"schemaVersion\": 1,",
+      "with": "\"constructor\": 1, \"schemaVersion\": 1,"
+    },
+    {
+      "reason": "duplicate key: the last value (2) wins and is rejected",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"schemaVersion\": 1,",
+      "with": "\"schemaVersion\": 1, \"schemaVersion\": 2,"
+    },
+    {
+      "reason": "trailing comma is not JSON",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"unit\": 4,",
+      "with": "\"unit\": 4,,"
+    },
+    {
+      "reason": "NaN as an override value",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"overrides\": {",
+      "with": "\"overrides\": {\"nan\": NaN, "
+    },
+    {
+      "reason": "Infinity as an override value",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"overrides\": {",
+      "with": "\"overrides\": {\"inf\": Infinity, "
+    },
+    {
+      "reason": "-Infinity as an override value",
+      "valid": false,
+      "base": "identity-ar-web-app.json",
+      "find": "\"overrides\": {",
+      "with": "\"overrides\": {\"ninf\": -Infinity, "
+    }
+  ]
+}

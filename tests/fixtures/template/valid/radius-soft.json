@@ -1,0 +1,62 @@
+{
+  "id": "radius-soft",
+  "element": "radius",
+  "kind": "numeric",
+  "name": {
+    "ar": "زوايا ناعمة",
+    "en": "Soft corners"
+  },
+  "tags": [
+    "soft",
+    "minimal"
+  ],
+  "platforms": [
+    "web"
+  ],
+  "metrics": {
+    "roundness": 0.6,
+    "density": 0.5,
+    "intensity": 0.3
+  },
+  "tokens": {
+    "radius": {
+      "sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 6,
+          "unit": "px"
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        }
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 18,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "a11y": {
+    "contrast": "n/a",
+    "reducedMotion": null
+  },
+  "rtl": {
+    "supported": true
+  },
+  "source": {
+    "name": "Hawiya",
+    "url": "https://example.com/hawiya",
+    "license": "MIT"
+  },
+  "status": {
+    "state": "reviewed",
+    "reviewedAt": "2026-11-15"
+  }
+}

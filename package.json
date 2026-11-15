@@ -13,6 +13,7 @@
     "test:server": "node --test tests/server/*.test.js"
   },
   "devDependencies": {
-    "@google/design.md": "0.4.0"
+    "@google/design.md": "0.4.0",
+    "ajv": "8.20.0"
   }
 }

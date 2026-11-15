@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hawiya:schema:session:1",
+  "title": "Hawiya session file",
+  "description": "design/hawiya-session.json written by the agent (R-003): what it detected about the project. Never secrets or code.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["type", "language", "tags"],
+  "properties": {
+    "type": { "enum": ["landing", "website", "web-app", "dashboard", "html-page"] },
+    "language": { "enum": ["ar", "en", "ar+en"] },
+    "tags": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/tag" },
+      "minItems": 1,
+      "maxItems": 3,
+      "uniqueItems": true
+    },
+    "brandColors": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^#[0-9a-f]{6}$" },
+      "maxItems": 3,
+      "uniqueItems": true
+    },
+    "platform": { "enum": ["web"] },
+    "elements": {
+      "description": "Elements suited to the platform; the page shows all when absent.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/element" },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "element": {
+      "enum": ["colors", "modes", "fonts", "type-scale", "radius", "shadows", "icons", "buttons", "cards", "spacing", "direction"]
+    },
+    "tag": {
+      "enum": ["minimal", "corporate", "editorial", "playful", "luxury", "glass", "brutalist", "neumorphic", "retro", "material", "cupertino", "fluent", "technical", "data-dense", "vivid", "soft"]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "pair-plex-arabic-plex-sans",
+  "element": "fonts",
+  "kind": "curated",
+  "name": {
+    "ar": "بلكس العربي مع بلكس",
+    "en": "IBM Plex Sans Arabic + IBM Plex Sans"
+  },
+  "tags": [
+    "corporate",
+    "technical"
+  ],
+  "platforms": [
+    "web"
+  ],
+  "metrics": {
+    "roundness": 0.3,
+    "density": 0.6,
+    "intensity": 0.4
+  },
+  "tokens": {
+    "font": {
+      "body": {
+        "$type": "fontFamily",
+        "$value": [
+          "IBM Plex Sans Arabic",
+          "IBM Plex Sans",
+          "system-ui",
+          "sans-serif"
+        ]
+      }
+    }
+  },
+  "extras": {
+    "languages": [
+      "ar",
+      "en"
+    ],
+    "numeralsFont": "IBM Plex Sans Arabic",
+    "easternArabicDigits": true,
+    "sizeAdjust": 1
+  },
+  "a11y": {
+    "contrast": "n/a",
+    "reducedMotion": null
+  },
+  "rtl": {
+    "supported": true,
+    "notes": "Arabic and Latin designed together"
+  },
+  "source": {
+    "name": "Google Fonts",
+    "url": "https://fonts.google.com/specimen/IBM+Plex+Sans+Arabic",
+    "license": "OFL-1.1"
+  },
+  "status": {
+    "state": "reviewed",
+    "reviewedAt": "2026-11-15"
+  }
+}

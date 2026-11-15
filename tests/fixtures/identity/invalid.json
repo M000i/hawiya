@@ -1,0 +1,736 @@
+{
+ "about": "Each case = one valid file from ./valid with exactly one change. Paths are dot-separated; numeric segments index arrays. 'set' replaces or adds a value, 'delete' removes a key. 'at' = the only place (JSON Pointer) where the error must be reported.",
+ "cases": [
+  {
+   "reason": "missing schemaVersion",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "schemaVersion"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "prototype schemaVersion",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "schemaVersion": "0.1-prototype"
+   },
+   "at": "/schemaVersion"
+  },
+  {
+   "reason": "future schemaVersion",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "schemaVersion": 2
+   },
+   "at": "/schemaVersion"
+  },
+  {
+   "reason": "schemaVersion as a boolean",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "schemaVersion": true
+   },
+   "at": "/schemaVersion"
+  },
+  {
+   "reason": "empty name",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": ""
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name longer than 80 characters",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name of 81 emoji (length counts characters, not UTF-16 units)",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name with a new line",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "a\nname: evil"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name with a text-direction override",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "abc\u202edcba"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name with a lone surrogate",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "a\ud800b"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name with angle brackets",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "</script><script>x</script>"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name of only spaces",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "   "
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "unknown language",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "project.language": "fr"
+   },
+   "at": "/project/language"
+  },
+  {
+   "reason": "unknown direction",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "project.direction": "ttb"
+   },
+   "at": "/project/direction"
+  },
+  {
+   "reason": "platform outside the first version",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "project.platform": "mobile"
+   },
+   "at": "/project/platform"
+  },
+  {
+   "reason": "unknown project type",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "project.type": "game"
+   },
+   "at": "/project/type"
+  },
+  {
+   "reason": "unknown contrast level",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "project.contrast": "A"
+   },
+   "at": "/project/contrast"
+  },
+  {
+   "reason": "primary color in uppercase hex",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.color.light.primary": "#2563EB"
+   },
+   "at": "/tokens/color/light/primary"
+  },
+  {
+   "reason": "primary color as a name",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.color.light.primary": "blue"
+   },
+   "at": "/tokens/color/light/primary"
+  },
+  {
+   "reason": "hex color with a trailing new line",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.color.light.primary": "#2563eb\n"
+   },
+   "at": "/tokens/color/light/primary"
+  },
+  {
+   "reason": "short hex",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.color.dark.surface": "#111"
+   },
+   "at": "/tokens/color/dark/surface"
+  },
+  {
+   "reason": "missing dark mode",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.color.dark"
+   ],
+   "at": "/tokens/color"
+  },
+  {
+   "reason": "missing a status color",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.color.light.danger"
+   ],
+   "at": "/tokens/color/light"
+  },
+  {
+   "reason": "missing secondary color",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.color.dark.secondary"
+   ],
+   "at": "/tokens/color/dark"
+  },
+  {
+   "reason": "unknown color role",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.color.light.glow": "#ffffff"
+   },
+   "at": "/tokens/color/light"
+  },
+  {
+   "reason": "ramp with 10 steps",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.color.ramps.primary.10"
+   ],
+   "at": "/tokens/color/ramps/primary"
+  },
+  {
+   "reason": "missing secondary ramp",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.color.ramps.secondary"
+   ],
+   "at": "/tokens/color/ramps"
+  },
+  {
+   "reason": "ramp step not a hex color",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.color.ramps.neutral.3": "gray"
+   },
+   "at": "/tokens/color/ramps/neutral/3"
+  },
+  {
+   "reason": "font family with a quote (CSS injection)",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.font.body.arabic": "Cairo\"; background:url(x)"
+   },
+   "at": "/tokens/font/body/arabic"
+  },
+  {
+   "reason": "font role with neither Arabic nor Latin family",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.font.heading.arabic"
+   ],
+   "at": "/tokens/font/heading"
+  },
+  {
+   "reason": "unknown generic fallback",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.font.body.fallback": [
+     "sans-serif} body{display:none"
+    ]
+   },
+   "at": "/tokens/font/body/fallback/0"
+  },
+  {
+   "reason": "empty fallback list",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.font.body.fallback": []
+   },
+   "at": "/tokens/font/body/fallback"
+  },
+  {
+   "reason": "Latin size adjust out of range",
+   "base": "identity-bilingual-landing.json",
+   "set": {
+    "tokens.font.body.latinSizeAdjust": 3
+   },
+   "at": "/tokens/font/body/latinSizeAdjust"
+  },
+  {
+   "reason": "Latin size adjust as a boolean",
+   "base": "identity-bilingual-landing.json",
+   "set": {
+    "tokens.font.body.latinSizeAdjust": true
+   },
+   "at": "/tokens/font/body/latinSizeAdjust"
+  },
+  {
+   "reason": "Eastern Arabic digits flag as text",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.font.numerals.easternArabicDigits": "yes"
+   },
+   "at": "/tokens/font/numerals/easternArabicDigits"
+  },
+  {
+   "reason": "Arabic line height out of range",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.font.lineHeight.ar": 3
+   },
+   "at": "/tokens/font/lineHeight/ar"
+  },
+  {
+   "reason": "Arabic line height as a boolean",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.font.lineHeight.ar": true
+   },
+   "at": "/tokens/font/lineHeight/ar"
+  },
+  {
+   "reason": "missing Arabic line height",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "tokens.font.lineHeight.ar"
+   ],
+   "at": "/tokens/font/lineHeight"
+  },
+  {
+   "reason": "type scale base too small",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.typeScale.base": 4
+   },
+   "at": "/tokens/typeScale/base"
+  },
+  {
+   "reason": "type scale ratio below 1",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.typeScale.ratio": 0.9
+   },
+   "at": "/tokens/typeScale/ratio"
+  },
+  {
+   "reason": "type scale with 2 steps",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.typeScale.steps": [
+     16,
+     20
+    ]
+   },
+   "at": "/tokens/typeScale/steps"
+  },
+  {
+   "reason": "negative radius",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.radius.md": -2
+   },
+   "at": "/tokens/radius/md"
+  },
+  {
+   "reason": "fractional radius",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.radius.sm": 4.5
+   },
+   "at": "/tokens/radius/sm"
+  },
+  {
+   "reason": "radius above 64",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.radius.lg": 100
+   },
+   "at": "/tokens/radius/lg"
+  },
+  {
+   "reason": "full radius not 9999",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.radius.full": 999
+   },
+   "at": "/tokens/radius/full"
+  },
+  {
+   "reason": "shadow as free CSS text (unbalanced parentheses)",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.shadow.light.md": "0 0 0 #000), ((("
+   },
+   "at": "/tokens/shadow/light/md"
+  },
+  {
+   "reason": "shadow layer color as text",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.shadow.light.md.0.color": "rgba(0,0,0,.5)"
+   },
+   "at": "/tokens/shadow/light/md/0/color"
+  },
+  {
+   "reason": "shadow blur negative",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.shadow.light.sm.0.blur": -1
+   },
+   "at": "/tokens/shadow/light/sm/0/blur"
+  },
+  {
+   "reason": "shadow alpha above 1",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.shadow.dark.md.0.alpha": 1.5
+   },
+   "at": "/tokens/shadow/dark/md/0/alpha"
+  },
+  {
+   "reason": "shadow layer with an unknown key",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.shadow.light.sm.0.css": "x"
+   },
+   "at": "/tokens/shadow/light/sm/0"
+  },
+  {
+   "reason": "five shadow layers",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.shadow.light.lg": [
+     {
+      "x": 0,
+      "y": 1,
+      "blur": 1,
+      "spread": 0,
+      "color": "#000000",
+      "alpha": 0.1
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "blur": 1,
+      "spread": 0,
+      "color": "#000000",
+      "alpha": 0.1
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "blur": 1,
+      "spread": 0,
+      "color": "#000000",
+      "alpha": 0.1
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "blur": 1,
+      "spread": 0,
+      "color": "#000000",
+      "alpha": 0.1
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "blur": 1,
+      "spread": 0,
+      "color": "#000000",
+      "alpha": 0.1
+     }
+    ]
+   },
+   "at": "/tokens/shadow/light/lg"
+  },
+  {
+   "reason": "spacing unit out of range",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.spacing.unit": 10
+   },
+   "at": "/tokens/spacing/unit"
+  },
+  {
+   "reason": "spacing step fractional",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "tokens.spacing.scale.2": 7.5
+   },
+   "at": "/tokens/spacing/scale/2"
+  },
+  {
+   "reason": "unknown icon fill",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.icons.fill": "glitter"
+   },
+   "at": "/extensions/icons/fill"
+  },
+  {
+   "reason": "icon library id with spaces",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.icons.library": "font awesome"
+   },
+   "at": "/extensions/icons/library"
+  },
+  {
+   "reason": "component template id with a path",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.components.button": "../x"
+   },
+   "at": "/extensions/components/button"
+  },
+  {
+   "reason": "unknown motion level",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.motion": "wild"
+   },
+   "at": "/extensions/motion"
+  },
+  {
+   "reason": "unknown numerals",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.numerals": "roman"
+   },
+   "at": "/extensions/numerals"
+  },
+  {
+   "reason": "unknown calendar",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.calendar": "julian"
+   },
+   "at": "/extensions/calendar"
+  },
+  {
+   "reason": "logical properties turned off",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.rtl.logicalProperties": false
+   },
+   "at": "/extensions/rtl/logicalProperties"
+  },
+  {
+   "reason": "logical properties as the number 1",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.rtl.logicalProperties": 1
+   },
+   "at": "/extensions/rtl/logicalProperties"
+  },
+  {
+   "reason": "empty mirror list",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "extensions.rtl.mirror": []
+   },
+   "at": "/extensions/rtl/mirror"
+  },
+  {
+   "reason": "selection for an unknown element",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.borders": {
+     "template": "x"
+    }
+   },
+   "at": "/selections"
+  },
+  {
+   "reason": "selection without a template",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "selections.colors.template"
+   ],
+   "at": "/selections/colors"
+  },
+  {
+   "reason": "selection with an unknown key",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.colors.note": "x"
+   },
+   "at": "/selections/colors"
+  },
+  {
+   "reason": "override with a nested object",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.radius.overrides": {
+     "md": {
+      "css": "x"
+     }
+    }
+   },
+   "at": "/selections/radius/overrides/md"
+  },
+  {
+   "reason": "override key with uppercase letters",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.radius.overrides": {
+     "MD": 8
+    }
+   },
+   "at": "/selections/radius/overrides"
+  },
+  {
+   "reason": "override value with CSS characters",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.radius.overrides": {
+     "md": "8px;}</style>"
+    }
+   },
+   "at": "/selections/radius/overrides/md"
+  },
+  {
+   "reason": "auto-filled unknown element",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "autoFilled": [
+     "borders"
+    ]
+   },
+   "at": "/autoFilled/0"
+  },
+  {
+   "reason": "auto-filled duplicate",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "autoFilled": [
+     "spacing",
+     "spacing"
+    ]
+   },
+   "at": "/autoFilled"
+  },
+  {
+   "reason": "leave-to-AI item with spaces",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "leaveToAI": [
+     "empty states"
+    ]
+   },
+   "at": "/leaveToAI/0"
+  },
+  {
+   "reason": "unknown top-level key",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "createdAt": "2026-11-15"
+   },
+   "at": ""
+  },
+  {
+   "reason": "missing extensions",
+   "base": "identity-ar-web-app.json",
+   "delete": [
+    "extensions"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "name with a line separator (U+2028)",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "\u2028a"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name of only a byte-order mark (U+FEFF)",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "\ufeff"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name of only a zero-width space",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "\u200b"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name of only no-break spaces",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "\u00a0\u3000"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "name with a trailing new line",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "name": "abc\n"
+   },
+   "at": "/name"
+  },
+  {
+   "reason": "font family with trailing spaces",
+   "base": "identity-en-dashboard.json",
+   "set": {
+    "tokens.font.body.latin": "Inter  "
+   },
+   "at": "/tokens/font/body/latin"
+  },
+  {
+   "reason": "font family with a trailing new line",
+   "base": "identity-en-dashboard.json",
+   "set": {
+    "tokens.font.body.latin": "Inter\n"
+   },
+   "at": "/tokens/font/body/latin"
+  },
+  {
+   "reason": "override key 'constructor'",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.radius.overrides": {
+     "constructor": 1
+    }
+   },
+   "at": "/selections/radius/overrides"
+  },
+  {
+   "reason": "override number above 10000",
+   "base": "identity-ar-web-app.json",
+   "set": {
+    "selections.radius.overrides": {
+     "md": 1e+308
+    }
+   },
+   "at": "/selections/radius/overrides/md"
+  },
+  {
+   "reason": "override string with a trailing new line",
+   "base": "identity-en-dashboard.json",
+   "set": {
+    "selections.buttons.overrides.label-case": "sentence\n"
+   },
+   "at": "/selections/buttons/overrides/label-case"
+  }
+ ]
+}

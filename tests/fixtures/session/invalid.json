@@ -1,0 +1,163 @@
+{
+ "about": "Each case = one valid file from ./valid with exactly one change. Paths are dot-separated; numeric segments index arrays. 'set' replaces or adds a value, 'delete' removes a key. 'at' = the only place (JSON Pointer) where the error must be reported. 'replace' swaps the whole document.",
+ "cases": [
+  {
+   "reason": "missing type",
+   "base": "session-skill-example.json",
+   "delete": [
+    "type"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "unknown type",
+   "base": "session-skill-example.json",
+   "set": {
+    "type": "game"
+   },
+   "at": "/type"
+  },
+  {
+   "reason": "missing language",
+   "base": "session-skill-example.json",
+   "delete": [
+    "language"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "unknown language",
+   "base": "session-skill-example.json",
+   "set": {
+    "language": "arabic"
+   },
+   "at": "/language"
+  },
+  {
+   "reason": "missing tags",
+   "base": "session-skill-example.json",
+   "delete": [
+    "tags"
+   ],
+   "at": ""
+  },
+  {
+   "reason": "no tags",
+   "base": "session-skill-example.json",
+   "set": {
+    "tags": []
+   },
+   "at": "/tags"
+  },
+  {
+   "reason": "four tags",
+   "base": "session-full.json",
+   "set": {
+    "tags": [
+     "vivid",
+     "playful",
+     "retro",
+     "soft"
+    ]
+   },
+   "at": "/tags"
+  },
+  {
+   "reason": "unknown tag",
+   "base": "session-skill-example.json",
+   "set": {
+    "tags.0": "cozy"
+   },
+   "at": "/tags/0"
+  },
+  {
+   "reason": "duplicate tag",
+   "base": "session-no-brand.json",
+   "set": {
+    "tags": [
+     "soft",
+     "soft"
+    ]
+   },
+   "at": "/tags"
+  },
+  {
+   "reason": "brand color in uppercase",
+   "base": "session-skill-example.json",
+   "set": {
+    "brandColors.0": "#7C3AED"
+   },
+   "at": "/brandColors/0"
+  },
+  {
+   "reason": "brand color as rgb()",
+   "base": "session-skill-example.json",
+   "set": {
+    "brandColors.0": "rgb(124,58,237)"
+   },
+   "at": "/brandColors/0"
+  },
+  {
+   "reason": "four brand colors",
+   "base": "session-full.json",
+   "set": {
+    "brandColors": [
+     "#000000",
+     "#111111",
+     "#222222",
+     "#333333"
+    ]
+   },
+   "at": "/brandColors"
+  },
+  {
+   "reason": "duplicate brand color",
+   "base": "session-skill-example.json",
+   "set": {
+    "brandColors": [
+     "#7c3aed",
+     "#7c3aed"
+    ]
+   },
+   "at": "/brandColors"
+  },
+  {
+   "reason": "platform outside the first version",
+   "base": "session-full.json",
+   "set": {
+    "platform": "desktop"
+   },
+   "at": "/platform"
+  },
+  {
+   "reason": "unknown element",
+   "base": "session-full.json",
+   "set": {
+    "elements.0": "borders"
+   },
+   "at": "/elements/0"
+  },
+  {
+   "reason": "unknown key (secrets must never appear here)",
+   "base": "session-skill-example.json",
+   "set": {
+    "apiKey": "sk-test"
+   },
+   "at": ""
+  },
+  {
+   "reason": "session as an array",
+   "base": "session-skill-example.json",
+   "replace": [],
+   "at": ""
+  },
+  {
+   "reason": "brand color with a trailing new line",
+   "base": "session-skill-example.json",
+   "set": {
+    "brandColors.0": "#7c3aed\n"
+   },
+   "at": "/brandColors/0"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "landing",
+  "language": "en",
+  "tags": [
+    "vivid",
+    "playful",
+    "retro"
+  ],
+  "brandColors": [
+    "#0f766e",
+    "#facc15",
+    "#111827"
+  ],
+  "platform": "web",
+  "elements": [
+    "colors",
+    "fonts",
+    "radius",
+    "buttons",
+    "cards"
+  ]
+}
