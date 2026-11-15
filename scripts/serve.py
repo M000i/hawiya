@@ -12,12 +12,16 @@ Usage: python3 -I scripts/serve.py <project-dir> [--idle-timeout <seconds>]
   prints {"status":"saved","written":[...]} and exits 0.
 - Exits 1 with {"status":"closed","reason":...} after the idle timeout or 5 failed token attempts.
 - Exits 2 on bad arguments.
+
+Also holds the Python identity checker (task 1.13): check_document / check_document_text, a port of
+picker/js/core/validate.js. Until task 1.14 the server itself still runs the phase-0 prototype contract.
 """
 
 import errno
 import hashlib
 import hmac
 import json
+import math
 import os
 import re
 import secrets
@@ -235,6 +239,555 @@ _LONE_SURROGATE = re.compile("[\ud800-\udfff]")
 def to_utf8(text):
     # json.loads already joined valid surrogate pairs; any left are lone halves. Write U+FFFD like Node.
     return _LONE_SURROGATE.sub("�", text).encode("utf-8")
+
+
+
+# ---------- identity / template / session checker (task 1.13) ----------
+#
+# A port of picker/js/core/validate.js, the checker the page and the Node server use (task 1.7). It must accept and
+# reject exactly what that one does (tests/server/python-validate.test.js compares them on every shared sample and
+# thousands of variations). Standard library only. The rules are the schemas in schema/*.json themselves.
+#
+#   check_document(name, value)  -> {"valid": bool, "errors": [{"instancePath", "keyword", "message", "params"}]}
+#   check_document_text(name, text)  same, after a strict parse (NaN/Infinity text, duplicate keys and
+#                                     numbers too large for a double are rejected, as in JavaScript)
+#
+# Differences between the two languages that are handled on purpose:
+# - Patterns are written for JavaScript (flag "u"); _js_pattern translates them: "$" only matches at the very end
+#   (Python's "$" also matches before a final newline), "\d" is ASCII 0-9 and "\s" is JavaScript's whitespace set.
+# - JSON numbers are read as doubles, like JavaScript (huge integers round, 1e400 becomes infinite and is rejected).
+# - true/false are booleans, never the numbers 1/0 (in Python bool is a kind of int).
+# - Text length counts characters the JavaScript way (a surrogate pair is one character).
+# - Object keys are visited in JavaScript's order (integer-like keys first).
+
+CHECK_NAMES = ("identity", "template", "session")
+CHECK_MAX_DEPTH = 200
+CHECK_MAX_ERRORS = 100
+_SCHEMA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "schema")
+_IGNORED_KEYWORDS = {"$schema", "$id", "$defs", "title", "description"}
+_KNOWN_KEYWORDS = {
+    "type", "const", "enum", "$ref", "anyOf", "not", "if", "then", "else",
+    "minLength", "maxLength", "pattern", "minimum", "maximum",
+    "items", "minItems", "maxItems", "uniqueItems",
+    "properties", "required", "additionalProperties", "propertyNames", "minProperties", "maxProperties",
+}
+_TYPES = {"null", "boolean", "object", "array", "number", "integer", "string"}
+
+# JavaScript's \s: tab, LF, VT, FF, CR, space, NBSP, U+1680, U+2000-U+200A, LS, PS, NNBSP, MMSP, ideographic space, BOM
+_JS_SPACE = [0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x20, 0xA0, 0x1680] + list(range(0x2000, 0x200B)) + [0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF]
+_JS_SPACE_CLASS = "".join("\\x%02x" % c if c < 0x100 else "\\" + "u%04x" % c for c in _JS_SPACE)
+_JS_LINE_END_CLASS = "\\x0a\\x0d\\" + "u2028\\" + "u2029"
+
+
+class SchemaError(Exception):
+    pass
+
+
+def _js_pattern(p):
+    """Translates a JavaScript (u-flag) regular expression into a Python one with the same meaning."""
+    out = []
+    in_class = False
+    i = 0
+    while i < len(p):
+        ch = p[i]
+        if ch == "\\":
+            if i + 1 >= len(p):
+                raise SchemaError("pattern ends with a backslash: " + p)
+            nxt = p[i + 1]
+            if nxt == "d":
+                out.append("0-9" if in_class else "[0-9]")
+            elif nxt == "D":
+                if in_class:
+                    raise SchemaError("\\D inside a class is not supported: " + p)
+                out.append("[^0-9]")
+            elif nxt == "s":
+                out.append(_JS_SPACE_CLASS if in_class else "[" + _JS_SPACE_CLASS + "]")
+            elif nxt == "S":
+                if in_class:
+                    raise SchemaError("\\S inside a class is not supported: " + p)
+                out.append("[^" + _JS_SPACE_CLASS + "]")
+            elif nxt == "u":
+                hexpart = p[i + 2:i + 6]
+                if len(hexpart) != 4 or any(c not in "0123456789abcdefABCDEF" for c in hexpart):
+                    raise SchemaError("unsupported \\u escape: " + p)
+                hi = int(hexpart, 16)
+                lo_part = p[i + 8:i + 12] if p[i + 6:i + 8] == "\\" + "u" else ""
+                if 0xD800 <= hi <= 0xDBFF and len(lo_part) == 4 and all(c in "0123456789abcdefABCDEF" for c in lo_part) and 0xDC00 <= int(lo_part, 16) <= 0xDFFF:
+                    # with the u flag an escaped surrogate pair is one character
+                    out.append("\\" + "U%08x" % (0x10000 + ((hi - 0xD800) << 10) + (int(lo_part, 16) - 0xDC00)))
+                    i += 12
+                    continue
+                out.append("\\" + "u" + hexpart)
+                i += 6
+                continue
+            elif nxt == "-" and not in_class:
+                raise SchemaError("\\- outside a class is a syntax error with the u flag: " + p)
+            elif nxt in ".-^$*+?()[]{}|/\\":
+                out.append("\\" + nxt)
+            elif nxt in "tnrfv":
+                out.append("\\" + nxt)
+            else:
+                raise SchemaError("unsupported escape \\%s in pattern: %s" % (nxt, p))
+            i += 2
+            continue
+        if in_class:
+            if ch == "]":
+                in_class = False
+            out.append(ch)
+        elif ch == "[":
+            in_class = True
+            out.append(ch)
+            if p[i + 1:i + 2] == "^":
+                out.append("^")
+                i += 1
+        elif ch == "$":
+            out.append("\\Z")
+        elif ch == ".":
+            out.append("[^" + _JS_LINE_END_CLASS + "]")
+        else:
+            out.append(ch)
+        i += 1
+    return re.compile("".join(out))
+
+
+# ----- JSON values -----
+
+def _json_type(x):
+    if x is None:
+        return "null"
+    if isinstance(x, bool):
+        return "boolean"
+    if isinstance(x, float):
+        return "number" if math.isfinite(x) else None
+    if isinstance(x, int):
+        try:
+            return "number" if math.isfinite(float(x)) else None
+        except OverflowError:
+            return None
+    if isinstance(x, str):
+        return "string"
+    if isinstance(x, list):
+        return "array"
+    if isinstance(x, dict):
+        return "object"
+    return None
+
+
+def _has_type(x, t):
+    jt = _json_type(x)
+    if t == "integer":
+        return jt == "number" and float(x).is_integer()
+    return jt == t
+
+
+def _deep_equal(a, b):
+    ta = _json_type(a)
+    if ta is None or ta != _json_type(b):
+        return False
+    if ta == "number":
+        return float(a) == float(b)  # -0 equals 0, as in JavaScript
+    if ta == "array":
+        return len(a) == len(b) and all(_deep_equal(x, y) for x, y in zip(a, b))
+    if ta == "object":
+        return len(a) == len(b) and all(k in b and _deep_equal(a[k], b[k]) for k in a)
+    return a == b
+
+
+def _canonical(x):
+    t = _json_type(x)
+    if t == "array":
+        return "[" + ",".join(_canonical(v) for v in x) + "]"
+    if t == "object":
+        return "{" + ",".join(json.dumps(k) + ":" + _canonical(x[k]) for k in sorted(x)) + "}"
+    if t == "number":
+        return "n" + repr(float(x) + 0.0)  # + 0.0 turns -0.0 into 0.0
+    return t[0] + json.dumps(x)
+
+
+def _char_length(s):
+    """Characters as JavaScript counts them: a high surrogate followed by a low one is one character."""
+    n = 0
+    i = 0
+    while i < len(s):
+        c = ord(s[i])
+        if 0xD800 <= c <= 0xDBFF and i + 1 < len(s) and 0xDC00 <= ord(s[i + 1]) <= 0xDFFF:
+            i += 1
+        n += 1
+        i += 1
+    return n
+
+
+def _pointer_escape(key):
+    return str(key).replace("~", "~0").replace("/", "~1")
+
+
+def _is_index_key(k):
+    # at most 10 digits before int(): long digit strings would be slow or refused by int()
+    return 0 < len(k) <= 10 and k.isascii() and k.isdigit() and (k == "0" or not k.startswith("0")) and int(k) < 4294967295
+
+
+def _js_keys(obj):
+    """Object.keys order: integer-like keys ascending, then the rest in insertion order."""
+    idx = sorted((k for k in obj if _is_index_key(k)), key=int)
+    return idx + [k for k in obj if not _is_index_key(k)]
+
+
+def _err(path, keyword, message, params=None):
+    return {"instancePath": path, "keyword": keyword, "message": message, "params": params or {}}
+
+
+def _json_problem(value):
+    stack = [(value, "", 0)]
+    while stack:
+        v, path, depth = stack.pop()
+        t = _json_type(v)
+        if t is None:
+            return {"path": path, "message": "value cannot be written as JSON"}
+        if t not in ("array", "object"):
+            continue
+        if depth >= CHECK_MAX_DEPTH:
+            return {"path": path, "message": "nested deeper than %d levels" % CHECK_MAX_DEPTH}
+        if t == "array":
+            for i in range(len(v) - 1, -1, -1):
+                stack.append((v[i], path + "/" + str(i), depth + 1))
+        else:
+            if any(not isinstance(k, str) for k in v):
+                return {"path": path, "message": "value cannot be written as JSON (object key that is not text)"}
+            keys = _js_keys(v)
+            for k in reversed(keys):
+                stack.append((v[k], path + "/" + _pointer_escape(k), depth + 1))
+    return None
+
+
+# ----- compiling a schema -----
+
+class _Compiled(object):
+    def __init__(self, root):
+        if not isinstance(root, dict):
+            raise SchemaError("schema must be an object")
+        self.root = root
+        self.regex = {}
+        self._seen = set()
+        self._check_schema(root, "#")
+
+    def resolve(self, ref):
+        if not isinstance(ref, str) or not ref.startswith("#"):
+            raise SchemaError("only local $ref is supported: %r" % (ref,))
+        if ref == "#":
+            return self.root
+        if not ref.startswith("#/"):
+            raise SchemaError("unsupported $ref: " + ref)
+        node = self.root
+        for part in ref[2:].split("/"):
+            key = part.replace("~1", "/").replace("~0", "~")
+            if not isinstance(node, dict) or key not in node:
+                raise SchemaError("$ref not found: " + ref)
+            node = node[key]
+        return node
+
+    def pattern(self, p):
+        if p not in self.regex:
+            if not isinstance(p, str):
+                raise SchemaError("pattern must be a string")
+            try:
+                self.regex[p] = _js_pattern(p)
+            except re.error as e:
+                raise SchemaError("invalid pattern %r: %s" % (p, e))
+        return self.regex[p]
+
+    def _check_schema(self, s, where):
+        if isinstance(s, bool):
+            return
+        if not isinstance(s, dict):
+            raise SchemaError("subschema at %s must be an object or boolean" % where)
+        if id(s) in self._seen:
+            return
+        self._seen.add(id(s))
+        for k in s:
+            if k not in _KNOWN_KEYWORDS and k not in _IGNORED_KEYWORDS:
+                raise SchemaError('unsupported keyword "%s" at %s' % (k, where))
+        if "type" in s:
+            ts = s["type"] if isinstance(s["type"], list) else [s["type"]]
+            if any(not isinstance(t, str) for t in ts):
+                raise SchemaError("type must be a name or a list of names at " + where)
+            if not ts:
+                raise SchemaError("type must not be empty at " + where)
+            for t in ts:
+                if t not in _TYPES:
+                    raise SchemaError('unknown type "%s" at %s' % (t, where))
+        if "pattern" in s:
+            self.pattern(s["pattern"])
+        if "$id" in s and where != "#":
+            raise SchemaError("$id is only allowed at the root (at %s)" % where)
+        for k in ("minLength", "maxLength", "minItems", "maxItems", "minProperties", "maxProperties"):
+            if k in s and not (_json_type(s[k]) == "number" and float(s[k]).is_integer() and s[k] >= 0):
+                raise SchemaError("%s must be a non-negative integer at %s" % (k, where))
+        for k in ("minimum", "maximum"):
+            if k in s and not (_json_type(s[k]) == "number"):
+                raise SchemaError("%s must be a number at %s" % (k, where))
+        if "uniqueItems" in s and not isinstance(s["uniqueItems"], bool):
+            raise SchemaError("uniqueItems must be true or false at " + where)
+        if "enum" in s and (not isinstance(s["enum"], list) or not s["enum"]):
+            raise SchemaError("enum must be a non-empty array at " + where)
+        if "required" in s and (not isinstance(s["required"], list) or any(not isinstance(r, str) for r in s["required"])):
+            raise SchemaError("required must list strings at " + where)
+        if "if" in s and "then" not in s and "else" not in s:
+            raise SchemaError('"if" without "then" or "else" at ' + where)
+        if "$ref" in s:
+            self._check_schema(self.resolve(s["$ref"]), s["$ref"])
+        for k in ("not", "if", "then", "else", "items", "additionalProperties", "propertyNames"):
+            if k in s:
+                self._check_schema(s[k], where + "/" + k)
+        if "anyOf" in s:
+            if not isinstance(s["anyOf"], list) or not s["anyOf"]:
+                raise SchemaError("anyOf must be a non-empty array at " + where)
+            for i, sub in enumerate(s["anyOf"]):
+                self._check_schema(sub, "%s/anyOf/%d" % (where, i))
+        if "properties" in s:
+            if not isinstance(s["properties"], dict):
+                raise SchemaError("properties must be an object at " + where)
+            for k, sub in s["properties"].items():
+                self._check_schema(sub, where + "/properties/" + k)
+        if "$defs" in s:
+            for k, sub in s["$defs"].items():
+                self._check_schema(sub, where + "/$defs/" + k)
+
+    # Appends errors for x (at path) against s; returns True when valid. Mirrors validate.js run().
+    def run(self, s, x, path, errors):
+        if s is True:
+            return True
+        if s is False:
+            errors.append(_err(path, "false schema", "nothing is allowed here"))
+            return False
+        start = len(errors)
+        jt = _json_type(x)
+
+        if "$ref" in s:
+            self.run(self.resolve(s["$ref"]), x, path, errors)
+
+        if "type" in s:
+            types = s["type"] if isinstance(s["type"], list) else [s["type"]]
+            if not any(_has_type(x, t) for t in types):
+                errors.append(_err(path, "type", "must be " + " or ".join(types), {"type": s["type"]}))
+        if "const" in s and not _deep_equal(x, s["const"]):
+            errors.append(_err(path, "const", "must be equal to constant"))
+        if "enum" in s and not any(_deep_equal(x, e) for e in s["enum"]):
+            errors.append(_err(path, "enum", "must be one of the allowed values"))
+
+        if jt == "number":
+            if "minimum" in s and not (float(x) >= s["minimum"]):
+                errors.append(_err(path, "minimum", "must be >= %s" % s["minimum"]))
+            if "maximum" in s and not (float(x) <= s["maximum"]):
+                errors.append(_err(path, "maximum", "must be <= %s" % s["maximum"]))
+
+        if jt == "string":
+            n = _char_length(x) if ("maxLength" in s or "minLength" in s) else 0
+            if "maxLength" in s and n > s["maxLength"]:
+                errors.append(_err(path, "maxLength", "must have at most %d characters" % s["maxLength"]))
+            if "minLength" in s and n < s["minLength"]:
+                errors.append(_err(path, "minLength", "must have at least %d characters" % s["minLength"]))
+            if "pattern" in s and not self.pattern(s["pattern"]).search(x):
+                errors.append(_err(path, "pattern", 'must match pattern "%s"' % s["pattern"]))
+
+        if jt == "array":
+            if "maxItems" in s and len(x) > s["maxItems"]:
+                errors.append(_err(path, "maxItems", "must have at most %d items" % s["maxItems"]))
+            if "minItems" in s and len(x) < s["minItems"]:
+                errors.append(_err(path, "minItems", "must have at least %d items" % s["minItems"]))
+            if "items" in s:
+                for i, item in enumerate(x):
+                    if len(errors) >= CHECK_MAX_ERRORS:
+                        break
+                    self.run(s["items"], item, path + "/" + str(i), errors)
+            if s.get("uniqueItems") is True:
+                # As Ajv: when the items schema itself names only simple types, other types are left out.
+                items = s.get("items")
+                item_types = []
+                if isinstance(items, dict) and "type" in items:
+                    item_types = items["type"] if isinstance(items["type"], list) else [items["type"]]
+                simple = bool(item_types) and "object" not in item_types and "array" not in item_types
+                first = {}
+                dup = None
+                for i, item in enumerate(x):
+                    if simple and not any(_has_type(item, t) for t in item_types):
+                        continue
+                    key = _canonical(item)
+                    if key in first:
+                        dup = {"i": i, "j": first[key]}
+                        break
+                    first[key] = i
+                if dup:
+                    errors.append(_err(path, "uniqueItems", "must not have duplicate items (items %d and %d)" % (dup["j"], dup["i"]), dup))
+
+        if jt == "object":
+            keys = _js_keys(x)
+            if "maxProperties" in s and len(keys) > s["maxProperties"]:
+                errors.append(_err(path, "maxProperties", "must have at most %d properties" % s["maxProperties"]))
+            if "minProperties" in s and len(keys) < s["minProperties"]:
+                errors.append(_err(path, "minProperties", "must have at least %d properties" % s["minProperties"]))
+            for r in s.get("required", []):
+                if r not in x:
+                    errors.append(_err(path, "required", 'must have property "%s"' % r, {"missingProperty": r}))
+            if "propertyNames" in s:
+                for k in keys:
+                    if len(errors) >= CHECK_MAX_ERRORS:
+                        break
+                    sub = []
+                    if not self.run(s["propertyNames"], k, path, sub):
+                        for e in sub:
+                            e["params"]["propertyName"] = k
+                            errors.append(e)
+                        errors.append(_err(path, "propertyNames", 'property name "%s" is invalid' % k, {"propertyName": k}))
+            props = s.get("properties")
+            for k in keys:
+                if len(errors) >= CHECK_MAX_ERRORS:
+                    break
+                child = path + "/" + _pointer_escape(k)
+                if props is not None and k in props:
+                    self.run(props[k], x[k], child, errors)
+                elif "additionalProperties" in s:
+                    if s["additionalProperties"] is False:
+                        errors.append(_err(path, "additionalProperties", 'unknown property "%s"' % k, {"additionalProperty": k}))
+                    else:
+                        self.run(s["additionalProperties"], x[k], child, errors)
+
+        if "anyOf" in s:
+            branch_errors = []
+            ok = False
+            for sub in s["anyOf"]:
+                be = []
+                if self.run(sub, x, path, be):
+                    ok = True
+                    break
+                branch_errors.extend(be)
+            if not ok:
+                errors.extend(branch_errors)
+                errors.append(_err(path, "anyOf", "must match a schema in anyOf"))
+        if "not" in s and self.run(s["not"], x, path, []):
+            errors.append(_err(path, "not", "must NOT be valid"))
+        if "if" in s and ("then" in s or "else" in s):
+            cond = self.run(s["if"], x, path, [])
+            branch = "then" if cond else "else"
+            if branch in s and not self.run(s[branch], x, path, errors):
+                errors.append(_err(path, "if", 'must match "%s" schema' % branch, {"failingKeyword": branch}))
+
+        return len(errors) == start
+
+    def check(self, value):
+        try:
+            problem = _json_problem(value)
+            if problem:
+                return {"valid": False, "errors": [_err(problem["path"], "json", problem["message"])]}
+            errors = []
+            self.run(self.root, value, "", errors)
+        except (RecursionError, MemoryError) as e:
+            return {"valid": False, "errors": [_err("", "limit", "document could not be checked: " + type(e).__name__)]}
+        return {"valid": not errors, "errors": errors[:CHECK_MAX_ERRORS]}
+
+
+_compiled = {}
+
+
+def compile_schema(schema):
+    return _Compiled(schema)
+
+
+def _validator_for(name):
+    if name not in CHECK_NAMES:
+        raise SchemaError('unknown schema "%s" (expected identity, template or session)' % name)
+    if name not in _compiled:
+        with open(os.path.join(_SCHEMA_DIR, name + ".schema.json"), "r", encoding="utf-8") as f:
+            _compiled[name] = _Compiled(json.load(f))
+    return _compiled[name]
+
+
+def check_document(name, value):
+    return _validator_for(name).check(value)
+
+
+def _reject_json_constant(name):
+    raise ValueError("not JSON: " + name)
+
+
+def _duplicate_key(text):
+    """Port of validate.js duplicateKey(): first object key written twice in text JSON already accepted, or None."""
+    stack = []
+    top = None
+    pending = ""
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch == '"':
+            j = i + 1
+            while text[j] != '"':
+                j += 2 if text[j] == "\\" else 1
+            if top is not None and top["obj"] and top["expect_key"]:
+                key = _join_surrogates(json.loads(text[i:j + 1]))
+                if key in top["keys"]:
+                    return {"path": top["path"], "key": key}
+                top["keys"].add(key)
+                top["last_key"] = key
+                top["expect_key"] = False
+            i = j
+        elif ch in "{[":
+            if len(stack) >= CHECK_MAX_DEPTH:
+                return None
+            if top is not None:
+                path = top["path"] + "/" + _pointer_escape(top["last_key"] if top["obj"] else top["index"])
+            else:
+                path = pending
+            top = {"obj": ch == "{", "path": path, "keys": set(), "last_key": "", "index": 0, "expect_key": True}
+            stack.append(top)
+        elif ch in "}]":
+            stack.pop()
+            top = stack[-1] if stack else None
+        elif ch == "," and top is not None:
+            if top["obj"]:
+                top["expect_key"] = True
+            else:
+                top["index"] += 1
+        i += 1
+    return None
+
+
+_SURROGATE = re.compile("[" + "\\" + "ud800-" + "\\" + "udfff]")
+
+
+def _join_surrogates(s):
+    # JavaScript strings are UTF-16 units: a raw high surrogate followed by an (escaped) low one is one character.
+    return s.encode("utf-16-le", "surrogatepass").decode("utf-16-le", "surrogatepass") if _SURROGATE.search(s) else s
+
+
+def _join_all(v):
+    if isinstance(v, str):
+        return _join_surrogates(v)
+    if isinstance(v, list):
+        return [_join_all(x) for x in v]
+    if isinstance(v, dict):
+        return {_join_surrogates(k): _join_all(x) for k, x in v.items()}
+    return v
+
+
+def check_document_text(name, text):
+    v = _validator_for(name)
+    if not isinstance(text, str):
+        return {"valid": False, "errors": [_err("", "json", "expected JSON text")]}
+    try:
+        # float() reads any JSON number as JavaScript does (correctly rounded double, +-inf beyond the range) in
+        # linear time; int() would be quadratic on old Pythons and refuses more than 4300 digits on new ones.
+        value = json.loads(text, parse_constant=_reject_json_constant, parse_int=float, parse_float=float)
+    except (ValueError, RecursionError) as e:
+        return {"valid": False, "errors": [_err("", "json", "not valid JSON: " + type(e).__name__)]}
+    if _SURROGATE.search(text):
+        try:
+            value = _join_all(value)
+        except RecursionError:
+            return {"valid": False, "errors": [_err("", "json", "not valid JSON: RecursionError")]}
+    dup = _duplicate_key(text)
+    if dup:
+        return {"valid": False, "errors": [_err(dup["path"], "duplicateKey", 'the key "%s" appears twice' % dup["key"], {"key": dup["key"]})]}
+    return v.check(value)
 
 
 def validate_export(payload):
