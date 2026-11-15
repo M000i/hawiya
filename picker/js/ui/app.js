@@ -17,7 +17,6 @@
     { value: '#b91c1c', key: 'color.red' },
     { value: '#1f2937', key: 'color.charcoal' }
   ];
-  var STARTER = 'calm-corporate';
 
   var els = {};
 
@@ -115,18 +114,6 @@
     };
   }
 
-  function isStarter(c) {
-    var ready = null;
-    H.data.identities.forEach(function (i) {
-      if (i.id === STARTER) ready = i;
-    });
-    if (!ready) return false;
-    return H.resolve.ELEMENTS.every(function (e) {
-      var s = c.selections[e];
-      return s && s.template === ready.templates[e] && !s.overrides;
-    });
-  }
-
   function syncControls(v) {
     Array.prototype.forEach.call(els.swatches.querySelectorAll('input[name="color"]'), function (r) {
       r.checked = r.value.toLowerCase() === v.color;
@@ -137,7 +124,6 @@
     });
     els.radiusInput.value = String(v.radius);
     els.radiusValue.textContent = t('radius.value', { value: v.radius });
-    els.identityBtn.setAttribute('aria-pressed', String(isStarter(v.choices)));
   }
 
   /* The exact input the phase-0 generator (export until task 2.21) receives. */
@@ -189,26 +175,12 @@
     });
   }
 
-  function useStarter() {
-    var ready = null;
-    H.data.identities.forEach(function (i) {
-      if (i.id === STARTER) ready = i;
-    });
-    if (!ready) return;
-    H.state.change(function (c) {
-      H.resolve.ELEMENTS.forEach(function (e) {
-        c.selections[e] = { template: ready.templates[e] };
-      });
-    });
-  }
-
   function init() {
     els.swatches = document.getElementById('swatches');
     els.colorInput = document.getElementById('color-input');
     els.fonts = document.getElementById('fonts');
     els.radiusInput = document.getElementById('radius-input');
     els.radiusValue = document.getElementById('radius-value');
-    els.identityBtn = document.getElementById('identity-btn');
 
     buildSwatches();
     buildFonts();
@@ -233,7 +205,6 @@
       var v = parseInt(e.target.value, 10);
       if (!isNaN(v)) setRadius(v);
     });
-    els.identityBtn.addEventListener('click', useStarter);
     // Preview keys: language and light/dark of the preview only (not the tool, not the identity).
     Array.prototype.forEach.call(document.querySelectorAll('[data-preview-lang]'), function (b) {
       b.addEventListener('click', function () {

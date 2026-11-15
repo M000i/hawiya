@@ -22,12 +22,17 @@ function watchErrors(page) {
 // Every visible text of the tool itself: the light DOM only (the preview scene lives in a shadow root and
 // shows the identity's sample content, whose language is chosen separately in task 2.6).
 // The language key itself names the other language in that language, so it is left out.
+// Ready identity cards show the Arabic and the English name in both interfaces (R-020), so their
+// names in the other language are left out too.
 async function visibleText(page) {
   return page.evaluate(() => {
-    const toggle = document.getElementById('lang-toggle');
-    toggle.hidden = true;
+    const skip = [
+      document.getElementById('lang-toggle'),
+      ...document.querySelectorAll('.identity-name, .identity-name-en')
+    ];
+    skip.forEach((n) => (n.hidden = true));
     const text = document.body.innerText;
-    toggle.hidden = false;
+    skip.forEach((n) => (n.hidden = false));
     return text;
   });
 }

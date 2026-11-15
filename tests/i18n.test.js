@@ -19,7 +19,8 @@ const UI = [
   'picker/js/ui/app.js',
   'picker/js/ui/export.js',
   'picker/js/ui/state.js',
-  'picker/js/ui/storage.js'
+  'picker/js/ui/storage.js',
+  'picker/js/ui/identities.js'
 ];
 
 test('Arabic and English have the same keys, non-empty texts and the same placeholders', () => {
@@ -85,7 +86,9 @@ test('no visible text is written in the page code', () => {
     // Every text the scripts write comes from t() / text() (the dictionaries), is cleared, or is a proper
     // name (font family) or data (the export JSON) that is the same in both languages.
     const allowed =
-      /^(t\(|text\(|''$|parts \? text\(parts\) : ''$|key \? t\(key, params\) : ''$|families\(f\)\.join\(' \+ '\)$|item\.name \|\| t\(|item\.status === 'ok' \? formatTime\(item\.updatedAt\) : statusText\(item\.status\)$|JSON\.stringify\(bundle\))/;
+      /^(t\(|text\(|''$|parts \? text\(parts\) : ''$|key \? t\(key, params\) : ''$|families\(f\)\.join\(' \+ '\)$|item\.name \|\| t\(|item\.status === 'ok' \? formatTime\(item\.updatedAt\) : statusText\(item\.status\)$|text$|JSON\.stringify\(bundle\))/;
+    // A small el(tag, class, text) helper writes library content; it must never get literal text.
+    assert.doesNotMatch(src, /\bel\('[a-z0-9]+', [^,)]+, ['"][^'"]/, `${file} passes literal text to el()`);
     for (const m of src.matchAll(/textContent\s*=\s*([^;]+);/g)) {
       assert.match(m[1].trim(), allowed, `${file} writes text that is not from the dictionaries: ${m[1].trim()}`);
     }

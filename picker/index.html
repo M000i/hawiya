@@ -29,12 +29,11 @@
 
     <main class="layout">
       <form class="controls" id="controls" autocomplete="off">
-        <section class="group" aria-labelledby="identity-title">
+        <section class="group identities" aria-labelledby="identity-title">
           <h2 id="identity-title" data-i18n="identity.title"></h2>
-          <button type="button" class="identity" id="identity-btn" aria-pressed="true">
-            <span class="identity-name" data-i18n="identity.calm.name"></span>
-            <span class="identity-hint" data-i18n="identity.calm.hint"></span>
-          </button>
+          <p class="note identity-lead" data-i18n="identity.lead"></p>
+          <div class="identity-list" id="identity-list"></div>
+          <p class="note" id="identity-empty" data-i18n="identity.empty" hidden></p>
         </section>
 
         <fieldset class="group">
@@ -193,6 +192,7 @@
     <script src="js/ui/preview.js"></script>
     <script src="js/ui/storage.js"></script>
     <script src="js/ui/state.js"></script>
+    <script src="js/ui/identities.js"></script>
     <script src="js/ui/app.js"></script>
     <script src="js/ui/export.js"></script>
   </body>

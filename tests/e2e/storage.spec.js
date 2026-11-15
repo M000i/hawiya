@@ -44,7 +44,7 @@ test('choices survive closing the browser and opening the page again', async () 
     await expect(page.locator('#radius-input')).toHaveValue('14');
     await expect(page.locator('#fonts input[value="pair-cairo"]')).toBeChecked();
     await expect(page.locator('#identity-name')).toHaveValue('متجر الورد');
-    await expect(page.locator('#identity-btn')).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.locator('[data-identity="calm-corporate"]')).toHaveAttribute('aria-pressed', 'false');
     await ctx.close();
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
@@ -63,7 +63,7 @@ test('save under a name, change, open it again, update it, and save a new copy',
   await expect(page.locator('#saved-empty')).toBeHidden();
 
   // Change everything, then open the saved one: its choices come back.
-  await page.locator('#identity-btn').click();
+  await page.locator('[data-identity="calm-corporate"]').click();
   await page.locator('#identity-name').fill('شيء آخر');
   await expect(page.locator('#swatches input[value="#2563eb"]')).toBeChecked();
   await page.locator('.saved-item button[data-open]').click();
@@ -93,7 +93,7 @@ test('an invalid name is not applied and says why', async ({ page }) => {
   await name.fill('<b>');
   await expect(page.locator('#identity-name-error')).toBeVisible();
   await page.reload();
-  await expect(name).toHaveValue(ar['identity.calm.name']);
+  await expect(name).toHaveValue('مؤسسي هادئ');
   await name.fill('Nice name');
   await expect(page.locator('#identity-name-error')).toBeHidden();
 });
@@ -141,7 +141,7 @@ test('a damaged draft: the page starts from the ready identity, says so, and kee
   );
   await page.reload();
   await expect(page.locator('#saved-note')).toHaveText(ar['saved.draftUnreadable']);
-  await expect(page.locator('#identity-btn')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-identity="calm-corporate"]')).toHaveAttribute('aria-pressed', 'true');
   await tealSwatch(page).check();
   const all = await store(page);
   const kept = Object.keys(all).filter((k) => k.startsWith('hawiya.draft.unreadable-'));

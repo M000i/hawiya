@@ -23,9 +23,9 @@
     'Fonts are loaded from Google Fonts, so they need an internet connection. The page contacts no other site on the internet.',
   'notice.mobile': 'The mobile scene is approximate, not an exact simulation of a real device.',
 
-  'identity.title': 'Ready identity',
-  'identity.calm.name': 'Calm corporate',
-  'identity.calm.hint': 'Neutral blue, clear font, moderate corners',
+  'identity.title': 'Ready identities',
+  'identity.lead': 'One click fills every element and updates the preview. You can adjust it afterwards.',
+  'identity.empty': 'There are no ready identities in the library yet.',
 
   'color.legend': 'Primary color',
   'color.custom': 'Custom color',
