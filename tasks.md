@@ -224,7 +224,7 @@
     - المراجعة: ذاتية (مهمة B) + الوكيلان المستقلان أعلاه.
     - انحرافات: (1) التجربة على نسخ مؤقتة بدل `sandbox/`. (2) سطر الالتزام بالعربية والإنجليزية معًا، ويُضاف إلى `CLAUDE.md` و `AGENTS.md` الموجودين، أو يُنشأ ما يقرؤه الوكيل نفسه. (3) عند الموافقة على الاستبدال يُنقل القديم إلى `design/backup-…/` بيد الوكيل؛ الاستبدال من الخادم مع نسخة احتياطية يبقى للمهمة 1.12.
 
-- [ ] **0.8** إثبات الوكيلين: صفحتان متطابقتان من نفس `DESIGN.md`
+- [x] **0.8** إثبات الوكيلين: صفحتان متطابقتان من نفس `DESIGN.md`
   - الخطورة: B — تجربة ومقارنة
   - الحجم: متوسطة
   - تحقق المتطلبات: R-100 (AC-03)
@@ -233,7 +233,28 @@
   - معيار القبول: صفحة يبنيها Claude Code وأخرى يبنيها Codex بنفس الطلب ونفس الملف؛ جدول يقارن الخط واللون الأساسي والزوايا المقروءة من المتصفح، والقيم متطابقة. يُتحقق أيضًا من مكان تثبيت المهارات في Codex
   - الاختبار: قراءة القيم الفعلية للخط واللون والزوايا من الصفحتين ومقارنتها
   - ما ستراه أنت: افتح الصفحتين جنبًا إلى جنب فتراهما بنفس الخط واللون والزوايا. **يحتاج منك تشغيل Codex على النسخة الثانية**
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-15):
+    - الإعداد: `sandbox/agent-a` و `sandbox/agent-b` (خارج المستودع) بنفس `design/DESIGN.md` و `identity.json` (بنفسجي `#7c3aed`، خط Cairo، زوايا md 16px و lg 24px؛ الفحص الرسمي `errors 0, warnings 0`)، ونفس `PROMPT.md`، ونفس سطر الالتزام في `CLAUDE.md` و `AGENTS.md`.
+    - الصفحة A: وكيل Claude Code جديد بلا سياق. الصفحة B: Codex شغّله المالك على `agent-b` بالطلب نفسه حرفيًا.
+    - القياس: سكربت يفتح كل صفحة في Chrome بلا واجهة ويقرأ القيم المعروضة فعلًا:
+      ```
+      check              Claude Code (agent-a)          Codex (agent-b)
+      font (body/h1)     Cairo/Cairo                    Cairo/Cairo
+      Cairo loaded       true                           true
+      primary bg         #7c3aed                        #7c3aed
+      primary text       #ffffff                        #ffffff
+      radius button      16px                           16px
+      radius card        24px                           24px
+      radius email       16px                           16px
+      dir                rtl                            rtl
+      matches DESIGN.md, A: {"font":true,"primaryColor":true,"onPrimary":true,"buttonRadius":true,"cardRadius":true,"inputRadius":true,"rtl":true}
+      matches DESIGN.md, B: {"font":true,"primaryColor":true,"onPrimary":true,"buttonRadius":true,"cardRadius":true,"inputRadius":true,"rtl":true}
+      ```
+      الفحوص الإحدى عشرة متطابقة بين الصفحتين، وكلتاهما تطابق `DESIGN.md` في الفحوص السبعة. لم يعدّل أي من الوكيلين مجلد `design`، ولا JavaScript في أي منهما (تحقق Codex من البريد عبر `type="email" required` في HTML).
+    - مكان مهارات Codex على جهاز المالك: `~/.codex/skills` و `~/.agents/skills` (الثاني فيه مهارات المالك الخاصة مثل build و change). الوثائق الرسمية تذكر الأول فقط.
+    - ملاحظة: المحاولة الأولى لـ Codex لم تُنتج ملفًا في `agent-b` (لم يُعرف السبب)؛ نجحت الثانية بعد فتحه على المجلد نفسه ولصق الطلب.
+    - المراجعة: ذاتية (مهمة B) + لقطتا شاشة للصفحتين.
+    - انحرافات: لا شيء.
 
 ---
 
