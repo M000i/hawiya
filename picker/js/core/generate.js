@@ -623,31 +623,39 @@
     return out;
   }
 
+  // Mode-independent variables shared by tokens.css and style-guide.html: fonts, line heights, type scale, radius, spacing.
+  function basePairs(id) {
+    var t = id.tokens;
+    var out = [];
+    out.push({ comment: 'fonts: chosen families, then generic fallbacks' });
+    FONT_ROLES.forEach(function (role) {
+      out.push(['--font-' + role, cssFont(t.font[role])]);
+    });
+    FONT_ROLES.forEach(function (role) {
+      if (hasOwn(t.font[role], 'latinSizeAdjust')) out.push(['--font-' + role + '-latin-size-adjust', String(t.font[role].latinSizeAdjust)]);
+    });
+    out.push({ comment: 'line height: Arabic text, Latin text, and the default for this project' });
+    out.push(['--line-height-ar', String(t.font.lineHeight.ar)]);
+    out.push(['--line-height-en', String(t.font.lineHeight.en)]);
+    out.push(['--line-height', String(mainLineHeight(id))]);
+    out.push({ comment: 'type scale (base = body text)' });
+    var names = sizeNames(t.typeScale);
+    t.typeScale.steps.forEach(function (px, i) {
+      out.push(['--font-size-' + names[i], rem(px) + 'rem']);
+    });
+    out = out.concat(radiusPairs(t));
+    out.push({ comment: 'spacing: --space-unit and the allowed steps' });
+    out.push(['--space-unit', t.spacing.unit + 'px']);
+    t.spacing.scale.forEach(function (px, i) {
+      out.push(['--space-' + i, px + 'px']);
+    });
+    return out;
+  }
+
   function tokensCss(id) {
     var t = id.tokens;
     var root = [['color-scheme', 'light']].concat(modePairs(t, 'light'), rampPairs(t));
-    root.push({ comment: 'fonts: chosen families, then generic fallbacks' });
-    FONT_ROLES.forEach(function (role) {
-      root.push(['--font-' + role, cssFont(t.font[role])]);
-    });
-    FONT_ROLES.forEach(function (role) {
-      if (hasOwn(t.font[role], 'latinSizeAdjust')) root.push(['--font-' + role + '-latin-size-adjust', String(t.font[role].latinSizeAdjust)]);
-    });
-    root.push({ comment: 'line height: Arabic text, Latin text, and the default for this project' });
-    root.push(['--line-height-ar', String(t.font.lineHeight.ar)]);
-    root.push(['--line-height-en', String(t.font.lineHeight.en)]);
-    root.push(['--line-height', String(mainLineHeight(id))]);
-    root.push({ comment: 'type scale (base = body text)' });
-    var names = sizeNames(t.typeScale);
-    t.typeScale.steps.forEach(function (px, i) {
-      root.push(['--font-size-' + names[i], rem(px) + 'rem']);
-    });
-    root = root.concat(radiusPairs(t));
-    root.push({ comment: 'spacing: --space-unit and the allowed steps' });
-    root.push(['--space-unit', t.spacing.unit + 'px']);
-    t.spacing.scale.forEach(function (px, i) {
-      root.push(['--space-' + i, px + 'px']);
-    });
+    root = root.concat(basePairs(id));
 
     var dark = [['color-scheme', 'dark']].concat(modePairs(t, 'dark'));
     var lines = [
@@ -1149,6 +1157,242 @@
 
   generate.designMd = fullDesignMd;
   generate.uiColors = uiColors;
+
+  /* =================================================================================================
+   * style-guide.html (task 1.10): a standalone page that shows the identity in both modes.
+   * No script at all; a Content-Security-Policy in the page forbids scripts. Every text taken from the
+   * identity goes through escapeHtml; the identity name never reaches the CSS.
+   * ================================================================================================= */
+
+  var SG_LABELS = {
+    title: ['\u062f\u0644\u064a\u0644 \u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0644\u0628\u0635\u0631\u064a\u0629', 'Style guide'],
+    light: ['\u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u0641\u0627\u062a\u062d', 'Light mode'],
+    dark: ['\u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u062f\u0627\u0643\u0646', 'Dark mode'],
+    colors: ['\u0627\u0644\u0623\u0644\u0648\u0627\u0646', 'Colors'],
+    ramps: ['\u0627\u0644\u062a\u062f\u0631\u062c\u0627\u062a', 'Ramps'],
+    fonts: ['\u0627\u0644\u062e\u0637\u0648\u0637', 'Fonts'],
+    scale: ['\u0633\u0644\u0651\u0645 \u0627\u0644\u0623\u062d\u062c\u0627\u0645', 'Type scale'],
+    radius: ['\u0627\u0644\u0632\u0648\u0627\u064a\u0627', 'Corners'],
+    shadows: ['\u0627\u0644\u0638\u0644\u0627\u0644', 'Shadows'],
+    buttons: ['\u0627\u0644\u0623\u0632\u0631\u0627\u0631', 'Buttons'],
+    cards: ['\u0627\u0644\u0643\u0631\u0648\u062a', 'Cards'],
+    primary: ['\u0632\u0631 \u0623\u0633\u0627\u0633\u064a', 'Primary'],
+    secondary: ['\u0632\u0631 \u062b\u0627\u0646\u0648\u064a', 'Secondary'],
+    focused: ['\u0639\u0646\u062f \u0627\u0644\u062a\u0631\u0643\u064a\u0632', 'Focused'],
+    cardTitle: ['\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0643\u0631\u062a', 'Card title'],
+    cardBody: ['\u0646\u0635 \u0642\u0635\u064a\u0631 \u062f\u0627\u062e\u0644 \u0627\u0644\u0643\u0631\u062a \u0628\u0644\u0648\u0646 \u0627\u0644\u0646\u0635 \u0627\u0644\u0623\u0633\u0627\u0633\u064a\u060c \u0648\u0645\u0639\u0647 \u0646\u0635 \u062b\u0627\u0646\u0648\u064a \u0623\u062e\u0641\u062a.', 'Short card text in the body color, with quieter secondary text.'],
+    muted: ['\u0646\u0635 \u062b\u0627\u0646\u0648\u064a', 'Secondary text'],
+    link: ['\u0631\u0627\u0628\u0637', 'Link'],
+    none: ['\u0628\u0644\u0627 \u0638\u0644', 'No shadow'],
+    generated: ['\u0635\u0641\u062d\u0629 \u0645\u0648\u0644\u0651\u062f\u0629 \u0645\u0646 identity.json \u0628\u0648\u0627\u0633\u0637\u0629 \u0647\u0648\u064a\u0629. \u0644\u0627 \u062a\u0639\u062f\u0651\u0644\u0647\u0627 \u064a\u062f\u0648\u064a\u064b\u0627.', 'Generated by Hawiya from identity.json. Do not edit by hand.']
+  };
+  var SG_SAMPLE_AR = '\u0647\u0648\u064a\u0629 \u0648\u0627\u0636\u062d\u0629 \u062a\u0628\u062f\u0623 \u0628\u062e\u0637 \u0645\u0642\u0631\u0648\u0621 \u0648\u0644\u0648\u0646 \u0648\u0627\u062d\u062f';
+  var SG_SAMPLE_EN = 'A clear identity starts with one readable font';
+  var SG_DIGITS = '\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669 \u00b7 0123456789';
+  var SG_CSP = "default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; base-uri 'none'; form-action 'none'";
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function label(key) {
+    var l = SG_LABELS[key];
+    return '<span lang="ar">' + escapeHtml(l[0]) + '</span> <span class="en" lang="en">' + escapeHtml(l[1]) + '</span>';
+  }
+
+  function fontFamilies(t) {
+    var out = [];
+    FONT_ROLES.forEach(function (role) {
+      [t.font[role].arabic, t.font[role].latin].forEach(function (fam) {
+        if (fam && out.indexOf(fam) === -1) out.push(fam);
+      });
+    });
+    return out;
+  }
+
+  // Two links per family: the regular weight always exists; the bold one may not, and its failure is harmless.
+  function fontLinks(t) {
+    var lines = [];
+    fontFamilies(t).forEach(function (fam) {
+      var qf = fam.replace(/ /g, '+');
+      lines.push('<link rel="stylesheet" href="' + escapeHtml('https://fonts.googleapis.com/css2?family=' + qf + '&display=swap') + '">');
+      lines.push('<link rel="stylesheet" href="' + escapeHtml('https://fonts.googleapis.com/css2?family=' + qf + ':wght@700&display=swap') + '">');
+    });
+    return lines;
+  }
+
+  function sgCss(id) {
+    var t = id.tokens;
+    var names = sizeNames(t.typeScale);
+    var root = rampPairs(t).concat(basePairs(id));
+    var lines = [':root {'].concat(decls(root, '  '), ['}']);
+    ['light', 'dark'].forEach(function (mode) {
+      lines.push('[data-mode="' + mode + '"] {');
+      lines = lines.concat(decls([['color-scheme', mode]].concat(modePairs(t, mode)), '  '));
+      lines.push('}');
+    });
+    var roles = ROLES.map(kebab).concat(['focus-ring', 'control-border']);
+    roles.forEach(function (r) {
+      lines.push('.chip-' + r + ' { background: var(--color-' + r + '); }');
+    });
+    lines.push('.chip-primary { color: var(--color-on-primary); }', '.chip-secondary { color: var(--color-on-secondary); }');
+    RAMPS.forEach(function (r) {
+      RAMP_STEPS.forEach(function (step) {
+        lines.push('.ramp-' + r + '-' + step + ' { background: var(--color-' + r + '-' + step + '); }');
+      });
+    });
+    t.typeScale.steps.forEach(function (_, i) {
+      lines.push('.size-' + names[i] + ' { font-size: var(--font-size-' + names[i] + '); }');
+    });
+    RADII.forEach(function (r) {
+      lines.push('.radius-' + r + ' { border-radius: var(--radius-' + r + '); }');
+    });
+    SIZES.forEach(function (sz) {
+      lines.push('.shadow-' + sz + ' { box-shadow: var(--shadow-' + sz + '); }');
+    });
+    lines = lines.concat([
+      '* { box-sizing: border-box; }',
+      'html { -webkit-text-size-adjust: 100%; }',
+      'body { margin: 0; font-family: var(--font-body); font-size: var(--font-size-base); line-height: var(--line-height); background: var(--color-background); color: var(--color-on-surface); }',
+      '.en { color: var(--color-muted-text); font-weight: 400; }',
+      'header.page { padding: 32px 24px 16px; }',
+      'header.page h1 { font-family: var(--font-heading); font-size: var(--font-size-lg); margin: 0 0 4px; overflow-wrap: anywhere; }',
+      'header.page p { margin: 0; }',
+      'section.shared { padding: 8px 24px 24px; }',
+      '.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); }',
+      '.mode { background: var(--color-background); color: var(--color-on-surface); padding: 24px; min-width: 0; }',
+      '.mode h2, section.shared h2 { font-family: var(--font-heading); font-size: var(--font-size-lg); margin: 0 0 16px; }',
+      '.mode h3, section.shared h3 { font-size: var(--font-size-base); margin: 24px 0 8px; }',
+      '.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }',
+      '.swatch { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }',
+      '.chip { block-size: 56px; display: flex; align-items: center; padding-inline: 12px; font-weight: 700; }',
+      '.swatch .meta { padding: 8px 12px; font-size: var(--font-size-base); }',
+      '.swatch .meta code, .meta-line { color: var(--color-muted-text); }',
+      'code { font-family: ui-monospace, monospace; font-size: 0.875em; }',
+      '.ramp { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); border: 1px solid var(--color-neutral-200); border-radius: var(--radius-md); overflow: hidden; margin-block-end: 8px; }',
+      '.ramp div { block-size: 40px; }',
+      '.font-sample { background: var(--color-surface); border-radius: var(--radius-md); padding: 12px 16px; margin-block-end: 8px; overflow-wrap: anywhere; }',
+      '.font-sample .ar { font-size: var(--font-size-lg); line-height: var(--line-height-ar); }',
+      '.font-sample .lat { line-height: var(--line-height-en); }',
+      '.f-heading { font-family: var(--font-heading); font-weight: 700; }',
+      '.f-body { font-family: var(--font-body); }',
+      '.f-numerals { font-family: var(--font-numerals); font-variant-numeric: tabular-nums; }',
+      '.scale p { margin: 0 0 8px; line-height: 1.3; overflow-wrap: anywhere; }',
+      '.scale .px { font-size: var(--font-size-base); color: var(--color-muted-text); font-family: ui-monospace, monospace; }',
+      '.boxes { display: flex; flex-wrap: wrap; gap: 16px; }',
+      '.box { inline-size: 120px; block-size: 72px; background: var(--color-surface); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; text-align: center; font-size: var(--font-size-base); }',
+      '.box.shadow-sm, .box.shadow-md, .box.shadow-lg { border-color: transparent; }',
+      '.buttons { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }',
+      '.btn { font: inherit; font-weight: 600; border: 1px solid transparent; border-radius: var(--radius-md); padding-block: 8px; padding-inline: 20px; cursor: default; }',
+      '.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }',
+      '.btn-secondary { background: var(--color-surface); color: var(--color-accent-text); border-color: var(--color-control-border); }',
+      '.btn-focus { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }',
+      '.card { background: var(--color-surface); color: var(--color-on-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 20px; max-inline-size: 420px; }',
+      '.card h4 { font-family: var(--font-heading); font-size: var(--font-size-lg); margin: 0 0 8px; }',
+      '.card p { margin: 0 0 8px; }',
+      '.card .muted { color: var(--color-muted-text); }',
+      '.card a { color: var(--color-accent-text); }',
+      'footer.page { padding: 16px 24px 32px; color: var(--color-muted-text); }'
+    ]);
+    return lines.join('\n');
+  }
+
+  function sgPanel(id, mode) {
+    var t = id.tokens;
+    var s = t.color[mode];
+    var ui = uiColors(s);
+    var ct = c();
+    var names = sizeNames(t.typeScale);
+    var h = [];
+    h.push('<section class="mode" data-mode="' + mode + '" lang="ar">'); // the page's own labels and samples are Arabic
+    h.push('<h2>' + label(mode) + '</h2>');
+
+    h.push('<div data-section="colors"><h3>' + label('colors') + '</h3><div class="swatches">');
+    var pairs = { primary: s.onPrimary, secondary: s.onSecondary };
+    ROLES.map(kebab).concat(['focus-ring', 'control-border']).forEach(function (r) {
+      var key = r === 'focus-ring' ? null : r === 'control-border' ? null : ROLES[ROLES.map(kebab).indexOf(r)];
+      var hex = key ? s[key] : r === 'focus-ring' ? ui.focusRing : ui.controlBorder;
+      var on = key && pairs[key] ? ' ' + escapeHtml(ct.display(ct.ratio(pairs[key], hex))) + ':1' : '';
+      h.push('<div class="swatch" data-role="' + r + '"><div class="chip chip-' + r + '">' + (on ? 'Aa' : '') + '</div><div class="meta"><strong>' + escapeHtml(r) + '</strong><br><code dir="ltr">' + escapeHtml(hex) + '</code>' + (on ? ' <code dir="ltr">' + on + '</code>' : '') + '</div></div>');
+    });
+    h.push('</div></div>');
+
+    h.push('<div data-section="fonts"><h3>' + label('fonts') + '</h3>');
+    FONT_ROLES.forEach(function (role) {
+      var ref = t.font[role];
+      var fams = [ref.arabic, ref.latin].filter(Boolean).map(escapeHtml).join(' + ');
+      var sample = role === 'numerals' ? '<div class="ar">' + escapeHtml(SG_DIGITS) + '</div>' : '<div class="ar" lang="ar">' + escapeHtml(SG_SAMPLE_AR) + '</div><div class="lat" lang="en" dir="ltr">' + escapeHtml(SG_SAMPLE_EN) + '</div>';
+      h.push('<div class="font-sample f-' + role + '"><div class="meta-line"><code>' + role + '</code> ' + fams + '</div>' + sample + '</div>');
+    });
+    h.push('</div>');
+
+    h.push('<div data-section="scale" class="scale"><h3>' + label('scale') + '</h3>');
+    for (var i = t.typeScale.steps.length - 1; i >= 0; i--) {
+      h.push('<p class="size-' + names[i] + '" data-size="' + names[i] + '">' + escapeHtml(SG_SAMPLE_AR.split(' ').slice(0, 2).join(' ')) + ' <span class="px" dir="ltr">' + names[i] + ' ' + t.typeScale.steps[i] + 'px</span></p>');
+    }
+    h.push('</div>');
+
+    h.push('<div data-section="radius"><h3>' + label('radius') + '</h3><div class="boxes">');
+    RADII.forEach(function (r) {
+      h.push('<div class="box radius-' + r + '">' + r + '<br>' + t.radius[r] + 'px</div>');
+    });
+    h.push('</div></div>');
+
+    h.push('<div data-section="shadows"><h3>' + label('shadows') + '</h3><div class="boxes">');
+    SIZES.forEach(function (sz) {
+      h.push('<div class="box radius-md shadow-' + sz + '">' + sz + (t.shadow[mode][sz].length ? '' : '<br>' + escapeHtml(SG_LABELS.none[0])) + '</div>');
+    });
+    h.push('</div></div>');
+
+    h.push('<div data-section="buttons"><h3>' + label('buttons') + '</h3><div class="buttons">');
+    h.push('<button type="button" class="btn btn-primary">' + escapeHtml(SG_LABELS.primary[0]) + '</button>');
+    h.push('<button type="button" class="btn btn-secondary">' + escapeHtml(SG_LABELS.secondary[0]) + '</button>');
+    h.push('<button type="button" class="btn btn-primary btn-focus">' + escapeHtml(SG_LABELS.focused[0]) + '</button>');
+    h.push('</div></div>');
+
+    h.push('<div data-section="cards"><h3>' + label('cards') + '</h3>');
+    h.push('<div class="card"><h4>' + escapeHtml(SG_LABELS.cardTitle[0]) + '</h4><p>' + escapeHtml(SG_LABELS.cardBody[0]) + '</p><p class="muted">' + escapeHtml(SG_LABELS.muted[0]) + ' \u00b7 <a href="#">' + escapeHtml(SG_LABELS.link[0]) + '</a></p></div>');
+    h.push('</div>');
+
+    h.push('</section>');
+    return h.join('\n');
+  }
+
+  function styleGuide(identity) {
+    var schema = checkIdentity(identity);
+    var id = canonical(schema, schema, identity);
+    var t = id.tokens;
+    var lang = id.project.language === 'en' ? 'en' : 'ar';
+    var dir = lang === 'en' ? 'ltr' : 'rtl';
+    var name = escapeHtml(id.name);
+    var lines = [
+      '<!doctype html>',
+      '<html lang="' + lang + '" dir="' + dir + '">',
+      '<head>',
+      '<meta charset="utf-8">',
+      '<meta name="viewport" content="width=device-width, initial-scale=1">',
+      '<meta http-equiv="Content-Security-Policy" content="' + SG_CSP + '">', // constant: no quotes or brackets inside
+      '<meta name="referrer" content="no-referrer">',
+      '<title>' + name + ' \u2014 ' + escapeHtml(SG_LABELS.title[1]) + '</title>'
+    ];
+    lines = lines.concat(fontLinks(t));
+    lines.push('<style>', sgCss(id), '</style>', '</head>', '<body data-mode="light">');
+    lines.push('<header class="page"><h1 dir="auto">' + name + '</h1><p>' + label('title') + '</p></header>');
+    lines.push('<section class="shared" data-section="ramps"><h2>' + label('ramps') + '</h2>');
+    RAMPS.forEach(function (r) {
+      lines.push('<h3><code>' + r + '</code></h3><div class="ramp">' + RAMP_STEPS.map(function (step) {
+        return '<div class="ramp-' + r + '-' + step + '" title="' + r + '-' + step + ' ' + escapeHtml(t.color.ramps[r][RAMP_STEPS.indexOf(step)]) + '"></div>';
+      }).join('') + '</div>');
+    });
+    lines.push('</section>');
+    lines.push('<div class="modes">', sgPanel(id, 'light'), sgPanel(id, 'dark'), '</div>');
+    lines.push('<footer class="page">' + label('generated') + '</footer>');
+    lines.push('</body>', '</html>');
+    return lines.join('\n') + '\n';
+  }
+
+  generate.styleGuide = styleGuide;
+  generate.escapeHtml = escapeHtml;
 
   generate.valueFiles = valueFiles;
   generate.sizeNames = sizeNames;

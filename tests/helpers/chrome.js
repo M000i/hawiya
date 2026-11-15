@@ -4,7 +4,8 @@
  * Minimal headless Chrome driver over the DevTools protocol (Node's built-in WebSocket, no dependencies).
  * Tests call launch(); it resolves to null when Chrome is not installed, so the test can skip instead of failing.
  *
- *   const c = await launch();             // { open(url), eval(expr), media(features), close() } or null
+ *   const c = await launch();             // { open(url), eval(expr), media(features), errors(), close() } or null
+ *   c.errors() lists page exceptions, console errors and browser log errors (CSP violations, failed loads) so far.
  */
 
 const { spawn } = require('node:child_process');
@@ -61,8 +62,12 @@ async function launch() {
     let id = 0;
     const pending = new Map();
     const loaded = [];
+    const errors = [];
     ws.addEventListener('message', (e) => {
       const m = JSON.parse(e.data);
+      if (m.method === 'Runtime.exceptionThrown') errors.push({ kind: 'exception', text: String(m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text) });
+      if (m.method === 'Runtime.consoleAPICalled' && m.params.type === 'error') errors.push({ kind: 'console', text: JSON.stringify(m.params.args.map((a) => a.value)) });
+      if (m.method === 'Log.entryAdded' && m.params.entry.level === 'error') errors.push({ kind: 'log', text: m.params.entry.text, url: m.params.entry.url || '' });
       if (m.id && pending.has(m.id)) {
         pending.get(m.id)(m);
         pending.delete(m.id);
@@ -77,6 +82,7 @@ async function launch() {
       });
     await send('Page.enable');
     await send('Runtime.enable');
+    await send('Log.enable');
     return {
       async open(url) {
         const done = new Promise((r) => loaded.push(r));
@@ -87,6 +93,9 @@ async function launch() {
         const r = await send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
         if (r.result.exceptionDetails) throw new Error('page error: ' + JSON.stringify(r.result.exceptionDetails).slice(0, 300));
         return r.result.result.value;
+      },
+      errors() {
+        return errors.slice();
       },
       async media(features) {
         await send('Emulation.setEmulatedMedia', { features });

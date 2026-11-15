@@ -917,3 +917,116 @@ test('[1.9] an AAA project whose colors only reach AA gets an explicit warning; 
   low.tokens.color.light.onPrimary = low.tokens.color.light.primary === '#ffffff' ? '#eeeeee' : low.tokens.color.light.primary;
   assert.ok(sectionText(generate.designMd(low), 'Colors').includes('(below 3:1: do not use)'));
 });
+
+/* =====================================================================================================
+ * Task 1.10: style-guide.html, a standalone page showing the identity in both modes.
+ * ===================================================================================================== */
+
+const SG_SECTIONS = ['colors', 'fonts', 'scale', 'radius', 'shadows', 'buttons', 'cards'];
+
+test('[1.10] a standalone page: no scripts at all, a policy that forbids them, logical properties only', () => {
+  for (const [f, id] of ALL_IDENTITIES) {
+    const html = generate.styleGuide(id);
+    assert.match(html, /^<!doctype html>\n<html lang="(ar|en)" dir="(rtl|ltr)">\n/, f);
+    const lang = id.project.language === 'en' ? 'en" dir="ltr' : 'ar" dir="rtl';
+    assert.ok(html.includes(`<html lang="${lang}">`), `${f}: lang/dir`);
+    assert.ok(html.includes('<meta charset="utf-8">'), f);
+    const csp = /<meta http-equiv="Content-Security-Policy" content="([^"]+)">/.exec(html);
+    assert.ok(csp, `${f}: CSP meta`);
+    assert.match(csp[1], /default-src 'none'/);
+    assert.doesNotMatch(csp[1], /script-src/, 'no script source is allowed at all');
+    assert.doesNotMatch(html, /<script|javascript:|\son[a-z]+\s*=/i, `${f}: no script, no event handler`);
+    const css = (html.match(/<style>([\s\S]*?)<\/style>/) || [])[1];
+    assert.ok(css, `${f}: inline style`);
+    assert.doesNotMatch(css, /\b(left|right)\b/i, `${f}: logical properties only`);
+    for (const mode of ['light', 'dark']) {
+      const panel = html.split(`<section class="mode" data-mode="${mode}"`)[1];
+      assert.ok(panel, `${f}: ${mode} panel`);
+      for (const s of SG_SECTIONS) assert.ok(panel.includes(`data-section="${s}"`), `${f}: ${mode} ${s}`);
+    }
+    for (const role of ['heading', 'body', 'numerals']) {
+      for (const fam of [id.tokens.font[role].arabic, id.tokens.font[role].latin].filter(Boolean)) {
+        assert.ok(html.includes(`https://fonts.googleapis.com/css2?family=${fam.replace(/ /g, '+')}&amp;display=swap`), `${f}: font link ${fam}`);
+      }
+    }
+    assert.ok(html.endsWith('</html>\n'), f);
+    assert.ok(html.includes('<h1 dir="auto">'), `${f}: the name keeps its own direction`);
+    assert.doesNotMatch(css, /opacity/, `${f}: text color comes from identity roles, not transparency`);
+    assert.ok(!/<span class="en">/.test(html) && html.includes('<span class="en" lang="en">'), `${f}: English labels marked lang="en"`);
+    assert.ok(html.includes(`<code dir="ltr">${id.tokens.color.light.primary}</code>`), `${f}: hex codes keep left-to-right order in RTL pages`);
+    assert.equal(html, generate.styleGuide(structuredClone(id)), `${f}: same bytes`);
+    assert.doesNotMatch(html, /20\d\d-\d\d-\d\d/, `${f}: no dates`);
+  }
+});
+
+test('[1.10] text from the identity is escaped; a name with a script tag never reaches the page', () => {
+  assert.equal(generate.escapeHtml(`<script>alert("x")</script> & 'q'`), '&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt; &amp; &#39;q&#39;');
+  const id = structuredClone(IDENTITIES[0][1]);
+  id.name = '<script>alert(1)</script>';
+  assert.throws(() => generate.styleGuide(id), /identity is not valid/, 'the identity checker refuses angle brackets in the name');
+  id.name = '&lt;script&gt;alert(1)&lt;/script&gt; "x" \'y\'';
+  const html = generate.styleGuide(id);
+  assert.ok(html.includes('&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt; &quot;x&quot; &#39;y&#39;'), 'entities stay literal text');
+  assert.doesNotMatch(html, /<script/i);
+});
+
+test('[1.10] in a real browser: no errors, the name shows as plain text, both modes show the identity values', async (t) => {
+  const c = await chrome.launch();
+  if (!c) return t.skip('Chrome not found (set CHROME_PATH to run this check)');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'hawiya-sg-'));
+  try {
+    for (const [f, base] of IDENTITIES) {
+      const id = structuredClone(base);
+      id.name = '&lt;script&gt;alert(1)&lt;/script&gt; "x" \'y\' & ' + base.name;
+      const file = path.join(dir, f.replace('.json', '.html'));
+      fs.writeFileSync(file, generate.styleGuide(id));
+      await c.open('file://' + file);
+      const r = await c.eval(`(() => {
+        const toHex = (rgb) => { const m = rgb.match(/[\\d.]+/g); return m ? '#' + m.slice(0, 3).map((n) => Number(n).toString(16).padStart(2, '0')).join('') : rgb; };
+        const cs = (el) => getComputedStyle(el);
+        const panel = (mode) => document.querySelector('section.mode[data-mode="' + mode + '"]');
+        const out = { title: document.title, h1: document.querySelector('h1').textContent, scripts: document.scripts.length, modes: {} };
+        for (const mode of ['light', 'dark']) {
+          const p = panel(mode);
+          const sw = {};
+          p.querySelectorAll('[data-role]').forEach((el) => { sw[el.dataset.role] = toHex(cs(el.querySelector('.chip')).backgroundColor); });
+          const btn = p.querySelector('.btn-primary');
+          const sec = p.querySelector('.btn-secondary');
+          const card = p.querySelector('.card');
+          const sizes = [...p.querySelectorAll('[data-size]')].map((el) => [el.dataset.size, cs(el).fontSize]);
+          out.modes[mode] = { sw, bg: toHex(cs(p).backgroundColor), text: toHex(cs(p).color),
+            btn: [toHex(cs(btn).backgroundColor), toHex(cs(btn).color), cs(btn).borderTopLeftRadius],
+            sec: [toHex(cs(sec).backgroundColor), toHex(cs(sec).color), toHex(cs(sec).borderTopColor)],
+            card: [toHex(cs(card).backgroundColor), cs(card).borderTopLeftRadius, cs(card).boxShadow], sizes };
+        }
+        out.overflow = document.documentElement.scrollWidth > document.documentElement.clientWidth;
+        return out; })()`);
+      const shownName = id.name;
+      assert.equal(r.h1, shownName, `${f}: name shown as text`);
+      assert.ok(r.title.includes(shownName), `${f}: title`);
+      assert.equal(r.scripts, 0);
+      assert.equal(r.overflow, false, `${f}: no horizontal scroll`);
+      for (const mode of ['light', 'dark']) {
+        const set = id.tokens.color[mode];
+        const ui = generate.uiColors(set);
+        const m = r.modes[mode];
+        for (const role of ROLES) assert.equal(m.sw[kebab(role)], set[role], `${f} ${mode} swatch ${role}`);
+        assert.equal(m.sw['focus-ring'], ui.focusRing);
+        assert.equal(m.sw['control-border'], ui.controlBorder);
+        assert.deepEqual([m.bg, m.text], [set.background, set.onSurface], `${f} ${mode} panel`);
+        assert.deepEqual(m.btn, [set.primary, set.onPrimary, `${id.tokens.radius.md}px`], `${f} ${mode} primary button`);
+        assert.deepEqual(m.sec, [set.surface, set.accentText, ui.controlBorder], `${f} ${mode} secondary button`);
+        assert.equal(m.card[0], set.surface);
+        assert.equal(m.card[1], `${id.tokens.radius.lg}px`);
+        const noShadow = m.card[2] === 'none' || /^rgba\(0, 0, 0, 0\) 0px 0px 0px 0px$/.test(m.card[2]);
+        assert.equal(noShadow, id.tokens.shadow[mode].md.length === 0, `${f} ${mode} card shadow: ${m.card[2]}`);
+        assert.deepEqual(m.sizes.map(([, px]) => parseFloat(px)).reverse(), id.tokens.typeScale.steps, `${f} ${mode} type scale (shown largest first)`);
+      }
+    }
+    const errs = c.errors().filter((e) => !/fonts\.(googleapis|gstatic)\.com/.test(e.url + e.text) && !/ERR_INTERNET_DISCONNECTED|ERR_NAME_NOT_RESOLVED/.test(e.text));
+    assert.deepEqual(errs, [], 'no page errors (font downloads excepted)');
+  } finally {
+    c.close();
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
