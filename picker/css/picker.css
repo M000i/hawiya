@@ -531,3 +531,130 @@ body {
   border: 1px solid #b45309;
   border-radius: 999px;
 }
+
+/* Advanced mode: element list and galleries (task 2.9). */
+.element-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.g-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 12px;
+  inline-size: 100%;
+  padding-block: 8px;
+  padding-inline: 12px;
+  font: inherit;
+  text-align: start;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.g-toggle[aria-expanded='true'] {
+  border-color: var(--fg);
+}
+
+.g-toggle-label {
+  font-weight: 700;
+}
+
+.g-toggle-current {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.g-panel {
+  padding-block: 10px 4px;
+}
+
+.g-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.g-card {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 10px;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: inherit;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.g-card[aria-pressed='true'] {
+  border-color: var(--fg);
+}
+
+.g-sample {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  min-block-size: 44px;
+}
+
+.g-radius,
+.g-shadow {
+  inline-size: 44px;
+  block-size: 44px;
+  background: var(--bg);
+  border: 2px solid var(--fg);
+}
+
+.g-shadow {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.g-type {
+  line-height: 1;
+}
+
+.g-spacing {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+}
+
+.g-bar {
+  display: block;
+  block-size: 5px;
+  background: var(--fg);
+  border-radius: 3px;
+}
+
+.g-sliders {
+  display: grid;
+  gap: 8px;
+  margin-block-start: 12px;
+}
+
+.g-slider {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) 4.5em;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.g-slider-value {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}

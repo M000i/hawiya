@@ -21,6 +21,8 @@ const browser = {
   DOMException: 'readonly',
   Intl: 'readonly',
   NodeFilter: 'readonly',
+  performance: 'readonly',
+  Event: 'readonly',
   getComputedStyle: 'readonly',
   TextEncoder: 'readonly',
   TextDecoder: 'readonly',

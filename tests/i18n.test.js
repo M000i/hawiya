@@ -20,7 +20,10 @@ const UI = [
   'picker/js/ui/export.js',
   'picker/js/ui/state.js',
   'picker/js/ui/storage.js',
-  'picker/js/ui/identities.js'
+  'picker/js/ui/identities.js',
+  'picker/js/ui/library.js',
+  'picker/js/ui/gallery.js',
+  'picker/js/ui/elements/numeric.js'
 ];
 
 test('Arabic and English have the same keys, non-empty texts and the same placeholders', () => {
@@ -34,7 +37,7 @@ test('Arabic and English have the same keys, non-empty texts and the same placeh
 });
 
 test('each language reads as itself', () => {
-  const brandOnly = new Set(['lang.switchTo', 'radius.value', 'export.listSeparator']);
+  const brandOnly = new Set(['lang.switchTo', 'radius.value', 'export.listSeparator', 'gallery.px', 'gallery.number']);
   for (const key of Object.keys(ar)) {
     if (brandOnly.has(key)) continue;
     assert.match(ar[key], /[؀-ۿ]/, `ar ${key} has no Arabic`);
@@ -86,7 +89,7 @@ test('no visible text is written in the page code', () => {
     // Every text the scripts write comes from t() / text() (the dictionaries), is cleared, or is a proper
     // name (font family) or data (the export JSON) that is the same in both languages.
     const allowed =
-      /^(t\(|text\(|''$|parts \? text\(parts\) : ''$|key \? t\(key, params\) : ''$|families\(f\)\.join\(' \+ '\)$|item\.name \|\| t\(|item\.status === 'ok' \? formatTime\(item\.updatedAt\) : statusText\(item\.status\)$|text$|JSON\.stringify\(bundle\))/;
+      /^(t\(|text\(|''$|parts \? text\(parts\) : ''$|key \? t\(key, params\) : ''$|families\(f\)\.join\(' \+ '\)$|item\.name \|\| t\(|item\.status === 'ok' \? formatTime\(item\.updatedAt\) : statusText\(item\.status\)$|text$|summary\(entry\)$|def\.unit === 'px' \? t\(|JSON\.stringify\(bundle\))/;
     // A small el(tag, class, text) helper writes library content; it must never get literal text.
     assert.doesNotMatch(src, /\bel\('[a-z0-9]+', [^,)]+, ['"][^'"]/, `${file} passes literal text to el()`);
     for (const m of src.matchAll(/textContent\s*=\s*([^;]+);/g)) {

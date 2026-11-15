@@ -246,6 +246,7 @@ test('every template combination and adjustment either gives a valid identity or
         container: pick(['none', 'circle', 'square', 'rounded'])
       };
     if (rand() < 0.4) c.selections.spacing.overrides = { unit: 2 + Math.floor(rand() * 7) };
+    if (rand() < 0.3) c.selections.shadows.overrides = { strength: num(0, 2, 2) };
     if (rand() < 0.3) c.selections.direction.overrides = { numerals: pick(['latn', 'arab']) };
     if (rand() < 0.3)
       c.project = {
@@ -448,4 +449,63 @@ test('every template combination keeps the Arabic default line height in 1.6..1.
       assert.ok(ar >= 1.6 && ar <= 1.8, `${ts.id}: ${ar}`);
     }
   }
+});
+
+test('shadow strength (task 2.9): scales the opacity of every shadow layer in both modes, nothing else', () => {
+  const base = resolve.resolve(fromIdentity('calm-corporate'), FROZEN);
+  const withStrength = (s) => {
+    const c = fromIdentity('calm-corporate');
+    c.selections.shadows.overrides = { strength: s };
+    return resolve.resolve(c, FROZEN);
+  };
+  const layers = (id) => ['light', 'dark'].flatMap((m) => ['sm', 'md', 'lg'].flatMap((k) => id.tokens.shadow[m][k]));
+  const round2 = (x) => Math.floor(Number((x * 100).toFixed(6)) + 0.5) / 100;
+  for (const s of [0, 0.5, 1.3, 1.5, 2]) {
+    const id = withStrength(s);
+    assert.equal(validate.check('identity', id).valid, true, String(s));
+    const a = layers(base);
+    const b = layers(id);
+    assert.equal(b.length, a.length);
+    b.forEach((l, i) => {
+      const { alpha, ...geometry } = l;
+      const { alpha: alpha0, ...geometry0 } = a[i];
+      assert.deepEqual(geometry, geometry0, 'offsets, blur, spread, color unchanged');
+      assert.equal(alpha, Math.min(1, round2(alpha0 * s)), `${s}: ${alpha0}`);
+    });
+    assert.deepEqual(id.selections.shadows, { template: 'shadow-soft', overrides: { strength: s } });
+  }
+  // Exact examples: 0.12 × 1.5 = 0.18 (not 0.18000000000000002); 0.05 × 1.3 = 0.065 → 0.07 (half up); dark 0.7 × 2 → 1.
+  const id = withStrength(1.5);
+  assert.equal(id.tokens.shadow.light.lg[0].alpha, 0.18);
+  assert.equal(withStrength(1.3).tokens.shadow.light.lg[1].alpha, 0.07);
+  assert.equal(withStrength(2).tokens.shadow.dark.lg[0].alpha, 1);
+  assert.equal(withStrength(0).tokens.shadow.light.md[0].alpha, 0);
+  // Out of range or not a number: refused.
+  for (const bad of [-0.1, 2.01, '1', NaN, Infinity]) {
+    const c = fromIdentity('calm-corporate');
+    c.selections.shadows.overrides = { strength: bad };
+    refused(() => resolve.resolve(c, FROZEN), /shadows\.strength: expected a number from 0 to 2/);
+  }
+});
+
+test('review fixes (2.9): broken template opacity is refused with or without strength; precise half-up; 1 changes nothing', () => {
+  for (const bad of [1.5, -0.1, '0.5', null, true]) {
+    const data = JSON.parse(JSON.stringify(DATA));
+    data.templates.shadows.find((t) => t.id === 'shadow-soft').tokens.shadow.light.lg.$value[0].color.alpha = bad;
+    for (const strength of [undefined, 1, 0.5]) {
+      const c = fromIdentity('calm-corporate');
+      if (strength !== undefined) c.selections.shadows.overrides = { strength };
+      refused(() => resolve.resolve(c, data), /shadows\.light\.lg\[0\]: opacity must be a number from 0 to 1/);
+    }
+  }
+  // Just below a half rounds down: 0.05 × 0.09999998 = 0.004999999 → 0.00.
+  const c = fromIdentity('calm-corporate');
+  c.selections.shadows.overrides = { strength: 0.09999998 };
+  assert.equal(resolve.resolve(c, FROZEN).tokens.shadow.light.lg[1].alpha, 0);
+  // Strength 1 leaves every opacity exactly as the template has it, even with more than two decimals.
+  const data = JSON.parse(JSON.stringify(DATA));
+  data.templates.shadows.find((t) => t.id === 'shadow-soft').tokens.shadow.light.lg.$value[0].color.alpha = 0.123;
+  const one = fromIdentity('calm-corporate');
+  one.selections.shadows.overrides = { strength: 1 };
+  assert.equal(resolve.resolve(one, data).tokens.shadow.light.lg[0].alpha, 0.123);
 });

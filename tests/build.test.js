@@ -64,20 +64,50 @@ test('drafts never reach the output; reviewed templates arrive unchanged', () =>
   assert.deepEqual(summary.elements.buttons, { published: 1, drafts: 1, file: true });
 });
 
-test('one data file per element plus identities.js; an element with no file gives an empty list and is reported', () => {
+test('one data file per element plus identities.js and starter.js; an element with no file gives an empty list and is reported', () => {
   const lib = copyFixture();
   fs.rmSync(path.join(lib, 'elements', 'colors.json'));
   const out = tmp();
   const { summary } = builder.build({ libraryDir: lib, outDir: out });
   assert.deepEqual(summary.elements.colors, { published: 0, drafts: 0, file: false });
   assert.match(builder.report(summary, { libraryDir: lib, outDir: out }), /colors\s+published\s+0\s+drafts left out\s+0\s+\(no file\)/);
-  const expectedFiles = [...builder.ELEMENTS.map((e) => `${e}.js`), 'identities.js'].sort();
+  const expectedFiles = [...builder.ELEMENTS.map((e) => `${e}.js`), 'identities.js', 'starter.js'].sort();
   assert.deepEqual(fs.readdirSync(out).sort(), expectedFiles);
   assert.equal(builder.ELEMENTS.length, 11);
   const data = loadData(out);
   assert.deepEqual(plain(data.templates.colors), []);
   assert.deepEqual(Object.keys(data.templates).sort(), builder.ELEMENTS.slice().sort());
   assert.ok(Object.isFrozen(data.templates.radius) && Object.isFrozen(data.templates.radius[0].name), 'data is read-only');
+});
+
+test('starter.js holds exactly the templates the published identities use, per element, never a draft', () => {
+  const out = tmp();
+  builder.build({ libraryDir: FIXTURE, outDir: out });
+  const data = loadData(out);
+  const starter = plain(data.starter);
+  assert.deepEqual(Object.keys(starter), builder.ELEMENTS);
+  const calm = readJson(path.join(FIXTURE, 'identities', 'calm.json'));
+  for (const e of builder.ELEMENTS) {
+    assert.deepEqual(starter[e].map((t) => t.id), [calm.templates[e]], e);
+    // The same objects as in the element's own file.
+    assert.deepEqual(starter[e][0], plain(data.templates[e].find((t) => t.id === calm.templates[e])));
+  }
+  assert.ok(Object.isFrozen(data.starter) && Object.isFrozen(data.starter.radius[0].name), 'read-only');
+  const text = fs.readFileSync(path.join(out, 'starter.js'), 'utf8');
+  for (const banned of ['radius-sharp', 'button-ghost', '"draft"']) assert.ok(!text.includes(banned), banned);
+  // An identity that is left out adds nothing; two identities sharing a template list it once, in file order.
+  const lib = copyFixture();
+  const radius = readJson(path.join(lib, 'elements', 'radius.json'));
+  radius.push({ ...radius[0], id: 'radius-extra', status: { state: 'reviewed', reviewedAt: '2026-11-16' } });
+  writeJson(path.join(lib, 'elements', 'radius.json'), radius);
+  writeJson(path.join(lib, 'identities', 'second.json'), { ...calm, id: 'second', templates: { ...calm.templates, radius: 'radius-extra' } });
+  writeJson(path.join(lib, 'identities', 'third.json'), { ...calm, id: 'third' });
+  const out2 = tmp();
+  builder.build({ libraryDir: lib, outDir: out2 });
+  const s2 = plain(loadData(out2).starter);
+  assert.deepEqual(s2.radius.map((t) => t.id), ['radius-soft', 'radius-extra']);
+  assert.deepEqual(s2.colors.map((t) => t.id), [calm.templates.colors]);
+  assert.ok(!JSON.stringify(s2).includes('radius-sharp'), 'uses-draft.json is left out, so its draft is not listed');
 });
 
 test('a ready identity is published only when every template it uses is published and of that element', () => {
@@ -287,7 +317,7 @@ test('command line: counts printed, --dry-run writes nothing, problems exit 1, b
 
   r = spawnSync(process.execPath, [TOOL, '--library', FIXTURE, '--out', out], { encoding: 'utf8' });
   assert.equal(r.status, 0, r.stderr);
-  assert.equal(fs.readdirSync(out).length, 12);
+  assert.equal(fs.readdirSync(out).length, 13);
 
   const lib = copyFixture();
   fs.writeFileSync(path.join(lib, 'elements', 'fonts.json'), '[{]');

@@ -253,6 +253,27 @@
       return err ? { ok: false, reason: err } : { ok: true, id: entry.id, created: at === -1 };
     }
 
+    /*
+     * Which template each element of the draft / a saved entry names, read without any checking, only so the page
+     * can load those elements' data files before the real read (task 2.9). Nothing else is taken from it.
+     */
+    function selectionsIn(identity) {
+      var out = {};
+      var sel = isObj(identity) && isObj(identity.selections) ? identity.selections : {};
+      Object.keys(sel).forEach(function (e) {
+        if (isObj(sel[e]) && typeof sel[e].template === 'string') out[e] = { template: sel[e].template };
+      });
+      return out;
+    }
+    function draftSelections() {
+      var d = parse(get(DRAFT));
+      return selectionsIn(isObj(d) ? d.identity : null);
+    }
+    function entrySelections(id) {
+      var item = readList().items.find(isId(id));
+      return selectionsIn(item && item.identity);
+    }
+
     function open(id) {
       var item = readList().items.find(isId(id));
       if (!item) return { ok: false, reason: 'gone' };
@@ -276,6 +297,8 @@
       available: available,
       readDraft: readDraft,
       writeDraft: writeDraft,
+      draftSelections: draftSelections,
+      entrySelections: entrySelections,
       list: list,
       listUnreadable: listUnreadable,
       save: save,

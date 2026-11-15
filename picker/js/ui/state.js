@@ -21,6 +21,7 @@
   var STARTER = 'calm-corporate';
 
   var current = null; // { choices, identity }
+  var ready = false;
   var openedId = null; // saved entry the user opened (Save updates it)
   var els = {};
   var store = null;
@@ -31,7 +32,7 @@
   }
 
   function build(choices) {
-    return H.resolve.resolve(choices);
+    return H.resolve.resolve(choices, H.library.view());
   }
 
   function starterChoices() {
@@ -110,7 +111,12 @@
     identity: function () {
       return copy(current.identity);
     },
-    change: change
+    change: change,
+    /* Other modules start with H.state.whenReady(init): at once if the identity is ready, else on 'hawiya:ready'. */
+    whenReady: function (fn) {
+      if (ready) fn();
+      else document.addEventListener('hawiya:ready', fn, { once: true });
+    }
   };
 
   /* ---------- saved identities panel ---------- */
@@ -180,7 +186,21 @@
     renderList();
   }
 
+  // Load the elements a saved entry needs first (task 2.9), then open it.
   function onOpen(id) {
+    var sel = store.entrySelections(id);
+    if (H.library.missing(sel).length === 0) return openNow(id);
+    H.library.ensure(sel).then(
+      function () {
+        openNow(id);
+      },
+      function () {
+        note('saved.missing');
+      }
+    );
+  }
+
+  function openNow(id) {
     var r = store.open(id);
     if (!r.ok) {
       if (r.reason === 'missing') note('saved.missing');
@@ -231,13 +251,11 @@
     });
     showWarning(!store.available());
 
-    var draft = store.readDraft();
-    var start = draft.status === 'ok' ? draft.choices : starterChoices();
-    if (draft.status === 'ok' && draft.openedId) openedId = draft.openedId;
-    apply(start, build(start), false);
-    if (draft.status === 'unreadable') note('saved.draftUnreadable');
-    if (store.listUnreadable()) note('saved.listUnreadable');
-    renderList();
+    // The draft may use templates outside the starter set: load their elements first (task 2.9). When nothing is
+    // missing this runs at once, so the page is ready as soon as the scripts have run.
+    var sel = store.draftSelections();
+    if (H.library.missing(sel).length === 0) start();
+    else H.library.ensure(sel).then(start, start); // a file that cannot load: the draft reads as unreadable, kept
 
     document.getElementById('save-btn').addEventListener('click', function () {
       onSave(false);
@@ -258,6 +276,18 @@
       if (noteParts) els.note.textContent = t(noteParts[0], noteParts[1]);
       renderList();
     });
+  }
+
+  function start() {
+    var draft = store.readDraft();
+    var choices = draft.status === 'ok' ? draft.choices : starterChoices();
+    if (draft.status === 'ok' && draft.openedId) openedId = draft.openedId;
+    apply(choices, build(choices), false);
+    if (draft.status === 'unreadable') note('saved.draftUnreadable');
+    if (store.listUnreadable()) note('saved.listUnreadable');
+    renderList();
+    ready = true;
+    document.dispatchEvent(new CustomEvent('hawiya:ready'));
   }
 
   if (document.readyState === 'loading') {

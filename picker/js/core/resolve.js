@@ -21,6 +21,7 @@
  *   type-scale  base 10..32, ratio >1..2, steps 3..12 (integer), below 0..steps-1 (integer),
  *               line-height-ar, line-height-en   1 .. 2.5
  *   radius      sm, md, lg                       integer 0 .. 64
+ *   shadows     strength                         0 .. 2: every layer's opacity × strength (capped at 1, 2 decimals, half up)
  *   icons       fill (outline|filled|duotone), container (none|circle|square|rounded)
  *   spacing     unit                             integer 2 .. 8 (the template's scale is resized to it)
  *   direction   numerals (latn|arab), calendar (gregory|islamic-umalqura)
@@ -119,6 +120,7 @@
       md: [range(0, 64, true), 'an integer from 0 to 64'],
       lg: [range(0, 64, true), 'an integer from 0 to 64']
     },
+    shadows: { strength: [range(0, 2), 'a number from 0 to 2'] },
     icons: {
       fill: [oneOf(['outline', 'filled', 'duotone']), 'outline, filled or duotone'],
       container: [oneOf(['none', 'circle', 'square', 'rounded']), 'none, circle, square or rounded']
@@ -160,6 +162,10 @@
         color: c && typeof c.hex === 'string' ? c.hex.toLowerCase() : '#000000',
         alpha: c && hasOwn(c, 'alpha') ? c.alpha : 1
       };
+      // Checked here, not only by the final identity check: strength would otherwise turn a broken value into a
+      // valid-looking one (review of task 2.9).
+      if (!isNum(layer.alpha) || layer.alpha < 0 || layer.alpha > 1)
+        problems.push(at + ': opacity must be a number from 0 to 1');
       if (l && l.inset === true) layer.inset = true;
       return layer;
     });
@@ -168,6 +174,21 @@
   // Half-up to an integer in decimal terms, like scale.js does for sizes.
   function roundInt(x) {
     return Math.floor(Number(x.toFixed(6)) + 0.5);
+  }
+
+  // Shadow strength: opacity × strength, at most 1, two decimals half up (0.05 × 1.3 = 0.065 → 0.07).
+  function strengthen(layers, strength) {
+    return layers.map(function (l) {
+      var out = {};
+      Object.keys(l).forEach(function (k) {
+        out[k] = l[k];
+      });
+      // Strength 1 changes nothing; otherwise half up in decimal terms. Nine decimals absorb float noise
+      // (0.12 × 1.5 × 100 = 18.000000000000004) without rounding up a value that is truly below a half.
+      if (strength !== 1)
+        out.alpha = Math.min(1, Math.floor(Number((l.alpha * strength * 100).toFixed(9)) + 0.5) / 100);
+      return out;
+    });
   }
 
   /* ---------- per element ---------- */
@@ -381,7 +402,8 @@
     ['light', 'dark'].forEach(function (m) {
       shadow[m] = {};
       ['sm', 'md', 'lg'].forEach(function (k) {
-        shadow[m][k] = shadowLayers(sh[m] && sh[m][k], 'shadows.' + m + '.' + k, problems);
+        var layers = shadowLayers(sh[m] && sh[m][k], 'shadows.' + m + '.' + k, problems);
+        shadow[m][k] = hasOwn(O.shadows, 'strength') ? strengthen(layers, O.shadows.strength) : layers;
       });
     });
 

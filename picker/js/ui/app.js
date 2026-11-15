@@ -25,9 +25,7 @@
   }
 
   function template(element, id) {
-    var list = H.data.templates[element] || [];
-    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
-    return null;
+    return H.library.find(element, id);
   }
 
   function families(fontTemplate) {
@@ -79,7 +77,8 @@
   }
 
   function buildFonts() {
-    H.data.templates.fonts.forEach(function (f) {
+    // The quick font choice lists the fonts available now (the starter ones until the fonts gallery is opened).
+    H.library.view().templates.fonts.forEach(function (f) {
       families(f).forEach(loadFont);
       var label = document.createElement('label');
       label.className = 'font-option';
@@ -243,9 +242,12 @@
     render();
   }
 
+  function boot() {
+    H.state.whenReady(init);
+  }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    init();
+    boot();
   }
 })();

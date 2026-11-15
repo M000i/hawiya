@@ -37,9 +37,7 @@
   var chosen = { lang: null, mode: null }; // null = follow the identity
 
   function template(element, id) {
-    var list = (H.data && H.data.templates && H.data.templates[element]) || [];
-    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
-    return null;
+    return H.library.find(element, id);
   }
 
   function autoLang(id) {

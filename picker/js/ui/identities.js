@@ -20,9 +20,7 @@
   }
 
   function template(element, id) {
-    var list = (H.data.templates && H.data.templates[element]) || [];
-    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
-    return null;
+    return H.library.find(element, id);
   }
 
   function el(tag, cls, text) {
@@ -111,18 +109,39 @@
     return b;
   }
 
-  function render() {
-    els.list.textContent = '';
+  // The cards can be shown in more than one place: the first screen, and the advanced mode's entry (task 2.9).
+  var lists = [];
+
+  function fill(list) {
+    list.textContent = '';
     ready().forEach(function (identity) {
-      els.list.appendChild(card(identity));
+      list.appendChild(card(identity));
     });
+  }
+
+  function render() {
+    lists.forEach(fill);
     els.empty.hidden = ready().length > 0;
+    mark();
+  }
+
+  function renderInto(container) {
+    var list = document.createElement('div');
+    list.className = 'identity-list';
+    container.textContent = '';
+    container.appendChild(list);
+    lists.push(list);
+    fill(list);
     mark();
   }
 
   function mark() {
     var c = H.state.choices();
-    Array.prototype.forEach.call(els.list.querySelectorAll('[data-identity]'), function (b) {
+    var cards = [];
+    lists.forEach(function (list) {
+      cards = cards.concat(Array.prototype.slice.call(list.querySelectorAll('[data-identity]')));
+    });
+    cards.forEach(function (b) {
       var id = b.getAttribute('data-identity');
       var identity = null;
       ready().forEach(function (i) {
@@ -132,19 +151,22 @@
     });
   }
 
-  H.identities = { use: use };
+  H.identities = { use: use, renderInto: renderInto };
 
   function init() {
-    els.list = document.getElementById('identity-list');
     els.empty = document.getElementById('identity-empty');
+    lists.push(document.getElementById('identity-list'));
     render();
     document.addEventListener('hawiya:state', mark);
     document.addEventListener('hawiya:lang', render);
   }
 
+  function boot() {
+    H.state.whenReady(init);
+  }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    init();
+    boot();
   }
 })();

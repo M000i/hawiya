@@ -62,9 +62,15 @@
               step="2"
               data-i18n-attr="aria-label:radius.legend"
             />
-            <output id="radius-value" for="radius-input"></output>
+            <output id="radius-value" for="radius-input" dir="ltr"></output>
           </div>
         </fieldset>
+
+        <section class="group advanced" aria-labelledby="advanced-title">
+          <h2 id="advanced-title" data-i18n="advanced.title"></h2>
+          <p class="note identity-lead" data-i18n="advanced.lead"></p>
+          <ul class="element-list" id="element-list"></ul>
+        </section>
 
         <section class="group saved" aria-labelledby="saved-title">
           <h2 id="saved-title" data-i18n="saved.title"></h2>
@@ -163,17 +169,7 @@
     <script src="i18n/ar.js"></script>
     <script src="i18n/en.js"></script>
     <script src="js/ui/i18n.js"></script>
-    <script src="data/colors.js"></script>
-    <script src="data/modes.js"></script>
-    <script src="data/fonts.js"></script>
-    <script src="data/type-scale.js"></script>
-    <script src="data/radius.js"></script>
-    <script src="data/shadows.js"></script>
-    <script src="data/icons.js"></script>
-    <script src="data/buttons.js"></script>
-    <script src="data/cards.js"></script>
-    <script src="data/spacing.js"></script>
-    <script src="data/direction.js"></script>
+    <script src="data/starter.js"></script>
     <script src="data/identities.js"></script>
     <script src="js/core/color.js"></script>
     <script src="js/core/contrast.js"></script>
@@ -190,9 +186,12 @@
     <script src="scenes/form.js"></script>
     <script src="scenes/mobile.js"></script>
     <script src="js/ui/preview.js"></script>
+    <script src="js/ui/library.js"></script>
     <script src="js/ui/storage.js"></script>
     <script src="js/ui/state.js"></script>
     <script src="js/ui/identities.js"></script>
+    <script src="js/ui/elements/numeric.js"></script>
+    <script src="js/ui/gallery.js"></script>
     <script src="js/ui/app.js"></script>
     <script src="js/ui/export.js"></script>
   </body>
