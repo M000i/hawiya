@@ -11,6 +11,17 @@ const assert = require('node:assert/strict');
 const contrast = require('../picker/js/core/contrast.js');
 const color = require('../picker/js/core/color.js');
 const ramp = require('../picker/js/core/ramp.js');
+const modes = require('../picker/js/core/modes.js');
+
+// Task-level golden (tasks.md 1.5).
+test('T-1.5 modes: #3B82F6 → main text on background ≥ 4.5:1 in light and dark; primary button text ≥ 4.5:1', () => {
+  const m = modes.derive('#3B82F6');
+  for (const mode of ['light', 'dark']) {
+    const s = m[mode];
+    assert.ok(contrast.ratio(s.onSurface, s.background) >= 4.5, `${mode}: text ${s.onSurface} on ${s.background}`);
+    assert.ok(contrast.ratio(s.onPrimary, s.primary) >= 4.5, `${mode}: button text ${s.onPrimary} on ${s.primary}`);
+  }
+});
 
 // Task-level golden (tasks.md 1.4), not a spec.md G-id.
 test('T-1.4 ramp: #3B82F6 → 11 steps, one of them #3B82F6, lightness descending, same twice', () => {
