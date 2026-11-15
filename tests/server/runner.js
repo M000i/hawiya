@@ -14,14 +14,62 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const SPEC = JSON.parse(fs.readFileSync(path.join(__dirname, 'cases.json'), 'utf8'));
+const bundleMod = require('../../picker/js/core/bundle.js');
+
+let SPEC = null;
+
+// "@bundle" is a complete, valid export bundle built from tests/fixtures/identity/valid/<SPEC.bundleIdentity>
+// (the runner is Node for both servers, so both receive exactly the same bytes).
+let BUNDLE = null;
+function theBundle() {
+  if (!BUNDLE) {
+    const id = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'identity', 'valid', SPEC.bundleIdentity), 'utf8'));
+    BUNDLE = bundleMod.build(id);
+  }
+  return BUNDLE;
+}
 
 function fixture(v) {
+  if (typeof v === 'string' && v.startsWith('@bundle:')) return theBundle().files[v.slice('@bundle:'.length)];
   if (typeof v === 'string' && v.startsWith('@')) return SPEC.fixtures[v.slice(1)];
   return v;
 }
 
-function resolveBody(body) {
+/*
+ * change: list of edits applied to a copy of the bundle, in order:
+ *   { set: [key, key, ...], value }   set a nested value (keys are taken literally, so "DESIGN.md" is one key)
+ *   { delete: [key, ...] }            remove a nested key
+ *   { rehash: "name" }                recompute sha256[name] after changing files[name]
+ *   { identityFromText: true }        set identity = JSON.parse(files["identity.json"]) (keeps them consistent)
+ *   { duplicateKey: "name" }          write that key twice in identity.json and update its fingerprint
+ */
+function applyChanges(b, changes) {
+  for (const ch of changes || []) {
+    if (ch.set || ch.delete) {
+      const keys = ch.set || ch.delete;
+      let node = b;
+      for (const k of keys.slice(0, -1)) node = node[k];
+      const last = keys[keys.length - 1];
+      if (ch.set) Object.defineProperty(node, last, { value: ch.value, enumerable: true, writable: true, configurable: true });
+      else delete node[last];
+    } else if (ch.rehash) {
+      b.sha256[ch.rehash] = bundleMod.sha256(b.files[ch.rehash]);
+    } else if (ch.duplicateKey) {
+      // identity.json with one key written twice (first value fake, last value the real one), fingerprint updated
+      const text = b.files['identity.json'];
+      b.files['identity.json'] = text.replace('"' + ch.duplicateKey + '":', '"' + ch.duplicateKey + '": "FAKE", "' + ch.duplicateKey + '":');
+      b.sha256['identity.json'] = bundleMod.sha256(b.files['identity.json']);
+    } else if (ch.identityFromText) {
+      b.identity = JSON.parse(b.files['identity.json']);
+    } else {
+      throw new Error('unknown change ' + JSON.stringify(ch));
+    }
+  }
+  return b;
+}
+
+function resolveBody(body, changes) {
+  if (body === '@bundle') return applyChanges(structuredClone(theBundle()), changes);
   const out = JSON.parse(JSON.stringify(body));
   if (out.files && typeof out.files === 'object') {
     for (const k of Object.keys(out.files)) out.files[k] = fixture(out.files[k]);
@@ -41,7 +89,7 @@ function makeProject(setup = {}) {
   for (const [rel, content] of Object.entries(setup.files || {})) {
     const p = path.join(project, rel);
     fs.mkdirSync(path.dirname(p), { recursive: true });
-    fs.writeFileSync(p, content);
+    fs.writeFileSync(p, fixture(content));
   }
   for (const [rel, target] of Object.entries(setup.symlinks || {})) {
     fs.mkdirSync(path.dirname(path.join(project, rel)), { recursive: true });
@@ -60,9 +108,9 @@ function cleanup(root, project) {
   fs.rmSync(root, { recursive: true, force: true });
 }
 
-function startServer(cmd, project, args = []) {
+function startServer(cmd, project, args = [], env = undefined) {
   return new Promise((resolve, reject) => {
-    const child = spawn(cmd[0], [...cmd.slice(1), project, ...args], { stdio: ['ignore', 'pipe', 'pipe'] });
+    const child = spawn(cmd[0], [...cmd.slice(1), project, ...args], { stdio: ['ignore', 'pipe', 'pipe'], env: env ? { ...process.env, ...env } : process.env });
     const state = { child, stdout: '', stderr: '', exited: false, exitCode: null };
     const exitPromise = new Promise((r) => child.on('exit', (code) => { state.exited = true; state.exitCode = code; r(code); }));
     state.exitPromise = exitPromise;
@@ -186,8 +234,9 @@ function lastStatus(stdout) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/* cmd: [executable, ...args before the project dir] */
-function defineServerTests(label, cmd) {
+/* cmd: [executable, ...args before the project dir]; casesFile: the case list in this folder */
+function defineServerTests(label, cmd, casesFile = 'cases.json') {
+  SPEC = JSON.parse(fs.readFileSync(path.join(__dirname, casesFile), 'utf8'));
   test(`[${label}] ready line: loopback URL, random port, long token in the URL fragment`, async () => {
     const a = makeProject();
     const b = makeProject();
@@ -209,6 +258,8 @@ function defineServerTests(label, cmd) {
     } finally {
       s1.child.kill();
       s2.child.kill();
+      cleanup(a.root, a.project);
+      cleanup(b.root, b.project);
     }
   });
 
@@ -245,6 +296,7 @@ function defineServerTests(label, cmd) {
       assert.deepEqual(s.ready.existing, ['DESIGN.md']);
     } finally {
       s.child.kill();
+      cleanup(p.root, p.project);
     }
   });
 
@@ -270,7 +322,7 @@ function defineServerTests(label, cmd) {
           const headers = {};
           for (const [k, v] of Object.entries(r.headers || {})) headers[k] = fill(v, ctx);
           let body = null;
-          if (r.body) body = JSON.stringify(resolveBody(r.body));
+          if (r.body) body = JSON.stringify(resolveBody(r.body, r.change));
           if (r.bodyRaw != null) body = r.bodyRaw;
           if (r.bodyFiller) body = '{"files":{"DESIGN.md":"' + 'a'.repeat(r.bodyFiller) + '"}}';
           const mode = r.reset ? 'reset' : r.hold ? 'hold' : r.chunked ? 'chunked' : 'normal';
@@ -305,7 +357,8 @@ function defineServerTests(label, cmd) {
             if (mode === 'reset') continue;
             assert.equal(res.status, r.expectStatus, `${r.method} ${r.path} -> ${res.status} ${res.body}`);
             assert.equal(res.headers['access-control-allow-origin'], undefined, 'no CORS header may be sent');
-            if (r.expectBodyContains) assert.ok(res.body.includes(r.expectBodyContains));
+            for (const want of [].concat(r.expectBodyContains || [])) assert.ok(res.body.includes(want), `reply should mention ${want}: ${res.body.slice(0, 300)}`);
+            for (const bad of [].concat(r.expectBodyNotContains || [])) assert.ok(!res.body.includes(bad), `reply must not contain ${bad}: ${res.body.slice(0, 300)}`);
             if (r.expectServerCloses) assert.equal(res.serverClosed, true, 'server should close a refused, unfinished request');
           }
         }
@@ -324,6 +377,7 @@ function defineServerTests(label, cmd) {
           assert.equal(s.exited, false, 'server should still be running');
         }
         if (e.stdoutStatus) assert.equal(lastStatus(s.stdout), e.stdoutStatus);
+        if (e.stdoutReason) assert.equal(JSON.parse(s.stdout.trim().split('\n').pop()).reason, e.stdoutReason, 'reason on stdout');
 
         for (const [rel, content] of Object.entries(e.files || {})) {
           assert.equal(fs.readFileSync(path.join(project, rel), 'utf8'), fixture(content), rel);
@@ -331,9 +385,23 @@ function defineServerTests(label, cmd) {
         for (const rel of e.absent || []) {
           assert.equal(fs.existsSync(path.join(project, rel)), false, `${rel} must not exist`);
         }
+        if (e.backup !== undefined) {
+          const designDir = path.join(project, 'design');
+          const backups = fs.existsSync(designDir) ? fs.readdirSync(designDir).filter((n) => /^backup-\d{8}-\d{6}(-\d+)?$/.test(n)) : [];
+          if (e.backup === null) {
+            assert.deepEqual(backups, [], 'no backup folder expected');
+          } else {
+            assert.equal(backups.length, 1, `one backup folder expected, found ${backups}`);
+            const dir = path.join(designDir, backups[0]);
+            assert.deepEqual(fs.readdirSync(dir).sort(), Object.keys(e.backup).sort(), 'backup contents');
+            for (const [name, content] of Object.entries(e.backup)) assert.equal(fs.readFileSync(path.join(dir, name), 'utf8'), fixture(content), `backup ${name}`);
+          }
+        }
+        if (e.written) assert.deepEqual(JSON.parse(s.stdout.trim().split('\n').pop()).written, e.written, 'written list on stdout');
         assert.equal(s.stdout.includes(ctx.token) && s.stdout.split('\n').slice(1).join('\n').includes(ctx.token), false,
           'token must appear only in the ready line');
         assert.doesNotMatch(s.stderr, /Error|EACCES|EEXIST/, 'server must not crash: ' + s.stderr);
+        assert.doesNotMatch(s.stdout, /internal error/, 'server must not crash: ' + s.stdout);
       } finally {
         if (!s.exited) s.child.kill();
         cleanup(root, project);
@@ -342,4 +410,4 @@ function defineServerTests(label, cmd) {
   }
 }
 
-module.exports = { defineServerTests };
+module.exports = { defineServerTests, makeProject, cleanup, startServer, rawRequest, theBundle: () => theBundle(), setSpec: (f) => (SPEC = JSON.parse(fs.readFileSync(path.join(__dirname, f), 'utf8'))) };

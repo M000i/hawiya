@@ -1,26 +1,47 @@
 {
-  "about": "Shared, language-neutral cases for the save server. Run against scripts/serve.js (task 0.4) and scripts/serve.py (task 0.5). Placeholders: {TOKEN} valid token, {ORIGIN} http://127.0.0.1:<port>. Paths in setup/expect are relative to the project dir; '../outside' is a sibling dir outside the project. Request flags: chunked = send body without Content-Length; hold = chunked body (no Content-Length), send a little, never finish; reset = send the request then reset the TCP connection without reading the reply; delayBeforeMs = wait before sending; smuggle = refused POST whose body is a full GET request, exactly one response allowed; raw = exact bytes sent on a socket ({HOST}, {TOKEN}, {LEN_INNER} filled in), expectStatus null = no reply bytes at all, omitted = any, maxResponses = cap on status lines, expectNotContains = text that must not appear in the reply; any raw reply must start with an HTTP status line. Case flag closeStdoutAfterReady = the test stops reading the server's output after the ready line. setup.readonlyProject = make the project dir read-only.",
+  "about": "Shared server cases (plan.md section 6): the final contract of task 1.12. Every export body is a full bundle (bundle.build on tests/fixtures/identity/valid/<bundleIdentity>) written \"@bundle\", optionally edited by \"change\" (see tests/server/runner.js). The Python server runs the same list from task 1.14 on.",
   "fixtures": {
     "identity": "{\n  \"schemaVersion\": \"0.1-prototype\",\n  \"name\": \"T\"\n}\n",
-    "design": "---\nversion: alpha\nname: \"T\"\ncolors:\n  primary: \"#2563eb\"\n---\n\n# T\n"
+    "design": "---\nversion: alpha\nname: \"T\"\ncolors:\n  primary: \"#2563eb\"\n---\n\n# T\n",
+    "session": "{\n  \"type\": \"landing\",\n  \"language\": \"ar\",\n  \"tags\": [\"minimal\", \"corporate\"],\n  \"platform\": \"web\"\n}\n"
   },
   "cases": [
     {
-      "name": "save succeeds: both files written, server closes with code 0",
+      "name": "save succeeds: all six files written as sent, server closes with code 0",
       "requests": [
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity", "DESIGN.md": "@design" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 200
         }
       ],
       "expect": {
-        "files": { "design/identity.json": "@identity", "design/DESIGN.md": "@design" },
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html"
+        },
         "exits": true,
         "exitCode": 0,
-        "stdoutStatus": "saved"
+        "stdoutStatus": "saved",
+        "written": [
+          "identity.json",
+          "DESIGN.md",
+          "tokens.json",
+          "tokens.css",
+          "theme.css",
+          "style-guide.html"
+        ],
+        "backup": null
       }
     },
     {
@@ -29,12 +50,26 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "DESIGN.md": "@design" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 200
         }
       ],
-      "expect": { "files": { "design/DESIGN.md": "@design" }, "absent": ["design/identity.json"], "exits": true, "exitCode": 0 }
+      "expect": {
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html"
+        },
+        "exits": true,
+        "exitCode": 0
+      }
     },
     {
       "name": "wrong token is rejected and nothing is written",
@@ -42,12 +77,21 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "not-the-token" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "not-the-token"
+          },
+          "body": "@bundle",
           "expectStatus": 401
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "missing token is rejected",
@@ -55,12 +99,20 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}"
+          },
+          "body": "@bundle",
           "expectStatus": 401
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "token in the query string is not accepted",
@@ -68,12 +120,20 @@
         {
           "method": "POST",
           "path": "/api/export?token={TOKEN}",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}"
+          },
+          "body": "@bundle",
           "expectStatus": 401
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "five wrong tokens close the server with code 1",
@@ -81,13 +141,24 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "wrong" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "wrong"
+          },
+          "body": "@bundle",
           "repeat": 5,
           "expectStatus": 401
         }
       ],
-      "expect": { "absent": ["design"], "exits": true, "exitCode": 1, "stdoutStatus": "closed" }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": true,
+        "exitCode": 1,
+        "stdoutStatus": "closed"
+      }
     },
     {
       "name": "file name outside the allowed list is rejected",
@@ -95,12 +166,39 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity", "evil.sh": "echo pwned" } },
-          "expectStatus": 400
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "files",
+                "evil.sh"
+              ],
+              "value": "echo pwned\n"
+            },
+            {
+              "set": [
+                "sha256",
+                "evil.sh"
+              ],
+              "value": "x"
+            }
+          ],
+          "expectBodyContains": "evil.sh"
         }
       ],
-      "expect": { "absent": ["design", "evil.sh"], "exits": false }
+      "expect": {
+        "absent": [
+          "design",
+          "evil.sh"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "path traversal in a file name is rejected",
@@ -108,12 +206,39 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "../identity.json": "@identity" } },
-          "expectStatus": 400
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "files",
+                "../identity.json"
+              ],
+              "value": "{}\n"
+            },
+            {
+              "set": [
+                "sha256",
+                "../identity.json"
+              ],
+              "value": "x"
+            }
+          ]
         }
       ],
-      "expect": { "absent": ["design", "identity.json", "../identity.json"], "exits": false }
+      "expect": {
+        "absent": [
+          "design",
+          "identity.json",
+          "../identity.json"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "empty file list is rejected",
@@ -121,12 +246,23 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": {} },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": {
+            "files": {}
+          },
           "expectStatus": 400
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "non-string file content is rejected",
@@ -134,12 +270,30 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "DESIGN.md": { "x": 1 } } },
-          "expectStatus": 400
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "files",
+                "DESIGN.md"
+              ],
+              "value": 5
+            }
+          ]
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "identity.json that is not valid JSON is rejected",
@@ -147,12 +301,33 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "{ not json" } },
-          "expectStatus": 400
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "files",
+                "identity.json"
+              ],
+              "value": "{\n"
+            },
+            {
+              "rehash": "identity.json"
+            }
+          ]
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "request body that is not JSON is rejected",
@@ -160,12 +335,21 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
           "bodyRaw": "files=identity.json",
           "expectStatus": 400
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "wrong content type is rejected",
@@ -173,12 +357,21 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "text/plain", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "text/plain",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 415
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "oversized body is rejected",
@@ -186,12 +379,21 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
           "bodyFiller": 6000000,
           "expectStatus": 413
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "oversized chunked body (no Content-Length) is rejected",
@@ -199,41 +401,84 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
           "bodyFiller": 6000000,
           "chunked": true,
           "expectStatus": 413
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "a refused request's body is not read: server answers and closes the connection",
       "requests": [
-        { "method": "POST", "path": "/somewhere", "hold": true, "expectStatus": 405, "expectServerCloses": true },
+        {
+          "method": "POST",
+          "path": "/somewhere",
+          "hold": true,
+          "expectStatus": 405,
+          "expectServerCloses": true
+        },
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "wrong" },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "wrong"
+          },
           "hold": true,
           "expectStatus": 401,
           "expectServerCloses": true
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "the unread body of a refused request is never handled as a second request (smuggling)",
-      "requests": [{ "method": "POST", "path": "/nope", "smuggle": true, "expectStatus": 405 }],
-      "expect": { "exits": false }
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/nope",
+          "smuggle": true,
+          "expectStatus": 405
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "an HTTP/0.9 request never gets page content and does not stop the server",
       "requests": [
-        { "raw": "GET /\r\n\r\n", "expectNotContains": "Hawiya", "maxResponses": 1 },
-        { "method": "GET", "path": "/", "expectStatus": 200 }
+        {
+          "raw": "GET /\r\n\r\n",
+          "expectNotContains": "Hawiya",
+          "maxResponses": 1
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "expectStatus": 200
+        }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "smuggling: unknown Transfer-Encoding never yields a second response",
@@ -242,9 +487,15 @@
           "raw": "POST /nope HTTP/1.1\r\nHost: {HOST}\r\nConnection: keep-alive\r\nTransfer-Encoding: gzip\r\n\r\nGET / HTTP/1.1\r\nHost: {HOST}\r\n\r\n",
           "maxResponses": 1
         },
-        { "method": "GET", "path": "/", "expectStatus": 200 }
+        {
+          "method": "GET",
+          "path": "/",
+          "expectStatus": 200
+        }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "smuggling: two Content-Length headers never yield a second response",
@@ -254,7 +505,9 @@
           "maxResponses": 1
         }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "smuggling: negative Content-Length never yields a second response",
@@ -264,7 +517,9 @@
           "maxResponses": 1
         }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "smuggling: Content-Length together with chunked never yields a second response",
@@ -274,7 +529,9 @@
           "maxResponses": 1
         }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "a malformed chunk size (0x1b) never saves anything",
@@ -284,16 +541,34 @@
           "maxResponses": 1
         }
       ],
-      "expect": { "absent": ["design/DESIGN.md"], "exits": false }
+      "expect": {
+        "absent": [
+          "design/DESIGN.md"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "TRACE and unknown methods are refused and the server keeps running",
       "requests": [
-        { "method": "TRACE", "path": "/", "expectStatus": 405 },
-        { "raw": "FOO / HTTP/1.1\r\nHost: {HOST}\r\n\r\n", "maxResponses": 1 },
-        { "method": "GET", "path": "/", "expectStatus": 200 }
+        {
+          "method": "TRACE",
+          "path": "/",
+          "expectStatus": 405
+        },
+        {
+          "raw": "FOO / HTTP/1.1\r\nHost: {HOST}\r\n\r\n",
+          "maxResponses": 1
+        },
+        {
+          "method": "GET",
+          "path": "/",
+          "expectStatus": 200
+        }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "identity.json with NaN is not valid JSON and is rejected",
@@ -301,19 +576,32 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
           "bodyRaw": "{\"files\":{\"identity.json\":\"{\\\"a\\\": NaN}\"}}",
           "expectStatus": 400
         },
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
           "bodyRaw": "{\"files\":{\"DESIGN.md\":\"x\"},\"n\":-Infinity}",
           "expectStatus": 400
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "a lone surrogate in file content is written as U+FFFD (valid UTF-8)",
@@ -321,12 +609,34 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "bodyRaw": "{\"files\":{\"DESIGN.md\":\"a\\ud800b\"}}",
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
+          "change": [
+            {
+              "set": [
+                "files",
+                "DESIGN.md"
+              ],
+              "value": "a\ud800b\n"
+            },
+            {
+              "rehash": "DESIGN.md"
+            }
+          ],
           "expectStatus": 200
         }
       ],
-      "expect": { "files": { "design/DESIGN.md": "a�b" }, "exits": true, "exitCode": 0 }
+      "expect": {
+        "files": {
+          "design/DESIGN.md": "a\ufffdb\n"
+        },
+        "exits": true,
+        "exitCode": 0
+      }
     },
     {
       "name": "the server still exits after saving when the agent stopped reading its output",
@@ -335,12 +645,27 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "DESIGN.md": "@design" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 200
         }
       ],
-      "expect": { "files": { "design/DESIGN.md": "@design" }, "exits": true }
+      "expect": {
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html"
+        },
+        "exits": true,
+        "exitCode": 0
+      }
     },
     {
       "name": "the server still exits after five wrong tokens when the agent stopped reading its output",
@@ -349,13 +674,22 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "wrong" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "wrong"
+          },
+          "body": "@bundle",
           "repeat": 5,
           "expectStatus": 401
         }
       ],
-      "expect": { "absent": ["design"], "exits": true }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": true
+      }
     },
     {
       "name": "save completes and the server exits 0 even if the client resets the connection",
@@ -363,12 +697,28 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "DESIGN.md": "@design" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "reset": true
         }
       ],
-      "expect": { "files": { "design/DESIGN.md": "@design" }, "exits": true, "exitCode": 0, "stdoutStatus": "saved" }
+      "expect": {
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html"
+        },
+        "exits": true,
+        "exitCode": 0,
+        "stdoutStatus": "saved"
+      }
     },
     {
       "name": "five wrong tokens close the server even if each connection is reset",
@@ -376,74 +726,174 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "wrong" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "wrong"
+          },
+          "body": "@bundle",
           "repeat": 5,
           "reset": true
         }
       ],
-      "expect": { "absent": ["design"], "exits": true, "exitCode": 1, "stdoutStatus": "closed" }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": true,
+        "exitCode": 1,
+        "stdoutStatus": "closed"
+      }
     },
     {
       "name": "requests with a foreign Host do not keep an idle server alive",
-      "args": ["--idle-timeout", "2"],
-      "requests": [{ "method": "GET", "path": "/", "headers": { "Host": "evil.example" }, "delayBeforeMs": 1500, "expectStatus": 403 }],
-      "expect": { "exits": true, "exitCode": 1, "exitsWithinMsOfReady": 2800, "stdoutStatus": "closed" }
+      "args": [
+        "--idle-timeout",
+        "2"
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "headers": {
+            "Host": "evil.example"
+          },
+          "delayBeforeMs": 1500,
+          "expectStatus": 403
+        }
+      ],
+      "expect": {
+        "exits": true,
+        "exitCode": 1,
+        "exitsWithinMsOfReady": 2800,
+        "stdoutStatus": "closed"
+      }
     },
     {
       "name": "export attempts from another site do not keep an idle server alive",
-      "args": ["--idle-timeout", "2"],
+      "args": [
+        "--idle-timeout",
+        "2"
+      ],
       "requests": [
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "text/plain", "Origin": "https://evil.example" },
+          "headers": {
+            "Content-Type": "text/plain",
+            "Origin": "https://evil.example"
+          },
           "bodyRaw": "x",
           "delayBeforeMs": 1500,
           "expectStatus": 403
         }
       ],
-      "expect": { "exits": true, "exitCode": 1, "exitsWithinMsOfReady": 2800, "stdoutStatus": "closed" }
+      "expect": {
+        "exits": true,
+        "exitCode": 1,
+        "exitsWithinMsOfReady": 2800,
+        "stdoutStatus": "closed"
+      }
     },
     {
       "name": "page loads marked cross-site do not keep an idle server alive",
-      "args": ["--idle-timeout", "2"],
-      "requests": [{ "method": "GET", "path": "/", "headers": { "Sec-Fetch-Site": "cross-site" }, "delayBeforeMs": 1500, "expectStatus": 200 }],
-      "expect": { "exits": true, "exitCode": 1, "exitsWithinMsOfReady": 2800, "stdoutStatus": "closed" }
+      "args": [
+        "--idle-timeout",
+        "2"
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "headers": {
+            "Sec-Fetch-Site": "cross-site"
+          },
+          "delayBeforeMs": 1500,
+          "expectStatus": 200
+        }
+      ],
+      "expect": {
+        "exits": true,
+        "exitCode": 1,
+        "exitsWithinMsOfReady": 2800,
+        "stdoutStatus": "closed"
+      }
     },
     {
       "name": "a normal page load does keep the server alive",
-      "args": ["--idle-timeout", "2"],
-      "requests": [{ "method": "GET", "path": "/", "headers": { "Sec-Fetch-Site": "none" }, "delayBeforeMs": 1500, "expectStatus": 200 }],
-      "expect": { "exits": false }
+      "args": [
+        "--idle-timeout",
+        "2"
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "headers": {
+            "Sec-Fetch-Site": "none"
+          },
+          "delayBeforeMs": 1500,
+          "expectStatus": 200
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "design folder that cannot be created gives 500 and the server keeps running",
-      "setup": { "readonlyProject": true },
+      "setup": {
+        "readonlyProject": true
+      },
       "requests": [
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 500
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "a link planted inside design is never followed or replaced",
-      "setup": { "files": { "design/keep.txt": "x" }, "symlinks": { "design/DESIGN.md": "../../outside/target.md" } },
+      "setup": {
+        "files": {
+          "design/keep.txt": "x"
+        },
+        "symlinks": {
+          "design/DESIGN.md": "../../outside/target.md"
+        }
+      },
       "requests": [
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "DESIGN.md": "@design" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 409
         }
       ],
-      "expect": { "absent": ["../outside/target.md"], "exits": false }
+      "expect": {
+        "absent": [
+          "../outside/target.md"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "request from another site (foreign Origin) is rejected",
@@ -451,12 +901,21 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "https://evil.example", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "https://evil.example",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 403
         }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "foreign Host header (DNS rebinding) is rejected",
@@ -464,70 +923,751 @@
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Host": "evil.example", "Content-Type": "application/json", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Host": "evil.example",
+            "Content-Type": "application/json",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 403
         },
-        { "method": "GET", "path": "/", "headers": { "Host": "evil.example" }, "expectStatus": 403 }
+        {
+          "method": "GET",
+          "path": "/",
+          "headers": {
+            "Host": "evil.example"
+          },
+          "expectStatus": 403
+        }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "existing design files are never replaced",
-      "setup": { "files": { "design/DESIGN.md": "OLD CONTENT\n" } },
+      "setup": {
+        "files": {
+          "design/DESIGN.md": "OLD CONTENT\n"
+        }
+      },
       "requests": [
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity", "DESIGN.md": "@design" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 409
         }
       ],
-      "expect": { "files": { "design/DESIGN.md": "OLD CONTENT\n" }, "absent": ["design/identity.json"], "exits": false }
+      "expect": {
+        "files": {
+          "design/DESIGN.md": "OLD CONTENT\n"
+        },
+        "absent": [
+          "design/identity.json"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "design folder that is a link to outside the project is refused",
-      "setup": { "symlinks": { "design": "../outside" } },
+      "setup": {
+        "symlinks": {
+          "design": "../outside"
+        }
+      },
       "requests": [
         {
           "method": "POST",
           "path": "/api/export",
-          "headers": { "Content-Type": "application/json", "Origin": "{ORIGIN}", "X-Hawiya-Token": "{TOKEN}" },
-          "body": { "files": { "identity.json": "@identity" } },
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "body": "@bundle",
           "expectStatus": 409
         }
       ],
-      "expect": { "absent": ["../outside/identity.json"], "exits": false }
+      "expect": {
+        "absent": [
+          "../outside/identity.json"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "the picker page is served",
-      "requests": [{ "method": "GET", "path": "/", "expectStatus": 200, "expectBodyContains": "Hawiya" }],
-      "expect": { "exits": false }
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/",
+          "expectStatus": 200,
+          "expectBodyContains": "Hawiya"
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "files outside the picker folder are not served",
       "requests": [
-        { "method": "GET", "path": "/../package.json", "expectStatus": 404 },
-        { "method": "GET", "path": "/%2e%2e/package.json", "expectStatus": 404 },
-        { "method": "GET", "path": "/..%2fpackage.json", "expectStatus": 404 },
-        { "method": "GET", "path": "/%2e%2e%2f%2e%2e%2fetc%2fpasswd", "expectStatus": 404 }
+        {
+          "method": "GET",
+          "path": "/../package.json",
+          "expectStatus": 404
+        },
+        {
+          "method": "GET",
+          "path": "/%2e%2e/package.json",
+          "expectStatus": 404
+        },
+        {
+          "method": "GET",
+          "path": "/..%2fpackage.json",
+          "expectStatus": 404
+        },
+        {
+          "method": "GET",
+          "path": "/%2e%2e%2f%2e%2e%2fetc%2fpasswd",
+          "expectStatus": 404
+        }
       ],
-      "expect": { "exits": false }
+      "expect": {
+        "exits": false
+      }
     },
     {
       "name": "wrong method on the export route is rejected",
       "requests": [
-        { "method": "GET", "path": "/api/export", "expectStatus": 405 },
-        { "method": "OPTIONS", "path": "/api/export", "headers": { "Origin": "https://evil.example" }, "expectStatus": 405 }
+        {
+          "method": "GET",
+          "path": "/api/export",
+          "expectStatus": 405
+        },
+        {
+          "method": "OPTIONS",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "https://evil.example"
+          },
+          "expectStatus": 405
+        }
       ],
-      "expect": { "absent": ["design"], "exits": false }
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     },
     {
       "name": "idle server closes itself with code 1",
-      "args": ["--idle-timeout", "1"],
+      "args": [
+        "--idle-timeout",
+        "1"
+      ],
       "requests": [],
-      "expect": { "exits": true, "exitCode": 1, "stdoutStatus": "closed" }
+      "expect": {
+        "exits": true,
+        "exitCode": 1,
+        "stdoutStatus": "closed"
+      }
+    },
+    {
+      "name": "a bundle with a file missing is rejected and nothing is written",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "delete": [
+                "files",
+                "theme.css"
+              ]
+            },
+            {
+              "delete": [
+                "sha256",
+                "theme.css"
+              ]
+            }
+          ],
+          "expectBodyContains": "theme.css"
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "a file whose content does not match its fingerprint is rejected",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "files",
+                "tokens.css"
+              ],
+              "value": ":root { --x: 1; }\n"
+            }
+          ],
+          "expectBodyContains": "tokens.css"
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "a bundle in another format or version is rejected",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "schemaVersion"
+              ],
+              "value": 2
+            }
+          ],
+          "expectBodyContains": "format"
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "the identity object and identity.json must agree",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "identity",
+                "name"
+              ],
+              "value": "Someone else"
+            }
+          ],
+          "expectBodyContains": "identity"
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "an identity that breaks the schema is rejected with the list of errors",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "set": [
+                "files",
+                "identity.json"
+              ],
+              "value": "{\n  \"schemaVersion\": 2\n}\n"
+            },
+            {
+              "rehash": "identity.json"
+            },
+            {
+              "identityFromText": true
+            }
+          ],
+          "expectBodyContains": [
+            "identity is not valid",
+            "schemaVersion",
+            "\"errors\""
+          ]
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "identity.json with a key written twice is rejected even with a matching fingerprint",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 400,
+          "change": [
+            {
+              "duplicateKey": "name"
+            }
+          ]
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "--replace: existing files are copied to a dated backup folder, then replaced",
+      "setup": {
+        "files": {
+          "design/DESIGN.md": "OLD DESIGN\n",
+          "design/tokens.css": "OLD TOKENS\n",
+          "design/notes.txt": "mine\n"
+        }
+      },
+      "args": [
+        "--replace"
+      ],
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 200
+        }
+      ],
+      "expect": {
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html",
+          "design/notes.txt": "mine\n"
+        },
+        "backup": {
+          "DESIGN.md": "OLD DESIGN\n",
+          "tokens.css": "OLD TOKENS\n"
+        },
+        "written": [
+          "identity.json",
+          "DESIGN.md",
+          "tokens.json",
+          "tokens.css",
+          "theme.css",
+          "style-guide.html"
+        ],
+        "exits": true,
+        "exitCode": 0,
+        "stdoutStatus": "saved"
+      }
+    },
+    {
+      "name": "--replace with nothing to replace makes no backup folder",
+      "args": [
+        "--replace"
+      ],
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 200
+        }
+      ],
+      "expect": {
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html"
+        },
+        "backup": null,
+        "exits": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "name": "--replace never follows or replaces a link planted inside design",
+      "setup": {
+        "files": {
+          "design/DESIGN.md": "OLD\n"
+        },
+        "symlinks": {
+          "design/tokens.css": "../../outside/target.css"
+        }
+      },
+      "args": [
+        "--replace"
+      ],
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 409
+        }
+      ],
+      "expect": {
+        "files": {
+          "design/DESIGN.md": "OLD\n"
+        },
+        "absent": [
+          "design/identity.json",
+          "../outside/target.css"
+        ],
+        "backup": null,
+        "exits": false
+      }
+    },
+    {
+      "name": "--replace refuses when a design name is a folder, not a file",
+      "setup": {
+        "files": {
+          "design/theme.css/inner.txt": "x\n"
+        }
+      },
+      "args": [
+        "--replace"
+      ],
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "expectStatus": 409
+        }
+      ],
+      "expect": {
+        "files": {
+          "design/theme.css/inner.txt": "x\n"
+        },
+        "absent": [
+          "design/identity.json"
+        ],
+        "backup": null,
+        "exits": false
+      }
+    },
+    {
+      "name": "session: the session file is returned to the page with the token",
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "@session"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 200,
+          "expectBodyContains": [
+            "\"session\"",
+            "\"landing\"",
+            "\"minimal\""
+          ]
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
+    },
+    {
+      "name": "session: wrong or missing token is rejected and counts as a failed attempt",
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "@session"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "wrong"
+          },
+          "expectStatus": 401,
+          "repeat": 4
+        },
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "expectStatus": 401
+        }
+      ],
+      "expect": {
+        "exits": true,
+        "exitCode": 1,
+        "stdoutStatus": "closed"
+      }
+    },
+    {
+      "name": "session: no session file gives 404",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 404
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
+    },
+    {
+      "name": "session: an invalid session file is not passed on (404 with the reason)",
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "{\"type\":\"landing\",\"language\":\"ar\",\"tags\":[\"minimal\"],\"secret\":\"x\"}\n"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 404,
+          "expectBodyContains": "not valid"
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
+    },
+    {
+      "name": "session: a session file that is a link is never followed",
+      "setup": {
+        "files": {
+          "outside-session.json": "@session"
+        },
+        "symlinks": {
+          "design/hawiya-session.json": "../outside-session.json"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 404
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
+    },
+    {
+      "name": "session: only GET, and never for another site",
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "@session"
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 405
+        },
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}",
+            "Origin": "http://evil.example"
+          },
+          "expectStatus": 403
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
+    },
+    {
+      "name": "session: GETs marked cross-site are refused without counting as attempts or keeping the server alive",
+      "args": [
+        "--idle-timeout",
+        "2"
+      ],
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "@session"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "Sec-Fetch-Site": "cross-site"
+          },
+          "expectStatus": 403,
+          "repeat": 6,
+          "delayBeforeMs": 300
+        }
+      ],
+      "expect": {
+        "exits": true,
+        "exitCode": 1,
+        "stdoutStatus": "closed",
+        "exitsWithinMsOfReady": 3500,
+        "stdoutReason": "idle timeout"
+      }
+    },
+    {
+      "name": "session: errors never quote the content of the session file",
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "PASSWORD=hunter2\n"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 404,
+          "expectBodyNotContains": [
+            "hunter2",
+            "PASSWORD"
+          ]
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
+    },
+    {
+      "name": "session: unknown keys in the session file are not echoed",
+      "setup": {
+        "files": {
+          "design/hawiya-session.json": "{\"type\":\"landing\",\"language\":\"ar\",\"tags\":[\"minimal\"],\"AWS_SECRET\":\"abc123\"}\n"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 404,
+          "expectBodyNotContains": [
+            "AWS_SECRET",
+            "abc123"
+          ]
+        }
+      ],
+      "expect": {
+        "exits": false
+      }
     }
-  ]
+  ],
+  "bundleIdentity": "identity-bilingual-landing.json"
 }

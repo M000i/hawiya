@@ -13,5 +13,7 @@ if (probe.status !== 0) {
   test('[python] python3 not found: Python server cases skipped', { skip: true }, () => {});
 } else {
   // -I: isolated mode (ignore PYTHON* env vars and the user site dir), as the skill will run it.
-  defineServerTests('python ' + probe.stdout.trim(), [PYTHON, '-I', path.join(__dirname, '..', '..', 'scripts', 'serve.py')]);
+  // Until task 1.14 the Python server is still the phase-0 prototype: it runs the frozen prototype cases.
+  // Task 1.14 switches it to cases.json (the same list as Node) and removes cases-prototype.json.
+  defineServerTests('python ' + probe.stdout.trim(), [PYTHON, '-I', path.join(__dirname, '..', '..', 'scripts', 'serve.py')], 'cases-prototype.json');
 }

@@ -1,15 +1,22 @@
 #!/usr/bin/env node
 /*
- * Hawiya save server (Node, no dependencies).
+ * Hawiya save server (Node, no dependencies; task 1.12, plan.md section 6).
  *
- * Usage: node scripts/serve.js <project-dir> [--idle-timeout <seconds>]
+ * Usage: node scripts/serve.js <project-dir> [--replace] [--idle-timeout <seconds>]
  *
- * - Serves the picker page on 127.0.0.1 at a random port.
- * - Prints one JSON line when ready: {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>","existing":[...]}
- * - Accepts one export (POST /api/export) carrying the one-time token in the X-Hawiya-Token header,
- *   writes only fixed file names into <project-dir>/design/, never replaces existing files,
- *   prints {"status":"saved","written":[...]} and exits 0.
- * - Exits 1 with {"status":"closed","reason":...} after the idle timeout or 5 failed token attempts.
+ * - Serves the picker page (picker/ only) on 127.0.0.1 at a random port.
+ * - Prints one JSON line when ready:
+ *     {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>","existing":[...],"replace":false}
+ * - GET /api/session (token in X-Hawiya-Token): returns {"session": ...} from <project>/design/hawiya-session.json
+ *   when it is a plain file that passes the session schema; 404 otherwise.
+ * - POST /api/export (token in X-Hawiya-Token, application/json, at most 5 MB): one complete export bundle
+ *   (picker/js/core/bundle.js). It is accepted only when bundle.verify finds nothing wrong (format, all six files,
+ *   each SHA-256, identity == identity.json) and identity.json, the exact text to be written, passes the identity
+ *   checker (picker/js/core/validate.js). Only the six fixed names are written, into <project>/design/.
+ *   Existing files are never replaced (409) unless --replace was given (the agent asks the user first); then the old
+ *   files are first copied into design/backup-YYYYMMDD-HHMMSS/.
+ *   On success prints {"status":"saved","written":[...]} and exits 0.
+ * - Exits 1 with {"status":"closed","reason":...} after the idle timeout or 5 failed token attempts; 2 on bad usage.
  */
 'use strict';
 
@@ -18,9 +25,15 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 
+const CORE = path.join(__dirname, '..', 'picker', 'js', 'core');
+const validator = require(path.join(CORE, 'validate.js'));
+const bundleMod = require(path.join(CORE, 'bundle.js'));
+
 const ALLOWED_FILES = ['identity.json', 'DESIGN.md', 'tokens.json', 'tokens.css', 'theme.css', 'style-guide.html'];
 const MAX_BODY_BYTES = 5 * 1024 * 1024;
 const MAX_FAILED_ATTEMPTS = 5;
+const MAX_SESSION_BYTES = 64 * 1024;
+const SESSION_FILE = 'hawiya-session.json';
 const DEFAULT_IDLE_SECONDS = 3600;
 
 const CONTENT_TYPES = {
@@ -43,9 +56,12 @@ function die(message) {
 function parseArgs(argv) {
   let projectArg = null;
   let idleSeconds = DEFAULT_IDLE_SECONDS;
+  let replace = false;
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (a === '--idle-timeout') {
+    if (a === '--replace') {
+      replace = true;
+    } else if (a === '--idle-timeout') {
       const v = Number(argv[++i]);
       if (!Number.isInteger(v) || v < 1 || v > 86400) die('--idle-timeout must be an integer between 1 and 86400');
       idleSeconds = v;
@@ -57,7 +73,7 @@ function parseArgs(argv) {
       die('only one project directory may be given');
     }
   }
-  if (projectArg === null) die('usage: serve.js <project-dir> [--idle-timeout <seconds>]');
+  if (projectArg === null) die('usage: serve.js <project-dir> [--replace] [--idle-timeout <seconds>]');
   let project;
   try {
     project = fs.realpathSync(projectArg);
@@ -65,10 +81,10 @@ function parseArgs(argv) {
     die('project directory does not exist: ' + projectArg);
   }
   if (!fs.statSync(project).isDirectory()) die('not a directory: ' + projectArg);
-  return { project, idleSeconds };
+  return { project, idleSeconds, replace };
 }
 
-const { project, idleSeconds } = parseArgs(process.argv.slice(2));
+const { project, idleSeconds, replace } = parseArgs(process.argv.slice(2));
 const designDir = path.join(project, 'design');
 const pickerRoot = fs.realpathSync(path.join(__dirname, '..', 'picker'));
 
@@ -77,12 +93,21 @@ const pickerRoot = fs.realpathSync(path.join(__dirname, '..', 'picker'));
 const token = crypto.randomBytes(32).toString('base64url');
 const tokenDigest = crypto.createHash('sha256').update(token).digest();
 let failedAttempts = 0;
-let tokenUsed = false;
+let tokenUsed = false; // set when a save starts: no second export can write, whatever its timing
 
 function tokenMatches(given) {
   if (typeof given !== 'string' || given.length === 0 || given.length > 256) return false;
   const digest = crypto.createHash('sha256').update(given).digest();
   return crypto.timingSafeEqual(digest, tokenDigest);
+}
+
+/* Refuses a wrong, missing or used token (401) and closes the server after five such attempts. True when refused. */
+function refuseBadToken(req, res) {
+  if (!tokenUsed && tokenMatches(req.headers['x-hawiya-token'])) return false;
+  failedAttempts++;
+  sendJson(res, 401, { error: 'invalid token' });
+  if (failedAttempts >= MAX_FAILED_ATTEMPTS) afterResponse(res, () => finish(1, { reason: 'too many failed attempts' }));
+  return true;
 }
 
 /* ---------- helpers ---------- */
@@ -145,8 +170,16 @@ function afterResponse(res, fn) {
   res.on('close', once);
 }
 
+// The agent may stop reading after the ready line (e.g. `| head -n 1`): writing then fails with EPIPE, which must not
+// turn a successful save into a crash. Lines that cannot be delivered are dropped; the exit code still tells.
+process.stdout.on('error', () => {});
+
 function printLine(obj) {
-  process.stdout.write(JSON.stringify(obj) + '\n');
+  try {
+    process.stdout.write(JSON.stringify(obj) + '\n');
+  } catch {
+    /* stdout closed */
+  }
 }
 
 let finished = false;
@@ -176,24 +209,27 @@ function touch() {
 
 /* ---------- export ---------- */
 
-function validateExport(payload) {
-  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return 'body must be a JSON object';
-  const files = payload.files;
-  if (!files || typeof files !== 'object' || Array.isArray(files)) return '"files" must be an object';
-  const names = Object.keys(files);
-  if (names.length === 0) return '"files" is empty';
-  for (const name of names) {
-    if (!ALLOWED_FILES.includes(name)) return 'file name not allowed: ' + name;
-    if (typeof files[name] !== 'string') return 'content of ' + name + ' must be a string';
+/* Returns null, or { error, ... } explaining why the bundle is refused (400). */
+function checkBundle(payload) {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return { error: 'body must be a JSON object' };
+  const problems = bundleMod.verify(payload);
+  if (problems.length) {
+    const named = problems.filter((p) => !p.startsWith('('));
+    const unknown = named.filter((p) => !ALLOWED_FILES.includes(p));
+    return {
+      error: unknown.length
+        ? 'file name not allowed: ' + unknown.slice(0, 10).join(', ')
+        : 'the export bundle is incomplete or damaged: ' + problems.slice(0, 10).join(', '),
+      problems: problems.slice(0, 20)
+    };
   }
-  if (names.includes('identity.json')) {
-    let parsed;
-    try {
-      parsed = JSON.parse(files['identity.json']);
-    } catch {
-      return 'identity.json is not valid JSON';
-    }
-    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return 'identity.json must be a JSON object';
+  // The text written to disk is what gets checked (no duplicate keys, nothing JSON.parse would hide).
+  const result = validator.checkText('identity', payload.files['identity.json']);
+  if (!result.valid) {
+    return {
+      error: 'identity is not valid',
+      errors: result.errors.slice(0, 20).map((e) => ({ path: e.instancePath || '/', message: e.message }))
+    };
   }
   return null;
 }
@@ -209,37 +245,103 @@ function designIsPlainFolder() {
   }
 }
 
+/* On a case-insensitive disk a replaced Identity.json keeps its old spelling: give the entry its canonical name
+   (after the content is in place, so nothing is ever missing). Best effort: the content is right either way. */
+function canonicalCase(name) {
+  try {
+    const entry = fs.readdirSync(designDir).find((e) => e !== name && e.toLowerCase() === name.toLowerCase());
+    if (entry && !fs.readdirSync(designDir).includes(name)) fs.renameSync(path.join(designDir, entry), path.join(designDir, name));
+  } catch {
+    /* leave the old spelling */
+  }
+}
+
+function pad2(n) {
+  return String(n).padStart(2, '0');
+}
+
+/* design/backup-YYYYMMDD-HHMMSS (local time), with -2, -3 ... if that name is taken. */
+function makeBackupDir() {
+  const d = new Date();
+  const base = 'backup-' + d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate()) + '-' + pad2(d.getHours()) + pad2(d.getMinutes()) + pad2(d.getSeconds());
+  for (let i = 1; i < 100; i++) {
+    const dir = path.join(designDir, i === 1 ? base : base + '-' + i);
+    try {
+      fs.mkdirSync(dir);
+      return dir;
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+    }
+  }
+  throw new Error('no free backup folder name');
+}
+
 /* Returns { status, body } on refusal, or { written } on success. Never writes outside designDir. */
 function writeExport(files) {
   const st = lstatOrNull(designDir);
   if (st && !designIsPlainFolder()) {
     return { status: 409, body: { error: 'design exists but is not a plain folder; refusing to write' } };
   }
+  let createdDesign = false;
   if (!st) {
     try {
       fs.mkdirSync(designDir);
+      createdDesign = true;
     } catch (err) {
       return { status: 500, body: { error: 'cannot create the design folder: ' + err.code } };
     }
   }
+  const removeCreatedDesign = () => {
+    if (!createdDesign) return;
+    try {
+      fs.rmdirSync(designDir); // only if still empty
+    } catch {
+      /* not empty or gone */
+    }
+  };
   if (!designIsPlainFolder()) return { status: 409, body: { error: 'design is not a plain folder' } };
 
-  const names = Object.keys(files);
-  const clash = names.filter((n) => lstatOrNull(path.join(designDir, n)) !== null);
-  if (clash.length) return { status: 409, body: { error: 'files already exist; not replacing', existing: clash } };
+  const names = ALLOWED_FILES.filter((n) => Object.prototype.hasOwnProperty.call(files, n));
+  const existing = names.filter((n) => lstatOrNull(path.join(designDir, n)) !== null);
+  if (existing.length && !replace) {
+    removeCreatedDesign();
+    return { status: 409, body: { error: 'files already exist; not replacing (run the server with --replace after the user agrees)', existing } };
+  }
+  // Even with --replace, only plain files are replaced: never a link, a folder or anything else.
+  const notPlain = existing.filter((n) => !(lstatOrNull(path.join(designDir, n)) || { isFile: () => false }).isFile());
+  if (notPlain.length) return { status: 409, body: { error: 'not a plain file; refusing to replace', existing: notPlain } };
+  const oldModes = {};
+  existing.forEach((n) => {
+    oldModes[n] = (lstatOrNull(path.join(designDir, n)) || { mode: 0o644 }).mode & 0o777;
+  });
 
   const temps = [];
+  const replaced = [];
+  let backupDir = null;
   try {
     for (const name of names) {
       if (!designIsPlainFolder()) throw new Error('design folder changed during write');
       const tmp = path.join(designDir, '.' + name + '.' + crypto.randomBytes(6).toString('hex') + '.tmp');
+      temps.push([tmp, path.join(designDir, name), name]); // listed before writing, so a partial file is cleaned up
       fs.writeFileSync(tmp, files[name], { encoding: 'utf8', flag: 'wx', mode: 0o644 });
-      temps.push([tmp, path.join(designDir, name)]);
+      if (oldModes[name] !== undefined) fs.chmodSync(tmp, oldModes[name]); // a replaced file keeps its permissions
     }
-    for (const [tmp, final] of temps) {
+    if (existing.length) {
+      backupDir = makeBackupDir();
+      for (const name of existing) {
+        const from = path.join(designDir, name);
+        const fst = lstatOrNull(from);
+        if (!fst || !fst.isFile()) throw new Error('file changed during write: ' + name);
+        fs.writeFileSync(path.join(backupDir, name), readPlainFile(from, Infinity), { flag: 'wx', mode: fst.mode & 0o777 });
+      }
+    }
+    for (const [tmp, final, name] of temps) {
       if (!designIsPlainFolder()) throw new Error('design folder changed during write');
-      if (lstatOrNull(final) !== null) throw new Error('file appeared during write: ' + path.basename(final));
-      fs.renameSync(tmp, final);
+      const now = lstatOrNull(final);
+      if (now !== null && !(existing.includes(name) && now.isFile())) throw new Error('file appeared during write: ' + name);
+      fs.renameSync(tmp, final); // one atomic step: the old file (backed up above) is never missing in between
+      replaced.push(name);
+      canonicalCase(name);
     }
   } catch (err) {
     for (const [tmp] of temps) {
@@ -249,9 +351,30 @@ function writeExport(files) {
         /* already renamed or gone */
       }
     }
+    // Put back what was already replaced, from the backup; remove new files that had no old version.
+    for (const name of replaced) {
+      try {
+        const final = path.join(designDir, name);
+        fs.unlinkSync(final);
+        if (backupDir && existing.includes(name)) fs.copyFileSync(path.join(backupDir, name), final, fs.constants.COPYFILE_EXCL);
+      } catch {
+        /* best effort */
+      }
+    }
+    // After a full rollback the backup is redundant; it is removed only when every original is back on disk.
+    if (backupDir && existing.every((n) => (lstatOrNull(path.join(designDir, n)) || { isFile: () => false }).isFile())) {
+      try {
+        fs.rmSync(backupDir, { recursive: true, force: true });
+      } catch {
+        /* leave it */
+      }
+    }
+    removeCreatedDesign();
     return { status: 500, body: { error: 'write failed: ' + (err.code || err.message) } };
   }
-  return { written: names };
+  const out = { written: names };
+  if (backupDir) out.backup = path.basename(backupDir);
+  return out;
 }
 
 function handleExport(req, res) {
@@ -261,12 +384,7 @@ function handleExport(req, res) {
   if (origin !== undefined && origin !== serverOrigin) return sendJson(res, 403, { error: 'foreign origin' });
   touch();
 
-  if (tokenUsed || !tokenMatches(req.headers['x-hawiya-token'])) {
-    failedAttempts++;
-    sendJson(res, 401, { error: 'invalid token' });
-    if (failedAttempts >= MAX_FAILED_ATTEMPTS) afterResponse(res, () => finish(1, { reason: 'too many failed attempts' }));
-    return;
-  }
+  if (refuseBadToken(req, res)) return;
 
   const mediaType = String(req.headers['content-type'] || '').split(';')[0].trim().toLowerCase();
   if (mediaType !== 'application/json') return sendJson(res, 415, { error: 'content type must be application/json' });
@@ -298,19 +416,70 @@ function handleExport(req, res) {
     } catch {
       return sendJson(res, 400, { error: 'body is not valid JSON' });
     }
-    const problem = validateExport(payload);
-    if (problem) return sendJson(res, 400, { error: problem });
+    if (tokenUsed) return sendJson(res, 401, { error: 'invalid token' }); // another export got there first
+    const problem = checkBundle(payload);
+    if (problem) return sendJson(res, 400, problem);
 
+    tokenUsed = true; // claim the one save before touching the disk (synchronous from here to the end)
     const result = writeExport(payload.files);
-    if (!result.written) return sendJson(res, result.status, result.body);
+    if (!result.written) {
+      tokenUsed = false; // nothing was written: the token may be used again
+      return sendJson(res, result.status, result.body);
+    }
 
     // The files are on disk: from here the server closes no matter how the client behaves.
-    tokenUsed = true;
-    const done = () => finish(0, { written: result.written });
-    sendJson(res, 200, { written: result.written });
+    const info = result.backup ? { written: result.written, backup: result.backup } : { written: result.written };
+    const done = () => finish(0, info);
+    sendJson(res, 200, info);
     afterResponse(res, done);
     setTimeout(done, 2000).unref();
   });
+}
+
+/* ---------- session ---------- */
+
+/* Reads a plain file through one descriptor: no symlink, no blocking on a FIFO, and checks what was opened. */
+function readPlainFile(file, maxBytes) {
+  const flags = fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW || 0) | (fs.constants.O_NONBLOCK || 0);
+  const fd = fs.openSync(file, flags);
+  try {
+    const st = fs.fstatSync(fd);
+    if (!st.isFile()) throw Object.assign(new Error('not a plain file'), { code: 'ENOTFILE' });
+    if (st.size > maxBytes) throw Object.assign(new Error('too large'), { code: 'ETOOBIG' });
+    return fs.readFileSync(fd);
+  } finally {
+    fs.closeSync(fd);
+  }
+}
+
+function handleSession(req, res) {
+  if (req.method !== 'GET') return sendJson(res, 405, { error: 'method not allowed' }, { Allow: 'GET' });
+  const origin = req.headers.origin;
+  if (origin !== undefined && origin !== serverOrigin) return sendJson(res, 403, { error: 'foreign origin' });
+  // GETs made by other sites carry no Origin (<img>, no-cors fetch) but browsers mark them: refused without counting
+  // as an attempt (a hostile page could otherwise close the server) or as activity (or keep it alive).
+  const site = req.headers['sec-fetch-site'];
+  if (site === 'cross-site' || site === 'same-site') return sendJson(res, 403, { error: 'foreign site' });
+  touch();
+  if (refuseBadToken(req, res)) return;
+
+  const none = (why) => sendJson(res, 404, { error: why });
+  if (!designIsPlainFolder()) return none('no session');
+  const file = path.join(designDir, SESSION_FILE);
+  const st = lstatOrNull(file);
+  if (!st) return none('no session');
+  if (!st.isFile()) return none('the session file is not a plain file; not read');
+  if (st.size > MAX_SESSION_BYTES) return none('the session file is too large; not read');
+  let text;
+  try {
+    text = readPlainFile(file, MAX_SESSION_BYTES).toString('utf8');
+  } catch {
+    return none('the session file could not be read');
+  }
+  const result = validator.checkText('session', text);
+  // Only places and rule names: never echo the file's content (it may not be what we expect).
+  if (!result.valid) return none('the session file is not valid: ' + result.errors.slice(0, 3).map((e) => (e.instancePath || '/') + ' (' + e.keyword + ')').join('; '));
+  return sendJson(res, 200, { session: JSON.parse(text) });
 }
 
 /* ---------- static picker files ---------- */
@@ -371,6 +540,7 @@ const server = http.createServer((req, res) => {
 
   const pathname = String(req.url || '/').split('?')[0].split('#')[0];
   if (pathname === '/api/export') return handleExport(req, res);
+  if (pathname === '/api/session') return handleSession(req, res);
   return handleStatic(req, res, pathname);
 });
 
@@ -383,5 +553,5 @@ server.listen(0, '127.0.0.1', () => {
   expectedHost = '127.0.0.1:' + port;
   serverOrigin = 'http://' + expectedHost;
   touch();
-  printLine({ status: 'ready', url: serverOrigin + '/#token=' + token, existing: existingDesignFiles() });
+  printLine({ status: 'ready', url: serverOrigin + '/#token=' + token, existing: existingDesignFiles(), replace });
 });
