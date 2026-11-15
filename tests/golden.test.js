@@ -12,6 +12,11 @@ const contrast = require('../picker/js/core/contrast.js');
 const color = require('../picker/js/core/color.js');
 const ramp = require('../picker/js/core/ramp.js');
 const modes = require('../picker/js/core/modes.js');
+const scale = require('../picker/js/core/scale.js');
+
+test('G-04 type scale: base 16, ratio 1.25, five steps → 16, 20, 25, 31.25, 39.06', () => {
+  assert.deepEqual(scale.generate({ base: 16, ratio: 1.25, steps: 5 }), [16, 20, 25, 31.25, 39.06]);
+});
 
 // Task-level golden (tasks.md 1.5).
 test('T-1.5 modes: #3B82F6 → main text on background ≥ 4.5:1 in light and dark; primary button text ≥ 4.5:1', () => {
