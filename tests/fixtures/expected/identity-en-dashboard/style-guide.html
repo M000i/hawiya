@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Ledger Dark — Style guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;display=swap">
+<style>
+:root {
+  /* color ramps, same in both modes (50 lightest, 950 darkest) */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+  --color-secondary-50: #f5f3ff;
+  --color-secondary-100: #ede9fe;
+  --color-secondary-200: #ddd6fe;
+  --color-secondary-300: #c4b5fd;
+  --color-secondary-400: #a78bfa;
+  --color-secondary-500: #8b5cf6;
+  --color-secondary-600: #7c3aed;
+  --color-secondary-700: #6d28d9;
+  --color-secondary-800: #5b21b6;
+  --color-secondary-900: #4c1d95;
+  --color-secondary-950: #2e1065;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712;
+  /* fonts: chosen families, then generic fallbacks */
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-numerals: "JetBrains Mono", ui-monospace, monospace;
+  /* line height: Arabic text, Latin text, and the default for this project */
+  --line-height-ar: 1.7;
+  --line-height-en: 1.5;
+  --line-height: 1.5;
+  /* type scale (base = body text) */
+  --font-size-sm: 0.8rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5625rem;
+  --font-size-2xl: 1.953125rem;
+  --font-size-3xl: 2.44125rem;
+  /* corner radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  /* spacing: --space-unit and the allowed steps */
+  --space-unit: 4px;
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+}
+[data-mode="light"] {
+  color-scheme: light;
+  /* colors (light) */
+  --color-primary: #2563eb;
+  --color-on-primary: #ffffff;
+  --color-secondary: #7c3aed;
+  --color-on-secondary: #ffffff;
+  --color-accent-text: #2563eb;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-on-surface: #111827;
+  --color-muted-text: #4b5563;
+  --color-border: #e5e7eb;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --color-info: #1d4ed8;
+  --color-focus-ring: #2563eb;
+  --color-control-border: #4b5563;
+  /* shadows (light) */
+  --shadow-sm: 0px 1px 2px 0px rgb(0 0 0 / 0.06);
+  --shadow-md: 0px 4px 12px 0px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0px 12px 32px -4px rgb(0 0 0 / 0.12), 0px 2px 4px 0px rgb(0 0 0 / 0.05);
+}
+[data-mode="dark"] {
+  color-scheme: dark;
+  /* colors (dark) */
+  --color-primary: #60a5fa;
+  --color-on-primary: #000000;
+  --color-secondary: #a78bfa;
+  --color-on-secondary: #000000;
+  --color-accent-text: #60a5fa;
+  --color-background: #0b1120;
+  --color-surface: #111827;
+  --color-on-surface: #f9fafb;
+  --color-muted-text: #9ca3af;
+  --color-border: #374151;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --color-info: #1d4ed8;
+  --color-focus-ring: #60a5fa;
+  --color-control-border: #9ca3af;
+  /* shadows (dark) */
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0px 4px 12px 0px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0px 12px 32px 0px rgb(0 0 0 / 0.7);
+}
+.chip-primary { background: var(--color-primary); }
+.chip-on-primary { background: var(--color-on-primary); }
+.chip-secondary { background: var(--color-secondary); }
+.chip-on-secondary { background: var(--color-on-secondary); }
+.chip-accent-text { background: var(--color-accent-text); }
+.chip-background { background: var(--color-background); }
+.chip-surface { background: var(--color-surface); }
+.chip-on-surface { background: var(--color-on-surface); }
+.chip-muted-text { background: var(--color-muted-text); }
+.chip-border { background: var(--color-border); }
+.chip-success { background: var(--color-success); }
+.chip-warning { background: var(--color-warning); }
+.chip-danger { background: var(--color-danger); }
+.chip-info { background: var(--color-info); }
+.chip-focus-ring { background: var(--color-focus-ring); }
+.chip-control-border { background: var(--color-control-border); }
+.chip-primary { color: var(--color-on-primary); }
+.chip-secondary { color: var(--color-on-secondary); }
+.ramp-primary-50 { background: var(--color-primary-50); }
+.ramp-primary-100 { background: var(--color-primary-100); }
+.ramp-primary-200 { background: var(--color-primary-200); }
+.ramp-primary-300 { background: var(--color-primary-300); }
+.ramp-primary-400 { background: var(--color-primary-400); }
+.ramp-primary-500 { background: var(--color-primary-500); }
+.ramp-primary-600 { background: var(--color-primary-600); }
+.ramp-primary-700 { background: var(--color-primary-700); }
+.ramp-primary-800 { background: var(--color-primary-800); }
+.ramp-primary-900 { background: var(--color-primary-900); }
+.ramp-primary-950 { background: var(--color-primary-950); }
+.ramp-secondary-50 { background: var(--color-secondary-50); }
+.ramp-secondary-100 { background: var(--color-secondary-100); }
+.ramp-secondary-200 { background: var(--color-secondary-200); }
+.ramp-secondary-300 { background: var(--color-secondary-300); }
+.ramp-secondary-400 { background: var(--color-secondary-400); }
+.ramp-secondary-500 { background: var(--color-secondary-500); }
+.ramp-secondary-600 { background: var(--color-secondary-600); }
+.ramp-secondary-700 { background: var(--color-secondary-700); }
+.ramp-secondary-800 { background: var(--color-secondary-800); }
+.ramp-secondary-900 { background: var(--color-secondary-900); }
+.ramp-secondary-950 { background: var(--color-secondary-950); }
+.ramp-neutral-50 { background: var(--color-neutral-50); }
+.ramp-neutral-100 { background: var(--color-neutral-100); }
+.ramp-neutral-200 { background: var(--color-neutral-200); }
+.ramp-neutral-300 { background: var(--color-neutral-300); }
+.ramp-neutral-400 { background: var(--color-neutral-400); }
+.ramp-neutral-500 { background: var(--color-neutral-500); }
+.ramp-neutral-600 { background: var(--color-neutral-600); }
+.ramp-neutral-700 { background: var(--color-neutral-700); }
+.ramp-neutral-800 { background: var(--color-neutral-800); }
+.ramp-neutral-900 { background: var(--color-neutral-900); }
+.ramp-neutral-950 { background: var(--color-neutral-950); }
+.size-sm { font-size: var(--font-size-sm); }
+.size-base { font-size: var(--font-size-base); }
+.size-lg { font-size: var(--font-size-lg); }
+.size-xl { font-size: var(--font-size-xl); }
+.size-2xl { font-size: var(--font-size-2xl); }
+.size-3xl { font-size: var(--font-size-3xl); }
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+.radius-full { border-radius: var(--radius-full); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-family: var(--font-body); font-size: var(--font-size-base); line-height: var(--line-height); background: var(--color-background); color: var(--color-on-surface); }
+.en { color: var(--color-muted-text); font-weight: 400; }
+header.page { padding: 32px 24px 16px; }
+header.page h1 { font-family: var(--font-heading); font-size: var(--font-size-lg); margin: 0 0 4px; overflow-wrap: anywhere; }
+header.page p { margin: 0; }
+section.shared { padding: 8px 24px 24px; }
+.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); }
+.mode { background: var(--color-background); color: var(--color-on-surface); padding: 24px; min-width: 0; }
+.mode h2, section.shared h2 { font-family: var(--font-heading); font-size: var(--font-size-lg); margin: 0 0 16px; }
+.mode h3, section.shared h3 { font-size: var(--font-size-base); margin: 24px 0 8px; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.swatch { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+.chip { block-size: 56px; display: flex; align-items: center; padding-inline: 12px; font-weight: 700; }
+.swatch .meta { padding: 8px 12px; font-size: var(--font-size-base); }
+.swatch .meta code, .meta-line { color: var(--color-muted-text); }
+code { font-family: ui-monospace, monospace; font-size: 0.875em; }
+.ramp { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); border: 1px solid var(--color-neutral-200); border-radius: var(--radius-md); overflow: hidden; margin-block-end: 8px; }
+.ramp div { block-size: 40px; }
+.font-sample { background: var(--color-surface); border-radius: var(--radius-md); padding: 12px 16px; margin-block-end: 8px; overflow-wrap: anywhere; }
+.font-sample .ar { font-size: var(--font-size-lg); line-height: var(--line-height-ar); }
+.font-sample .lat { line-height: var(--line-height-en); }
+.f-heading { font-family: var(--font-heading); font-weight: 700; }
+.f-body { font-family: var(--font-body); }
+.f-numerals { font-family: var(--font-numerals); font-variant-numeric: tabular-nums; }
+.scale p { margin: 0 0 8px; line-height: 1.3; overflow-wrap: anywhere; }
+.scale .px { font-size: var(--font-size-base); color: var(--color-muted-text); font-family: ui-monospace, monospace; }
+.boxes { display: flex; flex-wrap: wrap; gap: 16px; }
+.box { inline-size: 120px; block-size: 72px; background: var(--color-surface); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; text-align: center; font-size: var(--font-size-base); }
+.box.shadow-sm, .box.shadow-md, .box.shadow-lg { border-color: transparent; }
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn { font: inherit; font-weight: 600; border: 1px solid transparent; border-radius: var(--radius-md); padding-block: 8px; padding-inline: 20px; cursor: default; }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-secondary { background: var(--color-surface); color: var(--color-accent-text); border-color: var(--color-control-border); }
+.btn-focus { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+.card { background: var(--color-surface); color: var(--color-on-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 20px; max-inline-size: 420px; }
+.card h4 { font-family: var(--font-heading); font-size: var(--font-size-lg); margin: 0 0 8px; }
+.card p { margin: 0 0 8px; }
+.card .muted { color: var(--color-muted-text); }
+.card a { color: var(--color-accent-text); }
+footer.page { padding: 16px 24px 32px; color: var(--color-muted-text); }
+</style>
+</head>
+<body data-mode="light">
+<header class="page"><h1 dir="auto">Ledger Dark</h1><p><span lang="ar">دليل الهوية البصرية</span> <span class="en" lang="en">Style guide</span></p></header>
+<section class="shared" data-section="ramps"><h2><span lang="ar">التدرجات</span> <span class="en" lang="en">Ramps</span></h2>
+<h3><code>primary</code></h3><div class="ramp"><div class="ramp-primary-50" title="primary-50 #eff6ff"></div><div class="ramp-primary-100" title="primary-100 #dbeafe"></div><div class="ramp-primary-200" title="primary-200 #bfdbfe"></div><div class="ramp-primary-300" title="primary-300 #93c5fd"></div><div class="ramp-primary-400" title="primary-400 #60a5fa"></div><div class="ramp-primary-500" title="primary-500 #3b82f6"></div><div class="ramp-primary-600" title="primary-600 #2563eb"></div><div class="ramp-primary-700" title="primary-700 #1d4ed8"></div><div class="ramp-primary-800" title="primary-800 #1e40af"></div><div class="ramp-primary-900" title="primary-900 #1e3a8a"></div><div class="ramp-primary-950" title="primary-950 #172554"></div></div>
+<h3><code>secondary</code></h3><div class="ramp"><div class="ramp-secondary-50" title="secondary-50 #f5f3ff"></div><div class="ramp-secondary-100" title="secondary-100 #ede9fe"></div><div class="ramp-secondary-200" title="secondary-200 #ddd6fe"></div><div class="ramp-secondary-300" title="secondary-300 #c4b5fd"></div><div class="ramp-secondary-400" title="secondary-400 #a78bfa"></div><div class="ramp-secondary-500" title="secondary-500 #8b5cf6"></div><div class="ramp-secondary-600" title="secondary-600 #7c3aed"></div><div class="ramp-secondary-700" title="secondary-700 #6d28d9"></div><div class="ramp-secondary-800" title="secondary-800 #5b21b6"></div><div class="ramp-secondary-900" title="secondary-900 #4c1d95"></div><div class="ramp-secondary-950" title="secondary-950 #2e1065"></div></div>
+<h3><code>neutral</code></h3><div class="ramp"><div class="ramp-neutral-50" title="neutral-50 #f9fafb"></div><div class="ramp-neutral-100" title="neutral-100 #f3f4f6"></div><div class="ramp-neutral-200" title="neutral-200 #e5e7eb"></div><div class="ramp-neutral-300" title="neutral-300 #d1d5db"></div><div class="ramp-neutral-400" title="neutral-400 #9ca3af"></div><div class="ramp-neutral-500" title="neutral-500 #6b7280"></div><div class="ramp-neutral-600" title="neutral-600 #4b5563"></div><div class="ramp-neutral-700" title="neutral-700 #374151"></div><div class="ramp-neutral-800" title="neutral-800 #1f2937"></div><div class="ramp-neutral-900" title="neutral-900 #111827"></div><div class="ramp-neutral-950" title="neutral-950 #030712"></div></div>
+</section>
+<div class="modes">
+<section class="mode" data-mode="light" lang="ar">
+<h2><span lang="ar">الوضع الفاتح</span> <span class="en" lang="en">Light mode</span></h2>
+<div data-section="colors"><h3><span lang="ar">الألوان</span> <span class="en" lang="en">Colors</span></h3><div class="swatches">
+<div class="swatch" data-role="primary"><div class="chip chip-primary">Aa</div><div class="meta"><strong>primary</strong><br><code dir="ltr">#2563eb</code> <code dir="ltr"> 5.17:1</code></div></div>
+<div class="swatch" data-role="on-primary"><div class="chip chip-on-primary"></div><div class="meta"><strong>on-primary</strong><br><code dir="ltr">#ffffff</code></div></div>
+<div class="swatch" data-role="secondary"><div class="chip chip-secondary">Aa</div><div class="meta"><strong>secondary</strong><br><code dir="ltr">#7c3aed</code> <code dir="ltr"> 5.7:1</code></div></div>
+<div class="swatch" data-role="on-secondary"><div class="chip chip-on-secondary"></div><div class="meta"><strong>on-secondary</strong><br><code dir="ltr">#ffffff</code></div></div>
+<div class="swatch" data-role="accent-text"><div class="chip chip-accent-text"></div><div class="meta"><strong>accent-text</strong><br><code dir="ltr">#2563eb</code></div></div>
+<div class="swatch" data-role="background"><div class="chip chip-background"></div><div class="meta"><strong>background</strong><br><code dir="ltr">#ffffff</code></div></div>
+<div class="swatch" data-role="surface"><div class="chip chip-surface"></div><div class="meta"><strong>surface</strong><br><code dir="ltr">#f8fafc</code></div></div>
+<div class="swatch" data-role="on-surface"><div class="chip chip-on-surface"></div><div class="meta"><strong>on-surface</strong><br><code dir="ltr">#111827</code></div></div>
+<div class="swatch" data-role="muted-text"><div class="chip chip-muted-text"></div><div class="meta"><strong>muted-text</strong><br><code dir="ltr">#4b5563</code></div></div>
+<div class="swatch" data-role="border"><div class="chip chip-border"></div><div class="meta"><strong>border</strong><br><code dir="ltr">#e5e7eb</code></div></div>
+<div class="swatch" data-role="success"><div class="chip chip-success"></div><div class="meta"><strong>success</strong><br><code dir="ltr">#15803d</code></div></div>
+<div class="swatch" data-role="warning"><div class="chip chip-warning"></div><div class="meta"><strong>warning</strong><br><code dir="ltr">#b45309</code></div></div>
+<div class="swatch" data-role="danger"><div class="chip chip-danger"></div><div class="meta"><strong>danger</strong><br><code dir="ltr">#b91c1c</code></div></div>
+<div class="swatch" data-role="info"><div class="chip chip-info"></div><div class="meta"><strong>info</strong><br><code dir="ltr">#1d4ed8</code></div></div>
+<div class="swatch" data-role="focus-ring"><div class="chip chip-focus-ring"></div><div class="meta"><strong>focus-ring</strong><br><code dir="ltr">#2563eb</code></div></div>
+<div class="swatch" data-role="control-border"><div class="chip chip-control-border"></div><div class="meta"><strong>control-border</strong><br><code dir="ltr">#4b5563</code></div></div>
+</div></div>
+<div data-section="fonts"><h3><span lang="ar">الخطوط</span> <span class="en" lang="en">Fonts</span></h3>
+<div class="font-sample f-heading"><div class="meta-line"><code>heading</code> Inter</div><div class="ar" lang="ar">هوية واضحة تبدأ بخط مقروء ولون واحد</div><div class="lat" lang="en" dir="ltr">A clear identity starts with one readable font</div></div>
+<div class="font-sample f-body"><div class="meta-line"><code>body</code> Inter</div><div class="ar" lang="ar">هوية واضحة تبدأ بخط مقروء ولون واحد</div><div class="lat" lang="en" dir="ltr">A clear identity starts with one readable font</div></div>
+<div class="font-sample f-numerals"><div class="meta-line"><code>numerals</code> JetBrains Mono</div><div class="ar">٠١٢٣٤٥٦٧٨٩ · 0123456789</div></div>
+</div>
+<div data-section="scale" class="scale"><h3><span lang="ar">سلّم الأحجام</span> <span class="en" lang="en">Type scale</span></h3>
+<p class="size-3xl" data-size="3xl">هوية واضحة <span class="px" dir="ltr">3xl 39.06px</span></p>
+<p class="size-2xl" data-size="2xl">هوية واضحة <span class="px" dir="ltr">2xl 31.25px</span></p>
+<p class="size-xl" data-size="xl">هوية واضحة <span class="px" dir="ltr">xl 25px</span></p>
+<p class="size-lg" data-size="lg">هوية واضحة <span class="px" dir="ltr">lg 20px</span></p>
+<p class="size-base" data-size="base">هوية واضحة <span class="px" dir="ltr">base 16px</span></p>
+<p class="size-sm" data-size="sm">هوية واضحة <span class="px" dir="ltr">sm 12.8px</span></p>
+</div>
+<div data-section="radius"><h3><span lang="ar">الزوايا</span> <span class="en" lang="en">Corners</span></h3><div class="boxes">
+<div class="box radius-sm">sm<br>4px</div>
+<div class="box radius-md">md<br>8px</div>
+<div class="box radius-lg">lg<br>12px</div>
+<div class="box radius-full">full<br>9999px</div>
+</div></div>
+<div data-section="shadows"><h3><span lang="ar">الظلال</span> <span class="en" lang="en">Shadows</span></h3><div class="boxes">
+<div class="box radius-md shadow-sm">sm</div>
+<div class="box radius-md shadow-md">md</div>
+<div class="box radius-md shadow-lg">lg</div>
+</div></div>
+<div data-section="buttons"><h3><span lang="ar">الأزرار</span> <span class="en" lang="en">Buttons</span></h3><div class="buttons">
+<button type="button" class="btn btn-primary">زر أساسي</button>
+<button type="button" class="btn btn-secondary">زر ثانوي</button>
+<button type="button" class="btn btn-primary btn-focus">عند التركيز</button>
+</div></div>
+<div data-section="cards"><h3><span lang="ar">الكروت</span> <span class="en" lang="en">Cards</span></h3>
+<div class="card"><h4>عنوان الكرت</h4><p>نص قصير داخل الكرت بلون النص الأساسي، ومعه نص ثانوي أخفت.</p><p class="muted">نص ثانوي · <a href="#">رابط</a></p></div>
+</div>
+</section>
+<section class="mode" data-mode="dark" lang="ar">
+<h2><span lang="ar">الوضع الداكن</span> <span class="en" lang="en">Dark mode</span></h2>
+<div data-section="colors"><h3><span lang="ar">الألوان</span> <span class="en" lang="en">Colors</span></h3><div class="swatches">
+<div class="swatch" data-role="primary"><div class="chip chip-primary">Aa</div><div class="meta"><strong>primary</strong><br><code dir="ltr">#60a5fa</code> <code dir="ltr"> 8.26:1</code></div></div>
+<div class="swatch" data-role="on-primary"><div class="chip chip-on-primary"></div><div class="meta"><strong>on-primary</strong><br><code dir="ltr">#000000</code></div></div>
+<div class="swatch" data-role="secondary"><div class="chip chip-secondary">Aa</div><div class="meta"><strong>secondary</strong><br><code dir="ltr">#a78bfa</code> <code dir="ltr"> 7.72:1</code></div></div>
+<div class="swatch" data-role="on-secondary"><div class="chip chip-on-secondary"></div><div class="meta"><strong>on-secondary</strong><br><code dir="ltr">#000000</code></div></div>
+<div class="swatch" data-role="accent-text"><div class="chip chip-accent-text"></div><div class="meta"><strong>accent-text</strong><br><code dir="ltr">#60a5fa</code></div></div>
+<div class="swatch" data-role="background"><div class="chip chip-background"></div><div class="meta"><strong>background</strong><br><code dir="ltr">#0b1120</code></div></div>
+<div class="swatch" data-role="surface"><div class="chip chip-surface"></div><div class="meta"><strong>surface</strong><br><code dir="ltr">#111827</code></div></div>
+<div class="swatch" data-role="on-surface"><div class="chip chip-on-surface"></div><div class="meta"><strong>on-surface</strong><br><code dir="ltr">#f9fafb</code></div></div>
+<div class="swatch" data-role="muted-text"><div class="chip chip-muted-text"></div><div class="meta"><strong>muted-text</strong><br><code dir="ltr">#9ca3af</code></div></div>
+<div class="swatch" data-role="border"><div class="chip chip-border"></div><div class="meta"><strong>border</strong><br><code dir="ltr">#374151</code></div></div>
+<div class="swatch" data-role="success"><div class="chip chip-success"></div><div class="meta"><strong>success</strong><br><code dir="ltr">#15803d</code></div></div>
+<div class="swatch" data-role="warning"><div class="chip chip-warning"></div><div class="meta"><strong>warning</strong><br><code dir="ltr">#b45309</code></div></div>
+<div class="swatch" data-role="danger"><div class="chip chip-danger"></div><div class="meta"><strong>danger</strong><br><code dir="ltr">#b91c1c</code></div></div>
+<div class="swatch" data-role="info"><div class="chip chip-info"></div><div class="meta"><strong>info</strong><br><code dir="ltr">#1d4ed8</code></div></div>
+<div class="swatch" data-role="focus-ring"><div class="chip chip-focus-ring"></div><div class="meta"><strong>focus-ring</strong><br><code dir="ltr">#60a5fa</code></div></div>
+<div class="swatch" data-role="control-border"><div class="chip chip-control-border"></div><div class="meta"><strong>control-border</strong><br><code dir="ltr">#9ca3af</code></div></div>
+</div></div>
+<div data-section="fonts"><h3><span lang="ar">الخطوط</span> <span class="en" lang="en">Fonts</span></h3>
+<div class="font-sample f-heading"><div class="meta-line"><code>heading</code> Inter</div><div class="ar" lang="ar">هوية واضحة تبدأ بخط مقروء ولون واحد</div><div class="lat" lang="en" dir="ltr">A clear identity starts with one readable font</div></div>
+<div class="font-sample f-body"><div class="meta-line"><code>body</code> Inter</div><div class="ar" lang="ar">هوية واضحة تبدأ بخط مقروء ولون واحد</div><div class="lat" lang="en" dir="ltr">A clear identity starts with one readable font</div></div>
+<div class="font-sample f-numerals"><div class="meta-line"><code>numerals</code> JetBrains Mono</div><div class="ar">٠١٢٣٤٥٦٧٨٩ · 0123456789</div></div>
+</div>
+<div data-section="scale" class="scale"><h3><span lang="ar">سلّم الأحجام</span> <span class="en" lang="en">Type scale</span></h3>
+<p class="size-3xl" data-size="3xl">هوية واضحة <span class="px" dir="ltr">3xl 39.06px</span></p>
+<p class="size-2xl" data-size="2xl">هوية واضحة <span class="px" dir="ltr">2xl 31.25px</span></p>
+<p class="size-xl" data-size="xl">هوية واضحة <span class="px" dir="ltr">xl 25px</span></p>
+<p class="size-lg" data-size="lg">هوية واضحة <span class="px" dir="ltr">lg 20px</span></p>
+<p class="size-base" data-size="base">هوية واضحة <span class="px" dir="ltr">base 16px</span></p>
+<p class="size-sm" data-size="sm">هوية واضحة <span class="px" dir="ltr">sm 12.8px</span></p>
+</div>
+<div data-section="radius"><h3><span lang="ar">الزوايا</span> <span class="en" lang="en">Corners</span></h3><div class="boxes">
+<div class="box radius-sm">sm<br>4px</div>
+<div class="box radius-md">md<br>8px</div>
+<div class="box radius-lg">lg<br>12px</div>
+<div class="box radius-full">full<br>9999px</div>
+</div></div>
+<div data-section="shadows"><h3><span lang="ar">الظلال</span> <span class="en" lang="en">Shadows</span></h3><div class="boxes">
+<div class="box radius-md shadow-sm">sm<br>بلا ظل</div>
+<div class="box radius-md shadow-md">md</div>
+<div class="box radius-md shadow-lg">lg</div>
+</div></div>
+<div data-section="buttons"><h3><span lang="ar">الأزرار</span> <span class="en" lang="en">Buttons</span></h3><div class="buttons">
+<button type="button" class="btn btn-primary">زر أساسي</button>
+<button type="button" class="btn btn-secondary">زر ثانوي</button>
+<button type="button" class="btn btn-primary btn-focus">عند التركيز</button>
+</div></div>
+<div data-section="cards"><h3><span lang="ar">الكروت</span> <span class="en" lang="en">Cards</span></h3>
+<div class="card"><h4>عنوان الكرت</h4><p>نص قصير داخل الكرت بلون النص الأساسي، ومعه نص ثانوي أخفت.</p><p class="muted">نص ثانوي · <a href="#">رابط</a></p></div>
+</div>
+</section>
+</div>
+<footer class="page"><span lang="ar">صفحة مولّدة من identity.json بواسطة هوية. لا تعدّلها يدويًا.</span> <span class="en" lang="en">Generated by Hawiya from identity.json. Do not edit by hand.</span></footer>
+</body>
+</html>

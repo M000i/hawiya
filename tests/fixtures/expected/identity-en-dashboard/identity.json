@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "name": "Ledger Dark",
+  "project": {
+    "language": "en",
+    "direction": "ltr",
+    "platform": "web",
+    "type": "dashboard",
+    "contrast": "AA"
+  },
+  "tokens": {
+    "color": {
+      "light": {
+        "primary": "#2563eb",
+        "onPrimary": "#ffffff",
+        "secondary": "#7c3aed",
+        "onSecondary": "#ffffff",
+        "accentText": "#2563eb",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "onSurface": "#111827",
+        "mutedText": "#4b5563",
+        "border": "#e5e7eb",
+        "success": "#15803d",
+        "warning": "#b45309",
+        "danger": "#b91c1c",
+        "info": "#1d4ed8"
+      },
+      "dark": {
+        "primary": "#60a5fa",
+        "onPrimary": "#000000",
+        "secondary": "#a78bfa",
+        "onSecondary": "#000000",
+        "accentText": "#60a5fa",
+        "background": "#0b1120",
+        "surface": "#111827",
+        "onSurface": "#f9fafb",
+        "mutedText": "#9ca3af",
+        "border": "#374151",
+        "success": "#15803d",
+        "warning": "#b45309",
+        "danger": "#b91c1c",
+        "info": "#1d4ed8"
+      },
+      "ramps": {
+        "primary": [
+          "#eff6ff",
+          "#dbeafe",
+          "#bfdbfe",
+          "#93c5fd",
+          "#60a5fa",
+          "#3b82f6",
+          "#2563eb",
+          "#1d4ed8",
+          "#1e40af",
+          "#1e3a8a",
+          "#172554"
+        ],
+        "secondary": [
+          "#f5f3ff",
+          "#ede9fe",
+          "#ddd6fe",
+          "#c4b5fd",
+          "#a78bfa",
+          "#8b5cf6",
+          "#7c3aed",
+          "#6d28d9",
+          "#5b21b6",
+          "#4c1d95",
+          "#2e1065"
+        ],
+        "neutral": [
+          "#f9fafb",
+          "#f3f4f6",
+          "#e5e7eb",
+          "#d1d5db",
+          "#9ca3af",
+          "#6b7280",
+          "#4b5563",
+          "#374151",
+          "#1f2937",
+          "#111827",
+          "#030712"
+        ]
+      }
+    },
+    "font": {
+      "heading": {
+        "latin": "Inter",
+        "fallback": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "body": {
+        "latin": "Inter",
+        "fallback": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "numerals": {
+        "latin": "JetBrains Mono",
+        "fallback": [
+          "ui-monospace",
+          "monospace"
+        ]
+      },
+      "lineHeight": {
+        "ar": 1.7,
+        "en": 1.5
+      }
+    },
+    "typeScale": {
+      "base": 16,
+      "ratio": 1.25,
+      "steps": [
+        12.8,
+        16,
+        20,
+        25,
+        31.25,
+        39.06
+      ]
+    },
+    "radius": {
+      "sm": 4,
+      "md": 8,
+      "lg": 12,
+      "full": 9999
+    },
+    "shadow": {
+      "light": {
+        "sm": [
+          {
+            "x": 0,
+            "y": 1,
+            "blur": 2,
+            "spread": 0,
+            "color": "#000000",
+            "alpha": 0.06
+          }
+        ],
+        "md": [
+          {
+            "x": 0,
+            "y": 4,
+            "blur": 12,
+            "spread": 0,
+            "color": "#000000",
+            "alpha": 0.08
+          }
+        ],
+        "lg": [
+          {
+            "x": 0,
+            "y": 12,
+            "blur": 32,
+            "spread": -4,
+            "color": "#000000",
+            "alpha": 0.12
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "blur": 4,
+            "spread": 0,
+            "color": "#000000",
+            "alpha": 0.05
+          }
+        ]
+      },
+      "dark": {
+        "sm": [],
+        "md": [
+          {
+            "x": 0,
+            "y": 4,
+            "blur": 12,
+            "spread": 0,
+            "color": "#000000",
+            "alpha": 0.6
+          }
+        ],
+        "lg": [
+          {
+            "x": 0,
+            "y": 12,
+            "blur": 32,
+            "spread": 0,
+            "color": "#000000",
+            "alpha": 0.7,
+            "inset": false
+          }
+        ]
+      }
+    },
+    "spacing": {
+      "unit": 4,
+      "scale": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64
+      ]
+    }
+  },
+  "extensions": {
+    "icons": {
+      "library": "lucide",
+      "weight": "regular",
+      "fill": "outline",
+      "container": "none"
+    },
+    "components": {
+      "button": "button-solid",
+      "card": "card-bordered"
+    },
+    "motion": "subtle",
+    "numerals": "latn",
+    "calendar": "gregory",
+    "rtl": {
+      "logicalProperties": true,
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
+    }
+  },
+  "selections": {
+    "colors": {
+      "template": "palette-blue"
+    },
+    "fonts": {
+      "template": "pair-plex-arabic-plex-sans"
+    },
+    "radius": {
+      "template": "radius-soft",
+      "overrides": {
+        "md": 8
+      }
+    },
+    "buttons": {
+      "template": "button-solid",
+      "overrides": {
+        "full-width": false,
+        "icon-gap": 6,
+        "label-case": "sentence"
+      }
+    }
+  },
+  "autoFilled": [
+    "shadows",
+    "spacing"
+  ],
+  "leaveToAI": [
+    "illustrations",
+    "empty-states"
+  ]
+}
