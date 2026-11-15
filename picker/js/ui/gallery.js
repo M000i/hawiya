@@ -122,9 +122,26 @@
     });
   }
 
+  // What an element part gets: helpers, the current identity and choices, and a way to change the choices.
+  function partContext(element) {
+    return {
+      el: el,
+      t: t,
+      element: element,
+      identity: H.state.identity(),
+      choices: H.state.choices(),
+      change: H.state.change,
+      template: function (id) {
+        return H.library.find(element, id);
+      }
+    };
+  }
+
   function fillPanel(panel, element) {
     panel.textContent = '';
     var part = H.galleryParts && H.galleryParts[element];
+    // A part may add its own controls before the cards (e.g. suggestions) and after them (e.g. inputs, results).
+    if (part && part.before) panel.appendChild(part.before(partContext(element)));
     var cards = el('div', 'g-cards');
     H.library.view().templates[element].forEach(function (tpl) {
       var b = el('button', 'g-card');
@@ -152,9 +169,16 @@
       refused.hidden = true;
       panel.appendChild(refused);
     }
+    if (part && part.after) panel.appendChild(part.after(partContext(element)));
     opened[element] = panel;
     markCards(element);
     syncSliders(element);
+    updatePart(element);
+  }
+
+  function updatePart(element) {
+    var part = H.galleryParts && H.galleryParts[element];
+    if (part && part.update && opened[element]) part.update(opened[element], partContext(element));
   }
 
   function open(entry, button, panel) {
@@ -223,6 +247,7 @@
       if (entry.id !== 'identities') {
         markCards(entry.id);
         syncSliders(entry.id);
+        updatePart(entry.id);
       }
     });
   }

@@ -658,3 +658,113 @@ body {
   font-variant-numeric: tabular-nums;
   text-align: end;
 }
+
+/* Colors gallery (task 2.10). */
+.c-dots {
+  align-items: center;
+  gap: 0;
+}
+
+.c-dots .c-swatch {
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.c-dots .c-swatch + .c-swatch {
+  margin-inline-start: -8px;
+}
+
+.c-brand,
+.c-custom {
+  display: grid;
+  gap: 8px;
+  margin-block: 0 12px;
+}
+
+.c-custom {
+  margin-block: 12px 0;
+}
+
+.c-brand-card {
+  justify-self: start;
+  min-inline-size: 120px;
+}
+
+.c-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.c-field {
+  display: grid;
+  gap: 4px;
+}
+
+.c-label {
+  font-size: 0.875rem;
+}
+
+.c-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.c-text {
+  flex: 1;
+  min-inline-size: 0;
+  font: inherit;
+  font-family: ui-monospace, monospace;
+  padding-block: 6px;
+  padding-inline: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.c-text[aria-invalid='true'] {
+  border-color: #b91c1c;
+}
+
+.c-picker {
+  inline-size: 44px;
+  block-size: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+.c-result {
+  display: grid;
+  gap: 6px;
+}
+
+.c-ramp {
+  display: grid;
+  grid-template-columns: 5.5em minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+
+.c-steps {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.c-ramp[data-ramp='status'] .c-steps {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.c-steps .c-swatch {
+  display: block;
+  block-size: 22px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+}
