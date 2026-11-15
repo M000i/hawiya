@@ -10,6 +10,18 @@ const assert = require('node:assert/strict');
 
 const contrast = require('../picker/js/core/contrast.js');
 const color = require('../picker/js/core/color.js');
+const ramp = require('../picker/js/core/ramp.js');
+
+// Task-level golden (tasks.md 1.4), not a spec.md G-id.
+test('T-1.4 ramp: #3B82F6 → 11 steps, one of them #3B82F6, lightness descending, same twice', () => {
+  const a = ramp.generate('#3B82F6');
+  const b = ramp.generate('#3B82F6');
+  assert.equal(a.steps.length, 11);
+  assert.ok(a.steps.map((h) => h.toLowerCase()).includes('#3b82f6'), JSON.stringify(a.steps));
+  const L = a.steps.map((h) => color.toOklch(h).L);
+  for (let i = 1; i < L.length; i++) assert.ok(L[i] < L[i - 1], `step ${i} not darker than step ${i - 1}`);
+  assert.deepEqual(b, a);
+});
 
 // Golden values are given to 3 decimals (L, C) and 1 decimal (H).
 const r3 = (x) => Math.round(x * 1000) / 1000;
