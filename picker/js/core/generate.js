@@ -1397,5 +1397,20 @@
   generate.valueFiles = valueFiles;
   generate.sizeNames = sizeNames;
 
+  /*
+   * The CSS variables tokens.css sets for one mode ('light' | 'dark'), as [name, value] pairs: colors, focus ring,
+   * control border and shadows of that mode, the ramps, fonts, line heights, type scale, radius and spacing.
+   * The page preview (task 2.6) uses it so the preview shows exactly what the exported files hold.
+   * Expects an identity that already passed the checker (from resolve.js).
+   */
+  generate.cssVariables = function (id, mode) {
+    if (mode !== 'light' && mode !== 'dark') fail('mode must be light or dark');
+    return modePairs(id.tokens, mode)
+      .concat(rampPairs(id.tokens), basePairs(id))
+      .filter(function (p) {
+        return Array.isArray(p);
+      });
+  };
+
   return generate;
 });

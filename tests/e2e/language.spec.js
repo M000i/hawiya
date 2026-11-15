@@ -44,7 +44,7 @@ test('opens in Arabic, right to left, with the fonts notice visible', async ({ p
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   await expect(page).toHaveTitle(ar['app.title']);
-  await expect(page.locator('h1')).toHaveText(ar['app.name']);
+  await expect(page.locator('header.top h1')).toHaveText(ar['app.name']);
   const notice = page.locator('#fonts-notice');
   await expect(notice).toBeVisible();
   await expect(notice).toHaveText(ar['notice.fonts']);
@@ -102,7 +102,7 @@ test('the chosen language is remembered after a reload', async ({ page }) => {
   await page.locator('#lang-toggle').click();
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('h1')).toHaveText(en['app.name']);
+  await expect(page.locator('header.top h1')).toHaveText(en['app.name']);
 });
 
 test('export messages and buttons follow the language, even after they are shown', async ({ page }) => {

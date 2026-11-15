@@ -150,14 +150,7 @@
   function render() {
     var v = view();
     syncControls(v);
-    var light = v.identity.tokens.color.light;
-    H.preview.render({
-      primary: light.primary,
-      onPrimary: light.onPrimary,
-      accentText: light.accentText,
-      fontFamily: cssFamily(template('fonts', v.font)),
-      radius: v.radius
-    });
+    H.preview.render(v.identity);
     document.dispatchEvent(new CustomEvent('hawiya:change', { detail: H.getState() }));
   }
 
@@ -241,6 +234,25 @@
       if (!isNaN(v)) setRadius(v);
     });
     els.identityBtn.addEventListener('click', useStarter);
+    // Preview keys: language and light/dark of the preview only (not the tool, not the identity).
+    Array.prototype.forEach.call(document.querySelectorAll('[data-preview-lang]'), function (b) {
+      b.addEventListener('click', function () {
+        H.preview.setLang(b.getAttribute('data-preview-lang'));
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-preview-mode]'), function (b) {
+      b.addEventListener('click', function () {
+        H.preview.setMode(b.getAttribute('data-preview-mode'));
+      });
+    });
+    document.addEventListener('hawiya:preview', function (e) {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-preview-lang]'), function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-preview-lang') === e.detail.lang));
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-preview-mode]'), function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-preview-mode') === e.detail.mode));
+      });
+    });
     // The choices live in a <form> for grouping only: Enter in a text field must not reload the page.
     document.getElementById('controls').addEventListener('submit', function (e) {
       e.preventDefault();

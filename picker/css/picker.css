@@ -414,3 +414,47 @@ body {
   color: var(--muted);
   font-size: 0.8125rem;
 }
+
+/* Preview header and its two keys (task 2.6). */
+.preview-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-block-end: 8px;
+}
+
+.preview-head h2 {
+  margin: 0;
+}
+
+.preview-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.seg button {
+  font: inherit;
+  font-size: 0.875rem;
+  padding-block: 4px;
+  padding-inline: 12px;
+  color: var(--fg);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.seg button[aria-pressed='true'] {
+  color: #ffffff;
+  background: var(--fg);
+}

@@ -68,6 +68,12 @@
     'تعذّرت قراءة المسودة السابقة، فبدأنا من الهوية الجاهزة. نسختها القديمة باقية في المتصفح ولم تُحذف.',
 
   'preview.title': 'المعاينة',
+  'preview.langLabel': 'لغة المعاينة',
+  'preview.ar': 'عربي',
+  'preview.en': 'إنجليزي',
+  'preview.modeLabel': 'وضع المعاينة',
+  'preview.light': 'فاتح',
+  'preview.dark': 'داكن',
 
   'export.title': 'التصدير',
   'export.button': 'تصدير',

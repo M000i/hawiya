@@ -70,6 +70,12 @@
     'The previous draft could not be read, so the page started from the ready identity. Its old copy is still in the browser and was not deleted.',
 
   'preview.title': 'Preview',
+  'preview.langLabel': 'Preview language',
+  'preview.ar': 'Arabic',
+  'preview.en': 'English',
+  'preview.modeLabel': 'Preview mode',
+  'preview.light': 'Light',
+  'preview.dark': 'Dark',
 
   'export.title': 'Export',
   'export.button': 'Export',

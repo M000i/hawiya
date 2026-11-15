@@ -20,6 +20,8 @@ const browser = {
   Storage: 'readonly',
   DOMException: 'readonly',
   Intl: 'readonly',
+  NodeFilter: 'readonly',
+  getComputedStyle: 'readonly',
   TextEncoder: 'readonly',
   TextDecoder: 'readonly',
   setTimeout: 'readonly',
