@@ -1667,6 +1667,112 @@
       "expect": {
         "exits": false
       }
+    },
+    {
+      "name": "a body nested deeper than 64 levels is refused before parsing, by both servers",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "change": [
+            {
+              "set": [
+                "junk"
+              ],
+              "nested": 65
+            }
+          ],
+          "expectStatus": 400,
+          "expectBodyContains": "nested too deeply"
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
+      "name": "extra nesting within the limit does not stop a valid save",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "change": [
+            {
+              "set": [
+                "junk"
+              ],
+              "nested": 64
+            }
+          ],
+          "expectStatus": 200
+        }
+      ],
+      "expect": {
+        "files": {
+          "design/identity.json": "@bundle:identity.json",
+          "design/DESIGN.md": "@bundle:DESIGN.md",
+          "design/tokens.json": "@bundle:tokens.json",
+          "design/tokens.css": "@bundle:tokens.css",
+          "design/theme.css": "@bundle:theme.css",
+          "design/style-guide.html": "@bundle:style-guide.html"
+        },
+        "exits": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "name": "a file name with a lone surrogate is refused with 400 (never a crash)",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "{TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "body": "@bundle",
+          "change": [
+            {
+              "set": [
+                "files",
+                "\ud800"
+              ],
+              "value": "x"
+            },
+            {
+              "set": [
+                "sha256",
+                "\ud800"
+              ],
+              "value": "x"
+            }
+          ],
+          "expectStatus": 400,
+          "expectBodyContains": "not allowed"
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
     }
   ],
   "bundleIdentity": "identity-bilingual-landing.json"

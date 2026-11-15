@@ -33,6 +33,29 @@ const ALLOWED_FILES = ['identity.json', 'DESIGN.md', 'tokens.json', 'tokens.css'
 const MAX_BODY_BYTES = 5 * 1024 * 1024;
 const MAX_FAILED_ATTEMPTS = 5;
 const MAX_SESSION_BYTES = 64 * 1024;
+const MAX_BODY_DEPTH = 64; // an export bundle needs about 8 levels; both servers refuse deeper bodies before parsing
+
+/* Deepest nesting of [ and { outside strings, in one pass (the Python server counts the same way). */
+function jsonDepth(text) {
+  let depth = 0;
+  let deepest = 0;
+  let inString = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text.charCodeAt(i);
+    if (inString) {
+      if (c === 92) i++; // backslash: skip the escaped character
+      else if (c === 34) inString = false;
+    } else if (c === 34) {
+      inString = true;
+    } else if (c === 91 || c === 123) {
+      depth++;
+      if (depth > deepest) deepest = depth;
+    } else if (c === 93 || c === 125) {
+      depth--;
+    }
+  }
+  return deepest;
+}
 const SESSION_FILE = 'hawiya-session.json';
 const DEFAULT_IDLE_SECONDS = 3600;
 
@@ -411,8 +434,10 @@ function handleExport(req, res) {
   req.on('end', () => {
     if (aborted || finished) return;
     let payload;
+    const text = Buffer.concat(chunks).toString('utf8');
+    if (jsonDepth(text) > MAX_BODY_DEPTH) return sendJson(res, 400, { error: 'body is nested too deeply' });
     try {
-      payload = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+      payload = JSON.parse(text);
     } catch {
       return sendJson(res, 400, { error: 'body is not valid JSON' });
     }

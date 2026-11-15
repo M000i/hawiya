@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 """
-Hawiya save server (Python 3.8+, standard library only). Same contract as scripts/serve.js.
+Hawiya save server (Python 3.8+, standard library only; task 1.14). Same contract as scripts/serve.js (plan.md
+section 6), checked by the same case list (tests/server/cases.json).
 
-Usage: python3 -I scripts/serve.py <project-dir> [--idle-timeout <seconds>]
+Usage: python3 -I scripts/serve.py <project-dir> [--replace] [--idle-timeout <seconds>]
 
-- Serves the picker page on 127.0.0.1 at a random port.
+- Serves the picker page (picker/ only) on 127.0.0.1 at a random port.
 - Prints one JSON line when ready:
-  {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>","existing":[...]}
-- Accepts one export (POST /api/export) carrying the one-time token in the X-Hawiya-Token header,
-  writes only fixed file names into <project-dir>/design/, never replaces existing files,
-  prints {"status":"saved","written":[...]} and exits 0.
-- Exits 1 with {"status":"closed","reason":...} after the idle timeout or 5 failed token attempts.
-- Exits 2 on bad arguments.
-
-Also holds the Python identity checker (task 1.13): check_document / check_document_text, a port of
-picker/js/core/validate.js. Until task 1.14 the server itself still runs the phase-0 prototype contract.
+  {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>","existing":[...],"replace":false}
+- GET /api/session (token in X-Hawiya-Token): {"session": ...} from <project>/design/hawiya-session.json when it is a
+  plain file that passes the session schema; 404 otherwise.
+- POST /api/export (token, application/json, at most 5 MB): one complete export bundle. Accepted only when the
+  bundle is whole (format, all six files, each SHA-256, identity == identity.json) and identity.json, the exact
+  text written, passes the identity checker below (a port of picker/js/core/validate.js). Only the six names are
+  written, into <project>/design/. Existing files are never replaced (409) unless --replace was given; then the
+  old files are first copied into design/backup-YYYYMMDD-HHMMSS/. Prints {"status":"saved","written":[...]}, exit 0.
+- Exits 1 with {"status":"closed","reason":...} after the idle timeout or 5 failed token attempts; 2 on bad usage.
 """
 
 import errno
@@ -37,6 +38,10 @@ from urllib.parse import unquote
 ALLOWED_FILES = ["identity.json", "DESIGN.md", "tokens.json", "tokens.css", "theme.css", "style-guide.html"]
 MAX_BODY_BYTES = 5 * 1024 * 1024
 MAX_FAILED_ATTEMPTS = 5
+MAX_SESSION_BYTES = 64 * 1024
+MAX_BODY_DEPTH = 64  # an export bundle needs about 8 levels; both servers refuse deeper bodies before parsing
+SESSION_FILE = "hawiya-session.json"
+BUNDLE_FORMAT = "hawiya-export"
 DEFAULT_IDLE_SECONDS = 3600
 SOCKET_TIMEOUT_SECONDS = 10  # per read/write on a connection
 REQUEST_DEADLINE_SECONDS = 30  # whole request, including slow headers or a trickled body
@@ -64,13 +69,20 @@ BASE_HEADERS = [
 # ---------- output ----------
 
 _print_lock = threading.Lock()
+_LONE_SURROGATE_OUT = re.compile("[" + "\\" + "ud800-" + "\\" + "udfff]")
+
+
+def json_text(obj):
+    """Compact JSON like JavaScript's JSON.stringify: non-ASCII as is, lone surrogates as \\udxxx (never a crash)."""
+    text = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    return _LONE_SURROGATE_OUT.sub(lambda m: "\\" + "u%04x" % ord(m.group()), text)
 
 
 def print_line(obj):
     """Best effort: a closed stdout (the agent stopped reading) must never stop the server from exiting."""
     with _print_lock:
         try:
-            sys.stdout.write(json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "\n")
+            sys.stdout.write(json_text(obj) + "\n")
             sys.stdout.flush()
         except (OSError, ValueError):
             pass
@@ -87,10 +99,13 @@ def die(message):
 def parse_args(argv):
     project_arg = None
     idle_seconds = DEFAULT_IDLE_SECONDS
+    replace = False
     i = 0
     while i < len(argv):
         a = argv[i]
-        if a == "--idle-timeout":
+        if a == "--replace":
+            replace = True
+        elif a == "--idle-timeout":
             i += 1
             try:
                 v = int(argv[i]) if i < len(argv) else None
@@ -107,13 +122,13 @@ def parse_args(argv):
             die("only one project directory may be given")
         i += 1
     if project_arg is None:
-        die("usage: serve.py <project-dir> [--idle-timeout <seconds>]")
+        die("usage: serve.py <project-dir> [--replace] [--idle-timeout <seconds>]")
     if not os.path.exists(project_arg):
         die("project directory does not exist: " + project_arg)
     project = os.path.realpath(project_arg)
     if not os.path.isdir(project):
         die("not a directory: " + project_arg)
-    return project, idle_seconds
+    return project, idle_seconds, replace
 
 
 # ---------- shared state ----------
@@ -130,6 +145,7 @@ class State(object):
         self.token_used = False
         self.idle_timer = None
         self.idle_seconds = DEFAULT_IDLE_SECONDS
+        self.replace = False
         self.project = None
         self.design_dir = None
         self.picker_root = None
@@ -225,12 +241,6 @@ def design_is_plain_folder():
 
 def _reject_constant(name):
     raise ValueError("not valid JSON: " + name)
-
-
-def strict_json_loads(text):
-    """Standard JSON only, like JavaScript's JSON.parse: no NaN/Infinity. Numbers are not converted
-    (keeps huge integers cheap and accepted, as in Node; the server never uses their values)."""
-    return json.loads(text, parse_constant=_reject_constant, parse_int=str, parse_float=str)
 
 
 _LONE_SURROGATE = re.compile("[\ud800-\udfff]")
@@ -790,72 +800,311 @@ def check_document_text(name, text):
     return v.check(value)
 
 
-def validate_export(payload):
+_JSON_STRING = re.compile(r'"(?:[^"\\]|\\.)*"')
+
+
+def json_depth(text):
+    """Deepest nesting of [ and { outside strings (the same count as jsonDepth in serve.js)."""
+    depth = 0
+    deepest = 0
+    for ch in _JSON_STRING.sub("", text):
+        if ch == "[" or ch == "{":
+            depth += 1
+            if depth > deepest:
+                deepest = depth
+        elif ch == "]" or ch == "}":
+            depth -= 1
+    return deepest
+
+
+# ----- the export bundle (port of picker/js/core/bundle.js verify) -----
+
+def _sha256_hex(text):
+    return hashlib.sha256(to_utf8(text)).hexdigest()  # lone surrogates as U+FFFD, like bundle.js sha256
+
+
+def _js_number(x):
+    """A finite number written as JavaScript's JSON.stringify / Number#toString writes it."""
+    x = float(x)
+    if x == 0:
+        return "0"
+    sign = "-" if x < 0 else ""
+    r = repr(abs(x))  # shortest round-trip digits, like JavaScript
+    mant, _, exp = r.partition("e")
+    exp = int(exp) if exp else 0
+    intpart, _, frac = mant.partition(".")
+    raw = intpart + frac
+    stripped = raw.lstrip("0")
+    n = len(intpart) - (len(raw) - len(stripped)) + exp  # value = 0.DIGITS x 10^n
+    digits = stripped.rstrip("0") or "0"
+    k = len(digits)
+    if k <= n <= 21:
+        out = digits + "0" * (n - k)
+    elif 0 < n <= 21:
+        out = digits[:n] + "." + digits[n:]
+    elif -6 < n <= 0:
+        out = "0." + "0" * (-n) + digits
+    else:
+        e = n - 1
+        out = digits[0] + ("." + digits[1:] if k > 1 else "") + "e" + ("+" if e > 0 else "-") + str(abs(e))
+    return sign + out
+
+
+def _js_quote(s):
+    out = ['"']
+    for ch in s:
+        c = ord(ch)
+        if ch == '"':
+            out.append('\\"')
+        elif ch == "\\":
+            out.append("\\\\")
+        elif ch == "\b":
+            out.append("\\b")
+        elif ch == "\f":
+            out.append("\\f")
+        elif ch == "\n":
+            out.append("\\n")
+        elif ch == "\r":
+            out.append("\\r")
+        elif ch == "\t":
+            out.append("\\t")
+        elif c < 0x20 or 0xD800 <= c <= 0xDFFF:
+            out.append("\\" + "u%04x" % c)  # control characters and lone surrogates, as JSON.stringify does
+        else:
+            out.append(ch)
+    out.append('"')
+    return "".join(out)
+
+
+def _js_stringify(v, indent="  ", level=0):
+    """JSON.stringify(v, null, 2) for the values JSON can hold (keys in JavaScript's order)."""
+    if v is None:
+        return "null"
+    if isinstance(v, bool):
+        return "true" if v else "false"
+    if isinstance(v, (int, float)):
+        return _js_number(v) if math.isfinite(float(v)) else "null"
+    if isinstance(v, str):
+        return _js_quote(v)
+    pad = indent * (level + 1)
+    end = indent * level
+    if isinstance(v, list):
+        if not v:
+            return "[]"
+        return "[\n" + ",\n".join(pad + _js_stringify(x, indent, level + 1) for x in v) + "\n" + end + "]"
+    if isinstance(v, dict):
+        if not v:
+            return "{}"
+        return "{\n" + ",\n".join(pad + _js_quote(k) + ": " + _js_stringify(v[k], indent, level + 1) for k in _js_keys(v)) + "\n" + end + "}"
+    raise TypeError("not JSON")
+
+
+def verify_bundle(b):
+    """[] when the bundle is whole; else what is wrong (same list as bundle.js verify)."""
+    if not isinstance(b, dict) or not isinstance(b.get("files"), dict) or not isinstance(b.get("sha256"), dict):
+        return ["(bundle)"]
+    files, sums = b["files"], b["sha256"]
+    bad = []
+    version = b.get("schemaVersion")
+    if b.get("format") != BUNDLE_FORMAT or isinstance(version, bool) or not isinstance(version, (int, float)) or version != 1:
+        bad.append("(format)")
+    for n in ALLOWED_FILES:
+        ok = (n in files and n in sums and isinstance(files[n], str) and isinstance(sums[n], str)
+              and _sha256_hex(files[n]) == sums[n])
+        if not ok:
+            bad.append(n)
+    extra = sorted({k for k in list(files) + list(sums) if k not in ALLOWED_FILES})
+    bad.extend(extra)
+    text = files.get("identity.json")
+    try:
+        same = isinstance(text, str) and "identity" in b and _js_stringify(b["identity"]) + "\n" == text
+    except (TypeError, RecursionError, ValueError):
+        same = False
+    if not same:
+        bad.append("(identity)")
+    return bad
+
+
+def check_bundle(payload):
+    """None, or the 400 body explaining why the bundle is refused."""
     if not isinstance(payload, dict):
-        return "body must be a JSON object"
-    files = payload.get("files")
-    if not isinstance(files, dict):
-        return '"files" must be an object'
-    if len(files) == 0:
-        return '"files" is empty'
-    for name, content in files.items():
-        if name not in ALLOWED_FILES:
-            return "file name not allowed: " + name
-        if not isinstance(content, str):
-            return "content of " + name + " must be a string"
-    if "identity.json" in files:
-        try:
-            parsed = strict_json_loads(files["identity.json"])
-        except (ValueError, RecursionError):
-            return "identity.json is not valid JSON"
-        if not isinstance(parsed, dict):
-            return "identity.json must be a JSON object"
+        return {"error": "body must be a JSON object"}
+    problems = verify_bundle(payload)
+    if problems:
+        unknown = [p for p in problems if not p.startswith("(") and p not in ALLOWED_FILES]
+        if unknown:
+            return {"error": "file name not allowed: " + ", ".join(unknown[:10]), "problems": problems[:20]}
+        return {"error": "the export bundle is incomplete or damaged: " + ", ".join(problems[:10]), "problems": problems[:20]}
+    # The text written to disk is what gets checked (no duplicate keys, nothing a parser would hide).
+    result = check_document_text("identity", payload["files"]["identity.json"])
+    if not result["valid"]:
+        return {"error": "identity is not valid",
+                "errors": [{"path": e["instancePath"] or "/", "message": e["message"]} for e in result["errors"][:20]]}
     return None
 
 
+# ----- writing -----
+
+def read_plain_file(path, max_bytes):
+    """Reads a plain file through one descriptor: no symlink, no blocking on a FIFO, and checks what was opened."""
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_BINARY", 0)
+    fd = os.open(path, flags)
+    try:
+        st = os.fstat(fd)
+        if not stat.S_ISREG(st.st_mode):
+            raise OSError(errno.EINVAL, "not a plain file")
+        if st.st_size > max_bytes:
+            raise OSError(errno.EFBIG, "too large")
+        chunks = []
+        total = 0
+        while True:
+            data = os.read(fd, 1 << 20)
+            if not data:
+                break
+            total += len(data)
+            if total > max_bytes:
+                raise OSError(errno.EFBIG, "too large")
+            chunks.append(data)
+        return b"".join(chunks), st
+    finally:
+        os.close(fd)
+
+
+def _write_new_file(path, data, mode, exact_mode=None):
+    """Creates path (never existing, never through a link) and writes all of data. The umask applies to mode, as in
+    Node; exact_mode (a replaced file keeping its old permissions) is set afterwards regardless of the umask."""
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_BINARY", 0)
+    fd = os.open(path, flags, mode)
+    try:
+        view = memoryview(data)
+        while view:
+            n = os.write(fd, view)
+            view = view[n:]
+        if exact_mode is not None and hasattr(os, "fchmod"):
+            os.fchmod(fd, exact_mode)
+    finally:
+        os.close(fd)
+
+
+def _make_backup_dir():
+    """design/backup-YYYYMMDD-HHMMSS (local time), with -2, -3 ... if that name is taken."""
+    base = "backup-" + time.strftime("%Y%m%d-%H%M%S", time.localtime())
+    for i in range(1, 100):
+        d = os.path.join(S.design_dir, base if i == 1 else "%s-%d" % (base, i))
+        try:
+            os.mkdir(d)
+            return d
+        except FileExistsError:
+            continue
+    raise OSError(errno.EEXIST, "no free backup folder name")
+
+
+def _canonical_case(name):
+    """On a case-insensitive disk a replaced Identity.json keeps its old spelling: give it the canonical name."""
+    try:
+        entries = os.listdir(S.design_dir)
+        if name in entries:
+            return
+        old = next((e for e in entries if e.lower() == name.lower()), None)
+        if old:
+            os.replace(os.path.join(S.design_dir, old), os.path.join(S.design_dir, name))
+    except OSError:
+        pass
+
+
+def _is_plain_file(p):
+    st = lstat_or_none(p)
+    return st is not None and stat.S_ISREG(st.st_mode)
+
+
 def write_export(files):
-    """Returns (status, body) on refusal, or (None, written_names) on success. Never writes outside design/."""
+    """Returns (status, body) on refusal, or (None, info) on success. Never writes outside design/."""
     st = lstat_or_none(S.design_dir)
     if st is not None and not design_is_plain_folder():
         return 409, {"error": "design exists but is not a plain folder; refusing to write"}
+    created = False
     if st is None:
         try:
             os.mkdir(S.design_dir)
+            created = True
         except OSError as e:
             return 500, {"error": "cannot create the design folder: " + err_code(e)}
+
+    def remove_created():
+        if created:
+            try:
+                os.rmdir(S.design_dir)  # only if still empty
+            except OSError:
+                pass
+
     if not design_is_plain_folder():
         return 409, {"error": "design is not a plain folder"}
 
-    names = list(files.keys())
-    clash = [n for n in names if lstat_or_none(os.path.join(S.design_dir, n)) is not None]
-    if clash:
-        return 409, {"error": "files already exist; not replacing", "existing": clash}
+    names = [n for n in ALLOWED_FILES if n in files]
+    existing = [n for n in names if lstat_or_none(os.path.join(S.design_dir, n)) is not None]
+    if existing and not S.replace:
+        remove_created()
+        return 409, {"error": "files already exist; not replacing (run the server with --replace after the user agrees)", "existing": existing}
+    not_plain = [n for n in existing if not _is_plain_file(os.path.join(S.design_dir, n))]
+    if not_plain:
+        return 409, {"error": "not a plain file; refusing to replace", "existing": not_plain}
+    old_modes = {}
+    for n in existing:
+        o = lstat_or_none(os.path.join(S.design_dir, n))
+        old_modes[n] = (o.st_mode & 0o777) if o is not None else 0o644  # permission bits only, as in Node
 
     temps = []
-    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+    replaced = []
+    backup_dir = None
     try:
         for name in names:
             if not design_is_plain_folder():
                 raise RuntimeError("design folder changed during write")
             tmp = os.path.join(S.design_dir, "." + name + "." + secrets.token_hex(6) + ".tmp")
-            fd = os.open(tmp, flags, 0o644)
-            temps.append((tmp, os.path.join(S.design_dir, name)))
-            with os.fdopen(fd, "wb") as fh:
-                fh.write(to_utf8(files[name]))
-        for tmp, final in temps:
+            temps.append((tmp, os.path.join(S.design_dir, name), name))  # listed first: a partial file is removed
+            _write_new_file(tmp, to_utf8(files[name]), 0o644, old_modes.get(name))
+        if existing:
+            backup_dir = _make_backup_dir()
+            for name in existing:
+                data, fst = read_plain_file(os.path.join(S.design_dir, name), float("inf"))
+                _write_new_file(os.path.join(backup_dir, name), data, fst.st_mode & 0o777)
+        for tmp, final, name in temps:
             if not design_is_plain_folder():
                 raise RuntimeError("design folder changed during write")
-            if lstat_or_none(final) is not None:
-                raise RuntimeError("file appeared during write: " + os.path.basename(final))
-            os.rename(tmp, final)
+            now = lstat_or_none(final)
+            if now is not None and not (name in existing and stat.S_ISREG(now.st_mode)):
+                raise RuntimeError("file appeared during write: " + name)
+            os.replace(tmp, final)  # one atomic step: the old file (backed up above) is never missing in between
+            replaced.append(name)
+            _canonical_case(name)
     except (OSError, RuntimeError, UnicodeError) as e:
-        for tmp, _ in temps:
+        for tmp, _, _ in temps:
             try:
                 os.unlink(tmp)
             except OSError:
-                pass  # already renamed or gone
+                pass
+        for name in replaced:  # put back what was already replaced; remove new files that had no old version
+            final = os.path.join(S.design_dir, name)
+            try:
+                os.unlink(final)
+                if backup_dir and name in existing:
+                    data, fst = read_plain_file(os.path.join(backup_dir, name), float("inf"))
+                    _write_new_file(final, data, 0o644, old_modes.get(name, fst.st_mode & 0o777))
+            except OSError:
+                pass
+        if backup_dir and all(_is_plain_file(os.path.join(S.design_dir, n)) for n in existing):
+            try:
+                for f in os.listdir(backup_dir):
+                    os.unlink(os.path.join(backup_dir, f))
+                os.rmdir(backup_dir)
+            except OSError:
+                pass
+        remove_created()
         return 500, {"error": "write failed: " + err_code(e)}
-    return None, names
+    info = {"written": names}
+    if backup_dir:
+        info["backup"] = os.path.basename(backup_dir)
+    return None, info
 
 
 # ---------- HTTP ----------
@@ -956,7 +1205,7 @@ class Handler(BaseHTTPRequestHandler):
             self._linger()
 
     def _json(self, status, obj, extra=None):
-        body = json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        body = json_text(obj).encode("utf-8")
         headers = [("Content-Type", "application/json; charset=utf-8")]
         if extra:
             headers.extend(extra)
@@ -994,6 +1243,8 @@ class Handler(BaseHTTPRequestHandler):
             path = self.path.split("?", 1)[0].split("#", 1)[0]
             if path == "/api/export":
                 return self._export()
+            if path == "/api/session":
+                return self._session()
             return self._static(path)
         except OSError:
             self.close_connection = True
@@ -1026,15 +1277,23 @@ class Handler(BaseHTTPRequestHandler):
         if raw is None:
             return  # already answered (413 / 400)
 
+        text = raw.decode("utf-8", "replace")
+        if json_depth(text) > MAX_BODY_DEPTH:
+            return self._json(400, {"error": "body is nested too deeply"})
         try:
-            payload = strict_json_loads(raw.decode("utf-8", "replace"))
+            # numbers as JavaScript reads them (doubles); NaN/Infinity text refused
+            payload = json.loads(text, parse_constant=_reject_constant, parse_int=float, parse_float=float)
         except (ValueError, RecursionError):
             return self._json(400, {"error": "body is not valid JSON"})
-        problem = validate_export(payload)
+        if S.token_used:
+            return self._json(401, {"error": "invalid token"})  # another export got there first
+        problem = check_bundle(payload)
         if problem:
-            return self._json(400, {"error": problem})
+            return self._json(400, problem)
 
         refuse = False
+        # One save at a time: a second export waits here, then sees token_used and is refused. The token counts as
+        # used only once files are on disk, so requests arriving during a save (or after a failed one) still work.
         with S.write_lock:
             if S.finished or S.closing:
                 self.close_connection = True
@@ -1051,9 +1310,50 @@ class Handler(BaseHTTPRequestHandler):
 
         # The files are on disk: from here the server closes no matter how the client behaves.
         try:
-            self._json(200, {"written": result})
+            self._json(200, result)
         finally:
-            finish(0, {"written": result})
+            finish(0, result)
+
+    # ----- session -----
+
+    def _session(self):
+        if self.command != "GET":
+            return self._json(405, {"error": "method not allowed"}, [("Allow", "GET")])
+        origins = self.headers.get_all("Origin")
+        if origins is not None and (len(origins) != 1 or origins[0] != S.origin):
+            return self._json(403, {"error": "foreign origin"})
+        # GETs made by other sites carry no Origin (<img>, no-cors fetch) but browsers mark them: refused without
+        # counting as an attempt (a hostile page could otherwise close the server) or as activity.
+        if self.headers.get("Sec-Fetch-Site") in ("cross-site", "same-site"):
+            return self._json(403, {"error": "foreign site"})
+        touch()
+        if S.token_used or not token_matches(self.headers.get_all("X-Hawiya-Token")):
+            return self._refuse_token()
+
+        def none(why):
+            return self._json(404, {"error": why})
+
+        if not design_is_plain_folder():
+            return none("no session")
+        path = os.path.join(S.design_dir, SESSION_FILE)
+        st = lstat_or_none(path)
+        if st is None:
+            return none("no session")
+        if not stat.S_ISREG(st.st_mode):
+            return none("the session file is not a plain file; not read")
+        if st.st_size > MAX_SESSION_BYTES:
+            return none("the session file is too large; not read")
+        try:
+            data, _ = read_plain_file(path, MAX_SESSION_BYTES)
+        except OSError:
+            return none("the session file could not be read")
+        text = data.decode("utf-8", "replace")
+        result = check_document_text("session", text)
+        if not result["valid"]:
+            # only places and rule names: never echo the file's content
+            return none("the session file is not valid: " + "; ".join(
+                (e["instancePath"] or "/") + " (" + e["keyword"] + ")" for e in result["errors"][:3]))
+        return self._json(200, {"session": json.loads(text)})
 
     def _refuse_token(self):
         with S.lock:
@@ -1177,7 +1477,8 @@ def _fatal_hook(exc_type, exc, tb):
 
 
 def main():
-    project, idle_seconds = parse_args(sys.argv[1:])
+    project, idle_seconds, replace = parse_args(sys.argv[1:])
+    S.replace = replace
     S.project = project
     S.design_dir = os.path.join(project, "design")
     S.picker_root = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "picker"))
@@ -1194,7 +1495,7 @@ def main():
     S.expected_host = "127.0.0.1:%d" % port
     S.origin = "http://" + S.expected_host
     touch()
-    print_line({"status": "ready", "url": S.origin + "/#token=" + token, "existing": existing_design_files()})
+    print_line({"status": "ready", "url": S.origin + "/#token=" + token, "existing": existing_design_files(), "replace": S.replace})
     try:
         server.serve_forever(poll_interval=0.2)
     except KeyboardInterrupt:

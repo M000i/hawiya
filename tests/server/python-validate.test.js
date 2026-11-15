@@ -194,6 +194,29 @@ if (probe.status !== 0) {
     assert.ok(Date.now() - t0 < 5000, `took ${Date.now() - t0} ms`);
   });
 
+  test(`[python ${v} server] writes JSON exactly as JSON.stringify(v, null, 2) (the bundle's identity check relies on it)`, (t) => {
+    const modes = require('../../picker/js/core/modes.js');
+    const r = rng(77);
+    const values = [0, -0, 1, -1, 0.1, 0.06, 1.5, 1e21, 1e-7, 1e-6, 123e-20, 1e20, 123456789012345680000, 9007199254740993, 5e-324, 1.7976931348623157e308,
+      2 ** 53, 0.1 + 0.2, 100, 1e300, -1e-300, 4.35, 26.675, 1 / 3, '', 'a"b\\c', '\b\f\n\r\t\u0001\u001f\u007f\u2028\u2029', '\ud800', 'x\udc00y', '\u{1F3A8}', '\u0647\u0648\u064a\u0629',
+      [], {}, [[]], { a: [] }, { b: {}, a: [1, [2, {}]] }, { 10: 1, 2: 2, a: 3, 1: 4 }, null, true, false];
+    const buf = new DataView(new ArrayBuffer(8));
+    for (let i = 0; i < 3000; i++) {
+      for (let j = 0; j < 8; j++) buf.setUint8(j, Math.floor(r() * 256));
+      const d = buf.getFloat64(0);
+      if (Number.isFinite(d)) values.push(d);
+      values.push(Math.round(r() * 1e6) / Math.pow(10, Math.floor(r() * 12)));
+    }
+    for (const f of fs.readdirSync(path.join(FIX, 'identity', 'valid'))) values.push(JSON.parse(read(path.join(FIX, 'identity', 'valid', f))));
+    for (const hex of ['#2563eb', '#ffff00', '#000000', '#7c3aed', '#16a34a']) values.push(modes.derive(hex));
+    const input = values.map((value) => JSON.stringify({ value })).join('\n') + '\n';
+    const res = spawnSync(PYTHON, ['-I', HARNESS, '--stringify'], { input, encoding: 'utf8', maxBuffer: 1 << 28 });
+    assert.equal(res.status, 0, res.stderr);
+    const got = res.stdout.trim().split('\n').map((l) => JSON.parse(l));
+    values.forEach((value, i) => assert.equal(got[i], JSON.stringify(value, null, 2), `value ${JSON.stringify(value).slice(0, 80)}`));
+    t.diagnostic(`${values.length} values written byte for byte as JSON.stringify`);
+  });
+
   test(`[python ${v} checker] random variations (seeded): same verdict and same error places`, (t) => {
     const cases = variations(1913, 1000);
     const accepted = compare(cases, 'variation');

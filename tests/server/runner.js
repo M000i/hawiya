@@ -38,6 +38,7 @@ function fixture(v) {
 /*
  * change: list of edits applied to a copy of the bundle, in order:
  *   { set: [key, key, ...], value }   set a nested value (keys are taken literally, so "DESIGN.md" is one key)
+ *   { set: [key], nested: N }         set arrays nested so that the whole body is N levels deep
  *   { delete: [key, ...] }            remove a nested key
  *   { rehash: "name" }                recompute sha256[name] after changing files[name]
  *   { identityFromText: true }        set identity = JSON.parse(files["identity.json"]) (keeps them consistent)
@@ -50,7 +51,13 @@ function applyChanges(b, changes) {
       let node = b;
       for (const k of keys.slice(0, -1)) node = node[k];
       const last = keys[keys.length - 1];
-      if (ch.set) Object.defineProperty(node, last, { value: ch.value, enumerable: true, writable: true, configurable: true });
+      let value = ch.value;
+      if (ch.nested != null) {
+        // arrays nested so that the whole body reaches exactly ch.nested levels (the bundle object is level 1)
+        value = 0;
+        for (let i = 0; i < ch.nested - keys.length; i++) value = [value];
+      }
+      if (ch.set) Object.defineProperty(node, last, { value, enumerable: true, writable: true, configurable: true });
       else delete node[last];
     } else if (ch.rehash) {
       b.sha256[ch.rehash] = bundleMod.sha256(b.files[ch.rehash]);
@@ -410,4 +417,172 @@ function defineServerTests(label, cmd, casesFile = 'cases.json') {
   }
 }
 
-module.exports = { defineServerTests, makeProject, cleanup, startServer, rawRequest, theBundle: () => theBundle(), setSpec: (f) => (SPEC = JSON.parse(fs.readFileSync(path.join(__dirname, f), 'utf8'))) };
+/*
+ * Checks with injected disk faults (the operating system cannot produce these on demand), for both servers.
+ */
+const { execFileSync } = require('node:child_process');
+const R = { makeProject, cleanup, startServer, rawRequest, theBundle };
+const NAMES = ['identity.json', 'DESIGN.md', 'tokens.json', 'tokens.css', 'theme.css', 'style-guide.html'];
+
+/* injectCmd: the server started with fault injection (HAWIYA_INJECT, see inject.js / inject.py); plainCmd: without. */
+function defineFaultTests(label, injectCmd, plainCmd) {
+SPEC = SPEC || JSON.parse(fs.readFileSync(path.join(__dirname, 'cases.json'), 'utf8'));
+const CMD = injectCmd;
+
+async function exportOnce(setup, args, inject, opts = {}) {
+  const p = R.makeProject(setup);
+  const s = await R.startServer(CMD, p.project, args, inject ? { HAWIYA_INJECT: JSON.stringify(inject) } : undefined);
+  const u = new URL(s.ready.url);
+  const token = new URLSearchParams(u.hash.slice(1)).get('token');
+  const post = () =>
+    R.rawRequest(Number(u.port), {
+      method: 'POST',
+      path: '/api/export',
+      headers: { 'X-Hawiya-Token': token, 'Content-Type': 'application/json', Origin: u.origin },
+      body: JSON.stringify(R.theBundle())
+    });
+  const first = await post();
+  const second = opts.retry ? await post() : null;
+  await Promise.race([s.exitPromise, new Promise((r) => setTimeout(r, 1500))]);
+  return { p, s, first, second, design: path.join(p.project, 'design') };
+}
+
+const listDesign = (d) => (fs.existsSync(d) ? fs.readdirSync(d).sort() : null);
+
+test(`[${label}] --replace: a rename that fails midway loses nothing (originals back, no backup or temp left)`, async () => {
+  const r = await exportOnce({ files: { 'design/DESIGN.md': 'OLD DESIGN\n', 'design/tokens.css': 'OLD TOKENS\n' } }, ['--replace'], { renameFail: 'tokens.css' });
+  try {
+    assert.equal(r.first.status, 500, r.first.body);
+    assert.deepEqual(listDesign(r.design), ['DESIGN.md', 'tokens.css'], 'only the originals are left');
+    assert.equal(fs.readFileSync(path.join(r.design, 'DESIGN.md'), 'utf8'), 'OLD DESIGN\n');
+    assert.equal(fs.readFileSync(path.join(r.design, 'tokens.css'), 'utf8'), 'OLD TOKENS\n');
+  } finally {
+    r.s.child.kill();
+    R.cleanup(r.p.root, r.p.project);
+  }
+});
+
+test(`[${label}] a write that fails halfway leaves no partial temp file and removes the design folder it created`, async () => {
+  const r = await exportOnce({}, [], { writeFail: 'tokens.json' });
+  try {
+    assert.equal(r.first.status, 500, r.first.body);
+    assert.equal(listDesign(r.design), null, 'design/ removed');
+  } finally {
+    r.s.child.kill();
+    R.cleanup(r.p.root, r.p.project);
+  }
+});
+
+test(`[${label}] after a failed write the token still works: the retry saves`, async () => {
+  const r = await exportOnce({}, [], { renameFail: 'theme.css', times: 1 }, { retry: true });
+  try {
+    assert.equal(r.first.status, 500, r.first.body);
+    assert.equal(r.second.status, 200, r.second.body);
+    assert.deepEqual(listDesign(r.design), [...NAMES].sort());
+    assert.equal(r.s.exitCode, 0);
+  } finally {
+    if (!r.s.exited) r.s.child.kill();
+    R.cleanup(r.p.root, r.p.project);
+  }
+});
+
+test(`[${label}] --replace keeps permissions and gives the canonical name on a case-insensitive disk`, async (t) => {
+  const r0 = R.makeProject({ files: { 'design/Identity.json': '{}\n', 'design/DESIGN.md': 'OLD\n' } });
+  const caseInsensitive = fs.existsSync(path.join(r0.project, 'design', 'identity.json'));
+  R.cleanup(r0.root, r0.project);
+  const setup = { files: { 'design/DESIGN.md': 'OLD\n' } };
+  if (caseInsensitive) setup.files['design/Identity.json'] = '{}\n';
+  const p = R.makeProject(setup);
+  fs.chmodSync(path.join(p.project, 'design', 'DESIGN.md'), 0o600);
+  const s = await R.startServer(plainCmd, p.project, ['--replace']);
+  const u = new URL(s.ready.url);
+  const res = await R.rawRequest(Number(u.port), {
+    method: 'POST',
+    path: '/api/export',
+    headers: { 'X-Hawiya-Token': new URLSearchParams(u.hash.slice(1)).get('token'), 'Content-Type': 'application/json' },
+    body: JSON.stringify(R.theBundle())
+  });
+  try {
+    assert.equal(res.status, 200, res.body);
+    const design = path.join(p.project, 'design');
+    assert.equal(fs.statSync(path.join(design, 'DESIGN.md')).mode & 0o777, 0o600, 'permissions kept');
+    const entries = fs.readdirSync(design).filter((e) => !e.startsWith('backup-')).sort();
+    assert.deepEqual(entries, [...NAMES].sort(), 'canonical names');
+    if (!caseInsensitive) t.diagnostic('case-sensitive disk: name-case part not applicable');
+  } finally {
+    if (!s.exited) s.child.kill();
+    R.cleanup(p.root, p.project);
+  }
+});
+
+test(`[${label}] requests with the valid token during a slow save are answered, not counted as failures`, async () => {
+  const p = R.makeProject({ files: { 'design/identity.json': '{}\n' } });
+  const s = await R.startServer(CMD, p.project, [], { HAWIYA_INJECT: JSON.stringify({ slowLstat: 'identity.json', ms: 800 }) });
+  const u = new URL(s.ready.url);
+  const token = new URLSearchParams(u.hash.slice(1)).get('token');
+  const port = Number(u.port);
+  try {
+    const exp = R.rawRequest(port, { method: 'POST', path: '/api/export', headers: { 'X-Hawiya-Token': token, 'Content-Type': 'application/json' }, body: JSON.stringify(R.theBundle()) });
+    await new Promise((r) => setTimeout(r, 150));
+    const sessions = await Promise.all([1, 2, 3, 4, 5].map(() => R.rawRequest(port, { method: 'GET', path: '/api/session', headers: { 'X-Hawiya-Token': token } })));
+    assert.equal((await exp).status, 409, 'identity.json exists and --replace was not given');
+    assert.deepEqual(sessions.map((x) => x.status), [404, 404, 404, 404, 404], 'valid token: no session file, never 401');
+    await new Promise((r) => setTimeout(r, 300));
+    assert.equal(s.exited, false, 'the server is still running');
+  } finally {
+    if (!s.exited) s.child.kill();
+    R.cleanup(p.root, p.project);
+  }
+});
+
+test(`[${label}] file permissions follow the umask like Node; only a replaced file keeps its old permissions`, async () => {
+  const withUmask = (mask) => ['/bin/sh', '-c', 'umask ' + mask + '; exec "$0" "$@"', ...plainCmd];
+  const save = async (setup, mask, args) => {
+    const p = R.makeProject(setup);
+    if (setup.chmod) for (const [rel, mode] of Object.entries(setup.chmod)) fs.chmodSync(path.join(p.project, rel), mode);
+    const s = await R.startServer(withUmask(mask), p.project, args);
+    const u = new URL(s.ready.url);
+    const res = await R.rawRequest(Number(u.port), { method: 'POST', path: '/api/export', headers: { 'X-Hawiya-Token': new URLSearchParams(u.hash.slice(1)).get('token'), 'Content-Type': 'application/json' }, body: JSON.stringify(R.theBundle()) });
+    await Promise.race([s.exitPromise, new Promise((r) => setTimeout(r, 1500))]);
+    return { p, s, res, design: path.join(p.project, 'design') };
+  };
+  const mode = (f) => fs.statSync(f).mode & 0o7777;
+  const a = await save({}, '077', []);
+  try {
+    assert.equal(a.res.status, 200, a.res.body);
+    for (const n of NAMES) assert.equal(mode(path.join(a.design, n)), 0o600, `${n} under umask 077`);
+  } finally {
+    if (!a.s.exited) a.s.child.kill();
+    R.cleanup(a.p.root, a.p.project);
+  }
+  const b = await save({ files: { 'design/DESIGN.md': 'OLD\n' }, chmod: { 'design/DESIGN.md': 0o664 } }, '022', ['--replace']);
+  try {
+    assert.equal(b.res.status, 200, b.res.body);
+    assert.equal(mode(path.join(b.design, 'DESIGN.md')), 0o664, 'the replaced file keeps its permissions');
+    assert.equal(mode(path.join(b.design, 'tokens.css')), 0o644, 'a new file follows the umask');
+    const backup = fs.readdirSync(b.design).find((e) => e.startsWith('backup-'));
+    assert.equal(mode(path.join(b.design, backup, 'DESIGN.md')), 0o644, 'the backup copy follows the umask, as in Node');
+  } finally {
+    if (!b.s.exited) b.s.child.kill();
+    R.cleanup(b.p.root, b.p.project);
+  }
+});
+
+test(`[${label}] a FIFO in place of the session file never hangs the server`, async () => {
+  const p = R.makeProject({ files: { 'design/.keep': '' } });
+  execFileSync('mkfifo', [path.join(p.project, 'design', 'hawiya-session.json')]);
+  const s = await R.startServer(plainCmd, p.project);
+  const u = new URL(s.ready.url);
+  try {
+    const res = await R.rawRequest(Number(u.port), { method: 'GET', path: '/api/session', headers: { 'X-Hawiya-Token': new URLSearchParams(u.hash.slice(1)).get('token') } });
+    assert.equal(res.status, 404);
+    const again = await R.rawRequest(Number(u.port), { method: 'GET', path: '/' });
+    assert.equal(again.status, 200, 'still serving');
+  } finally {
+    s.child.kill();
+    R.cleanup(p.root, p.project);
+  }
+});
+}
+
+module.exports = { defineFaultTests, defineServerTests, makeProject, cleanup, startServer, rawRequest, theBundle: () => theBundle(), setSpec: (f) => (SPEC = JSON.parse(fs.readFileSync(path.join(__dirname, f), 'utf8'))) };

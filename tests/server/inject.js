@@ -33,3 +33,12 @@ if (spec.writeFail) {
     return real.apply(this, arguments);
   };
 }
+if (spec.slowLstat) {
+  // { "slowLstat": "identity.json", "ms": 800 }: lstat of design/<name> takes that long (a slow disk during a save)
+  const real = fs.lstatSync;
+  const pause = new Int32Array(new SharedArrayBuffer(4));
+  fs.lstatSync = function (p) {
+    if (path.basename(String(p)) === spec.slowLstat && path.basename(path.dirname(String(p))) === 'design') Atomics.wait(pause, 0, 0, spec.ms || 800);
+    return real.apply(this, arguments);
+  };
+}

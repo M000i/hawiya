@@ -7,6 +7,7 @@ Writes one JSON line per input:   {"valid": bool, "errors": [[instancePath, keyw
 The Node test compares every answer with the JavaScript checker (picker/js/core/validate.js).
 
     python3 -I tests/server/python_validate_test.py --self-test   runs a few direct checks and prints "ok"
+    python3 -I tests/server/python_validate_test.py --stringify   writes values the way JSON.stringify(v, null, 2) does
 """
 import importlib.util
 import json
@@ -44,6 +45,14 @@ def main():
     if "--self-test" in sys.argv:
         return self_test(m)
     out = sys.stdout
+    if "--stringify" in sys.argv:
+        # {"value": ...} per line -> the server's JSON.stringify(value, null, 2) twin (_js_stringify), as a JSON string
+        for line in sys.stdin:
+            if line.strip():
+                v = json.loads(line, parse_int=float, parse_float=float)["value"]
+                out.write(json.dumps(m._js_stringify(v)) + "\n")
+        out.flush()
+        return
     for line in sys.stdin:
         line = line.strip()
         if not line:
