@@ -69,6 +69,15 @@
   'saved.draftUnreadable':
     'The previous draft could not be read, so the page started from the ready identity. Its old copy is still in the browser and was not deleted.',
 
+  'autofill.title': 'Fill the rest for me',
+  'autofill.lead':
+    'Elements you chose yourself: {chosen} of {total}. The button fills the rest with what best suits your choices without breaking any blocking rule; then change whatever you like.',
+  'autofill.button': 'Fill the rest for me',
+  'autofill.loading': 'Loading the other elements…',
+  'autofill.done': 'The remaining elements ({count}) are filled and marked «Filled automatically» in the list.',
+  'autofill.failed': 'Some elements could not be loaded, so nothing changed. Try again.',
+  'autofill.refused': 'Nothing changed: your current choices break a blocking rule. Fix that first.',
+  'autofill.mark': 'Filled automatically',
   'advanced.title': 'Advanced mode',
   'advanced.lead': 'Every element with its gallery. Open one to choose from its cards and adjust with the sliders.',
   'element.identities': 'Ready identity',

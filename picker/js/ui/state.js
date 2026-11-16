@@ -4,9 +4,15 @@
  *
  *   state.choices()        a copy of the current choices (the input of resolve.resolve)
  *   state.identity()       the identity built from them (always passes the identity checker)
- *   state.change(fn)       fn(copyOfChoices) edits the copy; it is applied only if the library can build it.
+ *   state.change(fn [, how])  fn(copyOfChoices) edits the copy; it is applied only if the library can build it.
  *                          Returns true when applied. Every applied change is saved as the draft and fires
  *                          'hawiya:state'. A guard (rules-ui.js, the blocking rules) may refuse it first.
+ *   state.chosen()         the elements the user chose (task 2.18), in element order. An element is chosen when a
+ *                          change edits it; it then stops being «filled automatically». how = 'all' (a ready
+ *                          identity: every element chosen) or 'auto' («fill the rest»: it sets autoFilled itself and
+ *                          chooses nothing) or a list of elements picked on purpose (a gallery card, even the one
+ *                          already in place). A restored draft or an opened identity counts as chosen the elements
+ *                          that differ from the page's starting point and were not filled automatically.
  *
  * On load the draft is restored when it can be read and rebuilt; otherwise the page starts from the first ready
  * identity (and the unreadable draft is kept aside, never deleted). The panel «my saved identities» saves the
@@ -92,17 +98,63 @@
   }
 
   var guard = null; // set by rules-ui.js: refuses a change that breaks a blocking rule
+  var chosen = {}; // element → true: the user chose it (task 2.18)
 
-  function change(fn) {
+  // An element's choice as text, the same whatever the key order of its adjustments.
+  function selectionKey(s) {
+    if (!s) return '';
+    var ov = s.overrides || {};
+    return JSON.stringify([
+      s.template,
+      Object.keys(ov)
+        .sort()
+        .map(function (k) {
+          return [k, ov[k]];
+        })
+    ]);
+  }
+
+  function edited(before, after) {
+    return H.resolve.ELEMENTS.filter(function (e) {
+      return selectionKey(before.selections[e]) !== selectionKey(after.selections[e]);
+    });
+  }
+
+  // After a draft is restored or an identity opened: what differs from the starting point, unless filled for them.
+  function chosenFrom(choices) {
+    var auto = choices.autoFilled || [];
+    chosen = {};
+    edited(starterChoices(), choices).forEach(function (e) {
+      if (auto.indexOf(e) === -1) chosen[e] = true;
+    });
+  }
+
+  function change(fn, how) {
     var next = copy(current.choices);
     fn(next);
+    var touched = how === 'all' ? H.resolve.ELEMENTS.slice() : how === 'auto' ? [] : edited(current.choices, next);
+    // A gallery card picked on purpose is chosen even when it is the template already there.
+    if (Array.isArray(how)) {
+      how.forEach(function (e) {
+        if (H.resolve.ELEMENTS.indexOf(e) !== -1 && touched.indexOf(e) === -1) touched.push(e);
+      });
+    }
+    // An element the user edits is theirs now, no longer «filled automatically».
+    if (touched.length && Array.isArray(next.autoFilled)) {
+      next.autoFilled = next.autoFilled.filter(function (e) {
+        return touched.indexOf(e) === -1;
+      });
+    }
     var identity;
     try {
       identity = build(next);
     } catch (e) {
       return false;
     }
-    if (guard && !guard(copy(next), copy(identity))) return false;
+    if (guard && !guard(copy(next), copy(identity), how)) return false;
+    touched.forEach(function (e) {
+      chosen[e] = true;
+    });
     apply(next, identity, true);
     return true;
   }
@@ -115,7 +167,12 @@
       return copy(current.identity);
     },
     change: change,
-    /* setGuard(fn): fn(choices, identity) is asked before every change is applied; false refuses it. */
+    chosen: function () {
+      return H.resolve.ELEMENTS.filter(function (e) {
+        return chosen[e] === true;
+      });
+    },
+    /* setGuard(fn): fn(choices, identity, how) is asked before every change is applied; false refuses it. */
     setGuard: function (fn) {
       guard = typeof fn === 'function' ? fn : null;
     },
@@ -222,6 +279,7 @@
       return;
     }
     openedId = id;
+    chosenFrom(r.choices);
     // If the draft could not be written, the failure notice stays: never claim it is saved.
     if (apply(r.choices, identity, true)) note('saved.opened', { name: r.choices.name });
     renderList();
@@ -289,6 +347,7 @@
     var draft = store.readDraft();
     var choices = draft.status === 'ok' ? draft.choices : starterChoices();
     if (draft.status === 'ok' && draft.openedId) openedId = draft.openedId;
+    chosenFrom(choices);
     apply(choices, build(choices), false);
     if (draft.status === 'unreadable') note('saved.draftUnreadable');
     if (store.listUnreadable()) note('saved.listUnreadable');

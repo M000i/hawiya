@@ -36,7 +36,7 @@
 
   var MAX_SHOWN = 4; // reasons listed in a block message; the rest are counted
   var box = null;
-  var blocked = null; // { problems, suggestion, attempted } of the last refused change
+  var blocked = null; // { problems, suggestion, attempted, how } of the last refused change
   var ignored = {}; // warning key → true
 
   function el(tag, cls) {
@@ -98,6 +98,7 @@
     if (!blocked || !blocked.suggestion) return;
     var attempted = blocked.attempted;
     var overrides = blocked.suggestion.overrides;
+    var how = blocked.how;
     H.state.change(function (c) {
       Object.keys(c).forEach(function (k) {
         delete c[k];
@@ -110,7 +111,7 @@
       Object.keys(overrides).forEach(function (k) {
         s.overrides[k] = overrides[k];
       });
-    });
+    }, how); // the same kind of change as the refused one (a ready identity still chooses every element)
   }
 
   function blockSection() {
@@ -229,13 +230,13 @@
   }
 
   // Asked before every change: refuse it when a blocking rule is broken, and say why.
-  function guard(choices, identity) {
+  function guard(choices, identity, how) {
     var r = H.rules.identity(identity, find);
     if (r.allowed) {
       blocked = null;
       return true;
     }
-    blocked = { problems: r.problems, suggestion: r.suggestion, attempted: choices };
+    blocked = { problems: r.problems, suggestion: r.suggestion, attempted: choices, how: how || null };
     render();
     return false;
   }

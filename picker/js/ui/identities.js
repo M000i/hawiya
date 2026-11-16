@@ -56,7 +56,7 @@
       });
       // A name the user typed is theirs; a ready identity's name follows the identity picked.
       if (isReadyName(c.name)) c.name = identity.name.ar;
-    });
+    }, 'all'); // a ready identity is a choice for every element (nothing left to fill)
   }
 
   function card(identity) {

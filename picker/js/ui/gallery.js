@@ -178,10 +178,13 @@
       b.appendChild(el('span', 'g-card-name', nameOf(tpl)));
       b.addEventListener('click', function () {
         // A part may keep some adjustments when its template changes (direction keeps numerals and calendar).
-        H.state.change(function (c) {
-          if (part && part.pick) part.pick(c, tpl);
-          else c.selections[element] = { template: tpl.id };
-        });
+        H.state.change(
+          function (c) {
+            if (part && part.pick) part.pick(c, tpl);
+            else c.selections[element] = { template: tpl.id };
+          },
+          [element]
+        ); // picking a card is a choice, even of the template already there (task 2.18)
       });
       cards.appendChild(b);
     });

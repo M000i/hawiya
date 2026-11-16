@@ -68,6 +68,13 @@
           </div>
         </fieldset>
 
+        <section class="group autofill" id="autofill" aria-labelledby="autofill-title" hidden>
+          <h2 id="autofill-title" data-i18n="autofill.title"></h2>
+          <p class="note" id="autofill-lead"></p>
+          <button type="button" id="autofill-btn" class="export-btn" data-i18n="autofill.button"></button>
+          <p class="note" id="autofill-note" role="status" aria-live="polite"></p>
+        </section>
+
         <section class="group advanced" aria-labelledby="advanced-title">
           <h2 id="advanced-title" data-i18n="advanced.title"></h2>
           <p class="note identity-lead" data-i18n="advanced.lead"></p>
@@ -183,6 +190,7 @@
     <script src="js/core/schemas.js"></script>
     <script src="js/core/validate.js"></script>
     <script src="js/core/resolve.js"></script>
+    <script src="js/core/autofill.js"></script>
     <script src="js/core/generate.js"></script>
     <script src="js/core/export-format.js"></script>
     <script src="scenes/landing.js"></script>
@@ -202,6 +210,7 @@
     <script src="js/ui/elements/components.js"></script>
     <script src="js/ui/elements/settings.js"></script>
     <script src="js/ui/gallery.js"></script>
+    <script src="js/ui/autofill-ui.js"></script>
     <script src="js/ui/app.js"></script>
     <script src="js/ui/export.js"></script>
   </body>
