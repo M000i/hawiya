@@ -891,3 +891,44 @@ body {
   gap: 10px;
   font-size: 1.25rem;
 }
+
+/* Buttons and cards: each sample is the real recipe in the identity's colors (elements/components.js). */
+#g-panel-buttons .g-cards,
+#g-panel-cards .g-cards {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.c-sample {
+  display: block;
+  inline-size: 100%;
+}
+
+/* Modes: the identity's light and dark backgrounds, the default one marked. */
+.m-sample {
+  align-items: center;
+}
+
+.m-swatch {
+  display: grid;
+  place-items: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+.m-swatch[data-default='true'] {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.m-dot {
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: 50%;
+}
+
+.d-example {
+  margin: 0;
+  font-size: 1rem;
+}

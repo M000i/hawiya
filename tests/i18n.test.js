@@ -26,7 +26,9 @@ const UI = [
   'picker/js/ui/elements/numeric.js',
   'picker/js/ui/elements/colors.js',
   'picker/js/ui/elements/fonts.js',
-  'picker/js/ui/elements/icons.js'
+  'picker/js/ui/elements/icons.js',
+  'picker/js/ui/elements/components.js',
+  'picker/js/ui/elements/settings.js'
 ];
 
 test('Arabic and English have the same keys, non-empty texts and the same placeholders', () => {
@@ -45,6 +47,11 @@ test('each language reads as itself', () => {
   for (const k of ['fonts.specimen.ar', 'fonts.specimen.latin']) assert.equal(ar[k], en[k], k);
   brandOnly.add('fonts.specimen.ar');
   brandOnly.add('fonts.specimen.latin');
+  // The numeral choices are samples of the digits themselves, the same in both interfaces.
+  for (const k of ['direction.numerals.latn', 'direction.numerals.arab']) {
+    assert.equal(ar[k], en[k], k);
+    brandOnly.add(k);
+  }
   for (const key of Object.keys(ar)) {
     if (brandOnly.has(key)) continue;
     assert.match(ar[key], /[؀-ۿ]/, `ar ${key} has no Arabic`);
@@ -95,8 +102,9 @@ test('no visible text is written in the page code', () => {
     assert.doesNotMatch(src, /[؀-ۿ]/, `${file} contains Arabic text`);
     // Every text the scripts write comes from t() / text() (the dictionaries), is cleared, or is a proper
     // name (font family) or data (the export JSON) that is the same in both languages.
+    // A style sheet (css, e.g. a library recipe drawn in a gallery sample) is not visible text.
     const allowed =
-      /^(t\(|text\(|''$|parts \? text\(parts\) : ''$|key \? t\(key, params\) : ''$|families\(f\)\.join\(' \+ '\)$|item\.name \|\| t\(|item\.status === 'ok' \? formatTime\(item\.updatedAt\) : statusText\(item\.status\)$|ctx\.t\(|text$|summary\(entry\)$|def\.unit === 'px' \? t\(|JSON\.stringify\(bundle\))/;
+      /^(t\(|text\(|''$|parts \? text\(parts\) : ''$|key \? t\(key, params\) : ''$|families\(f\)\.join\(' \+ '\)$|item\.name \|\| t\(|item\.status === 'ok' \? formatTime\(item\.updatedAt\) : statusText\(item\.status\)$|ctx\.t\(|text$|css$|summary\(entry\)$|def\.unit === 'px' \? t\(|JSON\.stringify\(bundle\))/;
     // A small el(tag, class, text) helper writes library content; it must never get literal text.
     assert.doesNotMatch(src, /\bel\('[a-z0-9]+', [^,)]+, ['"][^'"]/, `${file} passes literal text to el()`);
     for (const m of src.matchAll(/textContent\s*=\s*([^;]+);/g)) {

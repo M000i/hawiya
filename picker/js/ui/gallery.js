@@ -150,8 +150,10 @@
       if (part && part.sample) b.appendChild(part.sample(tpl, { el: el, t: t }));
       b.appendChild(el('span', 'g-card-name', nameOf(tpl)));
       b.addEventListener('click', function () {
+        // A part may keep some adjustments when its template changes (direction keeps numerals and calendar).
         H.state.change(function (c) {
-          c.selections[element] = { template: tpl.id };
+          if (part && part.pick) part.pick(c, tpl);
+          else c.selections[element] = { template: tpl.id };
         });
       });
       cards.appendChild(b);
@@ -260,7 +262,36 @@
     refresh();
   }
 
+  /* A labelled row of choice buttons for a part's settings (fill, container, numerals, calendar, ...).
+     def: { key, items: [{ id, key }], attr, pick(id) }; the part marks the pressed one in its update. */
+  function segment(ctx, def) {
+    var box = ctx.el('div', 'i-setting');
+    var title = ctx.el('p', 'c-title');
+    title.setAttribute('data-i18n', def.key);
+    title.textContent = ctx.t(def.key);
+    box.appendChild(title);
+    var seg = ctx.el('div', 'seg');
+    seg.setAttribute('role', 'group');
+    seg.setAttribute('data-i18n-attr', 'aria-label:' + def.key);
+    seg.setAttribute('aria-label', ctx.t(def.key));
+    def.items.forEach(function (item) {
+      var b = ctx.el('button');
+      b.type = 'button';
+      b.setAttribute(def.attr, item.id);
+      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('data-i18n', item.key);
+      b.textContent = ctx.t(item.key);
+      b.addEventListener('click', function () {
+        def.pick(item.id);
+      });
+      seg.appendChild(b);
+    });
+    box.appendChild(seg);
+    return box;
+  }
+
   H.gallery = {
+    segment: segment,
     open: function (element) {
       var li = els.list.querySelector('[data-element="' + element + '"]');
       if (!li) return Promise.reject(new Error('unknown element ' + element));

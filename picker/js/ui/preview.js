@@ -201,6 +201,8 @@
       chosen.mode = m;
       draw();
     },
+    // The gallery's button and card samples draw recipes the same way (elements/components.js).
+    fromRecipe: fromRecipe,
     lang: lang,
     mode: mode,
     scene: function () {

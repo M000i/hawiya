@@ -158,36 +158,6 @@
     });
   }
 
-  function segment(ctx, def) {
-    var labelKey = def.key;
-    var items = def.items;
-    var attr = def.attr;
-    var onPick = def.pick;
-    var box = ctx.el('div', 'i-setting');
-    var title = ctx.el('p', 'c-title');
-    title.setAttribute('data-i18n', labelKey);
-    title.textContent = ctx.t(labelKey);
-    box.appendChild(title);
-    var seg = ctx.el('div', 'seg');
-    seg.setAttribute('role', 'group');
-    seg.setAttribute('data-i18n-attr', 'aria-label:' + labelKey);
-    seg.setAttribute('aria-label', ctx.t(labelKey));
-    items.forEach(function (item) {
-      var b = ctx.el('button');
-      b.type = 'button';
-      b.setAttribute(attr, item.id);
-      b.setAttribute('aria-pressed', 'false');
-      b.setAttribute('data-i18n', item.key);
-      b.textContent = ctx.t(item.key);
-      b.addEventListener('click', function () {
-        onPick(item.id);
-      });
-      seg.appendChild(b);
-    });
-    box.appendChild(seg);
-    return box;
-  }
-
   H.galleryParts.icons = {
     sample: function (tpl, ctx) {
       var grid = ctx.el('span', 'g-sample i-grid');
@@ -201,7 +171,7 @@
     after: function (ctx) {
       var box = ctx.el('div', 'i-settings');
       box.appendChild(
-        segment(ctx, {
+        H.gallery.segment(ctx, {
           key: 'icons.fill.label',
           items: FILLS,
           attr: 'data-icon-fill',
@@ -211,7 +181,7 @@
         })
       );
       box.appendChild(
-        segment(ctx, {
+        H.gallery.segment(ctx, {
           key: 'icons.container.label',
           items: CONTAINERS,
           attr: 'data-icon-container',
