@@ -116,15 +116,11 @@ test('export messages and buttons follow the language, even after they are shown
   await page.locator('#export-btn').click();
   await expect(page.locator('html')).toHaveAttribute('data-hawiya-export', 'ready');
   await expect(page.locator('#export-status')).toHaveText(ar['export.fileMode']);
-  await expect(page.locator('#download-list button').first()).toHaveText(
-    ar['export.download'].replace('{name}', 'identity.json')
-  );
+  await expect(page.locator('#download-btn')).toHaveText(ar['export.downloadZip']);
 
   await page.locator('#lang-toggle').click();
   await expect(page.locator('#export-status')).toHaveText(en['export.fileMode']);
-  await expect(page.locator('#download-list button').first()).toHaveText(
-    en['export.download'].replace('{name}', 'identity.json')
-  );
+  await expect(page.locator('#download-btn')).toHaveText(en['export.downloadZip']);
 
   // A changed choice makes the export stale; the message is in the current language.
   await page.locator('#radius-input').fill('12');

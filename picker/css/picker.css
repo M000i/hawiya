@@ -376,8 +376,7 @@ body {
   border-inline-start-color: #b45309;
 }
 
-.export-actions,
-.download-list {
+.export-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;

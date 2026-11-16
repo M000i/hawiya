@@ -114,7 +114,7 @@ test('storage blocked: a notice appears, choosing and exporting still work', asy
   await page.locator('#export-btn').click();
   await expect(page.locator('html')).toHaveAttribute('data-hawiya-export', 'ready');
   const primary = await page.evaluate(
-    () => JSON.parse(window.hawiyaExport.files['identity.json']).tokens.color.primary
+    () => JSON.parse(window.hawiyaExport.files['identity.json']).tokens.color.light.primary
   );
   expect(primary.toLowerCase()).toBe('#0f766e');
   expect(errors).toEqual([]);

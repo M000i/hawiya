@@ -256,7 +256,7 @@
   'export.button': 'Export',
   'export.copy': 'Copy for the agent',
   'export.copyFallbackLabel': 'Result text to copy by hand',
-  'export.download': 'Download {name}',
+  'export.downloadZip': 'Download the six files (zip)',
   'export.listSeparator': ', ',
   'export.saving': 'Saving to your project…',
   'export.saved': 'The files were saved in the design folder of your project: {names}. You can close this page.',
@@ -286,7 +286,10 @@
     'The automatic save failed (code {status}), so nothing was saved. Use “Copy for the agent” or the downloads.',
   'export.fileMode':
     'The page is open as a file, so there is no automatic save. The result is ready for the agent inside this page, or use “Copy for the agent” or the downloads.',
+  'export.missingToken':
+    'The page was opened from the save server, but its link is incomplete (no save token), so nothing was saved in your project. Open the full link the server printed and press “Export” again, or use “Copy for the agent” or the download.',
   'export.generateFailed': 'Could not prepare the files from your choices. Change any choice and try again.',
+  'export.downloadFailed': 'The download could not be prepared. Press “Export” again, or use “Copy for the agent”.',
   'export.copied': 'Copied. Paste it into the chat with your agent.',
   'export.copyManual':
     'Automatic copy failed. The text is selected in front of you; copy it by hand (⌘C or Ctrl+C) and paste it into the chat with your agent.'

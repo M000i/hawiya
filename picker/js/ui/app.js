@@ -115,13 +115,6 @@
     els.radiusValue.textContent = t('radius.value', { value: v.radius });
   }
 
-  /* The exact input the phase-0 generator (export until task 2.21) receives. */
-  H.getGeneratorInput = function () {
-    var v = view();
-    var f = template('fonts', v.font);
-    return { name: v.choices.name, primary: v.color, fontFamily: families(f)[0], radius: v.radius };
-  };
-
   function render() {
     var v = view();
     syncControls(v);

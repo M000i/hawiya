@@ -84,7 +84,9 @@ changed something after exporting: ask them to press «تصدير» again) and r
 Go to Step 5 with `files`.
 
 **Tier 3 — anything else.** Ask the user to double-click `<skill>/picker/index.html`, choose, press «تصدير»,
-then «انسخ للوكيل», and paste the result in the chat. Go to Step 5 with the pasted text.
+then «انسخ للوكيل», and paste the result in the chat. Go to Step 5 with the pasted text. The pasted text
+leaves out `style-guide.html`: if the user also wants it, they press «تنزيل» and unzip `hawiya-design.zip`
+into the project root (it holds a `design/` folder with all six files).
 
 ## Step 5 — Save the files (Tiers 2 and 3 only)
 Write each file into `<project>/design/` exactly as given: same name, same content, UTF-8, LF line endings,
@@ -103,5 +105,5 @@ Code, otherwise `AGENTS.md`) with just this line:
 
 Confirm the saved files exist in `<project>/design/` (if any is missing, say so plainly and do not claim
 success). Then tell the user in two or three short lines which files were saved and the chosen primary color,
-font and corner radius (from `design/identity.json`: `tokens.color.primary`, `tokens.font.family`, and
-`tokens.radius.md`, a number in px), and that future UI work will follow it.
+font and corner radius (from `design/identity.json`: `tokens.color.light.primary`, `tokens.font.body.arabic`
+or `.latin`, and `tokens.radius.md`, a number in px), and that future UI work will follow it.
