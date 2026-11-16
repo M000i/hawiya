@@ -343,6 +343,8 @@
     document.addEventListener('hawiya:state', refresh);
     document.addEventListener('hawiya:refused', refresh); // a refused change was dismissed (rules-ui.js)
     document.addEventListener('hawiya:lang', relabel);
+    // The session read from the save server arrived: its brand colors and tags change the suggestions.
+    document.addEventListener('hawiya:session', relabel);
   }
 
   function boot() {

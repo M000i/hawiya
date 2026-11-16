@@ -69,6 +69,9 @@
   'saved.draftUnreadable':
     'The previous draft could not be read, so the page started from the ready identity. Its old copy is still in the browser and was not deleted.',
 
+  'session.loaded': 'The suggestions are based on your project data (tags and brand colors).',
+  'session.none': 'There is no data about your project, so the page runs on its defaults.',
+  'session.damaged': 'Your project data is damaged or invalid, so it was not used; the page runs on its defaults.',
   'guided.title': 'Guided mode',
   'guided.lead':
     'Eight short questions in order. Every answer updates the preview at once, and the rest is derived from your answers. You can switch to the advanced mode at any moment.',

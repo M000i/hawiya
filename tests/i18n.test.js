@@ -31,6 +31,7 @@ const UI = [
   'picker/js/ui/elements/settings.js',
   'picker/js/ui/rules-ui.js',
   'picker/js/ui/autofill-ui.js',
+  'picker/js/ui/session.js',
   'picker/js/ui/guided.js'
 ];
 

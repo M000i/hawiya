@@ -297,6 +297,21 @@ body {
   font-size: 0.8125rem;
 }
 
+.session-note {
+  margin: 0;
+  padding-block: 8px;
+  padding-inline: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.session-note[data-tone='warn'] {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fcd34d;
+}
+
 .radius-row {
   display: flex;
   align-items: center;

@@ -47,7 +47,7 @@ Shape only — fill in YOUR Step 1 results, never copy these example values:
 ```
 `tags`: 1–3 words for the wanted feel, from: minimal, corporate, editorial, playful, luxury, glass, brutalist,
 neumorphic, retro, material, cupertino, fluent, technical, data-dense, vivid, soft.
-This file records what you detected; the current picker version does not read it yet.
+The picker reads it to steer its suggestions: through the server in Tier 1, from the link in Tier 2.
 
 ## Step 4 — Open the picker (go down the tiers until one works)
 
@@ -76,8 +76,9 @@ text. Otherwise, the server's last output line is the outcome:
 **Tier 2 — your browser tool can open local files AND run JavaScript in them** (e.g. Playwright, Chrome
 DevTools). Tested: the Claude desktop browser pane shows `file://` pages as a static snapshot without running
 their scripts, and Claude in Chrome cannot navigate to `file://` at all — with those, skip to Tier 3.
-Open `file://<skill>/picker/index.html` (encode spaces as `%20`). Ask the user to choose, press «تصدير», and
-tell you when done. Then check `document.documentElement.dataset.hawiyaExport === "ready"` (`"stale"` = they
+Open `file://<skill>/picker/index.html#session=<B64>` (encode spaces as `%20`); `<B64>` is the session file in
+base64 on one line: `base64 < "<project>/design/hawiya-session.json" | tr -d '\n'`. Ask the user to choose,
+press «تصدير», and tell you when done. Then check `document.documentElement.dataset.hawiyaExport === "ready"` (`"stale"` = they
 changed something after exporting: ask them to press «تصدير» again) and read `window.hawiyaExport`, an object
 `{"format":"hawiya-export","schemaVersion":1,"files":{"DESIGN.md":"…", …}}` (keys are bare file names).
 Go to Step 5 with `files`.
