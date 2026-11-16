@@ -6,7 +6,7 @@
  *   state.identity()       the identity built from them (always passes the identity checker)
  *   state.change(fn)       fn(copyOfChoices) edits the copy; it is applied only if the library can build it.
  *                          Returns true when applied. Every applied change is saved as the draft and fires
- *                          'hawiya:state'.
+ *                          'hawiya:state'. A guard (rules-ui.js, the blocking rules) may refuse it first.
  *
  * On load the draft is restored when it can be read and rebuilt; otherwise the page starts from the first ready
  * identity (and the unreadable draft is kept aside, never deleted). The panel «my saved identities» saves the
@@ -91,6 +91,8 @@
     return kept;
   }
 
+  var guard = null; // set by rules-ui.js: refuses a change that breaks a blocking rule
+
   function change(fn) {
     var next = copy(current.choices);
     fn(next);
@@ -100,6 +102,7 @@
     } catch (e) {
       return false;
     }
+    if (guard && !guard(copy(next), copy(identity))) return false;
     apply(next, identity, true);
     return true;
   }
@@ -112,6 +115,10 @@
       return copy(current.identity);
     },
     change: change,
+    /* setGuard(fn): fn(choices, identity) is asked before every change is applied; false refuses it. */
+    setGuard: function (fn) {
+      guard = typeof fn === 'function' ? fn : null;
+    },
     /* Other modules start with H.state.whenReady(init): at once if the identity is ready, else on 'hawiya:ready'. */
     whenReady: function (fn) {
       if (ready) fn();

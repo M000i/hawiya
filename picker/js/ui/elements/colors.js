@@ -186,6 +186,23 @@
 
     after: function (ctx) {
       var box = ctx.el('div', 'c-custom');
+      // The project's contrast level: every text color must reach it in both modes (the blocking rules).
+      box.appendChild(
+        H.gallery.segment(ctx, {
+          key: 'gallery.colors.level',
+          items: [
+            { id: 'AA', key: 'gallery.colors.level.AA' },
+            { id: 'AAA', key: 'gallery.colors.level.AAA' }
+          ],
+          attr: 'data-contrast-level',
+          pick: function (v) {
+            ctx.change(function (c) {
+              c.project = c.project || {};
+              c.project.contrast = v;
+            });
+          }
+        })
+      );
       box.appendChild(colorField(ctx, { role: 'primary', key: 'gallery.colors.primary', optional: false }));
       box.appendChild(colorField(ctx, { role: 'secondary', key: 'gallery.colors.secondary', optional: true }));
 
@@ -220,6 +237,9 @@
     update: function (panel, ctx) {
       var id = ctx.identity;
       var colors = id.tokens.color;
+      Array.prototype.forEach.call(panel.querySelectorAll('[data-contrast-level]'), function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-contrast-level') === id.project.contrast));
+      });
       var ov = ctx.choices.selections.colors.overrides || {};
       var primary = panel.querySelector('[data-color-input="primary"]');
       var secondary = panel.querySelector('[data-color-input="secondary"]');

@@ -932,3 +932,102 @@ body {
   margin: 0;
   font-size: 1rem;
 }
+
+/* Blocking and warning messages (rules-ui.js): stay in view while the galleries scroll. */
+.rules {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 5;
+  display: grid;
+  gap: 8px;
+  max-block-size: 45vh;
+  overflow-y: auto;
+  padding-block-end: 6px;
+  background: var(--bg);
+}
+
+.r-code {
+  font-family: ui-monospace, monospace;
+}
+
+.r-block,
+.r-warn {
+  display: grid;
+  gap: 6px;
+  padding-block: 10px;
+  padding-inline: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid #b91c1c;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.r-warn {
+  border-inline-start-color: #b45309;
+}
+
+.r-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.r-reasons {
+  margin: 0;
+  padding-inline-start: 18px;
+  display: grid;
+  gap: 4px;
+}
+
+.r-warning {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+}
+
+.r-suggestion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.r-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.r-dot {
+  inline-size: 18px;
+  block-size: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+
+.r-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.r-apply,
+.r-close,
+.r-ignore {
+  font: inherit;
+  font-size: 0.875rem;
+  padding-block: 4px;
+  padding-inline: 10px;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.r-apply {
+  color: #ffffff;
+  background: var(--focus);
+  border-color: var(--focus);
+}

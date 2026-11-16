@@ -311,6 +311,7 @@
     els.list = document.getElementById('element-list');
     render();
     document.addEventListener('hawiya:state', refresh);
+    document.addEventListener('hawiya:refused', refresh); // a refused change was dismissed (rules-ui.js)
     document.addEventListener('hawiya:lang', relabel);
   }
 
