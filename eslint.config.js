@@ -22,6 +22,8 @@ const browser = {
   Intl: 'readonly',
   NodeFilter: 'readonly',
   performance: 'readonly',
+  IntersectionObserver: 'readonly',
+  innerHeight: 'readonly',
   Event: 'readonly',
   getComputedStyle: 'readonly',
   TextEncoder: 'readonly',

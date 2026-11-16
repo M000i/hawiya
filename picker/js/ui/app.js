@@ -37,16 +37,6 @@
     return names;
   }
 
-  var loadedFonts = {};
-  function loadFont(name) {
-    if (loadedFonts[name] || !/^[A-Za-z0-9 ]+$/.test(name)) return;
-    loadedFonts[name] = true;
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=' + name.replace(/ /g, '+') + ':wght@400;700&display=swap';
-    document.head.appendChild(link);
-  }
-
   function cssFamily(fontTemplate) {
     return (
       families(fontTemplate)
@@ -79,7 +69,6 @@
   function buildFonts() {
     // The quick font choice lists the fonts available now (the starter ones until the fonts gallery is opened).
     H.library.view().templates.fonts.forEach(function (f) {
-      families(f).forEach(loadFont);
       var label = document.createElement('label');
       label.className = 'font-option';
       var input = document.createElement('input');
@@ -97,6 +86,7 @@
       label.appendChild(sample);
       label.appendChild(name);
       els.fonts.appendChild(label);
+      H.fonts.observe(label, families(f)); // its files load when it comes on screen (task 2.11)
     });
   }
 
@@ -135,6 +125,8 @@
   function render() {
     var v = view();
     syncControls(v);
+    // The chosen font is needed for the preview right away.
+    H.fonts.load(families(template('fonts', v.font)));
     H.preview.render(v.identity);
     document.dispatchEvent(new CustomEvent('hawiya:change', { detail: H.getState() }));
   }

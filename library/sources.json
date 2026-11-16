@@ -81,5 +81,14 @@
     "licenseFile": "https://github.com/tabler/tabler-icons/blob/main/LICENSE",
     "licenseReadAt": "2026-11-15",
     "use": "Icon set (named only; icons are not copied yet)."
+  },
+  {
+    "id": "inter",
+    "name": "Inter",
+    "url": "https://github.com/rsms/inter",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/rsms/inter/blob/master/LICENSE.txt",
+    "licenseReadAt": "2026-11-16",
+    "use": "Font, served by Google Fonts."
   }
 ]

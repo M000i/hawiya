@@ -768,3 +768,46 @@ body {
   border-radius: 4px;
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
 }
+
+/* Fonts gallery (task 2.11). */
+.f-project {
+  display: grid;
+  gap: 6px;
+  margin-block-end: 12px;
+}
+
+.f-langs {
+  justify-self: start;
+}
+
+.f-sample {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.f-sample {
+  --f-size: 1.25rem;
+}
+
+/* The Latin specimen is sized from the Arabic one, times the pair's adjustment (R-090). */
+.f-ar,
+.f-latin {
+  font-size: var(--f-size);
+  line-height: 1.4;
+}
+
+.f-latin {
+  font-size: calc(var(--f-size) * var(--f-adjust, 1));
+}
+
+.f-digits {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
+}
+
+.f-meta,
+.f-families {
+  color: var(--muted);
+  font-size: 0.75rem;
+}

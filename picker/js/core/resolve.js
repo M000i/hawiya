@@ -207,7 +207,7 @@
     // A size adjustment only means something between two different families (R-090): refused, not ignored.
     var twoFamilies = typeof ex.arabic === 'string' && typeof ex.latin === 'string' && ex.arabic !== ex.latin;
     if (hasOwn(ov, 'latin-size-adjust') && !twoFamilies)
-      problems.push('fonts: latin-size-adjust has no effect, the template uses one family for both scripts');
+      problems.push('fonts: latin-size-adjust has no effect, the template does not pair two different families');
 
     function role(arabic) {
       var r = {};

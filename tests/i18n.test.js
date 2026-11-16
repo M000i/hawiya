@@ -24,7 +24,8 @@ const UI = [
   'picker/js/ui/library.js',
   'picker/js/ui/gallery.js',
   'picker/js/ui/elements/numeric.js',
-  'picker/js/ui/elements/colors.js'
+  'picker/js/ui/elements/colors.js',
+  'picker/js/ui/elements/fonts.js'
 ];
 
 test('Arabic and English have the same keys, non-empty texts and the same placeholders', () => {
@@ -39,6 +40,10 @@ test('Arabic and English have the same keys, non-empty texts and the same placeh
 
 test('each language reads as itself', () => {
   const brandOnly = new Set(['lang.switchTo', 'radius.value', 'export.listSeparator', 'gallery.px', 'gallery.number']);
+  // Font specimens are the same in both interfaces: an Arabic and a Latin sample of each font.
+  for (const k of ['fonts.specimen.ar', 'fonts.specimen.latin']) assert.equal(ar[k], en[k], k);
+  brandOnly.add('fonts.specimen.ar');
+  brandOnly.add('fonts.specimen.latin');
   for (const key of Object.keys(ar)) {
     if (brandOnly.has(key)) continue;
     assert.match(ar[key], /[؀-ۿ]/, `ar ${key} has no Arabic`);

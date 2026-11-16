@@ -74,7 +74,8 @@
       "latinSizeAdjust": 1,
       "sources": [
         "plex"
-      ]
+      ],
+      "easternArabicDigits": true
     },
     "a11y": {
       "contrast": "n/a",
@@ -82,7 +83,7 @@
     },
     "rtl": {
       "supported": true,
-      "notes": "Arabic and Latin designed together. Size adjustment and Eastern Arabic digits are measured in task 2.11."
+      "notes": "Arabic and Latin designed together. Eastern Arabic digits measured in Chrome (task 2.11). Size adjustment 1: the two scripts were designed to be used together."
     },
     "source": {
       "name": "IBM Plex",
@@ -157,7 +158,8 @@
       "sources": [
         "noto-arabic",
         "noto-latin"
-      ]
+      ],
+      "easternArabicDigits": true
     },
     "a11y": {
       "contrast": "n/a",
@@ -165,7 +167,7 @@
     },
     "rtl": {
       "supported": true,
-      "notes": "Same family in both scripts. Size adjustment and Eastern Arabic digits are measured in task 2.11."
+      "notes": "Same family in both scripts. Eastern Arabic digits measured in Chrome (task 2.11). Size adjustment 1: the two scripts were designed to be used together."
     },
     "source": {
       "name": "Noto Sans Arabic",
@@ -239,7 +241,8 @@
       "latinSizeAdjust": 1,
       "sources": [
         "cairo"
-      ]
+      ],
+      "easternArabicDigits": true
     },
     "a11y": {
       "contrast": "n/a",
@@ -247,7 +250,7 @@
     },
     "rtl": {
       "supported": true,
-      "notes": "One font with Arabic and Latin letters. Eastern Arabic digits are measured in task 2.11."
+      "notes": "One font with Arabic and Latin letters. Eastern Arabic digits measured in Chrome (task 2.11)."
     },
     "source": {
       "name": "Cairo",
@@ -257,6 +260,159 @@
     "status": {
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "font-noto-kufi-arabic",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u0648\u062a\u0648 \u0643\u0648\u0641\u064a",
+      "en": "Noto Kufi Arabic"
+    },
+    "tags": [
+      "editorial",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Kufi Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Kufi Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Kufi Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Noto Kufi Arabic",
+      "numeralsFont": "Noto Kufi Arabic",
+      "easternArabicDigits": true,
+      "sources": [
+        "noto-arabic"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only (Kufi style). Eastern Arabic digits measured in Chrome (task 2.11)."
+    },
+    "source": {
+      "name": "Noto Sans Arabic",
+      "url": "https://github.com/notofonts/arabic",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-16"
+    }
+  },
+  {
+    "id": "font-inter",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0625\u0646\u062a\u0631",
+      "en": "Inter"
+    },
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Inter",
+      "easternArabicDigits": false,
+      "sources": [
+        "inter"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": false,
+      "notes": "Latin only: for English projects. Has no Eastern Arabic digits (measured in Chrome, task 2.11)."
+    },
+    "source": {
+      "name": "Inter",
+      "url": "https://github.com/rsms/inter",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-16"
     }
   }
 ]);

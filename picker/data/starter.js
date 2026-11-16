@@ -313,7 +313,8 @@
         "latinSizeAdjust": 1,
         "sources": [
           "plex"
-        ]
+        ],
+        "easternArabicDigits": true
       },
       "a11y": {
         "contrast": "n/a",
@@ -321,7 +322,7 @@
       },
       "rtl": {
         "supported": true,
-        "notes": "Arabic and Latin designed together. Size adjustment and Eastern Arabic digits are measured in task 2.11."
+        "notes": "Arabic and Latin designed together. Eastern Arabic digits measured in Chrome (task 2.11). Size adjustment 1: the two scripts were designed to be used together."
       },
       "source": {
         "name": "IBM Plex",
@@ -395,7 +396,8 @@
         "latinSizeAdjust": 1,
         "sources": [
           "cairo"
-        ]
+        ],
+        "easternArabicDigits": true
       },
       "a11y": {
         "contrast": "n/a",
@@ -403,7 +405,7 @@
       },
       "rtl": {
         "supported": true,
-        "notes": "One font with Arabic and Latin letters. Eastern Arabic digits are measured in task 2.11."
+        "notes": "One font with Arabic and Latin letters. Eastern Arabic digits measured in Chrome (task 2.11)."
       },
       "source": {
         "name": "Cairo",

@@ -227,7 +227,7 @@ test('every template combination and adjustment either gives a valid identity or
     if (rand() < 0.5)
       c.selections.colors.overrides = rand() < 0.5 ? { primary: hex() } : { primary: hex(), secondary: hex() };
     const font = DATA.templates.fonts.find((t) => t.id === c.selections.fonts.template).extras;
-    if (rand() < 0.3 && font.arabic !== font.latin)
+    if (rand() < 0.3 && font.arabic && font.latin && font.arabic !== font.latin)
       c.selections.fonts.overrides = { 'latin-size-adjust': num(0.5, 2, 2) };
     if (rand() < 0.4) {
       const steps = 3 + Math.floor(rand() * 10);
