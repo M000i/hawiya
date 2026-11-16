@@ -34,7 +34,11 @@
     '.hw-icon--circle, .hw-icon--square, .hw-icon--rounded { inline-size: 2em; block-size: 2em; padding: 0.4em; background: var(--color-surface); border: 1px solid var(--color-border); }',
     '.hw-icon--circle { border-radius: 50%; }',
     '.hw-icon--rounded { border-radius: var(--radius-md); }',
-    '[dir="rtl"] .hw-icon[data-mirror="true"] svg { transform: scaleX(-1); }'
+    '[dir="rtl"] .hw-icon[data-mirror="true"] svg { transform: scaleX(-1); }',
+    // Keyboard focus is always visible, in the identity's own focus-ring color (3:1 or more; task 2.22).
+    '.scene :focus-visible { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }',
+    // The page's own «reduce motion» rule does not reach inside this shadow root: the scene repeats it.
+    '@media (prefers-reduced-motion: reduce) { .scene *, .scene *::before, .scene *::after { transition: none !important; animation: none !important; } }'
   ].join('\n');
 
   var host = null;

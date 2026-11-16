@@ -19,7 +19,9 @@
     '.c-stage{display:flex;align-items:center;justify-content:center;box-sizing:border-box;inline-size:100%;' +
     'min-block-size:64px;padding:12px;border-radius:8px;pointer-events:none;' +
     'background:var(--color-background);color:var(--color-on-surface);font-family:var(--font-body)}' +
-    '.c-stage>*{max-inline-size:100%;box-sizing:border-box;text-align:start}';
+    '.c-stage>*{max-inline-size:100%;box-sizing:border-box;text-align:start}' +
+    // The page's «reduce motion» rule does not reach inside this shadow root (task 2.22).
+    '@media (prefers-reduced-motion: reduce){.c-stage *{transition:none!important;animation:none!important}}';
 
   function values(element, t) {
     if (element === 'buttons') return { label: t('components.sample.button') };
