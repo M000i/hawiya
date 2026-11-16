@@ -24,6 +24,7 @@
   var savedByServer = false;
   var inFlight = null; // the bundle currently being sent to the server, if any
   var uncertain = false; // a save failed without an HTTP answer: it may still land on disk, so never send another
+  var refused = false; // the server refused this page's token: never send again (a failed save counts toward closing)
   var SAVE_TIMEOUT_MS = 20000;
 
   var t = H.i18n.t;
@@ -213,6 +214,7 @@
               } else if (res.status === 409) {
                 warn(data && Array.isArray(data.existing) ? ['exists'] : ['notFolder']);
               } else if (res.status === 401) {
+                refused = true;
                 warn(['badToken']);
               } else {
                 warn(['failed', { status: res.status }]);
@@ -264,6 +266,11 @@
     if (!token)
       return setStatus(fromServerHost() ? [['missingToken']] : [['fileMode']], fromServerHost() ? 'warn' : 'info');
     if (savedByServer) return setStatus([['alreadySaved']], 'warn');
+    // A tab left from an earlier run (same fixed address, old token): saving would only use up the new run's
+    // attempts, so it is never tried (CHG-1).
+    if (refused || (H.sessionData && H.sessionData.linkRefused && H.sessionData.linkRefused())) {
+      return setStatus([['staleLink']], 'warn');
+    }
     if (uncertain) return setStatus([['uncertain']], 'warn');
     // Never block the button: while an earlier save is pending, copy/download still serve the current choices.
     if (inFlight) return setStatus([['previousPending']], 'warn');

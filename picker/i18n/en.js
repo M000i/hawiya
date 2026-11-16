@@ -290,6 +290,8 @@
     'The page was opened from the save server, but its link is incomplete (no save token), so nothing was saved in your project. Open the full link the server printed and press “Export” again, or use “Copy for the agent” or the download.',
   'export.generateFailed': 'Could not prepare the files from your choices. Change any choice and try again.',
   'export.downloadFailed': 'The download could not be prepared. Press “Export” again, or use “Copy for the agent”.',
+  'export.staleLink':
+    'This page is from an earlier run of the save server and its token is no longer valid, so nothing was sent or saved. Open the new link the server printed and press “Export”, or use “Copy for the agent” or the download.',
   'export.copied': 'Copied. Paste it into the chat with your agent.',
   'export.copyManual':
     'Automatic copy failed. The text is selected in front of you; copy it by hand (⌘C or Ctrl+C) and paste it into the chat with your agent.'

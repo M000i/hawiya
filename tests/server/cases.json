@@ -161,6 +161,38 @@
       }
     },
     {
+      "name": "wrong-token reads of the session do not add to the failed saves: four of them and four wrong saves leave the server running (CHG-1)",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "wrong"
+          },
+          "repeat": 4,
+          "expectStatus": 401
+        },
+        {
+          "method": "POST",
+          "path": "/api/export",
+          "headers": {
+            "Content-Type": "application/json",
+            "Origin": "{ORIGIN}",
+            "X-Hawiya-Token": "wrong"
+          },
+          "body": "@bundle",
+          "repeat": 4,
+          "expectStatus": 401
+        }
+      ],
+      "expect": {
+        "absent": [
+          "design"
+        ],
+        "exits": false
+      }
+    },
+    {
       "name": "file name outside the allowed list is rejected",
       "requests": [
         {
@@ -1473,7 +1505,7 @@
       }
     },
     {
-      "name": "session: wrong or missing token is rejected and counts as a failed attempt",
+      "name": "session: wrong or missing token is rejected but never closes the server (a tab from an earlier run on the fixed port reads with an old token, CHG-1); the right token still works",
       "setup": {
         "files": {
           "design/hawiya-session.json": "@session"
@@ -1487,18 +1519,24 @@
             "X-Hawiya-Token": "wrong"
           },
           "expectStatus": 401,
-          "repeat": 4
+          "repeat": 7
         },
         {
           "method": "GET",
           "path": "/api/session",
           "expectStatus": 401
+        },
+        {
+          "method": "GET",
+          "path": "/api/session",
+          "headers": {
+            "X-Hawiya-Token": "{TOKEN}"
+          },
+          "expectStatus": 200
         }
       ],
       "expect": {
-        "exits": true,
-        "exitCode": 1,
-        "stdoutStatus": "closed"
+        "exits": false
       }
     },
     {

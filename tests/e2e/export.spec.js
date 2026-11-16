@@ -46,7 +46,7 @@ function tempProject() {
 }
 function startServer(project) {
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [path.join(ROOT, 'scripts/serve.js'), project], {
+    const child = spawn(process.execPath, [path.join(ROOT, 'scripts/serve.js'), project, '--port', '0'], {
       stdio: ['ignore', 'pipe', 'pipe']
     });
     const state = { child, out: '', exit: new Promise((r) => child.on('exit', (code) => r(code))) };
@@ -248,5 +248,68 @@ test('a reply that cannot be read: never «nothing was saved», and never sent t
     await expect(page.locator('#download-btn')).toBeVisible();
   } finally {
     stop(server, dir);
+  }
+});
+
+test('a tab left from an earlier run (same address, old token) never sends a save and cannot close the new run', async ({
+  page
+}) => {
+  const net = require('net');
+  // One free port for both runs, as the fixed port 47821 would be (task 3.0a, CHG-1).
+  const port = await new Promise((r) => {
+    const s = net.createServer().listen(0, '127.0.0.1', () => {
+      const p = s.address().port;
+      s.close(() => r(p));
+    });
+  });
+  const start = (dir) =>
+    new Promise((resolve, reject) => {
+      const child = spawn(process.execPath, [path.join(ROOT, 'scripts/serve.js'), dir, '--port', String(port)], {
+        stdio: ['ignore', 'pipe', 'pipe']
+      });
+      const state = { child, out: '', exit: new Promise((r) => child.on('exit', (code) => r(code))) };
+      child.stdout.on('data', (d) => {
+        state.out += d;
+        if (!state.ready && state.out.includes('\n')) {
+          state.ready = JSON.parse(state.out.split('\n')[0]);
+          resolve(state);
+        }
+      });
+      setTimeout(() => reject(new Error('server not ready: ' + state.out)), 5000);
+    });
+  const dir = tempProject();
+  const first = await start(dir);
+  try {
+    await open(page, first.ready.url);
+    first.child.kill();
+    await first.exit;
+    const second = await start(dir);
+    try {
+      expect(new URL(second.ready.url).port).toBe(String(port));
+      let saves = 0;
+      page.on('request', (r) => {
+        if (r.url().endsWith('/api/export')) saves++;
+      });
+      // The old tab, old token, same address: its session read is refused (401).
+      const [read] = await Promise.all([page.waitForResponse((r) => r.url().endsWith('/api/session')), page.reload()]);
+      expect(read.status()).toBe(401);
+      for (let i = 0; i < 6; i++) {
+        await page.locator('#export-btn').click();
+        await expect(status(page)).toHaveText(ar['export.staleLink']);
+      }
+      expect(saves).toBe(0);
+      await expect(page.locator('#download-btn')).toBeVisible(); // the alternatives are there
+      // The new run is still open and saves for its own link.
+      const fresh = await page.context().newPage();
+      await open(fresh, second.ready.url);
+      await fresh.locator('#export-btn').click();
+      await expect(fresh.locator('#export-status')).toHaveAttribute('data-tone', 'ok');
+      expect(await second.exit).toBe(0);
+      expect(fs.readdirSync(path.join(dir, 'design')).sort()).toEqual([...SIX].sort());
+    } finally {
+      second.child.kill();
+    }
+  } finally {
+    stop(first, dir);
   }
 });

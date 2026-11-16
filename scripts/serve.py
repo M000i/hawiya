@@ -3,11 +3,14 @@
 Hawiya save server (Python 3.8+, standard library only; task 1.14). Same contract as scripts/serve.js (plan.md
 section 6), checked by the same case list (tests/server/cases.json).
 
-Usage: python3 -I scripts/serve.py <project-dir> [--replace] [--idle-timeout <seconds>]
+Usage: python3 -I scripts/serve.py <project-dir> [--replace] [--idle-timeout <seconds>] [--port <n>]
 
-- Serves the picker page (picker/ only) on 127.0.0.1 at a random port.
+- Serves the picker page (picker/ only) on 127.0.0.1, port 47821 (CHG-1, task 3.0a), or a random port when that one is
+  busy (the ready line says fallback: true). --port <n> asks for exactly that port (0 = random; for tests).
 - Prints one JSON line when ready:
-  {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>","existing":[...],"replace":false}
+  {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>&project=<id>","existing":[...],"replace":false,
+   "port":<port>,"fallback":false}
+  <id>: the first 16 hex digits of SHA-256("hawiya-project:" + the project's real path), as in serve.js.
 - GET /api/session (token in X-Hawiya-Token): {"session": ...} from <project>/design/hawiya-session.json when it is a
   plain file that passes the session schema; 404 otherwise.
 - POST /api/export (token, application/json, at most 5 MB): one complete export bundle. Accepted only when the
@@ -32,6 +35,7 @@ import stat
 import sys
 import threading
 import time
+import unicodedata
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote
 
@@ -43,6 +47,7 @@ MAX_BODY_DEPTH = 64  # an export bundle needs about 8 levels; both servers refus
 SESSION_FILE = "hawiya-session.json"
 BUNDLE_FORMAT = "hawiya-export"
 DEFAULT_IDLE_SECONDS = 3600
+FIXED_PORT = 47821
 SOCKET_TIMEOUT_SECONDS = 10  # per read/write on a connection
 REQUEST_DEADLINE_SECONDS = 30  # whole request, including slow headers or a trickled body
 LINGER_SECONDS = 1.0  # after refusing a request, briefly drain so the client can read the reply
@@ -100,6 +105,7 @@ def parse_args(argv):
     project_arg = None
     idle_seconds = DEFAULT_IDLE_SECONDS
     replace = False
+    port = None  # None = the fixed port with a fallback
     i = 0
     while i < len(argv):
         a = argv[i]
@@ -114,6 +120,13 @@ def parse_args(argv):
             if v is None or v < 1 or v > 86400:
                 die("--idle-timeout must be an integer between 1 and 86400")
             idle_seconds = v
+        elif a == "--port":
+            i += 1
+            raw = argv[i] if i < len(argv) else ""
+            v = int(raw) if re.fullmatch(r"[0-9]{1,5}", raw, re.ASCII) else -1
+            if v < 0 or v > 65535:
+                die("--port must be an integer between 0 and 65535")
+            port = v
         elif a.startswith("--"):
             die("unknown option " + a)
         elif project_arg is None:
@@ -122,13 +135,13 @@ def parse_args(argv):
             die("only one project directory may be given")
         i += 1
     if project_arg is None:
-        die("usage: serve.py <project-dir> [--replace] [--idle-timeout <seconds>]")
+        die("usage: serve.py <project-dir> [--replace] [--idle-timeout <seconds>] [--port <n>]")
     if not os.path.exists(project_arg):
         die("project directory does not exist: " + project_arg)
     project = os.path.realpath(project_arg)
     if not os.path.isdir(project):
         die("not a directory: " + project_arg)
-    return project, idle_seconds, replace
+    return project, idle_seconds, replace, port
 
 
 # ---------- shared state ----------
@@ -1328,7 +1341,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(403, {"error": "foreign site"})
         touch()
         if S.token_used or not token_matches(self.headers.get_all("X-Hawiya-Token")):
-            return self._refuse_token()
+            # A failed READ does not count toward the five (a tab from an earlier run on the fixed port, CHG-1).
+            return self._json(401, {"error": "invalid token"})
 
         def none(why):
             return self._json(404, {"error": why})
@@ -1454,7 +1468,10 @@ class Handler(BaseHTTPRequestHandler):
 
 class Server(ThreadingHTTPServer):
     daemon_threads = True
-    allow_reuse_address = False
+    # Like Node: on Unix, SO_REUSEADDR only lets a new run take the fixed port while old connections finish
+    # (TIME_WAIT); it never lets two servers listen on it. On Windows it would let another program take the
+    # port over, so it stays off there.
+    allow_reuse_address = os.name != "nt"
 
     def server_bind(self):
         # Skip HTTPServer's reverse-DNS lookup of the bind address (can be slow); we know the name.
@@ -1477,7 +1494,12 @@ def _fatal_hook(exc_type, exc, tb):
 
 
 def main():
-    project, idle_seconds, replace = parse_args(sys.argv[1:])
+    project, idle_seconds, replace, asked_port = parse_args(sys.argv[1:])
+    # As serve.js: on macOS and Windows the same folder may be written in another case or Unicode form.
+    id_path = project
+    if sys.platform == "darwin" or os.name == "nt":
+        id_path = unicodedata.normalize("NFC", unicodedata.normalize("NFC", project).lower())
+    project_id = hashlib.sha256(("hawiya-project:" + id_path).encode("utf-8", "surrogateescape")).hexdigest()[:16]
     S.replace = replace
     S.project = project
     S.design_dir = os.path.join(project, "design")
@@ -1490,12 +1512,23 @@ def main():
     sys.excepthook = _fatal_hook
     threading.excepthook = lambda args: _fatal_hook(args.exc_type, args.exc_value, args.exc_traceback)
 
-    server = Server(("127.0.0.1", 0), Handler)
+    # The fixed port, or a random one when it is taken (or refused). An explicit --port is exact.
+    fallback = False
+    try:
+        server = Server(("127.0.0.1", FIXED_PORT if asked_port is None else asked_port), Handler)
+    except OSError as e:
+        if asked_port is not None or e.errno not in (errno.EADDRINUSE, errno.EACCES) and not isinstance(e, PermissionError):
+            S.finished = True
+            print_line({"status": "closed", "reason": "cannot listen on 127.0.0.1 (%s)" % (errno.errorcode.get(e.errno, e.errno),)})
+            os._exit(1)
+        fallback = True
+        server = Server(("127.0.0.1", 0), Handler)
     port = server.server_address[1]
     S.expected_host = "127.0.0.1:%d" % port
     S.origin = "http://" + S.expected_host
     touch()
-    print_line({"status": "ready", "url": S.origin + "/#token=" + token, "existing": existing_design_files(), "replace": S.replace})
+    print_line({"status": "ready", "url": S.origin + "/#token=" + token + "&project=" + project_id,
+                "existing": existing_design_files(), "replace": S.replace, "port": port, "fallback": fallback})
     try:
         server.serve_forever(poll_interval=0.2)
     except KeyboardInterrupt:

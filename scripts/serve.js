@@ -2,11 +2,17 @@
 /*
  * Hawiya save server (Node, no dependencies; task 1.12, plan.md section 6).
  *
- * Usage: node scripts/serve.js <project-dir> [--replace] [--idle-timeout <seconds>]
+ * Usage: node scripts/serve.js <project-dir> [--replace] [--idle-timeout <seconds>] [--port <n>]
  *
- * - Serves the picker page (picker/ only) on 127.0.0.1 at a random port.
+ * - Serves the picker page (picker/ only) on 127.0.0.1, port 47821 (CHG-1, task 3.0a): one address every run, so the
+ *   browser keeps the saved identities. If that port is busy (or refused), a random port instead, and the ready line
+ *   says so (fallback: true). --port <n> asks for exactly that port (0 = random; for tests), with no fallback.
  * - Prints one JSON line when ready:
- *     {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>","existing":[...],"replace":false}
+ *     {"status":"ready","url":"http://127.0.0.1:<port>/#token=<token>&project=<id>","existing":[...],
+ *      "replace":false,"port":<port>,"fallback":false}
+ *   <id>: the first 16 hex digits of SHA-256("hawiya-project:" + the project's real path; on macOS and Windows in
+ *   Unicode NFC, lowercased, since those file systems ignore case and form), so the page can keep a
+ *   draft per project without the path ever leaving this process.
  * - GET /api/session (token in X-Hawiya-Token): returns {"session": ...} from <project>/design/hawiya-session.json
  *   when it is a plain file that passes the session schema; 404 otherwise.
  * - POST /api/export (token in X-Hawiya-Token, application/json, at most 5 MB): one complete export bundle
@@ -58,6 +64,7 @@ function jsonDepth(text) {
 }
 const SESSION_FILE = 'hawiya-session.json';
 const DEFAULT_IDLE_SECONDS = 3600;
+const FIXED_PORT = 47821;
 
 const CONTENT_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -80,6 +87,7 @@ function parseArgs(argv) {
   let projectArg = null;
   let idleSeconds = DEFAULT_IDLE_SECONDS;
   let replace = false;
+  let port = null; // null = the fixed port with a fallback
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--replace') {
@@ -88,6 +96,11 @@ function parseArgs(argv) {
       const v = Number(argv[++i]);
       if (!Number.isInteger(v) || v < 1 || v > 86400) die('--idle-timeout must be an integer between 1 and 86400');
       idleSeconds = v;
+    } else if (a === '--port') {
+      const raw = argv[++i];
+      const v = /^[0-9]{1,5}$/.test(raw || '') ? Number(raw) : NaN;
+      if (!Number.isInteger(v) || v < 0 || v > 65535) die('--port must be an integer between 0 and 65535');
+      port = v;
     } else if (a.startsWith('--')) {
       die('unknown option ' + a);
     } else if (projectArg === null) {
@@ -96,7 +109,7 @@ function parseArgs(argv) {
       die('only one project directory may be given');
     }
   }
-  if (projectArg === null) die('usage: serve.js <project-dir> [--replace] [--idle-timeout <seconds>]');
+  if (projectArg === null) die('usage: serve.js <project-dir> [--replace] [--idle-timeout <seconds>] [--port <n>]');
   let project;
   try {
     project = fs.realpathSync(projectArg);
@@ -104,10 +117,17 @@ function parseArgs(argv) {
     die('project directory does not exist: ' + projectArg);
   }
   if (!fs.statSync(project).isDirectory()) die('not a directory: ' + projectArg);
-  return { project, idleSeconds, replace };
+  return { project, idleSeconds, replace, port };
 }
 
-const { project, idleSeconds, replace } = parseArgs(process.argv.slice(2));
+const { project, idleSeconds, replace, port: askedPort } = parseArgs(process.argv.slice(2));
+// On macOS and Windows a folder's name ignores case and Unicode form, so "Proj" and "proj" (or a name typed in NFC or
+// NFD) are the same folder and get the same id. serve.py does exactly the same.
+const idPath =
+  process.platform === 'darwin' || process.platform === 'win32'
+    ? project.normalize('NFC').toLowerCase().normalize('NFC')
+    : project;
+const projectId = crypto.createHash('sha256').update('hawiya-project:' + idPath, 'utf8').digest('hex').slice(0, 16);
 const designDir = path.join(project, 'design');
 const pickerRoot = fs.realpathSync(path.join(__dirname, '..', 'picker'));
 
@@ -124,9 +144,15 @@ function tokenMatches(given) {
   return crypto.timingSafeEqual(digest, tokenDigest);
 }
 
-/* Refuses a wrong, missing or used token (401) and closes the server after five such attempts. True when refused. */
-function refuseBadToken(req, res) {
+/* Refuses a wrong, missing or used token (401). A failed SAVE counts, and five close the server; a failed READ of the
+   session does not (count: false): with the fixed port (CHG-1) a tab left from an earlier run reads with its old
+   token, and that must not close the new run. The 256-bit token cannot be guessed either way. True when refused. */
+function refuseBadToken(req, res, count = true) {
   if (!tokenUsed && tokenMatches(req.headers['x-hawiya-token'])) return false;
+  if (!count) {
+    sendJson(res, 401, { error: 'invalid token' });
+    return true;
+  }
   failedAttempts++;
   sendJson(res, 401, { error: 'invalid token' });
   if (failedAttempts >= MAX_FAILED_ATTEMPTS) afterResponse(res, () => finish(1, { reason: 'too many failed attempts' }));
@@ -486,7 +512,7 @@ function handleSession(req, res) {
   const site = req.headers['sec-fetch-site'];
   if (site === 'cross-site' || site === 'same-site') return sendJson(res, 403, { error: 'foreign site' });
   touch();
-  if (refuseBadToken(req, res)) return;
+  if (refuseBadToken(req, res, false)) return;
 
   const none = (why) => sendJson(res, 404, { error: why });
   if (!designIsPlainFolder()) return none('no session');
@@ -573,10 +599,34 @@ server.on('clientError', (err, socket) => socket.destroy());
 server.headersTimeout = 10000;
 server.requestTimeout = 30000;
 
-server.listen(0, '127.0.0.1', () => {
+let fallback = false;
+
+function onListening() {
   const port = server.address().port;
   expectedHost = '127.0.0.1:' + port;
   serverOrigin = 'http://' + expectedHost;
   touch();
-  printLine({ status: 'ready', url: serverOrigin + '/#token=' + token, existing: existingDesignFiles(), replace });
+  printLine({
+    status: 'ready',
+    url: serverOrigin + '/#token=' + token + '&project=' + projectId,
+    existing: existingDesignFiles(),
+    replace,
+    port,
+    fallback
+  });
+}
+
+// The fixed port, or a random one when it is taken (or refused) by something else. An explicit --port is exact.
+server.on('error', (e) => {
+  if (expectedHost !== null) throw e; // after start-up: as before (the uncaught-exception handler closes cleanly)
+  if (!fallback && askedPort === null && ['EADDRINUSE', 'EACCES', 'EPERM'].includes(e.code)) {
+    fallback = true;
+    server.listen(0, '127.0.0.1');
+    return;
+  }
+  finished = true;
+  printLine({ status: 'closed', reason: 'cannot listen on 127.0.0.1 (' + (e.code || e.message) + ')' });
+  process.exit(1);
 });
+server.once('listening', onListening);
+server.listen(askedPort === null ? FIXED_PORT : askedPort, '127.0.0.1');

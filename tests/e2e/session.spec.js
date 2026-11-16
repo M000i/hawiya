@@ -115,7 +115,7 @@ test('hostile text in the session never reaches the page', async ({ page }) => {
 
 function startServer(project) {
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [path.join(ROOT, 'scripts/serve.js'), project], {
+    const child = spawn(process.execPath, [path.join(ROOT, 'scripts/serve.js'), project, '--port', '0'], {
       stdio: ['ignore', 'pipe', 'pipe']
     });
     let out = '';

@@ -156,6 +156,10 @@
     }
 
     var tk = token();
+    var linkRefused = false;
+    H.sessionData.linkRefused = function () {
+      return linkRefused;
+    };
     var ask = !!tk && typeof root.fetch === 'function';
     // Without a server the link is read at once, so the galleries start with it; with one, its answer decides.
     if (result.status === 'ok' && !ask) H.session = result.session;
@@ -165,6 +169,9 @@
       root
         .fetch('/api/session', { headers: { 'X-Hawiya-Token': tk }, cache: 'no-store', credentials: 'same-origin' })
         .then(function (res) {
+          // 401: this page's token is not the server's: a tab left from an earlier run on the fixed port (CHG-1).
+          // export.js then never sends a save from it.
+          if (res.status === 401) linkRefused = true;
           return res.text().then(function (body) {
             return fromServer(res.status, body);
           });

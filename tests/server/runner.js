@@ -115,7 +115,10 @@ function cleanup(root, project) {
   fs.rmSync(root, { recursive: true, force: true });
 }
 
-function startServer(cmd, project, args = [], env = undefined) {
+// Every test server gets a random port (--port 0), so tests can run side by side; only tests/server/port.test.js
+// asks for the real default (opts.defaultPort), the fixed port 47821 (task 3.0a).
+function startServer(cmd, project, args = [], env = undefined, opts = {}) {
+  if (!opts.defaultPort && !args.includes('--port')) args = [...args, '--port', '0'];
   return new Promise((resolve, reject) => {
     const child = spawn(cmd[0], [...cmd.slice(1), project, ...args], { stdio: ['ignore', 'pipe', 'pipe'], env: env ? { ...process.env, ...env } : process.env });
     const state = { child, stdout: '', stderr: '', exited: false, exitCode: null };
