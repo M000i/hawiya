@@ -1668,7 +1668,7 @@
     - المراجعة المستقلة (جولتان): أكدت صمود الحمايات (Origin والرمز و Host، وإعادة ربط DNS، وطلب CORS المسبق، والكتابة المتزامنة، وتنسيق الملفات، و 4888 تعديلًا عشوائيًا على الفحص بلا تعطل، ولا حقن في الصفحة، وأن تقسيم المعاينة لم يغيّر سلوكها). الأولى: ملاحظة A أُصلحت: كان يمكن اعتماد محتوى تغيّر في الملف بعد فتح الصفحة فلم يره المالك ← بصمة محتوى؛ و A/B أُصلحت: إدخال معطوب يوقف عرض بقية العنصر؛ و B أُصلحت: ملف عنصر لا يُقرأ يظهر فارغًا بصمت، وتعذّر إرجاع تمبلت معطوب لمسودة، وطلبات بلا رمز تمدد المهلة. الثانية: الإصلاحات مؤكدة، و B أُصلحت: المعرّف المكرر كان يغيّر النسخة الأولى. مؤجلة: B-066.
     - انحرافات: `picker/js/ui/preview.js` و `eslint.config.js` (ليسا في الملفات المتوقعة)؛ رفض اعتماد تمبلت فيه مشاكل الفحص إضافة لم يطلبها المعيار لكنها تمنع نشر ما يفشل الفحص؛ الرمز ليس لمرة واحدة (اعتمادات كثيرة في الجلسة) بخلاف خادم الحفظ؛ عرض البناء بعد الاعتماد يبقى يدويًا (`npm run build`).
 
-- [ ] **3.5** أداة استخراج عيّنات الأيقونات
+- [x] **3.5** أداة استخراج عيّنات الأيقونات
   - الخطورة: B — أداة محتوى
   - الحجم: متوسطة
   - تحقق المتطلبات: R-047
@@ -1677,7 +1677,34 @@
   - معيار القبول: تستخرج عيّنة ثابتة من 12 إلى 16 أيقونة لكل مكتبة مؤكدة؛ رخصة كل مكتبة مسجّلة بعد قراءة ملفها الأصلي لا من وسم Iconify
   - الاختبار: تشغيل الأداة والتأكد أن كل مكتبة لها نفس قائمة المعاني (سهم، بحث، إعدادات...)
   - ما ستراه أنت: شغّل `npm run review` وافتح الأيقونات فترى نفس الأيقونات بأشكال مكتبات مختلفة
-  - دليل الإكمال: —
+  - دليل الإكمال:
+    - قرارا المالك قبل البدء: تثبيت 12 حزمة `@iconify-json/*` كأدوات تطوير بنسخ عمرها أسبوعان على الأقل وبلا سكربتات تثبيت (material-symbols 1.2.97، fluent 1.2.61، hugeicons 1.2.35، iconoir 1.2.12، heroicons 1.2.3، mingcute 1.2.9، carbon 1.2.29، bi 1.2.7، solar 1.2.13، streamline 1.2.5، iconamoon 1.2.2، basil 1.2.4)؛ ومسودة واحدة لكل مكتبة جديدة في `icons.json` لتظهر في صفحة المراجعة.
+    - الملفات: `tools/icons-extract.js` (أُعيدت كتابته: 15 مكتبة مؤكدة من ملف المشروع بالمعاني الأربعة عشر نفسها، و `--list` يستخرج عيّنة كل مكتبة دون كتابة، ويتوقف عند أيقونة ناقصة أو اسم مستعار يقلب الشكل أو مقاس مختلف)، `package.json` و `package-lock.json`، `library/sources.json` (12 مصدرًا)، `library/licenses.json` (نصا Apache 2.0 و CC BY 4.0 كاملين)، `THIRD_PARTY_NOTICES.md` (مُعاد توليده: 21 مصدرًا)، `library/elements/icons.json` (12 مسودة)، `tests/icons-extract.test.js` (جديد)، `tests/library.test.js` و `tests/check.test.js` و `tests/e2e/review.spec.js` (أعداد تتبع المكتبة بدل رقم ثابت، ومصدر صفحته على Figma).
+    - الرخص مقروءة من الأصل لا من وسم Iconify: ملف LICENSE في مستودع كل من Fluent و Hugeicons (ومعه نص README: الأيقونات المجانية MIT) و Iconoir و Heroicons و Bootstrap Icons (MIT)، و Material Symbols و MingCute (انتقل إلى mingcute-design/mingcute-icons) و Carbon (Apache 2.0، بلا ملف NOTICE)؛ README مستودع Streamline (CC BY 4.0)؛ صفحات Figma Community لـ Solar و IconaMoon و Basil («Licensed under CC BY 4.0»، ومستودعا Solar و IconaMoon لا يذكران رخصة). مصادر CC BY الأربعة لها سطر نسبة في الإشعارات.
+    - `node tools/icons-extract.js --list` (آخر الأسطر):
+      ```
+      carbon: 14 icons (arrow, chevron, undo, search, home, settings, user, bell, plus, close, menu, check, clock, play)
+      bootstrap: 14 icons (arrow, chevron, undo, search, home, settings, user, bell, plus, close, menu, check, clock, play)
+      solar: 14 icons (arrow, chevron, undo, search, home, settings, user, bell, plus, close, menu, check, clock, play)
+      streamline: 14 icons (arrow, chevron, undo, search, home, settings, user, bell, plus, close, menu, check, clock, play)
+      iconamoon: 14 icons (arrow, chevron, undo, search, home, settings, user, bell, plus, close, menu, check, clock, play)
+      basil: 14 icons (arrow, chevron, undo, search, home, settings, user, bell, plus, close, menu, check, clock, play)
+      ```
+    - `node --test tests/icons-extract.test.js`:
+      ```
+      ✔ the tool gives every confirmed library the same 12 to 16 meanings, as plain SVG shapes (task 3.5)
+      ✔ each library's license is recorded from its own repository or page, with its text, never from Iconify
+      ✔ every icons template is from a confirmed library, and its samples are what the tool extracts now
+      ✔ the tool stops on a flipped alias, an icon of another size, a missing icon or an unknown library
+      ℹ pass 4
+      ℹ fail 0
+      ```
+      `npm test`: «ℹ tests 572 / ℹ pass 572 / ℹ fail 0»؛ `npm run test:e2e`: «123 passed (15.2s)»؛ `npm run test:golden`: 12 من 12؛ `npm run check`: «success: 49 templates (37 reviewed, 12 drafts), 2 identities checked, no problem»؛ `npm run build`: «37 templates published, 12 drafts left out» (`picker/data` لم يتغير)؛ `npm run lint`: 0 أخطاء (تحذيران قديمان)؛ `npm run format:check`: نجاح.
+    - إعادة الاستخراج على التمبلتات الخمسة القديمة أعطت الملف نفسه بايتًا ببايت قبل إضافة المسودات.
+    - فحص بالعين في صفحة المراجعة (على نسخة مؤقتة من المكتبة): العدّادان 37 مراجَع و 12 مسودة، وفي تبويب الأيقونات 17 بطاقة لكل منها 14 أيقونة؛ لوحة مكبّرة للمكتبات الخمس عشرة أظهرت المعاني نفسها بالترتيب نفسه.
+    - التخريب المتعمد: 7 أعطال (سهم معكوس دون إعادة الاستخراج، معنى خامس عشر، رخصة من صفحة Iconify، حذف سطر النسبة، قبول اسم مستعار مُدار، تجاهل اختلاف المقاس، حذف مكتبة مؤكدة) ← كلها اكتُشفت.
+    - المراجعة: ذاتية (مهمة B). مؤجلة: B-067.
+    - انحرافات: (1) `library/elements/icons.json` ليس في الملفات المتوقعة (بموافقة المالك: 12 مسودة، تكملها 3.10). (2) إصلاح خطأ من 3.4: أمر `npm run notices` كان يحمل أسماء ملفات المراجعة بالخطأ فيفشل، وملفات المراجعة لم تكن في قائمة التنسيق؛ صُحّحا في `package.json`. (3) أيقونة «تراجع» في Basil هي سهم الرد لأن المكتبة بلا أيقونة تراجع، و «إغلاق» في Streamline هي X العريضة لأن المجموعة المجانية بلا X رفيعة. (4) مكتبات التعبئة (Material و Fluent و MingCute و Carbon و Bootstrap و Basil) بلا قيمة سماكة خط في تمبلتها.
 
 - [ ] **3.6** لوحات الألوان من المصادر المؤكدة (الدفعة الأولى، نحو 60)
   - الخطورة: B — محتوى

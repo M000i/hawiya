@@ -27,6 +27,16 @@ function library() {
   return { dir, lib, file };
 }
 
+// How many templates of the copied library are reviewed and how many are drafts.
+function counts(lib) {
+  const n = { reviewed: 0, draft: 0 };
+  const dir = path.join(lib, 'elements');
+  for (const f of fs.readdirSync(dir)) {
+    for (const t of JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))) if (t && t.status) n[t.status.state]++;
+  }
+  return n;
+}
+
 function start(lib) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [path.join(ROOT, 'tools/review-server.js'), '--library', lib, '--no-open'], {
@@ -56,8 +66,10 @@ test('every template in four states; approve changes the file and the counter', 
     await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
     // The token leaves the address bar at once.
     expect(page.url()).not.toContain('token');
-    await expect(page.locator('#count-reviewed')).toHaveText('37');
-    await expect(page.locator('#count-drafts')).toHaveText('1');
+    const n = counts(L.lib); // 37 reviewed; the drafts include the radius-pill draft made above
+    expect(n.reviewed).toBe(37);
+    await expect(page.locator('#count-reviewed')).toHaveText(String(n.reviewed));
+    await expect(page.locator('#count-drafts')).toHaveText(String(n.draft));
 
     await page.locator('.r-tab[data-element="radius"]').click();
     const card = page.locator('.r-card[data-template="radius-pill"]');
@@ -87,8 +99,8 @@ test('every template in four states; approve changes the file and the counter', 
     expect(radius).toBe('24px');
 
     await card.locator('[data-action="approve"]').click();
-    await expect(page.locator('#count-reviewed')).toHaveText('38');
-    await expect(page.locator('#count-drafts')).toHaveText('0');
+    await expect(page.locator('#count-reviewed')).toHaveText(String(n.reviewed + 1));
+    await expect(page.locator('#count-drafts')).toHaveText(String(n.draft - 1));
     await expect(page.locator('.r-card[data-template="radius-pill"]')).toHaveAttribute('data-state', 'reviewed');
     const saved = JSON.parse(fs.readFileSync(L.file, 'utf8')).find((t) => t.id === 'radius-pill');
     expect(saved.status.state).toBe('reviewed');
@@ -96,7 +108,7 @@ test('every template in four states; approve changes the file and the counter', 
 
     // Back to draft, and the interface in English.
     await page.locator('.r-card[data-template="radius-pill"] [data-action="draft"]').click();
-    await expect(page.locator('#count-reviewed')).toHaveText('37');
+    await expect(page.locator('#count-reviewed')).toHaveText(String(n.reviewed));
     await page.locator('#r-lang').click();
     await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
     await expect(page.locator('.r-card[data-template="radius-pill"] [data-action="approve"]')).toHaveText('Approve');
@@ -129,7 +141,8 @@ test('a broken entry gets its own card and never hides the others', async ({ pag
     await expect(page.locator('.r-card[data-broken="2"]')).toHaveCount(1);
     await expect(page.locator('.r-card[data-template="palette-odd"] .r-problems')).toBeVisible();
     await expect(page.locator('.r-card[data-template="palette-odd"] [data-action="approve"]')).toBeDisabled();
-    await expect(page.locator('#count-drafts')).toHaveText('2'); // the radius test draft and palette-odd
+    // The library's drafts, the radius test draft and palette-odd (the null entry is no template).
+    await expect(page.locator('#count-drafts')).toHaveText(String(counts(L.lib).draft));
     expect(errors).toEqual([]);
   } finally {
     s.child.kill();

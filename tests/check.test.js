@@ -70,8 +70,10 @@ test('a fresh copy passes; the tool prints «نجاح» with the count and exits
     assert.deepEqual(c.run().problems, []);
     const out = spawnSync(process.execPath, [TOOL, ...c.args], { encoding: 'utf8' });
     assert.equal(out.status, 0, out.stderr);
-    assert.match(out.stdout, /نجاح: فُحص 37 تمبلت/);
-    assert.match(out.stdout, /success: 37 templates/);
+    const n = c.run().counts.templates; // every template, drafts too
+    assert.ok(n >= 49, String(n));
+    assert.match(out.stdout, new RegExp(`نجاح: فُحص ${n} تمبلت`));
+    assert.match(out.stdout, new RegExp(`success: ${n} templates`));
   } finally {
     clean(c);
   }
@@ -403,9 +405,9 @@ const CASES = [
     (c) =>
       c.edit('sources.json', (l) => {
         const t = l.find((x) => x.id === 'tailwind');
-        t.license = 'Apache-2.0';
+        t.license = 'CC0-1.0';
       }),
-    /"Apache-2\.0" has no text/
+    /"CC0-1\.0" has no text/
   ]
 ];
 
@@ -494,6 +496,7 @@ test('picker/data out of date: each changed template is named; extra and missing
 test('a draft is checked like a reviewed template', () => {
   const c = copy();
   try {
+    const drafts = c.run().counts.drafts;
     c.edit('elements/radius.json', (l) => {
       const t = c.find(l, 'radius-sharp');
       t.status = { state: 'draft' };
@@ -502,7 +505,7 @@ test('a draft is checked like a reviewed template', () => {
     });
     const r = c.run();
     assert.ok(has(r.problems, 'tokens', 'radius-sharp', /unit/), show(r.problems));
-    assert.equal(r.counts.drafts, 1);
+    assert.equal(r.counts.drafts, drafts + 1);
   } finally {
     clean(c);
   }

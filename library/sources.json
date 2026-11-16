@@ -129,5 +129,155 @@
       "Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)"
     ],
     "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "material-symbols",
+    "name": "Material Symbols",
+    "url": "https://github.com/google/material-design-icons",
+    "license": "Apache-2.0",
+    "licenseFile": "https://github.com/google/material-design-icons/blob/master/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Material Symbols by Google (its LICENSE file is the Apache License 2.0 text and names no copyright holder)"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
+  },
+  {
+    "id": "fluent",
+    "name": "Fluent UI System Icons",
+    "url": "https://github.com/microsoft/fluentui-system-icons",
+    "license": "MIT",
+    "licenseFile": "https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2020 Microsoft Corporation"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
+  },
+  {
+    "id": "hugeicons",
+    "name": "Hugeicons",
+    "url": "https://github.com/hugeicons/hugeicons",
+    "license": "MIT",
+    "licenseFile": "https://github.com/hugeicons/hugeicons/blob/main/LICENSE.md",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2025 Hugeicons"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "note": "Only the free icons (@hugeicons/core-free-icons), which its README puts under the MIT License; the Pro icons are not used."
+  },
+  {
+    "id": "iconoir",
+    "name": "Iconoir",
+    "url": "https://github.com/iconoir-icons/iconoir",
+    "license": "MIT",
+    "licenseFile": "https://github.com/iconoir-icons/iconoir/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2021 Luca Burgio"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
+  },
+  {
+    "id": "heroicons",
+    "name": "Heroicons",
+    "url": "https://github.com/tailwindlabs/heroicons",
+    "license": "MIT",
+    "licenseFile": "https://github.com/tailwindlabs/heroicons/blob/master/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) Tailwind Labs, Inc."
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
+  },
+  {
+    "id": "mingcute",
+    "name": "MingCute Icon",
+    "url": "https://github.com/mingcute-design/mingcute-icons",
+    "license": "Apache-2.0",
+    "licenseFile": "https://github.com/mingcute-design/mingcute-icons/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "MingCute Icon by MingCute Design (its LICENSE file is the Apache License 2.0 text and names no copyright holder)"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
+  },
+  {
+    "id": "carbon",
+    "name": "Carbon Icons",
+    "url": "https://github.com/carbon-design-system/carbon",
+    "license": "Apache-2.0",
+    "licenseFile": "https://github.com/carbon-design-system/carbon/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015 IBM Corp."
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "note": "The icons are the packages/icons part of the Carbon Design System repository."
+  },
+  {
+    "id": "bootstrap",
+    "name": "Bootstrap Icons",
+    "url": "https://github.com/twbs/icons",
+    "license": "MIT",
+    "licenseFile": "https://github.com/twbs/icons/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2019-2024 The Bootstrap Authors"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
+  },
+  {
+    "id": "solar",
+    "name": "Solar Icons Set",
+    "url": "https://www.figma.com/community/file/1166831539721848736",
+    "license": "CC-BY-4.0",
+    "licenseFile": "https://www.figma.com/community/file/1166831539721848736",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Solar Icons Set by 480 Design, licensed under CC BY 4.0"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "note": "Attribution (CC BY 4.0): \"Solar Icons Set\" by 480 Design (its Figma Community page states \"Licensed under CC BY 4.0\"; its GitHub repository 480-Design/Solar-Icon-Set states no license). The 14 sample icons are copied as SVG shapes; the page may draw them in another color, size or stroke width."
+  },
+  {
+    "id": "streamline",
+    "name": "Streamline",
+    "url": "https://github.com/webalys-hq/streamline-vectors",
+    "license": "CC-BY-4.0",
+    "licenseFile": "https://github.com/webalys-hq/streamline-vectors/blob/main/README.md",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Free vector icons by Streamline (https://streamlinehq.com), licensed under CC BY 4.0"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "note": "Attribution (CC BY 4.0): free icons by Streamline, https://streamlinehq.com (its README states CC BY 4.0 and asks for a link to that site); only the free core set is used. The 14 sample icons are copied as SVG shapes; the page may draw them in another color, size or stroke width."
+  },
+  {
+    "id": "iconamoon",
+    "name": "IconaMoon",
+    "url": "https://github.com/dariushhpg1/IconaMoon",
+    "license": "CC-BY-4.0",
+    "licenseFile": "https://www.figma.com/community/file/1014143897459418663",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "IconaMoon by Dariush Habibpour, licensed under CC BY 4.0"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "note": "Attribution (CC BY 4.0): \"IconaMoon\" by Dariush Habibpour (its Figma Community page states \"Licensed under CC BY 4.0\"; its GitHub README states no license). The 14 sample icons are copied as SVG shapes; the page may draw them in another color, size or stroke width."
+  },
+  {
+    "id": "basil",
+    "name": "Basil Icons",
+    "url": "https://www.figma.com/community/file/931906394678748246",
+    "license": "CC-BY-4.0",
+    "licenseFile": "https://www.figma.com/community/file/931906394678748246",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Basil Icons by Craftwork, licensed under CC BY 4.0"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "note": "Attribution (CC BY 4.0): \"Basil Icons\" by Craftwork (its Figma Community page states \"Licensed under CC BY 4.0\"). The 14 sample icons are copied as SVG shapes; the page may draw them in another color, size or stroke width."
   }
 ]

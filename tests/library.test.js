@@ -39,7 +39,7 @@ const dimPx = (tok) => {
 
 test('every element has 2-3 reviewed templates and both identities are published', () => {
   for (const e of build.ELEMENTS) {
-    const list = lib.templates[e];
+    const list = lib.templates[e].filter((t) => t.status.state === 'reviewed'); // drafts wait for review
     assert.ok(
       list.length >= 2 && list.length <= (e === 'fonts' || e === 'icons' ? 5 : 3),
       `${e}: ${list.length} templates`
@@ -63,8 +63,9 @@ test('every template names a recorded source with an allowed license', () => {
     assert.ok(!ids.has(s.id), `duplicate source ${s.id}`);
     ids.add(s.id);
     assert.ok(allowed.has(s.license), `${s.name}: ${s.license} is not allowed`);
-    assert.match(s.url, /^https:\/\/github\.com\/[^\s]+$/);
-    assert.match(s.licenseFile, /^https:\/\/github\.com\/[^\s]+$/);
+    // Its own repository, or its Figma Community page for a set published only there (Solar, Basil).
+    assert.match(s.url, /^https:\/\/(github\.com|www\.figma\.com\/community\/file)\/[^\s]+$/);
+    assert.match(s.licenseFile, /^https:\/\/(github\.com|www\.figma\.com\/community\/file)\/[^\s]+$/);
     assert.match(s.licenseReadAt, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(!forbidden.some((f) => s.name.toLowerCase().includes(f)), `${s.name} is forbidden`);
   }
@@ -261,7 +262,7 @@ test('picker/data is exactly what the library builds to', () => {
 
 test('every icons template carries the same 14 sample meanings, as plain SVG shapes only (task 2.12)', () => {
   const icons = require('../tools/icons-extract.js');
-  const meanings = icons.MEANINGS.map((m) => m[0]);
+  const meanings = icons.MEANINGS;
   assert.ok(meanings.length >= 12 && meanings.length <= 16, 'sample of 12 to 16 icons per set');
   for (const t of lib.templates.icons) {
     assert.match(t.extras.viewBox, /^0 0 \d+ \d+$/, t.id);
