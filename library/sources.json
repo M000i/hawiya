@@ -126,7 +126,7 @@
   },
   {
     "id": "noto-arabic",
-    "name": "Noto Sans Arabic",
+    "name": "Noto Arabic",
     "url": "https://github.com/notofonts/arabic",
     "license": "OFL-1.1",
     "licenseFile": "https://github.com/notofonts/arabic/blob/main/OFL.txt",
@@ -366,5 +366,468 @@
     ],
     "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
     "note": "Attribution (CC BY 4.0): \"Basil Icons\" by Craftwork (its Figma Community page states \"Licensed under CC BY 4.0\"). The 14 sample icons are copied as SVG shapes; the page may draw them in another color, size or stroke width."
+  },
+  {
+    "id": "readex-pro",
+    "name": "Readex Pro",
+    "url": "https://github.com/ThomasJockin/readexpro",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/readexpro/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2018 The Readex Pro Project Authors (https://github.com/ThomasJockin/readexpro), with Reserved Font Name “RevReading Lexend”."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "alexandria",
+    "name": "Alexandria",
+    "url": "https://github.com/Gue3bara/Alexandria",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/alexandria/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2022 The Alexandria Project Authors (https://github.com/Gue3bara/Alexandria)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "tajawal",
+    "name": "Tajawal",
+    "url": "https://github.com/googlefonts/tajawal",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/tajawal/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2018 Boutros International. (http://www.boutrosfonts.com)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "almarai",
+    "name": "Almarai",
+    "url": "https://github.com/JuergenWillrodt/Almarai",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/almarai/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2019 The Almarai Project Authors (https://github.com/JuergenWillrodt/Almarai)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "vazirmatn",
+    "name": "Vazirmatn",
+    "url": "https://github.com/rastikerdar/vazirmatn",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/vazirmatn/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015 The Vazirmatn Project Authors (https://github.com/rastikerdar/vazirmatn)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "rubik",
+    "name": "Rubik",
+    "url": "https://github.com/googlefonts/rubik",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/rubik/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015 The Rubik Project Authors (https://github.com/googlefonts/rubik)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "changa",
+    "name": "Changa",
+    "url": "https://github.com/googlefonts/changa-vf",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/changa/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2018 The Changa Project Authors (https://github.com/googlefonts/changa-vf)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "el-messiri",
+    "name": "El Messiri",
+    "url": "https://github.com/Gue3bara/El-Messiri",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/elmessiri/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015 The El Messiri Project Authors (https://github.com/Gue3bara/El-Messiri)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "zain",
+    "name": "Zain",
+    "url": "https://github.com/googlefonts/zain",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/zain/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2024 The Zain Project Authors (https://github.com/googlefonts/zain)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "mada",
+    "name": "Mada",
+    "url": "https://github.com/aliftype/mada",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/mada/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015-2022 The Mada Project Authors (https://github.com/aliftype/mada), with Reserved Font Name \"Source\"."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "kufam",
+    "name": "Kufam",
+    "url": "https://github.com/originaltype/kufam",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/kufam/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2019 The Kufam Project Authors (https://github.com/originaltype/kufam)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "fustat",
+    "name": "Fustat",
+    "url": "https://github.com/Kief-Type-Foundry/Fustat",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/fustat/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2024 The Fustat Project Authors (https://github.com/Kief-Type-Foundry/Fustat)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "beiruti",
+    "name": "Beiruti",
+    "url": "https://github.com/googlefonts/beiruti",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/beiruti/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2024 The Beiruti Project Authors (https://github.com/googlefonts/beiruti)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "baloo-bhaijaan-2",
+    "name": "Baloo 2",
+    "url": "https://github.com/EkType/Baloo2-Variable",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/baloobhaijaan2/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "harmattan",
+    "name": "Harmattan",
+    "url": "https://github.com/silnrsi/font-harmattan",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/harmattan/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2007-2008, The C&MA Guinea Fulbe Team;",
+      "Copyright renewed 2011-2012, George W. Nuss (http://www.fulbefouta.com),",
+      "with the Reserved Font Name \"Fouta\".",
+      "Copyright (c) 2004-2025, SIL Global (https://www.sil.org),",
+      "with Reserved Font Names 'Andika' and 'SIL'.",
+      "Copyright (c) 2014-2025, SIL Global (https://www.sil.org/).",
+      "with Reserved Font Names \"Harmattan\" and \"SIL\"."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "amiri",
+    "name": "Amiri",
+    "url": "https://github.com/aliftype/amiri",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/amiri/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2010-2022 The Amiri Project Authors (https://github.com/aliftype/amiri)."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "markazi-text",
+    "name": "Markazi Text",
+    "url": "https://github.com/BornaIz/markazitext",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/markazitext/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2017 The Markazi Text Project Authors (https://github.com/BornaIz/markazitext)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "reem-kufi",
+    "name": "Reem Kufi",
+    "url": "https://github.com/aliftype/reem-kufi",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/reemkufi/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015-2022 The Reem Kufi Project Authors (https://github.com/aliftype/reem-kufi), with Reserved Font Name \"Josefin Sans\"."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "scheherazade-new",
+    "name": "Scheherazade New",
+    "url": "https://github.com/silnrsi/font-scheherazade",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/scheherazadenew/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 1994-2026, SIL Global (https://www.sil.org/),",
+      "with Reserved Font Names \"Scheherazade\" and \"SIL\"."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "aref-ruqaa",
+    "name": "Aref Ruqaa",
+    "url": "https://github.com/aliftype/aref-ruqaa",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/arefruqaa/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2015-2020 The Aref Ruqaa Project Authors (https://github.com/alif-type/aref-ruqaa), with Reserved Font Name EURM10."
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "lemonada",
+    "name": "Lemonada",
+    "url": "https://github.com/Gue3bara/Lemonada",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/lemonada/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2011 The Lemonada Project Authors (https://github.com/Gue3bara/Lemonada)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "marhey",
+    "name": "Marhey",
+    "url": "https://github.com/namelatype/Marhey",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/marhey/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2022 The Marhey Project Authors (https://github.com/namelatype/Marhey)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "handjet",
+    "name": "Handjet",
+    "url": "https://github.com/rosettatype/handjet",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/handjet/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2018 The Handjet Project Authors (https://github.com/rosettatype/Handjet/)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "playpen-sans",
+    "name": "Playpen Sans",
+    "url": "https://github.com/TypeTogether/Playpen-Sans",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/playpensansarabic/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2023 The Playpen Sans Project Authors (https://github.com/TypeTogether/Playpen-Sans)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "alyamama",
+    "name": "Alyamama",
+    "url": "https://github.com/Mestaratype/AlYamama",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/alyamama/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2025 The Alyamama Project Authors (https://github.com/Mestaratype/AlYamama)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "estedad",
+    "name": "Estedad",
+    "url": "https://github.com/aminabedi68/Estedad",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/estedad/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2022 The Estedad Project Authors (https://github.com/aminabedi68/Estedad)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "geist",
+    "name": "Geist",
+    "url": "https://github.com/vercel/geist-font",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/geist/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.git)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "manrope",
+    "name": "Manrope",
+    "url": "https://github.com/googlefonts/manrope",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/manrope/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "dm-sans",
+    "name": "DM Sans",
+    "url": "https://github.com/googlefonts/dm-fonts",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/dmsans/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "plus-jakarta-sans",
+    "name": "Plus Jakarta Sans",
+    "url": "https://github.com/tokotype/PlusJakartaSans",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/plusjakartasans/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "outfit",
+    "name": "Outfit",
+    "url": "https://github.com/Outfitio/Outfit-Fonts",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/outfit/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "figtree",
+    "name": "Figtree",
+    "url": "https://github.com/erikdkennedy/figtree",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/figtree/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "onest",
+    "name": "Onest",
+    "url": "https://github.com/simpals/onest",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/onest/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2021 The Onest Project Authors (https://github.com/googlefonts/onest)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "sora",
+    "name": "Sora",
+    "url": "https://github.com/sora-xor/sora-font",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/sora/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2019 The Sora Project Authors (https://github.com/sora-xor/sora-font)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "space-grotesk",
+    "name": "Space Grotesk",
+    "url": "https://github.com/floriankarsten/space-grotesk",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/spacegrotesk/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "instrument-sans",
+    "name": "Instrument Sans",
+    "url": "https://github.com/Instrument/instrument-sans",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/instrumentsans/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2022 The Instrument Sans Project Authors (https://github.com/Instrument/instrument-sans)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "bricolage-grotesque",
+    "name": "Bricolage Grotesque",
+    "url": "https://github.com/ateliertriay/bricolage",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/bricolagegrotesque/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateliertriay/bricolage)"
+    ],
+    "use": "Font, served by Google Fonts."
+  },
+  {
+    "id": "jetbrains-mono",
+    "name": "JetBrains Mono",
+    "url": "https://github.com/JetBrains/JetBrainsMono",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/jetbrainsmono/OFL.txt",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)"
+    ],
+    "use": "Font, served by Google Fonts."
   }
 ]

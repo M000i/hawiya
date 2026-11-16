@@ -9,6 +9,35 @@ const { pathToFileURL } = require('url');
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
 const ar = require('../../picker/i18n/ar.js');
 
+// Does a font draw the Eastern Arabic digits itself? Its width with two different fallbacks that both draw them
+// (Noto Kufi Arabic and Amiri): the same width = the font's own digits. (Comparing with a generic family is not
+// enough: Chrome falls back to a system Arabic font, so a monospaced Latin font looked as if it drew them.)
+const DRAWS_EASTERN = async () => {
+  const sheet = (family) =>
+    new Promise((resolve) => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=' + family.replace(/ /g, '+') + '&display=block';
+      link.onload = () => resolve(true);
+      link.onerror = () => resolve(false);
+      document.head.appendChild(link);
+    });
+  const digits = String.fromCharCode(...Array.from({ length: 10 }, (_, i) => 0x0660 + i));
+  for (const f of ['Noto Kufi Arabic', 'Amiri']) {
+    await sheet(f);
+    await document.fonts.load(`32px "${f}"`, digits);
+  }
+  window.__sheet = sheet;
+  window.__drawsEastern = async (font, s, c) => {
+    await sheet(font);
+    await document.fonts.load(`32px "${font}"`, s + 'x');
+    c.font = `100px "${font}", "Noto Kufi Arabic"`;
+    const a = c.measureText(s).width;
+    c.font = `100px "${font}", "Amiri"`;
+    return Math.abs(a - c.measureText(s).width) < 0.01;
+  };
+};
+
 function watchErrors(page) {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -179,6 +208,7 @@ test('recorded Eastern Arabic digit support matches the real fonts (needs intern
     )
     .catch(() => false);
   test.skip(!online, 'no internet: Google Fonts cannot be reached');
+  await page.evaluate(DRAWS_EASTERN);
   const measured = await page.evaluate(async (list) => {
     const out = {};
     const c = document.createElement('canvas').getContext('2d');
@@ -189,13 +219,134 @@ test('recorded Eastern Arabic digit support matches the real fonts (needs intern
       document.head.appendChild(link);
       await new Promise((r) => link.addEventListener('load', r));
       const s = String.fromCharCode(...Array.from({ length: 10 }, (_, i) => 0x0660 + i));
-      await document.fonts.load(`32px "${d.font}"`, s + 'a');
-      c.font = `32px "${d.font}", serif`;
-      const w1 = c.measureText(s).width;
-      c.font = '32px serif';
-      out[d.id] = Math.abs(w1 - c.measureText(s).width) > 0.01;
+      out[d.id] = await window.__drawsEastern(d.font, s, c);
     }
     return out;
   }, data);
   for (const d of data) expect([d.id, measured[d.id]]).toEqual([d.id, d.eastern]);
+});
+
+// Task 3.8 (R-090, R-094): every font of the library, drafts too, with the real Google Fonts files: each family the
+// page would load (weights 400 and 700) loads, the recorded digit support is what Chrome draws, and each measured
+// pair's size adjustment is the measurement (Arabic body height of ه م س و over Latin x-height, relative to IBM Plex).
+test('every library font loads, draws the recorded digits, and keeps its measured size adjustment (needs internet)', async ({
+  page
+}) => {
+  test.setTimeout(180000);
+  const fonts = JSON.parse(
+    require('fs').readFileSync(path.join(__dirname, '../../library/elements/fonts.json'), 'utf8')
+  );
+  await page.goto('about:blank');
+  const online = await page
+    .evaluate(() =>
+      fetch('https://fonts.googleapis.com/css2?family=Inter', { mode: 'no-cors' }).then(
+        () => true,
+        () => false
+      )
+    )
+    .catch(() => false);
+  test.skip(!online, 'no internet: Google Fonts cannot be reached');
+  await page.evaluate(DRAWS_EASTERN);
+  const families = [
+    ...new Set(
+      fonts.flatMap((t) => [
+        t.extras.arabic,
+        t.extras.latin,
+        t.extras.headingArabic,
+        t.extras.headingLatin,
+        t.extras.numeralsFont
+      ])
+    )
+  ].filter(Boolean);
+  const m = await page.evaluate(async (list) => {
+    const out = {};
+    const c = document.createElement('canvas').getContext('2d');
+    const digits = String.fromCharCode(...Array.from({ length: 10 }, (_, i) => 0x0660 + i));
+    for (const f of list) {
+      // The same request as the page's loader (picker/js/ui/elements/fonts.js).
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=' + f.replace(/ /g, '+') + ':wght@400;700&display=block';
+      const loads = await new Promise((r) => {
+        link.onload = () => r(true);
+        link.onerror = () => r(false);
+        document.head.appendChild(link);
+      });
+      await document.fonts.load(`100px "${f}"`, 'xvwz همسو');
+      const bold = await document.fonts.load(`bold 100px "${f}"`, 'xvwz همسو');
+      c.font = `100px "${f}", serif`;
+      out[f] = {
+        loads,
+        bold: bold.some((face) => face.weight === '700' || /\d+ \d+/.test(face.weight)),
+        eastern: await window.__drawsEastern(f, digits, c),
+        arabicBody: c.measureText('همسو').actualBoundingBoxAscent,
+        xHeight: c.measureText('xvwz').actualBoundingBoxAscent
+      };
+      c.font = `100px "${f}", serif`;
+      out[f].arabicBody = c.measureText('همسو').actualBoundingBoxAscent;
+      out[f].xHeight = c.measureText('xvwz').actualBoundingBoxAscent;
+    }
+    return out;
+  }, families);
+  for (const f of families) expect([f, m[f].loads, m[f].bold]).toEqual([f, true, true]);
+  const plex = m['IBM Plex Sans Arabic'].arabicBody / m['IBM Plex Sans'].xHeight;
+  const report = [];
+  for (const t of fonts) {
+    const x = t.extras;
+    const numerals = x.numeralsFont || x.arabic || x.latin;
+    expect([t.id, numerals, m[numerals].eastern]).toEqual([t.id, numerals, x.easternArabicDigits]);
+    report.push(`${t.id}: ${numerals} ${m[numerals].eastern ? 'draws' : 'does not draw'} ٠١٢٣٤٥٦٧٨٩`);
+    if (/relative to IBM Plex/.test(t.rtl.notes || '')) {
+      const measured = Math.round((m[x.arabic].arabicBody / m[x.latin].xHeight / plex) * 20) / 20;
+      expect([t.id, x.latinSizeAdjust]).toEqual([t.id, measured]);
+    }
+  }
+  test.info().annotations.push({ type: 'eastern-digits', description: report.join('\n') });
+});
+
+// Task 3.8: a font card shows a pair's own heading family (bold, first) and loads it with the others when shown.
+test('a font card shows the heading family of a pair and loads it', async ({ page }) => {
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  await page.goto(PAGE);
+  const out = await page.evaluate(async () => {
+    const H = window.Hawiya;
+    const ctx = {
+      el: (tag, cls, text) => {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text !== undefined) e.textContent = text;
+        return e;
+      },
+      t: (k, v) => H.i18n.t(k, v)
+    };
+    const tpl = {
+      id: 'x',
+      extras: {
+        languages: ['ar'],
+        arabic: 'Tajawal',
+        headingArabic: 'El Messiri',
+        numeralsFont: 'Tajawal',
+        easternArabicDigits: true
+      }
+    };
+    const box = H.galleryParts.fonts.sample(tpl, ctx);
+    document.body.appendChild(box);
+    box.scrollIntoView(); // its files load only when it is on screen
+    await new Promise((r) => setTimeout(r, 500));
+    const head = box.querySelector('.f-heading');
+    return {
+      first: box.firstElementChild.className,
+      heading: head && [head.getAttribute('data-heading'), head.style.fontFamily, getComputedStyle(head).fontWeight],
+      body: box.querySelector('.f-ar').style.fontFamily,
+      requested: H.fonts.requested()
+    };
+  });
+  expect(out.first).toBe('f-heading');
+  expect(out.heading[0]).toBe('El Messiri');
+  expect(out.heading[1]).toMatch(/^"El Messiri"/);
+  expect(out.heading[2]).toBe('700');
+  expect(out.body).toMatch(/^"?Tajawal"?,/);
+  expect(out.requested).toEqual(expect.arrayContaining(['Tajawal', 'El Messiri']));
 });

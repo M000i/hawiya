@@ -745,7 +745,13 @@ const checkAxes = validate.compile({
             path: { type: 'string', pattern: '^/', maxLength: 200 },
             items: { type: 'string', pattern: '^/', maxLength: 200 },
             reduce: { enum: ['max', 'minPositive'] },
-            unlessEqual: { type: 'string', pattern: '^/', maxLength: 200 },
+            // The value this one falls back to: a pointer, or a list of them (the first that exists).
+            unlessEqual: {
+              anyOf: [
+                { type: 'string', pattern: '^/', maxLength: 200 },
+                { type: 'array', minItems: 1, items: { type: 'string', pattern: '^/', maxLength: 200 } }
+              ]
+            },
             css: {
               type: 'object',
               additionalProperties: false,
@@ -940,11 +946,16 @@ function cssAxisValue(axis, css) {
 function axisValue(axis, t) {
   if (axis.css) return t.recipe ? cssAxisValue(axis, t.recipe.css) : undefined;
   const v = pointer(t, axis.path);
-  // A value that only repeats another one (numerals = the Arabic family) is not a choice of its own.
+  // A value that only repeats the one it falls back to (numerals = the Arabic family, or the Latin one in a
+  // Latin-only font; a heading family = the body's) is not a choice of its own. Missing means the same: resolve.js
+  // falls back to it (task 3.8: missing is never a value of its own, or a font without Latin would count twice).
   if (axis.unlessEqual) {
-    const other = pointer(t, axis.unlessEqual);
-    // Missing means "the same as the other one" too (resolve.js falls back to it).
-    if (other !== undefined && (v === undefined || canonical(v) === canonical(other))) return '=';
+    if (v === undefined) return '=';
+    const other = []
+      .concat(axis.unlessEqual)
+      .map((p) => pointer(t, p))
+      .find((x) => x !== undefined);
+    if (other !== undefined && canonical(v) === canonical(other)) return '=';
   }
   if (!axis.reduce) return v;
   if (!isObject(v) && !Array.isArray(v)) return undefined;
@@ -954,6 +965,16 @@ function axisValue(axis, t) {
   if (axis.reduce === 'max') return nums.length ? Math.max(...nums) : undefined;
   const pos = nums.filter((x) => x > 0);
   return pos.length ? Math.min(...pos) : undefined;
+}
+
+// What an axis with a fallback ("unlessEqual") resolves to: its own value, or the value it falls back to.
+function axisResolved(axis, t) {
+  const v = pointer(t, axis.path);
+  if (v !== undefined) return v;
+  return []
+    .concat(axis.unlessEqual)
+    .map((p) => pointer(t, p))
+    .find((x) => x !== undefined);
 }
 
 const HEX = /^#[0-9a-f]{6}$/i;
@@ -1051,10 +1072,16 @@ function axesProblems(libraryDir, valid, add, counts) {
     const total = axes[e].reduce((n, a) => n + (a.weight || 1), 0);
     const needed = Math.min(2, total);
     const values = list.map((v) => axes[e].map((a) => axisValue(a, v.t)));
+    const resolved = list.map((v) => axes[e].map((a) => (a.unlessEqual ? axisResolved(a, v.t) : undefined)));
     for (let j = 1; j < list.length; j++) {
       for (let i = 0; i < j; i++) {
         counts.comparisons++;
-        const differ = axes[e].filter((a, k) => !same(a, values[i][k], values[j][k]));
+        // An axis with a fallback differs only when it is a choice of its own in one of the two AND what it
+        // resolves to differs: a missing heading family and an explicit one naming the same font draw the same
+        // headings (task 3.8, independent review).
+        const differ = axes[e].filter(
+          (a, k) => !same(a, values[i][k], values[j][k]) && !(a.unlessEqual && same(a, resolved[i][k], resolved[j][k]))
+        );
         const weight = differ.reduce((n, a) => n + (a.weight || 1), 0);
         if (weight >= needed) continue;
         const a = list[i].t.id;

@@ -164,3 +164,41 @@ test('without the token the page says how to open it and loads nothing', async (
     fs.rmSync(L.dir, { recursive: true, force: true });
   }
 });
+
+// Task 3.8: a pair with its own heading family shows it in the scenes' headings, and the page loads its files.
+test('a font pair with its own heading family draws it in the scenes and loads it', async ({ page }) => {
+  const L = library();
+  const s = await start(L.lib);
+  const requested = [];
+  await page.route('https://fonts.googleapis.com/**', (route) => {
+    requested.push(decodeURIComponent(route.request().url()));
+    return route.fulfill({ status: 200, contentType: 'text/css', body: '' });
+  });
+  try {
+    await page.goto(s.url);
+    await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
+    await page.locator('.r-tab[data-element="fonts"]').click();
+    const card = page.locator('.r-card[data-template="pair-ar-el-messiri-tajawal"]');
+    await card.scrollIntoViewIfNeeded();
+    await expect(card.locator('.r-scene[data-drawn="true"]')).toHaveCount(4);
+    const fonts = await card
+      .locator('.r-scene')
+      .first()
+      .evaluate((h) => {
+        const scene = h.shadowRoot.querySelector('.scene');
+        const h1 = scene.querySelector('h1');
+        return [
+          scene.style.getPropertyValue('--font-heading'),
+          scene.style.getPropertyValue('--font-body'),
+          getComputedStyle(h1).fontFamily
+        ];
+      });
+    expect(fonts[0]).toMatch(/^"El Messiri"/);
+    expect(fonts[1]).toMatch(/^"Tajawal"/);
+    expect(fonts[2]).toMatch(/^"El Messiri"/);
+    await expect.poll(() => requested.some((u) => u.includes('family=El+Messiri'))).toBe(true);
+  } finally {
+    s.child.kill();
+    fs.rmSync(L.dir, { recursive: true, force: true });
+  }
+});

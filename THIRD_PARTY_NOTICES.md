@@ -19,7 +19,7 @@ own license. The full text of every license follows the list.
 | [Catppuccin](https://github.com/catppuccin/palette) | MIT | Accent colors of its Latte flavor (palette.json). |
 | [Primer Primitives](https://github.com/primer/primitives) | MIT | Color values from its light base scales (src/tokens/base/color/light/light.json5). |
 | [IBM Plex](https://github.com/IBM/plex) | OFL-1.1 | Font, served by Google Fonts. |
-| [Noto Sans Arabic](https://github.com/notofonts/arabic) | OFL-1.1 | Font, served by Google Fonts. |
+| [Noto Arabic](https://github.com/notofonts/arabic) | OFL-1.1 | Font, served by Google Fonts. |
 | [Noto Sans](https://github.com/notofonts/latin-greek-cyrillic) | OFL-1.1 | Font, served by Google Fonts. |
 | [Cairo](https://github.com/Gue3bara/Cairo) | OFL-1.1 | Font, served by Google Fonts. |
 | [Lucide](https://github.com/lucide-icons/lucide) | ISC + MIT | Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js). |
@@ -38,6 +38,44 @@ own license. The full text of every license follows the list.
 | [Streamline](https://github.com/webalys-hq/streamline-vectors) | CC-BY-4.0 | Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js). |
 | [IconaMoon](https://github.com/dariushhpg1/IconaMoon) | CC-BY-4.0 | Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js). |
 | [Basil Icons](https://www.figma.com/community/file/931906394678748246) | CC-BY-4.0 | Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js). |
+| [Readex Pro](https://github.com/ThomasJockin/readexpro) | OFL-1.1 | Font, served by Google Fonts. |
+| [Alexandria](https://github.com/Gue3bara/Alexandria) | OFL-1.1 | Font, served by Google Fonts. |
+| [Tajawal](https://github.com/googlefonts/tajawal) | OFL-1.1 | Font, served by Google Fonts. |
+| [Almarai](https://github.com/JuergenWillrodt/Almarai) | OFL-1.1 | Font, served by Google Fonts. |
+| [Vazirmatn](https://github.com/rastikerdar/vazirmatn) | OFL-1.1 | Font, served by Google Fonts. |
+| [Rubik](https://github.com/googlefonts/rubik) | OFL-1.1 | Font, served by Google Fonts. |
+| [Changa](https://github.com/googlefonts/changa-vf) | OFL-1.1 | Font, served by Google Fonts. |
+| [El Messiri](https://github.com/Gue3bara/El-Messiri) | OFL-1.1 | Font, served by Google Fonts. |
+| [Zain](https://github.com/googlefonts/zain) | OFL-1.1 | Font, served by Google Fonts. |
+| [Mada](https://github.com/aliftype/mada) | OFL-1.1 | Font, served by Google Fonts. |
+| [Kufam](https://github.com/originaltype/kufam) | OFL-1.1 | Font, served by Google Fonts. |
+| [Fustat](https://github.com/Kief-Type-Foundry/Fustat) | OFL-1.1 | Font, served by Google Fonts. |
+| [Beiruti](https://github.com/googlefonts/beiruti) | OFL-1.1 | Font, served by Google Fonts. |
+| [Baloo 2](https://github.com/EkType/Baloo2-Variable) | OFL-1.1 | Font, served by Google Fonts. |
+| [Harmattan](https://github.com/silnrsi/font-harmattan) | OFL-1.1 | Font, served by Google Fonts. |
+| [Amiri](https://github.com/aliftype/amiri) | OFL-1.1 | Font, served by Google Fonts. |
+| [Markazi Text](https://github.com/BornaIz/markazitext) | OFL-1.1 | Font, served by Google Fonts. |
+| [Reem Kufi](https://github.com/aliftype/reem-kufi) | OFL-1.1 | Font, served by Google Fonts. |
+| [Scheherazade New](https://github.com/silnrsi/font-scheherazade) | OFL-1.1 | Font, served by Google Fonts. |
+| [Aref Ruqaa](https://github.com/aliftype/aref-ruqaa) | OFL-1.1 | Font, served by Google Fonts. |
+| [Lemonada](https://github.com/Gue3bara/Lemonada) | OFL-1.1 | Font, served by Google Fonts. |
+| [Marhey](https://github.com/namelatype/Marhey) | OFL-1.1 | Font, served by Google Fonts. |
+| [Handjet](https://github.com/rosettatype/handjet) | OFL-1.1 | Font, served by Google Fonts. |
+| [Playpen Sans](https://github.com/TypeTogether/Playpen-Sans) | OFL-1.1 | Font, served by Google Fonts. |
+| [Alyamama](https://github.com/Mestaratype/AlYamama) | OFL-1.1 | Font, served by Google Fonts. |
+| [Estedad](https://github.com/aminabedi68/Estedad) | OFL-1.1 | Font, served by Google Fonts. |
+| [Geist](https://github.com/vercel/geist-font) | OFL-1.1 | Font, served by Google Fonts. |
+| [Manrope](https://github.com/googlefonts/manrope) | OFL-1.1 | Font, served by Google Fonts. |
+| [DM Sans](https://github.com/googlefonts/dm-fonts) | OFL-1.1 | Font, served by Google Fonts. |
+| [Plus Jakarta Sans](https://github.com/tokotype/PlusJakartaSans) | OFL-1.1 | Font, served by Google Fonts. |
+| [Outfit](https://github.com/Outfitio/Outfit-Fonts) | OFL-1.1 | Font, served by Google Fonts. |
+| [Figtree](https://github.com/erikdkennedy/figtree) | OFL-1.1 | Font, served by Google Fonts. |
+| [Onest](https://github.com/simpals/onest) | OFL-1.1 | Font, served by Google Fonts. |
+| [Sora](https://github.com/sora-xor/sora-font) | OFL-1.1 | Font, served by Google Fonts. |
+| [Space Grotesk](https://github.com/floriankarsten/space-grotesk) | OFL-1.1 | Font, served by Google Fonts. |
+| [Instrument Sans](https://github.com/Instrument/instrument-sans) | OFL-1.1 | Font, served by Google Fonts. |
+| [Bricolage Grotesque](https://github.com/ateliertriay/bricolage) | OFL-1.1 | Font, served by Google Fonts. |
+| [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) | OFL-1.1 | Font, served by Google Fonts. |
 
 ## Tailwind CSS
 
@@ -132,7 +170,7 @@ Copyright (c) 2018 GitHub Inc.
 Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"
 ```
 
-## Noto Sans Arabic
+## Noto Arabic
 
 - Repository: https://github.com/notofonts/arabic
 - License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/notofonts/arabic/blob/main/OFL.txt on 2026-11-16
@@ -332,6 +370,393 @@ IconaMoon by Dariush Habibpour, licensed under CC BY 4.0
 
 ```text
 Basil Icons by Craftwork, licensed under CC BY 4.0
+```
+
+## Readex Pro
+
+- Repository: https://github.com/ThomasJockin/readexpro
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/readexpro/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2018 The Readex Pro Project Authors (https://github.com/ThomasJockin/readexpro), with Reserved Font Name “RevReading Lexend”.
+```
+
+## Alexandria
+
+- Repository: https://github.com/Gue3bara/Alexandria
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/alexandria/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2022 The Alexandria Project Authors (https://github.com/Gue3bara/Alexandria)
+```
+
+## Tajawal
+
+- Repository: https://github.com/googlefonts/tajawal
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/tajawal/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2018 Boutros International. (http://www.boutrosfonts.com)
+```
+
+## Almarai
+
+- Repository: https://github.com/JuergenWillrodt/Almarai
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/almarai/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2019 The Almarai Project Authors (https://github.com/JuergenWillrodt/Almarai)
+```
+
+## Vazirmatn
+
+- Repository: https://github.com/rastikerdar/vazirmatn
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/vazirmatn/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2015 The Vazirmatn Project Authors (https://github.com/rastikerdar/vazirmatn)
+```
+
+## Rubik
+
+- Repository: https://github.com/googlefonts/rubik
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/rubik/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2015 The Rubik Project Authors (https://github.com/googlefonts/rubik)
+```
+
+## Changa
+
+- Repository: https://github.com/googlefonts/changa-vf
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/changa/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2018 The Changa Project Authors (https://github.com/googlefonts/changa-vf)
+```
+
+## El Messiri
+
+- Repository: https://github.com/Gue3bara/El-Messiri
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/elmessiri/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2015 The El Messiri Project Authors (https://github.com/Gue3bara/El-Messiri)
+```
+
+## Zain
+
+- Repository: https://github.com/googlefonts/zain
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/zain/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2024 The Zain Project Authors (https://github.com/googlefonts/zain)
+```
+
+## Mada
+
+- Repository: https://github.com/aliftype/mada
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/mada/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2015-2022 The Mada Project Authors (https://github.com/aliftype/mada), with Reserved Font Name "Source".
+```
+
+## Kufam
+
+- Repository: https://github.com/originaltype/kufam
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/kufam/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2019 The Kufam Project Authors (https://github.com/originaltype/kufam)
+```
+
+## Fustat
+
+- Repository: https://github.com/Kief-Type-Foundry/Fustat
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/fustat/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2024 The Fustat Project Authors (https://github.com/Kief-Type-Foundry/Fustat)
+```
+
+## Beiruti
+
+- Repository: https://github.com/googlefonts/beiruti
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/beiruti/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2024 The Beiruti Project Authors (https://github.com/googlefonts/beiruti)
+```
+
+## Baloo 2
+
+- Repository: https://github.com/EkType/Baloo2-Variable
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/baloobhaijaan2/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+```
+
+## Harmattan
+
+- Repository: https://github.com/silnrsi/font-harmattan
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/harmattan/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright (c) 2007-2008, The C&MA Guinea Fulbe Team;
+Copyright renewed 2011-2012, George W. Nuss (http://www.fulbefouta.com),
+with the Reserved Font Name "Fouta".
+Copyright (c) 2004-2025, SIL Global (https://www.sil.org),
+with Reserved Font Names 'Andika' and 'SIL'.
+Copyright (c) 2014-2025, SIL Global (https://www.sil.org/).
+with Reserved Font Names "Harmattan" and "SIL".
+```
+
+## Amiri
+
+- Repository: https://github.com/aliftype/amiri
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/amiri/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2010-2022 The Amiri Project Authors (https://github.com/aliftype/amiri).
+```
+
+## Markazi Text
+
+- Repository: https://github.com/BornaIz/markazitext
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/markazitext/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2017 The Markazi Text Project Authors (https://github.com/BornaIz/markazitext)
+```
+
+## Reem Kufi
+
+- Repository: https://github.com/aliftype/reem-kufi
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/reemkufi/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2015-2022 The Reem Kufi Project Authors (https://github.com/aliftype/reem-kufi), with Reserved Font Name "Josefin Sans".
+```
+
+## Scheherazade New
+
+- Repository: https://github.com/silnrsi/font-scheherazade
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/scheherazadenew/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright (c) 1994-2026, SIL Global (https://www.sil.org/),
+with Reserved Font Names "Scheherazade" and "SIL".
+```
+
+## Aref Ruqaa
+
+- Repository: https://github.com/aliftype/aref-ruqaa
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/arefruqaa/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2015-2020 The Aref Ruqaa Project Authors (https://github.com/alif-type/aref-ruqaa), with Reserved Font Name EURM10.
+```
+
+## Lemonada
+
+- Repository: https://github.com/Gue3bara/Lemonada
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/lemonada/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2011 The Lemonada Project Authors (https://github.com/Gue3bara/Lemonada)
+```
+
+## Marhey
+
+- Repository: https://github.com/namelatype/Marhey
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/marhey/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2022 The Marhey Project Authors (https://github.com/namelatype/Marhey)
+```
+
+## Handjet
+
+- Repository: https://github.com/rosettatype/handjet
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/handjet/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2018 The Handjet Project Authors (https://github.com/rosettatype/Handjet/)
+```
+
+## Playpen Sans
+
+- Repository: https://github.com/TypeTogether/Playpen-Sans
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/playpensansarabic/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2023 The Playpen Sans Project Authors (https://github.com/TypeTogether/Playpen-Sans)
+```
+
+## Alyamama
+
+- Repository: https://github.com/Mestaratype/AlYamama
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/alyamama/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2025 The Alyamama Project Authors (https://github.com/Mestaratype/AlYamama)
+```
+
+## Estedad
+
+- Repository: https://github.com/aminabedi68/Estedad
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/estedad/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2022 The Estedad Project Authors (https://github.com/aminabedi68/Estedad)
+```
+
+## Geist
+
+- Repository: https://github.com/vercel/geist-font
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/geist/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.git)
+```
+
+## Manrope
+
+- Repository: https://github.com/googlefonts/manrope
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/manrope/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)
+```
+
+## DM Sans
+
+- Repository: https://github.com/googlefonts/dm-fonts
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/dmsans/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)
+```
+
+## Plus Jakarta Sans
+
+- Repository: https://github.com/tokotype/PlusJakartaSans
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/plusjakartasans/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)
+```
+
+## Outfit
+
+- Repository: https://github.com/Outfitio/Outfit-Fonts
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/outfit/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)
+```
+
+## Figtree
+
+- Repository: https://github.com/erikdkennedy/figtree
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/figtree/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)
+```
+
+## Onest
+
+- Repository: https://github.com/simpals/onest
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/onest/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2021 The Onest Project Authors (https://github.com/googlefonts/onest)
+```
+
+## Sora
+
+- Repository: https://github.com/sora-xor/sora-font
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/sora/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2019 The Sora Project Authors (https://github.com/sora-xor/sora-font)
+```
+
+## Space Grotesk
+
+- Repository: https://github.com/floriankarsten/space-grotesk
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/spacegrotesk/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)
+```
+
+## Instrument Sans
+
+- Repository: https://github.com/Instrument/instrument-sans
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/instrumentsans/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2022 The Instrument Sans Project Authors (https://github.com/Instrument/instrument-sans)
+```
+
+## Bricolage Grotesque
+
+- Repository: https://github.com/ateliertriay/bricolage
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/bricolagegrotesque/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateliertriay/bricolage)
+```
+
+## JetBrains Mono
+
+- Repository: https://github.com/JetBrains/JetBrainsMono
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/jetbrainsmono/OFL.txt on 2026-11-17
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
 ```
 
 ## License texts

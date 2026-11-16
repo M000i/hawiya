@@ -196,7 +196,7 @@
   function fontFamilies(identity) {
     var f = H.library.find('fonts', identity.selections.fonts && identity.selections.fonts.template);
     var ex = (f && f.extras) || {};
-    return [ex.arabic, ex.latin].filter(function (n, i, all) {
+    return [ex.arabic, ex.latin, ex.headingArabic, ex.headingLatin, ex.numeralsFont].filter(function (n, i, all) {
       return n && all.indexOf(n) === i;
     });
   }

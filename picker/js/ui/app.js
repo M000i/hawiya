@@ -31,7 +31,7 @@
   function families(fontTemplate) {
     var ex = fontTemplate.extras || {};
     var names = [];
-    [ex.arabic, ex.latin].forEach(function (n) {
+    [ex.arabic, ex.latin, ex.headingArabic, ex.headingLatin, ex.numeralsFont].forEach(function (n) {
       if (typeof n === 'string' && names.indexOf(n) === -1) names.push(n);
     });
     return names;

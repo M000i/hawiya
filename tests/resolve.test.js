@@ -509,3 +509,58 @@ test('review fixes (2.9): broken template opacity is refused with or without str
   one.selections.shadows.overrides = { strength: 1 };
   assert.equal(resolve.resolve(one, data).tokens.shadow.light.lg[0].alpha, 0.123);
 });
+
+// Task 3.8: a pair may name its own heading families, and an English pair its own numerals font.
+test('font pairs: heading families, the Latin numerals font, and the size adjustment only on the body pair', () => {
+  const data = JSON.parse(JSON.stringify(DATA));
+  data.templates.fonts = JSON.parse(fs.readFileSync(path.join(LIB, 'elements/fonts.json'), 'utf8')); // drafts too
+  const choose = (id) => {
+    const c = fromIdentity('calm-corporate');
+    c.selections.fonts = { template: id };
+    return resolve.resolve(c, deepFreeze(JSON.parse(JSON.stringify(data))));
+  };
+  const fb = ['system-ui', 'sans-serif'];
+  // Arabic pair: El Messiri headings, Tajawal text and numerals.
+  let id = choose('pair-ar-el-messiri-tajawal');
+  assert.deepEqual(id.tokens.font.heading, { arabic: 'El Messiri', fallback: fb });
+  assert.deepEqual(id.tokens.font.body, { arabic: 'Tajawal', fallback: fb });
+  assert.deepEqual(id.tokens.font.numerals, { arabic: 'Tajawal', fallback: fb, easternArabicDigits: true });
+  // English pair: the heading family is Latin; the numerals font is the Latin body.
+  id = choose('pair-en-space-grotesk-sora');
+  assert.deepEqual(id.tokens.font.heading, { latin: 'Space Grotesk', fallback: fb });
+  assert.deepEqual(id.tokens.font.body, { latin: 'Sora', fallback: fb });
+  assert.deepEqual(id.tokens.font.numerals, { latin: 'Sora', fallback: fb, easternArabicDigits: false });
+  // English font with a monospaced numerals font: the numerals role is that Latin family, not an "Arabic" one.
+  id = choose('pair-en-geist-geist-mono');
+  assert.deepEqual(id.tokens.font.numerals, { latin: 'Geist Mono', fallback: fb, easternArabicDigits: false });
+  assert.deepEqual(id.tokens.font.heading, { latin: 'Geist', fallback: fb });
+  // Bilingual pair: heading = body, both with the measured adjustment.
+  id = choose('pair-kufam-space-grotesk');
+  const pair = { arabic: 'Kufam', latin: 'Space Grotesk', fallback: fb, latinSizeAdjust: 1.2 };
+  assert.deepEqual(id.tokens.font.heading, pair);
+  assert.deepEqual(id.tokens.font.body, pair);
+  // The six files: tokens.css names each role's families; the identity passes the checker.
+  for (const t of ['pair-ar-amiri-noto-naskh-arabic', 'pair-en-jetbrains-mono-space-grotesk', 'pair-rubik']) {
+    const ident = choose(t);
+    const css = generate.valueFiles(ident)['tokens.css'];
+    assert.equal(validate.check('identity', ident).valid, true, t);
+    assert.match(css, /--font-heading: /, t);
+    if (t === 'pair-ar-amiri-noto-naskh-arabic') {
+      assert.match(css, /--font-heading: "Amiri"/);
+      assert.match(css, /--font-body: "Noto Naskh Arabic", ui-serif, serif/);
+    }
+    if (t === 'pair-en-jetbrains-mono-space-grotesk') assert.match(css, /--font-heading: "JetBrains Mono"/);
+  }
+});
+
+// Independent review of 3.8: the size adjustment was measured for the body pair, so it never reaches another pair.
+test('the size adjustment stays off a numerals font that is not the body Arabic family', () => {
+  const data = JSON.parse(JSON.stringify(DATA));
+  const plex = data.templates.fonts.find((t) => t.id === 'pair-plex-arabic-plex-sans');
+  plex.extras.latinSizeAdjust = 0.9;
+  plex.extras.numeralsFont = 'Noto Sans Arabic';
+  const id = resolve.resolve(fromIdentity('calm-corporate'), deepFreeze(data));
+  assert.equal(id.tokens.font.body.latinSizeAdjust, 0.9);
+  assert.equal('latinSizeAdjust' in id.tokens.font.numerals, false);
+  assert.equal(id.tokens.font.numerals.arabic, 'Noto Sans Arabic');
+});

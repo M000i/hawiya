@@ -389,12 +389,13 @@ const CASES = [
   ],
   [
     'license',
-    'inter',
+    'readex-pro',
     (c) => {
+      // Readex Pro is used by one pair only (task 3.8): pointing that pair elsewhere leaves its source unused.
       c.edit('elements/fonts.json', (l) => {
-        const t = c.find(l, 'font-inter');
+        const t = c.find(l, 'pair-readex-pro-outfit');
         t.source = { name: 'IBM Plex', url: 'https://github.com/IBM/plex', license: 'OFL-1.1' };
-        t.extras.sources = ['plex'];
+        t.extras.sources = ['plex', 'outfit'];
       });
     },
     /no template uses this source/
@@ -1187,4 +1188,39 @@ test('usage errors exit 2', () => {
   const out = spawnSync(process.execPath, [TOOL, '--nope'], { encoding: 'utf8' });
   assert.equal(out.status, 2);
   assert.match(out.stderr, /usage:/);
+});
+
+// Task 3.8: a heading family or numerals font that is missing, or names the family it falls back to, is no choice.
+test('axes: missing or repeated heading / numerals families are the family they fall back to (Latin-only too)', () => {
+  // An English pair whose numerals font is its Latin body, written or left out: the same template.
+  let p = axisCase('fonts.json', 'pair-en-sora-manrope', (t) => delete t.extras.numeralsFont);
+  assert.match(p.map((x) => x.message).join(), /same values as "pair-en-sora-manrope" .* on every axis/);
+  // A heading family equal to the body's is no heading family of its own.
+  p = axisCase('fonts.json', 'font-noto-kufi-arabic', (t) => (t.extras.headingArabic = 'Noto Kufi Arabic'));
+  assert.match(p.map((x) => x.message).join(), /same values as "font-noto-kufi-arabic" .* on every axis/);
+  // Only a heading family apart is one axis, even when the other font has no Latin family at all.
+  p = axisCase('fonts.json', 'font-inter', (t) => (t.extras.headingLatin = 'Sora'));
+  assert.match(p.map((x) => x.message).join(), /differs from "font-inter" .* only in Latin heading family/);
+  // And the real library, with its Arabic-only, Latin-only and bilingual pairs, has no axis problem.
+  const c = copy();
+  try {
+    const r = c.run();
+    assert.deepEqual(
+      r.problems.filter((x) => x.kind === 'axes'),
+      []
+    );
+  } finally {
+    clean(c);
+  }
+});
+
+// Independent review of 3.8: an explicit heading family naming the font another template uses for everything is
+// no difference: both draw the same headings.
+test('axes: a heading family that resolves to the same font as the other template is no difference', () => {
+  const p = axisCase('fonts.json', 'font-noto-kufi-arabic', (t) => {
+    t.extras.headingArabic = 'Noto Kufi Arabic';
+    t.extras.arabic = 'Tajawal';
+    t.extras.numeralsFont = 'Tajawal';
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "font-noto-kufi-arabic" .* only in Arabic family;/);
 });

@@ -88,9 +88,10 @@
     { id: 'ar+en', dir: 'both', key: 'fonts.project.both' }
   ];
 
+  // Every family a font template names: body, heading (task 3.8) and numerals; their files load together.
   function families(tpl) {
     var ex = tpl.extras || {};
-    return [ex.arabic, ex.latin].filter(function (n, i, all) {
+    return [ex.arabic, ex.latin, ex.headingArabic, ex.headingLatin, ex.numeralsFont].filter(function (n, i, all) {
       return typeof n === 'string' && NAME.test(n) && all.indexOf(n) === i;
     });
   }
@@ -139,6 +140,18 @@
       var ex = tpl.extras || {};
       var box = ctx.el('span', 'g-sample f-sample');
       var names = families(tpl);
+      // A pair with its own heading families shows them first, bold, on the same specimen text (task 3.8).
+      [
+        [ex.headingArabic, 'ar', 'fonts.specimen.ar'],
+        [ex.headingLatin, 'en', 'fonts.specimen.latin']
+      ].forEach(function (h) {
+        if (typeof h[0] !== 'string' || !NAME.test(h[0])) return;
+        var head = ctx.el('span', 'f-heading', ctx.t(h[2]));
+        head.setAttribute('lang', h[1]);
+        head.setAttribute('data-heading', h[0]);
+        head.style.fontFamily = stack([h[0]]);
+        box.appendChild(head);
+      });
       if (ex.arabic) {
         var a = ctx.el('span', 'f-ar', ctx.t('fonts.specimen.ar'));
         a.setAttribute('lang', 'ar');

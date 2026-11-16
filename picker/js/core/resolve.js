@@ -209,18 +209,29 @@
     if (hasOwn(ov, 'latin-size-adjust') && !twoFamilies)
       problems.push('fonts: latin-size-adjust has no effect, the template does not pair two different families');
 
-    function role(arabic) {
+    // withAdjust: the size adjustment was measured for the body pair, so it goes only with those two families.
+    function role(arabic, latin, withAdjust) {
       var r = {};
       if (typeof arabic === 'string') r.arabic = arabic;
-      if (typeof ex.latin === 'string') r.latin = ex.latin;
+      if (typeof latin === 'string') r.latin = latin;
       r.fallback = fallback.slice();
       // A size adjustment only means something between two different families (R-090).
-      if (r.arabic && r.latin && r.arabic !== r.latin && isNum(adjust)) r.latinSizeAdjust = adjust;
+      if (withAdjust && r.arabic && r.latin && r.arabic !== r.latin && isNum(adjust)) r.latinSizeAdjust = adjust;
       return r;
     }
-    var numerals = role(typeof ex.numeralsFont === 'string' ? ex.numeralsFont : ex.arabic);
+    // A pair may name its own heading families (task 3.8): headingArabic / headingLatin; each defaults to the body's.
+    var hArabic = typeof ex.headingArabic === 'string' ? ex.headingArabic : ex.arabic;
+    var hLatin = typeof ex.headingLatin === 'string' ? ex.headingLatin : ex.latin;
+    var sameAsBody = hArabic === ex.arabic && hLatin === ex.latin;
+    // The numerals font: in a template with an Arabic family it takes the Arabic place (the Latin body stays for
+    // Latin text); in a Latin-only template (an English pair, e.g. Geist with Geist Mono) it is the Latin family.
+    var hasNumerals = typeof ex.numeralsFont === 'string';
+    var numerals =
+      typeof ex.arabic === 'string' || !hasNumerals
+        ? role(hasNumerals ? ex.numeralsFont : ex.arabic, ex.latin, !hasNumerals || ex.numeralsFont === ex.arabic)
+        : role(undefined, ex.numeralsFont, false);
     if (typeof ex.easternArabicDigits === 'boolean') numerals.easternArabicDigits = ex.easternArabicDigits;
-    return { heading: role(ex.arabic), body: role(ex.arabic), numerals: numerals };
+    return { heading: role(hArabic, hLatin, sameAsBody), body: role(ex.arabic, ex.latin, true), numerals: numerals };
   }
 
   function typeScale(t, ov, problems) {

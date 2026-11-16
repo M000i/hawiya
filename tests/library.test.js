@@ -130,10 +130,18 @@ test('each element carries the values the page needs to build an identity', () =
     else assert.equal(t.extras.arabic, undefined, t.id);
     if (L.includes('en')) family(t.extras.latin);
     else assert.equal(t.extras.latin, undefined, t.id);
-    const names = [t.extras.arabic, t.extras.latin].filter((n, i, all) => n && all.indexOf(n) === i);
+    const uniq = (list) => list.filter((n, i, all) => n && all.indexOf(n) === i);
+    const x = t.extras;
+    // Each role's token starts with that role's families: the body pair, the heading pair (its own families,
+    // task 3.8, or the body's), and the numerals font first for the numerals.
+    const roles = {
+      heading: uniq([x.headingArabic || x.arabic, x.headingLatin || x.latin]),
+      body: uniq([x.arabic, x.latin]),
+      numerals: [x.numeralsFont || x.arabic || x.latin]
+    };
     for (const role of ['heading', 'body', 'numerals']) {
       assert.equal(t.tokens.font[role].$type, 'fontFamily');
-      assert.deepEqual(t.tokens.font[role].$value.slice(0, names.length), names, `${t.id} ${role}`);
+      assert.deepEqual(t.tokens.font[role].$value.slice(0, roles[role].length), roles[role], `${t.id} ${role}`);
     }
     // R-094: Eastern Arabic digit support is recorded for every font (measured, task 2.11).
     assert.equal(typeof t.extras.easternArabicDigits, 'boolean', `${t.id}: easternArabicDigits`);
@@ -323,4 +331,96 @@ test('colors: 100+ palettes and themes from the confirmed sources, each with tag
     assert.ok(per[name] >= 3, `${name}: ${per[name]} palettes`);
   // A primary of pure white or black is no brand color: never a palette.
   for (const t of palettes) assert.ok(!['#ffffff', '#000000'].includes(t.tokens.color.primary.$value.hex), t.id);
+});
+
+// Task 3.8 (R-043, R-090, R-094): 40+ font pairs from the confirmed fonts of the project file.
+test('fonts: 40+ pairs (bilingual, Arabic, English) from the confirmed fonts, each with its languages, numerals font and digit support', () => {
+  const CONFIRMED = new Set([
+    // Arabic for interfaces
+    'Cairo',
+    'Readex Pro',
+    'Alexandria',
+    'IBM Plex Sans Arabic',
+    'Tajawal',
+    'Almarai',
+    'Noto Sans Arabic',
+    'Noto Kufi Arabic',
+    'Vazirmatn',
+    'Rubik',
+    'Changa',
+    'El Messiri',
+    'Zain',
+    'Mada',
+    'Kufam',
+    'Fustat',
+    'Beiruti',
+    'Baloo Bhaijaan 2',
+    'Harmattan',
+    // Arabic for headings and long text
+    'Amiri',
+    'Noto Naskh Arabic',
+    'Markazi Text',
+    'Reem Kufi',
+    'Scheherazade New',
+    'Aref Ruqaa',
+    'Lalezar',
+    'Rakkas',
+    'Lemonada',
+    'Marhey',
+    'Handjet',
+    'Playpen Sans Arabic',
+    'Alyamama',
+    'Estedad',
+    'Qahiri',
+    'Badeen Display',
+    // English sans and mono
+    'Inter',
+    'Geist',
+    'IBM Plex Sans',
+    'Manrope',
+    'DM Sans',
+    'Plus Jakarta Sans',
+    'Outfit',
+    'Figtree',
+    'Onest',
+    'Sora',
+    'Space Grotesk',
+    'Instrument Sans',
+    'Bricolage Grotesque',
+    'JetBrains Mono',
+    'Geist Mono',
+    // the starter pair of task 2.2 (Noto Sans: the Latin half of Noto Sans Arabic)
+    'Noto Sans'
+  ]);
+  const fonts = lib.templates.fonts;
+  const kinds = { bilingual: 0, arabic: 0, english: 0 };
+  for (const t of fonts) {
+    const x = t.extras;
+    const names = [x.arabic, x.latin, x.headingArabic, x.headingLatin, x.numeralsFont].filter(Boolean);
+    for (const n of names) assert.ok(CONFIRMED.has(n), `${t.id}: ${n} is not a confirmed font`);
+    const ar = typeof x.arabic === 'string';
+    const en = typeof x.latin === 'string';
+    assert.deepEqual(x.languages, ar && en ? ['ar', 'en'] : ar ? ['ar'] : ['en'], t.id);
+    if (ar && en) kinds.bilingual++;
+    else if (ar) kinds.arabic++;
+    else kinds.english++;
+    // A heading family is in the template's own script; a Latin heading only without Arabic, and the reverse.
+    if (x.headingArabic) assert.ok(ar && !en && x.headingArabic !== x.arabic, t.id);
+    if (x.headingLatin) assert.ok(en && !ar && x.headingLatin !== x.latin, t.id);
+    assert.equal(typeof x.easternArabicDigits, 'boolean', `${t.id}: digit support recorded`);
+    if (ar && en && x.arabic !== x.latin) {
+      assert.ok(typeof x.latinSizeAdjust === 'number' && x.latinSizeAdjust >= 0.5 && x.latinSizeAdjust <= 2, t.id);
+    }
+    // Every family has its source recorded.
+    for (const s of x.sources)
+      assert.ok(
+        sources.some((y) => y.id === s),
+        `${t.id}: source ${s}`
+      );
+  }
+  assert.ok(fonts.length >= 42, `${fonts.length} font templates`);
+  assert.ok(kinds.bilingual >= 15 && kinds.arabic >= 10 && kinds.english >= 10, JSON.stringify(kinds));
+  // The numerals font of a new pair is named (R-094).
+  for (const t of fonts.filter((f) => f.status.state === 'draft'))
+    assert.equal(typeof t.extras.numeralsFont, 'string', t.id);
 });

@@ -815,6 +815,13 @@ body {
   font-size: calc(var(--f-size) * var(--f-adjust, 1));
 }
 
+/* A pair's own heading family (task 3.8), drawn bold above the body specimen. */
+.f-heading {
+  font-size: var(--f-size);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 .f-digits {
   font-variant-numeric: tabular-nums;
   font-size: 0.9375rem;

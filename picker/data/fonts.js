@@ -170,7 +170,7 @@
       "notes": "Same family in both scripts. Eastern Arabic digits measured in Chrome (task 2.11). Size adjustment 1: the two scripts were designed to be used together."
     },
     "source": {
-      "name": "Noto Sans Arabic",
+      "name": "Noto Arabic",
       "url": "https://github.com/notofonts/arabic",
       "license": "OFL-1.1"
     },
@@ -330,7 +330,7 @@
       "notes": "Arabic only (Kufi style). Eastern Arabic digits measured in Chrome (task 2.11)."
     },
     "source": {
-      "name": "Noto Sans Arabic",
+      "name": "Noto Arabic",
       "url": "https://github.com/notofonts/arabic",
       "license": "OFL-1.1"
     },
