@@ -4201,5 +4201,4135 @@
     "status": {
       "state": "draft"
     }
+  },
+  {
+    "id": "palette-tweakcn-modern-minimal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بسيط حديث",
+      "en": "Modern Minimal"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2314,
+              0.5098,
+              0.9647
+            ],
+            "hex": "#3b82f6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1451,
+              0.3882,
+              0.9216
+            ],
+            "hex": "#2563eb"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Modern Minimal: primary / chart-2"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-violet-bloom",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "زهر البنفسج",
+      "en": "Violet Bloom"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4392,
+              0.2,
+              1
+            ],
+            "hex": "#7033ff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2902,
+              0.7843,
+              0.5216
+            ],
+            "hex": "#4ac885"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Violet Bloom: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-mocha-mousse",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "موس الموكا",
+      "en": "Mocha Mousse"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6392,
+              0.4667,
+              0.3922
+            ],
+            "hex": "#a37764"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7647,
+              0.6196,
+              0.5333
+            ],
+            "hex": "#c39e88"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Mocha Mousse: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-bubblegum",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "علكة وردية",
+      "en": "Bubblegum"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8157,
+              0.3098,
+              0.6
+            ],
+            "hex": "#d04f99"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5412,
+              0.8118,
+              0.8196
+            ],
+            "hex": "#8acfd1"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Bubblegum: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-amethyst-haze",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "ضباب الجمشت",
+      "en": "Amethyst Haze"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5412,
+              0.4745,
+              0.6706
+            ],
+            "hex": "#8a79ab"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.6471,
+              0.7216
+            ],
+            "hex": "#e6a5b8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Amethyst Haze: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-notebook",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "دفتر",
+      "en": "Notebook"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3765,
+              0.3765,
+              0.3765
+            ],
+            "hex": "#606060"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9529,
+              0.9176,
+              0.7843
+            ],
+            "hex": "#f3eac8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Notebook: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-kodama-grove",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بستان كوداما",
+      "en": "Kodama Grove"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5529,
+              0.6157,
+              0.3098
+            ],
+            "hex": "#8d9d4f"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8706,
+              0.8078,
+              0.6275
+            ],
+            "hex": "#decea0"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Kodama Grove: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-tangerine",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "يوسفي",
+      "en": "Tangerine"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8784,
+              0.3647,
+              0.2196
+            ],
+            "hex": "#e05d38"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6549,
+              0.7843
+            ],
+            "hex": "#86a7c8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Tangerine: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-quantum-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "وردة كمومية",
+      "en": "Quantum Rose"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.0235,
+              0.4784
+            ],
+            "hex": "#e6067a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8392,
+              1
+            ],
+            "hex": "#ffd6ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Quantum Rose: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-bold-tech",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "تقني جريء",
+      "en": "Bold Tech"
+    },
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5451,
+              0.3608,
+              0.9647
+            ],
+            "hex": "#8b5cf6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4275,
+              0.1569,
+              0.851
+            ],
+            "hex": "#6d28d9"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Bold Tech: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-elegant-luxury",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "فخامة أنيقة",
+      "en": "Elegant Luxury"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6078,
+              0.1725,
+              0.1725
+            ],
+            "hex": "#9b2c2c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9961,
+              0.9529,
+              0.7804
+            ],
+            "hex": "#fef3c7"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Elegant Luxury: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-amber-minimal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كهرماني بسيط",
+      "en": "Amber Minimal"
+    },
+    "tags": [
+      "minimal",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0.6196,
+              0.0431
+            ],
+            "hex": "#f59e0b"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7059,
+              0.3255,
+              0.0353
+            ],
+            "hex": "#b45309"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Amber Minimal: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-neo-brutalism",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بروتالية جديدة",
+      "en": "Neo Brutalism"
+    },
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.2,
+              0.2
+            ],
+            "hex": "#ff3333"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              0
+            ],
+            "hex": "#ffff00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Neo Brutalism: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-claymorphism",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "طيني ناعم",
+      "en": "Claymorphism"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3882,
+              0.4,
+              0.9451
+            ],
+            "hex": "#6366f1"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2627,
+              0.2196,
+              0.7922
+            ],
+            "hex": "#4338ca"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Claymorphism: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-cyberpunk",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "سايبربانك",
+      "en": "Cyberpunk"
+    },
+    "tags": [
+      "retro",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0,
+              0.7843
+            ],
+            "hex": "#ff00c8"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              1,
+              0.8
+            ],
+            "hex": "#00ffcc"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Cyberpunk: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-pastel-dreams",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أحلام باستيل",
+      "en": "Pastel Dreams"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6549,
+              0.5451,
+              0.9804
+            ],
+            "hex": "#a78bfa"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.8471,
+              0.9922
+            ],
+            "hex": "#e9d8fd"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Pastel Dreams: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-caffeine",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كافيين",
+      "en": "Caffeine"
+    },
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3922,
+              0.2902,
+              0.251
+            ],
+            "hex": "#644a40"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8745,
+              0.7098
+            ],
+            "hex": "#ffdfb5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Caffeine: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-ocean-breeze",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "نسيم المحيط",
+      "en": "Ocean Breeze"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1333,
+              0.7725,
+              0.3686
+            ],
+            "hex": "#22c55e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8196,
+              0.9804,
+              0.898
+            ],
+            "hex": "#d1fae5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Ocean Breeze: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-retro-arcade",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أركيد قديم",
+      "en": "Retro Arcade"
+    },
+    "tags": [
+      "retro",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8275,
+              0.2118,
+              0.5098
+            ],
+            "hex": "#d33682"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.149,
+              0.5451,
+              0.8235
+            ],
+            "hex": "#268bd2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Retro Arcade: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-midnight-bloom",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "زهر منتصف الليل",
+      "en": "Midnight Bloom"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4235,
+              0.3608,
+              0.9059
+            ],
+            "hex": "#6c5ce7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6314,
+              0.7882,
+              0.949
+            ],
+            "hex": "#a1c9f2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Midnight Bloom: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-candyland",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أرض الحلوى",
+      "en": "Candyland"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.7529,
+              0.7961
+            ],
+            "hex": "#ffc0cb"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5294,
+              0.8078,
+              0.9216
+            ],
+            "hex": "#87ceeb"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Candyland: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-sunset-horizon",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أفق الغروب",
+      "en": "Sunset Horizon"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4941,
+              0.3725
+            ],
+            "hex": "#ff7e5f"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9961,
+              0.7059,
+              0.4824
+            ],
+            "hex": "#feb47b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Sunset Horizon: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-starry-night",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "ليلة النجوم",
+      "en": "Starry Night"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2275,
+              0.3569,
+              0.6275
+            ],
+            "hex": "#3a5ba0"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.7843,
+              0.451
+            ],
+            "hex": "#f7c873"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Starry Night: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-darkmatter",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "مادة مظلمة",
+      "en": "Darkmatter"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8471,
+              0.4745,
+              0.2627
+            ],
+            "hex": "#d87943"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3725,
+              0.5294,
+              0.5294
+            ],
+            "hex": "#5f8787"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Darkmatter: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-soft-pop",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بوب ناعم",
+      "en": "Soft Pop"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3098,
+              0.2745,
+              0.898
+            ],
+            "hex": "#4f46e5"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0784,
+              0.7216,
+              0.651
+            ],
+            "hex": "#14b8a6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Soft Pop: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-tweakcn-sage-garden",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "حديقة المريمية",
+      "en": "Sage Garden"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4863,
+              0.5647,
+              0.5098
+            ],
+            "hex": "#7c9082"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6275,
+              0.6667,
+              0.5333
+            ],
+            "hex": "#a0aa88"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Sage Garden: primary / chart-2"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-shadcn-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أزرق (shadcn)",
+      "en": "Blue (shadcn)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0784,
+              0.2784,
+              0.902
+            ],
+            "hex": "#1447e6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.7725,
+              1
+            ],
+            "hex": "#91c5ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui blue theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-shadcn-indigo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "نيلي (shadcn)",
+      "en": "Indigo (shadcn)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2627,
+              0.1765,
+              0.8431
+            ],
+            "hex": "#432dd7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6431,
+              0.7059,
+              1
+            ],
+            "hex": "#a4b4ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui indigo theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-shadcn-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "ليموني (shadcn)",
+      "en": "Lime (shadcn)"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6157,
+              0.898,
+              0
+            ],
+            "hex": "#9de500"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2392,
+              0.3882,
+              0
+            ],
+            "hex": "#3d6300"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui lime theme: primary / chart-5"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-shadcn-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "وردي (shadcn)",
+      "en": "Rose (shadcn)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7569,
+              0,
+              0.2275
+            ],
+            "hex": "#c1003a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6392,
+              0.6824
+            ],
+            "hex": "#ffa3ae"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui rose theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-shadcn-violet",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بنفسجي (shadcn)",
+      "en": "Violet (shadcn)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4392,
+              0.0314,
+              0.9059
+            ],
+            "hex": "#7008e7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7686,
+              0.7059,
+              1
+            ],
+            "hex": "#c4b4ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui violet theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-shadcn-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أصفر (shadcn)",
+      "en": "Yellow (shadcn)"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.7882,
+              0
+            ],
+            "hex": "#f7c900"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7922,
+              0.5412,
+              0
+            ],
+            "hex": "#ca8a00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui yellow theme: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-abyss",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "هاوية",
+      "en": "Abyss"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7608,
+              0.9922,
+              0
+            ],
+            "hex": "#c2fd00"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8078,
+              0.7451,
+              0.9569
+            ],
+            "hex": "#cebef4"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI abyss theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-acid",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "حمضي",
+      "en": "Acid"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.2588,
+              0.9569
+            ],
+            "hex": "#ff42f4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8,
+              0.9961,
+              0
+            ],
+            "hex": "#ccfe00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI acid theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-aqua",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "مائي",
+      "en": "Aqua"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0745,
+              0.9255,
+              0.9529
+            ],
+            "hex": "#13ecf3"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5882,
+              0.4353,
+              0.702
+            ],
+            "hex": "#966fb3"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI aqua theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-autumn",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "خريف",
+      "en": "Autumn"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.0118,
+              0.1529
+            ],
+            "hex": "#8c0327"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8471,
+              0.3216,
+              0.3176
+            ],
+            "hex": "#d85251"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI autumn theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-business",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "أعمال",
+      "en": "Business"
+    },
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1098,
+              0.3059,
+              0.502
+            ],
+            "hex": "#1c4e80"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.4118,
+              0.2784
+            ],
+            "hex": "#ea6947"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI business theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-cmyk",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "ألوان الطباعة",
+      "en": "CMYK"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2706,
+              0.6824,
+              0.9333
+            ],
+            "hex": "#45aeee"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.949,
+              0.2039
+            ],
+            "hex": "#fff234"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI cmyk theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-coffee",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "قهوة",
+      "en": "Coffee"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.5725,
+              0.298
+            ],
+            "hex": "#db924c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0667,
+              0.3412,
+              0.4275
+            ],
+            "hex": "#11576d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI coffee theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-corporate",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "مؤسسي",
+      "en": "Corporate"
+    },
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5098,
+              0.7686
+            ],
+            "hex": "#0082c4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3804,
+              0.451,
+              0.5529
+            ],
+            "hex": "#61738d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI corporate theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-cupcake",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كب كيك",
+      "en": "Cupcake"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2667,
+              0.9216,
+              0.8275
+            ],
+            "hex": "#44ebd3"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9765,
+              0.7961,
+              0.898
+            ],
+            "hex": "#f9cbe5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI cupcake theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-cyberpunk",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "سايبربانك (DaisyUI)",
+      "en": "Cyberpunk (DaisyUI)"
+    },
+    "tags": [
+      "retro",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4784,
+              0.6078
+            ],
+            "hex": "#ff7a9b"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.8863,
+              0.9569
+            ],
+            "hex": "#00e2f4"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI cyberpunk theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-dark",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "داكن",
+      "en": "Dark"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3765,
+              0.3647,
+              1
+            ],
+            "hex": "#605dff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.1882,
+              0.5961
+            ],
+            "hex": "#f43098"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI dark theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-dim",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "خافت",
+      "en": "Dim"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6235,
+              0.9098,
+              0.5529
+            ],
+            "hex": "#9fe88d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4902,
+              0.3647
+            ],
+            "hex": "#ff7d5d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI dim theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-fantasy",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "خيال",
+      "en": "Fantasy"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4196,
+              0,
+              0.4471
+            ],
+            "hex": "#6b0072"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.4588,
+              0.6902
+            ],
+            "hex": "#0075b0"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI fantasy theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-garden",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "حديقة",
+      "en": "Garden"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0,
+              0.4627
+            ],
+            "hex": "#f50076"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5569,
+              0.2549,
+              0.3843
+            ],
+            "hex": "#8e4162"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI garden theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-halloween",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "هالوين",
+      "en": "Halloween"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6039,
+              0.2
+            ],
+            "hex": "#ff9a33"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4745,
+              0,
+              0.7451
+            ],
+            "hex": "#7900be"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI halloween theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-night",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "ليل",
+      "en": "Night"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2275,
+              0.7412,
+              0.9686
+            ],
+            "hex": "#3abdf7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5059,
+              0.549,
+              0.9725
+            ],
+            "hex": "#818cf8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI night theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-pastel",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "باستيل",
+      "en": "Pastel"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.8314,
+              1
+            ],
+            "hex": "#e8d4ff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6392,
+              0.949,
+              0.8078
+            ],
+            "hex": "#a3f2ce"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI pastel theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-synthwave",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "سينثويف",
+      "en": "Synthwave"
+    },
+    "tags": [
+      "retro",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9725,
+              0.3804,
+              0.7059
+            ],
+            "hex": "#f861b4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4431,
+              0.8196,
+              0.9961
+            ],
+            "hex": "#71d1fe"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI synthwave theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-valentine",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "فالنتاين",
+      "en": "Valentine"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.1882,
+              0.5961
+            ],
+            "hex": "#f43098"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6627,
+              0.2863,
+              1
+            ],
+            "hex": "#a949ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI valentine theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-daisyui-winter",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "شتاء",
+      "en": "Winter"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.4392,
+              0.9294
+            ],
+            "hex": "#0070ed"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2745,
+              0.2275,
+              0.6353
+            ],
+            "hex": "#463aa2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI winter theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-mauve-peach",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كاتبوتشينو لاتيه: undefined وundefined",
+      "en": "Catppuccin Latte: mauve and peach"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5333,
+              0.2235,
+              0.9373
+            ],
+            "hex": "#8839ef"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9961,
+              0.3922,
+              0.0431
+            ],
+            "hex": "#fe640b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte mauve / latte peach"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-red-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
+      "en": "Catppuccin Latte: red and teal (Catppuccin)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8235,
+              0.0588,
+              0.2235
+            ],
+            "hex": "#d20f39"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0902,
+              0.5725,
+              0.6
+            ],
+            "hex": "#179299"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte red / latte teal"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-sapphire-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
+      "en": "Catppuccin Latte: sapphire and yellow (Catppuccin)"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1255,
+              0.6235,
+              0.7098
+            ],
+            "hex": "#209fb5"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8745,
+              0.5569,
+              0.1137
+            ],
+            "hex": "#df8e1d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte sapphire / latte yellow"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-lavender-flamingo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
+      "en": "Catppuccin Latte: lavender and flamingo (Catppuccin)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4471,
+              0.5294,
+              0.9922
+            ],
+            "hex": "#7287fd"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8667,
+              0.4706,
+              0.4706
+            ],
+            "hex": "#dd7878"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte lavender / latte flamingo"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-primer-green-purple",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بريمر undefined وundefined",
+      "en": "Primer #116329 and #8250df"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0667,
+              0.3882,
+              0.1608
+            ],
+            "hex": "#116329"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5098,
+              0.3137,
+              0.8745
+            ],
+            "hex": "#8250df"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Primer Primitives green.6 / purple.5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Primer Primitives",
+      "url": "https://github.com/primer/primitives",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-primer-pink-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بريمر undefined وundefined (Primer Primitives)",
+      "en": "Primer #99286e and #d4a72c (Primer Primitives)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6,
+              0.1569,
+              0.4314
+            ],
+            "hex": "#99286e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8314,
+              0.6549,
+              0.1725
+            ],
+            "hex": "#d4a72c"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Primer Primitives pink.6 / yellow.3"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Primer Primitives",
+      "url": "https://github.com/primer/primitives",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "palette-primer-orange-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "بريمر undefined وundefined (Primer Primitives)",
+      "en": "Primer #953800 and #0969da (Primer Primitives)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843,
+              0.2196,
+              0
+            ],
+            "hex": "#953800"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0353,
+              0.4118,
+              0.8549
+            ],
+            "hex": "#0969da"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Primer Primitives orange.6 / blue.5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Primer Primitives",
+      "url": "https://github.com/primer/primitives",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
   }
 ]

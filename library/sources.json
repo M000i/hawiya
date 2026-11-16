@@ -51,6 +51,68 @@
     "use": "Color values from its shades 5 to 9."
   },
   {
+    "id": "shadcn",
+    "name": "shadcn/ui",
+    "url": "https://github.com/shadcn-ui/ui",
+    "license": "MIT",
+    "licenseFile": "https://github.com/shadcn-ui/ui/blob/main/LICENSE.md",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2023 shadcn"
+    ],
+    "use": "Color values from its colored themes (apps/v4/registry/themes.ts)."
+  },
+  {
+    "id": "tweakcn",
+    "name": "tweakcn",
+    "url": "https://github.com/jnsahaj/tweakcn",
+    "license": "Apache-2.0",
+    "licenseFile": "https://github.com/jnsahaj/tweakcn/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "tweakcn by jnsahaj (its LICENSE file is the Apache License 2.0 text and names no copyright holder)"
+    ],
+    "use": "Color values from its theme presets (utils/theme-presets.ts).",
+    "note": "Presets named after a product, a brand or a game, and its copy of Catppuccin, are not used."
+  },
+  {
+    "id": "daisyui",
+    "name": "DaisyUI",
+    "url": "https://github.com/saadeghi/daisyui",
+    "license": "MIT",
+    "licenseFile": "https://github.com/saadeghi/daisyui/blob/master/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2020 Pouya Saadeghi"
+    ],
+    "use": "Color values from its themes (packages/daisyui/src/themes).",
+    "note": "Its dracula and nord themes (after other projects) are not used."
+  },
+  {
+    "id": "catppuccin",
+    "name": "Catppuccin",
+    "url": "https://github.com/catppuccin/palette",
+    "license": "MIT",
+    "licenseFile": "https://github.com/catppuccin/palette/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2021 Catppuccin"
+    ],
+    "use": "Accent colors of its Latte flavor (palette.json)."
+  },
+  {
+    "id": "primer",
+    "name": "Primer Primitives",
+    "url": "https://github.com/primer/primitives",
+    "license": "MIT",
+    "licenseFile": "https://github.com/primer/primitives/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2018 GitHub Inc."
+    ],
+    "use": "Color values from its light base scales (src/tokens/base/color/light/light.json5)."
+  },
+  {
     "id": "plex",
     "name": "IBM Plex",
     "url": "https://github.com/IBM/plex",

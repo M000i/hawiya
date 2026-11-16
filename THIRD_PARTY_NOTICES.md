@@ -13,6 +13,11 @@ own license. The full text of every license follows the list.
 | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) | MIT | Color values from the v3 default palette. |
 | [Radix Colors](https://github.com/radix-ui/colors) | MIT | Color values from its light scales (steps 9 to 11). |
 | [Open Color](https://github.com/yeun/open-color) | MIT | Color values from its shades 5 to 9. |
+| [shadcn/ui](https://github.com/shadcn-ui/ui) | MIT | Color values from its colored themes (apps/v4/registry/themes.ts). |
+| [tweakcn](https://github.com/jnsahaj/tweakcn) | Apache-2.0 | Color values from its theme presets (utils/theme-presets.ts). |
+| [DaisyUI](https://github.com/saadeghi/daisyui) | MIT | Color values from its themes (packages/daisyui/src/themes). |
+| [Catppuccin](https://github.com/catppuccin/palette) | MIT | Accent colors of its Latte flavor (palette.json). |
+| [Primer Primitives](https://github.com/primer/primitives) | MIT | Color values from its light base scales (src/tokens/base/color/light/light.json5). |
 | [IBM Plex](https://github.com/IBM/plex) | OFL-1.1 | Font, served by Google Fonts. |
 | [Noto Sans Arabic](https://github.com/notofonts/arabic) | OFL-1.1 | Font, served by Google Fonts. |
 | [Noto Sans](https://github.com/notofonts/latin-greek-cyrillic) | OFL-1.1 | Font, served by Google Fonts. |
@@ -63,6 +68,58 @@ Copyright (c) 2022-Present WorkOS
 
 ```text
 Copyright (c) 2016 heeyeun
+```
+
+## shadcn/ui
+
+- Repository: https://github.com/shadcn-ui/ui
+- License: MIT License (`MIT`), read from https://github.com/shadcn-ui/ui/blob/main/LICENSE.md on 2026-11-17
+- Used for: Color values from its colored themes (apps/v4/registry/themes.ts).
+
+```text
+Copyright (c) 2023 shadcn
+```
+
+## tweakcn
+
+- Repository: https://github.com/jnsahaj/tweakcn
+- License: Apache License 2.0 (`Apache-2.0`), read from https://github.com/jnsahaj/tweakcn/blob/main/LICENSE on 2026-11-17
+- Used for: Color values from its theme presets (utils/theme-presets.ts).
+- Note: Presets named after a product, a brand or a game, and its copy of Catppuccin, are not used.
+
+```text
+tweakcn by jnsahaj (its LICENSE file is the Apache License 2.0 text and names no copyright holder)
+```
+
+## DaisyUI
+
+- Repository: https://github.com/saadeghi/daisyui
+- License: MIT License (`MIT`), read from https://github.com/saadeghi/daisyui/blob/master/LICENSE on 2026-11-17
+- Used for: Color values from its themes (packages/daisyui/src/themes).
+- Note: Its dracula and nord themes (after other projects) are not used.
+
+```text
+Copyright (c) 2020 Pouya Saadeghi
+```
+
+## Catppuccin
+
+- Repository: https://github.com/catppuccin/palette
+- License: MIT License (`MIT`), read from https://github.com/catppuccin/palette/blob/main/LICENSE on 2026-11-17
+- Used for: Accent colors of its Latte flavor (palette.json).
+
+```text
+Copyright (c) 2021 Catppuccin
+```
+
+## Primer Primitives
+
+- Repository: https://github.com/primer/primitives
+- License: MIT License (`MIT`), read from https://github.com/primer/primitives/blob/main/LICENSE on 2026-11-17
+- Used for: Color values from its light base scales (src/tokens/base/color/light/light.json5).
+
+```text
+Copyright (c) 2018 GitHub Inc.
 ```
 
 ## IBM Plex

@@ -1733,7 +1733,7 @@
     - المراجعة: ذاتية (مهمة B).
     - انحرافات: `tests/library.test.js` و `tests/e2e/review.spec.js` ليسا في الملفات المتوقعة (اختبارات فقط). الأسماء المكررة بين مصدرين تحمل اسم المصدر بين قوسين (ثلاث لوحات).
 
-- [ ] **3.7** لوحات وثيمات الألوان (الدفعة الثانية، حتى 100+)
+- [x] **3.7** لوحات وثيمات الألوان (الدفعة الثانية، حتى 100+)
   - الخطورة: B — محتوى
   - الحجم: كبيرة
   - تحقق المتطلبات: R-041
@@ -1742,7 +1742,25 @@
   - معيار القبول: المجموع 100 أو أكثر، بإضافة ثيمات shadcn و tweakcn و DaisyUI و Catppuccin و Primer بعد تسجيل رخصة كل مصدر؛ الفحص أخضر بما فيه اختلاف المحورين
   - الاختبار: `npm run check`
   - ما ستراه أنت: افتح صفحة المراجعة على الألوان فترى العدّاد تجاوز المئة
-  - دليل الإكمال: —
+  - دليل الإكمال:
+    - الملفات: `library/elements/colors.json` (59 لوحة جديدة بحالة «مسودة»: 26 من tweakcn، و 20 من DaisyUI، و 6 من shadcn/ui، و 4 من Catppuccin، و 3 من Primer Primitives؛ المجموع 119)، `library/sources.json` (المصادر الخمسة)، `THIRD_PARTY_NOTICES.md` (مُعاد توليده: 28 مصدرًا)، `tests/library.test.js` (اختبار اللوحات صار يغطي المصادر الثمانية و 100 أو أكثر).
+    - الرخص من ملف LICENSE في كل مستودع: shadcn/ui (MIT، 2023 shadcn)، tweakcn (Apache 2.0، بلا ملف NOTICE، والملف لا يسمّي صاحب حق)، DaisyUI (MIT، 2020 Pouya Saadeghi)، Catppuccin palette (MIT، 2021 Catppuccin)، Primer Primitives (MIT، 2018 GitHub Inc.).
+    - القيم من ملفات المستودعات: `utils/theme-presets.ts` (tweakcn)، `apps/v4/registry/themes.ts` (shadcn)، `packages/daisyui/src/themes/*.css`، `palette.json` (Catppuccin)، `src/tokens/base/color/light/light.json5` (Primer). قيم oklch و hsl حُوّلت إلى hex بدوال `picker/js/core/color.js` نفسها. اللون الثاني من الثيم نفسه: أول لون ملوّن فيه (secondary ثم accent ثم ألوان الرسوم)، و `extras.palette` يذكر أيهما (مثل «tweakcn Ocean Breeze: primary / accent»).
+    - ما لم يُضَف (102 ثيم مرشح ← 59): ثيمات tweakcn المسماة بمنتج أو علامة أو لعبة (Twitter و Vercel و Claude و Supabase و T3 Chat و Doom 64) ونسخته من Catppuccin، وثيما dracula و nord في DaisyUI (مشروعان «مرشّحان» فقط في ملف المشروع)، وثيمان أساسيهما أبيض أو أسود خالص (caramellatte و luxury)، والثيمات الرمادية بلا لون ثانٍ، وكل ثيم لونه الأساسي أو الثانوي شبه مطابق للون في لوحة موجودة (مثل ألوان shadcn المطابقة لـ Tailwind).
+    - التباين: محرك القواعد قرر المستوى في الوضعين: 36 بمستوى AA و 23 بمستوى AAA.
+    - `npm run check`:
+      ```
+        140 contrast checks; 29 sources, licenses allowed, none forbidden
+        لا تكرار — no duplicates: 7191 comparisons, every two templates differ in two axes
+        THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (13 files)
+      نجاح: فُحص 165 تمبلت (37 مراجَع، 128 مسودة) و 2 هوية بلا أي مخالفة
+      success: 165 templates (37 reviewed, 128 drafts), 2 identities checked, no problem
+      ```
+      `npm test`: «ℹ tests 573 / ℹ pass 573 / ℹ fail 0»؛ `npm run test:e2e`: «123 passed (16.7s)»؛ `npm run test:golden`: 12 من 12؛ `npm run build`: «37 templates published, 128 drafts left out» (`picker/data` لم يتغير)؛ `npm run lint`: 0 أخطاء (تحذيران قديمان)؛ `npm run format:check`: نجاح.
+    - صفحة المراجعة (نسخة مؤقتة من المكتبة): تبويب الألوان «الألوان 3/119» و 119 بطاقة.
+    - التخريب المتعمد: 4 أعطال (حذف مصدر tweakcn، لوحة بلوني لوحة أخرى، أساسي أبيض خالص، 90 لوحة فقط) ← كلها اكتُشفت.
+    - المراجعة: ذاتية (مهمة B).
+    - انحرافات: `tests/library.test.js` ليس في الملفات المتوقعة (اختبار فقط). Catppuccin و Primer ممثَّلان بعدد قليل (4 و 3) لأن أغلب ألوانهما قريبة من لوحات موجودة.
 
 - [ ] **3.8** الخطوط وأزواجها (40+)
   - الخطورة: B — محتوى

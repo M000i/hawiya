@@ -290,10 +290,19 @@ test('every icons template carries the same 14 sample meanings, as plain SVG sha
   }
 });
 
-test('colors: about 60 palettes from Radix Colors, Tailwind CSS and Open Color, each with tags, three metrics and its source (task 3.6)', () => {
+test('colors: 100+ palettes and themes from the confirmed sources, each with tags, three metrics and its source (tasks 3.6, 3.7)', () => {
   const palettes = lib.templates.colors;
-  assert.ok(palettes.length >= 55, `${palettes.length} palettes`);
-  const LABEL = { 'Radix Colors': 'Radix Colors ', 'Tailwind CSS': 'Tailwind CSS v3 ', 'Open Color': 'Open Color ' };
+  assert.ok(palettes.length >= 100, `${palettes.length} palettes`);
+  const LABEL = {
+    'Radix Colors': 'Radix Colors ',
+    'Tailwind CSS': 'Tailwind CSS v3 ',
+    'Open Color': 'Open Color ',
+    'shadcn/ui': 'shadcn/ui ',
+    tweakcn: 'tweakcn ',
+    DaisyUI: 'DaisyUI ',
+    Catppuccin: 'Catppuccin ',
+    'Primer Primitives': 'Primer Primitives '
+  };
   const per = {};
   for (const t of palettes) {
     assert.ok(LABEL[t.source.name], `${t.id}: source ${t.source.name}`);
@@ -308,5 +317,10 @@ test('colors: about 60 palettes from Radix Colors, Tailwind CSS and Open Color, 
     assert.ok(['AA', 'AAA'].includes(t.a11y.contrast), t.id);
     for (const k of ['primary', 'secondary']) assert.match(t.tokens.color[k].$value.hex, /^#[0-9a-f]{6}$/, t.id);
   }
-  for (const name of Object.keys(LABEL)) assert.ok(per[name] >= 15, `${name}: ${per[name]} palettes`);
+  for (const name of ['Radix Colors', 'Tailwind CSS', 'Open Color', 'tweakcn', 'DaisyUI'])
+    assert.ok(per[name] >= 15, `${name}: ${per[name]} palettes`);
+  for (const name of ['shadcn/ui', 'Catppuccin', 'Primer Primitives'])
+    assert.ok(per[name] >= 3, `${name}: ${per[name]} palettes`);
+  // A primary of pure white or black is no brand color: never a palette.
+  for (const t of palettes) assert.ok(!['#ffffff', '#000000'].includes(t.tokens.color.primary.$value.hex), t.id);
 });
