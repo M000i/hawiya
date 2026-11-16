@@ -136,8 +136,10 @@ test('a broken entry gets its own card and never hides the others', async ({ pag
   try {
     await page.goto(s.url);
     await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
-    // 3 palettes + the odd draft as cards, the null entry as a broken card; all in file order.
-    await expect(page.locator('.r-card[data-template]')).toHaveCount(4);
+    // Every palette and the odd draft as cards, the null entry as a broken card; all in file order.
+    await expect(page.locator('.r-card[data-template]')).toHaveCount(
+      list.filter((t) => t && typeof t === 'object').length
+    );
     await expect(page.locator('.r-card[data-broken="2"]')).toHaveCount(1);
     await expect(page.locator('.r-card[data-template="palette-odd"] .r-problems')).toBeVisible();
     await expect(page.locator('.r-card[data-template="palette-odd"] [data-action="approve"]')).toBeDisabled();

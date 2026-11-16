@@ -26,6 +26,31 @@
     "use": "Color values from the v3 default palette."
   },
   {
+    "id": "radix-colors",
+    "name": "Radix Colors",
+    "url": "https://github.com/radix-ui/colors",
+    "license": "MIT",
+    "licenseFile": "https://github.com/radix-ui/colors/blob/main/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2021-2022 Modulz",
+      "Copyright (c) 2022-Present WorkOS"
+    ],
+    "use": "Color values from its light scales (steps 9 to 11)."
+  },
+  {
+    "id": "open-color",
+    "name": "Open Color",
+    "url": "https://github.com/yeun/open-color",
+    "license": "MIT",
+    "licenseFile": "https://github.com/yeun/open-color/blob/master/LICENSE",
+    "licenseReadAt": "2026-11-17",
+    "copyright": [
+      "Copyright (c) 2016 heeyeun"
+    ],
+    "use": "Color values from its shades 5 to 9."
+  },
+  {
     "id": "plex",
     "name": "IBM Plex",
     "url": "https://github.com/IBM/plex",

@@ -289,3 +289,24 @@ test('every icons template carries the same 14 sample meanings, as plain SVG sha
     assert.throws(() => icons.check(bad, 'test'), /not allowed|outside|unexpected/, bad);
   }
 });
+
+test('colors: about 60 palettes from Radix Colors, Tailwind CSS and Open Color, each with tags, three metrics and its source (task 3.6)', () => {
+  const palettes = lib.templates.colors;
+  assert.ok(palettes.length >= 55, `${palettes.length} palettes`);
+  const LABEL = { 'Radix Colors': 'Radix Colors ', 'Tailwind CSS': 'Tailwind CSS v3 ', 'Open Color': 'Open Color ' };
+  const per = {};
+  for (const t of palettes) {
+    assert.ok(LABEL[t.source.name], `${t.id}: source ${t.source.name}`);
+    per[t.source.name] = (per[t.source.name] || 0) + 1;
+    // Where the two values come from, as the source names its steps: "<source> <hue step> / <hue step>".
+    assert.ok(t.extras.palette.startsWith(LABEL[t.source.name]) && t.extras.palette.includes(' / '), t.id);
+    assert.ok(t.tags.length >= 1, t.id);
+    for (const k of ['roundness', 'density', 'intensity']) {
+      const v = t.metrics[k];
+      assert.ok(typeof v === 'number' && v >= 0 && v <= 1, `${t.id}: metrics.${k}`);
+    }
+    assert.ok(['AA', 'AAA'].includes(t.a11y.contrast), t.id);
+    for (const k of ['primary', 'secondary']) assert.match(t.tokens.color[k].$value.hex, /^#[0-9a-f]{6}$/, t.id);
+  }
+  for (const name of Object.keys(LABEL)) assert.ok(per[name] >= 15, `${name}: ${per[name]} palettes`);
+});

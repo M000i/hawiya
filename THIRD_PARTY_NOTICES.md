@@ -11,6 +11,8 @@ own license. The full text of every license follows the list.
 | Source | License | Used for |
 |---|---|---|
 | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) | MIT | Color values from the v3 default palette. |
+| [Radix Colors](https://github.com/radix-ui/colors) | MIT | Color values from its light scales (steps 9 to 11). |
+| [Open Color](https://github.com/yeun/open-color) | MIT | Color values from its shades 5 to 9. |
 | [IBM Plex](https://github.com/IBM/plex) | OFL-1.1 | Font, served by Google Fonts. |
 | [Noto Sans Arabic](https://github.com/notofonts/arabic) | OFL-1.1 | Font, served by Google Fonts. |
 | [Noto Sans](https://github.com/notofonts/latin-greek-cyrillic) | OFL-1.1 | Font, served by Google Fonts. |
@@ -40,6 +42,27 @@ own license. The full text of every license follows the list.
 
 ```text
 Copyright (c) Tailwind Labs, Inc.
+```
+
+## Radix Colors
+
+- Repository: https://github.com/radix-ui/colors
+- License: MIT License (`MIT`), read from https://github.com/radix-ui/colors/blob/main/LICENSE on 2026-11-17
+- Used for: Color values from its light scales (steps 9 to 11).
+
+```text
+Copyright (c) 2021-2022 Modulz
+Copyright (c) 2022-Present WorkOS
+```
+
+## Open Color
+
+- Repository: https://github.com/yeun/open-color
+- License: MIT License (`MIT`), read from https://github.com/yeun/open-color/blob/master/LICENSE on 2026-11-17
+- Used for: Color values from its shades 5 to 9.
+
+```text
+Copyright (c) 2016 heeyeun
 ```
 
 ## IBM Plex

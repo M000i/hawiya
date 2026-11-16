@@ -1706,7 +1706,7 @@
     - المراجعة: ذاتية (مهمة B). مؤجلة: B-067.
     - انحرافات: (1) `library/elements/icons.json` ليس في الملفات المتوقعة (بموافقة المالك: 12 مسودة، تكملها 3.10). (2) إصلاح خطأ من 3.4: أمر `npm run notices` كان يحمل أسماء ملفات المراجعة بالخطأ فيفشل، وملفات المراجعة لم تكن في قائمة التنسيق؛ صُحّحا في `package.json`. (3) أيقونة «تراجع» في Basil هي سهم الرد لأن المكتبة بلا أيقونة تراجع، و «إغلاق» في Streamline هي X العريضة لأن المجموعة المجانية بلا X رفيعة. (4) مكتبات التعبئة (Material و Fluent و MingCute و Carbon و Bootstrap و Basil) بلا قيمة سماكة خط في تمبلتها.
 
-- [ ] **3.6** لوحات الألوان من المصادر المؤكدة (الدفعة الأولى، نحو 60)
+- [x] **3.6** لوحات الألوان من المصادر المؤكدة (الدفعة الأولى، نحو 60)
   - الخطورة: B — محتوى
   - الحجم: كبيرة
   - تحقق المتطلبات: R-041
@@ -1715,7 +1715,23 @@
   - معيار القبول: نحو 60 لوحة من Radix Colors و Tailwind و Open Color، بوسومها وقيمها الثلاث ومصدرها؛ الفحص أخضر
   - الاختبار: `npm run check`
   - ما ستراه أنت: افتح صفحة المراجعة على الألوان، راجع واعتمد ما يصلح
-  - دليل الإكمال: —
+  - دليل الإكمال:
+    - الملفات: `library/elements/colors.json` (57 لوحة جديدة بحالة «مسودة»: 17 من Tailwind CSS v3، و 20 من Radix Colors، و 20 من Open Color؛ المجموع 60 مع الثلاث المراجَعة)، `library/sources.json` (Radix Colors و Open Color)، `THIRD_PARTY_NOTICES.md` (مُعاد توليده: 23 مصدرًا)، `tests/library.test.js` (اختبار الدفعة)، `tests/e2e/review.spec.js` (عدد بطاقات الألوان يتبع الملف).
+    - المصادر: الرخص مقروءة من ملف LICENSE في كل مستودع (Radix Colors: MIT، Modulz و WorkOS؛ Open Color: MIT، heeyeun؛ Tailwind مسجّل منذ 3.2). القيم منسوخة من ملفات المستودعات نفسها: `src/light.ts` في radix-ui/colors، و `open-color.json` في yeun/open-color، و `src/public/colors.js` في tailwindcss بإصدار v3.4.17؛ وكل لوحة تذكر الدرجتين في `extras.palette` (مثل «Radix Colors iris-9 / yellow-9»).
+    - لكل لوحة: لون أساسي وثانوي، وسمان من الوسوم الستة عشر حسب عائلة اللون، والقيم الثلاث (الاستدارة 0.5، والكثافة 0.5، والشدة من تشبّع اللون الأساسي في OKLCH)، ومستوى التباين الذي يقرره محرك القواعد نفسه: 50 بمستوى AA و 7 بمستوى AAA.
+    - اختلاف المحورين: سبع لوحات كان أحد لونيها قريبًا جدًا من لوحة من مصدر آخر (مثل برتقالي Radix 9 وبرتقالي Tailwind 500)، فاستُبدلت درجة واحدة في كل منها حتى صار الفحص أخضر.
+    - `npm run check`:
+      ```
+        81 contrast checks; 24 sources, licenses allowed, none forbidden
+        لا تكرار — no duplicates: 1940 comparisons, every two templates differ in two axes
+        THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (13 files)
+      نجاح: فُحص 106 تمبلت (37 مراجَع، 69 مسودة) و 2 هوية بلا أي مخالفة
+      success: 106 templates (37 reviewed, 69 drafts), 2 identities checked, no problem
+      ```
+      `npm test`: «ℹ tests 573 / ℹ pass 573 / ℹ fail 0»؛ `npm run test:e2e`: «123 passed (15.0s)»؛ `npm run test:golden`: 12 من 12؛ `npm run build`: «37 templates published, 69 drafts left out» (`picker/data` لم يتغير)؛ `npm run lint`: 0 أخطاء (تحذيران قديمان)؛ `npm run format:check`: نجاح.
+    - التخريب المتعمد: 5 أعطال (لوحة AA تُعلن AAA، لوحة بلوني لوحة أخرى، مصدر غير مسجّل، قيمة شدة ناقصة، لوحة بلا ذكر درجتيها) ← كلها اكتُشفت.
+    - المراجعة: ذاتية (مهمة B).
+    - انحرافات: `tests/library.test.js` و `tests/e2e/review.spec.js` ليسا في الملفات المتوقعة (اختبارات فقط). الأسماء المكررة بين مصدرين تحمل اسم المصدر بين قوسين (ثلاث لوحات).
 
 - [ ] **3.7** لوحات وثيمات الألوان (الدفعة الثانية، حتى 100+)
   - الخطورة: B — محتوى
