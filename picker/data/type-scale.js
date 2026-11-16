@@ -60,7 +60,7 @@
       "lineHeight": {
         "ar": {
           "$type": "number",
-          "$value": 1.7
+          "$value": 1.6
         },
         "en": {
           "$type": "number",

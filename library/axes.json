@@ -1,0 +1,69 @@
+{
+  "colors": [
+    { "id": "primary", "name": { "ar": "اللون الأساسي", "en": "Primary color" }, "path": "/tokens/color/primary/$value/hex", "compare": "color", "tolerance": 0.02 },
+    { "id": "secondary", "name": { "ar": "اللون الثانوي", "en": "Secondary color" }, "path": "/tokens/color/secondary/$value/hex", "compare": "color", "tolerance": 0.02 }
+  ],
+  "modes": [
+    { "id": "default", "name": { "ar": "الوضع الافتراضي", "en": "Default mode" }, "path": "/tokens/mode/default/$value", "compare": "exact" }
+  ],
+  "fonts": [
+    { "id": "arabic", "name": { "ar": "الخط العربي", "en": "Arabic family" }, "path": "/extras/arabic", "compare": "exact" },
+    { "id": "latin", "name": { "ar": "الخط اللاتيني", "en": "Latin family" }, "path": "/extras/latin", "compare": "exact" },
+    { "id": "numerals", "name": { "ar": "خط الأرقام", "en": "Numerals family" }, "path": "/extras/numeralsFont", "unlessEqual": "/extras/arabic", "compare": "exact" }
+  ],
+  "type-scale": [
+    { "id": "base", "name": { "ar": "الحجم الأساسي", "en": "Base size" }, "path": "/tokens/typeScale/base/$value", "compare": "dimension", "tolerance": 0.5 },
+    { "id": "ratio", "name": { "ar": "النسبة", "en": "Ratio" }, "path": "/tokens/typeScale/ratio/$value", "compare": "number", "tolerance": 0.01 },
+    { "id": "steps", "name": { "ar": "عدد الدرجات", "en": "Steps" }, "path": "/tokens/typeScale/steps/$value", "compare": "number", "tolerance": 0 },
+    { "id": "below", "name": { "ar": "الدرجات الأصغر", "en": "Steps below base" }, "path": "/tokens/typeScale/below/$value", "compare": "number", "tolerance": 0 },
+    { "id": "line-height-ar", "name": { "ar": "ارتفاع السطر العربي", "en": "Arabic line height" }, "path": "/tokens/lineHeight/ar/$value", "compare": "number", "tolerance": 0.05 },
+    { "id": "line-height-en", "name": { "ar": "ارتفاع السطر الإنجليزي", "en": "English line height" }, "path": "/tokens/lineHeight/en/$value", "compare": "number", "tolerance": 0.05 }
+  ],
+  "radius": [
+    { "id": "sm", "name": { "ar": "الزاوية الصغيرة", "en": "Small radius" }, "path": "/tokens/radius/sm/$value", "compare": "dimension", "tolerance": 1 },
+    { "id": "md", "name": { "ar": "الزاوية المتوسطة", "en": "Medium radius" }, "path": "/tokens/radius/md/$value", "compare": "dimension", "tolerance": 1 },
+    { "id": "lg", "name": { "ar": "الزاوية الكبيرة", "en": "Large radius" }, "path": "/tokens/radius/lg/$value", "compare": "dimension", "tolerance": 1 }
+  ],
+  "shadows": [
+    { "id": "light-sm", "name": { "ar": "الظل الصغير (فاتح)", "en": "Small shadow (light)" }, "path": "/tokens/shadow/light/sm/$value", "compare": "shadow", "tolerance": 1 },
+    { "id": "light-md", "name": { "ar": "الظل المتوسط (فاتح)", "en": "Medium shadow (light)" }, "path": "/tokens/shadow/light/md/$value", "compare": "shadow", "tolerance": 1 },
+    { "id": "light-lg", "name": { "ar": "الظل الكبير (فاتح)", "en": "Large shadow (light)" }, "path": "/tokens/shadow/light/lg/$value", "compare": "shadow", "tolerance": 1 },
+    { "id": "dark-md", "name": { "ar": "الظل المتوسط (داكن)", "en": "Medium shadow (dark)" }, "path": "/tokens/shadow/dark/md/$value", "compare": "shadow", "tolerance": 1 },
+    { "id": "dark-lg", "name": { "ar": "الظل الكبير (داكن)", "en": "Large shadow (dark)" }, "path": "/tokens/shadow/dark/lg/$value", "compare": "shadow", "tolerance": 1 }
+  ],
+  "icons": [
+    { "id": "library", "name": { "ar": "المكتبة", "en": "Library" }, "path": "/extras/library", "compare": "exact", "weight": 2 },
+    { "id": "weight", "name": { "ar": "الوزن", "en": "Weight" }, "path": "/extras/weight", "compare": "exact" },
+    { "id": "stroke", "name": { "ar": "سماكة الخط", "en": "Stroke width" }, "path": "/tokens/icon/strokeWidth/$value", "compare": "number", "tolerance": 0.25 },
+    { "id": "fill", "name": { "ar": "التعبئة", "en": "Fill" }, "path": "/extras/fill", "compare": "exact" },
+    { "id": "container", "name": { "ar": "الحاوية", "en": "Container" }, "path": "/extras/container", "compare": "exact" },
+    { "id": "size", "name": { "ar": "الحجم", "en": "Size" }, "path": "/tokens/icon/size/$value", "compare": "dimension", "tolerance": 1 }
+  ],
+  "buttons": [
+    { "id": "fill", "name": { "ar": "التعبئة", "en": "Fill" }, "css": { "selector": ".hw-btn", "properties": ["background", "background-color"], "states": false }, "compare": "exact" },
+    { "id": "border", "name": { "ar": "الحد", "en": "Border" }, "css": { "selector": ".hw-btn", "properties": ["border", "border-color", "border-width", "border-style"], "states": false }, "compare": "exact" },
+    { "id": "text", "name": { "ar": "لون النص", "en": "Text color" }, "css": { "selector": ".hw-btn", "properties": ["color"], "states": false }, "compare": "exact" },
+    { "id": "radius", "name": { "ar": "الزوايا", "en": "Corners" }, "css": { "selector": ".hw-btn", "properties": ["border-radius"], "states": false }, "compare": "exact" },
+    { "id": "shadow", "name": { "ar": "الظل", "en": "Shadow" }, "css": { "selector": ".hw-btn", "properties": ["box-shadow"], "states": true }, "compare": "exact" },
+    { "id": "size", "name": { "ar": "الحجم", "en": "Size" }, "css": { "selector": ".hw-btn", "properties": ["padding", "padding-block", "padding-inline", "padding-block-start", "padding-block-end", "padding-inline-start", "padding-inline-end", "font-size", "block-size", "min-block-size", "inline-size", "min-inline-size"], "states": false }, "compare": "exact" }
+  ],
+  "cards": [
+    { "id": "fill", "name": { "ar": "التعبئة", "en": "Fill" }, "css": { "selector": ".hw-card", "properties": ["background", "background-color"], "states": false }, "compare": "exact" },
+    { "id": "border", "name": { "ar": "الحد", "en": "Border" }, "css": { "selector": ".hw-card", "properties": ["border", "border-color", "border-width", "border-style"], "states": false }, "compare": "exact" },
+    { "id": "edge", "name": { "ar": "الحافة المميزة", "en": "Accent edge" }, "css": { "selector": ".hw-card", "properties": ["border-inline-start", "border-block-start", "border-inline-end", "border-block-end", "border-inline-start-width", "border-inline-start-style", "border-inline-start-color", "border-block-start-width", "border-block-start-style", "border-block-start-color", "border-inline-end-width", "border-inline-end-style", "border-inline-end-color", "border-block-end-width", "border-block-end-style", "border-block-end-color"], "states": false }, "compare": "exact" },
+    { "id": "shadow", "name": { "ar": "الظل", "en": "Shadow" }, "css": { "selector": ".hw-card", "properties": ["box-shadow"], "states": true }, "compare": "exact" },
+    { "id": "radius", "name": { "ar": "الزوايا", "en": "Corners" }, "css": { "selector": ".hw-card", "properties": ["border-radius"], "states": false }, "compare": "exact" },
+    { "id": "padding", "name": { "ar": "الحشوة", "en": "Padding" }, "css": { "selector": ".hw-card", "properties": ["padding", "padding-block", "padding-inline", "padding-block-start", "padding-block-end", "padding-inline-start", "padding-inline-end"], "states": false }, "compare": "exact" }
+  ],
+  "spacing": [
+    { "id": "unit", "name": { "ar": "الوحدة", "en": "Unit" }, "path": "/tokens/spacing/unit/$value", "compare": "dimension", "tolerance": 0 },
+    { "id": "smallest", "name": { "ar": "أصغر مسافة", "en": "Smallest step" }, "path": "/tokens/spacing/scale", "items": "/$value", "reduce": "minPositive", "compare": "dimension", "tolerance": 0 },
+    { "id": "largest", "name": { "ar": "أكبر مسافة", "en": "Largest step" }, "path": "/tokens/spacing/scale", "items": "/$value", "reduce": "max", "compare": "dimension", "tolerance": 0 }
+  ],
+  "direction": [
+    { "id": "direction", "name": { "ar": "الاتجاه", "en": "Direction" }, "path": "/tokens/direction/$value", "compare": "exact" },
+    { "id": "language", "name": { "ar": "اللغة", "en": "Language" }, "path": "/extras/language", "compare": "exact" },
+    { "id": "numerals", "name": { "ar": "الأرقام", "en": "Numerals" }, "path": "/extras/numerals", "compare": "exact" },
+    { "id": "calendar", "name": { "ar": "التقويم", "en": "Calendar" }, "path": "/extras/calendar", "compare": "exact" }
+  ]
+ }

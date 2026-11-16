@@ -37,7 +37,10 @@
  *   data            picker/data is exactly what `npm run build` makes from the library (only checked when the
  *                   library itself has no problem, since the build refuses a library with problems)
  *
- * The two-axis difference (task 3.3) is added to this file by its task.
+ *   axes            (task 3.3, R-063) every two templates of one element differ in at least two of the element's
+ *                   axes (library/axes.json); an axis may weigh 2 (the icon library: each library draws every
+ *                   icon differently); an element whose axes weigh less than 2 in all (modes) needs every axis to
+ *                   differ. The later template is named with the one it repeats. Owner's decisions: decisions.md.
  */
 
 const fs = require('node:fs');
@@ -47,6 +50,7 @@ const validate = require('../picker/js/core/validate.js');
 const recipe = require('../picker/js/core/recipe.js');
 const rules = require('../picker/js/core/rules.js');
 const SCHEMAS = require('../picker/js/core/schemas.js');
+const color = require('../picker/js/core/color.js');
 const notices = require('./notices.js');
 
 const ROOT = path.join(__dirname, '..');
@@ -486,7 +490,16 @@ function check({
 } = {}) {
   const problems = [];
   const add = (kind, file, template, message) => problems.push({ kind, file, template, message });
-  const counts = { templates: 0, reviewed: 0, drafts: 0, identities: 0, pairs: 0, dataFiles: 0, sources: 0 };
+  const counts = {
+    templates: 0,
+    reviewed: 0,
+    drafts: 0,
+    identities: 0,
+    pairs: 0,
+    dataFiles: 0,
+    sources: 0,
+    comparisons: 0
+  };
   const result = { problems, counts, dataChecked: false, noticesChecked: false, libraryDir, dataDir, noticesFile };
   const valid = []; // { file, label, t } for every template that passed the schema (license checks below)
   const io = (list, kind = 'structure') => list.splice(0).forEach((p) => add(kind, null, null, p));
@@ -644,6 +657,7 @@ function check({
   }
 
   licenseProblems(libraryDir, valid, add, counts);
+  axesProblems(libraryDir, valid, add, counts);
   // THIRD_PARTY_NOTICES.md: only sound sources and licenses can be rendered.
   if (!problems.some((p) => p.kind === 'license' && (p.file === 'sources.json' || p.file === 'licenses.json'))) {
     const n = noticesProblem(libraryDir, noticesFile);
@@ -707,6 +721,350 @@ function check({
     }
   }
   return result;
+}
+
+/* ---------- two-axis difference (task 3.3) ---------- */
+
+const checkAxes = validate.compile({
+  type: 'object',
+  additionalProperties: false,
+  required: ELEMENTS,
+  properties: Object.fromEntries(
+    ELEMENTS.map((e) => [
+      e,
+      {
+        type: 'array',
+        minItems: 1,
+        items: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['id', 'name', 'compare'],
+          properties: {
+            id: SCHEMAS.template.$defs.id,
+            name: SCHEMAS.template.properties.name,
+            path: { type: 'string', pattern: '^/', maxLength: 200 },
+            items: { type: 'string', pattern: '^/', maxLength: 200 },
+            reduce: { enum: ['max', 'minPositive'] },
+            unlessEqual: { type: 'string', pattern: '^/', maxLength: 200 },
+            css: {
+              type: 'object',
+              additionalProperties: false,
+              required: ['selector', 'properties', 'states'],
+              properties: {
+                selector: { type: 'string', pattern: '^\\.[a-z][a-z0-9-]*$' },
+                properties: { type: 'array', minItems: 1, items: { type: 'string', pattern: '^[a-z-]+$' } },
+                states: { type: 'boolean' }
+              }
+            },
+            compare: { enum: ['exact', 'set', 'number', 'dimension', 'color', 'shadow'] },
+            tolerance: { type: 'number', minimum: 0 },
+            weight: { enum: [1, 2] }
+          }
+        }
+      }
+    ])
+  )
+});
+
+// JSON pointer (RFC 6901) into a value; undefined when it leads nowhere.
+function pointer(value, ptr) {
+  let v = value;
+  for (const raw of ptr.split('/').slice(1)) {
+    const k = raw.replace(/~1/g, '/').replace(/~0/g, '~');
+    if (v === null || typeof v !== 'object' || !Object.prototype.hasOwnProperty.call(v, k)) return undefined;
+    v = v[k];
+  }
+  return v;
+}
+
+// The same value written another way is the same value: object keys in any order, "$description" ignored.
+function canonical(v) {
+  if (Array.isArray(v)) return `[${v.map(canonical).join(',')}]`;
+  if (isObject(v))
+    return `{${Object.keys(v)
+      .filter((k) => k !== '$description')
+      .sort()
+      .map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`)
+      .join(',')}}`;
+  return JSON.stringify(v);
+}
+
+// A length in px: a number as is, { value, unit } in px or rem (16px), else undefined.
+function toPx(v) {
+  if (typeof v === 'number') return Number.isFinite(v) ? v : undefined;
+  if (!isObject(v) || typeof v.value !== 'number' || !Number.isFinite(v.value)) return undefined;
+  return v.unit === 'px' ? v.value : v.unit === 'rem' ? v.value * 16 : undefined;
+}
+
+// CSS rules with nesting: [{ selector, decls, at }] where at is the enclosing conditional at-rule ("@media (...)")
+// or ''. Comments are dropped first; @layer and @supports wrap rules without making them conditional on a state of
+// the element, so they are see-through.
+const SEE_THROUGH_AT = /^@(layer|supports)\b/i;
+function cssRules(css) {
+  const out = [];
+  const walk = (text, at) => {
+    let i = 0;
+    while (i < text.length) {
+      const open = text.indexOf('{', i);
+      if (open === -1) break;
+      const head = text
+        .slice(i, open)
+        .replace(/^[\s;}]+/, '')
+        .trim();
+      let depth = 1;
+      let j = open + 1;
+      while (j < text.length && depth) {
+        if (text[j] === '{') depth++;
+        else if (text[j] === '}') depth--;
+        j++;
+      }
+      const body = text.slice(open + 1, j - 1);
+      if (SEE_THROUGH_AT.test(head)) walk(body, at);
+      else if (head.startsWith('@')) walk(body, (at ? at + ' ' : '') + head.replace(/\s+/g, ' '));
+      else
+        for (const b of blocks(`${head}{${body}}`))
+          out.push({ selector: b.selector.replace(/\s+/g, ' '), decls: b.decls, at });
+      i = j;
+    }
+  };
+  walk(css.replace(/\/\*[\s\S]*?(\*\/|$)/g, ''), '');
+  return out;
+}
+
+// Split a CSS value into words, keeping "var(...)" and other functions whole.
+function cssWords(v) {
+  const out = [];
+  let depth = 0;
+  let cur = '';
+  for (const ch of v) {
+    if (ch === '(') depth++;
+    if (ch === ')') depth--;
+    if (/\s/.test(ch) && depth === 0) {
+      if (cur) out.push(cur);
+      cur = '';
+    } else cur += ch;
+  }
+  if (cur) out.push(cur);
+  return out;
+}
+
+const BORDER_STYLES = new Set([
+  'none',
+  'hidden',
+  'dotted',
+  'dashed',
+  'solid',
+  'double',
+  'groove',
+  'ridge',
+  'inset',
+  'outset'
+]);
+// Which part of a border a word is: style, width or color.
+function borderPart(w) {
+  if (BORDER_STYLES.has(w)) return 'style';
+  if (
+    /^([\d.]+(px|rem|em)?|thin|medium|thick|calc\(.*\))$/.test(w) ||
+    /^var\(--[a-z0-9-]*(width|space)[a-z0-9-]*\)$/.test(w)
+  )
+    return 'width';
+  return 'color';
+}
+// A border shorthand → its three parts; what it leaves out is reset, as in the browser.
+function borderParts(prefix, value) {
+  const parts = { width: 'medium', style: 'none', color: 'currentcolor' };
+  for (const w of cssWords(value)) parts[borderPart(w)] = w;
+  return Object.entries(parts).map(([k, v]) => [`${prefix}-${k}`, v]);
+}
+// Up to four values → [block-start, inline-end, block-end, inline-start] (the shorthand order).
+function fourSides(value) {
+  const w = cssWords(value);
+  const [a, b = a, c = a, d = b] = w;
+  return [a, b, c, d];
+}
+// One declaration → the longhands it sets, so that two spellings of the same thing compare equal.
+function longhands(p, value) {
+  if (p === 'background') return [['background-color', value]];
+  if (p === 'border') return borderParts('border', value);
+  if (/^border-(width|style|color)$/.test(p)) return [[p, value]];
+  if (/^border-(inline|block)-(start|end)$/.test(p)) return borderParts(p, value);
+  if (p === 'padding') {
+    const [bs, ie, be, is] = fourSides(value);
+    return [
+      ['padding-block-start', bs],
+      ['padding-inline-end', ie],
+      ['padding-block-end', be],
+      ['padding-inline-start', is]
+    ];
+  }
+  if (p === 'padding-block' || p === 'padding-inline') {
+    const w = cssWords(value);
+    return [
+      [`${p}-start`, w[0]],
+      [`${p}-end`, w[1] || w[0]]
+    ];
+  }
+  return [[p, value]];
+}
+
+// The value of a css axis: for each state of the element (base, :hover, @media ...), every longhand the axis's
+// properties set, resolved as in the browser (!important, then the later declaration), written one way.
+function cssAxisValue(axis, css) {
+  const S = axis.css.selector;
+  const states = new Map(); // state -> longhand -> { value, important }
+  for (const r of cssRules(css)) {
+    let state = null;
+    if (r.selector === S) state = '';
+    else if (r.selector.startsWith(S) && /[^a-z0-9_-]/i.test(r.selector[S.length])) state = r.selector.slice(S.length);
+    if (state === null) continue;
+    state = (r.at ? r.at + ' ' : '') + state;
+    if (state && !axis.css.states) continue;
+    const m = states.get(state) || new Map();
+    for (const [p, raw] of Object.entries(r.decls)) {
+      if (!axis.css.properties.includes(p)) continue;
+      const important = IMPORTANT.test(raw);
+      const value = plainValue(raw).toLowerCase().replace(/\s+/g, ' ');
+      for (const [k, v] of longhands(p, value)) {
+        const old = m.get(k);
+        if (!old || important || !old.important) m.set(k, { value: v, important });
+      }
+    }
+    states.set(state, m);
+  }
+  const out = [];
+  for (const [state, m] of states) for (const [k, d] of m) out.push(`${state}|${k}=${d.value}`);
+  return out.sort();
+}
+
+// The value of one axis for one template.
+function axisValue(axis, t) {
+  if (axis.css) return t.recipe ? cssAxisValue(axis, t.recipe.css) : undefined;
+  const v = pointer(t, axis.path);
+  // A value that only repeats another one (numerals = the Arabic family) is not a choice of its own.
+  if (axis.unlessEqual) {
+    const other = pointer(t, axis.unlessEqual);
+    // Missing means "the same as the other one" too (resolve.js falls back to it).
+    if (other !== undefined && (v === undefined || canonical(v) === canonical(other))) return '=';
+  }
+  if (!axis.reduce) return v;
+  if (!isObject(v) && !Array.isArray(v)) return undefined;
+  const nums = Object.values(v)
+    .map((x) => toPx(axis.items ? pointer(x, axis.items) : x))
+    .filter((x) => x !== undefined);
+  if (axis.reduce === 'max') return nums.length ? Math.max(...nums) : undefined;
+  const pos = nums.filter((x) => x > 0);
+  return pos.length ? Math.min(...pos) : undefined;
+}
+
+const HEX = /^#[0-9a-f]{6}$/i;
+const EPS = 1e-9; // 1.75 - 1.7 is 0.05000000000000004: a tolerance includes its edge
+const SHADOW_ALPHA = 0.02;
+function oklab(hex) {
+  const c = color.toOklch(hex);
+  const h = (c.H * Math.PI) / 180;
+  return [c.L, c.C * Math.cos(h), c.C * Math.sin(h)];
+}
+const near = (a, b, tol) => a !== undefined && b !== undefined && Math.abs(a - b) <= tol + EPS;
+const sameColor = (a, b, tol) => {
+  if (typeof a !== 'string' || typeof b !== 'string' || !HEX.test(a) || !HEX.test(b)) return a === b;
+  const [x, y] = [oklab(a), oklab(b)];
+  return Math.hypot(x[0] - y[0], x[1] - y[1], x[2] - y[2]) <= tol + EPS;
+};
+
+// Do two shadow values (lists of layers) look the same: same layers, lengths within the tolerance, alpha within 0.02?
+function sameShadow(a, b, tol) {
+  if (!Array.isArray(a) || !Array.isArray(b)) return canonical(a) === canonical(b);
+  if (a.length !== b.length) return false;
+  // Layers in any order: sort both lists by what they draw.
+  const key = (l) => (isObject(l) ? [toPx(l.offsetY), toPx(l.blur), toPx(l.spread), toPx(l.offsetX)] : []);
+  const order = (list) =>
+    list.slice().sort((p, q) => {
+      const [x, y] = [key(p), key(q)];
+      for (let i = 0; i < 4; i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0);
+      return 0;
+    });
+  const [A, B] = [order(a), order(b)];
+  return A.every((x, i) => {
+    const y = B[i];
+    if (!isObject(x) || !isObject(y)) return canonical(x) === canonical(y);
+    const cx = isObject(x.color) ? x.color : {};
+    const cy = isObject(y.color) ? y.color : {};
+    const alpha = (c) => (typeof c.alpha === 'number' ? c.alpha : 1);
+    return (
+      ['offsetX', 'offsetY', 'blur', 'spread'].every((k) => near(toPx(x[k]), toPx(y[k]), tol)) &&
+      Boolean(x.inset) === Boolean(y.inset) &&
+      sameColor(cx.hex, cy.hex, 0.02) &&
+      near(alpha(cx), alpha(cy), SHADOW_ALPHA)
+    );
+  });
+}
+
+// Do two values of an axis count as the same?
+function same(axis, a, b) {
+  if (axis.compare === 'number' && typeof a === 'number' && typeof b === 'number') return near(a, b, axis.tolerance);
+  if (axis.compare === 'dimension' && toPx(a) !== undefined && toPx(b) !== undefined)
+    return near(toPx(a), toPx(b), axis.tolerance);
+  if (axis.compare === 'color') return sameColor(a, b, axis.tolerance);
+  if (axis.compare === 'shadow') return sameShadow(a, b, axis.tolerance);
+  if (axis.compare === 'set' && Array.isArray(a) && Array.isArray(b)) {
+    const k = (l) => JSON.stringify(l.map(canonical).sort());
+    return k(a) === k(b);
+  }
+  return canonical(a) === canonical(b);
+}
+
+function axesProblems(libraryDir, valid, add, counts) {
+  const raw = [];
+  const file = path.join(libraryDir, 'axes.json');
+  if (!fs.existsSync(file))
+    return add('axes', 'axes.json', null, 'missing: every element needs its fixed list of axes');
+  const axes = build.readJson(file, raw);
+  raw.splice(0).forEach((p) => add('axes', 'axes.json', null, p));
+  if (axes === undefined) return;
+  const r = checkAxes(axes);
+  r.errors.forEach((e) => add('axes', 'axes.json', null, `${e.instancePath || '/'} ${e.message}`));
+  if (!r.valid) return;
+  let sound = true;
+  for (const e of ELEMENTS) {
+    const ids = new Set();
+    for (const a of axes[e]) {
+      const say = (m) => {
+        add('axes', 'axes.json', `${e}/${a.id}`, m);
+        sound = false;
+      };
+      if (ids.has(a.id)) say(`axis "${a.id}" is listed twice`);
+      ids.add(a.id);
+      if (!a.path === !a.css) say('an axis has either "path" or "css"');
+      if ((a.reduce || a.items) && !(a.path && a.reduce)) say('"items" and "reduce" go with "path"');
+      if (a.reduce && a.compare !== 'dimension' && a.compare !== 'number') say('"reduce" gives a number or a length');
+      if (a.unlessEqual && !a.path) say('"unlessEqual" goes with "path"');
+      if (['number', 'dimension', 'color', 'shadow'].includes(a.compare) !== (a.tolerance !== undefined))
+        say('"tolerance" goes with a "number", "dimension", "color" or "shadow" axis, and only there');
+      if (a.css && a.compare !== 'exact') say('a "css" axis compares "exact"');
+      nameProblems(a.name).forEach(say);
+    }
+  }
+  if (!sound) return;
+
+  for (const e of ELEMENTS) {
+    const list = valid.filter((v) => v.t.element === e);
+    const total = axes[e].reduce((n, a) => n + (a.weight || 1), 0);
+    const needed = Math.min(2, total);
+    const values = list.map((v) => axes[e].map((a) => axisValue(a, v.t)));
+    for (let j = 1; j < list.length; j++) {
+      for (let i = 0; i < j; i++) {
+        counts.comparisons++;
+        const differ = axes[e].filter((a, k) => !same(a, values[i][k], values[j][k]));
+        const weight = differ.reduce((n, a) => n + (a.weight || 1), 0);
+        if (weight >= needed) continue;
+        const a = list[i].t.id;
+        const what = differ.length
+          ? `differs from "${a}" (${list[i].file}) only in ${differ.map((x) => x.name.en).join(', ')}`
+          : `has the same values as "${a}" (${list[i].file}) on every axis`;
+        add('axes', list[j].file, list[j].label, `${what}; two templates of one element must differ in ${needed} axes`);
+      }
+    }
+  }
 }
 
 /* ---------- licenses and sources (task 3.2) ---------- */
@@ -997,6 +1355,7 @@ const KINDS = [
   'recipe',
   'identity',
   'license',
+  'axes',
   'notices',
   'data'
 ];
@@ -1009,6 +1368,7 @@ function report(result) {
   if (!problems.length) {
     lines.push(`  checked: ${KINDS.join(', ')}`);
     lines.push(`  ${counts.pairs} contrast checks; ${counts.sources} sources, licenses allowed, none forbidden`);
+    lines.push(`  لا تكرار — no duplicates: ${counts.comparisons} comparisons, every two templates differ in two axes`);
     lines.push(
       `  THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (${counts.dataFiles} files)`
     );
@@ -1070,6 +1430,7 @@ module.exports = {
   recipePairs,
   motionIn,
   stills,
+  same,
   nameProblems,
   physicalCss
 };

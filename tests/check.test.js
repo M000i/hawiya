@@ -321,6 +321,18 @@ const CASES = [
       }),
     /composite template with a recipe/
   ],
+  [
+    'axes',
+    'spacing-copy',
+    (c) =>
+      c.edit('elements/spacing.json', (l) => {
+        const t = JSON.parse(JSON.stringify(c.find(l, 'spacing-airy')));
+        t.id = 'spacing-copy';
+        t.tokens.spacing.scale['8'].$value.value = 160;
+        l.push(t);
+      }),
+    /differs from "spacing-airy" \(spacing\.json\) only in Largest step/
+  ],
   // Licenses and sources (task 3.2).
   [
     'license',
@@ -916,6 +928,253 @@ test('the own entry is the project: swapping ids cannot hide a third-party sourc
     } finally {
       clean(d);
     }
+  } finally {
+    clean(c);
+  }
+});
+
+// Task 3.3: two templates of one element differ in at least two axes (library/axes.json).
+function twin(c, file, id, newId, change) {
+  c.edit(`elements/${file}`, (l) => {
+    const t = JSON.parse(JSON.stringify(c.find(l, id)));
+    t.id = newId;
+    change(t);
+    l.push(t);
+  });
+  return c.run().problems.filter((p) => p.kind === 'axes');
+}
+const axisCase = (file, id, change) => {
+  const c = copy();
+  try {
+    return twin(c, file, id, 'twin', change);
+  } finally {
+    clean(c);
+  }
+};
+
+test('axes: one axis apart is refused and both templates are named; two axes apart is accepted', () => {
+  let p = axisCase('type-scale.json', 'scale-major-third', (t) => (t.tokens.typeScale.ratio.$value = 1.4));
+  assert.equal(p.length, 1, show(p));
+  assert.equal(p[0].template, 'twin');
+  assert.match(
+    p[0].message,
+    /differs from "scale-major-third" \(type-scale\.json\) only in Ratio; .* must differ in 2 axes/
+  );
+  p = axisCase('type-scale.json', 'scale-major-third', (t) => {
+    t.tokens.typeScale.ratio.$value = 1.4;
+    t.tokens.lineHeight.en.$value = 1.6;
+  });
+  assert.deepEqual(p, []);
+  // An exact copy is named as such.
+  p = axisCase('shadows.json', 'shadow-soft', () => {});
+  assert.match(p[0].message, /same values as "shadow-soft" .* on every axis/);
+});
+
+test('axes: tolerances — a nearly equal color or size is the same value', () => {
+  // #2563eb → #2564eb is invisible: still one axis apart (the secondary) → refused.
+  let p = axisCase('colors.json', 'palette-blue', (t) => {
+    t.tokens.color.primary.$value = hex('#2564eb');
+    t.tokens.color.secondary.$value = hex('#16a34a');
+  });
+  assert.match(p.map((x) => x.message).join(), /only in Secondary color/);
+  p = axisCase('colors.json', 'palette-blue', (t) => {
+    t.tokens.color.primary.$value = hex('#16a34a');
+    t.tokens.color.secondary.$value = hex('#e11d48');
+  });
+  assert.ok(!p.some((x) => x.template === 'twin' && /palette-blue/.test(x.message)), show(p));
+  // Radius 1px apart is the same; 4px apart is not.
+  p = axisCase('radius.json', 'radius-medium', (t) => {
+    t.tokens.radius.sm.$value.value += 1;
+    t.tokens.radius.md.$value.value += 1;
+    t.tokens.radius.lg.$value.value += 4;
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "radius-medium" .* only in Large radius/);
+});
+
+test('axes: the owner decisions — the icon library counts twice; modes need their one axis to differ', () => {
+  // Same style, other library: accepted.
+  let p = axisCase('icons.json', 'icons-lucide-outline', (t) => (t.extras.library = 'tabler-like'));
+  assert.ok(!p.some((x) => /"icons-lucide-outline"/.test(x.message)), show(p));
+  // Same library, only the weight label changes (same stroke): refused.
+  p = axisCase('icons.json', 'icons-lucide-outline', (t) => (t.extras.weight = 'bold'));
+  assert.match(p.map((x) => x.message).join(), /differs from "icons-lucide-outline" .* only in Weight/);
+  // Modes: another default is enough; the same default is a duplicate.
+  assert.deepEqual(
+    axisCase('modes.json', 'modes-system', (t) => (t.tokens.mode.default.$value = 'auto')),
+    []
+  );
+  p = axisCase('modes.json', 'modes-system', () => {});
+  assert.match(p[0].message, /same values as "modes-system" .* must differ in 1 axes/);
+});
+
+test('axes: buttons and cards are compared by their recipe CSS (fill, border, text, corners, shadow) and size', () => {
+  let p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.recipe.css = t.recipe.css.replace('color:var(--color-on-primary)', 'color:var(--color-on-secondary)');
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "button-solid" .* only in Text color/);
+  p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.recipe.css = t.recipe.css
+      .replace('background:var(--color-primary)', 'background:var(--color-secondary)')
+      .replace('border:1px solid var(--color-primary)', 'border:1px solid var(--color-secondary)');
+  });
+  assert.ok(!p.some((x) => /"button-solid"/.test(x.message)), show(p));
+  // A hover shadow is part of the shadow axis; the card's CSS padding is the padding axis.
+  p = axisCase('cards.json', 'card-bordered', (t) => {
+    t.recipe.css += '.hw-card:hover{box-shadow:var(--shadow-lg)}';
+    t.recipe.css = t.recipe.css.replace('padding:var(--space-5)', 'padding:var(--space-4)');
+  });
+  assert.ok(!p.some((x) => /"card-bordered"/.test(x.message)), show(p));
+});
+
+test('axes: spacing is compared by unit, smallest and largest step, and number of steps', () => {
+  const p = axisCase('spacing.json', 'spacing-comfortable', (t) => {
+    t.tokens.spacing.scale['8'].$value.value = 80;
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "spacing-comfortable" .* only in Largest step/);
+});
+
+// Review of task 3.3: a copy written another way is still a copy.
+test('axes: CSS written another way is the same (longhand, word order, split blocks, case)', () => {
+  const p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.recipe.css = t.recipe.css
+      .replace('background:var(--color-primary)', 'background-color:var(--color-primary)')
+      .replace('border:1px solid var(--color-primary)', 'border:solid 1px var(--color-primary)')
+      .replace('color:var(--color-on-primary)', 'color:var(--color-on-primary)}.hw-btn{color:VAR(--color-on-primary)');
+  });
+  assert.match(p.map((x) => x.message).join(), /same values as "button-solid" .* on every axis/);
+});
+
+test('axes: a rule inside @media is a state, not the base; descendants count for state axes', () => {
+  let p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.recipe.css += '@media (min-width:1px){.hw-btn{background:var(--color-secondary)}}';
+    t.recipe.css = t.recipe.css.replace('color:var(--color-on-primary)', 'color:var(--color-on-secondary)');
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "button-solid" .* only in Text color/);
+  p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.recipe.css += '.hw-btn .hw-icon{box-shadow:var(--shadow-sm)}';
+    t.recipe.css = t.recipe.css.replace('color:var(--color-on-primary)', 'color:var(--color-on-secondary)');
+  });
+  assert.ok(!p.some((x) => /"button-solid"/.test(x.message)), show(p));
+});
+
+test('axes: tokens written another way are the same (key order, $description, px or rem, shadow alpha)', () => {
+  let p = axisCase('shadows.json', 'shadow-soft', (t) => {
+    const layer = t.tokens.shadow.light.md.$value[0];
+    t.tokens.shadow.light.md.$value[0] = Object.fromEntries(Object.entries(layer).reverse());
+    t.tokens.shadow.light.sm.$value[0].color.alpha += 0.01;
+    t.tokens.shadow.light.md.$description = 'Same shadow';
+  });
+  assert.match(p.map((x) => x.message).join(), /same values as "shadow-soft" .* on every axis/);
+  p = axisCase('radius.json', 'radius-medium', (t) => {
+    for (const k of ['sm', 'md', 'lg'])
+      t.tokens.radius[k].$value = { value: t.tokens.radius[k].$value.value / 16, unit: 'rem' };
+  });
+  assert.match(p.map((x) => x.message).join(), /same values as "radius-medium" .* on every axis/);
+});
+
+test('axes: the button size is its CSS (what is drawn), not an unused token', () => {
+  let p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.tokens.button.paddingBlock.$value.value = 12;
+    t.recipe.css = t.recipe.css.replace('border-radius:var(--radius-md)', 'border-radius:var(--radius-lg)');
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "button-solid" .* only in Corners/);
+  p = axisCase('buttons.json', 'button-solid', (t) => {
+    t.recipe.css = t.recipe.css
+      .replace('padding-block:var(--space-2)', 'padding-block:var(--space-3)')
+      .replace('border-radius:var(--radius-md)', 'border-radius:var(--radius-lg)');
+  });
+  assert.ok(!p.some((x) => /"button-solid"/.test(x.message)), show(p));
+});
+
+test('axes: one choice is one axis — an added spacing step, a font without Latin, numerals = Arabic family', () => {
+  let p = axisCase('spacing.json', 'spacing-comfortable', (t) => {
+    t.tokens.spacing.scale['9'] = { $type: 'dimension', $value: { value: 80, unit: 'px' } };
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "spacing-comfortable" .* only in Largest step/);
+  p = axisCase('fonts.json', 'pair-noto-sans-arabic-noto-sans', (t) => {
+    delete t.extras.latin;
+    t.extras.languages = ['ar'];
+  });
+  assert.match(
+    p.map((x) => x.message).join(),
+    /differs from "pair-noto-sans-arabic-noto-sans" .* only in Latin family/
+  );
+  p = axisCase('fonts.json', 'pair-plex-arabic-plex-sans', (t) => {
+    t.extras.arabic = 'Other Arabic';
+    t.extras.numeralsFont = 'Other Arabic';
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "pair-plex-arabic-plex-sans" .* only in Arabic family/);
+});
+
+test('axes: an exact axis ignores key order and $description', () => {
+  const ax = { compare: 'exact' };
+  assert.equal(check.same(ax, { a: 1, b: { c: 2, $description: 'x' } }, { b: { c: 2 }, a: 1 }), true);
+  assert.equal(check.same(ax, { a: 1 }, { a: 2 }), false);
+});
+
+test('axes: comments and @layer / @supports do not hide a copy; @media still is a state', () => {
+  for (const wrap of [(c) => `@layer c{${c}}`, (c) => `@supports (display:block){${c}}`, (c) => `/* bordered */${c}`]) {
+    const p = axisCase('cards.json', 'card-bordered', (t) => {
+      t.recipe.css = wrap(t.recipe.css).replace('.hw-card{', '.hw-card{/* base */');
+    });
+    assert.match(p.map((x) => x.message).join(), /same values as "card-bordered" .* on every axis/, wrap('x'));
+  }
+});
+
+test('axes: padding and background written as shorthand or longhands are the same', () => {
+  const p = axisCase('cards.json', 'card-bordered', (t) => {
+    t.recipe.css = t.recipe.css
+      .replace('padding:var(--space-5)', 'padding-block:var(--space-5);padding-inline:var(--space-5)')
+      .replace(
+        'background:var(--color-surface)',
+        'background:var(--color-surface);background-color:var(--color-surface)'
+      )
+      .replace(
+        'border:1px solid var(--color-border)',
+        'border-width:1px;border-style:solid;border-color:var(--color-border)'
+      );
+  });
+  assert.match(p.map((x) => x.message).join(), /same values as "card-bordered" .* on every axis/);
+});
+
+test('axes: a missing numerals font is the Arabic family; shadow layers in another order are the same', () => {
+  let p = axisCase('fonts.json', 'font-noto-kufi-arabic', (t) => {
+    delete t.extras.numeralsFont;
+    t.extras.latin = 'Inter';
+  });
+  assert.match(p.map((x) => x.message).join(), /differs from "font-noto-kufi-arabic" .* only in Latin family/);
+  p = axisCase('shadows.json', 'shadow-soft', (t) => t.tokens.shadow.light.lg.$value.reverse());
+  assert.match(p.map((x) => x.message).join(), /same values as "shadow-soft" .* on every axis/);
+});
+
+test('axes: a tolerance includes its edge (1.75 vs 1.7 is within 0.05)', () => {
+  const p = axisCase('type-scale.json', 'scale-major-third', (t) => {
+    t.tokens.lineHeight.ar.$value = 1.75;
+    t.tokens.lineHeight.en.$value = 1.55;
+  });
+  assert.match(p.map((x) => x.message).join(), /same values as "scale-major-third" .* on every axis/);
+});
+
+test('axes.json: missing, unsound, or without an element is a problem; nothing is compared', () => {
+  const c = copy();
+  try {
+    fs.rmSync(path.join(c.lib, 'axes.json'));
+    assert.ok(has(c.run().problems, 'axes', undefined, /missing/));
+    fs.writeFileSync(path.join(c.lib, 'axes.json'), JSON.stringify({ colors: [] }));
+    let r = c.run();
+    assert.ok(
+      has(r.problems, 'axes', undefined, /must have property "modes"|must NOT have fewer than 1 items/),
+      show(r.problems)
+    );
+    assert.equal(r.counts.comparisons, 0);
+    const good = JSON.parse(fs.readFileSync(path.join(LIB, 'axes.json'), 'utf8'));
+    good.radius[0].tolerance = undefined;
+    delete good.radius[0].tolerance;
+    good.icons.push({ id: 'library', name: { ar: 'مكتبة', en: 'Library' }, path: '/extras/library', compare: 'exact' });
+    fs.writeFileSync(path.join(c.lib, 'axes.json'), JSON.stringify(good));
+    r = c.run();
+    assert.ok(has(r.problems, 'axes', 'radius/sm', /tolerance/), show(r.problems));
+    assert.ok(has(r.problems, 'axes', 'icons/library', /listed twice/), show(r.problems));
   } finally {
     clean(c);
   }
