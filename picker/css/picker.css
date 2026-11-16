@@ -1033,6 +1033,84 @@ body {
 }
 
 /* «Suits your choices» on the best-matching card of a gallery (R-025). */
+.guided-body {
+  display: grid;
+  gap: 8px;
+}
+
+.gd-progress {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.gd-heading {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.gd-heading:focus,
+.gd-done:focus {
+  outline: none;
+}
+
+.gd-all {
+  display: grid;
+  gap: 12px;
+}
+
+.gd-label {
+  margin: 0 0 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.gd-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gd-option {
+  font: inherit;
+  font-size: 0.875rem;
+  padding-block: 6px;
+  padding-inline: 12px;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.gd-option[aria-pressed='true'] {
+  color: #ffffff;
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+.gd-color {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.gd-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: 8px;
+}
+
+.gd-done {
+  margin: 0;
+  font-weight: 700;
+}
+
+.gd-note:empty {
+  display: none;
+}
+
 .autofill .note {
   margin-block: 0 12px;
 }

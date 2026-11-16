@@ -167,6 +167,10 @@
       return copy(current.identity);
     },
     change: change,
+    /* forget(): no element counts as chosen any more (the guided mode starts over); nothing else changes. */
+    forget: function () {
+      chosen = {};
+    },
     chosen: function () {
       return H.resolve.ELEMENTS.filter(function (e) {
         return chosen[e] === true;

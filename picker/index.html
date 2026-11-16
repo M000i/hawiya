@@ -38,6 +38,27 @@
           <p class="note" id="identity-empty" data-i18n="identity.empty" hidden></p>
         </section>
 
+        <section class="group guided" id="guided" aria-labelledby="guided-title">
+          <h2 id="guided-title" data-i18n="guided.title"></h2>
+          <p class="note identity-lead" data-i18n="guided.lead"></p>
+          <button type="button" id="guided-start" class="secondary-btn" data-i18n="guided.start"></button>
+          <div id="guided-body" class="guided-body" hidden>
+            <p id="guided-progress" class="note gd-progress"></p>
+            <div id="guided-question">
+              <h3 id="guided-heading" class="gd-heading" tabindex="-1"></h3>
+              <p id="guided-hint" class="note"></p>
+              <div id="guided-options" class="gd-all"></div>
+            </div>
+            <p id="guided-done" class="gd-done" tabindex="-1" hidden></p>
+            <div class="gd-nav">
+              <button type="button" id="guided-back" class="secondary-btn" data-i18n="guided.back"></button>
+              <button type="button" id="guided-next" class="secondary-btn gd-next"></button>
+              <button type="button" id="guided-advanced" class="secondary-btn" data-i18n="guided.toAdvanced"></button>
+            </div>
+          </div>
+          <p id="guided-note" class="note gd-note" role="status" aria-live="polite"></p>
+        </section>
+
         <fieldset class="group">
           <legend data-i18n="color.legend"></legend>
           <div class="swatches" id="swatches"></div>
@@ -211,6 +232,7 @@
     <script src="js/ui/elements/settings.js"></script>
     <script src="js/ui/gallery.js"></script>
     <script src="js/ui/autofill-ui.js"></script>
+    <script src="js/ui/guided.js"></script>
     <script src="js/ui/app.js"></script>
     <script src="js/ui/export.js"></script>
   </body>
