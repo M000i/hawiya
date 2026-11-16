@@ -34,6 +34,12 @@
       var box = ctx.el('span', 'g-sample m-sample');
       box.setAttribute('aria-hidden', 'true');
       var first = defaultOf(tpl) === 'dark' ? ['dark', 'light'] : ['light', 'dark'];
+      // Without the light/dark switch (task 3.9) the app has one mode only: one swatch.
+      var sw0 = tpl && tpl.tokens && tpl.tokens.mode && tpl.tokens.mode.switch;
+      if (sw0 && sw0.$value === 'none') {
+        first = [defaultOf(tpl) === 'dark' ? 'dark' : 'light'];
+        box.setAttribute('data-switch', 'none');
+      }
       first.forEach(function (m) {
         var sw = ctx.el('span', 'm-swatch');
         sw.setAttribute('data-swatch', m);

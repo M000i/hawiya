@@ -241,3 +241,26 @@ test('the ready identity entry shows the cards; template names follow the interf
   await expect(panel(page, 'radius').locator('.g-card-name').first()).toHaveText('Sharp corners');
   await expect(toggle(page, 'radius').locator('.g-toggle-current')).toHaveText('Round corners');
 });
+
+// Task 3.9: a mode setting without the light/dark switch shows its one mode only; with it, both modes.
+test('a mode card shows one swatch when the app has no light/dark switch', async ({ page }) => {
+  await page.goto(PAGE);
+  const out = await page.evaluate(() => {
+    const H = window.Hawiya;
+    const ctx = {
+      el: (tag, cls, text) => {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text !== undefined) e.textContent = text;
+        return e;
+      },
+      t: (k, v) => H.i18n.t(k, v)
+    };
+    const card = (def, sw) =>
+      H.galleryParts.modes.sample({ tokens: { mode: { default: { $value: def }, switch: { $value: sw } } } }, ctx);
+    return [card('dark', 'none'), card('dark', 'offered'), card('light', 'none')].map((b) =>
+      [...b.querySelectorAll('.m-swatch')].map((s) => s.getAttribute('data-swatch')).join(',')
+    );
+  });
+  expect(out).toEqual(['dark', 'dark,light', 'light']);
+});

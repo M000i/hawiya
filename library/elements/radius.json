@@ -214,5 +214,360 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "radius-square",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "زوايا قائمة",
+      "en": "Square corners"
+    },
+    "tags": [
+      "brutalist",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "radius-subtle",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "زوايا خفيفة",
+      "en": "Subtle corners"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 2,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 6,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "radius-gentle",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "زوايا لطيفة",
+      "en": "Gentle corners"
+    },
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.45,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 6,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 10,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "radius-soft",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "زوايا ناعمة",
+      "en": "Soft corners"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.75,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "radius-extra-round",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "زوايا دائرية جدًا",
+      "en": "Extra round corners"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.95,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 40,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
   }
 ]

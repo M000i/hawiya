@@ -4,7 +4,7 @@
     { "id": "secondary", "name": { "ar": "اللون الثانوي", "en": "Secondary color" }, "path": "/tokens/color/secondary/$value/hex", "compare": "color", "tolerance": 0.02 }
   ],
   "modes": [
-    { "id": "default", "name": { "ar": "الوضع الافتراضي", "en": "Default mode" }, "path": "/tokens/mode/default/$value", "compare": "exact" }
+    { "id": "setting", "name": { "ar": "إعداد الوضع (الافتراضي والمفتاح)", "en": "Mode setting (default and switch)" }, "path": "/tokens/mode", "compare": "exact" }
   ],
   "fonts": [
     { "id": "arabic", "name": { "ar": "الخط العربي", "en": "Arabic family" }, "path": "/extras/arabic", "compare": "exact" },

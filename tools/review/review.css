@@ -194,6 +194,41 @@ body {
   align-items: center;
   gap: 8px;
 }
+/* Shadow samples (task 3.9): fixed light and dark surfaces, whatever the page theme. */
+.r-shadows {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 16px;
+  border-radius: 8px;
+  inline-size: 100%;
+}
+.r-shadows[data-mode='light'] {
+  background: #f4f4f5;
+  color: #18181b;
+}
+.r-shadows[data-mode='dark'] {
+  background: #18181b;
+  color: #e4e4e7;
+}
+.r-shadows .r-meta {
+  color: inherit;
+}
+.r-shadow-tile {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 72px;
+  block-size: 48px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.r-shadows[data-mode='light'] .r-shadow-tile {
+  background: #ffffff;
+}
+.r-shadows[data-mode='dark'] .r-shadow-tile {
+  background: #27272a;
+}
 .r-extra .hw-icon {
   inline-size: 24px;
   block-size: 24px;

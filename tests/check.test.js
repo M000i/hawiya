@@ -1009,6 +1009,13 @@ test('axes: the owner decisions — the icon library counts twice; modes need th
   );
   p = axisCase('modes.json', 'modes-system', () => {});
   assert.match(p[0].message, /same values as "modes-system" .* must differ in 1 axes/);
+  // Task 3.9: the setting is the default AND the switch: the same default without the switch is another setting.
+  assert.deepEqual(
+    axisCase('modes.json', 'modes-system', (t) => (t.tokens.mode.switch.$value = 'none')),
+    []
+  );
+  p = axisCase('modes.json', 'modes-light-first', (t) => (t.tokens.mode.switch.$value = 'none'));
+  assert.match(p.map((x) => x.message).join(), /same values as "modes-light-only" .* on every axis/);
 });
 
 test('axes: buttons and cards are compared by their recipe CSS (fill, border, text, corners, shadow) and size', () => {

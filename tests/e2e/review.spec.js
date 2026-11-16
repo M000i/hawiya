@@ -74,7 +74,8 @@ test('every template in four states; approve changes the file and the counter', 
     await page.locator('.r-tab[data-element="radius"]').click();
     const card = page.locator('.r-card[data-template="radius-pill"]');
     await expect(card).toHaveAttribute('data-state', 'draft');
-    await expect(page.locator('.r-card')).toHaveCount(4);
+    // Every corner setting of the copied library, the pill draft included.
+    await expect(page.locator('.r-card')).toHaveCount(JSON.parse(fs.readFileSync(L.file, 'utf8')).length);
     // Four states, each a drawn landing scene in its language and mode.
     const scenes = card.locator('.r-scene');
     await expect(scenes).toHaveCount(4);
@@ -197,6 +198,62 @@ test('a font pair with its own heading family draws it in the scenes and loads i
     expect(fonts[1]).toMatch(/^"Tajawal"/);
     expect(fonts[2]).toMatch(/^"El Messiri"/);
     await expect.poll(() => requested.some((u) => u.includes('family=El+Messiri'))).toBe(true);
+  } finally {
+    s.child.kill();
+    fs.rmSync(L.dir, { recursive: true, force: true });
+  }
+});
+
+// Task 3.9: a mode setting shows its default mode and whether the app offers the light/dark switch.
+test('a mode setting shows its default and its switch', async ({ page }) => {
+  const L = library();
+  const s = await start(L.lib);
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  try {
+    await page.goto(s.url);
+    await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
+    await page.locator('.r-tab[data-element="modes"]').click();
+    await expect(page.locator('.r-card[data-template]')).toHaveCount(5);
+    await expect(page.locator('.r-card[data-template="modes-dark-only"]')).toContainText('لا يوجد (وضع واحد)');
+    await expect(page.locator('.r-card[data-template="modes-light-first"]')).toContainText('متاح للمستخدم');
+  } finally {
+    s.child.kill();
+    fs.rmSync(L.dir, { recursive: true, force: true });
+  }
+});
+
+// Task 3.9: each shadow template shows its three sizes on a light and on a dark surface, with its own values.
+test('a shadow template shows each size on a light and a dark surface', async ({ page }) => {
+  const L = library();
+  const s = await start(L.lib);
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  try {
+    await page.goto(s.url);
+    await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
+    await page.locator('.r-tab[data-element="shadows"]').click();
+    const card = page.locator('.r-card[data-template="shadow-crisp"]');
+    const tiles = await card
+      .locator('.r-shadow-tile')
+      .evaluateAll((all) =>
+        all.map((t) => [t.parentElement.getAttribute('data-mode'), t.getAttribute('data-size'), t.style.boxShadow])
+      );
+    expect(tiles).toEqual([
+      ['light', 'sm', 'rgb(0, 0, 0) 2px 2px 0px 0px'],
+      ['light', 'md', 'rgb(0, 0, 0) 4px 4px 0px 0px'],
+      ['light', 'lg', 'rgb(0, 0, 0) 8px 8px 0px 0px'],
+      ['dark', 'sm', 'rgba(255, 255, 255, 0.85) 2px 2px 0px 0px'],
+      ['dark', 'md', 'rgba(255, 255, 255, 0.85) 4px 4px 0px 0px'],
+      ['dark', 'lg', 'rgba(255, 255, 255, 0.85) 8px 8px 0px 0px']
+    ]);
+    // A size with no shadow (the flat template's small one) draws none.
+    const flat = await page
+      .locator('.r-card[data-template="shadow-flat"] .r-shadows[data-mode="light"] .r-shadow-tile[data-size="sm"]')
+      .evaluate((t) => t.style.boxShadow);
+    expect(flat).toBe('none');
   } finally {
     s.child.kill();
     fs.rmSync(L.dir, { recursive: true, force: true });

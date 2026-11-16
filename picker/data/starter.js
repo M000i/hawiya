@@ -183,6 +183,9 @@
         "mode": {
           "default": {
             "$value": "system"
+          },
+          "switch": {
+            "$value": "offered"
           }
         }
       },
@@ -229,6 +232,9 @@
         "mode": {
           "default": {
             "$value": "light"
+          },
+          "switch": {
+            "$value": "offered"
           }
         }
       },

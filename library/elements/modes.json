@@ -25,6 +25,9 @@
       "mode": {
         "default": {
           "$value": "system"
+        },
+        "switch": {
+          "$value": "offered"
         }
       }
     },
@@ -71,6 +74,9 @@
       "mode": {
         "default": {
           "$value": "light"
+        },
+        "switch": {
+          "$value": "offered"
         }
       }
     },
@@ -118,6 +124,9 @@
       "mode": {
         "default": {
           "$value": "dark"
+        },
+        "switch": {
+          "$value": "offered"
         }
       }
     },
@@ -136,6 +145,104 @@
     "status": {
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
+    }
+  },
+  {
+    "id": "modes-light-only",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "فاتح فقط، بلا مفتاح",
+      "en": "Light only, no switch"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "light"
+        },
+        "switch": {
+          "$value": "none"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "modes-dark-only",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "داكن فقط، بلا مفتاح",
+      "en": "Dark only, no switch"
+    },
+    "tags": [
+      "technical",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "dark"
+        },
+        "switch": {
+          "$value": "none"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
     }
   }
 ]

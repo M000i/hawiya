@@ -424,3 +424,39 @@ test('fonts: 40+ pairs (bilingual, Arabic, English) from the confirmed fonts, ea
   for (const t of fonts.filter((f) => f.status.state === 'draft'))
     assert.equal(typeof t.extras.numeralsFont, 'string', t.id);
 });
+
+// Task 3.9 (R-042, R-044, R-045, R-046, R-050, R-051): the numeric elements and the settings.
+test('numeric elements and settings: 8 scales, 8 corners, 10 shadows with dark values, 6 spacings, 5 modes, direction', () => {
+  const T = lib.templates;
+  assert.equal(T['type-scale'].length, 8);
+  assert.equal(T.radius.length, 8);
+  assert.equal(T.shadows.length, 10);
+  assert.equal(T.spacing.length, 6);
+  assert.equal(T.modes.length, 5);
+  assert.deepEqual(T.direction.map((t) => t.tokens.direction.$value).sort(), ['both', 'ltr', 'rtl']);
+  for (const t of T['type-scale']) {
+    const lh = t.tokens.lineHeight.ar.$value;
+    assert.ok(lh >= 1.6 && lh <= 1.8, `${t.id}: Arabic line height ${lh} (R-091)`);
+  }
+  // A button (medium corners) is never rounder than a card (large corners).
+  for (const t of T.radius) {
+    const r = t.tokens.radius;
+    assert.ok(r.sm.$value.value <= r.md.$value.value && r.md.$value.value <= r.lg.$value.value, t.id);
+  }
+  // Every shadow has dark-mode values for each size, strong enough to show on a dark surface: black layers at
+  // 0.4 or more, or light layers (a light edge or ring).
+  for (const t of T.shadows) {
+    for (const k of ['sm', 'md', 'lg']) {
+      const dark = t.tokens.shadow.dark[k].$value;
+      const light = t.tokens.shadow.light[k].$value;
+      assert.equal(dark.length > 0, light.length > 0, `${t.id} ${k}: dark values when light has a shadow`);
+      for (const l of dark) {
+        const lum = l.color.components.reduce((a, b) => a + b, 0) / 3;
+        assert.ok(lum > 0.5 || l.color.alpha >= 0.4, `${t.id} dark ${k}: visible on a dark surface`);
+      }
+    }
+  }
+  // Modes: every default × switch pair, the three defaults offered with the switch.
+  const modes = T.modes.map((t) => `${t.tokens.mode.default.$value}/${t.tokens.mode.switch.$value}`).sort();
+  assert.deepEqual(modes, ['dark/none', 'dark/offered', 'light/none', 'light/offered', 'system/offered']);
+});

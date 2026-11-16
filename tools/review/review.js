@@ -213,10 +213,46 @@
     host.setAttribute('data-drawn', 'true');
   }
 
+  // A shadow token (a list of layers) as a CSS box-shadow; anything not a plain number or #rrggbb is left out.
+  function shadowCss(layers) {
+    if (!Array.isArray(layers) || !layers.length) return 'none';
+    var out = [];
+    layers.forEach(function (l) {
+      var n = function (d) {
+        return d && typeof d.value === 'number' && isFinite(d.value) ? d.value + 'px' : null;
+      };
+      var c = l && l.color;
+      var hex = c && typeof c.hex === 'string' && /^#[0-9a-f]{6}$/i.test(c.hex) ? c.hex : null;
+      var a = c && typeof c.alpha === 'number' && c.alpha >= 0 && c.alpha <= 1 ? c.alpha : 1;
+      var parts = [n(l.offsetX), n(l.offsetY), n(l.blur), n(l.spread)];
+      if (!hex || parts.indexOf(null) !== -1) return;
+      var rgb = [1, 3, 5].map(function (i) {
+        return parseInt(hex.slice(i, i + 2), 16);
+      });
+      out.push((l.inset === true ? 'inset ' : '') + parts.join(' ') + ' rgba(' + rgb.join(', ') + ', ' + a + ')');
+    });
+    return out.length ? out.join(', ') : 'none';
+  }
+
   function extraFor(element, tpl) {
     var box = el('div', 'r-extra');
     var ex = tpl.extras || {};
-    if (element === 'icons' && H.icons) {
+    if (element === 'shadows') {
+      // The landing scene barely shows shadows: each size on a light and on a dark surface (task 3.9).
+      var sh = (tpl.tokens && tpl.tokens.shadow) || {};
+      ['light', 'dark'].forEach(function (mode) {
+        var row = el('div', 'r-shadows');
+        row.setAttribute('data-mode', mode);
+        row.appendChild(el('span', 'r-meta', t(mode === 'light' ? 'shadowsLight' : 'shadowsDark')));
+        ['sm', 'md', 'lg'].forEach(function (size) {
+          var tile = el('span', 'r-shadow-tile', size);
+          tile.setAttribute('data-size', size);
+          tile.style.boxShadow = shadowCss(sh[mode] && sh[mode][size] && sh[mode][size].$value);
+          row.appendChild(tile);
+        });
+        box.appendChild(row);
+      });
+    } else if (element === 'icons' && H.icons) {
       box.appendChild(el('span', 'r-meta', t('icons')));
       H.icons.MEANINGS.forEach(function (meaning) {
         var icon = H.icons.render(tpl, meaning, {
@@ -235,6 +271,8 @@
     } else if (element === 'modes') {
       var d = tpl.tokens && tpl.tokens.mode && tpl.tokens.mode.default && tpl.tokens.mode.default.$value;
       box.appendChild(el('span', 'r-meta', t('defaultMode', { mode: String(d) })));
+      var sw = tpl.tokens && tpl.tokens.mode && tpl.tokens.mode.switch && tpl.tokens.mode.switch.$value;
+      box.appendChild(el('span', 'r-meta', t(sw === 'none' ? 'switchNone' : 'switchOffered')));
     } else if (element === 'direction') {
       var dir = tpl.tokens && tpl.tokens.direction && tpl.tokens.direction.$value;
       box.appendChild(
