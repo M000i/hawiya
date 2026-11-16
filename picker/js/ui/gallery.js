@@ -113,12 +113,39 @@
     });
   }
 
+  // The template that best suits the other choices (and the session), among those the rules allow (R-025).
+  function fitting(element) {
+    if (!H.match) return null;
+    var identity = H.state.identity();
+    return H.match.best(
+      element,
+      H.library.view().templates[element],
+      identity.selections,
+      H.library.find,
+      H.session || null,
+      function (tpl) {
+        return !H.rules || H.rules.allowed(tpl, identity.project);
+      }
+    );
+  }
+
   function markCards(element) {
     var panel = opened[element];
     if (!panel) return;
     var current = chosen(element);
+    var fit = fitting(element);
     Array.prototype.forEach.call(panel.querySelectorAll('[data-template]'), function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-template') === current));
+      var badge = b.querySelector('.g-fit');
+      if (b.getAttribute('data-template') === fit) {
+        if (!badge) {
+          badge = el('span', 'g-fit', t('gallery.fit'));
+          badge.setAttribute('data-fit', 'true');
+          b.appendChild(badge);
+        }
+      } else if (badge) {
+        badge.remove();
+      }
     });
   }
 

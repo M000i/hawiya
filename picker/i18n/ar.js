@@ -87,6 +87,7 @@
   'gallery.px': '{value} px',
   'gallery.number': '{value}',
   'gallery.typeSample': 'أب',
+  'gallery.fit': 'يناسب اختياراتك',
   'gallery.radius.sm': 'زوايا صغيرة',
   'gallery.radius.md': 'زوايا متوسطة',
   'gallery.radius.lg': 'زوايا كبيرة',

@@ -1031,3 +1031,13 @@ body {
   background: var(--focus);
   border-color: var(--focus);
 }
+
+/* «Suits your choices» on the best-matching card of a gallery (R-025). */
+.g-fit {
+  padding-block: 2px;
+  padding-inline: 8px;
+  font-size: 0.75rem;
+  color: #065f46;
+  background: #d1fae5;
+  border-radius: 999px;
+}

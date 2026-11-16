@@ -89,6 +89,7 @@
   'gallery.px': '{value} px',
   'gallery.number': '{value}',
   'gallery.typeSample': 'Aa',
+  'gallery.fit': 'Suits your choices',
   'gallery.radius.sm': 'Small corners',
   'gallery.radius.md': 'Medium corners',
   'gallery.radius.lg': 'Large corners',
