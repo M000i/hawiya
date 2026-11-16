@@ -28,6 +28,16 @@
  *     those colors' own ramps with which every color pair passes (only the colors that change), or null.
  *
  * A problem is { rule, element, template?, ... } with plain data only (the page words it in both languages).
+ *
+ * Warning rules (task 2.15, R-027 / R-091): the page shows them and the user may go on.
+ *   warnings(identity, find) → { warnings: [{ rule, element, ... }], unchecked: [element] }
+ *   thin-icons-heavy-font    icons of weight thin or light with a font whose weight (fonts extras.weight, the
+ *                            font's regular weight) is 600 or more
+ *   button-radius-over-card  the button recipe's corners are rounder than the card recipe's (identity radii)
+ *   dark-shadows-vanish      a shadow level that shows in light mode (changes the light background by 0.02
+ *                            OKLCH lightness or more) changes the dark background by less (or has no dark layer)
+ *   arabic-line-height       Arabic line height below 1.6 in a project with Arabic text
+ *   display-font-body        the font is a display font (fonts extras.display true) and so is used for body text
  */
 (function (root, factory) {
   var node = typeof module === 'object' && module.exports;
@@ -398,6 +408,92 @@
     };
   }
 
+  /* ---------- warnings (task 2.15, R-027 / R-091): shown, and the user may go on ---------- */
+
+  var THIN_ICONS = ['thin', 'light'];
+  var HEAVY = 600; // a font whose regular weight is this or more reads as heavy
+  var MIN_AR_LINE = 1.6; // R-091: Arabic line height 1.6 .. 1.8 by default
+  var SHADOW_SEEN = 0.02; // OKLCH lightness change a shadow must make on the dark background to be seen
+  var RADIUS_VAR = /border-radius\s*:\s*var\(\s*--radius-(sm|md|lg|full)\s*\)|border-radius\s*:\s*(\d+(?:\.\d+)?)px/i;
+
+  // The corner radius (px) a button or card recipe draws, from the identity's radii; null if it cannot be read.
+  function recipeRadius(tpl, radius) {
+    var css = tpl && tpl.recipe && typeof tpl.recipe.css === 'string' ? tpl.recipe.css : '';
+    var m = RADIUS_VAR.exec(css.replace(/\/\*[\s\S]*?\*\//g, ''));
+    if (!m) return null;
+    return m[1] ? radius[m[1].toLowerCase()] : Number(m[2]);
+  }
+
+  // How much a shadow layer changes the background it falls on (simple sRGB blend), in OKLCH lightness.
+  function shadowChange(layer, background) {
+    var bg = color.parseHex(background);
+    var c = color.parseHex(layer.color);
+    var a = layer.alpha;
+    var mixed =
+      '#' +
+      bg
+        .map(function (v, i) {
+          var x = Math.round(v * (1 - a) + c[i] * a);
+          return (x < 16 ? '0' : '') + x.toString(16);
+        })
+        .join('');
+    return Math.abs(color.toOklch(mixed).L - color.toOklch(background).L);
+  }
+
+  function identityWarnings(identity, find) {
+    var out = [];
+    var unchecked = [];
+    var sel = identity.selections;
+    function tplOf(element) {
+      var t = sel[element] && find ? find(element, sel[element].template) : null;
+      if (sel[element] && !t) unchecked.push(element);
+      return t;
+    }
+    var fonts = tplOf('fonts');
+    var buttons = tplOf('buttons');
+    var cards = tplOf('cards');
+    var fx = (fonts && fonts.extras) || {};
+
+    // 1. Thin icons next to a heavy font look faint.
+    var iconWeight = identity.extensions.icons.weight;
+    if (THIN_ICONS.indexOf(iconWeight) !== -1 && typeof fx.weight === 'number' && fx.weight >= HEAVY) {
+      out.push({ rule: 'thin-icons-heavy-font', element: 'icons', icons: iconWeight, fontWeight: fx.weight });
+    }
+
+    // 2. Button corners rounder than the card's look out of place inside it.
+    var b = recipeRadius(buttons, identity.tokens.radius);
+    var c = recipeRadius(cards, identity.tokens.radius);
+    if (typeof b === 'number' && typeof c === 'number' && b > c) {
+      out.push({ rule: 'button-radius-over-card', element: 'radius', button: b, card: c });
+    }
+
+    // 3. Shadows that show in light mode but cannot be seen on the dark background.
+    var sh = identity.tokens.shadow;
+    var dbg = identity.tokens.color.dark.background;
+    var lbg = identity.tokens.color.light.background;
+    var visible = function (layers, bg) {
+      return (layers || []).some(function (layer) {
+        return shadowChange(layer, bg) >= SHADOW_SEEN;
+      });
+    };
+    var levels = Object.keys(sh.light).filter(function (k) {
+      if (!visible(sh.light[k], lbg)) return false; // no shadow to lose
+      return !visible(sh.dark[k], dbg);
+    });
+    if (levels.length) out.push({ rule: 'dark-shadows-vanish', element: 'shadows', levels: levels });
+
+    // 4. Arabic text needs room for its marks (R-091).
+    var lh = identity.tokens.font.lineHeight.ar;
+    if (hasArabic(identity.project.language) && lh < MIN_AR_LINE) {
+      out.push({ rule: 'arabic-line-height', element: 'type-scale', lineHeight: lh, minimum: MIN_AR_LINE });
+    }
+
+    // 5. A display font is made for large headings, not for paragraphs.
+    if (fx.display === true) out.push({ rule: 'display-font-body', element: 'fonts', template: fonts.id });
+
+    return { warnings: out, unchecked: unchecked };
+  }
+
   return {
     REQUIRED: REQUIRED,
     contrast: checkContrast,
@@ -406,6 +502,7 @@
     allowed: function (tpl, project) {
       return templateProblems(tpl, project).length === 0;
     },
-    identity: identityProblems
+    identity: identityProblems,
+    warnings: identityWarnings
   };
 });

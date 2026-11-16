@@ -415,3 +415,136 @@ test('review: Eastern Arabic numerals need a numerals font recorded to draw them
   id.tokens.font.numerals = { arabic: 'Cairo', fallback: ['sans-serif'], easternArabicDigits: true };
   assert.deepEqual(rulesOf(rules.identity(id, find).problems), []);
 });
+
+/* ---------- warning rules (task 2.15, R-027 / R-091) ---------- */
+
+const warn = (id, f = find) => rules.warnings(id, f).warnings.map((w) => w.rule);
+// The library with one template replaced (warning cases the published library does not have yet).
+const withTemplate = (element, id, change) => (e, tid) => {
+  const t = find(e, tid);
+  return e === element && tid === id && t ? change(structuredClone(t)) : t;
+};
+
+test('warnings: the ready identities have none, and the result lists unloaded elements', () => {
+  for (const id of ['calm-corporate', 'warm-friendly']) {
+    assert.deepEqual(rules.warnings(identityOf(id), find), { warnings: [], unchecked: [] }, id);
+  }
+  const r = rules.warnings(identityOf('calm-corporate'), (e, tid) => (e === 'fonts' ? null : find(e, tid)));
+  assert.deepEqual(r.unchecked, ['fonts']);
+});
+
+test('thin-icons-heavy-font: light icons with a heavy font warn; regular icons or a regular font do not', () => {
+  const id = identityOf('calm-corporate');
+  const font = id.selections.fonts.template;
+  const heavy = withTemplate('fonts', font, (t) => ({ ...t, extras: { ...t.extras, weight: 700 } }));
+  const regular = withTemplate('fonts', font, (t) => ({ ...t, extras: { ...t.extras, weight: 400 } }));
+  const light = structuredClone(id);
+  light.extensions.icons.weight = 'light';
+  light.selections.icons = { template: 'icons-lucide-light' };
+  assert.deepEqual(rules.warnings(light, heavy).warnings, [
+    { rule: 'thin-icons-heavy-font', element: 'icons', icons: 'light', fontWeight: 700 }
+  ]);
+  assert.deepEqual(warn(light, regular), []);
+  assert.deepEqual(warn(light, find), []); // no weight recorded: no claim
+  assert.deepEqual(warn(id, heavy), []); // regular icons
+});
+
+test('button-radius-over-card: a button rounder than the card warns; equal or smaller does not', () => {
+  const id = identityOf('calm-corporate'); // button uses radius md (8), card radius lg (12)
+  assert.deepEqual(warn(id), []);
+  const same = structuredClone(id);
+  same.tokens.radius.md = 12;
+  assert.deepEqual(warn(same), []);
+  const over = structuredClone(id);
+  over.tokens.radius.md = 16;
+  assert.deepEqual(rules.warnings(over, find).warnings, [
+    { rule: 'button-radius-over-card', element: 'radius', button: 16, card: 12 }
+  ]);
+  // A pill button (radius full) inside a rounded card.
+  const pill = withTemplate('buttons', id.selections.buttons.template, (t) => {
+    t.recipe.css = t.recipe.css.replace('var(--radius-md)', 'var(--radius-full)');
+    return t;
+  });
+  assert.deepEqual(warn(id, pill), ['button-radius-over-card']);
+  // A radius written in px is read too.
+  const px = withTemplate('cards', id.selections.cards.template, (t) => {
+    t.recipe.css = t.recipe.css.replace('var(--radius-lg)', '4px');
+    return t;
+  });
+  assert.deepEqual(rules.warnings(id, px).warnings[0], {
+    rule: 'button-radius-over-card',
+    element: 'radius',
+    button: 8,
+    card: 4
+  });
+});
+
+test('dark-shadows-vanish: a shadow seen in light mode but not on the dark background warns', () => {
+  const id = identityOf('calm-corporate');
+  assert.deepEqual(warn(id), []);
+  // The light shadow (soft: sm, md and lg) copied as is into dark mode: too faint on a near-black background.
+  const copied = structuredClone(id);
+  copied.tokens.shadow.dark = structuredClone(copied.tokens.shadow.light);
+  assert.deepEqual(rules.warnings(copied, find).warnings, [
+    { rule: 'dark-shadows-vanish', element: 'shadows', levels: ['sm', 'md', 'lg'] }
+  ]);
+  // No shadow in dark mode while light mode has one.
+  const none = structuredClone(id);
+  none.tokens.shadow.dark.lg = [];
+  assert.deepEqual(rules.warnings(none, find).warnings[0].levels, ['lg']);
+  // No shadow at all (strength 0): nothing is lost, no warning.
+  const flat = identityOf('calm-corporate');
+  for (const m of ['light', 'dark']) for (const k of ['sm', 'md', 'lg']) flat.tokens.shadow[m][k] = [];
+  assert.deepEqual(warn(flat), []);
+  // Shadow strength 0 keeps the layers at opacity 0 in both modes: nothing to lose either.
+  const ready = data.identities.find((i) => i.id === 'calm-corporate');
+  const selections = {};
+  for (const [element, template] of Object.entries(ready.templates)) selections[element] = { template };
+  selections.shadows.overrides = { strength: 0 };
+  const zero = resolve.resolve({ name: 'Zero', selections }, data);
+  assert.ok(zero.tokens.shadow.light.md.length > 0 && zero.tokens.shadow.light.md.every((l) => l.alpha === 0));
+  assert.deepEqual(warn(zero), []);
+});
+
+test('arabic-line-height: below 1.6 warns in Arabic and bilingual projects, never in English ones (R-091)', () => {
+  const id = identityOf('calm-corporate');
+  for (const [lh, expected] of [
+    [1.6, []],
+    [1.8, []],
+    [1.59, ['arabic-line-height']],
+    [1.2, ['arabic-line-height']]
+  ]) {
+    const x = structuredClone(id);
+    x.tokens.font.lineHeight.ar = lh;
+    assert.deepEqual(warn(x), expected, String(lh));
+  }
+  const low = structuredClone(id);
+  low.tokens.font.lineHeight.ar = 1.4;
+  assert.deepEqual(rules.warnings(low, find).warnings, [
+    { rule: 'arabic-line-height', element: 'type-scale', lineHeight: 1.4, minimum: 1.6 }
+  ]);
+  low.project = { ...low.project, language: 'ar+en' };
+  assert.deepEqual(warn(low), ['arabic-line-height']);
+  low.project = { ...low.project, language: 'en' };
+  assert.deepEqual(warn(low), []);
+});
+
+test('display-font-body: a display font warns, because it is also the body font', () => {
+  const id = identityOf('warm-friendly');
+  const font = id.selections.fonts.template;
+  const display = withTemplate('fonts', font, (t) => ({ ...t, extras: { ...t.extras, display: true } }));
+  const text = withTemplate('fonts', font, (t) => ({ ...t, extras: { ...t.extras, display: false } }));
+  assert.deepEqual(rules.warnings(id, display).warnings, [
+    { rule: 'display-font-body', element: 'fonts', template: font }
+  ]);
+  assert.deepEqual(warn(id, text), []);
+  assert.deepEqual(warn(id), []);
+});
+
+test('warnings never block: a warned identity still passes the blocking rules', () => {
+  const id = identityOf('calm-corporate');
+  id.tokens.font.lineHeight.ar = 1.4;
+  id.tokens.radius.md = 16;
+  assert.deepEqual(warn(id), ['button-radius-over-card', 'arabic-line-height']);
+  assert.equal(rules.identity(id, find).allowed, true);
+});
