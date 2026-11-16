@@ -376,7 +376,6 @@
         note(null);
         // The questions start over: only their answers count as the user's; the rest is derived from them.
         H.state.forget();
-        document.dispatchEvent(new CustomEvent('hawiya:state', { detail: { choices: H.state.choices() } }));
         go(0);
       },
       function () {

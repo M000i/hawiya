@@ -155,7 +155,7 @@ test('output is ASCII with "<" escaped, and text survives exactly (Arabic, emoji
   const list = sourceTemplates(lib, 'buttons');
   const solid = list.find((t) => t.id === 'button-solid');
   solid.name.ar = 'زر </script><script>alert(1)</script> ' + LS + ' 😀 ' + String.fromCharCode(0xd800);
-  solid.recipe.html = '<button class="hw-btn" type="button">{label}</button><!-- </script> -->';
+  solid.recipe.html = '<button class="hw-btn" type="button">{label}</button>'; // "<" in the data, escaped
   writeJson(path.join(lib, 'elements', 'buttons.json'), list);
   const out = tmp();
   builder.build({ libraryDir: lib, outDir: out });

@@ -245,7 +245,12 @@
     box = document.getElementById('rules');
     if (!box || !H.rules) return;
     H.state.setGuard(guard);
-    document.addEventListener('hawiya:state', render);
+    // Any change that was applied (a pick, a draft restored, a saved identity opened) makes an earlier refusal
+    // obsolete: its «apply the suggestion» would bring back the choices of that time.
+    document.addEventListener('hawiya:state', function () {
+      blocked = null;
+      render();
+    });
     document.addEventListener('hawiya:lang', render);
     render();
   }

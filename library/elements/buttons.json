@@ -41,7 +41,7 @@
     },
     "recipe": {
       "html": "<button class=\"hw-btn\" type=\"button\">{label}</button>",
-      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary)}.hw-btn:hover{background:var(--color-primary-700);border-color:var(--color-primary-700)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}"
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}"
     },
     "a11y": {
       "contrast": "AA",

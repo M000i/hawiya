@@ -36,6 +36,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const validate = require('../picker/js/core/validate.js');
 const SCHEMAS = require('../picker/js/core/schemas.js');
+const recipe = require('../picker/js/core/recipe.js');
 
 const ROOT = path.join(__dirname, '..');
 const T = SCHEMAS.template;
@@ -167,6 +168,10 @@ function load(libraryDir) {
         return;
       }
       if (t.element !== element) problems.push(`${where}: template "${t.id}" says element "${t.element}" but is in ${name}`);
+      // A recipe outside the allow-list is never published (script, outside requests, typography tricks).
+      if (t.recipe) {
+        recipe.check(t.recipe).forEach((p) => problems.push(`${where}: recipe ${p.where} not allowed: ${p.what}`));
+      }
       if (byId.has(t.id)) problems.push(`${where}: id "${t.id}" is already used in ${byId.get(t.id).file}`);
       else byId.set(t.id, { template: t, file: name });
       templates[element].push(t);

@@ -303,7 +303,7 @@ test('loads as plain browser scripts after color, contrast, ramp and modes, and 
   const vm = require('node:vm');
   const dir = path.join(__dirname, '..', 'picker', 'js', 'core');
   const sandbox = { self: {} };
-  for (const f of ['color.js', 'contrast.js', 'ramp.js', 'modes.js', 'rules.js']) {
+  for (const f of ['color.js', 'contrast.js', 'ramp.js', 'modes.js', 'recipe.js', 'rules.js']) {
     vm.runInNewContext(fs.readFileSync(path.join(dir, f), 'utf8'), sandbox);
   }
   const out = vm.runInNewContext("JSON.stringify(self.Hawiya.rules.contrast('#777777', '#ffffff', 'AA'))", sandbox);
@@ -311,7 +311,7 @@ test('loads as plain browser scripts after color, contrast, ramp and modes, and 
   // Loaded before its dependencies, it says what is missing.
   assert.throws(
     () => vm.runInNewContext(fs.readFileSync(path.join(dir, 'rules.js'), 'utf8'), { self: {} }),
-    /load color\.js, contrast\.js, ramp\.js and modes\.js first/
+    /load color\.js, contrast\.js, ramp\.js, modes\.js and recipe\.js first/
   );
 });
 
@@ -363,7 +363,12 @@ test('review: a palette is offered only at the contrast level it reaches', () =>
 test('review: italic tags, inline styles, custom properties, small caps and slant are blocked with Arabic', () => {
   const button = find('buttons', 'button-solid');
   const recipe = (html, css) => ({ ...button, recipe: { html, css: css === undefined ? button.recipe.css : css } });
-  const props = (t, p = AR) => rules.template(t, p).map((x) => x.property);
+  // The Arabic typography problems (a recipe outside the allow-list is also refused on its own, rule "recipe").
+  const props = (t, p = AR) =>
+    rules
+      .template(t, p)
+      .filter((x) => x.rule === 'arabic-typography')
+      .map((x) => x.property);
   const btn = '<button class="hw-btn" type="button">{label}</button>';
   assert.deepEqual(props(recipe('<button class="hw-btn" style="letter-spacing:2px">{label}</button>')), [
     'letter-spacing'

@@ -80,20 +80,43 @@
     return n;
   }
 
-  /* A library recipe as DOM: its HTML is reviewed library content; the values go in as text only. */
+  /* A library recipe as DOM, rebuilt node by node from the allow-list (recipe.js): the recipe's markup is never
+     inserted as such (parsed in an inert document, so nothing in it can load or run). Values go in as text only.
+     A recipe outside the allow-list is not drawn: a plain element with the label stands in. */
   function fromRecipe(recipe, values) {
-    var tpl = document.createElement('template');
-    tpl.innerHTML = recipe.html;
-    var walker = document.createTreeWalker(tpl.content, NodeFilter.SHOW_TEXT);
-    var nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(function (node) {
-      node.nodeValue = node.nodeValue.replace(/\{([a-z]+)\}/g, function (all, k) {
-        return Object.prototype.hasOwnProperty.call(values, k) ? values[k] : '';
+    var plain = el('span', null, values.label || values.title || '');
+    if (!H.recipe || !recipe || H.recipe.check(recipe).length) return plain;
+    var doc = document.implementation.createHTMLDocument('');
+    var box = doc.createElement('div');
+    box.innerHTML = recipe.html; // an inert document: no image loads, no handler runs
+    function copy(src) {
+      if (src.nodeType === 3) {
+        return document.createTextNode(
+          src.nodeValue.replace(/\{([a-z]+)\}/g, function (all, k) {
+            return Object.prototype.hasOwnProperty.call(values, k) ? values[k] : '';
+          })
+        );
+      }
+      if (src.nodeType !== 1 || src.namespaceURI !== 'http://www.w3.org/1999/xhtml') return null;
+      var name = src.localName;
+      if (!H.recipe.isTag(name)) return null;
+      var n = document.createElement(name);
+      Array.prototype.forEach.call(src.attributes, function (a) {
+        if (H.recipe.isAttribute(a.name)) n.setAttribute(a.name, a.value);
       });
-    });
-    var first = tpl.content.firstElementChild;
-    return first ? document.importNode(first, true) : el('span', null, values.label || values.title || '');
+      Array.prototype.forEach.call(src.childNodes, function (c) {
+        var k = copy(c);
+        if (k) n.appendChild(k);
+      });
+      return n;
+    }
+    var first = box.firstElementChild ? copy(box.firstElementChild) : null;
+    return first || plain;
+  }
+
+  // A recipe's CSS, only when the recipe passes the allow-list.
+  function recipeCss(tpl) {
+    return tpl && tpl.recipe && H.recipe && !H.recipe.check(tpl.recipe).length ? tpl.recipe.css : '';
   }
 
   /* Scene sizes picked from the type scale around the base size (the names vary with the number of steps). */
@@ -118,7 +141,7 @@
     var card = template('cards', identity.extensions.components.card);
 
     var style = el('style');
-    style.textContent = [BASE, button ? button.recipe.css : '', card ? card.recipe.css : '', scene.css].join('\n');
+    style.textContent = [BASE, recipeCss(button), recipeCss(card), scene.css].join('\n');
 
     var wrap = el('div', 'scene');
     wrap.setAttribute('dir', L === 'ar' ? 'rtl' : 'ltr');

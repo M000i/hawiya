@@ -46,13 +46,14 @@
   var contrast = node ? require('./contrast.js') : H.contrast;
   var ramp = node ? require('./ramp.js') : H.ramp;
   var modes = node ? require('./modes.js') : H.modes;
-  if (!color || !contrast || !ramp || !modes) {
-    throw new Error('Hawiya.rules: load color.js, contrast.js, ramp.js and modes.js first');
+  var recipe = node ? require('./recipe.js') : H.recipe;
+  if (!color || !contrast || !ramp || !modes || !recipe) {
+    throw new Error('Hawiya.rules: load color.js, contrast.js, ramp.js, modes.js and recipe.js first');
   }
-  var api = factory(color, contrast, ramp, modes);
+  var api = factory(color, contrast, ramp, modes, recipe);
   if (node) module.exports = api;
   else root.Hawiya.rules = api;
-})(typeof self !== 'undefined' ? self : this, function (color, contrast, ramp, modes) {
+})(typeof self !== 'undefined' ? self : this, function (color, contrast, ramp, modes, recipeRules) {
   'use strict';
 
   var REQUIRED = { normal: { AA: 4.5, AAA: 7 }, large: { AA: 3, AAA: 4.5 } };
@@ -260,6 +261,9 @@
         } else if (prop === 'font-style' && (unknown || italic(val))) {
           add('font-style', 'recipe');
         } else if (prop === 'font-variation-settings' && (unknown || slanted(val))) add('font-style', 'recipe');
+        else if (prop === 'font-feature-settings' && (unknown || /(smcp|c2sc|pcap|c2pc|unic|titl)/i.test(val))) {
+          add('text-transform', 'recipe'); // small or petite capitals
+        } else if (prop === 'font-feature-settings' && /ital/i.test(val)) add('font-style', 'recipe');
       });
     });
     return found;
@@ -278,6 +282,12 @@
         p[k] = extra[k];
       });
       out.push(p);
+    }
+    // A recipe outside the allow-list (recipe.js) is never drawn or offered: a script, a request to another
+    // host, or a way around the Arabic typography rule.
+    if (tpl.recipe) {
+      var bad = recipeRules.check(tpl.recipe);
+      if (bad.length) problem('recipe', { where: bad[0].where, what: bad[0].what });
     }
     if (!Array.isArray(tpl.platforms) || tpl.platforms.indexOf(project.platform) === -1) {
       problem('platform', { platform: project.platform });

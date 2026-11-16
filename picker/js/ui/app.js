@@ -223,6 +223,7 @@
       e.preventDefault();
     });
     document.addEventListener('hawiya:state', render);
+    document.addEventListener('hawiya:refused', render); // a refused pick: the controls show the identity again
 
     render();
   }

@@ -220,6 +220,7 @@ test('loads as a plain browser script after its dependencies', () => {
     'contrast.js',
     'ramp.js',
     'modes.js',
+    'recipe.js',
     'rules.js',
     'match.js',
     'scale.js',

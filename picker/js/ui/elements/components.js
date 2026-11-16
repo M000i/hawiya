@@ -36,7 +36,7 @@
     if (!tpl || !tpl.recipe) return;
     var mode = H.preview && H.preview.mode ? H.preview.mode() : 'light';
     var style = document.createElement('style');
-    var css = STAGE + '\n' + tpl.recipe.css;
+    var css = STAGE + '\n' + (H.recipe && !H.recipe.check(tpl.recipe).length ? tpl.recipe.css : '');
     style.textContent = css;
     var stage = document.createElement('div');
     stage.className = 'c-stage';

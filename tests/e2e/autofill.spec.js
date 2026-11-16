@@ -62,7 +62,8 @@ test('after a color and a font, the button fills the other nine elements within 
   );
   const before = await state(page);
   expect(before.chosen).toEqual(['colors', 'fonts']);
-  expect(await marked(page)).toEqual([]);
+  // Not decided by the user: still the starting point's, so already marked «filled automatically».
+  expect(await marked(page)).toEqual(ELEMENTS.filter((e) => !['colors', 'fonts'].includes(e)));
 
   await page.locator('#autofill-btn').click();
   const missing = ELEMENTS.filter((e) => !['colors', 'fonts'].includes(e));

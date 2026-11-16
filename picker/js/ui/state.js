@@ -7,12 +7,14 @@
  *   state.change(fn [, how])  fn(copyOfChoices) edits the copy; it is applied only if the library can build it.
  *                          Returns true when applied. Every applied change is saved as the draft and fires
  *                          'hawiya:state'. A guard (rules-ui.js, the blocking rules) may refuse it first.
- *   state.chosen()         the elements the user chose (task 2.18), in element order. An element is chosen when a
- *                          change edits it; it then stops being «filled automatically». how = 'all' (a ready
- *                          identity: every element chosen) or 'auto' («fill the rest»: it sets autoFilled itself and
- *                          chooses nothing) or a list of elements picked on purpose (a gallery card, even the one
- *                          already in place). A restored draft or an opened identity counts as chosen the elements
- *                          that differ from the page's starting point and were not filled automatically.
+ *   state.chosen()         the elements the user chose (task 2.18), in element order: every element NOT in the
+ *                          identity's autoFilled list. The list lives in the identity itself, so it is kept in the
+ *                          draft, in saved identities and in the export (spec section 8: what the user did not
+ *                          decide is marked as filled automatically). The page starts with every element in it.
+ *                          A change takes the elements it edits out of the list; how = 'all' (a ready identity:
+ *                          every element chosen), 'auto' («fill the rest», guided mode: it sets the list itself) or
+ *                          a list of elements picked on purpose (a gallery card, even the one already in place).
+ *   state.forget()         every element back in the list (the guided mode starts over); returns change()'s result
  *
  * On load the draft is restored when it can be read and rebuilt; otherwise the page starts from the first ready
  * identity (and the unreadable draft is kept aside, never deleted). The panel «my saved identities» saves the
@@ -51,7 +53,8 @@
     H.resolve.ELEMENTS.forEach(function (e) {
       selections[e] = { template: ready.templates[e] };
     });
-    return { name: ready.name.ar, selections: selections };
+    // The user has decided nothing yet: every element is the starting point's, filled automatically.
+    return { name: ready.name.ar, selections: selections, autoFilled: H.resolve.ELEMENTS.slice() };
   }
 
   function browserStore() {
@@ -98,7 +101,6 @@
   }
 
   var guard = null; // set by rules-ui.js: refuses a change that breaks a blocking rule
-  var chosen = {}; // element → true: the user chose it (task 2.18)
 
   // An element's choice as text, the same whatever the key order of its adjustments.
   function selectionKey(s) {
@@ -120,15 +122,6 @@
     });
   }
 
-  // After a draft is restored or an identity opened: what differs from the starting point, unless filled for them.
-  function chosenFrom(choices) {
-    var auto = choices.autoFilled || [];
-    chosen = {};
-    edited(starterChoices(), choices).forEach(function (e) {
-      if (auto.indexOf(e) === -1) chosen[e] = true;
-    });
-  }
-
   function change(fn, how) {
     var next = copy(current.choices);
     fn(next);
@@ -140,7 +133,8 @@
       });
     }
     // An element the user edits is theirs now, no longer «filled automatically».
-    if (touched.length && Array.isArray(next.autoFilled)) {
+    if (how === 'all') next.autoFilled = [];
+    else if (touched.length && Array.isArray(next.autoFilled)) {
       next.autoFilled = next.autoFilled.filter(function (e) {
         return touched.indexOf(e) === -1;
       });
@@ -152,9 +146,6 @@
       return false;
     }
     if (guard && !guard(copy(next), copy(identity), how)) return false;
-    touched.forEach(function (e) {
-      chosen[e] = true;
-    });
     apply(next, identity, true);
     return true;
   }
@@ -167,13 +158,15 @@
       return copy(current.identity);
     },
     change: change,
-    /* forget(): no element counts as chosen any more (the guided mode starts over); nothing else changes. */
     forget: function () {
-      chosen = {};
+      return change(function (c) {
+        c.autoFilled = H.resolve.ELEMENTS.slice();
+      }, 'auto');
     },
     chosen: function () {
+      var auto = current.choices.autoFilled || [];
       return H.resolve.ELEMENTS.filter(function (e) {
-        return chosen[e] === true;
+        return auto.indexOf(e) === -1;
       });
     },
     /* setGuard(fn): fn(choices, identity, how) is asked before every change is applied; false refuses it. */
@@ -283,7 +276,6 @@
       return;
     }
     openedId = id;
-    chosenFrom(r.choices);
     // If the draft could not be written, the failure notice stays: never claim it is saved.
     if (apply(r.choices, identity, true)) note('saved.opened', { name: r.choices.name });
     renderList();
@@ -351,7 +343,6 @@
     var draft = store.readDraft();
     var choices = draft.status === 'ok' ? draft.choices : starterChoices();
     if (draft.status === 'ok' && draft.openedId) openedId = draft.openedId;
-    chosenFrom(choices);
     apply(choices, build(choices), false);
     if (draft.status === 'unreadable') note('saved.draftUnreadable');
     if (store.listUnreadable()) note('saved.listUnreadable');
