@@ -98,3 +98,28 @@ test('T-2.4 identity: primary #3B82F6 with a type scale of base 16 and ratio 1.2
   // The template has one size below the base (captions); the golden sizes are the base and the four above it.
   assert.deepEqual(identity.tokens.typeScale.steps, [12.8, 16, 20, 25, 31.25, 39.06]);
 });
+
+// Task-level golden (tasks.md 2.14): the contrast blocking rule and its suggestion.
+test('T-2.14 rules: #767676 on white at AA → allowed', () => {
+  const rules = require('../picker/js/core/rules.js');
+  const r = rules.contrast('#767676', '#FFFFFF', 'AA');
+  assert.equal(r.allowed, true);
+  assert.equal(r.suggestion, null);
+});
+
+test('T-2.14 rules: #777777 on white at AA → blocked; the suggested color reaches 4.5:1 or more', () => {
+  const rules = require('../picker/js/core/rules.js');
+  const r = rules.contrast('#777777', '#FFFFFF', 'AA');
+  assert.equal(r.allowed, false);
+  assert.match(r.suggestion, /^#[0-9a-f]{6}$/);
+  assert.ok(contrast.ratio(r.suggestion, '#FFFFFF') >= 4.5, `${r.suggestion} on white`);
+  // It comes from the color's own ramp.
+  assert.ok(ramp.generate('#777777').steps.includes(r.suggestion));
+});
+
+test('T-2.14 rules: #767676 on white at AAA → blocked', () => {
+  const rules = require('../picker/js/core/rules.js');
+  const r = rules.contrast('#767676', '#FFFFFF', 'AAA');
+  assert.equal(r.allowed, false);
+  assert.ok(contrast.ratio(r.suggestion, '#FFFFFF') >= 7);
+});

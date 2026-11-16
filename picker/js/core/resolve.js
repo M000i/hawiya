@@ -27,7 +27,7 @@
  *   direction   numerals (latn|arab), calendar (gregory|islamic-umalqura)
  *
  * The language and direction come from the direction template; colors are derived by modes.derive (both
- * modes, AA text); the type scale by scale.generate. The result is checked with the identity checker before it
+ * modes, text at the project's contrast level); the type scale by scale.generate. The result is checked with the identity checker before it
  * is returned, so a returned identity always passes it. Same choices (in any key order) give the same identity.
  */
 (function (root, factory) {
@@ -370,7 +370,10 @@
       problems.push('colors: the template secondary color is not #rrggbb');
     var colorTokens = null;
     if (primary) {
-      var d = modes.derive(primary, secondary ? { secondary: secondary } : undefined);
+      // The project's contrast level decides how far the derived text colors must reach (AA 4.5:1, AAA 7:1).
+      var deriveOpts = { level: level };
+      if (secondary) deriveOpts.secondary = secondary;
+      var d = modes.derive(primary, deriveOpts);
       colorTokens = { light: d.light, dark: d.dark, ramps: d.ramps };
     }
 
