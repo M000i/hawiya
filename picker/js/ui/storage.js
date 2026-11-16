@@ -1,19 +1,26 @@
 /*
  * Browser storage of the user's work (task 2.5, R-031). Browser: window.Hawiya.storage. Node: require (tests).
  *
- *   var s = storage.create(store, { check, resolve, now })
+ *   var s = storage.create(store, { check, resolve, now [, project] })
  *     store    localStorage-like object (getItem/setItem/removeItem/key/length), or null when the browser
  *              refuses storage; every call is guarded, a throwing store never breaks the page
  *     check    identity => boolean        (validate.check('identity', x).valid)
  *     resolve  choices => identity        (resolve.resolve; throws when the library cannot build them)
  *     now      () => milliseconds         (Date.now)
+ *     project  the project id from the save server's link (16 lowercase hex digits; task 3.0b, CHG-1 / R-101):
+ *              the draft is then kept per project ("hawiya.draft.<id>"), while the saved identities stay one list
+ *              for every project. Without it (the page opened as a file) the one general draft, as before. A page
+ *              for a project never reads, replaces or deletes the general draft or another project's.
  *
  *   s.available()            can we write right now?
  *   s.readDraft()            { status: 'none' | 'ok' | 'unreadable', choices? }
  *   s.writeDraft(identity)   { ok, reason? }      reason: 'unavailable' | 'full'
  *   s.list()                 [{ id, name, updatedAt, schemaVersion, status: 'ok' | 'older' | 'newer' | 'damaged' }]
- *   s.save(identity, id?)    { ok, id, created, reason? }   updates entry `id` when it is a current, readable one
- *   s.open(id)               { ok, choices } or { ok: false, reason: 'gone' | 'older' | 'newer' | 'damaged' | 'missing' }
+ *   s.save(identity, id?, since?)  { ok, id, created, updatedAt, conflict?, reason? }   updates entry `id` when it is
+ *                            a current, readable one AND was last changed at `since` (its updatedAt when this page
+ *                            opened or saved it); if it changed since (another project or tab, task 3.0b), or `since`
+ *                            is unknown, the identity is saved as a new entry beside it instead (conflict: true)
+ *   s.open(id)               { ok, choices, updatedAt } or { ok: false, reason: 'gone' | 'older' | 'newer' | 'damaged' | 'missing' }
  *
  * Nothing the user saved is ever deleted or overwritten by accident:
  * - Anything read back is checked (identity checker, then rebuilt from its choices with the current library)
@@ -36,6 +43,7 @@
   var SAVED = 'hawiya.saved';
   var BACKUP = '.unreadable-';
   var ID = /^[a-z0-9]{1,40}$/;
+  var PROJECT = /^([0-9a-f]{16}|unknown)$/; // "unknown": from the save server, but the link has no valid id
 
   function hasOwn(o, k) {
     return Object.prototype.hasOwnProperty.call(o, k);
@@ -86,6 +94,7 @@
     var check = deps.check;
     var resolve = deps.resolve;
     var now = deps.now;
+    var DRAFT_KEY = typeof deps.project === 'string' && PROJECT.test(deps.project) ? DRAFT + '.' + deps.project : DRAFT;
 
     function get(key) {
       try {
@@ -148,27 +157,38 @@
     /* ---------- draft ---------- */
 
     function readDraft() {
-      var raw = get(DRAFT);
+      var raw = get(DRAFT_KEY);
       if (raw === null) return { status: 'none' };
       var d = parse(raw);
       var u = isObj(d) && d.format === 1 ? usable(d.identity) : { reason: 'damaged' };
       if (!u.choices) return { status: 'unreadable', reason: u.reason };
       var out = { status: 'ok', choices: u.choices };
-      // The saved entry the draft was opened from, so Save keeps updating it after a reload.
-      if (typeof d.openedId === 'string' && ID.test(d.openedId)) out.openedId = d.openedId;
+      // The saved entry the draft was opened from (and when that entry was last changed), so Save keeps updating
+      // it after a reload, and never over a newer version saved elsewhere.
+      if (typeof d.openedId === 'string' && ID.test(d.openedId)) {
+        out.openedId = d.openedId;
+        if (isTime(d.openedAt)) out.openedAt = d.openedAt;
+      }
       return out;
     }
 
-    function writeDraft(identity, openedId) {
-      var r = read(DRAFT);
+    function isTime(t) {
+      return typeof t === 'number' && isFinite(t);
+    }
+
+    function writeDraft(identity, openedId, openedAt) {
+      var r = read(DRAFT_KEY);
       if (!r.ok) return { ok: false, reason: 'unavailable' };
       if (r.value !== null && readDraft().status !== 'ok') {
-        var kept = keepUnreadable(DRAFT, r.value);
+        var kept = keepUnreadable(DRAFT_KEY, r.value);
         if (kept) return { ok: false, reason: kept };
       }
       var d = { format: 1, savedAt: now(), identity: identity };
-      if (typeof openedId === 'string' && ID.test(openedId)) d.openedId = openedId;
-      var err = set(DRAFT, JSON.stringify(d));
+      if (typeof openedId === 'string' && ID.test(openedId)) {
+        d.openedId = openedId;
+        if (isTime(openedAt)) d.openedAt = openedAt;
+      }
+      var err = set(DRAFT_KEY, JSON.stringify(d));
       return err ? { ok: false, reason: err } : { ok: true };
     }
 
@@ -230,7 +250,7 @@
       return !L.readable && !L.failed;
     }
 
-    function save(identity, id) {
+    function save(identity, id, since) {
       var L = readList();
       if (L.failed) return { ok: false, reason: 'unavailable' };
       if (!L.readable) {
@@ -241,6 +261,9 @@
       var at = typeof id === 'string' ? items.findIndex(isId(id)) : -1;
       // Only a current, readable entry is ever replaced; anything else gets a new entry beside it.
       if (at !== -1 && describe(items[at]).status !== 'ok' && describe(items[at]).status !== 'ok-missing') at = -1;
+      // Changed since this page opened or saved it (another project's draft, another tab): never replaced.
+      var conflict = at !== -1 && (!isTime(since) || items[at].updatedAt !== since);
+      if (conflict) at = -1;
       var entry = {
         id: at === -1 ? newId(items) : items[at].id,
         name: identity.name,
@@ -250,7 +273,10 @@
       if (at === -1) items.push(entry);
       else items[at] = entry;
       var err = set(SAVED, JSON.stringify({ format: 1, items: items }));
-      return err ? { ok: false, reason: err } : { ok: true, id: entry.id, created: at === -1 };
+      if (err) return { ok: false, reason: err };
+      var out = { ok: true, id: entry.id, created: at === -1, updatedAt: entry.updatedAt };
+      if (conflict) out.conflict = true;
+      return out;
     }
 
     /*
@@ -266,7 +292,7 @@
       return out;
     }
     function draftSelections() {
-      var d = parse(get(DRAFT));
+      var d = parse(get(DRAFT_KEY));
       return selectionsIn(isObj(d) ? d.identity : null);
     }
     function entrySelections(id) {
@@ -278,7 +304,8 @@
       var item = readList().items.find(isId(id));
       if (!item) return { ok: false, reason: 'gone' };
       var u = usable(item.identity);
-      return u.choices ? { ok: true, choices: u.choices } : { ok: false, reason: u.reason };
+      if (!u.choices) return { ok: false, reason: u.reason };
+      return { ok: true, choices: u.choices, updatedAt: isTime(item.updatedAt) ? item.updatedAt : null };
     }
 
     function available() {

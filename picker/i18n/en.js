@@ -43,6 +43,8 @@
 
   'storage.unavailable':
     'This browser does not allow saving right now, so your choices will not stay after the page is closed. Choosing, previewing and exporting work as usual.',
+  'saved.portFallback':
+    'The save server is on a fallback port this time (its usual port is busy, perhaps by an earlier run that did not close), so the identities you saved in earlier sessions are not shown here. What you save now stays with this port only. Export works as usual.',
   'saved.title': 'My saved identities',
   'saved.nameLabel': 'Identity name',
   'saved.nameInvalid': 'Type a name with at least one visible character, without < or >, and at most 80 characters.',
@@ -59,6 +61,8 @@
     "The browser's storage is full, so the last change was not saved. Choosing and exporting work as usual.",
   'saved.failed': 'Could not save in this browser. Export is still available.',
   'saved.created': 'Saved “{name}”.',
+  'saved.conflictCopy':
+    'This saved identity was changed from another project or tab after you opened it here, so that version was kept as it is and “{name}” was saved as a new copy beside it.',
   'saved.updated': 'Updated “{name}”.',
   'saved.opened': 'Opened “{name}”. Your changes are saved automatically; press “Save” to update it in the list.',
   'saved.missing':

@@ -31,6 +31,7 @@
   var current = null; // { choices, identity }
   var ready = false;
   var openedId = null; // saved entry the user opened (Save updates it)
+  var openedAt = null; // when that entry was last changed, as this page knows it (task 3.0b)
   var els = {};
   var store = null;
   var noteParts = null; // [key, params] of the last panel message, redrawn on a language switch
@@ -55,6 +56,34 @@
     });
     // The user has decided nothing yet: every element is the starting point's, filled automatically.
     return { name: ready.name.ar, selections: selections, autoFilled: H.resolve.ELEMENTS.slice() };
+  }
+
+  /* Opened from the save server (http://127.0.0.1:<port>/#token=…&project=<id>, task 3.0a): the project id, so the
+     draft is kept per project while the saved identities are one list (task 3.0b, CHG-1 / R-101). As a file: null. */
+  var FIXED_PORT = '47821';
+  function fragment(name) {
+    var parts = location.hash.replace(/^#/, '').split('&');
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].indexOf(name + '=') === 0) return parts[i].slice(name.length + 1);
+    }
+    return null;
+  }
+  // Same rule as export.js and session.js: a token of 20 to 256 URL-safe characters, wherever it sits in the link.
+  function fromSaveServer() {
+    if (location.protocol !== 'http:' || location.hostname !== '127.0.0.1') return false;
+    return location.hash
+      .replace(/^#/, '')
+      .split('&')
+      .some(function (p) {
+        return /^token=[A-Za-z0-9_-]{20,256}$/.test(p);
+      });
+  }
+  // From the save server, a link without a valid project id gets a draft of its own ("unknown"): never the general
+  // draft of the page opened as a file.
+  function projectId() {
+    if (!fromSaveServer()) return null;
+    var id = fragment('project');
+    return id && /^[0-9a-f]{16}$/.test(id) ? id : 'unknown';
   }
 
   function browserStore() {
@@ -88,7 +117,7 @@
     current = { choices: choices, identity: identity };
     var kept = true;
     if (persist) {
-      var r = store.writeDraft(identity, openedId);
+      var r = store.writeDraft(identity, openedId, openedAt);
       if (!r.ok) {
         failed(r.reason);
         kept = false;
@@ -234,15 +263,18 @@
   }
 
   function onSave(asNew) {
-    var r = store.save(current.identity, asNew ? null : openedId);
+    var r = store.save(current.identity, asNew ? null : openedId, openedAt);
     if (!r.ok) {
       failed(r.reason);
       if (r.reason !== 'full') note('saved.failed');
       return;
     }
     openedId = r.id;
-    store.writeDraft(current.identity, openedId); // so Save keeps updating this entry after a reload
-    if (r.created) note('saved.created', { name: current.choices.name });
+    openedAt = r.updatedAt;
+    store.writeDraft(current.identity, openedId, openedAt); // so Save keeps updating this entry after a reload
+    // The entry changed elsewhere since it was opened here (another project or tab): kept, and this is a copy.
+    if (r.conflict) note('saved.conflictCopy', { name: current.choices.name });
+    else if (r.created) note('saved.created', { name: current.choices.name });
     else note('saved.updated', { name: current.choices.name });
     renderList();
   }
@@ -276,6 +308,7 @@
       return;
     }
     openedId = id;
+    openedAt = r.updatedAt;
     // If the draft could not be written, the failure notice stays: never claim it is saved.
     if (apply(r.choices, identity, true)) note('saved.opened', { name: r.choices.name });
     renderList();
@@ -308,9 +341,12 @@
       resolve: build,
       now: function () {
         return Date.now();
-      }
+      },
+      project: projectId()
     });
     showWarning(!store.available());
+    // On the fallback port the address differs from every earlier run: the identities saved then are not here.
+    document.getElementById('port-fallback').hidden = !(fromSaveServer() && location.port !== FIXED_PORT);
 
     // The draft may use templates outside the starter set: load their elements first (task 2.9). When nothing is
     // missing this runs at once, so the page is ready as soon as the scripts have run.
@@ -342,7 +378,10 @@
   function start() {
     var draft = store.readDraft();
     var choices = draft.status === 'ok' ? draft.choices : starterChoices();
-    if (draft.status === 'ok' && draft.openedId) openedId = draft.openedId;
+    if (draft.status === 'ok' && draft.openedId) {
+      openedId = draft.openedId;
+      openedAt = typeof draft.openedAt === 'number' ? draft.openedAt : null;
+    }
     apply(choices, build(choices), false);
     if (draft.status === 'unreadable') note('saved.draftUnreadable');
     if (store.listUnreadable()) note('saved.listUnreadable');

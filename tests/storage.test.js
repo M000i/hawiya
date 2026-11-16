@@ -119,7 +119,7 @@ test('save, list, open, update, and save as a new copy', () => {
   assert.deepEqual(s.list(), []);
   const a = choices('calm-corporate', 'مشروعي');
   const r1 = s.save(identity(a));
-  assert.deepEqual(r1, { ok: true, id: (1000).toString(36), created: true });
+  assert.deepEqual(r1, { ok: true, id: (1000).toString(36), created: true, updatedAt: 1000 });
   assert.deepEqual(s.list(), [{ id: r1.id, name: 'مشروعي', updatedAt: 1000, schemaVersion: 1, status: 'ok' }]);
   const opened = s.open(r1.id);
   assert.equal(opened.ok, true);
@@ -127,8 +127,9 @@ test('save, list, open, update, and save as a new copy', () => {
 
   clock.t = 2000;
   const b = { ...a, selections: { ...a.selections, radius: { template: 'radius-round' } } };
-  const r2 = s.save(identity(b), r1.id);
-  assert.deepEqual(r2, { ok: true, id: r1.id, created: false });
+  assert.equal(opened.updatedAt, 1000);
+  const r2 = s.save(identity(b), r1.id, opened.updatedAt); // the version this page opened (task 3.0b)
+  assert.deepEqual(r2, { ok: true, id: r1.id, created: false, updatedAt: 2000 });
   assert.equal(s.list().length, 1);
   assert.equal(s.list()[0].updatedAt, 2000);
   assert.equal(s.open(r1.id).choices.selections.radius.template, 'radius-round');
@@ -300,4 +301,114 @@ test('review fixes: failed reads never lead to overwrites; checked names; opened
   assert.equal(s4.listUnreadable(), true);
   s4.save(identity(choices()));
   assert.equal(s4.listUnreadable(), false);
+});
+
+/* ---------- task 3.0b (CHG-1, R-101): a draft per project from the save server; saved identities shared ---------- */
+
+function makeFor(store, project) {
+  return storage.create(store, {
+    check: (x) => validate.check('identity', x).valid,
+    resolve: (c) => resolve.resolve(c, DATA),
+    now: () => 1700000000000,
+    project
+  });
+}
+const A = '0123456789abcdef';
+const B = 'fedcba9876543210';
+
+test('3.0b: each project keeps its own draft; the saved identities are one list for all', () => {
+  const store = new FakeStore();
+  const a = makeFor(store, A);
+  const b = makeFor(store, B);
+  assert.equal(a.writeDraft(identity(choices('warm-friendly'))).ok, true);
+  assert.equal(b.readDraft().status, 'none', 'project B does not see project A’s draft');
+  assert.equal(a.readDraft().choices.selections.buttons.template, 'button-soft');
+  assert.deepEqual(a.draftSelections().buttons, { template: 'button-soft' });
+  assert.deepEqual(b.draftSelections(), {});
+  assert.ok(store.map.has(KEYS.draft + '.' + A));
+  assert.equal(store.map.has(KEYS.draft), false, 'the general draft is not written');
+  // Saved in project A, listed in project B.
+  const saved = a.save(identity(choices('warm-friendly', 'Shared')));
+  assert.equal(saved.ok, true);
+  assert.deepEqual(
+    b.list().map((i) => i.name),
+    ['Shared']
+  );
+  assert.equal(b.open(saved.id).ok, true);
+});
+
+test('3.0b: the old general draft is never read, replaced or deleted from a project page', () => {
+  const store = new FakeStore();
+  const general = make(store);
+  general.writeDraft(identity(choices('warm-friendly')));
+  const before = store.map.get(KEYS.draft);
+  const a = makeFor(store, A);
+  assert.equal(a.readDraft().status, 'none', 'another project’s (or the file page’s) draft is not opened here');
+  a.writeDraft(identity(choices()));
+  assert.equal(store.map.get(KEYS.draft), before);
+  assert.equal(general.readDraft().choices.selections.buttons.template, 'button-soft');
+});
+
+test('3.0b: an unreadable project draft is kept aside under its own name; other drafts are untouched', () => {
+  const store = new FakeStore({ [KEYS.draft + '.' + A]: '{not json', [KEYS.draft + '.' + B]: 'b' });
+  const a = makeFor(store, A);
+  assert.equal(a.readDraft().status, 'unreadable');
+  assert.equal(a.writeDraft(identity(choices())).ok, true);
+  const kept = [...store.map.keys()].filter((k) => k.startsWith(KEYS.draft + '.' + A + '.unreadable-'));
+  assert.equal(kept.length, 1);
+  assert.equal(store.map.get(kept[0]), '{not json');
+  assert.equal(store.map.get(KEYS.draft + '.' + B), 'b');
+});
+
+test('3.0b: a project id that is not 16 lowercase hex digits is not used as a key', () => {
+  for (const bad of ['', 'ABCDEF0123456789', '0123', '../hawiya.saved', 'saved', null, 7]) {
+    const store = new FakeStore();
+    makeFor(store, bad).writeDraft(identity(choices()));
+    assert.deepEqual([...store.map.keys()], [KEYS.draft], String(bad));
+  }
+});
+
+test('3.0b review: an entry changed since this page opened it is never replaced; the new version is a copy', () => {
+  const store = new FakeStore();
+  const clock = { t: 1700000000000 };
+  const mk = (project) =>
+    storage.create(store, {
+      check: (x) => validate.check('identity', x).valid,
+      resolve: (c) => resolve.resolve(c, DATA),
+      now: () => clock.t,
+      project
+    });
+  const a = mk(A);
+  const b = mk(B);
+  // Project A saves "Brand" and its draft remembers it.
+  const first = a.save(identity(choices('calm-corporate', 'Brand')));
+  a.writeDraft(identity(choices('calm-corporate', 'Brand')), first.id, first.updatedAt);
+  // Later, project B opens it, changes it and saves over it (it knows the right version).
+  clock.t += 1000;
+  const opened = b.open(first.id);
+  assert.equal(opened.updatedAt, first.updatedAt);
+  const fromB = b.save(identity(choices('warm-friendly', 'Brand')), first.id, opened.updatedAt);
+  assert.deepEqual([fromB.created, fromB.conflict], [false, undefined]);
+  // Back in project A: its draft still points at the old version; Save keeps B's and adds a copy.
+  clock.t += 1000;
+  const d = a.readDraft();
+  assert.deepEqual([d.openedId, d.openedAt], [first.id, first.updatedAt]);
+  const fromA = a.save(identity(choices('calm-corporate', 'Brand')), d.openedId, d.openedAt);
+  assert.deepEqual([fromA.ok, fromA.created, fromA.conflict], [true, true, true]);
+  assert.notEqual(fromA.id, first.id);
+  const items = savedRaw(store).items;
+  assert.equal(items.length, 2);
+  assert.equal(items.find((i) => i.id === first.id).identity.selections.buttons.template, 'button-soft');
+  // With the right version, Save updates in place, again and again.
+  const again = a.save(identity(choices('calm-corporate', 'Brand 2')), fromA.id, fromA.updatedAt);
+  assert.deepEqual([again.id, again.created, again.conflict], [fromA.id, false, undefined]);
+  // An older draft that never recorded the version (before this change) gets a copy too.
+  const legacy = a.save(identity(choices('calm-corporate', 'Brand 3')), fromA.id);
+  assert.deepEqual([legacy.created, legacy.conflict], [true, true]);
+});
+
+test('3.0b review: from the save server without a valid project id, a draft of its own, never the general one', () => {
+  const store = new FakeStore();
+  makeFor(store, 'unknown').writeDraft(identity(choices()));
+  assert.deepEqual([...store.map.keys()], [KEYS.draft + '.unknown']);
 });
