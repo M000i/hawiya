@@ -27,7 +27,14 @@
     // Rules the tool puts on the host element itself win over :host, so the scene resets what it would inherit.
     '  font-style: normal; font-weight: 400; letter-spacing: normal; word-spacing: normal; text-transform: none;',
     '  text-align: start; text-indent: 0; white-space: normal; visibility: visible; }',
-    '.scene *, .scene *::before, .scene *::after { box-sizing: border-box; }'
+    '.scene *, .scene *::before, .scene *::after { box-sizing: border-box; }',
+    // Icons (task 2.12): sized to the text; meanings in the mirror list turn around in right-to-left text (R-093).
+    '.hw-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; inline-size: 1.25em; block-size: 1.25em; vertical-align: -0.25em; }',
+    '.hw-icon svg { inline-size: 100%; block-size: 100%; }',
+    '.hw-icon--circle, .hw-icon--square, .hw-icon--rounded { inline-size: 2em; block-size: 2em; padding: 0.4em; background: var(--color-surface); border: 1px solid var(--color-border); }',
+    '.hw-icon--circle { border-radius: 50%; }',
+    '.hw-icon--rounded { border-radius: var(--radius-md); }',
+    '[dir="rtl"] .hw-icon[data-mirror="true"] svg { transform: scaleX(-1); }'
   ].join('\n');
 
   var host = null;
@@ -139,6 +146,19 @@
           } catch (e) {
             return String(n);
           }
+        },
+        icon: function (meaning) {
+          var tpl = template('icons', identity.selections.icons && identity.selections.icons.template);
+          var ext = identity.extensions;
+          var node =
+            tpl && H.icons
+              ? H.icons.render(tpl, meaning, {
+                  fill: ext.icons.fill,
+                  container: ext.icons.container,
+                  mirror: ext.rtl.mirror
+                })
+              : null;
+          return node || el('span', 'hw-icon');
         },
         button: function (label) {
           return button ? fromRecipe(button.recipe, { label: label }) : el('button', null, label);

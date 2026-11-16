@@ -21,7 +21,11 @@
       ],
       card: ['أنجزت 3 من 5', 'استمر، بقي القليل.'],
       action: 'أضف مهمة',
-      tabs: ['الرئيسية', 'المهام', 'الحساب']
+      tabs: [
+        ['home', 'الرئيسية'],
+        ['check', 'المهام'],
+        ['user', 'الحساب']
+      ]
     },
     en: {
       time: '9:41',
@@ -33,7 +37,11 @@
       ],
       card: ['3 of 5 done', 'Keep going, almost there.'],
       action: 'Add a task',
-      tabs: ['Home', 'Tasks', 'Account']
+      tabs: [
+        ['home', 'Home'],
+        ['check', 'Tasks'],
+        ['user', 'Account']
+      ]
     }
   };
 
@@ -49,7 +57,9 @@
     '.sc-list small { color: var(--color-muted-text); white-space: nowrap; }',
     '.sc-body .hw-btn { inline-size: 100%; }',
     '.sc-tabs { display: flex; justify-content: space-around; padding-block: var(--space-2); border-block-start: 1px solid var(--color-border); font-size: var(--sc-small); color: var(--color-muted-text); }',
-    '.sc-tabs span[aria-current] { color: var(--color-accent-text); font-weight: 700; }'
+    '.sc-tabs span { display: grid; justify-items: center; gap: 2px; }',
+    '.sc-tabs span[aria-current] { color: var(--color-accent-text); font-weight: 700; }',
+    '.sc-appbar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }'
   ].join('\n');
 
   function render(ctx) {
@@ -64,6 +74,7 @@
 
     var bar = el('header', 'sc-appbar');
     bar.appendChild(el('h2', null, T.title));
+    bar.appendChild(ctx.icon('bell'));
     phone.appendChild(bar);
 
     var body = el('div', 'sc-body');
@@ -80,8 +91,10 @@
     phone.appendChild(body);
 
     var tabs = el('nav', 'sc-tabs');
-    T.tabs.forEach(function (label, i) {
-      var t = el('span', null, label);
+    T.tabs.forEach(function (tab, i) {
+      var t = el('span');
+      t.appendChild(ctx.icon(tab[0]));
+      t.appendChild(el('span', null, tab[1]));
       if (i === 0) t.setAttribute('aria-current', 'page');
       tabs.appendChild(t);
     });

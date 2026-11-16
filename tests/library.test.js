@@ -40,7 +40,10 @@ const dimPx = (tok) => {
 test('every element has 2-3 reviewed templates and both identities are published', () => {
   for (const e of build.ELEMENTS) {
     const list = lib.templates[e];
-    assert.ok(list.length >= 2 && list.length <= (e === 'fonts' ? 5 : 3), `${e}: ${list.length} templates`);
+    assert.ok(
+      list.length >= 2 && list.length <= (e === 'fonts' || e === 'icons' ? 5 : 3),
+      `${e}: ${list.length} templates`
+    );
     assert.equal(sel.data.templates[e].length, list.length, `${e}: every starter template is reviewed`);
   }
   assert.deepEqual(sel.data.identities.map((i) => i.id).sort(), ['calm-corporate', 'warm-friendly']);
@@ -253,5 +256,35 @@ test('picker/data is exactly what the library builds to', () => {
     }
   } finally {
     fs.rmSync(out, { recursive: true, force: true });
+  }
+});
+
+test('every icons template carries the same 14 sample meanings, as plain SVG shapes only (task 2.12)', () => {
+  const icons = require('../tools/icons-extract.js');
+  const meanings = icons.MEANINGS.map((m) => m[0]);
+  assert.ok(meanings.length >= 12 && meanings.length <= 16, 'sample of 12 to 16 icons per set');
+  for (const t of lib.templates.icons) {
+    assert.match(t.extras.viewBox, /^0 0 \d+ \d+$/, t.id);
+    assert.ok(t.extras.samples.outline, `${t.id}: outline samples`);
+    for (const [fill, list] of Object.entries(t.extras.samples)) {
+      assert.ok(['outline', 'filled', 'duotone'].includes(fill), `${t.id}: ${fill}`);
+      assert.deepEqual(
+        list.map((s) => s.meaning),
+        meanings,
+        `${t.id} ${fill}`
+      );
+      for (const s of list) icons.check(s.body, `${t.id} ${s.meaning}`); // throws on anything outside the allow-list
+    }
+  }
+  // The allow-list refuses what could run or load something.
+  for (const bad of [
+    '<script>x</script>',
+    '<path d="M0" onclick="x()"/>',
+    '<image href="a.png"/>',
+    '<path fill="url(#a)"/>',
+    '<path d="M0"/>text',
+    '<use href="#a"/>'
+  ]) {
+    assert.throws(() => icons.check(bad, 'test'), /not allowed|outside|unexpected/, bad);
   }
 });

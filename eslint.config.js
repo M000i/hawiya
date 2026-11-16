@@ -24,6 +24,7 @@ const browser = {
   performance: 'readonly',
   IntersectionObserver: 'readonly',
   innerHeight: 'readonly',
+  DOMParser: 'readonly',
   Event: 'readonly',
   getComputedStyle: 'readonly',
   TextEncoder: 'readonly',

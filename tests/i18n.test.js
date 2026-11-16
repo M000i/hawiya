@@ -25,7 +25,8 @@ const UI = [
   'picker/js/ui/gallery.js',
   'picker/js/ui/elements/numeric.js',
   'picker/js/ui/elements/colors.js',
-  'picker/js/ui/elements/fonts.js'
+  'picker/js/ui/elements/fonts.js',
+  'picker/js/ui/elements/icons.js'
 ];
 
 test('Arabic and English have the same keys, non-empty texts and the same placeholders', () => {

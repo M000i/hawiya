@@ -20,6 +20,7 @@
       lead: 'خطط مهامك، وتابع التقدم، وشارك النتائج مع فريقك في دقائق، بالعربي ومن اليمين لليسار.',
       primary: 'ابدأ مجانًا',
       secondary: 'شاهد كيف يعمل',
+      points: ['جاهز في دقيقة', 'بلا بطاقة دفع'],
       cards: [
         ['تخطيط واضح', 'قسّم العمل إلى مهام صغيرة وحدّد لكل مهمة موعدًا ومسؤولًا.'],
         ['تقارير فورية', 'أرقام التقدم تتحدث مع كل تغيير، بلا جداول يدوية.'],
@@ -34,6 +35,7 @@
       lead: 'Plan tasks, follow progress and share results with your team in minutes.',
       primary: 'Start for free',
       secondary: 'See how it works',
+      points: ['Ready in a minute', 'No card needed'],
       cards: [
         ['Clear planning', 'Split work into small tasks, each with a date and an owner.'],
         ['Live reports', 'Progress numbers update with every change, no manual sheets.'],
@@ -54,7 +56,10 @@
     '.sc-hero h1 { margin: 0; font-family: var(--font-heading); font-size: var(--sc-h1); line-height: 1.25; color: var(--color-on-surface); }',
     '.sc-lead { margin: 0; font-size: var(--sc-body); color: var(--color-muted-text); }',
     '.sc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-block-start: var(--space-2); }',
-    '.sc-link { color: var(--color-accent-text); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }',
+    '.sc-link { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-accent-text); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }',
+    '.sc-points { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin: 0; padding: 0; list-style: none; font-size: var(--sc-small); color: var(--color-muted-text); }',
+    '.sc-points li { display: inline-flex; align-items: center; gap: var(--space-1); }',
+    '.sc-points .hw-icon { color: var(--color-success); }',
     '.sc-cards { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }',
     '.sc-footer { padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-border); font-size: var(--sc-small); color: var(--color-muted-text); }'
   ].join('\n');
@@ -80,9 +85,21 @@
     hero.appendChild(el('span', 'sc-badge', T.badge));
     hero.appendChild(el('h1', null, T.title));
     hero.appendChild(el('p', 'sc-lead', T.lead));
+    var points = el('ul', 'sc-points');
+    T.points.forEach(function (p) {
+      var li = el('li');
+      li.appendChild(ctx.icon('check'));
+      li.appendChild(el('span', null, p));
+      points.appendChild(li);
+    });
+    hero.appendChild(points);
     var actions = el('div', 'sc-actions');
     actions.appendChild(ctx.button(T.primary));
-    actions.appendChild(el('span', 'sc-link', T.secondary));
+    var link = el('span', 'sc-link');
+    link.setAttribute('data-next', 'true');
+    link.appendChild(el('span', null, T.secondary));
+    link.appendChild(ctx.icon('arrow'));
+    actions.appendChild(link);
     hero.appendChild(actions);
     root.appendChild(hero);
 

@@ -15,11 +15,14 @@
     "test:golden": "node --test tests/golden.test.js",
     "test:e2e": "playwright test",
     "lint": "eslint",
-    "format:check": "prettier --check picker/i18n picker/js/ui picker/index.html picker/css tests/e2e tests/i18n.test.js playwright.config.js eslint.config.js picker/js/core/resolve.js tests/resolve.test.js tests/storage.test.js picker/scenes tests/preview.test.js"
+    "format:check": "prettier --check picker/i18n picker/js/ui picker/index.html picker/css tests/e2e tests/i18n.test.js playwright.config.js eslint.config.js picker/js/core/resolve.js tests/resolve.test.js tests/storage.test.js picker/scenes tests/preview.test.js tools/icons-extract.js"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@google/design.md": "0.4.0",
+    "@iconify-json/lucide": "1.2.155",
+    "@iconify-json/ph": "1.2.2",
+    "@iconify-json/tabler": "1.2.46",
     "@playwright/test": "1.65.1",
     "ajv": "8.20.0",
     "culori": "4.0.2",
