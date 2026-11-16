@@ -23,6 +23,8 @@ const browser = {
   NodeFilter: 'readonly',
   performance: 'readonly',
   IntersectionObserver: 'readonly',
+  history: 'readonly',
+  CSS: 'readonly',
   innerHeight: 'readonly',
   DOMParser: 'readonly',
   Event: 'readonly',
@@ -86,6 +88,11 @@ module.exports = [
     files: ['tools/**/*.js', 'scripts/**/*.js', 'tests/**/*.js', '*.js'],
     languageOptions: { sourceType: 'commonjs', ecmaVersion: 2024, globals: node },
     rules: { 'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }] }
+  },
+  {
+    // The library review page (task 3.4) runs in the browser, like the picker.
+    files: ['tools/review/**/*.js'],
+    languageOptions: { sourceType: 'script', ecmaVersion: 2020, globals: browser }
   },
   {
     // Tests feed numbers beyond double precision and rethrow with their own messages on purpose.

@@ -1,0 +1,224 @@
+:root {
+  --r-bg: #f7f7f8;
+  --r-surface: #ffffff;
+  --r-text: #18181b;
+  --r-muted: #52525b;
+  --r-border: #d4d4d8;
+  --r-accent: #1d4ed8;
+  --r-ok: #166534;
+  --r-ok-bg: #dcfce7;
+  --r-draft: #92400e;
+  --r-draft-bg: #fef3c7;
+  --r-bad: #991b1b;
+  --r-bad-bg: #fee2e2;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --r-bg: #18181b;
+    --r-surface: #27272a;
+    --r-text: #f4f4f5;
+    --r-muted: #d4d4d8;
+    --r-border: #52525b;
+    --r-accent: #93c5fd;
+    --r-ok: #bbf7d0;
+    --r-ok-bg: #14532d;
+    --r-draft: #fde68a;
+    --r-draft-bg: #78350f;
+    --r-bad: #fecaca;
+    --r-bad-bg: #7f1d1d;
+    color-scheme: dark;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding-block: 16px 48px;
+  padding-inline: 16px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  background: var(--r-bg);
+  color: var(--r-text);
+}
+:focus-visible {
+  outline: 3px solid var(--r-accent);
+  outline-offset: 2px;
+}
+.r-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+.r-head h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.r-counts {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+}
+.r-count {
+  padding-block: 2px;
+  padding-inline: 10px;
+  border-radius: 999px;
+}
+.r-count--reviewed {
+  background: var(--r-ok-bg);
+  color: var(--r-ok);
+}
+.r-count--drafts {
+  background: var(--r-draft-bg);
+  color: var(--r-draft);
+}
+.r-lang,
+.r-tab,
+.r-btn {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--r-border);
+  background: var(--r-surface);
+  color: var(--r-text);
+  border-radius: 8px;
+  padding-block: 6px;
+  padding-inline: 12px;
+}
+.r-lang {
+  margin-inline-start: auto;
+}
+.r-hint {
+  color: var(--r-muted);
+  margin-block: 8px 12px;
+}
+.r-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-end: 12px;
+}
+.r-tab[aria-current='true'] {
+  border-color: var(--r-accent);
+  box-shadow: inset 0 0 0 1px var(--r-accent);
+}
+.r-tab small {
+  color: var(--r-muted);
+}
+.r-message:empty {
+  display: none;
+}
+.r-message {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--r-surface);
+  border: 1px solid var(--r-border);
+}
+.r-message[data-kind='bad'] {
+  background: var(--r-bad-bg);
+  color: var(--r-bad);
+}
+.r-list {
+  display: grid;
+  gap: 16px;
+}
+.r-card {
+  background: var(--r-surface);
+  border: 1px solid var(--r-border);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.r-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+.r-card-head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.r-id,
+.r-meta {
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
+.r-id {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: ui-monospace, monospace;
+}
+.r-status {
+  padding-block: 0;
+  padding-inline: 8px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+.r-status[data-state='reviewed'] {
+  background: var(--r-ok-bg);
+  color: var(--r-ok);
+}
+.r-status[data-state='draft'] {
+  background: var(--r-draft-bg);
+  color: var(--r-draft);
+}
+.r-actions {
+  display: flex;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+.r-btn[data-action='approve'] {
+  border-color: var(--r-ok);
+}
+.r-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.r-problems {
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--r-bad-bg);
+  color: var(--r-bad);
+}
+.r-problems ul {
+  margin: 4px 0 0;
+  padding-inline-start: 20px;
+}
+.r-extra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.r-extra .hw-icon {
+  inline-size: 24px;
+  block-size: 24px;
+  display: inline-flex;
+}
+.r-extra .hw-icon svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+.r-states {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+  gap: 12px;
+}
+.r-state {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+.r-state figcaption {
+  font-size: 0.85rem;
+  color: var(--r-muted);
+}
+.r-scene {
+  display: block;
+  zoom: 0.5;
+  min-block-size: 200px;
+}

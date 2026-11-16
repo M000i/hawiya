@@ -131,12 +131,11 @@
     return { '--sc-small': at(-1), '--sc-body': at(0), '--sc-h3': at(1), '--sc-h2': at(2), '--sc-h1': at(3) };
   }
 
-  function draw() {
-    if (!shadow || !identity) return;
-    var scene = H.scenes && H.scenes[sceneName];
-    if (!scene) return;
-    var L = lang();
-    var M = mode();
+  /* The nodes of one scene for an identity, a language and a mode: [style, scene]. Shared with the library review
+     page (tools/review/), which draws every template in the four states (R-065). */
+  function sceneNodes(identity, L, M, name) {
+    var scene = H.scenes && H.scenes[name];
+    if (!scene || !identity) return null;
     var button = template('buttons', identity.extensions.components.button);
     var card = template('cards', identity.extensions.components.card);
 
@@ -147,7 +146,7 @@
     wrap.setAttribute('dir', L === 'ar' ? 'rtl' : 'ltr');
     wrap.setAttribute('lang', L);
     wrap.setAttribute('data-mode', M);
-    wrap.setAttribute('data-scene', sceneName);
+    wrap.setAttribute('data-scene', name);
     wrap.style.colorScheme = M;
     H.generate.cssVariables(identity, M).forEach(function (p) {
       wrap.style.setProperty(p[0], p[1]);
@@ -196,9 +195,18 @@
       })
     );
 
+    return [style, wrap];
+  }
+
+  function draw() {
+    if (!shadow || !identity) return;
+    var L = lang();
+    var M = mode();
+    var nodes = sceneNodes(identity, L, M, sceneName);
+    if (!nodes) return;
     shadow.textContent = '';
-    shadow.appendChild(style);
-    shadow.appendChild(wrap);
+    shadow.appendChild(nodes[0]);
+    shadow.appendChild(nodes[1]);
     host.setAttribute('data-lang', L);
     host.setAttribute('data-mode', M);
     document.dispatchEvent(new CustomEvent('hawiya:preview', { detail: { lang: L, mode: M, scene: sceneName } }));
@@ -230,6 +238,7 @@
     },
     // The gallery's button and card samples draw recipes the same way (elements/components.js).
     fromRecipe: fromRecipe,
+    sceneNodes: sceneNodes,
     lang: lang,
     mode: mode,
     scene: function () {
