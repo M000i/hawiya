@@ -27,10 +27,17 @@
  *                   token names and values: logical properties (start / end) only (R-092)
  *   recipe          the recipe allow-list (picker/js/core/recipe.js): no script, no outside request
  *   identity        a ready identity names a template of the right element for every element
+ *   license         (task 3.2, R-064) every template names a source recorded in sources.json, with the same
+ *                   address and license; every license (template, source, "also" parts) is on the allowed list;
+ *                   nothing (template source, address, icon library, font names, sources.json entry) matches a
+ *                   forbidden source of licenses.json; extras.sources ids exist; every source is used; every license
+ *                   a third-party source uses has its full text (the notices print it); both files have their shape
+ *   notices         THIRD_PARTY_NOTICES.md is exactly what `npm run notices` makes from sources.json and
+ *                   licenses.json (checked when both files are sound)
  *   data            picker/data is exactly what `npm run build` makes from the library (only checked when the
  *                   library itself has no problem, since the build refuses a library with problems)
  *
- * Licenses and sources (task 3.2) and the two-axis difference (task 3.3) are added to this file by their tasks.
+ * The two-axis difference (task 3.3) is added to this file by its task.
  */
 
 const fs = require('node:fs');
@@ -40,6 +47,7 @@ const validate = require('../picker/js/core/validate.js');
 const recipe = require('../picker/js/core/recipe.js');
 const rules = require('../picker/js/core/rules.js');
 const SCHEMAS = require('../picker/js/core/schemas.js');
+const notices = require('./notices.js');
 
 const ROOT = path.join(__dirname, '..');
 const ELEMENTS = build.ELEMENTS;
@@ -471,11 +479,16 @@ function recipePairs(html, css) {
 
 /* ---------- the check ---------- */
 
-function check({ libraryDir = path.join(ROOT, 'library'), dataDir = path.join(ROOT, 'picker', 'data') } = {}) {
+function check({
+  libraryDir = path.join(ROOT, 'library'),
+  dataDir = path.join(ROOT, 'picker', 'data'),
+  noticesFile = path.join(ROOT, 'THIRD_PARTY_NOTICES.md')
+} = {}) {
   const problems = [];
   const add = (kind, file, template, message) => problems.push({ kind, file, template, message });
-  const counts = { templates: 0, reviewed: 0, drafts: 0, identities: 0, pairs: 0, dataFiles: 0 };
-  const result = { problems, counts, dataChecked: false, libraryDir, dataDir };
+  const counts = { templates: 0, reviewed: 0, drafts: 0, identities: 0, pairs: 0, dataFiles: 0, sources: 0 };
+  const result = { problems, counts, dataChecked: false, noticesChecked: false, libraryDir, dataDir, noticesFile };
+  const valid = []; // { file, label, t } for every template that passed the schema (license checks below)
   const io = (list, kind = 'structure') => list.splice(0).forEach((p) => add(kind, null, null, p));
   const raw = [];
 
@@ -540,7 +553,7 @@ function check({ libraryDir = path.join(ROOT, 'library'), dataDir = path.join(RO
     for (const e of result.errors) {
       // The top-level field the error is about: /name/en → name; a missing top-level field → that field.
       const field = e.instancePath.split('/')[1] || (e.params && e.params.missingProperty) || '';
-      const kind = field === 'id' ? 'id' : field === 'name' ? 'names' : field === 'tags' ? 'tags' : 'schema';
+      const kind = { id: 'id', name: 'names', tags: 'tags', source: 'license' }[field] || 'schema';
       say(kind, `${e.instancePath || '/'} ${e.message}`);
     }
     nameProblems(t.name).forEach((m) => say('names', m));
@@ -551,6 +564,7 @@ function check({ libraryDir = path.join(ROOT, 'library'), dataDir = path.join(RO
     if (typeof t.element === 'string' && t.element !== element)
       say('structure', `says element "${t.element}" but is in ${file}`);
     if (!result.valid) return; // the deeper checks need the template's shape
+    valid.push({ file, label, t });
     if ((t.element === 'buttons' || t.element === 'cards') && t.kind !== 'composite')
       say('schema', `a ${t.element.slice(0, -1)} is a composite template with a recipe (kind is "${t.kind}")`);
 
@@ -629,6 +643,14 @@ function check({ libraryDir = path.join(ROOT, 'library'), dataDir = path.join(RO
     }
   }
 
+  licenseProblems(libraryDir, valid, add, counts);
+  // THIRD_PARTY_NOTICES.md: only sound sources and licenses can be rendered.
+  if (!problems.some((p) => p.kind === 'license' && (p.file === 'sources.json' || p.file === 'licenses.json'))) {
+    const n = noticesProblem(libraryDir, noticesFile);
+    if (n !== undefined) result.noticesChecked = true;
+    if (n) add('notices', path.basename(noticesFile), null, n);
+  }
+
   // Ready identities.
   const identitiesDir = path.join(libraryDir, 'identities');
   if (fs.existsSync(identitiesDir)) {
@@ -685,6 +707,211 @@ function check({ libraryDir = path.join(ROOT, 'library'), dataDir = path.join(RO
     }
   }
   return result;
+}
+
+/* ---------- licenses and sources (task 3.2) ---------- */
+
+// The shapes of sources.json and licenses.json live in notices.js, which also refuses to render without them.
+const { checkSources, checkLicenses, OWN_ID } = notices;
+const ICONIFY = /iconify|icones\.js\.org/i;
+// System font names a font stack may end with: they name the device's own font and ship nothing.
+const SYSTEM_FONTS = new Set(['apple color emoji', 'blinkmacsystemfont', 'segoe ui emoji', 'segoe ui symbol']);
+
+// Lower-case words: "Remix-Design/RemixIcon" → " remix design remixicon ". Keywords match whole words, so "SF Pro"
+// is found in "SF Pro Text" and "Apple" in "developer.apple.com", but "apple" is not in "Pineapple".
+const words = (v) =>
+  ' ' +
+  String(v)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim() +
+  ' ';
+
+// The copyright line of the project's LICENSE.
+function ownCopyright() {
+  try {
+    return (fs.readFileSync(path.join(ROOT, 'LICENSE'), 'utf8').match(/^Copyright .+$/m) || [''])[0];
+  } catch {
+    return '';
+  }
+}
+
+// The forbidden source a text names, or null. Each keyword is matched inside each text on its own; an id (an icon
+// library or Iconify prefix such as "ri") only when the whole id-like value is that id.
+function forbiddenIn(texts, forbidden, ids = []) {
+  for (const f of forbidden) {
+    const keys = f.match.map(words).filter((k) => k.trim().length >= 3);
+    for (const text of texts) {
+      if (typeof text !== 'string' || !text) continue;
+      const w = words(text);
+      if (keys.some((k) => w.includes(k))) return f.name;
+    }
+    const exact = (f.ids || []).map((x) => x.toLowerCase());
+    if (ids.some((v) => typeof v === 'string' && exact.includes(v.toLowerCase()))) return f.name;
+  }
+  return null;
+}
+
+// An Iconify copy (its sites, its @iconify-json packages on npm or a CDN, its icon-sets repository): not the set's
+// own repository, so its license label is not to be trusted (spec.md §9).
+const iconify = (url) => typeof url === 'string' && ICONIFY.test(url);
+
+// Extras that are not names: the copied SVG samples and free text, which may mention a forbidden source in passing.
+const PROSE = new Set(['samples', 'viewBox', 'note', 'notes', 'description']);
+const systemFont = (f) => f.startsWith('-') || SYSTEM_FONTS.has(f.trim().toLowerCase());
+
+// Every name a template gives for where it comes from: source, address, every text in extras (icon library, font
+// names, palette name, ...; not the copied SVG samples), font families. System font names are left out.
+function originTexts(t) {
+  const out = [t.source.name, t.source.url];
+  const stack = [isObject(t.extras) ? t.extras : {}];
+  while (stack.length) {
+    const v = stack.pop();
+    if (typeof v === 'string') {
+      if (!systemFont(v)) out.push(v);
+    } else if (Array.isArray(v)) stack.push(...v);
+    else if (isObject(v)) for (const [k, x] of Object.entries(v)) if (!PROSE.has(k)) stack.push(x);
+  }
+  const fonts = isObject(t.tokens) && isObject(t.tokens.font) ? t.tokens.font : {};
+  for (const tok of Object.values(fonts)) {
+    if (!isObject(tok)) continue;
+    const v = tok.$value;
+    out.push(...(Array.isArray(v) ? v : [v]).filter((f) => typeof f === 'string' && !systemFont(f)));
+  }
+  return out;
+}
+// The id-like values of a template: its icon library and the source ids it names.
+function originIds(t) {
+  const x = isObject(t.extras) ? t.extras : {};
+  return [x.library].concat(Array.isArray(x.sources) ? x.sources : []);
+}
+
+function licenseProblems(libraryDir, valid, add, counts) {
+  const raw = [];
+  const read = (name) => {
+    const file = path.join(libraryDir, name);
+    if (!fs.existsSync(file)) {
+      add('license', name, null, 'missing');
+      return undefined;
+    }
+    const v = build.readJson(file, raw);
+    raw.splice(0).forEach((p) => add('license', name, null, p));
+    return v;
+  };
+  const sources = read('sources.json');
+  const licenses = read('licenses.json');
+  let sourcesOk = sources !== undefined;
+  let licensesOk = licenses !== undefined;
+  if (sourcesOk) {
+    const r = checkSources(sources);
+    r.errors.forEach((e) => add('license', 'sources.json', null, `${e.instancePath || '/'} ${e.message}`));
+    sourcesOk = r.valid;
+  }
+  if (licensesOk) {
+    const r = checkLicenses(licenses);
+    r.errors.forEach((e) => add('license', 'licenses.json', null, `${e.instancePath || '/'} ${e.message}`));
+    licensesOk = r.valid;
+  }
+  if (!sourcesOk || !licensesOk) {
+    // Without both files no template can be judged: say so once for each, never pass them silently.
+    valid.forEach(({ file, label }) =>
+      add('license', file, label, 'cannot be checked: sources.json or licenses.json is not sound')
+    );
+    return;
+  }
+  counts.sources = sources.length;
+
+  const allowed = new Map();
+  licenses.allowed.forEach((l, i) => {
+    if (allowed.has(l.id)) add('license', 'licenses.json', l.id, `allowed[${i}]: "${l.id}" is listed twice`);
+    if (l.text && l.text.join('').replace(/\s/g, '').length < 200)
+      add('license', 'licenses.json', l.id, 'the license text is too short to be the full text');
+    allowed.set(l.id, l);
+  });
+  const forbidden = licenses.forbiddenSources;
+
+  const byName = new Map();
+  const byId = new Map();
+  const used = new Set();
+  let own = 0;
+  for (const s of sources) {
+    const say = (m) => add('license', 'sources.json', s.id, m);
+    if (byId.has(s.id)) say(`id "${s.id}" is listed twice`);
+    if (byName.has(s.name)) say(`name "${s.name}" is listed twice`);
+    byId.set(s.id, s);
+    byName.set(s.name, s);
+    // Only the project's own entry may be "own" (left out of the notices), and it must say so.
+    if (s.own) own++;
+    if (s.own && s.id !== OWN_ID)
+      say(`only the project's own entry ("${OWN_ID}") may be "own"; this one is third-party`);
+    if (!s.own && s.id === OWN_ID) say('the project\'s own entry must have "own": true');
+    if (s.own && s.id === OWN_ID && !(s.name === 'Hawiya' && s.license === 'MIT' && s.copyright[0] === ownCopyright()))
+      say("the project's own entry must be named Hawiya, under MIT, with the copyright line of LICENSE");
+    for (const k of ['url', 'licenseFile'])
+      if (iconify(s[k])) say(`${k} is an Iconify page; record the set's own repository and license file`);
+    const parts = [{ license: s.license, where: '' }].concat(
+      (s.also || []).map((a, i) => ({ license: a.license, where: ` (also[${i}])` }))
+    );
+    for (const p of parts) {
+      const l = allowed.get(p.license);
+      if (!l) say(`license "${p.license}"${p.where} is not on the allowed list of licenses.json`);
+      else if (!s.own && !l.text)
+        say(`license "${p.license}"${p.where} has no text in licenses.json, so the notices cannot print it`);
+    }
+    const hit = forbiddenIn([s.id, s.name, s.url, s.licenseFile], forbidden, [s.id]);
+    if (hit) say(`is the forbidden source "${hit}" (licenses.json)`);
+  }
+  if (own > 1) add('license', 'sources.json', null, 'only the project itself is "own"');
+
+  for (const { file, label, t } of valid) {
+    const say = (m) => add('license', file, label, m);
+    const src = byName.get(t.source.name);
+    if (!allowed.has(t.source.license))
+      say(`license "${t.source.license}" is not on the allowed list of licenses.json`);
+    if (!src) say(`source "${t.source.name}" is not in sources.json (record it after reading its license file)`);
+    else {
+      used.add(src.id);
+      if (t.source.url !== src.url) say(`source address ${t.source.url} differs from sources.json (${src.url})`);
+      if (t.source.license !== src.license)
+        say(`license "${t.source.license}" differs from sources.json ("${src.license}")`);
+    }
+    const extra = isObject(t.extras) ? t.extras.sources : undefined;
+    if (extra !== undefined) {
+      if (!Array.isArray(extra) || !extra.every((x) => typeof x === 'string'))
+        say('extras.sources must be a list of source ids');
+      else
+        for (const id of extra) {
+          if (!byId.has(id)) say(`extras.sources: "${id}" is not in sources.json`);
+          else used.add(id);
+        }
+    }
+    if (iconify(t.source.url)) say("source address is an Iconify page; name the set's own repository");
+    const hit = forbiddenIn(originTexts(t), forbidden, originIds(t));
+    if (hit) say(`comes from the forbidden source "${hit}" (licenses.json)`);
+  }
+  for (const s of sources) {
+    if (!used.has(s.id) && !s.own)
+      add('license', 'sources.json', s.id, 'no template uses this source; remove it or use it');
+  }
+}
+
+// undefined: could not render (sources or licenses not sound); '' : matches; else the problem.
+function noticesProblem(libraryDir, noticesFile) {
+  let want;
+  try {
+    const { sources, licenses } = notices.load(libraryDir);
+    want = notices.render(sources, licenses);
+  } catch (e) {
+    if (e instanceof notices.NoticesError) return undefined;
+    throw e;
+  }
+  let have;
+  try {
+    have = fs.readFileSync(noticesFile, 'utf8');
+  } catch {
+    return 'missing; run npm run notices';
+  }
+  return have === want ? '' : 'differs from what sources.json and licenses.json give; run npm run notices';
 }
 
 // The JSON a generated data file carries (its last argument), or undefined.
@@ -769,6 +996,8 @@ const KINDS = [
   'logical',
   'recipe',
   'identity',
+  'license',
+  'notices',
   'data'
 ];
 
@@ -779,7 +1008,10 @@ function report(result) {
   const scope = `${counts.templates} templates (${counts.reviewed} reviewed, ${counts.drafts} drafts), ${counts.identities} identities`;
   if (!problems.length) {
     lines.push(`  checked: ${KINDS.join(', ')}`);
-    lines.push(`  ${counts.pairs} contrast checks; picker/data matches the library (${counts.dataFiles} files)`);
+    lines.push(`  ${counts.pairs} contrast checks; ${counts.sources} sources, licenses allowed, none forbidden`);
+    lines.push(
+      `  THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (${counts.dataFiles} files)`
+    );
     lines.push(
       `نجاح: فُحص ${counts.templates} تمبلت (${counts.reviewed} مراجَع، ${counts.drafts} مسودة) و ${counts.identities} هوية بلا أي مخالفة`
     );
@@ -791,6 +1023,8 @@ function report(result) {
     const where = [p.file, p.template].filter(Boolean).join(' › ');
     lines.push(`  ✗ [${p.kind}] ${where ? where + ': ' : ''}${p.message}`);
   }
+  if (!result.noticesChecked)
+    lines.push('  (THIRD_PARTY_NOTICES.md is compared once sources.json and licenses.json are sound)');
   if (!result.dataChecked) lines.push('  (picker/data is compared with the library once the library has no problem)');
   lines.push(`فشل: ${problems.length} مخالفة (فُحص ${counts.templates} تمبلت و ${counts.identities} هوية)`);
   lines.push(`failed: ${problems.length} problem(s) in ${scope}`);
@@ -798,14 +1032,18 @@ function report(result) {
 }
 
 function main(argv) {
-  const opts = { libraryDir: path.join(ROOT, 'library'), dataDir: path.join(ROOT, 'picker', 'data') };
+  const opts = {
+    libraryDir: path.join(ROOT, 'library'),
+    dataDir: path.join(ROOT, 'picker', 'data'),
+    noticesFile: path.join(ROOT, 'THIRD_PARTY_NOTICES.md')
+  };
+  const flags = { '--library': 'libraryDir', '--data': 'dataDir', '--notices': 'noticesFile' };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if ((a === '--library' || a === '--data') && argv[i + 1])
-      opts[a === '--library' ? 'libraryDir' : 'dataDir'] = path.resolve(argv[++i]);
+    if (own(flags, a) && argv[i + 1]) opts[flags[a]] = path.resolve(argv[++i]);
     else {
       process.stderr.write(
-        `hawiya check: unknown option ${a}\nusage: node tools/check.js [--library <dir>] [--data <dir>]\n`
+        `hawiya check: unknown option ${a}\nusage: node tools/check.js [--library <dir>] [--data <dir>] [--notices <file>]\n`
       );
       return 2;
     }

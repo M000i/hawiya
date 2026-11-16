@@ -10,6 +10,7 @@ const { spawnSync } = require('node:child_process');
 
 const check = require('../tools/check.js');
 const build = require('../tools/build.js');
+const notices = require('../tools/notices.js');
 
 const ROOT = path.join(__dirname, '..');
 const LIB = path.join(ROOT, 'library');
@@ -22,6 +23,9 @@ function copy() {
   const data = path.join(dir, 'data');
   fs.cpSync(LIB, lib, { recursive: true });
   build.build({ libraryDir: lib, outDir: data });
+  const noticesFile = path.join(dir, 'NOTICES.md');
+  const n = notices.load(lib);
+  fs.writeFileSync(noticesFile, notices.render(n.sources, n.licenses));
   const edit = (rel, fn) => {
     const file = path.join(lib, rel);
     const value = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -29,7 +33,17 @@ function copy() {
     fs.writeFileSync(file, JSON.stringify(out === undefined ? value : out, null, 2) + '\n');
   };
   const find = (list, id) => list.find((t) => t.id === id);
-  return { dir, lib, data, edit, find, run: () => check.check({ libraryDir: lib, dataDir: data }) };
+  const args = ['--library', lib, '--data', data, '--notices', noticesFile];
+  return {
+    dir,
+    lib,
+    data,
+    noticesFile,
+    args,
+    edit,
+    find,
+    run: () => check.check({ libraryDir: lib, dataDir: data, noticesFile })
+  };
 }
 const clean = (c) => fs.rmSync(c.dir, { recursive: true, force: true });
 const hex = (h) => ({
@@ -54,7 +68,7 @@ test('a fresh copy passes; the tool prints «نجاح» with the count and exits
   const c = copy();
   try {
     assert.deepEqual(c.run().problems, []);
-    const out = spawnSync(process.execPath, [TOOL, '--library', c.lib, '--data', c.data], { encoding: 'utf8' });
+    const out = spawnSync(process.execPath, [TOOL, ...c.args], { encoding: 'utf8' });
     assert.equal(out.status, 0, out.stderr);
     assert.match(out.stdout, /نجاح: فُحص 37 تمبلت/);
     assert.match(out.stdout, /success: 37 templates/);
@@ -64,6 +78,32 @@ test('a fresh copy passes; the tool prints «نجاح» with the count and exits
 });
 
 // One library with a problem of every kind; each is found and named by its template (or file).
+function addRemix(c) {
+  c.edit(
+    'sources.json',
+    (l) =>
+      void l.push({
+        id: 'remix',
+        name: 'Remix Icon',
+        url: 'https://github.com/Remix-Design/RemixIcon',
+        license: 'MIT',
+        licenseFile: 'https://github.com/Remix-Design/RemixIcon/blob/master/License',
+        licenseReadAt: '2026-11-16',
+        copyright: ['Copyright (c) Remix Design'],
+        use: 'Icon set.'
+      })
+  );
+  c.edit(
+    'elements/icons.json',
+    (l) =>
+      void (c.find(l, 'icons-tabler-outline').source = {
+        name: 'Remix Icon',
+        url: 'https://github.com/Remix-Design/RemixIcon',
+        license: 'MIT'
+      })
+  );
+}
+
 const CASES = [
   [
     'structure',
@@ -280,6 +320,80 @@ const CASES = [
         l.push(t);
       }),
     /composite template with a recipe/
+  ],
+  // Licenses and sources (task 3.2).
+  [
+    'license',
+    'shadow-flat',
+    (c) =>
+      c.edit(
+        'elements/shadows.json',
+        (l) => void (c.find(l, 'shadow-flat').source.url = 'https://github.com/someone/else')
+      ),
+    /source address https:\/\/github\.com\/someone\/else differs from sources\.json/
+  ],
+  [
+    'license',
+    'palette-teal',
+    (c) => c.edit('elements/colors.json', (l) => void (c.find(l, 'palette-teal').source.license = 'GPL-3.0')),
+    /"GPL-3\.0" is not on the allowed list/
+  ],
+  ['license', 'icons-tabler-outline', addRemix, /forbidden source "Remix Icon"/],
+  ['license', 'remix', addRemix, /forbidden source "Remix Icon"/],
+  [
+    'license',
+    'icons-lucide-light',
+    (c) => c.edit('elements/icons.json', (l) => void (c.find(l, 'icons-lucide-light').extras.library = 'remixicon')),
+    /forbidden source "Remix Icon"/
+  ],
+  [
+    'license',
+    'font-inter',
+    (c) =>
+      c.edit(
+        'elements/fonts.json',
+        (l) => void c.find(l, 'font-inter').tokens.font.body.$value.splice(1, 0, 'SF Pro Text')
+      ),
+    /forbidden source "Apple assets/
+  ],
+  [
+    'license',
+    'radius-sharp',
+    (c) => c.edit('elements/radius.json', (l) => void (c.find(l, 'radius-sharp').source.name = 'Somewhere')),
+    /not in sources\.json/
+  ],
+  [
+    'license',
+    'spacing-comfortable',
+    (c) => c.edit('elements/spacing.json', (l) => void delete c.find(l, 'spacing-comfortable').source)
+  ],
+  [
+    'license',
+    'pair-cairo',
+    (c) => c.edit('elements/fonts.json', (l) => void c.find(l, 'pair-cairo').extras.sources.push('nowhere')),
+    /extras\.sources: "nowhere"/
+  ],
+  [
+    'license',
+    'inter',
+    (c) => {
+      c.edit('elements/fonts.json', (l) => {
+        const t = c.find(l, 'font-inter');
+        t.source = { name: 'IBM Plex', url: 'https://github.com/IBM/plex', license: 'OFL-1.1' };
+        t.extras.sources = ['plex'];
+      });
+    },
+    /no template uses this source/
+  ],
+  [
+    'license',
+    'tailwind',
+    (c) =>
+      c.edit('sources.json', (l) => {
+        const t = l.find((x) => x.id === 'tailwind');
+        t.license = 'Apache-2.0';
+      }),
+    /"Apache-2\.0" has no text/
   ]
 ];
 
@@ -305,12 +419,12 @@ test('one library with every kind of problem: each is found, named, and the tool
       assert.ok(has(r.problems, kind, template, re), `missing [${kind}] ${template}:\n${show(r.problems)}`);
     }
     assert.deepEqual(
-      check.KINDS.filter((k) => k !== 'data' && !r.problems.some((p) => p.kind === k)),
+      check.KINDS.filter((k) => !['data', 'notices'].includes(k) && !r.problems.some((p) => p.kind === k)),
       [],
-      'every kind but data (checked once the library is sound) is represented'
+      'every kind but data and notices (checked once their inputs are sound) is represented'
     );
     assert.equal(r.dataChecked, false);
-    const out = spawnSync(process.execPath, [TOOL, '--library', c.lib, '--data', c.data], { encoding: 'utf8' });
+    const out = spawnSync(process.execPath, [TOOL, ...c.args], { encoding: 'utf8' });
     assert.equal(out.status, 1);
     for (const id of [
       'palette-teal',
@@ -520,6 +634,291 @@ test('left / right: words split by "_", digits and camel case; "bright" is not "
   assert.equal(t({ a: { paddingRight: dim } }).length, 1);
   assert.equal(t({ a: { bright: dim } }).length, 0);
   assert.deepEqual(check.physicalCss('.a{--pad_left:1px}.b{filter:brightness(1.1)}'), ['--pad_left:1px']);
+});
+
+test('THIRD_PARTY_NOTICES: a stale or missing file is found; npm run notices makes it match', () => {
+  const c = copy();
+  try {
+    c.edit('sources.json', (l) => void (l.find((x) => x.id === 'tailwind').use = 'Colors.'));
+    let r = c.run();
+    assert.ok(has(r.problems, 'notices', undefined, /run npm run notices/), show(r.problems));
+    assert.ok(
+      r.problems.every((p) => p.kind === 'notices'),
+      show(r.problems)
+    );
+    const out = spawnSync(
+      process.execPath,
+      [path.join(ROOT, 'tools', 'notices.js'), '--library', c.lib, '--out', c.noticesFile],
+      {
+        encoding: 'utf8'
+      }
+    );
+    assert.equal(out.status, 0, out.stderr);
+    assert.match(
+      fs.readFileSync(c.noticesFile, 'utf8'),
+      /\| \[Tailwind CSS\]\(https:\/\/github\.com\/tailwindlabs\/tailwindcss\) \| MIT \| Colors\. \|/
+    );
+    assert.deepEqual(c.run().problems, []);
+    fs.rmSync(c.noticesFile);
+    r = c.run();
+    assert.ok(has(r.problems, 'notices', undefined, /missing/), show(r.problems));
+  } finally {
+    clean(c);
+  }
+});
+
+test('the committed THIRD_PARTY_NOTICES.md lists every third-party source with its copyright and every license text', () => {
+  const text = fs.readFileSync(path.join(ROOT, 'THIRD_PARTY_NOTICES.md'), 'utf8');
+  const sources = JSON.parse(fs.readFileSync(path.join(LIB, 'sources.json'), 'utf8'));
+  const licenses = JSON.parse(fs.readFileSync(path.join(LIB, 'licenses.json'), 'utf8'));
+  for (const s of sources) {
+    if (s.own) {
+      assert.doesNotMatch(text, new RegExp(`## ${s.name}\n`), 'the project itself is not third-party');
+      continue;
+    }
+    assert.match(text, new RegExp(`\n## ${s.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\n`), s.name);
+    for (const line of s.copyright.concat(...(s.also || []).map((a) => a.copyright)))
+      assert.ok(text.includes(line), line);
+  }
+  // Lucide's icons from Feather keep Feather's MIT notice.
+  assert.ok(text.includes('Copyright (c) 2013-present Cole Bemis'));
+  for (const id of ['MIT', 'ISC', 'OFL-1.1']) {
+    const l = licenses.allowed.find((x) => x.id === id);
+    assert.ok(text.includes(l.text.join('\n')), `${id} full text`);
+  }
+  // Deterministic: the same files give the same bytes.
+  const n = notices.load(LIB);
+  assert.equal(notices.render(n.sources, n.licenses), text);
+});
+
+test('notices refuses a third-party license without text; nothing is written', () => {
+  const c = copy();
+  try {
+    c.edit('licenses.json', (v) => void delete v.allowed.find((l) => l.id === 'ISC').text);
+    const before = fs.readFileSync(c.noticesFile, 'utf8');
+    const out = spawnSync(
+      process.execPath,
+      [path.join(ROOT, 'tools', 'notices.js'), '--library', c.lib, '--out', c.noticesFile],
+      {
+        encoding: 'utf8'
+      }
+    );
+    assert.equal(out.status, 1);
+    assert.match(out.stderr, /"ISC" has no text/);
+    assert.equal(fs.readFileSync(c.noticesFile, 'utf8'), before);
+    assert.ok(has(c.run().problems, 'license', 'lucide', /"ISC" has no text/));
+  } finally {
+    clean(c);
+  }
+});
+
+test('"-apple-system" in a font stack is a CSS keyword, not an Apple asset', () => {
+  const c = copy();
+  try {
+    c.edit(
+      'elements/fonts.json',
+      (l) => void c.find(l, 'font-inter').tokens.font.body.$value.splice(1, 0, '-apple-system')
+    );
+    assert.deepEqual(
+      c.run().problems.filter((p) => p.kind === 'license'),
+      []
+    );
+  } finally {
+    clean(c);
+  }
+});
+
+// Review of task 3.2: the ways a forbidden or unrecorded source could get in.
+function addSource(c, src) {
+  c.edit(
+    'sources.json',
+    (l) =>
+      void l.push({
+        licenseReadAt: '2026-11-16',
+        copyright: ['Copyright (c) Someone'],
+        use: 'Test.',
+        license: 'MIT',
+        ...src
+      })
+  );
+}
+function useSource(c, id, src, extras) {
+  c.edit('elements/icons.json', (l) => {
+    const t = c.find(l, id);
+    t.source = { name: src.name, url: src.url, license: src.license || 'MIT' };
+    Object.assign(t.extras, extras || {});
+  });
+}
+
+test('Remix Icon through Iconify: its prefix "ri" and an Iconify address are refused', () => {
+  const c = copy();
+  try {
+    const src = {
+      id: 'ri',
+      name: 'RI',
+      url: 'https://icon-sets.iconify.design/ri/',
+      licenseFile: 'https://icon-sets.iconify.design/ri/'
+    };
+    addSource(c, src);
+    useSource(c, 'icons-tabler-outline', src, { library: 'ri' });
+    const r = c.run();
+    assert.ok(has(r.problems, 'license', 'icons-tabler-outline', /forbidden source "Remix Icon"/), show(r.problems));
+    assert.ok(has(r.problems, 'license', 'icons-tabler-outline', /Iconify page/), show(r.problems));
+    assert.ok(has(r.problems, 'license', 'ri', /url is an Iconify page/), show(r.problems));
+    assert.ok(has(r.problems, 'license', 'ri', /forbidden source "Remix Icon"/), show(r.problems));
+  } finally {
+    clean(c);
+  }
+});
+
+test('Hover.css through its repository address is refused', () => {
+  const c = copy();
+  try {
+    const src = {
+      id: 'fx',
+      name: 'Effects',
+      url: 'https://github.com/IanLunn/Hover',
+      licenseFile: 'https://github.com/IanLunn/Hover/blob/master/license.txt'
+    };
+    addSource(c, src);
+    useSource(c, 'icons-tabler-outline', src);
+    const r = c.run();
+    assert.ok(has(r.problems, 'license', 'fx', /forbidden source "Hover\.css"/), show(r.problems));
+    assert.ok(has(r.problems, 'license', 'icons-tabler-outline', /forbidden source "Hover\.css"/), show(r.problems));
+  } finally {
+    clean(c);
+  }
+});
+
+test('"own" belongs to the project only: a third-party source cannot hide from the notices', () => {
+  const c = copy();
+  try {
+    c.edit('sources.json', (l) => {
+      delete l.find((x) => x.id === 'hawiya').own;
+      l.find((x) => x.id === 'tailwind').own = true;
+    });
+    const r = c.run();
+    assert.ok(has(r.problems, 'license', 'tailwind', /only the project's own entry/), show(r.problems));
+    assert.ok(has(r.problems, 'license', 'hawiya', /must have "own": true/), show(r.problems));
+    // And the notices never drop a third-party source, whatever the flag says.
+    const n = notices.load(c.lib);
+    assert.match(notices.render(n.sources, n.licenses), /\n## Tailwind CSS\n/);
+  } finally {
+    clean(c);
+  }
+});
+
+test('every text in extras is searched (not the SVG samples); system font names are not Apple assets', () => {
+  const c = copy();
+  try {
+    c.edit(
+      'elements/colors.json',
+      (l) => void (c.find(l, 'palette-blue').extras = { palette: 'Apple system colors (SF Symbols)' })
+    );
+    c.edit(
+      'elements/fonts.json',
+      (l) => void c.find(l, 'font-inter').tokens.font.body.$value.push('Apple Color Emoji', 'BlinkMacSystemFont')
+    );
+    const r = c.run().problems.filter((p) => p.kind === 'license');
+    assert.ok(has(r, 'license', 'palette-blue', /forbidden source "Apple/), show(r));
+    assert.ok(!r.some((p) => p.template === 'font-inter'), show(r));
+  } finally {
+    clean(c);
+  }
+});
+
+test('a blank license text is refused; npm run notices refuses broken files without crashing', () => {
+  const c = copy();
+  try {
+    c.edit('licenses.json', (v) => void (v.allowed.find((l) => l.id === 'MIT').text = ['']));
+    assert.ok(has(c.run().problems, 'license', 'MIT', /too short/));
+    const tool = path.join(ROOT, 'tools', 'notices.js');
+    for (const bad of [[null], [{ name: 'X', license: 'MIT', copyright: null }], {}]) {
+      fs.writeFileSync(path.join(c.lib, 'sources.json'), JSON.stringify(bad));
+      const out = spawnSync(process.execPath, [tool, '--library', c.lib, '--out', c.noticesFile], { encoding: 'utf8' });
+      assert.equal(out.status, 1, out.stderr);
+      assert.match(out.stderr, /sources\.json.*nothing was written/);
+      assert.doesNotMatch(out.stderr, /TypeError/);
+    }
+  } finally {
+    clean(c);
+  }
+});
+
+test('Iconify copies on npm, a CDN or its own repository are refused as sources', () => {
+  for (const url of [
+    'https://www.npmjs.com/package/@iconify-json/ri',
+    'https://cdn.jsdelivr.net/npm/@iconify-json/ri/',
+    'https://github.com/iconify/icon-sets'
+  ]) {
+    const c = copy();
+    try {
+      const src = { id: 'lines', name: 'Lines', url, licenseFile: url };
+      addSource(c, src);
+      useSource(c, 'icons-tabler-outline', src, { library: 'r-line' });
+      const r = c.run();
+      assert.ok(has(r.problems, 'license', 'lines', /Iconify/), `${url}\n${show(r.problems)}`);
+      assert.ok(has(r.problems, 'license', 'icons-tabler-outline', /Iconify/), `${url}\n${show(r.problems)}`);
+    } finally {
+      clean(c);
+    }
+  }
+});
+
+test('no false alarms: the Remix web framework, "Pineapple", and a note that mentions Apple', () => {
+  const c = copy();
+  try {
+    const src = {
+      id: 'remix',
+      name: 'Remix',
+      url: 'https://github.com/remix-run/remix',
+      licenseFile: 'https://github.com/remix-run/remix/blob/main/LICENSE.md'
+    };
+    addSource(c, src);
+    useSource(c, 'icons-tabler-outline', src);
+    c.edit('elements/colors.json', (l) => void (c.find(l, 'palette-blue').extras = { palette: 'Pineapple yellow' }));
+    c.edit(
+      'elements/radius.json',
+      (l) =>
+        void (c.find(l, 'radius-round').extras = { note: 'iOS-like values written by this project, not Apple assets' })
+    );
+    const r = c.run().problems.filter((p) => p.kind === 'license' && /forbidden/.test(p.message));
+    assert.deepEqual(r, [], show(r));
+  } finally {
+    clean(c);
+  }
+});
+
+test('the own entry is the project: swapping ids cannot hide a third-party source', () => {
+  const c = copy();
+  try {
+    c.edit('sources.json', (l) => {
+      const own = l.find((x) => x.id === 'hawiya');
+      const tw = l.find((x) => x.id === 'tailwind');
+      own.id = 'project';
+      delete own.own;
+      tw.id = 'hawiya';
+      tw.own = true;
+    });
+    const r = c.run();
+    assert.ok(
+      has(r.problems, 'license', 'hawiya', /must be named Hawiya, under MIT, with the copyright line of LICENSE/),
+      show(r.problems)
+    );
+    // The project's entry with another copyright line is refused too.
+    const d = copy();
+    try {
+      d.edit(
+        'sources.json',
+        (l) => void (l.find((x) => x.id === 'hawiya').copyright = ['Copyright (c) Tailwind Labs, Inc.'])
+      );
+      assert.ok(has(d.run().problems, 'license', 'hawiya', /copyright line of LICENSE/));
+    } finally {
+      clean(d);
+    }
+  } finally {
+    clean(c);
+  }
 });
 
 test('usage errors exit 2', () => {

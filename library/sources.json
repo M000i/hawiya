@@ -2,10 +2,14 @@
   {
     "id": "hawiya",
     "name": "Hawiya",
+    "own": true,
     "url": "https://github.com/hawiya/hawiya",
     "license": "MIT",
     "licenseFile": "https://github.com/hawiya/hawiya/blob/main/LICENSE",
     "licenseReadAt": "2026-11-15",
+    "copyright": [
+      "Copyright (c) 2026 Hawiya contributors"
+    ],
     "use": "Values designed for this project.",
     "note": "Placeholder address until the real repository exists (backlog B-031)."
   },
@@ -15,7 +19,10 @@
     "url": "https://github.com/tailwindlabs/tailwindcss",
     "license": "MIT",
     "licenseFile": "https://github.com/tailwindlabs/tailwindcss/blob/main/LICENSE",
-    "licenseReadAt": "2026-11-15",
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright (c) Tailwind Labs, Inc."
+    ],
     "use": "Color values from the v3 default palette."
   },
   {
@@ -24,7 +31,10 @@
     "url": "https://github.com/IBM/plex",
     "license": "OFL-1.1",
     "licenseFile": "https://github.com/IBM/plex/blob/master/LICENSE.txt",
-    "licenseReadAt": "2026-11-15",
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright © 2017 IBM Corp. with Reserved Font Name \"Plex\""
+    ],
     "use": "Font, served by Google Fonts."
   },
   {
@@ -33,7 +43,10 @@
     "url": "https://github.com/notofonts/arabic",
     "license": "OFL-1.1",
     "licenseFile": "https://github.com/notofonts/arabic/blob/main/OFL.txt",
-    "licenseReadAt": "2026-11-15",
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)"
+    ],
     "use": "Font, served by Google Fonts."
   },
   {
@@ -42,7 +55,10 @@
     "url": "https://github.com/notofonts/latin-greek-cyrillic",
     "license": "OFL-1.1",
     "licenseFile": "https://github.com/notofonts/latin-greek-cyrillic/blob/main/OFL.txt",
-    "licenseReadAt": "2026-11-15",
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/latin-greek-cyrillic)"
+    ],
     "use": "Font, served by Google Fonts."
   },
   {
@@ -51,7 +67,10 @@
     "url": "https://github.com/Gue3bara/Cairo",
     "license": "OFL-1.1",
     "licenseFile": "https://github.com/google/fonts/blob/main/ofl/cairo/OFL.txt",
-    "licenseReadAt": "2026-11-15",
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright 2009 The Cairo Project Authors (https://github.com/Gue3bara/Cairo)"
+    ],
     "use": "Font, served by Google Fonts."
   },
   {
@@ -60,9 +79,20 @@
     "url": "https://github.com/lucide-icons/lucide",
     "license": "ISC",
     "licenseFile": "https://github.com/lucide-icons/lucide/blob/main/LICENSE",
-    "licenseReadAt": "2026-11-15",
-    "use": "Icon set (named only; icons are not copied yet).",
-    "note": "Some icons derive from Feather (MIT); both notices are kept."
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright (c) 2026 Lucide Icons and Contributors"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js).",
+    "also": [
+      {
+        "license": "MIT",
+        "copyright": [
+          "Copyright (c) 2013-present Cole Bemis"
+        ],
+        "for": "Lucide icons derived from the Feather project (among the samples: arrow-right, chevron-right, search, plus, x, check and clock)."
+      }
+    ]
   },
   {
     "id": "phosphor",
@@ -70,8 +100,11 @@
     "url": "https://github.com/phosphor-icons/core",
     "license": "MIT",
     "licenseFile": "https://github.com/phosphor-icons/core/blob/main/LICENSE",
-    "licenseReadAt": "2026-11-15",
-    "use": "Icon set (named only; icons are not copied yet)."
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright (c) 2023 Phosphor Icons"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
   },
   {
     "id": "tabler",
@@ -79,8 +112,11 @@
     "url": "https://github.com/tabler/tabler-icons",
     "license": "MIT",
     "licenseFile": "https://github.com/tabler/tabler-icons/blob/main/LICENSE",
-    "licenseReadAt": "2026-11-15",
-    "use": "Icon set (named only; icons are not copied yet)."
+    "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright (c) 2020-2026 Paweł Kuna"
+    ],
+    "use": "Icon set: 14 sample icons copied as SVG shapes for the gallery and preview (tools/icons-extract.js)."
   },
   {
     "id": "inter",
@@ -89,6 +125,9 @@
     "license": "OFL-1.1",
     "licenseFile": "https://github.com/rsms/inter/blob/master/LICENSE.txt",
     "licenseReadAt": "2026-11-16",
+    "copyright": [
+      "Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)"
+    ],
     "use": "Font, served by Google Fonts."
   }
 ]
