@@ -58,10 +58,11 @@ The picker reads it to steer its suggestions: through the server in Tier 1, from
 Start it as a background process whose output goes to a temporary file OUTSIDE `<project>` (e.g. in the
 system temp folder; the output contains the token). Then, in one command, check that file every 0.5 s for up
 to 10 s until it has a first line (e.g. `for i in $(seq 1 20); do [ -s "$F" ] && break; sleep 0.5; done; head -1 "$F"`).
-That line is JSON: `{"status":"ready","url":"http://127.0.0.1:<port>/#token=…","existing":[…]}`
+That line is JSON: `{"status":"ready","url":"http://127.0.0.1:47821/#token=…&project=…","existing":[…],"port":47821,"fallback":false}`
 (`existing` lists only output files already in design/; after Step 2 it should be empty — if not, stop the
 process and go back to Step 2). No such line within 10 seconds, or the process exits → try the other runtime,
-then Tier 2/3.
+then Tier 2/3. If `"fallback":true` (port 47821 was busy, usually by an earlier Hawiya run that has not timed
+out yet), carry on, and tell the user that their saved identities from earlier sessions are not shown this time.
 Open the URL in the user's default browser (`open "<url>"` macOS, `xdg-open "<url>"` Linux,
 `start "" "<url>"` Windows) and show it in the chat: "اختر ما يعجبك ثم اضغط «تصدير»".
 Then wait for the process to exit. If your environment tells you when a background command finishes, end your
