@@ -380,4 +380,4 @@ function main(argv) {
 
 if (require.main === module) process.exitCode = main(process.argv.slice(2));
 
-module.exports = { ELEMENTS, IDENTITY_SCHEMA, build, load, select, render, renderFile, starter, scriptText, report, main, LibraryError, WriteError };
+module.exports = { ELEMENTS, IDENTITY_SCHEMA, build, load, select, render, renderFile, starter, scriptText, report, main, readJson, listJson, LibraryError, WriteError };

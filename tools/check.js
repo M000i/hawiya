@@ -1,0 +1,837 @@
+'use strict';
+
+/*
+ * The library check (task 3.1, R-062, R-092): the quality gate before anything is published.
+ *
+ *   npm run check                                       library/ and picker/data/
+ *   node tools/check.js --library <dir> --data <dir>    other folders (tests)
+ *
+ * Every template is checked, drafts too (AC-14: the whole library is green), and every problem is printed with the
+ * file and the template id, then the command exits 1. Nothing is written. What is checked, by kind:
+ *
+ *   structure       the folders hold only <name>.json, files are strict UTF-8 JSON (no key twice, no "__proto__"),
+ *                   one file per element and each template in its own element's file
+ *   schema          schema/template.schema.json (identities: the build's identity schema)
+ *   tokens          tokens in Design Tokens shape, in depth: each token is { $type?, $value } with a value of its
+ *                   type (color: srgb components that match the hex; dimension: px or rem; shadow layers; ...)
+ *   id              ids unique across the library (templates), and across the ready identities
+ *   tags            library/tags.json lists exactly the 16 fixed tags with both names; every tag used is one of them
+ *   names           both names present: no blank or padded name, the Arabic name in Arabic letters, the English
+ *                   name without them
+ *   contrast        the declared level (a11y.contrast) holds: a palette reaches it in light and dark (the rules
+ *                   engine, rules.js); a button or card puts text only on fills the contrast rule checks, in every
+ *                   state; a template with no text/background pair declares "n/a"
+ *   reduced-motion  a recipe with transition/animation (or a motion token) has a reduced-motion alternative that
+ *                   turns the motion off for each selector that moves, inside the recipe allow-list
+ *   logical         no "left" / "right" in recipes (CSS, HTML attribute values, the reduced-motion CSS) or in
+ *                   token names and values: logical properties (start / end) only (R-092)
+ *   recipe          the recipe allow-list (picker/js/core/recipe.js): no script, no outside request
+ *   identity        a ready identity names a template of the right element for every element
+ *   data            picker/data is exactly what `npm run build` makes from the library (only checked when the
+ *                   library itself has no problem, since the build refuses a library with problems)
+ *
+ * Licenses and sources (task 3.2) and the two-axis difference (task 3.3) are added to this file by their tasks.
+ */
+
+const fs = require('node:fs');
+const path = require('node:path');
+const build = require('./build.js');
+const validate = require('../picker/js/core/validate.js');
+const recipe = require('../picker/js/core/recipe.js');
+const rules = require('../picker/js/core/rules.js');
+const SCHEMAS = require('../picker/js/core/schemas.js');
+
+const ROOT = path.join(__dirname, '..');
+const ELEMENTS = build.ELEMENTS;
+const TAGS = SCHEMAS.template.$defs.tag.enum.slice();
+const checkIdentity = validate.compile(build.IDENTITY_SCHEMA);
+
+const ARABIC = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+const PHYSICAL = /(^|[^a-z0-9])(left|right)(?![a-z])/i; // "_" and digits separate words too
+
+const own = (o, k) => o !== null && typeof o === 'object' && Object.prototype.hasOwnProperty.call(o, k);
+const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+
+function isDir(p) {
+  try {
+    return fs.statSync(p).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+/* ---------- CSS blocks (recipes are flat: no nesting) ---------- */
+
+// "sel{decls}" → [{ selector, decls: { prop: value } }], one entry per selector of a selector list.
+function blocks(css) {
+  const out = [];
+  for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const decls = {};
+    for (const d of m[2].split(';')) {
+      const at = d.indexOf(':');
+      if (at > 0) decls[d.slice(0, at).trim().toLowerCase()] = d.slice(at + 1).trim();
+    }
+    for (const sel of m[1].split(',')) {
+      const s = sel.trim();
+      if (s && !s.startsWith('@')) out.push({ selector: s, decls });
+    }
+  }
+  return out;
+}
+
+/* ---------- names ---------- */
+
+function nameProblems(name) {
+  const out = [];
+  if (!isObject(name)) return out; // the schema reports it
+  for (const lang of ['ar', 'en']) {
+    const v = name[lang];
+    if (typeof v !== 'string') continue; // the schema reports it
+    if (!v.trim()) out.push(`the ${lang === 'ar' ? 'Arabic' : 'English'} name is blank`);
+    else if (v !== v.trim())
+      out.push(`the ${lang === 'ar' ? 'Arabic' : 'English'} name has spaces at its start or end`);
+  }
+  if (typeof name.ar === 'string' && name.ar.trim() && !ARABIC.test(name.ar))
+    out.push(`the Arabic name "${name.ar}" has no Arabic letters`);
+  if (typeof name.en === 'string' && ARABIC.test(name.en)) out.push(`the English name "${name.en}" has Arabic letters`);
+  return out;
+}
+
+/* ---------- tokens (Design Tokens shape, in depth) ---------- */
+
+const TOKEN_KEYS = new Set(['$type', '$value', '$description']);
+
+function colorValue(v, where, out) {
+  if (!isObject(v)) return out.push(`${where}: a color value is an object { colorSpace, components, hex }`);
+  const keys = Object.keys(v).filter((k) => !['colorSpace', 'components', 'hex', 'alpha'].includes(k));
+  if (keys.length) out.push(`${where}: unexpected color field ${keys.join(', ')}`);
+  if (v.colorSpace !== 'srgb') out.push(`${where}: colorSpace must be "srgb"`);
+  if (typeof v.hex !== 'string' || !/^#[0-9a-f]{6}$/.test(v.hex))
+    return out.push(`${where}: hex must be #rrggbb in lower case`);
+  const c = v.components;
+  if (!Array.isArray(c) || c.length !== 3 || !c.every((x) => typeof x === 'number' && x >= 0 && x <= 1)) {
+    return out.push(`${where}: components must be three numbers from 0 to 1`);
+  }
+  const bytes = [1, 3, 5].map((i) => parseInt(v.hex.slice(i, i + 2), 16));
+  if (c.some((x, i) => Math.round(x * 255) !== bytes[i]))
+    out.push(`${where}: components ${JSON.stringify(c)} do not match ${v.hex}`);
+  if (own(v, 'alpha') && !(typeof v.alpha === 'number' && v.alpha >= 0 && v.alpha <= 1))
+    out.push(`${where}: alpha must be from 0 to 1`);
+}
+
+function dimensionValue(v, where, out) {
+  if (!isObject(v) || Object.keys(v).sort().join() !== 'unit,value')
+    return out.push(`${where}: a dimension is { value, unit }`);
+  if (typeof v.value !== 'number' || !Number.isFinite(v.value)) out.push(`${where}: dimension value must be a number`);
+  if (v.unit !== 'px' && v.unit !== 'rem') out.push(`${where}: dimension unit must be "px" or "rem"`);
+}
+
+const VALUE = {
+  color: colorValue,
+  dimension: dimensionValue,
+  number: (v, where, out) => {
+    if (typeof v !== 'number' || !Number.isFinite(v)) out.push(`${where}: a number token holds a number`);
+  },
+  fontFamily: (v, where, out) => {
+    const ok = (s) => typeof s === 'string' && s.trim() !== '';
+    if (!(ok(v) || (Array.isArray(v) && v.length > 0 && v.every(ok))))
+      out.push(`${where}: a fontFamily is a name or a list of names`);
+  },
+  fontWeight: (v, where, out) => {
+    if (!(typeof v === 'number' && v >= 1 && v <= 1000)) out.push(`${where}: a fontWeight is a number from 1 to 1000`);
+  },
+  duration: (v, where, out) => {
+    if (!isObject(v) || typeof v.value !== 'number' || (v.unit !== 'ms' && v.unit !== 's'))
+      out.push(`${where}: a duration is { value, unit: "ms" | "s" }`);
+  },
+  cubicBezier: (v, where, out) => {
+    if (!Array.isArray(v) || v.length !== 4 || !v.every((x) => typeof x === 'number'))
+      out.push(`${where}: a cubicBezier is four numbers`);
+  },
+  shadow: (v, where, out) => {
+    if (!Array.isArray(v)) return out.push(`${where}: a shadow is a list of layers`);
+    v.forEach((layer, i) => {
+      const w = `${where}[${i}]`;
+      if (!isObject(layer)) return out.push(`${w}: a shadow layer is an object`);
+      const extra = Object.keys(layer).filter(
+        (k) => !['color', 'offsetX', 'offsetY', 'blur', 'spread', 'inset'].includes(k)
+      );
+      if (extra.length) out.push(`${w}: unexpected shadow field ${extra.join(', ')}`);
+      colorValue(layer.color, `${w}.color`, out);
+      for (const k of ['offsetX', 'offsetY', 'blur', 'spread']) dimensionValue(layer[k], `${w}.${k}`, out);
+      if (own(layer, 'inset') && typeof layer.inset !== 'boolean') out.push(`${w}: inset is true or false`);
+    });
+  }
+};
+const MOTION_TYPES = new Set(['duration', 'cubicBezier', 'transition']);
+
+// Walks tokens: { problems, physical: [where], motion: boolean }.
+function tokenProblems(tokens) {
+  const out = [];
+  const physical = [];
+  let motion = false;
+  let count = 0;
+  const stack = [[tokens, 'tokens']];
+  while (stack.length) {
+    const [node, where] = stack.pop();
+    if (!isObject(node)) {
+      out.push(`${where}: expected a token { $value } or a group of tokens`);
+      continue;
+    }
+    if (own(node, '$value')) {
+      count++;
+      const extra = Object.keys(node).filter((k) => !TOKEN_KEYS.has(k));
+      if (extra.length) out.push(`${where}: unexpected token field ${extra.join(', ')}`);
+      const type = node.$type;
+      if (type === undefined) {
+        // A plain setting (mode, direction): a word or a number.
+        if (!(typeof node.$value === 'string' && node.$value.trim()) && typeof node.$value !== 'number') {
+          out.push(`${where}: a token without $type holds a word or a number`);
+        }
+      } else if (!own(VALUE, type)) out.push(`${where}: unknown $type ${JSON.stringify(type)}`);
+      else VALUE[type](node.$value, `${where}`, out);
+      if (MOTION_TYPES.has(type)) motion = true;
+      if (typeof node.$value === 'string' && PHYSICAL.test(node.$value)) physical.push(`${where} = "${node.$value}"`);
+      continue;
+    }
+    const keys = Object.keys(node);
+    if (!keys.length) out.push(`${where}: an empty group`);
+    for (const k of keys.reverse()) {
+      if (k.startsWith('$')) {
+        if (k !== '$description') out.push(`${where}: unexpected group field ${k}`);
+        continue;
+      }
+      if (PHYSICAL.test(k.replace(/([a-z])([A-Z])/g, '$1-$2'))) physical.push(`${where}.${k}`);
+      stack.push([node[k], `${where}.${k}`]);
+    }
+  }
+  if (!count) out.push('tokens: no token at all');
+  return { problems: out, physical, motion };
+}
+
+/* ---------- recipes: left / right, reduced motion, contrast ---------- */
+
+// Each CSS declaration (or selector) that names left or right.
+function physicalCss(css) {
+  return css
+    .split(/[;{}]/)
+    .map((s) => s.trim())
+    .filter((s) => PHYSICAL.test(s));
+}
+
+function physicalHtml(html) {
+  const out = [];
+  for (const m of html.matchAll(/\s([a-z][a-z0-9-]*)="([^"]*)"/g))
+    if (PHYSICAL.test(m[2])) out.push(`${m[1]}="${m[2]}"`);
+  return out;
+}
+
+const MOTION_PROP = /^(?:-[a-z]+-)?(transition|animation)(-|$)/;
+const KEYFRAMES = /@(?:-[a-z]+-)?keyframes/i;
+const STILL = /^(none|0m?s)$/i;
+const IMPORTANT = /\s*!important\s*$/i;
+const plainValue = (v) => v.replace(IMPORTANT, '').trim();
+
+// A transition that only fades (opacity) in under 100ms: allowed under reduced motion (the DESIGN.md generate.js
+// writes says "instant changes or plain fades under 100ms").
+function shortFade(value) {
+  return plainValue(value)
+    .split(',')
+    .every((item) => {
+      const words = item.trim().split(/\s+/);
+      const times = words
+        .filter((w) => /^[\d.]+m?s$/i.test(w))
+        .map((w) => (/ms$/i.test(w) ? parseFloat(w) : parseFloat(w) * 1000));
+      return words[0] === 'opacity' && times.length > 0 && times[0] < 100;
+    });
+}
+
+// [{ selector, family }] for every selector whose declarations move something (vendor prefixes too). With fades,
+// a short opacity transition does not count (the reduced-motion alternative may keep one).
+function motionIn(css, { fades = false } = {}) {
+  const out = [];
+  for (const b of blocks(css)) {
+    for (const [prop, value] of Object.entries(b.decls)) {
+      const m = MOTION_PROP.exec(prop);
+      if (!m || STILL.test(plainValue(value))) continue;
+      if (fades && prop.replace(/^-[a-z]+-/, '') === 'transition' && shortFade(value)) continue;
+      out.push({ selector: b.selector, family: m[1] });
+    }
+  }
+  if (KEYFRAMES.test(css)) out.push({ selector: '@keyframes', family: 'animation' });
+  return out;
+}
+
+// Does this declaration turn the family off ("transition: none", "-webkit-animation-duration: 0s", ...)?
+function stillDecl(prop, value, family) {
+  const p = prop.replace(/^-[a-z]+-/, '');
+  const v = plainValue(value);
+  return (p === family && STILL.test(v)) || (p === `${family}-duration` && /^0m?s$/i.test(v));
+}
+
+// A selector without its states (":hover", "::before", ...) in every part: the element(s) it styles.
+const stateless = (sel) =>
+  sel
+    .replace(/::?[a-z-]+(\([^)]*\))?/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+// Does the alternative CSS turn this family of motion off for this selector? The same selector, or the same element
+// (same selector without its states) with !important: a plain rule loses to a more specific state such as :hover,
+// and motion does not inherit, so a rule on an ancestor does not count.
+function stills(alt, selector, family) {
+  return blocks(alt).some((b) =>
+    Object.entries(b.decls).some(
+      ([p, v]) =>
+        stillDecl(p, v, family) &&
+        (selector === '@keyframes' ||
+          b.selector === selector ||
+          (stateless(b.selector) === stateless(selector) && IMPORTANT.test(v)))
+    )
+  );
+}
+
+// The pairs the contrast rule (rules.js) checks in both modes, as CSS variable roles: text roles on the page colors,
+// button text on its own fill. A transparent fill shows the page (background or surface), both checked.
+const TEXT_ROLES = ['on-surface', 'muted-text', 'accent-text', 'success', 'warning', 'danger', 'info'];
+const PAGE_FILLS = ['background', 'surface', 'transparent'];
+const CHECKED = new Set(
+  TEXT_ROLES.flatMap((t) => PAGE_FILLS.map((b) => `${t} on ${b}`)).concat([
+    'on-primary on primary',
+    'on-secondary on secondary'
+  ])
+);
+const role = (v) =>
+  (v && (v.match(/^var\(--color-([a-z-]+)\)$/) || [])[1]) ||
+  (v === 'transparent' ? 'transparent' : v ? `"${v}"` : 'none');
+const SEE_THROUGH = /^(none|transparent|inherit|unset|initial|revert|revert-layer)$/i;
+
+// What an element paints behind its text (from its resolved declarations), or undefined (shows its parent). A
+// background image or an inset shadow can cover the fill, so it counts as a fill of its own (one the contrast rule
+// never checks).
+function fillOf(d) {
+  const image = d['background-image'];
+  if (image && !SEE_THROUGH.test(image)) return `background-image:${image}`;
+  if (d['box-shadow'] && /(^|[\s,])inset([\s,]|$)/i.test(d['box-shadow'])) return `box-shadow:${d['box-shadow']}`;
+  const v = d['background-color'];
+  return v && !SEE_THROUGH.test(v) ? v : undefined;
+}
+const textOf = (d) => (d.color && !/^(inherit|unset|currentcolor)$/i.test(d.color) ? d.color : undefined);
+
+// The elements of an allow-listed recipe HTML: [{ tag, classes, parent }].
+function elementsOf(html) {
+  const out = [];
+  const open = [];
+  for (const m of html.matchAll(/<(\/?)([a-z][a-z0-9]*)((?:\s+[a-z][a-z0-9-]*(?:="[^"]*")?)*)\s*(\/?)>/g)) {
+    if (m[1]) {
+      const i = open.map((e) => e.tag).lastIndexOf(m[2]);
+      if (i !== -1) open.length = i;
+      continue;
+    }
+    const cls = (/\sclass="([^"]*)"/.exec(m[3]) || [null, ''])[1].split(/\s+/).filter(Boolean);
+    const el = { tag: m[2], classes: cls, parent: open[open.length - 1] || null };
+    out.push(el);
+    if (!m[4] && !['br', 'hr', 'input'].includes(m[2])) open.push(el);
+  }
+  return out;
+}
+
+// CSS specificity of a selector: [ids, classes + attributes + pseudo-classes, tags + pseudo-elements].
+function specificity(selector) {
+  const s = selector.replace(/\([^)]*\)/g, '');
+  const pseudoElements = (s.match(/::[a-z-]+/gi) || []).length;
+  const pseudoClasses = (s.replace(/::[a-z-]+/gi, '').match(/:[a-z-]+/gi) || []).length;
+  const tags = s.split(/[\s>+~]+/).filter((part) => /^[a-z]/i.test(part)).length;
+  return [
+    (s.match(/#[\w-]+/g) || []).length,
+    (s.match(/\.[\w-]+/g) || []).length + (s.match(/\[[^\]]*\]/g) || []).length + pseudoClasses,
+    tags + pseudoElements
+  ];
+}
+
+// A selector's last compound split into what it matches and its states ([":hover"], ["[disabled]"], ...).
+function compound(selector) {
+  const last = selector
+    .trim()
+    .split(/[\s>+~]+/)
+    .pop();
+  const at = last.search(/[:[]/);
+  const simple = at === -1 ? last : last.slice(0, at);
+  const states = at === -1 ? [] : last.slice(at).match(/::?[a-z-]+(\([^)]*\))?|\[[^\]]*\]/gi) || [last.slice(at)];
+  const tag = (/^[a-z][a-z0-9]*|^\*/i.exec(simple) || [''])[0];
+  const classes = [...simple.matchAll(/\.([A-Za-z0-9_-]+)/g)].map((x) => x[1]);
+  return { simple, states, tag, classes };
+}
+// Recipe HTML has no ids (not in the allow-list), so a selector with one only matches its own placeholder element.
+const matches = (el, c) =>
+  el.virtual
+    ? el.virtual === c.simple
+    : !c.simple.includes('#') &&
+      (!c.tag || c.tag === '*' || c.tag === el.tag) &&
+      c.classes.every((k) => el.classes.includes(k));
+const describe = (el) => el.virtual || el.tag + el.classes.map((k) => '.' + k).join('');
+
+// The declarations that decide contrast, "background" shorthand split into its color and image.
+function colorDecls(decls) {
+  const out = [];
+  for (const [prop, raw] of Object.entries(decls)) {
+    const important = IMPORTANT.test(raw);
+    const value = plainValue(raw);
+    if (prop === 'background') {
+      out.push(['background-color', value, important]);
+      out.push(['background-image', /(gradient|url|image)\s*\(/i.test(value) ? value : 'none', important]);
+    } else if (['background-color', 'background-image', 'color', 'box-shadow'].includes(prop)) {
+      out.push([prop, value, important]);
+    }
+  }
+  return out;
+}
+
+// Each subset of the states a recipe names (all of them when there are few; else each alone and all together).
+function stateSets(all) {
+  if (all.length > 6)
+    return [[]].concat(
+      all.map((x) => [x]),
+      [all]
+    );
+  const out = [];
+  for (let mask = 0; mask < 1 << all.length; mask++) out.push(all.filter((_, i) => mask & (1 << i)));
+  return out;
+}
+
+// Every text color a recipe shows on a fill, in every state, must be a pair the contrast rule checks. For each element
+// of the recipe HTML and each combination of the states the CSS names (hover and focus together, ...), the
+// declarations are resolved as a browser does (!important, then specificity, then order). Text and fill come from the
+// element or its nearest ancestor (text inherits; a fill shows through a transparent child). Text with no color
+// anywhere is the scene's text, readable on the page colors only. A selector that matches no element of the HTML
+// (content put in a placeholder) is taken as a child of the outermost element.
+function recipePairs(html, css) {
+  const out = [];
+  const list = blocks(css).map((b, order) => ({
+    ...b,
+    c: compound(b.selector),
+    spec: specificity(b.selector),
+    order,
+    decls: colorDecls(b.decls)
+  }));
+  const els = elementsOf(html);
+  for (const b of list) {
+    if (!els.some((el) => matches(el, b.c))) els.push({ virtual: b.c.simple, parent: els[0] || null, classes: [] });
+  }
+  const wins = (a, b) => {
+    const ka = [a.important ? 1 : 0, ...a.spec, a.order];
+    const kb = [b.important ? 1 : 0, ...b.spec, b.order];
+    for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i] > kb[i];
+    return true;
+  };
+  const allStates = [...new Set(list.flatMap((b) => b.c.states))];
+  const seen = new Set();
+  let pairs = 0;
+  for (const active of stateSets(allStates)) {
+    const resolved = new Map(
+      els.map((el) => {
+        const best = {};
+        for (const b of list) {
+          if (!matches(el, b.c) || !b.c.states.every((x) => active.includes(x))) continue;
+          for (const [prop, value, important] of b.decls) {
+            const d = { value, important, spec: b.spec, order: b.order };
+            if (!best[prop] || wins(d, best[prop])) best[prop] = d;
+          }
+        }
+        return [el, Object.fromEntries(Object.entries(best).map(([k, d]) => [k, d.value]))];
+      })
+    );
+    const nearest = (el, get) => {
+      for (let e = el; e; e = e.parent) {
+        const v = get(resolved.get(e));
+        if (v) return v;
+      }
+      return undefined;
+    };
+    for (const el of els) {
+      const text = nearest(el, textOf);
+      const fill = nearest(el, fillOf) || 'transparent';
+      pairs++;
+      const where = describe(el) + active.join('');
+      let m = null;
+      if (!text) {
+        if (!PAGE_FILLS.includes(role(fill)))
+          m = `${where}: the scene's text on ${fill} is not a pair the contrast rule checks; give it a text color`;
+      } else if (!CHECKED.has(`${role(text)} on ${role(fill)}`)) {
+        m = `${where}: ${role(text)} on ${role(fill)} is not a pair the contrast rule checks`;
+      }
+      if (m && !seen.has(m)) {
+        out.push(m);
+        seen.add(m);
+      }
+    }
+  }
+  return { problems: out, pairs };
+}
+
+/* ---------- the check ---------- */
+
+function check({ libraryDir = path.join(ROOT, 'library'), dataDir = path.join(ROOT, 'picker', 'data') } = {}) {
+  const problems = [];
+  const add = (kind, file, template, message) => problems.push({ kind, file, template, message });
+  const counts = { templates: 0, reviewed: 0, drafts: 0, identities: 0, pairs: 0, dataFiles: 0 };
+  const result = { problems, counts, dataChecked: false, libraryDir, dataDir };
+  const io = (list, kind = 'structure') => list.splice(0).forEach((p) => add(kind, null, null, p));
+  const raw = [];
+
+  const elementsDir = path.join(libraryDir, 'elements');
+  if (!isDir(elementsDir)) {
+    add('structure', elementsDir, null, 'no library here: the elements folder is missing');
+    return result;
+  }
+
+  // tags.json: exactly the fixed tags, in order, each with both names.
+  const tagsFile = path.join(libraryDir, 'tags.json');
+  const tags = fs.existsSync(tagsFile) ? build.readJson(tagsFile, raw) : (raw.push(`${tagsFile}: missing`), undefined);
+  io(raw, 'tags');
+  if (Array.isArray(tags)) {
+    const ids = tags.map((t) => (isObject(t) ? t.id : undefined));
+    if (JSON.stringify(ids) !== JSON.stringify(TAGS))
+      add('tags', 'tags.json', null, `must list exactly the ${TAGS.length} fixed tags in order: ${TAGS.join(', ')}`);
+    tags.forEach((t, i) => {
+      const label = isObject(t) && typeof t.id === 'string' ? t.id : `[${i}]`;
+      if (
+        !isObject(t) ||
+        Object.keys(t).sort().join() !== 'id,name' ||
+        !isObject(t.name) ||
+        typeof t.name.ar !== 'string' ||
+        typeof t.name.en !== 'string'
+      ) {
+        add('tags', 'tags.json', label, 'a tag is { id, name: { ar, en } }');
+      } else nameProblems(t.name).forEach((m) => add('names', 'tags.json', label, m));
+    });
+  } else if (tags !== undefined) add('tags', 'tags.json', null, 'expected a JSON array of tags');
+
+  const byId = new Map(); // id -> { element, file, state }
+  const hasFile = new Set();
+  for (const name of build.listJson(elementsDir, raw)) {
+    const element = name.slice(0, -'.json'.length);
+    if (!ELEMENTS.includes(element)) {
+      add('structure', name, null, `"${element}" is not an element (expected one of: ${ELEMENTS.join(', ')})`);
+      continue;
+    }
+    hasFile.add(element);
+    const list = build.readJson(path.join(elementsDir, name), raw);
+    io(raw);
+    if (list === undefined) continue;
+    if (!Array.isArray(list)) {
+      add('structure', name, null, 'expected a JSON array of templates');
+      continue;
+    }
+    list.forEach((t, i) => checkTemplate(t, i, name, element));
+  }
+  io(raw);
+  for (const e of ELEMENTS)
+    if (!hasFile.has(e)) add('structure', `${e}.json`, null, `the element "${e}" has no file in ${elementsDir}`);
+
+  function checkTemplate(t, i, file, element) {
+    counts.templates++;
+    const label = isObject(t) && typeof t.id === 'string' && t.id ? t.id : `[${i}]`;
+    const say = (kind, message) => add(kind, file, label, message);
+    if (!isObject(t)) return say('schema', 'a template is a JSON object');
+    if (isObject(t.status)) counts[t.status.state === 'reviewed' ? 'reviewed' : 'drafts']++;
+
+    const result = validate.check('template', t);
+    for (const e of result.errors) {
+      // The top-level field the error is about: /name/en → name; a missing top-level field → that field.
+      const field = e.instancePath.split('/')[1] || (e.params && e.params.missingProperty) || '';
+      const kind = field === 'id' ? 'id' : field === 'name' ? 'names' : field === 'tags' ? 'tags' : 'schema';
+      say(kind, `${e.instancePath || '/'} ${e.message}`);
+    }
+    nameProblems(t.name).forEach((m) => say('names', m));
+    if (typeof t.id === 'string') {
+      if (byId.has(t.id)) say('id', `id "${t.id}" is already used in ${byId.get(t.id).file}`);
+      else byId.set(t.id, { element: t.element, file, state: isObject(t.status) ? t.status.state : null });
+    }
+    if (typeof t.element === 'string' && t.element !== element)
+      say('structure', `says element "${t.element}" but is in ${file}`);
+    if (!result.valid) return; // the deeper checks need the template's shape
+    if ((t.element === 'buttons' || t.element === 'cards') && t.kind !== 'composite')
+      say('schema', `a ${t.element.slice(0, -1)} is a composite template with a recipe (kind is "${t.kind}")`);
+
+    const tok = tokenProblems(t.tokens);
+    tok.problems.forEach((m) => say('tokens', m));
+    tok.physical.forEach((w) => say('logical', `${w} names left or right; use start / end`));
+
+    const alt = t.a11y.reducedMotion;
+    if (t.recipe) {
+      recipe.check(t.recipe).forEach((p) => say('recipe', `recipe ${p.where} not allowed: ${p.what}`));
+      physicalCss(t.recipe.css).forEach((d) =>
+        say('logical', `recipe CSS "${d}" names left or right; use logical properties (start / end)`)
+      );
+      physicalHtml(t.recipe.html).forEach((a) => say('logical', `recipe HTML ${a} names left or right`));
+    }
+    if (alt !== null) {
+      recipe
+        .check({ html: '<span></span>', css: alt })
+        .forEach((p) => say('reduced-motion', `the reduced-motion CSS is not allowed: ${p.what}`));
+      physicalCss(alt).forEach((d) => say('logical', `reduced-motion CSS "${d}" names left or right`));
+      if (!alt.trim())
+        say('reduced-motion', 'a11y.reducedMotion is blank: give the CSS that turns the motion off, or null');
+      else if (motionIn(alt, { fades: true }).length)
+        say('reduced-motion', 'the reduced-motion CSS itself moves something');
+      else if (
+        tok.motion &&
+        !blocks(alt).some((b) =>
+          Object.entries(b.decls).some(([p, v]) => stillDecl(p, v, 'transition') || stillDecl(p, v, 'animation'))
+        )
+      )
+        say('reduced-motion', 'the tokens hold motion but the reduced-motion CSS turns no transition or animation off');
+    }
+    const moving = t.recipe ? motionIn(t.recipe.css) : [];
+    if ((moving.length || tok.motion) && alt === null) {
+      say(
+        'reduced-motion',
+        `${moving.length ? `the recipe moves (${moving.map((m) => `${m.selector} ${m.family}`).join(', ')})` : 'the tokens hold motion'} but a11y.reducedMotion is null`
+      );
+    } else if (alt !== null) {
+      const seen = new Set();
+      for (const m of moving) {
+        const key = `${m.selector} ${m.family}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        if (!stills(alt, m.selector, m.family))
+          say('reduced-motion', `the reduced-motion CSS does not turn off ${m.family} on ${m.selector}`);
+      }
+    }
+
+    const declared = t.a11y.contrast;
+    if (t.element === 'colors') {
+      const c = t.tokens.color;
+      if (!isObject(c) || !isObject(c.primary) || c.primary.$type !== 'color')
+        say('contrast', 'a palette needs tokens.color.primary (a color) to be checked');
+      else if (declared === 'n/a') say('contrast', 'a palette must declare the level it reaches: "AA" or "AAA"');
+      else {
+        // A color that is not a valid #rrggbb is already a tokens problem; the rules engine cannot read it.
+        if (tok.problems.length) return;
+        const project = { contrast: declared, platform: t.platforms[0], language: 'en' };
+        const failing = rules.template(t, project).filter((p) => p.rule === 'contrast');
+        counts.pairs++;
+        failing.forEach((p) =>
+          say(
+            'contrast',
+            `declares ${declared} but in ${p.mode} mode ${p.text} on ${p.on} is ${p.shown}:1 (needs ${p.required}:1)`
+          )
+        );
+      }
+    } else if (t.recipe) {
+      if (declared === 'n/a') say('contrast', 'a button or card shows text: declare "AA" or "AAA"');
+      const pairs = recipePairs(t.recipe.html, t.recipe.css);
+      counts.pairs += pairs.pairs;
+      pairs.problems.forEach((m) => say('contrast', m));
+    } else if (declared !== 'n/a') {
+      say('contrast', `declares ${declared} but has no text on a background to check; declare "n/a"`);
+    }
+  }
+
+  // Ready identities.
+  const identitiesDir = path.join(libraryDir, 'identities');
+  if (fs.existsSync(identitiesDir)) {
+    if (!isDir(identitiesDir)) add('structure', identitiesDir, null, 'not a folder');
+    else {
+      const seen = new Map();
+      for (const name of build.listJson(identitiesDir, raw)) {
+        const value = build.readJson(path.join(identitiesDir, name), raw);
+        io(raw);
+        if (value === undefined) continue;
+        counts.identities++;
+        const label = isObject(value) && typeof value.id === 'string' ? value.id : name;
+        const say = (kind, message) => add(kind, `identities/${name}`, label, message);
+        const r = checkIdentity(value);
+        r.errors.forEach((e) => say('schema', `${e.instancePath || '/'} ${e.message}`));
+        if (!isObject(value)) continue;
+        nameProblems(value.name).forEach((m) => say('names', m));
+        if (isObject(value.description))
+          nameProblems(value.description).forEach((m) => say('names', `description: ${m.replace(' name', ' text')}`));
+        if (typeof value.id === 'string') {
+          if (seen.has(value.id)) say('id', `identity id "${value.id}" is already used in ${seen.get(value.id)}`);
+          else seen.set(value.id, name);
+        }
+        if (!r.valid) continue;
+        for (const element of ELEMENTS) {
+          if (!own(value.templates, element)) {
+            say('identity', `${element}: no template chosen`);
+            continue;
+          }
+          const id = value.templates[element];
+          const hit = byId.get(id);
+          if (!hit) say('identity', `${element}: "${id}" does not exist`);
+          else if (hit.element !== element) say('identity', `${element}: "${id}" is a ${hit.element} template`);
+        }
+      }
+      io(raw);
+    }
+  }
+
+  // picker/data: only a library without problems can be built.
+  if (!problems.length) {
+    let lib;
+    try {
+      lib = build.load(libraryDir);
+    } catch (e) {
+      if (!(e instanceof build.LibraryError)) throw e;
+      (e.problems || [e.message]).forEach((p) => add('structure', null, null, p));
+    }
+    if (lib) {
+      result.dataChecked = true;
+      const files = build.render(build.select(lib).data);
+      dataProblems(files, dataDir).forEach((p) => add('data', p.file, p.template, p.message));
+      counts.dataFiles = Object.keys(files).length;
+    }
+  }
+  return result;
+}
+
+// The JSON a generated data file carries (its last argument), or undefined.
+function dataList(text) {
+  const at = text.lastIndexOf("typeof self !== 'undefined' ? self : this, ");
+  if (at === -1 || !text.endsWith(');\n')) return undefined;
+  try {
+    return JSON.parse(text.slice(at + "typeof self !== 'undefined' ? self : this, ".length, -3));
+  } catch {
+    return undefined;
+  }
+}
+
+// Which templates (or identities) differ between the built file and the committed one, by id.
+function changedIds(want, have) {
+  const a = dataList(want);
+  const b = dataList(have);
+  if (!Array.isArray(a) || !Array.isArray(b)) return null;
+  const index = (list) => new Map(list.filter(isObject).map((x) => [x.id, JSON.stringify(x)]));
+  const A = index(a);
+  const B = index(b);
+  const out = [];
+  for (const [id, v] of A)
+    out.push(
+      ...(!B.has(id)
+        ? [[id, 'missing from picker/data']]
+        : B.get(id) !== v
+          ? [[id, 'changed since the last build']]
+          : [])
+    );
+  for (const id of B.keys())
+    if (!A.has(id)) out.push([id, 'in picker/data but not published by the library (removed or now a draft)']);
+  return out;
+}
+
+function dataProblems(files, dataDir) {
+  const out = [];
+  const hint = 'run npm run build';
+  let have;
+  try {
+    have = fs.readdirSync(dataDir).filter((n) => !n.startsWith('.'));
+  } catch {
+    return [{ file: dataDir, template: null, message: `cannot read the page data folder; ${hint}` }];
+  }
+  for (const name of Object.keys(files)) {
+    const file = `picker/data/${name}`;
+    if (!have.includes(name)) {
+      out.push({ file, template: null, message: `missing; ${hint}` });
+      continue;
+    }
+    let bytes;
+    try {
+      bytes = fs.readFileSync(path.join(dataDir, name));
+    } catch (e) {
+      out.push({ file, template: null, message: `cannot read (${e.code || e.message}); ${hint}` });
+      continue;
+    }
+    if (bytes.equals(Buffer.from(files[name]))) continue;
+    const ids = changedIds(files[name], bytes.toString('utf8'));
+    if (ids && ids.length) ids.forEach(([id, why]) => out.push({ file, template: id, message: `${why}; ${hint}` }));
+    else out.push({ file, template: null, message: `differs from what the library builds to; ${hint}` });
+  }
+  for (const name of have)
+    if (!own(files, name))
+      out.push({
+        file: `picker/data/${name}`,
+        template: null,
+        message: 'not made by the build; remove it or run npm run build'
+      });
+  return out;
+}
+
+const KINDS = [
+  'structure',
+  'schema',
+  'tokens',
+  'id',
+  'tags',
+  'names',
+  'contrast',
+  'reduced-motion',
+  'logical',
+  'recipe',
+  'identity',
+  'data'
+];
+
+function report(result) {
+  const { problems, counts } = result;
+  const rel = (p) => path.relative(process.cwd(), p) || '.';
+  const lines = [`hawiya check: ${rel(result.libraryDir)} and ${rel(result.dataDir)}`];
+  const scope = `${counts.templates} templates (${counts.reviewed} reviewed, ${counts.drafts} drafts), ${counts.identities} identities`;
+  if (!problems.length) {
+    lines.push(`  checked: ${KINDS.join(', ')}`);
+    lines.push(`  ${counts.pairs} contrast checks; picker/data matches the library (${counts.dataFiles} files)`);
+    lines.push(
+      `نجاح: فُحص ${counts.templates} تمبلت (${counts.reviewed} مراجَع، ${counts.drafts} مسودة) و ${counts.identities} هوية بلا أي مخالفة`
+    );
+    lines.push(`success: ${scope} checked, no problem`);
+    return lines.join('\n');
+  }
+  const sorted = problems.slice().sort((a, b) => KINDS.indexOf(a.kind) - KINDS.indexOf(b.kind));
+  for (const p of sorted) {
+    const where = [p.file, p.template].filter(Boolean).join(' › ');
+    lines.push(`  ✗ [${p.kind}] ${where ? where + ': ' : ''}${p.message}`);
+  }
+  if (!result.dataChecked) lines.push('  (picker/data is compared with the library once the library has no problem)');
+  lines.push(`فشل: ${problems.length} مخالفة (فُحص ${counts.templates} تمبلت و ${counts.identities} هوية)`);
+  lines.push(`failed: ${problems.length} problem(s) in ${scope}`);
+  return lines.join('\n');
+}
+
+function main(argv) {
+  const opts = { libraryDir: path.join(ROOT, 'library'), dataDir: path.join(ROOT, 'picker', 'data') };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if ((a === '--library' || a === '--data') && argv[i + 1])
+      opts[a === '--library' ? 'libraryDir' : 'dataDir'] = path.resolve(argv[++i]);
+    else {
+      process.stderr.write(
+        `hawiya check: unknown option ${a}\nusage: node tools/check.js [--library <dir>] [--data <dir>]\n`
+      );
+      return 2;
+    }
+  }
+  const result = check(opts);
+  const text = report(result) + '\n';
+  if (result.problems.length) {
+    process.stderr.write(text);
+    return 1;
+  }
+  process.stdout.write(text);
+  return 0;
+}
+
+if (require.main === module) process.exitCode = main(process.argv.slice(2));
+
+module.exports = {
+  KINDS,
+  check,
+  report,
+  main,
+  blocks,
+  tokenProblems,
+  recipePairs,
+  motionIn,
+  stills,
+  nameProblems,
+  physicalCss
+};
