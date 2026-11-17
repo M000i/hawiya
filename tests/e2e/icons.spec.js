@@ -6,6 +6,12 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
+// Written on the first library (37 templates, 2 identities): run on a copy of the page with that data (task 3.14).
+const FIRST = require('../helpers/first-library.js').firstPickerPage();
+const PUBLISHED_ICONS = (() => {
+  const b = require('../../tools/build.js');
+  return b.select(b.load(path.join(__dirname, '../../library'))).data.templates.icons.length;
+})();
 
 function watchErrors(page) {
   const errors = [];
@@ -16,9 +22,10 @@ function watchErrors(page) {
   return errors;
 }
 const panel = (page) => page.locator('#g-panel-icons');
-async function openIcons(page) {
+// n: how many icon styles the page shows (5 on the first library, every published one on the real page).
+async function openIcons(page, n = 5) {
   await page.locator('[data-element="icons"] > .g-toggle').click();
-  await expect(panel(page).locator('[data-template]')).toHaveCount(5);
+  await expect(panel(page).locator('[data-template]')).toHaveCount(n);
 }
 // Transform of an icon's drawing inside the preview scene.
 const sceneIcon = (page, selector) =>
@@ -45,7 +52,7 @@ test('every card shows 12 to 16 embedded icons; nothing but Google Fonts is requ
     route.fulfill({ status: 200, contentType: 'text/css', body: '' })
   );
   await page.goto(PAGE);
-  await openIcons(page);
+  await openIcons(page, PUBLISHED_ICONS); // every published icon style (task 3.14)
   const counts = await panel(page)
     .locator('[data-template]')
     .evaluateAll((cards) =>
@@ -82,7 +89,7 @@ test('in Arabic the "next" arrow mirrors and the check mark does not; in English
 });
 
 test('set, weight, fill and container: each choice reaches the identity and the preview', async ({ page }) => {
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await openIcons(page);
   const ext = () => page.evaluate(() => window.Hawiya.state.identity().extensions.icons);
 

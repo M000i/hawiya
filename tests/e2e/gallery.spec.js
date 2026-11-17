@@ -7,6 +7,13 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
+// Written on the first library (37 templates, 2 identities): run on a copy of the page with that data (task 3.14).
+const FIRST = require('../helpers/first-library.js').firstPickerPage();
+// The published library, for the tests that run on the real page.
+const PUBLISHED = (() => {
+  const b = require('../../tools/build.js');
+  return b.select(b.load(path.join(__dirname, '../../library'))).data.templates;
+})();
 const ar = require('../../picker/i18n/ar.js');
 const en = require('../../picker/i18n/en.js');
 const ELEMENTS = [
@@ -88,12 +95,12 @@ test('no element data file is requested before its gallery is opened, and each l
   expect(await requested(page)).toEqual([]);
 
   await toggle(page, 'radius').click();
-  await expect(panel(page, 'radius').locator('[data-template]')).toHaveCount(3);
+  await expect(panel(page, 'radius').locator('[data-template]')).toHaveCount(PUBLISHED.radius.length);
   expect(await requested(page)).toEqual(['radius']);
   await toggle(page, 'radius').click(); // close
   await toggle(page, 'radius').click(); // reopen
   await toggle(page, 'spacing').click();
-  await expect(panel(page, 'spacing').locator('[data-template]')).toHaveCount(3);
+  await expect(panel(page, 'spacing').locator('[data-template]')).toHaveCount(PUBLISHED.spacing.length);
   expect(await requested(page)).toEqual(['radius', 'spacing']);
   const scripts = await page.evaluate(() =>
     Array.from(document.querySelectorAll('script[data-element]')).map((s) => s.getAttribute('data-element'))
@@ -113,7 +120,7 @@ test('no element data file is requested before its gallery is opened, and each l
 });
 
 test('corners: cards choose, sliders adjust, and the preview cards and buttons follow', async ({ page }) => {
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await page.locator('[data-preview-mode="light"]').click();
   await toggle(page, 'radius').click();
   const cards = panel(page, 'radius').locator('[data-template]');
@@ -151,7 +158,7 @@ test('corners: cards choose, sliders adjust, and the preview cards and buttons f
 });
 
 test('type scale, shadows and spacing: cards and sliders change the identity and the preview', async ({ page }) => {
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   // Type scale: a larger body size enlarges the preview text; a value giving sizes beyond 200 px is refused.
   await toggle(page, 'type-scale').click();
   await expect(panel(page, 'type-scale').locator('[data-template]')).toHaveCount(3);
@@ -196,7 +203,7 @@ test('type scale, shadows and spacing: cards and sliders change the identity and
 });
 
 test('a choice outside the starter set survives a reload: only that element loads at start', async ({ page }) => {
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await toggle(page, 'radius').click();
   await panel(page, 'radius').locator('[data-template="radius-sharp"]').click();
   await page.reload();
@@ -210,7 +217,7 @@ test('a choice outside the starter set survives a reload: only that element load
 test('a saved identity that uses a non-starter template opens on a fresh page (its element loads first)', async ({
   page
 }) => {
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await toggle(page, 'spacing').click();
   // spacing-compact is used by no ready identity, so it is not in the starter data.
   await panel(page, 'spacing').locator('[data-template="spacing-compact"]').click();
@@ -232,7 +239,8 @@ test('a saved identity that uses a non-starter template opens on a fresh page (i
 test('the ready identity entry shows the cards; template names follow the interface language', async ({ page }) => {
   await page.goto(PAGE);
   await toggle(page, 'identities').click();
-  await expect(panel(page, 'identities').locator('[data-identity]')).toHaveCount(2);
+  // The ten ready identities of the spec (task 3.14).
+  await expect(panel(page, 'identities').locator('[data-identity]')).toHaveCount(10);
   await panel(page, 'identities').locator('[data-identity="warm-friendly"]').click();
   await expect(page.locator('#identity-list [data-identity="warm-friendly"]')).toHaveAttribute('aria-pressed', 'true');
   await toggle(page, 'radius').click();
@@ -263,4 +271,30 @@ test('a mode card shows one swatch when the app has no light/dark switch', async
     );
   });
   expect(out).toEqual(['dark', 'dark,light', 'light']);
+});
+
+// Task 3.14 (AC-10, AC-11): on the published page, each element's gallery shows every published template, and only
+// those: no draft reaches the page.
+test('each gallery shows every published template of its element, and nothing else', async ({ page }) => {
+  test.setTimeout(120000);
+  const build = require('../../tools/build.js');
+  const lib = build.load(path.join(__dirname, '../../library'));
+  const published = build.select(lib).data.templates;
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  await page.goto(PAGE);
+  for (const e of Object.keys(published)) {
+    await toggle(page, e).click();
+    const shown = panel(page, e).locator('[data-template]');
+    await expect(shown).toHaveCount(published[e].length);
+    const ids = await shown.evaluateAll((n) => n.map((x) => x.getAttribute('data-template')));
+    expect(ids.sort()).toEqual(published[e].map((t) => t.id).sort());
+    const drafts = lib.templates[e].filter((t) => t.status.state !== 'reviewed').map((t) => t.id);
+    expect(ids.filter((id) => drafts.includes(id))).toEqual([]);
+    await toggle(page, e).click();
+  }
+  expect(errors).toEqual([]);
 });

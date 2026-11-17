@@ -80,7 +80,7 @@
     },
     "status": {
       "state": "reviewed",
-      "reviewedAt": "2026-11-15"
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -222,7 +222,8243 @@
     },
     "status": {
       "state": "reviewed",
-      "reviewedAt": "2026-11-15"
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-sky-orange",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a \u0648\u0628\u0631\u062a\u0642\u0627\u0644\u064a",
+      "en": "Sky and orange"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0118,
+              0.4118,
+              0.6314
+            ],
+            "hex": "#0369a1"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9765,
+              0.451,
+              0.0863
+            ],
+            "hex": "#f97316"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 sky-700 / orange-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-emerald-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0645\u0631\u062f\u064a \u0648\u0644\u064a\u0645\u0648\u0646\u064a",
+      "en": "Emerald and lime"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0157,
+              0.4706,
+              0.3412
+            ],
+            "hex": "#047857"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3961,
+              0.6392,
+              0.051
+            ],
+            "hex": "#65a30d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 emerald-700 / lime-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-indigo-pink",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u064a\u0644\u064a \u0648\u0632\u0647\u0631\u064a",
+      "en": "Indigo and pink"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2627,
+              0.2196,
+              0.7922
+            ],
+            "hex": "#4338ca"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9255,
+              0.2824,
+              0.6
+            ],
+            "hex": "#ec4899"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 indigo-700 / pink-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-slate-sky",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0623\u0631\u062f\u0648\u0627\u0632\u064a \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a",
+      "en": "Slate and sky"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2,
+              0.2549,
+              0.3333
+            ],
+            "hex": "#334155"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0549,
+              0.6471,
+              0.9137
+            ],
+            "hex": "#0ea5e9"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 slate-700 / sky-500"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-red-amber",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0648\u0643\u0647\u0631\u0645\u0627\u0646\u064a",
+      "en": "Red and amber"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7255,
+              0.1098,
+              0.1098
+            ],
+            "hex": "#b91c1c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0.6196,
+              0.0431
+            ],
+            "hex": "#f59e0b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 red-700 / amber-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-violet-fuchsia",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0648\u0641\u0648\u0634\u064a",
+      "en": "Violet and fuchsia"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4275,
+              0.1569,
+              0.851
+            ],
+            "hex": "#6d28d9"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.851,
+              0.2745,
+              0.9373
+            ],
+            "hex": "#d946ef"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 violet-700 / fuchsia-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-cyan-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0645\u0627\u0648\u064a \u0648\u0648\u0631\u062f\u064a",
+      "en": "Cyan and rose"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0549,
+              0.4549,
+              0.5647
+            ],
+            "hex": "#0e7490"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.2471,
+              0.3686
+            ],
+            "hex": "#f43f5e"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 cyan-700 / rose-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-green-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0648\u0623\u0635\u0641\u0631",
+      "en": "Green and yellow"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0824,
+              0.502,
+              0.2392
+            ],
+            "hex": "#15803d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.702,
+              0.0314
+            ],
+            "hex": "#eab308"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 green-700 / yellow-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-orange-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u062a\u0642\u0627\u0644\u064a \u0648\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642",
+      "en": "Orange and teal"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7608,
+              0.2549,
+              0.0471
+            ],
+            "hex": "#c2410c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.051,
+              0.5804,
+              0.5333
+            ],
+            "hex": "#0d9488"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 orange-700 / teal-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-purple-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0631\u062c\u0648\u0627\u0646\u064a \u0648\u0644\u064a\u0645\u0648\u0646\u064a",
+      "en": "Purple and lime"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4941,
+              0.1333,
+              0.8078
+            ],
+            "hex": "#7e22ce"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5176,
+              0.8,
+              0.0863
+            ],
+            "hex": "#84cc16"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 purple-700 / lime-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-fuchsia-cyan",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0641\u0648\u0634\u064a \u0648\u0633\u0645\u0627\u0648\u064a",
+      "en": "Fuchsia and cyan"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6353,
+              0.1098,
+              0.6863
+            ],
+            "hex": "#a21caf"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0314,
+              0.5686,
+              0.698
+            ],
+            "hex": "#0891b2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 fuchsia-700 / cyan-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-stone-orange",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u062d\u062c\u0631\u064a \u0648\u0628\u0631\u062a\u0642\u0627\u0644\u064a",
+      "en": "Stone and orange"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2667,
+              0.251,
+              0.2353
+            ],
+            "hex": "#44403c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.3451,
+              0.0471
+            ],
+            "hex": "#ea580c"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 stone-700 / orange-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-zinc-emerald",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0645\u0639\u062f\u0646\u064a \u0648\u0632\u0645\u0631\u062f\u064a",
+      "en": "Zinc and emerald"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1529,
+              0.1529,
+              0.1647
+            ],
+            "hex": "#27272a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0627,
+              0.7255,
+              0.5059
+            ],
+            "hex": "#10b981"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 zinc-800 / emerald-500"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-blue-sky",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a",
+      "en": "Blue and sky"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1176,
+              0.251,
+              0.6863
+            ],
+            "hex": "#1e40af"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2196,
+              0.7412,
+              0.9725
+            ],
+            "hex": "#38bdf8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 blue-800 / sky-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-pink-indigo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0647\u0631\u064a \u0648\u0646\u064a\u0644\u064a",
+      "en": "Pink and indigo"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7451,
+              0.0941,
+              0.3647
+            ],
+            "hex": "#be185d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3882,
+              0.4,
+              0.9451
+            ],
+            "hex": "#6366f1"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 pink-700 / indigo-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-amber-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0647\u0631\u0645\u0627\u0646\u064a \u0648\u0623\u0632\u0631\u0642",
+      "en": "Amber and blue"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7059,
+              0.3255,
+              0.0353
+            ],
+            "hex": "#b45309"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2314,
+              0.5098,
+              0.9647
+            ],
+            "hex": "#3b82f6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 amber-700 / blue-500"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tailwind-teal-pink",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0632\u0647\u0631\u064a",
+      "en": "Teal and pink"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0667,
+              0.3686,
+              0.349
+            ],
+            "hex": "#115e59"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.1529,
+              0.4667
+            ],
+            "hex": "#db2777"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 teal-800 / pink-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-tomato-cyan",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0637\u0645\u0627\u0637\u0645\u064a \u0648\u0633\u0645\u0627\u0648\u064a",
+      "en": "Tomato and cyan"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.302,
+              0.1804
+            ],
+            "hex": "#e54d2e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.6353,
+              0.7804
+            ],
+            "hex": "#00a2c7"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors tomato-9 / cyan-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-red-jade",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0648\u064a\u0634\u0645\u064a",
+      "en": "Red and jade"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.2824,
+              0.302
+            ],
+            "hex": "#e5484d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1608,
+              0.6392,
+              0.5137
+            ],
+            "hex": "#29a383"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors red-9 / jade-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-ruby-iris",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u064a\u0627\u0642\u0648\u062a\u064a \u0648\u0633\u0648\u0633\u0646\u064a",
+      "en": "Ruby and iris"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.2745,
+              0.4
+            ],
+            "hex": "#e54666"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3569,
+              0.3569,
+              0.8392
+            ],
+            "hex": "#5b5bd6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors ruby-9 / iris-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-crimson-grass",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0642\u0631\u0645\u0632\u064a \u0648\u0639\u0634\u0628\u064a",
+      "en": "Crimson and grass"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.2392,
+              0.5098
+            ],
+            "hex": "#e93d82"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2745,
+              0.6549,
+              0.3451
+            ],
+            "hex": "#46a758"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors crimson-9 / grass-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-pink-mint",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0647\u0631\u064a \u0648\u0646\u0639\u0646\u0627\u0639\u064a",
+      "en": "Pink and mint"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8392,
+              0.251,
+              0.6235
+            ],
+            "hex": "#d6409f"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.9176,
+              0.8314
+            ],
+            "hex": "#86ead4"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors pink-9 / mint-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-plum-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u0642\u0648\u0642\u064a \u0648\u0644\u064a\u0645\u0648\u0646\u064a",
+      "en": "Plum and lime"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6706,
+              0.2902,
+              0.7294
+            ],
+            "hex": "#ab4aba"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7412,
+              0.9333,
+              0.3882
+            ],
+            "hex": "#bdee63"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors plum-9 / lime-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-purple-amber",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0631\u062c\u0648\u0627\u0646\u064a \u0648\u0643\u0647\u0631\u0645\u0627\u0646\u064a",
+      "en": "Purple and amber"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5569,
+              0.3059,
+              0.7765
+            ],
+            "hex": "#8e4ec6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.7725,
+              0.2392
+            ],
+            "hex": "#ffc53d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors purple-9 / amber-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-violet-orange",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0648\u0628\u0631\u062a\u0642\u0627\u0644\u064a",
+      "en": "Violet and orange"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4314,
+              0.3373,
+              0.8118
+            ],
+            "hex": "#6e56cf"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8,
+              0.3059,
+              0
+            ],
+            "hex": "#cc4e00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors violet-9 / orange-11"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-iris-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0648\u0633\u0646\u064a \u0648\u0623\u0635\u0641\u0631",
+      "en": "Iris and yellow"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3569,
+              0.3569,
+              0.8392
+            ],
+            "hex": "#5b5bd6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.902,
+              0.1608
+            ],
+            "hex": "#ffe629"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors iris-9 / yellow-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-indigo-tomato",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u064a\u0644\u064a \u0648\u0637\u0645\u0627\u0637\u0645\u064a",
+      "en": "Indigo and tomato"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2431,
+              0.3882,
+              0.8667
+            ],
+            "hex": "#3e63dd"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.898,
+              0.302,
+              0.1804
+            ],
+            "hex": "#e54d2e"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors indigo-9 / tomato-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-blue-sky",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a (\u0631\u0627\u062f\u064a\u0643\u0633)",
+      "en": "Blue and sky (Radix Colors)"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5647,
+              1
+            ],
+            "hex": "#0090ff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4863,
+              0.8863,
+              0.9961
+            ],
+            "hex": "#7ce2fe"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors blue-9 / sky-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-cyan-pink",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0645\u0627\u0648\u064a \u0648\u0632\u0647\u0631\u064a",
+      "en": "Cyan and pink"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.6353,
+              0.7804
+            ],
+            "hex": "#00a2c7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8392,
+              0.251,
+              0.6235
+            ],
+            "hex": "#d6409f"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors cyan-9 / pink-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-teal-crimson",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0642\u0631\u0645\u0632\u064a",
+      "en": "Teal and crimson"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0706,
+              0.6471,
+              0.5804
+            ],
+            "hex": "#12a594"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.2392,
+              0.5098
+            ],
+            "hex": "#e93d82"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors teal-9 / crimson-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-jade-violet",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u064a\u0634\u0645\u064a \u0648\u0628\u0646\u0641\u0633\u062c\u064a",
+      "en": "Jade and violet"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1608,
+              0.6392,
+              0.5137
+            ],
+            "hex": "#29a383"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4314,
+              0.3373,
+              0.8118
+            ],
+            "hex": "#6e56cf"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors jade-9 / violet-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-green-purple",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0648\u0623\u0631\u062c\u0648\u0627\u0646\u064a",
+      "en": "Green and purple"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1882,
+              0.6431,
+              0.4235
+            ],
+            "hex": "#30a46c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5569,
+              0.3059,
+              0.7765
+            ],
+            "hex": "#8e4ec6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors green-9 / purple-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-grass-indigo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0634\u0628\u064a \u0648\u0646\u064a\u0644\u064a",
+      "en": "Grass and indigo"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2745,
+              0.6549,
+              0.3451
+            ],
+            "hex": "#46a758"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2431,
+              0.3882,
+              0.8667
+            ],
+            "hex": "#3e63dd"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors grass-9 / indigo-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-brown-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0646\u064a \u0648\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642",
+      "en": "Brown and teal"
+    },
+    "tags": [
+      "luxury",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6784,
+              0.498,
+              0.3451
+            ],
+            "hex": "#ad7f58"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0706,
+              0.6471,
+              0.5804
+            ],
+            "hex": "#12a594"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors brown-9 / teal-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-bronze-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u0648\u0646\u0632\u064a \u0648\u0623\u0632\u0631\u0642",
+      "en": "Bronze and blue"
+    },
+    "tags": [
+      "luxury",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6314,
+              0.502,
+              0.4471
+            ],
+            "hex": "#a18072"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5647,
+              1
+            ],
+            "hex": "#0090ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors bronze-9 / blue-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-gold-plum",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0630\u0647\u0628\u064a \u0648\u0628\u0631\u0642\u0648\u0642\u064a",
+      "en": "Gold and plum"
+    },
+    "tags": [
+      "luxury",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5922,
+              0.5137,
+              0.3961
+            ],
+            "hex": "#978365"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6706,
+              0.2902,
+              0.7294
+            ],
+            "hex": "#ab4aba"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors gold-9 / plum-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-radix-orange-green",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u062a\u0642\u0627\u0644\u064a \u0648\u0623\u062e\u0636\u0631",
+      "en": "Orange and green"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.4196,
+              0.0824
+            ],
+            "hex": "#f76b15"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1882,
+              0.6431,
+              0.4235
+            ],
+            "hex": "#30a46c"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Radix Colors orange-9 / green-9"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Radix Colors",
+      "url": "https://github.com/radix-ui/colors",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-indigo-orange",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u064a\u0644\u064a \u0648\u0628\u0631\u062a\u0642\u0627\u0644\u064a",
+      "en": "Indigo and orange"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2314,
+              0.3569,
+              0.8588
+            ],
+            "hex": "#3b5bdb"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9922,
+              0.4941,
+              0.0784
+            ],
+            "hex": "#fd7e14"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color indigo 8 / orange 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-blue-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0648\u0623\u0635\u0641\u0631",
+      "en": "Blue and yellow"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.098,
+              0.4431,
+              0.7608
+            ],
+            "hex": "#1971c2"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9804,
+              0.6902,
+              0.0196
+            ],
+            "hex": "#fab005"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color blue 8 / yellow 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-cyan-red",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0645\u0627\u0648\u064a \u0648\u0623\u062d\u0645\u0631",
+      "en": "Cyan and red"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.5216,
+              0.6
+            ],
+            "hex": "#0c8599"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9804,
+              0.3216,
+              0.3216
+            ],
+            "hex": "#fa5252"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color cyan 8 / red 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-teal-pink",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0632\u0647\u0631\u064a (\u0623\u0648\u0628\u0646 \u0643\u0644\u0631)",
+      "en": "Teal and pink (Open Color)"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0353,
+              0.5725,
+              0.4078
+            ],
+            "hex": "#099268"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8392,
+              0.2,
+              0.4235
+            ],
+            "hex": "#d6336c"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color teal 8 / pink 7"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-green-grape",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0648\u0639\u0646\u0628\u064a",
+      "en": "Green and grape"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1843,
+              0.6196,
+              0.2667
+            ],
+            "hex": "#2f9e44"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7451,
+              0.2941,
+              0.8588
+            ],
+            "hex": "#be4bdb"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color green 8 / grape 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-lime-violet",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0644\u064a\u0645\u0648\u0646\u064a \u0648\u0628\u0646\u0641\u0633\u062c\u064a",
+      "en": "Lime and violet"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3608,
+              0.5804,
+              0.051
+            ],
+            "hex": "#5c940d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4745,
+              0.3137,
+              0.949
+            ],
+            "hex": "#7950f2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color lime 9 / violet 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-grape-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0628\u064a \u0648\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642",
+      "en": "Grape and teal"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6118,
+              0.2118,
+              0.7098
+            ],
+            "hex": "#9c36b5"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2196,
+              0.851,
+              0.6627
+            ],
+            "hex": "#38d9a9"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color grape 8 / teal 4"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-violet-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0648\u0644\u064a\u0645\u0648\u0646\u064a",
+      "en": "Violet and lime"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4039,
+              0.2549,
+              0.851
+            ],
+            "hex": "#6741d9"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4549,
+              0.7216,
+              0.0863
+            ],
+            "hex": "#74b816"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color violet 8 / lime 7"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-red-cyan",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0648\u0633\u0645\u0627\u0648\u064a",
+      "en": "Red and cyan"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8784,
+              0.1922,
+              0.1922
+            ],
+            "hex": "#e03131"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0824,
+              0.6667,
+              0.749
+            ],
+            "hex": "#15aabf"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color red 8 / cyan 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-pink-green",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0647\u0631\u064a \u0648\u0623\u062e\u0636\u0631",
+      "en": "Pink and green"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.651,
+              0.1176,
+              0.302
+            ],
+            "hex": "#a61e4d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.251,
+              0.7529,
+              0.3412
+            ],
+            "hex": "#40c057"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color pink 9 / green 6"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-orange-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u062a\u0642\u0627\u0644\u064a \u0648\u0623\u0632\u0631\u0642",
+      "en": "Orange and blue"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.349,
+              0.0471
+            ],
+            "hex": "#e8590c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1333,
+              0.5451,
+              0.902
+            ],
+            "hex": "#228be6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color orange 8 / blue 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-gray-indigo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0648\u0646\u064a\u0644\u064a",
+      "en": "Gray and indigo"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2039,
+              0.2275,
+              0.251
+            ],
+            "hex": "#343a40"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3608,
+              0.4863,
+              0.9804
+            ],
+            "hex": "#5c7cfa"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color gray 8 / indigo 5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-yellow-indigo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0635\u0641\u0631 \u0648\u0646\u064a\u0644\u064a",
+      "en": "Yellow and indigo"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.4667,
+              0
+            ],
+            "hex": "#e67700"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.298,
+              0.4314,
+              0.9608
+            ],
+            "hex": "#4c6ef5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color yellow 9 / indigo 6"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-indigo-pink",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u064a\u0644\u064a \u0648\u0632\u0647\u0631\u064a (\u0623\u0648\u0628\u0646 \u0643\u0644\u0631)",
+      "en": "Indigo and pink (Open Color)"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2118,
+              0.3098,
+              0.7804
+            ],
+            "hex": "#364fc7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9412,
+              0.3961,
+              0.5843
+            ],
+            "hex": "#f06595"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color indigo 9 / pink 5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-blue-orange",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0648\u0628\u0631\u062a\u0642\u0627\u0644\u064a",
+      "en": "Blue and orange"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0941,
+              0.3922,
+              0.6706
+            ],
+            "hex": "#1864ab"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5725,
+              0.1686
+            ],
+            "hex": "#ff922b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color blue 9 / orange 5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-teal-grape",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0639\u0646\u0628\u064a",
+      "en": "Teal and grape"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0314,
+              0.498,
+              0.3569
+            ],
+            "hex": "#087f5b"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8,
+              0.3647,
+              0.9098
+            ],
+            "hex": "#cc5de8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color teal 9 / grape 5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-grape-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0628\u064a \u0648\u0623\u0635\u0641\u0631",
+      "en": "Grape and yellow"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.1804,
+              0.6118
+            ],
+            "hex": "#862e9c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8314,
+              0.2314
+            ],
+            "hex": "#ffd43b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color grape 9 / yellow 4"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-violet-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0648\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642",
+      "en": "Violet and teal"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3725,
+              0.2392,
+              0.7686
+            ],
+            "hex": "#5f3dc4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1255,
+              0.7882,
+              0.5922
+            ],
+            "hex": "#20c997"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color violet 9 / teal 5"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-red-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0648\u0623\u0632\u0631\u0642",
+      "en": "Red and blue"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7882,
+              0.1647,
+              0.1647
+            ],
+            "hex": "#c92a2a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2,
+              0.6039,
+              0.9412
+            ],
+            "hex": "#339af0"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color red 9 / blue 5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-open-color-gray-red",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0648\u0623\u062d\u0645\u0631",
+      "en": "Gray and red"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2863,
+              0.3137,
+              0.3412
+            ],
+            "hex": "#495057"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4196,
+              0.4196
+            ],
+            "hex": "#ff6b6b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Open Color gray 7 / red 5"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Open Color",
+      "url": "https://github.com/yeun/open-color",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-modern-minimal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0633\u064a\u0637 \u062d\u062f\u064a\u062b",
+      "en": "Modern Minimal"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2314,
+              0.5098,
+              0.9647
+            ],
+            "hex": "#3b82f6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1451,
+              0.3882,
+              0.9216
+            ],
+            "hex": "#2563eb"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Modern Minimal: primary / chart-2"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-violet-bloom",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0647\u0631 \u0627\u0644\u0628\u0646\u0641\u0633\u062c",
+      "en": "Violet Bloom"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4392,
+              0.2,
+              1
+            ],
+            "hex": "#7033ff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2902,
+              0.7843,
+              0.5216
+            ],
+            "hex": "#4ac885"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Violet Bloom: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-mocha-mousse",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0645\u0648\u0633 \u0627\u0644\u0645\u0648\u0643\u0627",
+      "en": "Mocha Mousse"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6392,
+              0.4667,
+              0.3922
+            ],
+            "hex": "#a37764"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7647,
+              0.6196,
+              0.5333
+            ],
+            "hex": "#c39e88"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Mocha Mousse: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-bubblegum",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0644\u0643\u0629 \u0648\u0631\u062f\u064a\u0629",
+      "en": "Bubblegum"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8157,
+              0.3098,
+              0.6
+            ],
+            "hex": "#d04f99"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5412,
+              0.8118,
+              0.8196
+            ],
+            "hex": "#8acfd1"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Bubblegum: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-amethyst-haze",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0636\u0628\u0627\u0628 \u0627\u0644\u062c\u0645\u0634\u062a",
+      "en": "Amethyst Haze"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5412,
+              0.4745,
+              0.6706
+            ],
+            "hex": "#8a79ab"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.6471,
+              0.7216
+            ],
+            "hex": "#e6a5b8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Amethyst Haze: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-notebook",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062f\u0641\u062a\u0631",
+      "en": "Notebook"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3765,
+              0.3765,
+              0.3765
+            ],
+            "hex": "#606060"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9529,
+              0.9176,
+              0.7843
+            ],
+            "hex": "#f3eac8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Notebook: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-kodama-grove",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0633\u062a\u0627\u0646 \u0643\u0648\u062f\u0627\u0645\u0627",
+      "en": "Kodama Grove"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5529,
+              0.6157,
+              0.3098
+            ],
+            "hex": "#8d9d4f"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8706,
+              0.8078,
+              0.6275
+            ],
+            "hex": "#decea0"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Kodama Grove: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-tangerine",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u064a\u0648\u0633\u0641\u064a",
+      "en": "Tangerine"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8784,
+              0.3647,
+              0.2196
+            ],
+            "hex": "#e05d38"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5255,
+              0.6549,
+              0.7843
+            ],
+            "hex": "#86a7c8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Tangerine: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-quantum-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0648\u0631\u062f\u0629 \u0643\u0645\u0648\u0645\u064a\u0629",
+      "en": "Quantum Rose"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.902,
+              0.0235,
+              0.4784
+            ],
+            "hex": "#e6067a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8392,
+              1
+            ],
+            "hex": "#ffd6ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Quantum Rose: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-bold-tech",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062a\u0642\u0646\u064a \u062c\u0631\u064a\u0621",
+      "en": "Bold Tech"
+    },
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5451,
+              0.3608,
+              0.9647
+            ],
+            "hex": "#8b5cf6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4275,
+              0.1569,
+              0.851
+            ],
+            "hex": "#6d28d9"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Bold Tech: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-elegant-luxury",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0641\u062e\u0627\u0645\u0629 \u0623\u0646\u064a\u0642\u0629",
+      "en": "Elegant Luxury"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6078,
+              0.1725,
+              0.1725
+            ],
+            "hex": "#9b2c2c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9961,
+              0.9529,
+              0.7804
+            ],
+            "hex": "#fef3c7"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Elegant Luxury: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-amber-minimal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0647\u0631\u0645\u0627\u0646\u064a \u0628\u0633\u064a\u0637",
+      "en": "Amber Minimal"
+    },
+    "tags": [
+      "minimal",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0.6196,
+              0.0431
+            ],
+            "hex": "#f59e0b"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7059,
+              0.3255,
+              0.0353
+            ],
+            "hex": "#b45309"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Amber Minimal: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-neo-brutalism",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u0648\u062a\u0627\u0644\u064a\u0629 \u062c\u062f\u064a\u062f\u0629",
+      "en": "Neo Brutalism"
+    },
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.2,
+              0.2
+            ],
+            "hex": "#ff3333"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              1,
+              0
+            ],
+            "hex": "#ffff00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Neo Brutalism: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-claymorphism",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0637\u064a\u0646\u064a \u0646\u0627\u0639\u0645",
+      "en": "Claymorphism"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3882,
+              0.4,
+              0.9451
+            ],
+            "hex": "#6366f1"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2627,
+              0.2196,
+              0.7922
+            ],
+            "hex": "#4338ca"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Claymorphism: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-cyberpunk",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0627\u064a\u0628\u0631\u0628\u0627\u0646\u0643",
+      "en": "Cyberpunk"
+    },
+    "tags": [
+      "retro",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0,
+              0.7843
+            ],
+            "hex": "#ff00c8"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              1,
+              0.8
+            ],
+            "hex": "#00ffcc"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Cyberpunk: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-pastel-dreams",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062d\u0644\u0627\u0645 \u0628\u0627\u0633\u062a\u064a\u0644",
+      "en": "Pastel Dreams"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6549,
+              0.5451,
+              0.9804
+            ],
+            "hex": "#a78bfa"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9137,
+              0.8471,
+              0.9922
+            ],
+            "hex": "#e9d8fd"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Pastel Dreams: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-caffeine",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0627\u0641\u064a\u064a\u0646",
+      "en": "Caffeine"
+    },
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3922,
+              0.2902,
+              0.251
+            ],
+            "hex": "#644a40"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8745,
+              0.7098
+            ],
+            "hex": "#ffdfb5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Caffeine: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-ocean-breeze",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u0633\u064a\u0645 \u0627\u0644\u0645\u062d\u064a\u0637",
+      "en": "Ocean Breeze"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1333,
+              0.7725,
+              0.3686
+            ],
+            "hex": "#22c55e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8196,
+              0.9804,
+              0.898
+            ],
+            "hex": "#d1fae5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Ocean Breeze: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-retro-arcade",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0631\u0643\u064a\u062f \u0642\u062f\u064a\u0645",
+      "en": "Retro Arcade"
+    },
+    "tags": [
+      "retro",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8275,
+              0.2118,
+              0.5098
+            ],
+            "hex": "#d33682"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.149,
+              0.5451,
+              0.8235
+            ],
+            "hex": "#268bd2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Retro Arcade: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-midnight-bloom",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0647\u0631 \u0645\u0646\u062a\u0635\u0641 \u0627\u0644\u0644\u064a\u0644",
+      "en": "Midnight Bloom"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4235,
+              0.3608,
+              0.9059
+            ],
+            "hex": "#6c5ce7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6314,
+              0.7882,
+              0.949
+            ],
+            "hex": "#a1c9f2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Midnight Bloom: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-candyland",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0631\u0636 \u0627\u0644\u062d\u0644\u0648\u0649",
+      "en": "Candyland"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.7529,
+              0.7961
+            ],
+            "hex": "#ffc0cb"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5294,
+              0.8078,
+              0.9216
+            ],
+            "hex": "#87ceeb"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Candyland: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-sunset-horizon",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0641\u0642 \u0627\u0644\u063a\u0631\u0648\u0628",
+      "en": "Sunset Horizon"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4941,
+              0.3725
+            ],
+            "hex": "#ff7e5f"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9961,
+              0.7059,
+              0.4824
+            ],
+            "hex": "#feb47b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Sunset Horizon: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-starry-night",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0644\u064a\u0644\u0629 \u0627\u0644\u0646\u062c\u0648\u0645",
+      "en": "Starry Night"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2275,
+              0.3569,
+              0.6275
+            ],
+            "hex": "#3a5ba0"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.7843,
+              0.451
+            ],
+            "hex": "#f7c873"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Starry Night: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-darkmatter",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0645\u0627\u062f\u0629 \u0645\u0638\u0644\u0645\u0629",
+      "en": "Darkmatter"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8471,
+              0.4745,
+              0.2627
+            ],
+            "hex": "#d87943"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3725,
+              0.5294,
+              0.5294
+            ],
+            "hex": "#5f8787"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Darkmatter: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-soft-pop",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0648\u0628 \u0646\u0627\u0639\u0645",
+      "en": "Soft Pop"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3098,
+              0.2745,
+              0.898
+            ],
+            "hex": "#4f46e5"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0784,
+              0.7216,
+              0.651
+            ],
+            "hex": "#14b8a6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Soft Pop: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-tweakcn-sage-garden",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062d\u062f\u064a\u0642\u0629 \u0627\u0644\u0645\u0631\u064a\u0645\u064a\u0629",
+      "en": "Sage Garden"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4863,
+              0.5647,
+              0.5098
+            ],
+            "hex": "#7c9082"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6275,
+              0.6667,
+              0.5333
+            ],
+            "hex": "#a0aa88"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "tweakcn Sage Garden: primary / chart-2"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "tweakcn",
+      "url": "https://github.com/jnsahaj/tweakcn",
+      "license": "Apache-2.0"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-shadcn-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 (shadcn)",
+      "en": "Blue (shadcn)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0784,
+              0.2784,
+              0.902
+            ],
+            "hex": "#1447e6"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5686,
+              0.7725,
+              1
+            ],
+            "hex": "#91c5ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui blue theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-shadcn-indigo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u064a\u0644\u064a (shadcn)",
+      "en": "Indigo (shadcn)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2627,
+              0.1765,
+              0.8431
+            ],
+            "hex": "#432dd7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6431,
+              0.7059,
+              1
+            ],
+            "hex": "#a4b4ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui indigo theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-shadcn-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0644\u064a\u0645\u0648\u0646\u064a (shadcn)",
+      "en": "Lime (shadcn)"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6157,
+              0.898,
+              0
+            ],
+            "hex": "#9de500"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2392,
+              0.3882,
+              0
+            ],
+            "hex": "#3d6300"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui lime theme: primary / chart-5"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-shadcn-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0648\u0631\u062f\u064a (shadcn)",
+      "en": "Rose (shadcn)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7569,
+              0,
+              0.2275
+            ],
+            "hex": "#c1003a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6392,
+              0.6824
+            ],
+            "hex": "#ffa3ae"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui rose theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-shadcn-violet",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a (shadcn)",
+      "en": "Violet (shadcn)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4392,
+              0.0314,
+              0.9059
+            ],
+            "hex": "#7008e7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7686,
+              0.7059,
+              1
+            ],
+            "hex": "#c4b4ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui violet theme: primary / chart-1"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-shadcn-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0635\u0641\u0631 (shadcn)",
+      "en": "Yellow (shadcn)"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.7882,
+              0
+            ],
+            "hex": "#f7c900"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7922,
+              0.5412,
+              0
+            ],
+            "hex": "#ca8a00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "shadcn/ui yellow theme: primary / chart-3"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-abyss",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0647\u0627\u0648\u064a\u0629",
+      "en": "Abyss"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7608,
+              0.9922,
+              0
+            ],
+            "hex": "#c2fd00"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8078,
+              0.7451,
+              0.9569
+            ],
+            "hex": "#cebef4"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI abyss theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-acid",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062d\u0645\u0636\u064a",
+      "en": "Acid"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.2588,
+              0.9569
+            ],
+            "hex": "#ff42f4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8,
+              0.9961,
+              0
+            ],
+            "hex": "#ccfe00"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI acid theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-aqua",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0645\u0627\u0626\u064a",
+      "en": "Aqua"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0745,
+              0.9255,
+              0.9529
+            ],
+            "hex": "#13ecf3"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5882,
+              0.4353,
+              0.702
+            ],
+            "hex": "#966fb3"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI aqua theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-autumn",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062e\u0631\u064a\u0641",
+      "en": "Autumn"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.0118,
+              0.1529
+            ],
+            "hex": "#8c0327"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8471,
+              0.3216,
+              0.3176
+            ],
+            "hex": "#d85251"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI autumn theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-business",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0639\u0645\u0627\u0644",
+      "en": "Business"
+    },
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1098,
+              0.3059,
+              0.502
+            ],
+            "hex": "#1c4e80"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9176,
+              0.4118,
+              0.2784
+            ],
+            "hex": "#ea6947"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI business theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-cmyk",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0644\u0648\u0627\u0646 \u0627\u0644\u0637\u0628\u0627\u0639\u0629",
+      "en": "CMYK"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2706,
+              0.6824,
+              0.9333
+            ],
+            "hex": "#45aeee"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.949,
+              0.2039
+            ],
+            "hex": "#fff234"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI cmyk theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-coffee",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0642\u0647\u0648\u0629",
+      "en": "Coffee"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8588,
+              0.5725,
+              0.298
+            ],
+            "hex": "#db924c"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0667,
+              0.3412,
+              0.4275
+            ],
+            "hex": "#11576d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI coffee theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-corporate",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0645\u0624\u0633\u0633\u064a",
+      "en": "Corporate"
+    },
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5098,
+              0.7686
+            ],
+            "hex": "#0082c4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3804,
+              0.451,
+              0.5529
+            ],
+            "hex": "#61738d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI corporate theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-cupcake",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0628 \u0643\u064a\u0643",
+      "en": "Cupcake"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2667,
+              0.9216,
+              0.8275
+            ],
+            "hex": "#44ebd3"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9765,
+              0.7961,
+              0.898
+            ],
+            "hex": "#f9cbe5"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI cupcake theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-cyberpunk",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0627\u064a\u0628\u0631\u0628\u0627\u0646\u0643 (DaisyUI)",
+      "en": "Cyberpunk (DaisyUI)"
+    },
+    "tags": [
+      "retro",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4784,
+              0.6078
+            ],
+            "hex": "#ff7a9b"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.8863,
+              0.9569
+            ],
+            "hex": "#00e2f4"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI cyberpunk theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-dark",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062f\u0627\u0643\u0646",
+      "en": "Dark"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3765,
+              0.3647,
+              1
+            ],
+            "hex": "#605dff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.1882,
+              0.5961
+            ],
+            "hex": "#f43098"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI dark theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-dim",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062e\u0627\u0641\u062a",
+      "en": "Dim"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6235,
+              0.9098,
+              0.5529
+            ],
+            "hex": "#9fe88d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4902,
+              0.3647
+            ],
+            "hex": "#ff7d5d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI dim theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-fantasy",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062e\u064a\u0627\u0644",
+      "en": "Fantasy"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4196,
+              0,
+              0.4471
+            ],
+            "hex": "#6b0072"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.4588,
+              0.6902
+            ],
+            "hex": "#0075b0"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI fantasy theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-garden",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062d\u062f\u064a\u0642\u0629",
+      "en": "Garden"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0,
+              0.4627
+            ],
+            "hex": "#f50076"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5569,
+              0.2549,
+              0.3843
+            ],
+            "hex": "#8e4162"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI garden theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-halloween",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0647\u0627\u0644\u0648\u064a\u0646",
+      "en": "Halloween"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6039,
+              0.2
+            ],
+            "hex": "#ff9a33"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4745,
+              0,
+              0.7451
+            ],
+            "hex": "#7900be"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI halloween theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-night",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0644\u064a\u0644",
+      "en": "Night"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2275,
+              0.7412,
+              0.9686
+            ],
+            "hex": "#3abdf7"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5059,
+              0.549,
+              0.9725
+            ],
+            "hex": "#818cf8"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI night theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-pastel",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0627\u0633\u062a\u064a\u0644",
+      "en": "Pastel"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.8314,
+              1
+            ],
+            "hex": "#e8d4ff"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6392,
+              0.949,
+              0.8078
+            ],
+            "hex": "#a3f2ce"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI pastel theme: primary / accent"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-synthwave",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u064a\u0646\u062b\u0648\u064a\u0641",
+      "en": "Synthwave"
+    },
+    "tags": [
+      "retro",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9725,
+              0.3804,
+              0.7059
+            ],
+            "hex": "#f861b4"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4431,
+              0.8196,
+              0.9961
+            ],
+            "hex": "#71d1fe"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI synthwave theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-valentine",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0641\u0627\u0644\u0646\u062a\u0627\u064a\u0646",
+      "en": "Valentine"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.1882,
+              0.5961
+            ],
+            "hex": "#f43098"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6627,
+              0.2863,
+              1
+            ],
+            "hex": "#a949ff"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI valentine theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-daisyui-winter",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0634\u062a\u0627\u0621",
+      "en": "Winter"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.4392,
+              0.9294
+            ],
+            "hex": "#0070ed"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2745,
+              0.2275,
+              0.6353
+            ],
+            "hex": "#463aa2"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "DaisyUI winter theme: primary / secondary"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "DaisyUI",
+      "url": "https://github.com/saadeghi/daisyui",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-mauve-peach",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined",
+      "en": "Catppuccin Latte: mauve and peach"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 1
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5333,
+              0.2235,
+              0.9373
+            ],
+            "hex": "#8839ef"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9961,
+              0.3922,
+              0.0431
+            ],
+            "hex": "#fe640b"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte mauve / latte peach"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-red-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined (Catppuccin)",
+      "en": "Catppuccin Latte: red and teal (Catppuccin)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8235,
+              0.0588,
+              0.2235
+            ],
+            "hex": "#d20f39"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0902,
+              0.5725,
+              0.6
+            ],
+            "hex": "#179299"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte red / latte teal"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-sapphire-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined (Catppuccin)",
+      "en": "Catppuccin Latte: sapphire and yellow (Catppuccin)"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1255,
+              0.6235,
+              0.7098
+            ],
+            "hex": "#209fb5"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8745,
+              0.5569,
+              0.1137
+            ],
+            "hex": "#df8e1d"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte sapphire / latte yellow"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-catppuccin-latte-lavender-flamingo",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined (Catppuccin)",
+      "en": "Catppuccin Latte: lavender and flamingo (Catppuccin)"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4471,
+              0.5294,
+              0.9922
+            ],
+            "hex": "#7287fd"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8667,
+              0.4706,
+              0.4706
+            ],
+            "hex": "#dd7878"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Catppuccin latte lavender / latte flamingo"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Catppuccin",
+      "url": "https://github.com/catppuccin/palette",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-primer-green-purple",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u064a\u0645\u0631 undefined \u0648undefined",
+      "en": "Primer #116329 and #8250df"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0667,
+              0.3882,
+              0.1608
+            ],
+            "hex": "#116329"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5098,
+              0.3137,
+              0.8745
+            ],
+            "hex": "#8250df"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Primer Primitives green.6 / purple.5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Primer Primitives",
+      "url": "https://github.com/primer/primitives",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-primer-pink-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u064a\u0645\u0631 undefined \u0648undefined (Primer Primitives)",
+      "en": "Primer #99286e and #d4a72c (Primer Primitives)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6,
+              0.1569,
+              0.4314
+            ],
+            "hex": "#99286e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8314,
+              0.6549,
+              0.1725
+            ],
+            "hex": "#d4a72c"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Primer Primitives pink.6 / yellow.3"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Primer Primitives",
+      "url": "https://github.com/primer/primitives",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "palette-primer-orange-blue",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0631\u064a\u0645\u0631 undefined \u0648undefined (Primer Primitives)",
+      "en": "Primer #953800 and #0969da (Primer Primitives)"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843,
+              0.2196,
+              0
+            ],
+            "hex": "#953800"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0353,
+              0.4118,
+              0.8549
+            ],
+            "hex": "#0969da"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Primer Primitives orange.6 / blue.5"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Primer Primitives",
+      "url": "https://github.com/primer/primitives",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   }
 ]);

@@ -13,6 +13,62 @@
   d.identities = list;
 })(typeof self !== 'undefined' ? self : this, [
   {
+    "id": "arabic-heritage",
+    "name": {
+      "ar": "\u0639\u0631\u0628\u064a \u062a\u0631\u0627\u062b\u064a",
+      "en": "Arabic heritage"
+    },
+    "description": {
+      "ar": "\u0628\u0646\u064a \u062f\u0627\u0641\u0626 \u0645\u0639 \u0641\u064a\u0631\u0648\u0632\u064a\u060c \u0648\u062e\u0637 \u0643\u0648\u0641\u0627\u0645 \u0627\u0644\u0643\u0648\u0641\u064a\u060c \u0648\u062d\u0648\u0627\u0641 \u0639\u0644\u0648\u064a\u0629 \u0648\u0632\u0648\u0627\u064a\u0627 \u0647\u0627\u062f\u0626\u0629\u060c \u0644\u0644\u062b\u0642\u0627\u0641\u0629 \u0648\u0627\u0644\u062a\u0631\u0627\u062b.",
+      "en": "Warm brown with turquoise, the Kufi-style Kufam, top accents and calm corners, for culture and heritage."
+    },
+    "tags": [
+      "retro",
+      "editorial"
+    ],
+    "templates": {
+      "colors": "palette-radix-brown-teal",
+      "modes": "modes-light-first",
+      "fonts": "pair-kufam-space-grotesk",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-gentle",
+      "shadows": "shadow-tinted-warm",
+      "icons": "icons-phosphor-duotone-square",
+      "buttons": "button-large-solid",
+      "cards": "card-top-accent-elevated",
+      "spacing": "spacing-airy",
+      "direction": "direction-rtl"
+    }
+  },
+  {
+    "id": "brutalist",
+    "name": {
+      "ar": "\u0628\u0631\u0648\u062a\u0627\u0644\u064a",
+      "en": "Brutalist"
+    },
+    "description": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0648\u0623\u0635\u0641\u0631 \u0635\u0631\u064a\u062d\u0627\u0646 \u0648\u062d\u062f\u0648\u062f \u0633\u0648\u062f\u0627\u0621 \u0633\u0645\u064a\u0643\u0629 \u0648\u0638\u0644\u0627\u0644 \u062d\u0627\u062f\u0629 \u0628\u0644\u0627 \u062a\u0645\u0648\u064a\u0647\u060c \u0648\u062e\u0637 \u062c\u0646\u063a\u0627 \u0648\u0633\u0648\u0631\u0627.",
+      "en": "Loud red and yellow, thick black borders and hard unblurred shadows, with Changa and Sora."
+    },
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-neo-brutalism",
+      "modes": "modes-light-first",
+      "fonts": "pair-changa-sora",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-square",
+      "shadows": "shadow-crisp",
+      "icons": "icons-mingcute-filled-square",
+      "buttons": "button-brutalist-primary",
+      "cards": "card-brutalist",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "calm-corporate",
     "name": {
       "ar": "\u0645\u0624\u0633\u0633\u064a \u0647\u0627\u062f\u0626",
@@ -38,6 +94,174 @@
       "cards": "card-bordered",
       "spacing": "spacing-comfortable",
       "direction": "direction-rtl"
+    }
+  },
+  {
+    "id": "dark-tech",
+    "name": {
+      "ar": "\u062f\u0627\u0643\u0646 \u062a\u0642\u0646\u064a",
+      "en": "Dark tech"
+    },
+    "description": {
+      "ar": "\u062e\u0644\u0641\u064a\u0629 \u062f\u0627\u0643\u0646\u0629 \u0623\u0648\u0644\u064b\u0627 \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a\u060c \u0648\u062e\u0637 \u0641\u0633\u0637\u0627\u0637 \u0648\u062c\u064a\u0633\u062a\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u062d\u0627\u062f\u0629 \u0648\u0645\u0633\u0627\u0641\u0627\u062a \u0645\u0636\u063a\u0648\u0637\u0629 \u0644\u0644\u0648\u062d\u0627\u062a \u0627\u0644\u062a\u0642\u0646\u064a\u0629.",
+      "en": "Dark first with sky blue, Fustat and Geist, sharp corners and tight spacing for technical dashboards."
+    },
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "templates": {
+      "colors": "palette-daisyui-night",
+      "modes": "modes-dark-first",
+      "fonts": "pair-fustat-geist",
+      "type-scale": "scale-minor-third",
+      "radius": "radius-sharp",
+      "shadows": "shadow-ring",
+      "icons": "icons-tabler-outline",
+      "buttons": "button-compact-solid",
+      "cards": "card-compact",
+      "spacing": "spacing-compact",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "editorial",
+    "name": {
+      "ar": "\u062a\u062d\u0631\u064a\u0631\u064a",
+      "en": "Editorial"
+    },
+    "description": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u062d\u0628\u0631\u064a \u0648\u0643\u0631\u064a\u0645\u064a \u0648\u0631\u0642\u064a\u060c \u0648\u062e\u0637 \u0645\u062f\u0649 \u0648\u0628\u0631\u064a\u0643\u0648\u0644\u0627\u062c\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629 \u0648\u062e\u0637\u0648\u0637 \u0641\u0627\u0635\u0644\u0629\u060c \u0644\u0644\u0645\u062f\u0648\u0646\u0627\u062a \u0648\u0627\u0644\u0645\u062c\u0644\u0627\u062a.",
+      "en": "Ink gray and paper cream, Mada and Bricolage Grotesque, square corners and rules, for blogs and magazines."
+    },
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-notebook",
+      "modes": "modes-light-only",
+      "fonts": "pair-mada-bricolage-grotesque",
+      "type-scale": "scale-augmented-fourth",
+      "radius": "radius-square",
+      "shadows": "shadow-flat",
+      "icons": "icons-iconoir-regular",
+      "buttons": "button-link",
+      "cards": "card-bottom-accent",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "government",
+    "name": {
+      "ar": "\u062d\u0643\u0648\u0645\u064a \u0631\u0633\u0645\u064a",
+      "en": "Official government"
+    },
+    "description": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0631\u0633\u0645\u064a \u0648\u062e\u0637 \u062a\u062c\u0648\u0651\u0644 \u0648\u0645\u0627\u0646\u0631\u0648\u0628\u060c \u0648\u0631\u0623\u0633 \u0645\u0644\u0648\u0651\u0646 \u0644\u0644\u0643\u0631\u0648\u062a \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0648\u0627\u0636\u062d\u0629\u060c \u0644\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u062d\u0643\u0648\u0645\u064a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629.",
+      "en": "Official green, Tajawal and Manrope, colored card headers and clear icons, for Arabic public services."
+    },
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-emerald-lime",
+      "modes": "modes-light-first",
+      "fonts": "pair-tajawal-manrope",
+      "type-scale": "scale-major-second",
+      "radius": "radius-medium",
+      "shadows": "shadow-elevation",
+      "icons": "icons-material-symbols-regular",
+      "buttons": "button-solid",
+      "cards": "card-header",
+      "spacing": "spacing-balanced",
+      "direction": "direction-rtl"
+    }
+  },
+  {
+    "id": "luxury",
+    "name": {
+      "ar": "\u0641\u0627\u062e\u0631",
+      "en": "Luxury"
+    },
+    "description": {
+      "ar": "\u0630\u0647\u0628\u064a \u0647\u0627\u062f\u0626 \u0645\u0639 \u0627\u0644\u0628\u0631\u0642\u0648\u0642\u064a \u0639\u0644\u0649 \u062e\u0644\u0641\u064a\u0629 \u062f\u0627\u0643\u0646\u0629 \u0623\u0648\u0644\u064b\u0627\u060c \u0648\u062e\u0637 \u0628\u064a\u0631\u0648\u062a\u064a \u0648\u0625\u0646\u0633\u062a\u0631\u0648\u0645\u0646\u062a\u060c \u0648\u0645\u0633\u0627\u0641\u0627\u062a \u0648\u0627\u0633\u0639\u0629 \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0631\u0641\u064a\u0639\u0629\u060c \u0644\u0644\u0639\u0644\u0627\u0645\u0627\u062a \u0627\u0644\u0631\u0627\u0642\u064a\u0629.",
+      "en": "Muted gold with plum, dark first, Beiruti and Instrument Sans, wide spacing and thin icons, for premium brands."
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "templates": {
+      "colors": "palette-radix-gold-plum",
+      "modes": "modes-dark-first",
+      "fonts": "pair-beiruti-instrument-sans",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-subtle",
+      "shadows": "shadow-floating",
+      "icons": "icons-phosphor-thin",
+      "buttons": "button-large-outline",
+      "cards": "card-spacious",
+      "spacing": "spacing-grid-6",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "playful-colorful",
+    "name": {
+      "ar": "\u0645\u0631\u062d \u0645\u0644\u0648\u0651\u0646",
+      "en": "Playful and colorful"
+    },
+    "description": {
+      "ar": "\u0648\u0631\u062f\u064a \u0632\u0627\u0647\u064d \u0648\u0641\u064a\u0631\u0648\u0632\u064a\u060c \u0648\u062e\u0637 \u0628\u0627\u0644\u0648 \u0628\u0647\u064a\u062c\u0627\u0646\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u062f\u0627\u0626\u0631\u064a\u0629 \u062c\u062f\u064b\u0627 \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0645\u0645\u062a\u0644\u0626\u0629\u060c \u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u0623\u0637\u0641\u0627\u0644 \u0648\u0627\u0644\u0645\u062c\u062a\u0645\u0639\u0627\u062a.",
+      "en": "Bright pink and aqua, Baloo Bhaijaan, very round corners and filled icons, for kids and community apps."
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-bubblegum",
+      "modes": "modes-light-first",
+      "fonts": "pair-baloo-bhaijaan-2",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-extra-round",
+      "shadows": "shadow-deep",
+      "icons": "icons-phosphor-fill-circle",
+      "buttons": "button-secondary-solid",
+      "cards": "card-primary",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "simple-white",
+    "name": {
+      "ar": "\u0628\u0633\u064a\u0637 \u0623\u0628\u064a\u0636",
+      "en": "Simple white"
+    },
+    "description": {
+      "ar": "\u0623\u0628\u064a\u0636 \u0648\u0627\u0633\u0639 \u0648\u0631\u0645\u0627\u062f\u064a \u062f\u0627\u0643\u0646 \u0645\u0639 \u0644\u0645\u0633\u0629 \u0632\u0645\u0631\u062f\u064a\u0629\u060c \u0648\u062e\u0637 \u0627\u0644\u0645\u0631\u0627\u0639\u064a\u060c \u0648\u062d\u062f\u0648\u062f \u0631\u0641\u064a\u0639\u0629 \u0628\u0644\u0627 \u0638\u0644\u0627\u0644 \u062a\u0642\u0631\u064a\u0628\u064b\u0627.",
+      "en": "Plenty of white and dark gray with an emerald touch, Almarai and thin borders with barely any shadow."
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-zinc-emerald",
+      "modes": "modes-light-only",
+      "fonts": "pair-almarai-dm-sans",
+      "type-scale": "scale-major-third",
+      "radius": "radius-subtle",
+      "shadows": "shadow-ambient",
+      "icons": "icons-lucide-light",
+      "buttons": "button-quiet",
+      "cards": "card-plain",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
     }
   },
   {

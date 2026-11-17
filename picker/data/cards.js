@@ -176,5 +176,1105 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "card-soft",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0646\u0627\u0639\u0645",
+      "en": "Soft card"
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:none;box-shadow:var(--shadow-sm);border-radius:var(--radius-md);padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-outline-sharp",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0625\u0637\u0627\u0631 \u0648\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629",
+      "en": "Sharp outline card"
+    },
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.6,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:transparent;border:1px solid var(--color-control-border);border-radius:0;padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-brutalist",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0638\u0644 \u062d\u0627\u062f",
+      "en": "Hard-shadow card"
+    },
+    "tags": [
+      "brutalist",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:2px solid var(--color-on-surface);box-shadow:6px 6px 0 var(--color-on-surface);border-radius:0;padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-brutalist-primary",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0645\u0644\u0648\u0651\u0646 \u0628\u0638\u0644 \u062d\u0627\u062f",
+      "en": "Hard-shadow card, primary"
+    },
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.3,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-primary);color:var(--color-on-primary);border:2px solid var(--color-on-surface);box-shadow:6px 6px 0 var(--color-on-surface);border-radius:0;padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-primary)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-on-primary)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-hover-lift",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u064a\u0631\u062a\u0641\u0639 \u0639\u0646\u062f \u0627\u0644\u0645\u0631\u0648\u0631",
+      "en": "Lift-on-hover card"
+    },
+    "tags": [
+      "material",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);border-radius:var(--radius-md);transition:box-shadow .2s ease,transform .2s ease;padding:var(--space-5)}.hw-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-card{transition:none}.hw-card:hover{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-top-accent",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u062d\u0627\u0641\u0629 \u0639\u0644\u0648\u064a\u0629",
+      "en": "Top-accent card"
+    },
+    "tags": [
+      "corporate",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);border-block-start:4px solid var(--color-primary);border-radius:var(--radius-md);padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-top-accent-elevated",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0645\u0631\u062a\u0641\u0639 \u0628\u062d\u0627\u0641\u0629 \u0639\u0644\u0648\u064a\u0629",
+      "en": "Elevated top-accent card"
+    },
+    "tags": [
+      "material",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:none;border-block-start:4px solid var(--color-primary);box-shadow:var(--shadow-md);border-radius:var(--radius-lg);padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-dashed",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0625\u0637\u0627\u0631 \u0645\u062a\u0642\u0637\u0639",
+      "en": "Dashed card"
+    },
+    "tags": [
+      "technical",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:transparent;border:1px dashed var(--color-control-border);border-radius:var(--radius-md);padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-compact",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0645\u0636\u063a\u0648\u0637",
+      "en": "Compact card"
+    },
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.9,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-3)}.hw-card-title{margin:0 0 var(--space-1);font-family:var(--font-heading);font-size:var(--font-size-base);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-spacious",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0648\u0627\u0633\u0639",
+      "en": "Spacious card"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.1,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:none;box-shadow:var(--shadow-lg);border-radius:var(--radius-lg);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-xl);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-primary",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0627\u0644\u0644\u0648\u0646 \u0627\u0644\u0623\u0633\u0627\u0633\u064a",
+      "en": "Primary card"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-primary);color:var(--color-on-primary);border:none;box-shadow:var(--shadow-md);border-radius:var(--radius-lg);padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-primary)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-on-primary)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-secondary",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0627\u0644\u0644\u0648\u0646 \u0627\u0644\u062b\u0627\u0646\u0648\u064a",
+      "en": "Secondary card"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-secondary);color:var(--color-on-secondary);border:none;border-radius:var(--radius-md);padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-secondary)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-on-secondary)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-header",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0631\u0623\u0633 \u0645\u0644\u0648\u0651\u0646",
+      "en": "Colored-header card"
+    },
+    "tags": [
+      "corporate",
+      "material"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003cheader class=\"hw-card-head\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003c/header>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);border-radius:var(--radius-md);overflow:hidden;padding:0}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-primary)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}.hw-card-head{padding-block:var(--space-3);padding-inline:var(--space-4);background:var(--color-primary);color:var(--color-on-primary)}.hw-card-head .hw-card-title{margin:0}.hw-card-body{padding:var(--space-4)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-side-accent-secondary",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u062d\u0627\u0641\u0629 \u062c\u0627\u0646\u0628\u064a\u0629 \u062b\u0627\u0646\u0648\u064a\u0629",
+      "en": "Secondary side-accent card"
+    },
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.6,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:none;border-inline-start:4px solid var(--color-secondary);box-shadow:var(--shadow-sm);border-radius:var(--radius-sm);padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-bottom-accent",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u062e\u0637 \u0633\u0641\u0644\u064a",
+      "en": "Bottom-rule card"
+    },
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.6,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);border-block-end:3px solid var(--color-primary);border-radius:0;padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-plain",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0639\u0644\u0649 \u062e\u0644\u0641\u064a\u0629 \u0627\u0644\u0635\u0641\u062d\u0629",
+      "en": "Page-tone card"
+    },
+    "tags": [
+      "minimal",
+      "cupertino"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-background);border:1px solid var(--color-control-border);border-radius:var(--radius-md);padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-data",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u064a\u0627\u0646\u0627\u062a",
+      "en": "Data card"
+    },
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.9,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-control-border);border-radius:0;padding:var(--space-3)}.hw-card-title{margin:0 0 var(--space-1);font-family:var(--font-heading);font-size:var(--font-size-base);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-thick-outline",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u0625\u0637\u0627\u0631 \u0633\u0645\u064a\u0643",
+      "en": "Thick-outline card"
+    },
+    "tags": [
+      "brutalist",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:transparent;border:2px solid var(--color-on-surface);border-radius:var(--radius-lg);padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-floating",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0639\u0627\u0626\u0645",
+      "en": "Floating card"
+    },
+    "tags": [
+      "soft",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.2,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-background);border:none;box-shadow:var(--shadow-md);border-radius:var(--radius-lg);transition:box-shadow .2s ease;padding:var(--space-6)}.hw-card:hover{box-shadow:var(--shadow-lg)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-card{transition:none}.hw-card:hover{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "card-split-top",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0643\u0631\u062a \u0628\u062d\u0627\u0641\u0629 \u0639\u0644\u0648\u064a\u0629 \u062b\u0627\u0646\u0648\u064a\u0629",
+      "en": "Secondary top-accent card"
+    },
+    "tags": [
+      "playful",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.6,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);border-block-start:3px solid var(--color-secondary);box-shadow:var(--shadow-sm);border-radius:var(--radius-lg);padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

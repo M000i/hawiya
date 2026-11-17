@@ -97,8 +97,18 @@ test('the language key flips every text and the direction, and back', async ({ p
   for (const [key, value] of await i18nTexts(page)) expect(value, key).toBe(ar[key]);
   // Arabic: only brand and technical names stay in Latin letters.
   const latin = new Set((await visibleText(page)).match(LATIN_WORD));
-  for (const word of latin)
-    expect(['Google', 'Fonts', 'design', 'px', 'IBM', 'Plex', 'Sans', 'Arabic', 'Cairo', 'Noto']).toContain(word);
+  // Brand and technical names: the tool's own, and the font names the ready identity cards show (task 3.14: ten
+  // identities, each with its fonts, such as Kufam or Space Grotesk).
+  const fontNames = await page.evaluate(() =>
+    window.Hawiya.data.identities
+      .map((i) => window.Hawiya.library.find('fonts', i.templates.fonts))
+      .filter(Boolean)
+      .flatMap((t) => [t.extras.arabic, t.extras.latin, t.extras.headingArabic, t.extras.headingLatin])
+      .filter(Boolean)
+      .join(' ')
+  );
+  const allowed = ['Google', 'Fonts', 'design', 'px'].concat(fontNames.match(LATIN_WORD) || []);
+  for (const word of latin) expect(allowed).toContain(word);
   expect(errors).toEqual([]);
 });
 

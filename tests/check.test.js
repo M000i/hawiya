@@ -1262,10 +1262,12 @@ test('ready identities: the ten of the spec are built in every direction, pass t
 test('a ready identity blocked in one language only is found, with the rule, the element and the language', () => {
   const c = copy();
   try {
-    // An Arabic-only font: fine in Arabic, blocked in English and in both (luxury waits for review: not published).
+    // An Arabic-only font: fine in Arabic, blocked in English and in both. The copy's page data is rebuilt, so only
+    // the identity problems are left (the build publishes what is reviewed; the rules are the check's).
     c.edit('identities/luxury.json', (v) => {
       v.templates.fonts = 'pair-ar-amiri-noto-naskh-arabic';
     });
+    build.build({ libraryDir: c.lib, outDir: c.data });
     const p = c.run().problems;
     assert.ok(has(p, 'identity', 'luxury', /^in English, the font-language rule blocks fonts/), show(p));
     assert.ok(has(p, 'identity', 'luxury', /^in Arabic and English, the font-language rule blocks fonts/), show(p));

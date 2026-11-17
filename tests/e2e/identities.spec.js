@@ -88,11 +88,21 @@ test('one click fills all elements with a complete, valid identity and the previ
       const cs = getComputedStyle(b);
       return { radius: cs.borderTopLeftRadius, fill: cs.backgroundColor, outline: cs.borderTopColor };
     });
-    expect(scene.radius).toBe(`${result.id.tokens.radius.md}px`);
-    const light = result.id.tokens.color.light;
-    expect([scene.fill, scene.outline]).toContain(
-      rgb(r.templates.buttons === 'button-solid' ? light.primary : light.surface)
+    // Its button: the corners its recipe names (an identity radius or none) and the fill its recipe names, in the
+    // identity's light colors (task 3.14: ten identities, buttons of every kind).
+    const recipe = await page.evaluate(
+      (id) => window.Hawiya.library.find('buttons', id).recipe.css,
+      r.templates.buttons
     );
+    const own = /\.hw-btn\{([^}]*)\}/.exec(recipe)[1];
+    const corner = /border-radius:(?:var\(--radius-([a-z]+)\)|0)/.exec(own);
+    const radii = result.id.tokens.radius;
+    expect(scene.radius).toBe(corner[1] ? (corner[1] === 'full' ? `${radii.full}px` : `${radii[corner[1]]}px`) : '0px');
+    const light = result.id.tokens.color.light;
+    const fillRole = (/(?:^|;)background:var\(--color-([a-z-]+)\)/.exec(own) || [])[1];
+    const want = fillRole ? light[fillRole.replace(/-([a-z])/g, (m, c) => c.toUpperCase())] : null;
+    if (want) expect(scene.fill).toBe(rgb(want));
+    else expect(scene.fill).toBe('rgba(0, 0, 0, 0)'); // transparent: the page shows through
     // The prototype controls follow too.
     await expect(page.locator(`#fonts input[value="${r.templates.fonts}"]`)).toBeChecked();
   }

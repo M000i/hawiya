@@ -6,6 +6,8 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
+// Written on the first library (37 templates, 2 identities): run on a copy of the page with that data (task 3.14).
+const FIRST = require('../helpers/first-library.js').firstPickerPage();
 const ar = require('../../picker/i18n/ar.js');
 const en = require('../../picker/i18n/en.js');
 
@@ -17,11 +19,11 @@ function watchErrors(page) {
   });
   return errors;
 }
-async function start(page) {
+async function start(page, url = PAGE) {
   await page.route('https://fonts.googleapis.com/**', (route) =>
     route.fulfill({ status: 200, contentType: 'text/css', body: '' })
   );
-  await page.goto(PAGE);
+  await page.goto(url);
 }
 async function openPanel(page, element) {
   await page.locator(`[data-element="${element}"] > .g-toggle`).click();
@@ -34,7 +36,7 @@ const marked = (page, element) =>
 
 test('calm corporate: the badge sits on the matching button, card and radius; one per gallery', async ({ page }) => {
   const errors = watchErrors(page);
-  await start(page);
+  await start(page, FIRST);
   await page.locator('[data-identity="calm-corporate"]').click();
   for (const [element, expected] of [
     ['buttons', 'button-solid'],
@@ -52,7 +54,7 @@ test('calm corporate: the badge sits on the matching button, card and radius; on
 });
 
 test('the badge follows the choices and the interface language', async ({ page }) => {
-  await start(page);
+  await start(page, FIRST);
   await page.locator('[data-identity="calm-corporate"]').click();
   await openPanel(page, 'buttons');
   expect(await marked(page, 'buttons')).toEqual(['button-solid']);

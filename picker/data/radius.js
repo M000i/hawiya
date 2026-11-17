@@ -227,5 +227,365 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "radius-square",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629",
+      "en": "Square corners"
+    },
+    "tags": [
+      "brutalist",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "radius-subtle",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0632\u0648\u0627\u064a\u0627 \u062e\u0641\u064a\u0641\u0629",
+      "en": "Subtle corners"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 2,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 6,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "radius-gentle",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0632\u0648\u0627\u064a\u0627 \u0644\u0637\u064a\u0641\u0629",
+      "en": "Gentle corners"
+    },
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.45,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 6,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 10,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "radius-soft",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0632\u0648\u0627\u064a\u0627 \u0646\u0627\u0639\u0645\u0629",
+      "en": "Soft corners"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.75,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "radius-extra-round",
+    "element": "radius",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0632\u0648\u0627\u064a\u0627 \u062f\u0627\u0626\u0631\u064a\u0629 \u062c\u062f\u064b\u0627",
+      "en": "Extra round corners"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.95,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "radius": {
+        "sm": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": {
+            "value": 40,
+            "unit": "px"
+          }
+        },
+        "full": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9999,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

@@ -197,5 +197,1245 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "button-pill-solid",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0645\u062a\u0644\u0626 \u0643\u0628\u0633\u0648\u0644\u064a",
+      "en": "Pill solid"
+    },
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 1,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-full);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary)}.hw-btn:hover{box-shadow:var(--shadow-sm)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-square-solid",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0645\u062a\u0644\u0626 \u0628\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629",
+      "en": "Square solid"
+    },
+    "tags": [
+      "brutalist",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:none}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-large-solid",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0645\u062a\u0644\u0626 \u0643\u0628\u064a\u0631",
+      "en": "Large solid"
+    },
+    "tags": [
+      "vivid",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.3,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-3);padding-inline:var(--space-6);border-radius:var(--radius-lg);font-family:var(--font-body);font-size:var(--font-size-lg);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary);box-shadow:var(--shadow-sm)}.hw-btn:hover{box-shadow:var(--shadow-lg)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-compact-solid",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0645\u062a\u0644\u0626 \u0635\u063a\u064a\u0631",
+      "en": "Compact solid"
+    },
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.9,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-1);padding-inline:var(--space-3);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:var(--font-size-sm);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary)}.hw-btn:hover{box-shadow:var(--shadow-sm)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-secondary-solid",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0645\u062a\u0644\u0626 \u0628\u0627\u0644\u0644\u0648\u0646 \u0627\u0644\u062b\u0627\u0646\u0648\u064a",
+      "en": "Secondary solid"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-secondary);color:var(--color-on-secondary);border:1px solid var(--color-secondary)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-secondary-pill",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u062b\u0627\u0646\u0648\u064a \u0643\u0628\u0633\u0648\u0644\u064a \u0643\u0628\u064a\u0631",
+      "en": "Secondary pill, large"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 1,
+      "density": 0.3,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-3);padding-inline:var(--space-6);border-radius:var(--radius-full);font-family:var(--font-body);font-size:var(--font-size-lg);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-secondary);color:var(--color-on-secondary);border:none}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-ghost",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0634\u0641\u0627\u0641",
+      "en": "Ghost"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:none}.hw-btn:hover{background:var(--color-surface)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-link",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0646\u0635\u064a \u0628\u0631\u0627\u0628\u0637",
+      "en": "Text link button"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.1
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-1);padding-inline:0;border-radius:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:none;text-decoration:underline;text-underline-offset:3px}.hw-btn:hover{text-decoration-thickness:2px}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-outline-pill",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0643\u0628\u0633\u0648\u0644\u064a",
+      "en": "Pill outline"
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 1,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-full);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:1px solid var(--color-accent-text)}.hw-btn:hover{background:var(--color-surface)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-outline-thick",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0633\u0645\u064a\u0643",
+      "en": "Thick outline"
+    },
+    "tags": [
+      "brutalist",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-on-surface);border:2px solid var(--color-on-surface)}.hw-btn:hover{background:var(--color-surface)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-brutalist",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0628\u0638\u0644 \u062d\u0627\u062f",
+      "en": "Hard-shadow"
+    },
+    "tags": [
+      "brutalist",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-surface);color:var(--color-on-surface);border:2px solid var(--color-on-surface);box-shadow:4px 4px 0 var(--color-on-surface)}.hw-btn:hover{box-shadow:2px 2px 0 var(--color-on-surface)}.hw-btn:active{transform:translate(4px,4px);box-shadow:none}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-brutalist-primary",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0644\u0648\u0651\u0646 \u0628\u0638\u0644 \u062d\u0627\u062f",
+      "en": "Hard-shadow, primary"
+    },
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:2px solid var(--color-on-surface);box-shadow:4px 4px 0 var(--color-on-surface)}.hw-btn:hover{box-shadow:2px 2px 0 var(--color-on-surface)}.hw-btn:active{transform:translate(4px,4px);box-shadow:none}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-elevated",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0631\u062a\u0641\u0639",
+      "en": "Elevated"
+    },
+    "tags": [
+      "material",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-surface);color:var(--color-accent-text);border:none;box-shadow:var(--shadow-sm)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-elevated-pill",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0645\u0631\u062a\u0641\u0639 \u0643\u0628\u0633\u0648\u0644\u064a",
+      "en": "Elevated pill"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 1,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-full);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-surface);color:var(--color-accent-text);border:none;box-shadow:var(--shadow-md)}.hw-btn:hover{box-shadow:var(--shadow-lg)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-dashed",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0645\u062a\u0642\u0637\u0639",
+      "en": "Dashed"
+    },
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.8,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-1);padding-inline:var(--space-3);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:var(--font-size-sm);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:1px dashed var(--color-control-border)}.hw-btn:hover{border-color:var(--color-accent-text)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-soft-pill",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0646\u0627\u0639\u0645 \u0643\u0628\u0633\u0648\u0644\u064a \u0635\u063a\u064a\u0631",
+      "en": "Soft pill, compact"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 1,
+      "density": 0.8,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-1);padding-inline:var(--space-3);border-radius:var(--radius-full);font-family:var(--font-body);font-size:var(--font-size-sm);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:var(--color-surface);color:var(--color-accent-text);border:1px solid var(--color-border)}.hw-btn:hover{border-color:var(--color-control-border)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-quiet",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0647\u0627\u062f\u0626",
+      "en": "Quiet"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:var(--color-background);color:var(--color-on-surface);border:1px solid var(--color-border)}.hw-btn:hover{border-color:var(--color-control-border)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-large-outline",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0643\u0628\u064a\u0631",
+      "en": "Large outline"
+    },
+    "tags": [
+      "corporate",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.3,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-3);padding-inline:var(--space-6);border-radius:var(--radius-lg);font-family:var(--font-body);font-size:var(--font-size-lg);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:1px solid var(--color-control-border)}.hw-btn:hover{border-color:var(--color-accent-text)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-compact-ghost",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0634\u0641\u0627\u0641 \u0635\u063a\u064a\u0631",
+      "en": "Compact ghost"
+    },
+    "tags": [
+      "data-dense",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.9,
+      "intensity": 0.1
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-1);padding-inline:var(--space-3);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:var(--font-size-sm);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-on-surface);border:none}.hw-btn:hover{background:var(--color-surface)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "button-secondary-outline",
+    "element": "buttons",
+    "kind": "composite",
+    "name": {
+      "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0628\u0627\u0644\u0644\u0648\u0646 \u0627\u0644\u062b\u0627\u0646\u0648\u064a",
+      "en": "Secondary outline"
+    },
+    "tags": [
+      "playful",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "button": {
+        "paddingBlock": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "paddingInline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+      "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-lg);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:1px solid var(--color-secondary)}.hw-btn:hover{background:var(--color-surface)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical padding only; an icon before the label follows the text direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

@@ -18,6 +18,8 @@ const build = require('../tools/build.js');
 
 const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
 const find = (element, id) => (data.templates[element] || []).find((t) => t.id === id) || null;
+// The library the hand computations below were made on (task 3.14: the published library is much larger).
+const first = require('./helpers/first-library.js').firstLibrary(data);
 const ELEMENTS = resolve.ELEMENTS;
 const SETTINGS = ['modes', 'direction'];
 
@@ -119,7 +121,7 @@ test('known result, computed by hand: a soft, playful color and font give a roun
   const before = starter();
   before.selections.colors = { template: 'palette-teal' };
   before.selections.fonts = { template: 'pair-cairo' };
-  const out = autofill.fill(before, ['colors', 'fonts'], data);
+  const out = autofill.fill(before, ['colors', 'fonts'], first);
   assertComplete(before, ['colors', 'fonts'], out, 'teal + cairo');
   assert.equal(out.choices.selections['type-scale'].template, 'scale-major-third');
   assert.equal(out.choices.selections.radius.template, 'radius-round');
@@ -132,7 +134,7 @@ test('known result, computed by hand: a soft, playful color and font give a roun
   const teal = starter();
   teal.selections.colors = { template: 'palette-teal' };
   teal.selections.modes = { template: 'modes-dark-first' };
-  const tealOut = autofill.fill(teal, ['colors', 'modes'], data);
+  const tealOut = autofill.fill(teal, ['colors', 'modes'], first);
   assertComplete(teal, ['colors', 'modes'], tealOut, 'teal + mode');
   assert.equal(tealOut.choices.selections.fonts.template, 'pair-cairo');
 });
@@ -176,8 +178,8 @@ test('the session tags steer the filling (R-033)', () => {
   const before = starter();
   before.selections.colors = { template: 'palette-blue' };
   before.selections.spacing = { template: 'spacing-comfortable' };
-  const plain = autofill.fill(before, ['colors', 'spacing'], data);
-  const playful = autofill.fill(before, ['colors', 'spacing'], data, { tags: ['playful', 'soft'] });
+  const plain = autofill.fill(before, ['colors', 'spacing'], first);
+  const playful = autofill.fill(before, ['colors', 'spacing'], first, { tags: ['playful', 'soft'] });
   assertComplete(before, ['colors', 'spacing'], playful, 'session');
   assert.notEqual(playful.choices.selections.radius.template, plain.choices.selections.radius.template);
   assert.equal(playful.choices.selections.radius.template, 'radius-round');

@@ -353,11 +353,17 @@ test('review A: the suggestion keeps the palette secondary even when the palette
 });
 
 test('review: a palette is offered only at the contrast level it reaches', () => {
+  let aaa = 0;
   for (const t of data.templates.colors) {
     assert.equal(rules.allowed(t, AR), true, `${t.id} at AA`);
     const p = rules.template(t, { ...AR, contrast: 'AAA' });
-    assert.ok(p.length > 0 && p.every((x) => x.rule === 'contrast' && x.template === t.id), `${t.id} at AAA`);
+    // A palette that declares AAA reaches 7:1 everywhere; one that declares AA is blocked at AAA, by contrast only.
+    if (t.a11y.contrast === 'AAA') {
+      aaa++;
+      assert.deepEqual(p, [], `${t.id} declares AAA`);
+    } else assert.ok(p.length > 0 && p.every((x) => x.rule === 'contrast' && x.template === t.id), `${t.id} at AAA`);
   }
+  assert.ok(aaa > 0 && aaa < data.templates.colors.length, `${aaa} AAA palettes`);
 });
 
 test('review: italic tags, inline styles, custom properties, small caps and slant are blocked with Arabic', () => {

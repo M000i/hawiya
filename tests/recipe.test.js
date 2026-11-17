@@ -14,6 +14,7 @@ const path = require('node:path');
 const recipe = require('../picker/js/core/recipe.js');
 const rules = require('../picker/js/core/rules.js');
 const build = require('../tools/build.js');
+const check = require('../tools/check.js');
 
 const LIB = path.join(__dirname, '..', 'library');
 const data = build.select(build.load(LIB)).data;
@@ -101,48 +102,15 @@ test('the build refuses a library whose recipe is outside the allow-list; nothin
 
 /* ---------- colors in every state ---------- */
 
-// "sel{decls}" blocks → [{ selector, decls: { prop: value } }] (recipes are flat: no @media).
-function blocks(css) {
-  const out = [];
-  for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
-    const decls = {};
-    for (const d of m[2].split(';')) {
-      const at = d.indexOf(':');
-      if (at > 0) decls[d.slice(0, at).trim()] = d.slice(at + 1).trim();
-    }
-    for (const sel of m[1].split(',')) out.push({ selector: sel.trim(), decls });
-  }
-  return out;
-}
-const role = (v) =>
-  (v && (v.match(/^var\(--color-([a-z-]+)\)$/) || [])[1]) || (v === 'transparent' ? 'transparent' : null);
-const fill = (d) => d.background || d['background-color'];
-
-// The pairs the contrast rule (rules.js) checks in both modes: text roles on the page colors, and button text on
-// its own fill. A transparent fill shows the page (background or surface), both checked.
-const TEXT = ['on-surface', 'muted-text', 'accent-text', 'success', 'warning', 'danger', 'info'];
-const CHECKED = new Set(
-  TEXT.flatMap((t) => ['background', 'surface', 'transparent'].map((b) => `${t} on ${b}`)).concat([
-    'on-primary on primary',
-    'on-secondary on secondary'
-  ])
-);
-
+// Task 3.14: read by the check's own reader (tools/check.js recipePairs), which follows the recipe HTML (a title on its
+// card's fill, a header with its own fill) and the cascade in every combination of states; the simple reader this
+// test had took every element alone, so a title on a filled card read as text on a transparent fill.
 test('every text color a recipe puts on a fill, in every state, is a pair the contrast rule checks', () => {
   let pairs = 0;
   for (const t of COMPOSITE) {
-    const list = blocks(t.recipe.css);
-    const plain = Object.fromEntries(list.filter((b) => !b.selector.includes(':')).map((b) => [b.selector, b.decls]));
-    for (const b of list) {
-      const own = b.selector.split(':')[0];
-      const at = plain[own] || {};
-      const text = b.decls.color || at.color;
-      const bg = fill(b.decls) || fill(at) || 'transparent';
-      if (!text) continue; // inherits the scene's text on the scene's page color (checked)
-      const pair = `${role(text)} on ${role(bg)}`;
-      assert.ok(CHECKED.has(pair), `${t.id} ${b.selector}: ${text} on ${bg} is not a pair the rules check`);
-      pairs++;
-    }
+    const r = check.recipePairs(t.recipe.html, t.recipe.css);
+    assert.deepEqual(r.problems, [], t.id);
+    pairs += r.pairs;
   }
   assert.ok(pairs >= COMPOSITE.length * 2, `pairs ${pairs}`);
   // The solid button's hover keeps its fill (it once switched to the 700 step, which failed in dark mode).

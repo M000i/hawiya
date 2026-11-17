@@ -7,6 +7,8 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
+// Written on the first library (37 templates, 2 identities): run on a copy of the page with that data (task 3.14).
+const FIRST = require('../helpers/first-library.js').firstPickerPage();
 const ar = require('../../picker/i18n/ar.js');
 const en = require('../../picker/i18n/en.js');
 const ELEMENTS = require('../../picker/js/core/resolve.js').ELEMENTS;
@@ -21,11 +23,11 @@ function watchErrors(page) {
   });
   return errors;
 }
-async function start(page) {
+async function start(page, url = PAGE) {
   await page.route('https://fonts.googleapis.com/**', (route) =>
     route.fulfill({ status: 200, contentType: 'text/css', body: '' })
   );
-  await page.goto(PAGE);
+  await page.goto(url);
 }
 const step = (page) => page.locator('#guided-question').getAttribute('data-guided-step');
 const state = (page) =>
@@ -57,7 +59,7 @@ async function next(page) {
 
 test('eight questions in order build a complete identity with motion, numerals and calendar', async ({ page }) => {
   const errors = watchErrors(page);
-  await start(page);
+  await start(page, FIRST);
   await expect(page.locator('#guided-body')).toBeHidden();
   await page.locator('#guided-start').click();
   await expect(page.locator('#guided-body')).toBeVisible();
@@ -204,7 +206,7 @@ test('choosing English with an Arabic-only font switches to a font that supports
 test('starting the questions after a ready identity starts over: the character still shapes the rest', async ({
   page
 }) => {
-  await start(page);
+  await start(page, FIRST);
   await page.locator('[data-identity="calm-corporate"]').click();
   expect((await state(page)).chosen).toEqual(ELEMENTS); // a ready identity chooses every element
   await page.locator('#guided-start').click();

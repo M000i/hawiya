@@ -8,6 +8,8 @@ const os = require('os');
 const path = require('path');
 
 const build = require('../tools/build.js');
+const resolve = require('../picker/js/core/resolve.js');
+const rules = require('../picker/js/core/rules.js');
 const validate = require('../picker/js/core/validate.js');
 const modes = require('../picker/js/core/modes.js');
 const scale = require('../picker/js/core/scale.js');
@@ -37,22 +39,30 @@ const dimPx = (tok) => {
   return tok.$value.value;
 };
 
-test('every element has 2-3 reviewed templates; an identity is published once every template it uses is reviewed', () => {
+// Task 3.14 (R-061, AC-11, AC-12): the published library is the reviewed one, about 250 templates or more, with no
+// draft; the ten ready identities are all published.
+test('the published library: every template reviewed (about 250 or more), no draft, the ten identities published', () => {
+  let reviewed = 0;
   for (const e of build.ELEMENTS) {
-    const list = lib.templates[e].filter((t) => t.status.state === 'reviewed'); // drafts wait for review
-    assert.ok(
-      list.length >= 2 && list.length <= (e === 'fonts' || e === 'icons' ? 5 : 3),
-      `${e}: ${list.length} templates`
+    const list = lib.templates[e].filter((t) => t.status.state === 'reviewed');
+    reviewed += list.length;
+    assert.deepEqual(
+      sel.data.templates[e].map((t) => t.id),
+      list.map((t) => t.id),
+      `${e}: published = reviewed`
     );
-    assert.equal(sel.data.templates[e].length, list.length, `${e}: every starter template is reviewed`);
+    assert.ok(
+      sel.data.templates[e].every((t) => t.status.state === 'reviewed'),
+      `${e}: no draft published`
+    );
+    assert.equal(sel.summary.elements[e].drafts, lib.templates[e].length - list.length, e);
   }
-  assert.deepEqual(sel.data.identities.map((i) => i.id).sort(), ['calm-corporate', 'warm-friendly']);
-  // The others (task 3.13) wait for the review of the drafts they use, and for nothing else.
-  assert.equal(sel.summary.identities.excluded.length, lib.identities.length - 2);
-  for (const x of sel.summary.identities.excluded)
-    for (const reason of x.reasons) assert.match(reason, /^[a-z-]+: "[a-z0-9-]+" is a draft$/, `${x.id}: ${reason}`);
-  // The two identities differ in most choices, so they show the range of the library.
-  const [a, b] = sel.data.identities;
+  assert.ok(reviewed >= 240, `${reviewed} reviewed templates`);
+  assert.equal(sel.data.identities.length, 10);
+  assert.deepEqual(sel.summary.identities.excluded, []);
+  // The two first identities differ in most choices, so they show the range of the library.
+  const a = sel.data.identities.find((i) => i.id === 'calm-corporate');
+  const b = sel.data.identities.find((i) => i.id === 'warm-friendly');
   const same = build.ELEMENTS.filter((e) => a.templates[e] === b.templates[e]);
   assert.ok(same.length <= 2, `identities share ${same.join(', ')}`);
 });
@@ -248,17 +258,19 @@ test('button and card recipes use only variables the generated tokens.css define
     if (/transition|animation/.test(t.recipe.css))
       assert.ok(t.a11y.reducedMotion, `${t.id}: reduced-motion alternative`);
   }
-  // The ready identity's button and card stay inside each other: the card corner is the larger one.
-  // (The three starter buttons; a pill button of task 3.11 may be rounder: the page then warns, R-026 warning rule.)
-  for (const t of lib.templates.buttons.filter((x) => x.status.state === 'reviewed'))
-    assert.match(t.recipe.css, /\.hw-btn\{[^}]*border-radius:var\(--radius-md\)/);
+  // In every ready identity the button stays inside the card: no button rounder than its card (a pill button of task
+  // 3.11 may be rounder in a user's own identity: the page then warns, R-026 warning rule).
+  const findT = (e, id) => lib.templates[e].find((t) => t.id === id);
+  for (const ready of sel.data.identities) {
+    const selections = Object.fromEntries(build.ELEMENTS.map((e) => [e, { template: ready.templates[e] }]));
+    const id = resolve.resolve({ name: ready.id, selections }, sel.data);
+    const w = rules.warnings(id, findT).warnings.filter((x) => x.rule === 'button-radius-over-card');
+    assert.deepEqual(w, [], ready.id);
+  }
   // Every button's corners come from the identity's radii (or none at all).
   for (const t of lib.templates.buttons)
     assert.match(t.recipe.css, /\.hw-btn\{[^}]*border-radius:(var\(--radius-(sm|md|lg|full)\)|0)[;}]/, t.id);
-  // The ready identity's cards keep the large corners; a draft card of task 3.12 may take any of the identity's radii
-  // or none (the page then warns if the button is rounder, R-026 warning rule).
-  for (const t of lib.templates.cards.filter((x) => x.status.state === 'reviewed'))
-    assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:var\(--radius-lg\)/);
+  // Cards take any of the identity's radii or none (task 3.12).
   for (const t of lib.templates.cards)
     assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:(var\(--radius-(sm|md|lg)\)|0)[;}]/, t.id);
 });

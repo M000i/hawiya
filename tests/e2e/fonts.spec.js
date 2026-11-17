@@ -7,6 +7,8 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
+// Written on the first library (37 templates, 2 identities): run on a copy of the page with that data (task 3.14).
+const FIRST = require('../helpers/first-library.js').firstPickerPage();
 const ar = require('../../picker/i18n/ar.js');
 
 // Does a font draw the Eastern Arabic digits itself? Its width with two different fallbacks that both draw them
@@ -91,7 +93,7 @@ test('a font is requested from Google Fonts only when its card comes on screen',
 
 test('the project language decides which fonts show, and sets the identity language', async ({ page }) => {
   await recordFonts(page);
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await openFonts(page);
   const ids = () => visibleCards(page).evaluateAll((n) => n.map((x) => x.getAttribute('data-template')));
   // Starter identity: Arabic project.

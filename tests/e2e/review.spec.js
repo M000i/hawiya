@@ -66,8 +66,8 @@ test('every template in four states; approve changes the file and the counter', 
     await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
     // The token leaves the address bar at once.
     expect(page.url()).not.toContain('token');
-    const n = counts(L.lib); // 37 reviewed; the drafts include the radius-pill draft made above
-    expect(n.reviewed).toBe(37);
+    const n = counts(L.lib); // the whole reviewed library (task 3.14); the drafts include the radius-pill draft made above
+    expect(n.reviewed).toBeGreaterThanOrEqual(240);
     await expect(page.locator('#count-reviewed')).toHaveText(String(n.reviewed));
     await expect(page.locator('#count-drafts')).toHaveText(String(n.draft));
 
@@ -295,6 +295,78 @@ test('an icon style shows its icons in its container and fill', async ({ page })
       .evaluate((n) => getComputedStyle(n).borderRadius);
     expect(radius).toBe('50%');
     await expect(page.locator('.r-card[data-template="icons-lucide-outline"] .r-extra .hw-icon--none')).toHaveCount(28);
+  } finally {
+    s.child.kill();
+    fs.rmSync(L.dir, { recursive: true, force: true });
+  }
+});
+
+// Task 3.14 (R-065, AC-13): every published template (every reviewed one), drawn as the review page draws it (the
+// landing scene of «Calm corporate» with that template in its place), in the four states: no error, the scene in its
+// language, direction and mode, and nothing wider than the scene.
+test('every published template draws in the four states without errors or overflow', async ({ page }) => {
+  test.setTimeout(240000);
+  const L = library();
+  const s = await start(L.lib);
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  page.on('console', (m) => m.type() === 'error' && !/fonts\.g|net::/.test(m.text()) && errors.push(m.text()));
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  try {
+    await page.goto(s.url);
+    await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
+    const result = await page.evaluate(() => {
+      const H = window.Hawiya;
+      const base = H.data.identities.find((i) => i.id === 'calm-corporate').templates;
+      const host = document.createElement('div');
+      host.style.cssText = 'position:absolute;inset-inline-start:0;inset-block-start:0;inline-size:400px';
+      document.body.appendChild(host);
+      const root = host.attachShadow({ mode: 'open' });
+      const STATES = [
+        ['ar', 'light'],
+        ['ar', 'dark'],
+        ['en', 'light'],
+        ['en', 'dark']
+      ];
+      const bad = [];
+      let drawn = 0;
+      for (const element of Object.keys(H.data.templates)) {
+        for (const tpl of H.data.templates[element]) {
+          if (!tpl.status || tpl.status.state !== 'reviewed') continue; // the radius-pill draft of this test file
+          const selections = {};
+          for (const e of Object.keys(base)) selections[e] = { template: e === element ? tpl.id : base[e] };
+          let identity;
+          try {
+            identity = H.resolve.resolve({ name: 'Hawiya', selections }, { templates: H.data.templates });
+          } catch (e) {
+            bad.push(`${tpl.id}: ${e.message}`);
+            continue;
+          }
+          for (const [L, M] of STATES) {
+            const nodes = H.preview.sceneNodes(identity, L, M, 'landing');
+            root.textContent = '';
+            root.appendChild(nodes[0]);
+            root.appendChild(nodes[1]);
+            const scene = root.querySelector('.scene');
+            const where = `${tpl.id} ${L} ${M}`;
+            if (scene.getAttribute('lang') !== L || scene.getAttribute('data-mode') !== M) bad.push(`${where}: state`);
+            if (scene.getAttribute('dir') !== (L === 'ar' ? 'rtl' : 'ltr')) bad.push(`${where}: direction`);
+            if (!scene.querySelector('.hw-btn') || !scene.querySelector('.hw-card'))
+              bad.push(`${where}: no button or card`);
+            if (scene.scrollWidth > scene.clientWidth + 1)
+              bad.push(`${where}: ${scene.scrollWidth} > ${scene.clientWidth}`);
+            drawn++;
+          }
+        }
+      }
+      host.remove();
+      return { bad, drawn };
+    });
+    expect(result.bad).toEqual([]);
+    expect(result.drawn).toBeGreaterThanOrEqual(240 * 4);
+    expect(errors).toEqual([]);
   } finally {
     s.child.kill();
     fs.rmSync(L.dir, { recursive: true, force: true });

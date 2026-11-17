@@ -230,5 +230,370 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "scale-minor-second",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0633\u0644\u0651\u0645 \u0645\u062a\u0642\u0627\u0631\u0628 \u062c\u062f\u064b\u0627 (1.067)",
+      "en": "Minor second (1.067)"
+    },
+    "tags": [
+      "data-dense",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.9,
+      "intensity": 0.1
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 14,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.067
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 6
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.65
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.45
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "scale-major-second",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0633\u0644\u0651\u0645 \u0645\u062a\u0642\u0627\u0631\u0628 (1.125)",
+      "en": "Major second (1.125)"
+    },
+    "tags": [
+      "data-dense",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.8,
+      "intensity": 0.2
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 15,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.125
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 6
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.7
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.5
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "scale-augmented-fourth",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0633\u0644\u0651\u0645 \u0648\u0627\u0636\u062d (1.414)",
+      "en": "Augmented fourth (1.414)"
+    },
+    "tags": [
+      "editorial",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.4,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 18,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.414
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 6
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.75
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.5
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "scale-perfect-fifth",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0633\u0644\u0651\u0645 \u0628\u0627\u0631\u0632 (1.5)",
+      "en": "Perfect fifth (1.5)"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.3,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.5
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 5
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.8
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.45
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "scale-golden",
+    "element": "type-scale",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0633\u0644\u0651\u0645 \u0630\u0647\u0628\u064a (1.618)",
+      "en": "Golden ratio (1.618)"
+    },
+    "tags": [
+      "luxury",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.2,
+      "intensity": 0.9
+    },
+    "tokens": {
+      "typeScale": {
+        "base": {
+          "$type": "dimension",
+          "$value": {
+            "value": 18,
+            "unit": "px"
+          }
+        },
+        "ratio": {
+          "$type": "number",
+          "$value": 1.618
+        },
+        "steps": {
+          "$type": "number",
+          "$value": 5
+        },
+        "below": {
+          "$type": "number",
+          "$value": 1
+        }
+      },
+      "lineHeight": {
+        "ar": {
+          "$type": "number",
+          "$value": 1.7
+        },
+        "en": {
+          "$type": "number",
+          "$value": 1.4
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

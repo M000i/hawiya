@@ -359,5 +359,353 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "spacing-dense",
+    "element": "spacing",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0643\u062b\u064a\u0641 \u062c\u062f\u064b\u0627",
+      "en": "Dense"
+    },
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.95,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "spacing": {
+        "unit": {
+          "$type": "dimension",
+          "$value": {
+            "value": 2,
+            "unit": "px"
+          }
+        },
+        "scale": {
+          "0": {
+            "$type": "dimension",
+            "$value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "1": {
+            "$type": "dimension",
+            "$value": {
+              "value": 2,
+              "unit": "px"
+            }
+          },
+          "2": {
+            "$type": "dimension",
+            "$value": {
+              "value": 4,
+              "unit": "px"
+            }
+          },
+          "3": {
+            "$type": "dimension",
+            "$value": {
+              "value": 6,
+              "unit": "px"
+            }
+          },
+          "4": {
+            "$type": "dimension",
+            "$value": {
+              "value": 8,
+              "unit": "px"
+            }
+          },
+          "5": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "6": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "7": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "8": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "spacing-balanced",
+    "element": "spacing",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0645\u062a\u0648\u0627\u0632\u0646",
+      "en": "Balanced"
+    },
+    "tags": [
+      "corporate",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.45,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "spacing": {
+        "unit": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          }
+        },
+        "scale": {
+          "0": {
+            "$type": "dimension",
+            "$value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "1": {
+            "$type": "dimension",
+            "$value": {
+              "value": 4,
+              "unit": "px"
+            }
+          },
+          "2": {
+            "$type": "dimension",
+            "$value": {
+              "value": 8,
+              "unit": "px"
+            }
+          },
+          "3": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          },
+          "4": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "5": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          },
+          "6": {
+            "$type": "dimension",
+            "$value": {
+              "value": 48,
+              "unit": "px"
+            }
+          },
+          "7": {
+            "$type": "dimension",
+            "$value": {
+              "value": 64,
+              "unit": "px"
+            }
+          },
+          "8": {
+            "$type": "dimension",
+            "$value": {
+              "value": 96,
+              "unit": "px"
+            }
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "spacing-grid-6",
+    "element": "spacing",
+    "kind": "numeric",
+    "name": {
+      "ar": "\u0634\u0628\u0643\u0629 6",
+      "en": "Six-pixel grid"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.35,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "spacing": {
+        "unit": {
+          "$type": "dimension",
+          "$value": {
+            "value": 6,
+            "unit": "px"
+          }
+        },
+        "scale": {
+          "0": {
+            "$type": "dimension",
+            "$value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "1": {
+            "$type": "dimension",
+            "$value": {
+              "value": 6,
+              "unit": "px"
+            }
+          },
+          "2": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "3": {
+            "$type": "dimension",
+            "$value": {
+              "value": 18,
+              "unit": "px"
+            }
+          },
+          "4": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "5": {
+            "$type": "dimension",
+            "$value": {
+              "value": 36,
+              "unit": "px"
+            }
+          },
+          "6": {
+            "$type": "dimension",
+            "$value": {
+              "value": 48,
+              "unit": "px"
+            }
+          },
+          "7": {
+            "$type": "dimension",
+            "$value": {
+              "value": 72,
+              "unit": "px"
+            }
+          },
+          "8": {
+            "$type": "dimension",
+            "$value": {
+              "value": 96,
+              "unit": "px"
+            }
+          }
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

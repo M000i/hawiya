@@ -6,6 +6,13 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
+// Written on the first library (37 templates, 2 identities): run on a copy of the page with that data (task 3.14).
+const FIRST = require('../helpers/first-library.js').firstPickerPage();
+// The published library, for the tests that run on the real page.
+const PUBLISHED = (() => {
+  const b = require('../../tools/build.js');
+  return b.select(b.load(path.join(__dirname, '../../library'))).data.templates;
+})();
 const SCENES = ['landing', 'dashboard', 'form', 'mobile'];
 
 function watchErrors(page) {
@@ -55,7 +62,7 @@ test('each button card draws its own recipe in the identity colors, and follows 
   const errors = watchErrors(page);
   await offline(page);
   await page.goto(PAGE);
-  await openPanel(page, 'buttons', 3);
+  await openPanel(page, 'buttons', PUBLISHED.buttons.length);
   const PROPS = ['backgroundColor', 'color', 'borderTopColor', 'borderTopLeftRadius', 'fontFamily'];
   // Three different recipes, side by side, each in its own shadow root.
   const solid = await inSample(page, 'buttons', 'button-solid', '.hw-btn', PROPS);
@@ -113,7 +120,7 @@ test('each button card draws its own recipe in the identity colors, and follows 
 test('choosing a button and a card changes them in every scene', async ({ page }) => {
   const errors = watchErrors(page);
   await offline(page);
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await openPanel(page, 'buttons', 3);
   // Clicking the picture chooses the card around it.
   await card(page, 'buttons', 'button-outline').locator('[data-recipe]').click();
@@ -145,7 +152,7 @@ test('choosing a button and a card changes them in every scene', async ({ page }
 test('modes: the default mode is a simple choice that the preview follows', async ({ page }) => {
   const errors = watchErrors(page);
   await offline(page);
-  await page.goto(PAGE);
+  await page.goto(FIRST);
   await openPanel(page, 'modes', 3);
   const mode = () =>
     page.evaluate(() =>

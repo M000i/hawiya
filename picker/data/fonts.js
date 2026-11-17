@@ -414,5 +414,3143 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-16"
     }
+  },
+  {
+    "id": "pair-tajawal-manrope",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062a\u062c\u0648\u0627\u0644 \u0645\u0639 \u0645\u0627\u0646\u0631\u0648\u0628",
+      "en": "Tajawal + Manrope"
+    },
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Tajawal",
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Tajawal",
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Tajawal",
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Tajawal",
+      "latin": "Manrope",
+      "numeralsFont": "Tajawal",
+      "latinSizeAdjust": 0.85,
+      "easternArabicDigits": true,
+      "sources": [
+        "tajawal",
+        "manrope"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.85: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Tajawal (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Tajawal",
+      "url": "https://github.com/googlefonts/tajawal",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-alexandria-plus-jakarta-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0627\u0644\u0625\u0633\u0643\u0646\u062f\u0631\u064a\u0629 \u0645\u0639 \u0628\u0644\u0633 \u062c\u0627\u0643\u0631\u062a\u0627",
+      "en": "Alexandria + Plus Jakarta Sans"
+    },
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Alexandria",
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Alexandria",
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Alexandria",
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Alexandria",
+      "latin": "Plus Jakarta Sans",
+      "numeralsFont": "Alexandria",
+      "latinSizeAdjust": 1.05,
+      "easternArabicDigits": true,
+      "sources": [
+        "alexandria",
+        "plus-jakarta-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 1.05: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Alexandria (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Alexandria",
+      "url": "https://github.com/Gue3bara/Alexandria",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-almarai-dm-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0627\u0644\u0645\u0631\u0627\u0639\u064a \u0645\u0639 \u062f\u064a \u0625\u0645 \u0633\u0627\u0646\u0633",
+      "en": "Almarai + DM Sans"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Almarai",
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Almarai",
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Almarai",
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Almarai",
+      "latin": "DM Sans",
+      "numeralsFont": "Almarai",
+      "latinSizeAdjust": 0.95,
+      "easternArabicDigits": true,
+      "sources": [
+        "almarai",
+        "dm-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.95: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Almarai (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Almarai",
+      "url": "https://github.com/JuergenWillrodt/Almarai",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-readex-pro-outfit",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u064a\u062f\u0643\u0633 \u0628\u0631\u0648 \u0645\u0639 \u0623\u0648\u062a\u0641\u062a",
+      "en": "Readex Pro + Outfit"
+    },
+    "tags": [
+      "technical",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Readex Pro",
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Readex Pro",
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Readex Pro",
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Readex Pro",
+      "latin": "Outfit",
+      "numeralsFont": "Readex Pro",
+      "latinSizeAdjust": 1.05,
+      "easternArabicDigits": true,
+      "sources": [
+        "readex-pro",
+        "outfit"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 1.05: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Readex Pro (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Readex Pro",
+      "url": "https://github.com/ThomasJockin/readexpro",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-vazirmatn-onest",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0648\u0632\u064a\u0631\u0645\u062a\u0646 \u0645\u0639 \u0623\u0648\u0646\u0633\u062a",
+      "en": "Vazirmatn + Onest"
+    },
+    "tags": [
+      "minimal",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Vazirmatn",
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Vazirmatn",
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Vazirmatn",
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Vazirmatn",
+      "latin": "Onest",
+      "numeralsFont": "Vazirmatn",
+      "latinSizeAdjust": 0.85,
+      "easternArabicDigits": true,
+      "sources": [
+        "vazirmatn",
+        "onest"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.85: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Vazirmatn (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Vazirmatn",
+      "url": "https://github.com/rastikerdar/vazirmatn",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-rubik",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0648\u0628\u064a\u0643",
+      "en": "Rubik"
+    },
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.7,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Rubik",
+      "latin": "Rubik",
+      "numeralsFont": "Rubik",
+      "latinSizeAdjust": 1,
+      "easternArabicDigits": true,
+      "sources": [
+        "rubik"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "One font with Arabic and Latin letters. Eastern Arabic digits: drawn by Rubik (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Rubik",
+      "url": "https://github.com/googlefonts/rubik",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-changa-sora",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062a\u0634\u0627\u0646\u063a\u0627 \u0645\u0639 \u0633\u0648\u0631\u0627",
+      "en": "Changa + Sora"
+    },
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Changa",
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Changa",
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Changa",
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Changa",
+      "latin": "Sora",
+      "numeralsFont": "Changa",
+      "latinSizeAdjust": 1,
+      "easternArabicDigits": true,
+      "sources": [
+        "changa",
+        "sora"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 1: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Changa (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Changa",
+      "url": "https://github.com/googlefonts/changa-vf",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-zain-figtree",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u064a\u0646 \u0645\u0639 \u0641\u064a\u063a\u062a\u0631\u064a",
+      "en": "Zain + Figtree"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Zain",
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Zain",
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Zain",
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Zain",
+      "latin": "Figtree",
+      "numeralsFont": "Zain",
+      "latinSizeAdjust": 1,
+      "easternArabicDigits": true,
+      "sources": [
+        "zain",
+        "figtree"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 1: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Zain (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Zain",
+      "url": "https://github.com/googlefonts/zain",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-beiruti-instrument-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u064a\u0631\u0648\u062a\u064a \u0645\u0639 \u0625\u0646\u0633\u062a\u0631\u0648\u0645\u0646\u062a",
+      "en": "Beiruti + Instrument Sans"
+    },
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Beiruti",
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Beiruti",
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Beiruti",
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Beiruti",
+      "latin": "Instrument Sans",
+      "numeralsFont": "Beiruti",
+      "latinSizeAdjust": 0.75,
+      "easternArabicDigits": true,
+      "sources": [
+        "beiruti",
+        "instrument-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.75: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Beiruti (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Beiruti",
+      "url": "https://github.com/googlefonts/beiruti",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-fustat-geist",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0627\u0644\u0641\u0633\u0637\u0627\u0637 \u0645\u0639 \u062c\u064a\u0633\u062a",
+      "en": "Fustat + Geist"
+    },
+    "tags": [
+      "minimal",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Fustat",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Fustat",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Fustat",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Fustat",
+      "latin": "Geist",
+      "numeralsFont": "Fustat",
+      "latinSizeAdjust": 0.85,
+      "easternArabicDigits": true,
+      "sources": [
+        "fustat",
+        "geist"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.85: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Fustat (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Fustat",
+      "url": "https://github.com/Kief-Type-Foundry/Fustat",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-kufam-space-grotesk",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u0648\u0641\u0627\u0645 \u0645\u0639 \u0633\u0628\u064a\u0633 \u063a\u0631\u0648\u062a\u0633\u0643",
+      "en": "Kufam + Space Grotesk"
+    },
+    "tags": [
+      "technical",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.6,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Kufam",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Kufam",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Kufam",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Kufam",
+      "latin": "Space Grotesk",
+      "numeralsFont": "Kufam",
+      "latinSizeAdjust": 1.2,
+      "easternArabicDigits": true,
+      "sources": [
+        "kufam",
+        "space-grotesk"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 1.2: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Kufam (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Kufam",
+      "url": "https://github.com/originaltype/kufam",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-mada-bricolage-grotesque",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0645\u062f\u0649 \u0645\u0639 \u0628\u0631\u064a\u0643\u0648\u0644\u0627\u062c",
+      "en": "Mada + Bricolage Grotesque"
+    },
+    "tags": [
+      "editorial",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Mada",
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Mada",
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Mada",
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Mada",
+      "latin": "Bricolage Grotesque",
+      "numeralsFont": "Mada",
+      "latinSizeAdjust": 0.9,
+      "easternArabicDigits": true,
+      "sources": [
+        "mada",
+        "bricolage-grotesque"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.9: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Mada (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Mada",
+      "url": "https://github.com/aliftype/mada",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-baloo-bhaijaan-2",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0628\u0627\u0644\u0648 \u0628\u0647\u0627\u064a\u062c\u0627\u0646",
+      "en": "Baloo Bhaijaan 2"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.9,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Baloo Bhaijaan 2",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Baloo Bhaijaan 2",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Baloo Bhaijaan 2",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Baloo Bhaijaan 2",
+      "latin": "Baloo Bhaijaan 2",
+      "numeralsFont": "Baloo Bhaijaan 2",
+      "latinSizeAdjust": 1,
+      "easternArabicDigits": true,
+      "sources": [
+        "baloo-bhaijaan-2"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "One font with Arabic and Latin letters. Eastern Arabic digits: drawn by Baloo Bhaijaan 2 (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Baloo 2",
+      "url": "https://github.com/EkType/Baloo2-Variable",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-changa-noto-sans-arabic",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u062a\u0634\u0627\u0646\u063a\u0627 \u0648\u0646\u0635 \u0646\u0648\u062a\u0648 \u0627\u0644\u0639\u0631\u0628\u064a",
+      "en": "Changa headings, Noto Sans Arabic text"
+    },
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Changa",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Noto Sans Arabic",
+      "headingArabic": "Changa",
+      "numeralsFont": "Noto Sans Arabic",
+      "easternArabicDigits": true,
+      "sources": [
+        "noto-arabic",
+        "changa"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Changa for headings, Noto Sans Arabic for text. Eastern Arabic digits: drawn by Noto Sans Arabic (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Noto Arabic",
+      "url": "https://github.com/notofonts/arabic",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-el-messiri-tajawal",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0627\u0644\u0645\u0633\u064a\u0631\u064a \u0648\u0646\u0635 \u062a\u062c\u0648\u0627\u0644",
+      "en": "El Messiri headings, Tajawal text"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "El Messiri",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Tajawal",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Tajawal",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Tajawal",
+      "headingArabic": "El Messiri",
+      "numeralsFont": "Tajawal",
+      "easternArabicDigits": true,
+      "sources": [
+        "tajawal",
+        "el-messiri"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: El Messiri for headings, Tajawal for text. Eastern Arabic digits: drawn by Tajawal (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Tajawal",
+      "url": "https://github.com/googlefonts/tajawal",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-reem-kufi-ibm-plex-sans-arabic",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0631\u064a\u0645 \u0643\u0648\u0641\u064a \u0648\u0646\u0635 \u0628\u0644\u0643\u0633 \u0627\u0644\u0639\u0631\u0628\u064a",
+      "en": "Reem Kufi headings, IBM Plex Sans Arabic text"
+    },
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Reem Kufi",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "IBM Plex Sans Arabic",
+      "headingArabic": "Reem Kufi",
+      "numeralsFont": "IBM Plex Sans Arabic",
+      "easternArabicDigits": true,
+      "sources": [
+        "plex",
+        "reem-kufi"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Reem Kufi for headings, IBM Plex Sans Arabic for text. Eastern Arabic digits: drawn by IBM Plex Sans Arabic (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "IBM Plex",
+      "url": "https://github.com/IBM/plex",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-amiri-noto-naskh-arabic",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0627\u0644\u0623\u0645\u064a\u0631\u064a \u0648\u0646\u0635 \u0646\u0648\u062a\u0648 \u0646\u0633\u062e",
+      "en": "Amiri headings, Noto Naskh Arabic text"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Amiri",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Naskh Arabic",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Naskh Arabic",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Noto Naskh Arabic",
+      "headingArabic": "Amiri",
+      "numeralsFont": "Noto Naskh Arabic",
+      "easternArabicDigits": true,
+      "sources": [
+        "noto-arabic",
+        "amiri"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Amiri for headings, Noto Naskh Arabic for text. Eastern Arabic digits: drawn by Noto Naskh Arabic (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Noto Arabic",
+      "url": "https://github.com/notofonts/arabic",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-aref-ruqaa-almarai",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0639\u0627\u0631\u0641 \u0631\u0642\u0639\u0629 \u0648\u0646\u0635 \u0627\u0644\u0645\u0631\u0627\u0639\u064a",
+      "en": "Aref Ruqaa headings, Almarai text"
+    },
+    "tags": [
+      "luxury",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Aref Ruqaa",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Almarai",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Almarai",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Almarai",
+      "headingArabic": "Aref Ruqaa",
+      "numeralsFont": "Almarai",
+      "easternArabicDigits": true,
+      "sources": [
+        "almarai",
+        "aref-ruqaa"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Aref Ruqaa for headings, Almarai for text. Eastern Arabic digits: drawn by Almarai (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Almarai",
+      "url": "https://github.com/JuergenWillrodt/Almarai",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-markazi-text-alexandria",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0627\u0644\u0645\u0631\u0643\u0632\u064a \u0648\u0646\u0635 \u0627\u0644\u0625\u0633\u0643\u0646\u062f\u0631\u064a\u0629",
+      "en": "Markazi Text headings, Alexandria text"
+    },
+    "tags": [
+      "editorial",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Markazi Text",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Alexandria",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Alexandria",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Alexandria",
+      "headingArabic": "Markazi Text",
+      "numeralsFont": "Alexandria",
+      "easternArabicDigits": true,
+      "sources": [
+        "alexandria",
+        "markazi-text"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Markazi Text for headings, Alexandria for text. Eastern Arabic digits: drawn by Alexandria (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Alexandria",
+      "url": "https://github.com/Gue3bara/Alexandria",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-scheherazade-new-harmattan",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0634\u0647\u0631\u0632\u0627\u062f \u0648\u0646\u0635 \u0647\u0631\u0645\u062a\u0627\u0646",
+      "en": "Scheherazade New headings, Harmattan text"
+    },
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Scheherazade New",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Harmattan",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Harmattan",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Harmattan",
+      "headingArabic": "Scheherazade New",
+      "numeralsFont": "Harmattan",
+      "easternArabicDigits": true,
+      "sources": [
+        "harmattan",
+        "scheherazade-new"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Scheherazade New for headings, Harmattan for text. Eastern Arabic digits: drawn by Harmattan (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Harmattan",
+      "url": "https://github.com/silnrsi/font-harmattan",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-lemonada-cairo",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0644\u064a\u0645\u0648\u0646\u0627\u062f\u0629 \u0648\u0646\u0635 \u0627\u0644\u0642\u0627\u0647\u0631\u0629",
+      "en": "Lemonada headings, Cairo text"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.8,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Lemonada",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Cairo",
+      "headingArabic": "Lemonada",
+      "numeralsFont": "Cairo",
+      "easternArabicDigits": true,
+      "sources": [
+        "cairo",
+        "lemonada"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Lemonada for headings, Cairo for text. Eastern Arabic digits: drawn by Cairo (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Cairo",
+      "url": "https://github.com/Gue3bara/Cairo",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-marhey-zain",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0645\u0631\u062d\u0649 \u0648\u0646\u0635 \u0632\u064a\u0646",
+      "en": "Marhey headings, Zain text"
+    },
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.8,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Marhey",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Zain",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Zain",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Zain",
+      "headingArabic": "Marhey",
+      "numeralsFont": "Zain",
+      "easternArabicDigits": true,
+      "sources": [
+        "zain",
+        "marhey"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Marhey for headings, Zain for text. Eastern Arabic digits: drawn by Zain (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Zain",
+      "url": "https://github.com/googlefonts/zain",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-handjet-changa",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0647\u0627\u0646\u062f\u062c\u062a \u0648\u0646\u0635 \u062a\u0634\u0627\u0646\u063a\u0627",
+      "en": "Handjet headings, Changa text"
+    },
+    "tags": [
+      "technical",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.6,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Handjet",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Changa",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Changa",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Changa",
+      "headingArabic": "Handjet",
+      "numeralsFont": "Changa",
+      "easternArabicDigits": true,
+      "sources": [
+        "changa",
+        "handjet"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Handjet for headings, Changa for text. Eastern Arabic digits: drawn by Changa (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Changa",
+      "url": "https://github.com/googlefonts/changa-vf",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-playpen-sans-arabic-mada",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0628\u0644\u0627\u064a \u0628\u0646 \u0648\u0646\u0635 \u0645\u062f\u0649",
+      "en": "Playpen Sans Arabic headings, Mada text"
+    },
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.8,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Playpen Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Mada",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Mada",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Mada",
+      "headingArabic": "Playpen Sans Arabic",
+      "numeralsFont": "Mada",
+      "easternArabicDigits": true,
+      "sources": [
+        "mada",
+        "playpen-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Playpen Sans Arabic for headings, Mada for text. Eastern Arabic digits: drawn by Mada (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Mada",
+      "url": "https://github.com/aliftype/mada",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-alyamama-beiruti",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0627\u0644\u064a\u0645\u0627\u0645\u0629 \u0648\u0646\u0635 \u0628\u064a\u0631\u0648\u062a\u064a",
+      "en": "Alyamama headings, Beiruti text"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Alyamama",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Beiruti",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Beiruti",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Beiruti",
+      "headingArabic": "Alyamama",
+      "numeralsFont": "Beiruti",
+      "easternArabicDigits": true,
+      "sources": [
+        "beiruti",
+        "alyamama"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Alyamama for headings, Beiruti for text. Eastern Arabic digits: drawn by Beiruti (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Beiruti",
+      "url": "https://github.com/googlefonts/beiruti",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-estedad-vazirmatn",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0627\u0633\u062a\u0639\u062f\u0627\u062f \u0648\u0646\u0635 \u0648\u0632\u064a\u0631\u0645\u062a\u0646",
+      "en": "Estedad headings, Vazirmatn text"
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Estedad",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Vazirmatn",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Vazirmatn",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Vazirmatn",
+      "headingArabic": "Estedad",
+      "numeralsFont": "Vazirmatn",
+      "easternArabicDigits": true,
+      "sources": [
+        "vazirmatn",
+        "estedad"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Estedad for headings, Vazirmatn for text. Eastern Arabic digits: drawn by Vazirmatn (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Vazirmatn",
+      "url": "https://github.com/rastikerdar/vazirmatn",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-kufam-fustat",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0643\u0648\u0641\u0627\u0645 \u0648\u0646\u0635 \u0627\u0644\u0641\u0633\u0637\u0627\u0637",
+      "en": "Kufam headings, Fustat text"
+    },
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.6,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Kufam",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Fustat",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Fustat",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Fustat",
+      "headingArabic": "Kufam",
+      "numeralsFont": "Fustat",
+      "easternArabicDigits": true,
+      "sources": [
+        "fustat",
+        "kufam"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Kufam for headings, Fustat for text. Eastern Arabic digits: drawn by Fustat (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Fustat",
+      "url": "https://github.com/Kief-Type-Foundry/Fustat",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-ar-noto-naskh-arabic-rubik",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0646\u0648\u062a\u0648 \u0646\u0633\u062e \u0648\u0646\u0635 \u0631\u0648\u0628\u064a\u0643",
+      "en": "Noto Naskh Arabic headings, Rubik text"
+    },
+    "tags": [
+      "editorial",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Naskh Arabic",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Rubik",
+      "headingArabic": "Noto Naskh Arabic",
+      "numeralsFont": "Rubik",
+      "easternArabicDigits": true,
+      "sources": [
+        "rubik",
+        "noto-arabic"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Noto Naskh Arabic for headings, Rubik for text. Eastern Arabic digits: drawn by Rubik (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Rubik",
+      "url": "https://github.com/googlefonts/rubik",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-space-grotesk-sora",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0633\u0628\u064a\u0633 \u063a\u0631\u0648\u062a\u0633\u0643 \u0648\u0646\u0635 \u0633\u0648\u0631\u0627",
+      "en": "Space Grotesk headings, Sora text"
+    },
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Sora",
+      "headingLatin": "Space Grotesk",
+      "numeralsFont": "Sora",
+      "easternArabicDigits": false,
+      "sources": [
+        "sora",
+        "space-grotesk"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Sora (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Sora",
+      "url": "https://github.com/sora-xor/sora-font",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-bricolage-grotesque-dm-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0628\u0631\u064a\u0643\u0648\u0644\u0627\u062c \u0648\u0646\u0635 \u062f\u064a \u0625\u0645 \u0633\u0627\u0646\u0633",
+      "en": "Bricolage Grotesque headings, DM Sans text"
+    },
+    "tags": [
+      "editorial",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "DM Sans",
+      "headingLatin": "Bricolage Grotesque",
+      "numeralsFont": "DM Sans",
+      "easternArabicDigits": false,
+      "sources": [
+        "dm-sans",
+        "bricolage-grotesque"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by DM Sans (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "DM Sans",
+      "url": "https://github.com/googlefonts/dm-fonts",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-sora-manrope",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0633\u0648\u0631\u0627 \u0648\u0646\u0635 \u0645\u0627\u0646\u0631\u0648\u0628",
+      "en": "Sora headings, Manrope text"
+    },
+    "tags": [
+      "technical",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Manrope",
+      "headingLatin": "Sora",
+      "numeralsFont": "Manrope",
+      "easternArabicDigits": false,
+      "sources": [
+        "manrope",
+        "sora"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Manrope (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Manrope",
+      "url": "https://github.com/googlefonts/manrope",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-outfit-figtree",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0623\u0648\u062a\u0641\u062a \u0648\u0646\u0635 \u0641\u064a\u063a\u062a\u0631\u064a",
+      "en": "Outfit headings, Figtree text"
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.7,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Figtree",
+      "headingLatin": "Outfit",
+      "numeralsFont": "Figtree",
+      "easternArabicDigits": false,
+      "sources": [
+        "figtree",
+        "outfit"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Figtree (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Figtree",
+      "url": "https://github.com/erikdkennedy/figtree",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-instrument-sans-onest",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0625\u0646\u0633\u062a\u0631\u0648\u0645\u0646\u062a \u0648\u0646\u0635 \u0623\u0648\u0646\u0633\u062a",
+      "en": "Instrument Sans headings, Onest text"
+    },
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Onest",
+      "headingLatin": "Instrument Sans",
+      "numeralsFont": "Onest",
+      "easternArabicDigits": false,
+      "sources": [
+        "onest",
+        "instrument-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Onest (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Onest",
+      "url": "https://github.com/simpals/onest",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-geist-geist-mono",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062c\u064a\u0633\u062a \u0648\u0623\u0631\u0642\u0627\u0645 \u062c\u064a\u0633\u062a \u0645\u0648\u0646\u0648",
+      "en": "Geist, Geist Mono numerals"
+    },
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.6,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Geist Mono",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Geist",
+      "numeralsFont": "Geist Mono",
+      "easternArabicDigits": false,
+      "sources": [
+        "geist"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Geist Mono (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Geist",
+      "url": "https://github.com/vercel/geist-font",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-manrope-plus-jakarta-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0645\u0627\u0646\u0631\u0648\u0628 \u0648\u0646\u0635 \u0628\u0644\u0633 \u062c\u0627\u0643\u0631\u062a\u0627",
+      "en": "Manrope headings, Plus Jakarta Sans text"
+    },
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Plus Jakarta Sans",
+      "headingLatin": "Manrope",
+      "numeralsFont": "Plus Jakarta Sans",
+      "easternArabicDigits": false,
+      "sources": [
+        "plus-jakarta-sans",
+        "manrope"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Plus Jakarta Sans (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Plus Jakarta Sans",
+      "url": "https://github.com/tokotype/PlusJakartaSans",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-plus-jakarta-sans-outfit",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0628\u0644\u0633 \u062c\u0627\u0643\u0631\u062a\u0627 \u0648\u0646\u0635 \u0623\u0648\u062a\u0641\u062a",
+      "en": "Plus Jakarta Sans headings, Outfit text"
+    },
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.7,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Outfit",
+      "headingLatin": "Plus Jakarta Sans",
+      "numeralsFont": "Outfit",
+      "easternArabicDigits": false,
+      "sources": [
+        "outfit",
+        "plus-jakarta-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Outfit (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Outfit",
+      "url": "https://github.com/Outfitio/Outfit-Fonts",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-dm-sans-ibm-plex-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u062f\u064a \u0625\u0645 \u0633\u0627\u0646\u0633 \u0648\u0646\u0635 \u0628\u0644\u0643\u0633",
+      "en": "DM Sans headings, IBM Plex Sans text"
+    },
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.6,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "IBM Plex Sans",
+      "headingLatin": "DM Sans",
+      "numeralsFont": "IBM Plex Sans",
+      "easternArabicDigits": false,
+      "sources": [
+        "plex",
+        "dm-sans"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by IBM Plex Sans (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "IBM Plex",
+      "url": "https://github.com/IBM/plex",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-jetbrains-mono-space-grotesk",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u062c\u062a \u0628\u0631\u064a\u0646\u0632 \u0645\u0648\u0646\u0648 \u0648\u0646\u0635 \u0633\u0628\u064a\u0633 \u063a\u0631\u0648\u062a\u0633\u0643",
+      "en": "JetBrains Mono headings, Space Grotesk text"
+    },
+    "tags": [
+      "technical",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.6,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "JetBrains Mono",
+            "ui-monospace",
+            "monospace"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "JetBrains Mono",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Space Grotesk",
+      "headingLatin": "JetBrains Mono",
+      "numeralsFont": "JetBrains Mono",
+      "easternArabicDigits": false,
+      "sources": [
+        "space-grotesk",
+        "jetbrains-mono"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by JetBrains Mono (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Space Grotesk",
+      "url": "https://github.com/floriankarsten/space-grotesk",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "pair-en-onest-instrument-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0623\u0648\u0646\u0633\u062a \u0648\u0646\u0635 \u0625\u0646\u0633\u062a\u0631\u0648\u0645\u0646\u062a",
+      "en": "Onest headings, Instrument Sans text"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.5,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Instrument Sans",
+      "headingLatin": "Onest",
+      "numeralsFont": "Instrument Sans",
+      "easternArabicDigits": false,
+      "sources": [
+        "instrument-sans",
+        "onest"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Instrument Sans (measured in Chrome with the real files, task 3.8)."
+    },
+    "source": {
+      "name": "Instrument Sans",
+      "url": "https://github.com/Instrument/instrument-sans",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

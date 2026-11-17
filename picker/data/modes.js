@@ -159,5 +159,105 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-15"
     }
+  },
+  {
+    "id": "modes-light-only",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "\u0641\u0627\u062a\u062d \u0641\u0642\u0637\u060c \u0628\u0644\u0627 \u0645\u0641\u062a\u0627\u062d",
+      "en": "Light only, no switch"
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "light"
+        },
+        "switch": {
+          "$value": "none"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
+  },
+  {
+    "id": "modes-dark-only",
+    "element": "modes",
+    "kind": "setting",
+    "name": {
+      "ar": "\u062f\u0627\u0643\u0646 \u0641\u0642\u0637\u060c \u0628\u0644\u0627 \u0645\u0641\u062a\u0627\u062d",
+      "en": "Dark only, no switch"
+    },
+    "tags": [
+      "technical",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "mode": {
+        "default": {
+          "$value": "dark"
+        },
+        "switch": {
+          "$value": "none"
+        }
+      }
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
+    }
   }
 ]);

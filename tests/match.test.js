@@ -14,6 +14,8 @@ const build = require('../tools/build.js');
 
 const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
 const find = (element, id) => (data.templates[element] || []).find((t) => t.id === id) || null;
+const first = require('./helpers/first-library.js').firstLibrary(data);
+const findFirst = (element, id) => (first.templates[element] || []).find((t) => t.id === id) || null;
 const selectionsOf = (id) => {
   const ready = data.identities.find((i) => i.id === id);
   const out = {};
@@ -83,10 +85,11 @@ test('the session tags weigh as much as all current choices together (R-033); no
 test('ready identities: the marked template is the expected one for each element', () => {
   const calm = selectionsOf('calm-corporate');
   const warm = selectionsOf('warm-friendly');
-  const bestOf = (sel, e) => match.best(e, data.templates[e], sel, find);
+  // On the first library, where the expected marks were computed (task 3.14).
+  const bestOf = (sel, e) => match.best(e, first.templates[e], sel, findFirst);
   assert.deepEqual(
     Object.fromEntries(
-      Object.keys(data.templates)
+      Object.keys(first.templates)
         .sort()
         .map((e) => [e, bestOf(calm, e)])
     ),
