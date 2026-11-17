@@ -2096,7 +2096,7 @@
     - المراجعة: ذاتية (مهمة B) مقابل معيار القبول: ما الأداة ✔، التثبيت في Claude Code و Codex ✔، الاستخدام من الصفحة المنشورة ✔، التصريح بـ Google Fonts ✔، الرخصة ✔.
     - انحراف: رابط المستودع ورابط الصفحة المنشورة غير موجودين بعد، فكُتبا علامتين واضحتين `<REPO_URL>` و `<PAGE_URL>` تُستبدلان بالرابطين الحقيقيين في المهمة 4.6 بعد أن يحدد المالك الحساب واسم المستودع (B-091).
 
-- [ ] **4.4** سير الفحص الآلي على GitHub
+- [x] **4.4** سير الفحص الآلي على GitHub
   - الخطورة: B — إعداد
   - الحجم: صغيرة
   - تحقق المتطلبات: R-095
@@ -2105,7 +2105,32 @@
   - معيار القبول: الملف يشغّل `npm test` و `npm run check` ويتأكد من تطابق `picker/data` مع المكتبة عند كل تغيير. لا يُرفع شيء في هذه المهمة
   - الاختبار: تشغيل الأوامر نفسها محليًا بالترتيب نفسه
   - ما ستراه أنت: شغّل `npm test` ثم `npm run check` فينجحان
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - الملفات: `.github/workflows/check.yml` (جديد): يعمل عند كل push و pull request (ويدويًا)، بصلاحية قراءة فقط، على ubuntu بـ Node 24 و Python 3.12 (اختبارات الخادم تشغّل نسخة Python أيضًا). الخطوات بالترتيب: `npm ci` ← `npm test` ← `npm run check` (وفيه مقارنة `picker/data` بالمكتبة) ← `npm run build` ثم يفشل إن تغيّر أي ملف في `picker/data`. لم يُرفع شيء.
+    - الاختبار: الخطوات نفسها بالترتيب نفسه على نسخة جديدة من المستودع في مجلد مؤقت:
+      ```
+      == npm ci            (نجح)
+      == npm test
+      ℹ tests 591
+      ℹ pass 591
+      ℹ fail 0
+      == npm run check     exit 0
+      success: 281 templates (281 reviewed, 0 drafts), 10 identities checked, no problem
+      == picker/data matches the library
+      picker/data unchanged: OK
+      ```
+    - والحالة المعاكسة (تعديل اسم `button-solid` في المكتبة دون `npm run build`):
+      ```
+      == npm run check     exit 1
+        ✗ [data] picker/data/buttons.js › button-solid: changed since the last build; run npm run build
+      == picker/data matches the library
+       M picker/data/buttons.js
+       M picker/data/starter.js
+      FAIL (exit 1), as expected
+      ```
+    - الملف YAML صحيح (قُرئ بمحلّل YAML: سبع خطوات بالترتيب أعلاه).
+    - المراجعة: ذاتية (مهمة B) مقابل معيار القبول: `npm test` ✔، `npm run check` ✔، تطابق `picker/data` مع المكتبة ✔ (بطريقتين)، عند كل تغيير ✔، لا رفع ✔.
+    - انحرافات: لا شيء.
 
 - [ ] **4.5** سير البناء والنشر (الملف فقط)
   - الخطورة: B — إعداد
