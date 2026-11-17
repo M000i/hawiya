@@ -10,8 +10,9 @@ description: >
 # Hawiya — choose the UI identity
 
 You do NOT design the UI yourself here. The user chooses in the picker page; you prepare, open, wait, then save.
+When: the app idea is clear and its screens are not built yet, or the user asks to choose or change the look.
 `<skill>` = the folder containing this SKILL.md. `<project>` = the user's project root. Quote both paths in
-commands (they may contain spaces).
+commands (they may contain spaces). Details live in `<skill>/references/`: read the file a step names.
 
 ## Hard rules
 - Never read or list `<skill>/library/`. The page does the matching.
@@ -23,13 +24,14 @@ commands (they may contain spaces).
 - Talk to the user in their language (Arabic if they write Arabic).
 
 ## Step 1 — Read the project
-Read only what you need: README, the dependency file (package.json, pubspec.yaml, ...), the main page or
-layout file, existing CSS/theme files. Decide:
+Follow `references/project-detection.md`. Read only what you need: README, the dependency file (package.json,
+pubspec.yaml, ...), the main page or layout file, existing CSS/theme files. Decide:
 - type: one of `landing`, `website`, `web-app`, `dashboard`, `html-page` (if it is mainly charts/tables,
   `dashboard`; any other interactive app, `web-app`). Desktop/mobile apps: say only web is supported for
   now and use the closest web type.
 - language: `ar`, `en` or `ar+en` (from content, `lang`/`dir`, i18n folders; ask if unclear).
 - brand colors: up to 3 existing brand/primary colors as lowercase `#rrggbb` (convert rgb/hsl), or none.
+- tags (1–3) and the elements that suit the platform: `references/platforms.md` (web: all eleven).
 
 ## Step 2 — Existing identity
 If `<project>/design` exists but is not a plain folder (a symlink/shortcut or a file), stop: tell the user and
@@ -43,8 +45,10 @@ Write `<project>/design/hawiya-session.json` (create `design/` if needed; overwr
 fine, but if it is a symlink, delete only the link first — never write through a link).
 Shape only — fill in YOUR Step 1 results, never copy these example values:
 ```json
-{ "type": "dashboard", "language": "ar+en", "tags": ["corporate"], "brandColors": ["#7c3aed"] }
+{ "type": "dashboard", "language": "ar+en", "tags": ["corporate"], "brandColors": ["#7c3aed"], "platform": "web",
+  "elements": ["colors", "modes", "fonts", "type-scale", "radius", "shadows", "icons", "buttons", "cards", "spacing", "direction"] }
 ```
+Leave `brandColors` out when there are none. Only the values listed here and in the references are valid.
 `tags`: 1–3 words for the wanted feel, from: minimal, corporate, editorial, playful, luxury, glass, brutalist,
 neumorphic, retro, material, cupertino, fluent, technical, data-dense, vivid, soft.
 The picker reads it to steer its suggestions: through the server in Tier 1, from the link in Tier 2.
@@ -90,7 +94,8 @@ leaves out `style-guide.html`: if the user also wants it, they press «تنزي�
 into the project root (it holds a `design/` folder with all six files).
 
 ## Step 5 — Save the files (Tiers 2 and 3 only)
-Write each file into `<project>/design/` exactly as given: same name, same content, UTF-8, LF line endings,
+The formats are in `references/export-format.md`. Write each file into `<project>/design/` exactly as given:
+same name, same content, UTF-8, LF line endings,
 nothing added, removed or reformatted. In pasted text, a file's content is every line after its
 `===== HAWIYA FILE: design/<name> =====` line up to (not including) the `===== HAWIYA END FILE =====` line;
 each file ends with one newline. Only the six output names are allowed. If a marker is missing, a name is
@@ -99,10 +104,13 @@ parses as JSON; if it does not, ask the user to copy again (do not fix it yourse
 
 ## Step 6 — Commit line and summary
 Add this exact line at the end of `CLAUDE.md` and of `AGENTS.md` — each one that exists — unless that
-file already contains it. If neither exists, create the one your own agent reads (`CLAUDE.md` for Claude
-Code, otherwise `AGENTS.md`) with just this line:
+file already has a line containing `Follow design/DESIGN.md` (that text is the marker: then add nothing, so
+running the skill again never repeats the line). If neither exists, create the one your own agent reads
+(`CLAUDE.md` for Claude Code, otherwise `AGENTS.md`) with just this line:
 
 `- Follow design/DESIGN.md for all UI work (colors, fonts, corners, components). التزم بـ design/DESIGN.md.`
+
+Add it as a new last line (put a line break before it if the file does not end with one); change nothing else.
 
 Confirm the saved files exist in `<project>/design/` (if any is missing, say so plainly and do not claim
 success). Then tell the user in two or three short lines which files were saved and the chosen primary color,

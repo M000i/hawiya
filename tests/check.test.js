@@ -42,7 +42,7 @@ function copy() {
     args,
     edit,
     find,
-    run: () => check.check({ libraryDir: lib, dataDir: data, noticesFile })
+    run: (more = {}) => check.check({ libraryDir: lib, dataDir: data, noticesFile, ...more })
   };
 }
 const clean = (c) => fs.rmSync(c.dir, { recursive: true, force: true });
@@ -429,7 +429,9 @@ test('one library with every kind of problem: each is found, named, and the tool
   const c = copy();
   try {
     for (const [, , mutate] of CASES) mutate(c);
-    const r = c.run();
+    // The skill folder: one without SKILL.md (task 4.1).
+    const r = c.run({ skillDir: c.dir });
+    assert.ok(has(r.problems, 'skill', null, /^missing$/), show(r.problems));
     for (const [kind, template, , re] of CASES) {
       assert.ok(has(r.problems, kind, template, re), `missing [${kind}] ${template}:\n${show(r.problems)}`);
     }
@@ -1308,4 +1310,90 @@ test('the official DESIGN.md check runs for many files at once and reports error
   assert.ok(bad.summary.errors + bad.summary.warnings > 0, JSON.stringify(bad));
   assert.ok(bad.findings.length > 0);
   assert.deepEqual([good.summary.errors, good.summary.warnings], [0, 0], JSON.stringify(good.findings));
+});
+
+// Task 4.1 (R-001): SKILL.md stays under 150 lines and names the reference files, which exist.
+test('SKILL.md: under 150 lines, its three reference files exist and are named; each break is reported', () => {
+  const real = check.skillProblems(ROOT);
+  assert.deepEqual(real.problems, []);
+  assert.ok(real.lines > 50 && real.lines < 150, String(real.lines));
+
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'hawiya-skill-'));
+  try {
+    fs.cpSync(path.join(ROOT, 'references'), path.join(dir, 'references'), { recursive: true });
+    const skill = fs.readFileSync(path.join(ROOT, 'SKILL.md'), 'utf8');
+    const write = (text) => fs.writeFileSync(path.join(dir, 'SKILL.md'), text);
+    const messages = () => check.skillProblems(dir).problems.map((p) => p.join(': '));
+
+    write(skill);
+    assert.deepEqual(messages(), []);
+    // 149 lines pass, 150 do not.
+    write(
+      'x\n'.repeat(149) +
+        skill
+          .split('\n')
+          .filter((l) => l.includes('references/'))
+          .join(' ')
+    );
+    assert.deepEqual(check.skillProblems(dir).lines, 150);
+    assert.deepEqual(messages(), ['SKILL.md: 150 lines: it must stay under 150']);
+    write(
+      skill
+        .split('\n')
+        .filter((l) => l.includes('references/'))
+        .join(' ') +
+        '\n' +
+        'x\n'.repeat(148)
+    );
+    assert.deepEqual([check.skillProblems(dir).lines, messages()], [149, []]);
+    // A reference the skill never names, a missing one, an empty one.
+    write(skill.replaceAll('references/platforms.md', 'the platforms file'));
+    assert.deepEqual(messages(), ['SKILL.md: never names references/platforms.md, so the agent would not read it']);
+    write(skill);
+    fs.rmSync(path.join(dir, 'references', 'export-format.md'));
+    fs.writeFileSync(path.join(dir, 'references', 'project-detection.md'), '\n');
+    assert.deepEqual(messages(), ['references/project-detection.md: empty', 'references/export-format.md: missing']);
+    fs.rmSync(path.join(dir, 'SKILL.md'));
+    assert.deepEqual(messages(), ['SKILL.md: missing']);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+
+  // The check command reports it like any other problem.
+  const broken = spawnSync(
+    process.execPath,
+    [
+      '-e',
+      `process.exitCode = require(${JSON.stringify(TOOL)}).report(require(${JSON.stringify(TOOL)}).check({ skillDir: ${JSON.stringify(os.tmpdir())} })).includes('[skill] SKILL.md: missing') ? 0 : 1`
+    ],
+    { encoding: 'utf8' }
+  );
+  assert.equal(broken.status, 0, broken.stderr);
+});
+
+// Task 4.1 (R-002, R-003): the session example in SKILL.md is one the page and the server accept, and its
+// element list is exactly the eleven web elements of references/platforms.md, in order.
+test('SKILL.md: the session file example passes the session schema and lists the eleven web elements', () => {
+  const validate = require('../picker/js/core/validate.js');
+  const skill = fs.readFileSync(path.join(ROOT, 'SKILL.md'), 'utf8');
+  const example = /## Step 3[\s\S]*?```json\n([\s\S]*?)```/.exec(skill)[1];
+  const result = validate.checkText('session', example);
+  assert.equal(result.valid, true, JSON.stringify(result.errors));
+  const session = JSON.parse(example);
+  assert.deepEqual(session.elements, build.ELEMENTS);
+  assert.equal(session.platform, 'web');
+  const table = fs.readFileSync(path.join(ROOT, 'references', 'platforms.md'), 'utf8');
+  assert.deepEqual(
+    [...table.matchAll(/^\| [^|]+ \| `([a-z-]+)` \| yes \|$/gm)].map((m) => m[1]),
+    build.ELEMENTS
+  );
+  // The tags the references suggest are all valid tags.
+  const detection = fs.readFileSync(path.join(ROOT, 'references', 'project-detection.md'), 'utf8');
+  const tags = JSON.parse(fs.readFileSync(path.join(LIB, 'tags.json'), 'utf8')).map((t) => t.id);
+  const suggested = [...detection.matchAll(/^\| `[a-z-]+` \| ([a-z, -]+) \|$/gm)].flatMap((m) => m[1].split(', '));
+  assert.ok(suggested.length >= 5);
+  assert.deepEqual(
+    suggested.filter((t) => !tags.includes(t)),
+    []
+  );
 });

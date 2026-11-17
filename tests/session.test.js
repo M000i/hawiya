@@ -148,7 +148,7 @@ test('the server reply: 200 with a valid session; 404 "no session" none; anythin
 
 test('the session example in SKILL.md passes and survives the link', () => {
   const skill = fs.readFileSync(path.join(__dirname, '..', 'SKILL.md'), 'utf8');
-  const example = JSON.parse(skill.match(/```json\n(\{[^\n]+\})\n```/)[1]);
+  const example = JSON.parse(skill.match(/```json\n(\{[^`]+\})\n```/)[1]);
   assert.deepEqual(session.fromHash('#session=' + session.encode(example)), { status: 'ok', session: example });
 });
 

@@ -494,7 +494,8 @@ function recipePairs(html, css) {
 function check({
   libraryDir = path.join(ROOT, 'library'),
   dataDir = path.join(ROOT, 'picker', 'data'),
-  noticesFile = path.join(ROOT, 'THIRD_PARTY_NOTICES.md')
+  noticesFile = path.join(ROOT, 'THIRD_PARTY_NOTICES.md'),
+  skillDir = ROOT
 } = {}) {
   const problems = [];
   const add = (kind, file, template, message) => problems.push({ kind, file, template, message });
@@ -507,12 +508,17 @@ function check({
     pairs: 0,
     dataFiles: 0,
     sources: 0,
-    comparisons: 0
+    comparisons: 0,
+    skillLines: 0
   };
   const result = { problems, counts, dataChecked: false, noticesChecked: false, libraryDir, dataDir, noticesFile };
   const valid = []; // { file, label, t } for every template that passed the schema (license checks below)
   const io = (list, kind = 'structure') => list.splice(0).forEach((p) => add(kind, null, null, p));
   const raw = [];
+
+  const skill = skillProblems(skillDir);
+  counts.skillLines = skill.lines;
+  skill.problems.forEach(([file, message]) => add('skill', file, null, message));
 
   const elementsDir = path.join(libraryDir, 'elements');
   if (!isDir(elementsDir)) {
@@ -1372,6 +1378,39 @@ function licenseProblems(libraryDir, valid, add, counts) {
 }
 
 // undefined: could not render (sources or licenses not sound); '' : matches; else the problem.
+// R-001 (task 4.1): SKILL.md has fewer than 150 lines, and the reference files it sends the agent to exist and are
+// named in it (plan: references/ holds project detection, the elements for each platform, and the export format).
+const SKILL_MAX_LINES = 150;
+const SKILL_REFERENCES = ['project-detection.md', 'platforms.md', 'export-format.md'];
+
+function skillProblems(skillDir) {
+  const out = { problems: [], lines: 0 };
+  const file = path.join(skillDir, 'SKILL.md');
+  let text;
+  try {
+    text = fs.readFileSync(file, 'utf8');
+  } catch {
+    out.problems.push(['SKILL.md', 'missing']);
+    return out;
+  }
+  out.lines = text.split('\n').length - (text.endsWith('\n') ? 1 : 0);
+  if (out.lines >= SKILL_MAX_LINES)
+    out.problems.push(['SKILL.md', `${out.lines} lines: it must stay under ${SKILL_MAX_LINES}`]);
+  for (const name of SKILL_REFERENCES) {
+    const rel = `references/${name}`;
+    let ref;
+    try {
+      ref = fs.readFileSync(path.join(skillDir, 'references', name), 'utf8');
+    } catch {
+      out.problems.push([rel, 'missing']);
+      continue;
+    }
+    if (!ref.trim()) out.problems.push([rel, 'empty']);
+    if (!text.includes(rel)) out.problems.push(['SKILL.md', `never names ${rel}, so the agent would not read it`]);
+  }
+  return out;
+}
+
 function noticesProblem(libraryDir, noticesFile) {
   let want;
   try {
@@ -1475,7 +1514,8 @@ const KINDS = [
   'license',
   'axes',
   'notices',
-  'data'
+  'data',
+  'skill'
 ];
 
 function report(result) {
@@ -1492,6 +1532,9 @@ function report(result) {
     );
     lines.push(
       `  THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (${counts.dataFiles} files)`
+    );
+    lines.push(
+      `  SKILL.md: ${counts.skillLines} lines (under ${SKILL_MAX_LINES}); its ${SKILL_REFERENCES.length} reference files are there and named in it`
     );
     lines.push(
       `نجاح: فُحص ${counts.templates} تمبلت (${counts.reviewed} مراجَع، ${counts.drafts} مسودة) و ${counts.identities} هوية بلا أي مخالفة`
@@ -1554,5 +1597,6 @@ module.exports = {
   stills,
   same,
   nameProblems,
-  physicalCss
+  physicalCss,
+  skillProblems
 };
