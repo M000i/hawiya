@@ -37,7 +37,7 @@ Mac و Linux فيها Python). بدونهما تعمل الأداة أيضًا،
 </div>
 
 ```bash
-git clone <REPO_URL> ~/.claude/skills/hawiya
+git clone https://github.com/M000i/hawiya.git ~/.claude/skills/hawiya
 ```
 
 <div dir="rtl">
@@ -49,7 +49,7 @@ git clone <REPO_URL> ~/.claude/skills/hawiya
 </div>
 
 ```bash
-git clone <REPO_URL> ~/.codex/skills/hawiya
+git clone https://github.com/M000i/hawiya.git ~/.codex/skills/hawiya
 ```
 
 <div dir="rtl">
@@ -59,7 +59,7 @@ git clone <REPO_URL> ~/.codex/skills/hawiya
 على Windows استبدل `~` بمجلد المستخدم، مثل `%USERPROFILE%\.claude\skills\hawiya`.
 افتح جلسة جديدة للوكيل بعد التثبيت ليتعرّف على المهارة. وللتحديث لاحقًا: `git pull` داخل مجلد `hawiya`.
 
-`<REPO_URL>` هو رابط هذا المستودع على GitHub.
+المستودع: https://github.com/M000i/hawiya
 
 ### الاستخدام مع الوكيل
 
@@ -76,14 +76,12 @@ git clone <REPO_URL> ~/.codex/skills/hawiya
 
 ### الاستخدام من الصفحة المنشورة (بلا تثبيت)
 
-افتح الصفحة: `<PAGE_URL>`. اختر، ثم اضغط «تصدير»، وبعدها:
+افتح الصفحة https://m000i.github.io/hawiya/ واختر، ثم اضغط «تصدير». بعدها:
 
 - **«انسخ للوكيل»:** ينسخ تعليمات قصيرة مع الملفات. الصقها في محادثة وكيلك داخل مشروعك، فيكتب الملفات بنفسه.
   (لا يشمل `style-guide.html` لطوله.)
 - **«تنزيل الملفات الستة (zip)»:** ملف `hawiya-design.zip` فيه مجلد `design` بالملفات الستة. فك ضغطه في مجلد مشروعك الرئيسي، ثم أضف
   لوكيلك سطرًا يقول: اتبع `design/DESIGN.md` في كل عمل على الواجهة.
-
-`<PAGE_URL>` هو رابط الصفحة على GitHub Pages.
 
 ### الخصوصية والاتصال بالإنترنت
 
@@ -147,7 +145,7 @@ Clone the repository into your agent's skills folder. The folder must be named `
 **Claude Code** (all your projects):
 
 ```bash
-git clone <REPO_URL> ~/.claude/skills/hawiya
+git clone https://github.com/M000i/hawiya.git ~/.claude/skills/hawiya
 ```
 
 Or for one project only: clone it into `.claude/skills/hawiya` inside that project.
@@ -155,7 +153,7 @@ Or for one project only: clone it into `.claude/skills/hawiya` inside that proje
 **Codex** (all your projects):
 
 ```bash
-git clone <REPO_URL> ~/.codex/skills/hawiya
+git clone https://github.com/M000i/hawiya.git ~/.codex/skills/hawiya
 ```
 
 Or for one project only: clone it into `.agents/skills/hawiya` inside that project.
@@ -163,7 +161,7 @@ Or for one project only: clone it into `.agents/skills/hawiya` inside that proje
 On Windows, replace `~` with your user folder, e.g. `%USERPROFILE%\.claude\skills\hawiya`. Start a new agent session
 after installing so it finds the skill. To update later, run `git pull` inside the `hawiya` folder.
 
-`<REPO_URL>` is this repository's GitHub URL.
+Repository: https://github.com/M000i/hawiya
 
 ### Use it with your agent
 
@@ -182,14 +180,12 @@ The skill is made for a normal, interactive chat with your agent, because it wai
 
 ### Use the published page (no install)
 
-Open `<PAGE_URL>`, choose, press Export, then:
+Open https://m000i.github.io/hawiya/, choose, press Export, then:
 
 - **Copy for the agent** («انسخ للوكيل»): copies short instructions with the files. Paste them into your agent's chat inside
   your project and it writes the files. (It leaves out `style-guide.html`, which is long.)
 - **Download the six files (zip)** («تنزيل الملفات الستة (zip)»): `hawiya-design.zip` holds a `design` folder with all six files. Unzip it into your project's
   root folder, then tell your agent: follow `design/DESIGN.md` for all UI work.
-
-`<PAGE_URL>` is the page's GitHub Pages URL.
 
 ### Privacy and network
 
