@@ -252,7 +252,12 @@ test('button and card recipes use only variables the generated tokens.css define
   // Every button's corners come from the identity's radii (or none at all).
   for (const t of lib.templates.buttons)
     assert.match(t.recipe.css, /\.hw-btn\{[^}]*border-radius:(var\(--radius-(sm|md|lg|full)\)|0)[;}]/, t.id);
-  for (const t of lib.templates.cards) assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:var\(--radius-lg\)/);
+  // The ready identity's cards keep the large corners; a draft card of task 3.12 may take any of the identity's radii
+  // or none (the page then warns if the button is rounder, R-026 warning rule).
+  for (const t of lib.templates.cards.filter((x) => x.status.state === 'reviewed'))
+    assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:var\(--radius-lg\)/);
+  for (const t of lib.templates.cards)
+    assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:(var\(--radius-(sm|md|lg)\)|0)[;}]/, t.id);
 });
 
 test('picker/data is exactly what the library builds to', () => {
@@ -498,5 +503,23 @@ test('buttons: 22+ recipes, each with hover, pressed, focus and disabled states,
     assert.doesNotMatch(t.recipe.css, /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i, `${t.id}: a color outside the identity`);
     const s = sources.find((x) => x.name === t.source.name);
     assert.ok(s && s.license === t.source.license, `${t.id}: source and license recorded`);
+  }
+});
+
+// Task 3.12 (R-049): 22+ cards, each recipe in the identity's colors, corners and shadows, with a title and a body
+// and a recorded source.
+test('cards: 22+ recipes in the identity colors, corners and shadows, each with a title and a body and a source', () => {
+  const list = lib.templates.cards;
+  assert.ok(list.length >= 22, `${list.length} cards`);
+  for (const t of list) {
+    assert.match(t.recipe.html, /^<article class="hw-card">[^]*\{title\}[^]*\{body\}[^]*<\/article>$/, t.id);
+    // Colors only from the identity: no color written as a value.
+    assert.doesNotMatch(t.recipe.css, /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i, `${t.id}: a color outside the identity`);
+    // A shadow is the identity's (--shadow-*) or a hard offset in an identity color.
+    for (const m of t.recipe.css.matchAll(/box-shadow:([^;}]+)/g))
+      assert.match(m[1], /^(var\(--shadow-(sm|md|lg)\)|\d+px \d+px 0 var\(--color-[a-z-]+\))$/, `${t.id}: ${m[1]}`);
+    const s = sources.find((x) => x.name === t.source.name);
+    assert.ok(s && s.license === t.source.license, `${t.id}: source and license recorded`);
+    assert.equal(t.rtl.supported, true, t.id);
   }
 });
