@@ -122,7 +122,7 @@ test(
       const ids = r.json.elements.radius.map((t) => t.id);
       assert.ok(ids.includes('radius-pill') && ids.includes('radius-gpl'));
       assert.equal(Object.keys(r.json.elements).length, 11);
-      assert.equal(r.json.identities.length, 2);
+      assert.equal(r.json.identities.length, fs.readdirSync(path.join(L.lib, 'identities')).length);
       assert.ok(
         r.json.problems['radius/radius-gpl'].some((p) => p.kind === 'license'),
         JSON.stringify(r.json.problems)

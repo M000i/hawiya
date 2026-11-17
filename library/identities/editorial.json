@@ -1,0 +1,28 @@
+{
+  "id": "editorial",
+  "name": {
+    "ar": "تحريري",
+    "en": "Editorial"
+  },
+  "description": {
+    "ar": "رمادي حبري وكريمي ورقي، وخط مدى وبريكولاج، وزوايا قائمة وخطوط فاصلة، للمدونات والمجلات.",
+    "en": "Ink gray and paper cream, Mada and Bricolage Grotesque, square corners and rules, for blogs and magazines."
+  },
+  "tags": [
+    "editorial",
+    "minimal"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-notebook",
+    "modes": "modes-light-only",
+    "fonts": "pair-mada-bricolage-grotesque",
+    "type-scale": "scale-augmented-fourth",
+    "radius": "radius-square",
+    "shadows": "shadow-flat",
+    "icons": "icons-iconoir-regular",
+    "buttons": "button-link",
+    "cards": "card-bottom-accent",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

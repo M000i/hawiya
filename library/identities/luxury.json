@@ -1,0 +1,28 @@
+{
+  "id": "luxury",
+  "name": {
+    "ar": "فاخر",
+    "en": "Luxury"
+  },
+  "description": {
+    "ar": "ذهبي هادئ مع البرقوقي على خلفية داكنة أولًا، وخط بيروتي وإنسترومنت، ومسافات واسعة وأيقونات رفيعة، للعلامات الراقية.",
+    "en": "Muted gold with plum, dark first, Beiruti and Instrument Sans, wide spacing and thin icons, for premium brands."
+  },
+  "tags": [
+    "luxury",
+    "editorial"
+  ],
+  "templates": {
+    "colors": "palette-radix-gold-plum",
+    "modes": "modes-dark-first",
+    "fonts": "pair-beiruti-instrument-sans",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-subtle",
+    "shadows": "shadow-floating",
+    "icons": "icons-phosphor-thin",
+    "buttons": "button-large-outline",
+    "cards": "card-spacious",
+    "spacing": "spacing-grid-6",
+    "direction": "direction-both"
+  }
+}

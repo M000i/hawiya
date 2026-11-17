@@ -26,7 +26,12 @@
  *   logical         no "left" / "right" in recipes (CSS, HTML attribute values, the reduced-motion CSS) or in
  *                   token names and values: logical properties (start / end) only (R-092)
  *   recipe          the recipe allow-list (picker/js/core/recipe.js): no script, no outside request
- *   identity        a ready identity names a template of the right element for every element
+ *   identity        a ready identity names a template of the right element for every element; and (task 3.13,
+ *                   R-040) once the library has no other problem, each ready identity is built (resolve.js) in
+ *                   Arabic, English and both (its direction swapped for each direction template) with every
+ *                   template of the library, drafts too: the blocking rules (rules.js: fonts, contrast in light
+ *                   AND dark, Arabic typography, platform) allow it in each, and the DESIGN.md generated from it
+ *                   passes the official check (@google/design.md) with no error and no warning
  *   license         (task 3.2, R-064) every template names a source recorded in sources.json, with the same
  *                   address and license; every license (template, source, "also" parts) is on the allowed list;
  *                   nothing (template source, address, icon library, font names, sources.json entry) matches a
@@ -45,10 +50,13 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 const build = require('./build.js');
 const validate = require('../picker/js/core/validate.js');
 const recipe = require('../picker/js/core/recipe.js');
 const rules = require('../picker/js/core/rules.js');
+const resolve = require('../picker/js/core/resolve.js');
+const generate = require('../picker/js/core/generate.js');
 const SCHEMAS = require('../picker/js/core/schemas.js');
 const color = require('../picker/js/core/color.js');
 const notices = require('./notices.js');
@@ -495,6 +503,7 @@ function check({
     reviewed: 0,
     drafts: 0,
     identities: 0,
+    identitiesBuilt: 0,
     pairs: 0,
     dataFiles: 0,
     sources: 0,
@@ -714,6 +723,7 @@ function check({
       (e.problems || [e.message]).forEach((p) => add('structure', null, null, p));
     }
     if (lib) {
+      identityOutputProblems(lib, counts).forEach((p) => add('identity', `identities/${p.file}`, p.id, p.message));
       result.dataChecked = true;
       const files = build.render(build.select(lib).data);
       dataProblems(files, dataDir).forEach((p) => add('data', p.file, p.template, p.message));
@@ -721,6 +731,87 @@ function check({
     }
   }
   return result;
+}
+
+/* ---------- ready identities, built (task 3.13) ---------- */
+
+// The official DESIGN.md check (plan: "@google/design.md, within npm run check"), for many files in one process:
+// the package is an ES module, so a child node imports it once and lints each text given on stdin.
+const LINT_SCRIPT = `import { lint } from '@google/design.md/linter';
+let s = '';
+process.stdin.on('data', (d) => (s += d)).on('end', () => {
+  const out = JSON.parse(s).map((md) => {
+    try {
+      const r = lint(md);
+      return { summary: r.summary, findings: r.findings.filter((f) => f.severity !== 'info').map((f) => f.message) };
+    } catch (e) {
+      return { error: String(e && e.message) };
+    }
+  });
+  process.stdout.write(JSON.stringify(out));
+});`;
+
+function lintDesignMd(texts) {
+  if (!texts.length) return [];
+  const out = spawnSync(process.execPath, ['--input-type=module', '-e', LINT_SCRIPT], {
+    cwd: ROOT,
+    input: JSON.stringify(texts),
+    encoding: 'utf8',
+    maxBuffer: 256 * 1024 * 1024
+  });
+  if (out.status !== 0) throw new Error(`the official DESIGN.md check did not run: ${out.stderr || out.error}`);
+  return JSON.parse(out.stdout);
+}
+
+const LANGUAGE_OF = { rtl: 'Arabic', ltr: 'English', both: 'Arabic and English' };
+
+// Each ready identity, built with the whole library (drafts too: an identity may wait for a draft's review, and the
+// build leaves it out until then) in every direction, must pass the blocking rules; its own DESIGN.md, the lint.
+function identityOutputProblems(lib, counts) {
+  const out = [];
+  const data = { templates: lib.templates };
+  const find = (element, id) => {
+    const hit = lib.byId.get(id);
+    return hit && hit.template.element === element ? hit.template : undefined;
+  };
+  const directions = lib.templates.direction || [];
+  const designs = [];
+  for (const { file, value } of lib.identities) {
+    const say = (message) => out.push({ file, id: value.id, message });
+    for (const d of directions.map((t) => t.id)) {
+      const selections = {};
+      for (const e of ELEMENTS) selections[e] = { template: e === 'direction' ? d : value.templates[e] };
+      const dirValue = find('direction', d) && find('direction', d).tokens.direction.$value;
+      const language = LANGUAGE_OF[dirValue] || d;
+      let identity;
+      try {
+        identity = resolve.resolve({ name: value.name.en, selections }, data);
+      } catch (e) {
+        say(`cannot be built in ${language}: ${e.message}`);
+        continue;
+      }
+      const verdict = rules.identity(identity, find);
+      for (const p of verdict.problems)
+        say(
+          `in ${language}, the ${p.rule} rule blocks ${p.element}${p.template ? ` "${p.template}"` : ''}${p.role ? ` (${p.role} font)` : ''}${p.mode ? ` (${p.mode} mode)` : ''}${p.text ? `: ${p.text} on ${p.on}` : ''}`
+        );
+      if (d === value.templates.direction) {
+        designs.push({ file, id: value.id, md: generate.designMd(identity) });
+        counts.identitiesBuilt++;
+      }
+    }
+  }
+  lintDesignMd(designs.map((x) => x.md)).forEach((r, i) => {
+    const { file, id } = designs[i];
+    if (r.error) out.push({ file, id, message: `the official DESIGN.md check stopped: ${r.error}` });
+    else if (r.summary.errors || r.summary.warnings)
+      out.push({
+        file,
+        id,
+        message: `its DESIGN.md has ${r.summary.errors} error(s) and ${r.summary.warnings} warning(s) in the official check: ${r.findings.join('; ')}`
+      });
+  });
+  return out;
 }
 
 /* ---------- two-axis difference (task 3.3) ---------- */
@@ -1397,6 +1488,9 @@ function report(result) {
     lines.push(`  ${counts.pairs} contrast checks; ${counts.sources} sources, licenses allowed, none forbidden`);
     lines.push(`  لا تكرار — no duplicates: ${counts.comparisons} comparisons, every two templates differ in two axes`);
     lines.push(
+      `  ${counts.identitiesBuilt} ready identities built in Arabic, English and both: the blocking rules pass in light and dark; each DESIGN.md passes the official check`
+    );
+    lines.push(
       `  THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (${counts.dataFiles} files)`
     );
     lines.push(
@@ -1455,6 +1549,7 @@ module.exports = {
   blocks,
   tokenProblems,
   recipePairs,
+  lintDesignMd,
   motionIn,
   stills,
   same,

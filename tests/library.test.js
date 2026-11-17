@@ -37,7 +37,7 @@ const dimPx = (tok) => {
   return tok.$value.value;
 };
 
-test('every element has 2-3 reviewed templates and both identities are published', () => {
+test('every element has 2-3 reviewed templates; an identity is published once every template it uses is reviewed', () => {
   for (const e of build.ELEMENTS) {
     const list = lib.templates[e].filter((t) => t.status.state === 'reviewed'); // drafts wait for review
     assert.ok(
@@ -47,7 +47,10 @@ test('every element has 2-3 reviewed templates and both identities are published
     assert.equal(sel.data.templates[e].length, list.length, `${e}: every starter template is reviewed`);
   }
   assert.deepEqual(sel.data.identities.map((i) => i.id).sort(), ['calm-corporate', 'warm-friendly']);
-  assert.deepEqual(sel.summary.identities.excluded, []);
+  // The others (task 3.13) wait for the review of the drafts they use, and for nothing else.
+  assert.equal(sel.summary.identities.excluded.length, lib.identities.length - 2);
+  for (const x of sel.summary.identities.excluded)
+    for (const reason of x.reasons) assert.match(reason, /^[a-z-]+: "[a-z0-9-]+" is a draft$/, `${x.id}: ${reason}`);
   // The two identities differ in most choices, so they show the range of the library.
   const [a, b] = sel.data.identities;
   const same = build.ELEMENTS.filter((e) => a.templates[e] === b.templates[e]);

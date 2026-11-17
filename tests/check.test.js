@@ -1231,3 +1231,79 @@ test('axes: a heading family that resolves to the same font as the other templat
   });
   assert.match(p.map((x) => x.message).join(), /differs from "font-noto-kufi-arabic" .* only in Arabic family;/);
 });
+
+// Task 3.13 (R-040): each ready identity is built in Arabic, English and both; the blocking rules and the official
+// DESIGN.md check run on what it makes.
+test('ready identities: the ten of the spec are built in every direction, pass the rules, and lint clean', () => {
+  const r = check.check();
+  assert.deepEqual(r.problems, [], show(r.problems));
+  assert.equal(r.counts.identities, 10);
+  assert.equal(r.counts.identitiesBuilt, 10);
+  const names = fs
+    .readdirSync(path.join(LIB, 'identities'))
+    .map((f) => JSON.parse(fs.readFileSync(path.join(LIB, 'identities', f), 'utf8')).name.ar)
+    .sort();
+  // spec.md, section 14 item 10.
+  const SPEC = [
+    'مؤسسي هادئ',
+    'بسيط أبيض',
+    'داكن تقني',
+    'ودود ناعم',
+    'مرح ملوّن',
+    'فاخر',
+    'تحريري',
+    'بروتالي',
+    'حكومي رسمي',
+    'عربي تراثي'
+  ];
+  assert.deepEqual(names, SPEC.slice().sort());
+});
+
+test('a ready identity blocked in one language only is found, with the rule, the element and the language', () => {
+  const c = copy();
+  try {
+    // An Arabic-only font: fine in Arabic, blocked in English and in both (luxury waits for review: not published).
+    c.edit('identities/luxury.json', (v) => {
+      v.templates.fonts = 'pair-ar-amiri-noto-naskh-arabic';
+    });
+    const p = c.run().problems;
+    assert.ok(has(p, 'identity', 'luxury', /^in English, the font-language rule blocks fonts/), show(p));
+    assert.ok(has(p, 'identity', 'luxury', /^in Arabic and English, the font-language rule blocks fonts/), show(p));
+    assert.ok(has(p, 'identity', 'luxury', /^in English, the font-language rule blocks fonts \(body font\)/), show(p));
+    // Never in Arabic, and nothing else is found.
+    assert.ok(
+      p.every(
+        (x) => x.kind === 'identity' && x.template === 'luxury' && /^in (English|Arabic and English), /.test(x.message)
+      ),
+      show(p)
+    );
+  } finally {
+    clean(c);
+  }
+});
+
+test('the official DESIGN.md check runs for many files at once and reports errors and warnings', () => {
+  const [bad, good] = check.lintDesignMd([
+    '# Only a title',
+    require('../picker/js/core/generate.js').designMd(
+      require('../picker/js/core/resolve.js').resolve(
+        {
+          name: 'x',
+          selections: Object.fromEntries(
+            build.ELEMENTS.map((e) => [
+              e,
+              {
+                template: JSON.parse(fs.readFileSync(path.join(LIB, 'identities/calm-corporate.json'), 'utf8'))
+                  .templates[e]
+              }
+            ])
+          )
+        },
+        { templates: build.load(LIB).templates }
+      )
+    )
+  ]);
+  assert.ok(bad.summary.errors + bad.summary.warnings > 0, JSON.stringify(bad));
+  assert.ok(bad.findings.length > 0);
+  assert.deepEqual([good.summary.errors, good.summary.warnings], [0, 0], JSON.stringify(good.findings));
+});

@@ -1,0 +1,28 @@
+{
+  "id": "arabic-heritage",
+  "name": {
+    "ar": "عربي تراثي",
+    "en": "Arabic heritage"
+  },
+  "description": {
+    "ar": "بني دافئ مع فيروزي، وخط كوفام الكوفي، وحواف علوية وزوايا هادئة، للثقافة والتراث.",
+    "en": "Warm brown with turquoise, the Kufi-style Kufam, top accents and calm corners, for culture and heritage."
+  },
+  "tags": [
+    "retro",
+    "editorial"
+  ],
+  "templates": {
+    "colors": "palette-radix-brown-teal",
+    "modes": "modes-light-first",
+    "fonts": "pair-kufam-space-grotesk",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-gentle",
+    "shadows": "shadow-tinted-warm",
+    "icons": "icons-phosphor-duotone-square",
+    "buttons": "button-large-solid",
+    "cards": "card-top-accent-elevated",
+    "spacing": "spacing-airy",
+    "direction": "direction-rtl"
+  }
+}

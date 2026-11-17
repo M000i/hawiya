@@ -1,0 +1,28 @@
+{
+  "id": "brutalist",
+  "name": {
+    "ar": "بروتالي",
+    "en": "Brutalist"
+  },
+  "description": {
+    "ar": "أحمر وأصفر صريحان وحدود سوداء سميكة وظلال حادة بلا تمويه، وخط جنغا وسورا.",
+    "en": "Loud red and yellow, thick black borders and hard unblurred shadows, with Changa and Sora."
+  },
+  "tags": [
+    "brutalist",
+    "vivid"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-neo-brutalism",
+    "modes": "modes-light-first",
+    "fonts": "pair-changa-sora",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-square",
+    "shadows": "shadow-crisp",
+    "icons": "icons-mingcute-filled-square",
+    "buttons": "button-brutalist-primary",
+    "cards": "card-brutalist",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

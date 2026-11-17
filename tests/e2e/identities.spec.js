@@ -105,7 +105,7 @@ test('one click gives a valid exported file', async ({ page }) => {
   await page.locator('#export-btn').click();
   await expect(page.locator('html')).toHaveAttribute('data-hawiya-export', 'ready');
   const name = await page.evaluate(() => JSON.parse(window.hawiyaExport.files['identity.json']).name);
-  expect(name).toBe('ودود دافئ');
+  expect(name).toBe('ودود ناعم');
 });
 
 test('adjustments are cleared by a click; a name the user typed is kept', async ({ page }) => {
@@ -122,7 +122,7 @@ test('adjustments are cleared by a click; a name the user typed is kept', async 
 
   // The default name follows the identity picked…
   await page.locator('[data-identity="warm-friendly"]').click();
-  await expect(page.locator('#identity-name')).toHaveValue('ودود دافئ');
+  await expect(page.locator('#identity-name')).toHaveValue('ودود ناعم');
   // …but a name the user typed is theirs.
   await page.locator('#identity-name').fill('متجر الورد');
   await calm.click();

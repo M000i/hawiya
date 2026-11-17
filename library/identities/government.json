@@ -1,0 +1,28 @@
+{
+  "id": "government",
+  "name": {
+    "ar": "حكومي رسمي",
+    "en": "Official government"
+  },
+  "description": {
+    "ar": "أخضر رسمي وخط تجوّل ومانروب، ورأس ملوّن للكروت وأيقونات واضحة، للخدمات الحكومية العربية.",
+    "en": "Official green, Tajawal and Manrope, colored card headers and clear icons, for Arabic public services."
+  },
+  "tags": [
+    "corporate",
+    "minimal"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-emerald-lime",
+    "modes": "modes-light-first",
+    "fonts": "pair-tajawal-manrope",
+    "type-scale": "scale-major-second",
+    "radius": "radius-medium",
+    "shadows": "shadow-elevation",
+    "icons": "icons-material-symbols-regular",
+    "buttons": "button-solid",
+    "cards": "card-header",
+    "spacing": "spacing-balanced",
+    "direction": "direction-rtl"
+  }
+}

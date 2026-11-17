@@ -1,0 +1,28 @@
+{
+  "id": "playful-colorful",
+  "name": {
+    "ar": "مرح ملوّن",
+    "en": "Playful and colorful"
+  },
+  "description": {
+    "ar": "وردي زاهٍ وفيروزي، وخط بالو بهيجان، وزوايا دائرية جدًا وأيقونات ممتلئة، لتطبيقات الأطفال والمجتمعات.",
+    "en": "Bright pink and aqua, Baloo Bhaijaan, very round corners and filled icons, for kids and community apps."
+  },
+  "tags": [
+    "playful",
+    "vivid"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-bubblegum",
+    "modes": "modes-light-first",
+    "fonts": "pair-baloo-bhaijaan-2",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-extra-round",
+    "shadows": "shadow-deep",
+    "icons": "icons-phosphor-fill-circle",
+    "buttons": "button-secondary-solid",
+    "cards": "card-primary",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "dark-tech",
+  "name": {
+    "ar": "داكن تقني",
+    "en": "Dark tech"
+  },
+  "description": {
+    "ar": "خلفية داكنة أولًا وأزرق سماوي، وخط فسطاط وجيست، وزوايا حادة ومسافات مضغوطة للوحات التقنية.",
+    "en": "Dark first with sky blue, Fustat and Geist, sharp corners and tight spacing for technical dashboards."
+  },
+  "tags": [
+    "technical",
+    "data-dense"
+  ],
+  "templates": {
+    "colors": "palette-daisyui-night",
+    "modes": "modes-dark-first",
+    "fonts": "pair-fustat-geist",
+    "type-scale": "scale-minor-third",
+    "radius": "radius-sharp",
+    "shadows": "shadow-ring",
+    "icons": "icons-tabler-outline",
+    "buttons": "button-compact-solid",
+    "cards": "card-compact",
+    "spacing": "spacing-compact",
+    "direction": "direction-both"
+  }
+}

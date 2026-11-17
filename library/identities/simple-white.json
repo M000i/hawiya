@@ -1,0 +1,28 @@
+{
+  "id": "simple-white",
+  "name": {
+    "ar": "بسيط أبيض",
+    "en": "Simple white"
+  },
+  "description": {
+    "ar": "أبيض واسع ورمادي داكن مع لمسة زمردية، وخط المراعي، وحدود رفيعة بلا ظلال تقريبًا.",
+    "en": "Plenty of white and dark gray with an emerald touch, Almarai and thin borders with barely any shadow."
+  },
+  "tags": [
+    "minimal",
+    "corporate"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-zinc-emerald",
+    "modes": "modes-light-only",
+    "fonts": "pair-almarai-dm-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-subtle",
+    "shadows": "shadow-ambient",
+    "icons": "icons-lucide-light",
+    "buttons": "button-quiet",
+    "cards": "card-plain",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}
