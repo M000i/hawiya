@@ -1396,11 +1396,11 @@
       },
       "recipe": {
         "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
-        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}"
+        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-primary);color:var(--color-on-primary);border:1px solid var(--color-primary)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:active{transform:translateY(1px)}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
       },
       "a11y": {
         "contrast": "AA",
-        "reducedMotion": ".hw-btn{transition:none}"
+        "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
       },
       "rtl": {
         "supported": true,
@@ -1458,11 +1458,11 @@
       },
       "recipe": {
         "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
-        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:var(--color-surface);color:var(--color-accent-text);border:1px solid var(--color-border)}.hw-btn:hover{border-color:var(--color-control-border)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}"
+        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:var(--color-surface);color:var(--color-accent-text);border:1px solid var(--color-border)}.hw-btn:hover{border-color:var(--color-control-border)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:active{transform:translateY(1px)}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
       },
       "a11y": {
         "contrast": "AA",
-        "reducedMotion": ".hw-btn{transition:none}"
+        "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
       },
       "rtl": {
         "supported": true,

@@ -246,7 +246,12 @@ test('button and card recipes use only variables the generated tokens.css define
       assert.ok(t.a11y.reducedMotion, `${t.id}: reduced-motion alternative`);
   }
   // The ready identity's button and card stay inside each other: the card corner is the larger one.
-  for (const t of lib.templates.buttons) assert.match(t.recipe.css, /\.hw-btn\{[^}]*border-radius:var\(--radius-md\)/);
+  // (The three starter buttons; a pill button of task 3.11 may be rounder: the page then warns, R-026 warning rule.)
+  for (const t of lib.templates.buttons.filter((x) => x.status.state === 'reviewed'))
+    assert.match(t.recipe.css, /\.hw-btn\{[^}]*border-radius:var\(--radius-md\)/);
+  // Every button's corners come from the identity's radii (or none at all).
+  for (const t of lib.templates.buttons)
+    assert.match(t.recipe.css, /\.hw-btn\{[^}]*border-radius:(var\(--radius-(sm|md|lg|full)\)|0)[;}]/, t.id);
   for (const t of lib.templates.cards) assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:var\(--radius-lg\)/);
 });
 
@@ -479,5 +484,19 @@ test('icons: 25+ styles across libraries, weights, fills and containers; CC BY s
     const s = sources.find((x) => x.name === t.source.name);
     if (s.license !== 'CC-BY-4.0') continue;
     assert.ok(notices.includes(`## ${s.name}\n`) && notices.includes(s.note), `${t.id}: ${s.name} credited`);
+  }
+});
+
+// Task 3.11 (R-048): 22+ buttons, each recipe with its four states, in the identity's colors, with a recorded source.
+test('buttons: 22+ recipes, each with hover, pressed, focus and disabled states, identity colors and a source', () => {
+  const list = lib.templates.buttons;
+  assert.ok(list.length >= 22, `${list.length} buttons`);
+  for (const t of list) {
+    for (const state of [':hover', ':active', ':focus-visible', ':disabled'])
+      assert.ok(t.recipe.css.includes(`.hw-btn${state}{`), `${t.id}: ${state}`);
+    // Colors only from the identity: no color written as a value.
+    assert.doesNotMatch(t.recipe.css, /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i, `${t.id}: a color outside the identity`);
+    const s = sources.find((x) => x.name === t.source.name);
+    assert.ok(s && s.license === t.source.license, `${t.id}: source and license recorded`);
   }
 });
