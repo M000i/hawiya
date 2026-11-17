@@ -153,26 +153,34 @@ for (const [label, cmd] of busy ? [] : SERVERS) {
     }
   );
 
-  test(`[${label}] when ${FIXED} is busy: a random port, and the ready line says it is the fallback`, async () => {
-    const blocker = net.createServer();
-    await new Promise((r, j) => blocker.once('error', j).listen(FIXED, '127.0.0.1', r));
-    const p = R.makeProject();
-    const s = await R.startServer(cmd, p.project, [], undefined, { defaultPort: true });
-    try {
-      const port = Number(new URL(s.ready.url).port);
-      assert.notEqual(port, FIXED);
-      assert.equal(s.ready.port, port);
-      assert.equal(s.ready.fallback, true);
-      assert.equal(fragment(s).get('project'), idOf(p.project));
-      // Its own address works; the fixed one is not it.
-      assert.equal((await get(port, '/', { Host: `127.0.0.1:${port}` })).status, 200);
-      assert.equal((await get(port, '/', { Host: `127.0.0.1:${FIXED}` })).status, 403);
-    } finally {
-      await stop(s);
-      await new Promise((r) => blocker.close(r));
-      R.cleanup(p.root, p.project);
-    }
-  });
+  // Gate 3: another program usually listens on every address (0.0.0.0, or :: as Node does by default); a bind to
+  // 127.0.0.1 alone would not notice it on macOS and Linux.
+  for (const address of ['127.0.0.1', '0.0.0.0', '::'])
+    test(`[${label}] when ${FIXED} is busy (a program on ${address}): a random port, and the ready line says it is the fallback`, async (t) => {
+      const blocker = net.createServer();
+      try {
+        await new Promise((r, j) => blocker.once('error', j).listen(FIXED, address, r));
+      } catch (e) {
+        if (address === '::' && e.code === 'EADDRNOTAVAIL') return t.skip('no IPv6 on this machine');
+        throw e;
+      }
+      const p = R.makeProject();
+      const s = await R.startServer(cmd, p.project, [], undefined, { defaultPort: true });
+      try {
+        const port = Number(new URL(s.ready.url).port);
+        assert.notEqual(port, FIXED);
+        assert.equal(s.ready.port, port);
+        assert.equal(s.ready.fallback, true);
+        assert.equal(fragment(s).get('project'), idOf(p.project));
+        // Its own address works; the fixed one is not it.
+        assert.equal((await get(port, '/', { Host: `127.0.0.1:${port}` })).status, 200);
+        assert.equal((await get(port, '/', { Host: `127.0.0.1:${FIXED}` })).status, 403);
+      } finally {
+        await stop(s);
+        await new Promise((r) => blocker.close(r));
+        R.cleanup(p.root, p.project);
+      }
+    });
 
   test(`[${label}] on the fixed port, other hosts and other sites are still refused`, async () => {
     const p = R.makeProject();

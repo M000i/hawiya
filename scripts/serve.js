@@ -27,6 +27,7 @@
 'use strict';
 
 const http = require('node:http');
+const net = require('node:net');
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -629,4 +630,23 @@ server.on('error', (e) => {
   process.exit(1);
 });
 server.once('listening', onListening);
-server.listen(askedPort === null ? FIXED_PORT : askedPort, '127.0.0.1');
+if (askedPort !== null) {
+  server.listen(askedPort, '127.0.0.1');
+} else {
+  // A program listening on every address (0.0.0.0 or ::, as most servers do by default) does not stop a bind to
+  // 127.0.0.1 on macOS and Linux, so the bind alone cannot tell the fixed port is busy (gate 3, R-011): if anything
+  // answers on 127.0.0.1:47821, take a random port instead. A refused connection is the only "free".
+  const probe = net.connect({ host: '127.0.0.1', port: FIXED_PORT });
+  let decided = false;
+  const decide = (free) => {
+    if (decided) return;
+    decided = true;
+    probe.destroy();
+    fallback = !free;
+    server.listen(free ? FIXED_PORT : 0, '127.0.0.1');
+  };
+  // Windows takes about 2 s to refuse a loopback connection (it retries after the reset), so wait 3 s, not less.
+  probe.setTimeout(3000, () => decide(false));
+  probe.once('connect', () => decide(false));
+  probe.once('error', (e) => decide(e.code === 'ECONNREFUSED'));
+}

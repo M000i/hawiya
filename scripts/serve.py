@@ -1493,6 +1493,23 @@ def _fatal_hook(exc_type, exc, tb):
     os._exit(1)
 
 
+def _fixed_port_answers():
+    # As serve.js: a program listening on every address (0.0.0.0 or ::, as most servers do by default) does not stop
+    # a bind to 127.0.0.1 on macOS and Linux, so the bind alone cannot tell the fixed port is busy (gate 3, R-011).
+    # A refused connection is the only "free"; anything else (it answers, or no answer in time) means busy.
+    probe = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    probe.settimeout(3.0)  # Windows takes about 2 s to refuse a loopback connection (it retries after the reset)
+    try:
+        probe.connect(("127.0.0.1", FIXED_PORT))
+        return True
+    except ConnectionRefusedError:
+        return False
+    except OSError:
+        return True
+    finally:
+        probe.close()
+
+
 def main():
     project, idle_seconds, replace, asked_port = parse_args(sys.argv[1:])
     # As serve.js: on macOS and Windows the same folder may be written in another case or Unicode form.
@@ -1515,6 +1532,8 @@ def main():
     # The fixed port, or a random one when it is taken (or refused). An explicit --port is exact.
     fallback = False
     try:
+        if asked_port is None and _fixed_port_answers():
+            raise OSError(errno.EADDRINUSE, "something already answers on the fixed port")
         server = Server(("127.0.0.1", FIXED_PORT if asked_port is None else asked_port), Handler)
     except OSError as e:
         if asked_port is not None or e.errno not in (errno.EADDRINUSE, errno.EACCES) and not isinstance(e, PermissionError):
