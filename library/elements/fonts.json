@@ -7,8 +7,13 @@
       "ar": "بلكس العربي مع بلكس",
       "en": "IBM Plex Sans Arabic + IBM Plex Sans"
     },
-    "tags": ["corporate", "technical"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.6,
@@ -18,25 +23,45 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans Arabic", "IBM Plex Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans Arabic", "IBM Plex Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans Arabic", "IBM Plex Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "IBM Plex Sans Arabic",
       "latin": "IBM Plex Sans",
       "numeralsFont": "IBM Plex Sans Arabic",
       "latinSizeAdjust": 1,
-      "sources": ["plex"],
+      "sources": [
+        "plex"
+      ],
       "easternArabicDigits": true
     },
     "a11y": {
@@ -65,8 +90,13 @@
       "ar": "نوتو العربي مع نوتو",
       "en": "Noto Sans Arabic + Noto Sans"
     },
-    "tags": ["minimal", "editorial"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -76,25 +106,46 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Noto Sans Arabic", "Noto Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Sans Arabic",
+            "Noto Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Noto Sans Arabic", "Noto Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Sans Arabic",
+            "Noto Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Noto Sans Arabic", "Noto Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Sans Arabic",
+            "Noto Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Noto Sans Arabic",
       "latin": "Noto Sans",
       "numeralsFont": "Noto Sans Arabic",
       "latinSizeAdjust": 1,
-      "sources": ["noto-arabic", "noto-latin"],
+      "sources": [
+        "noto-arabic",
+        "noto-latin"
+      ],
       "easternArabicDigits": true
     },
     "a11y": {
@@ -123,8 +174,13 @@
       "ar": "القاهرة",
       "en": "Cairo"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -134,25 +190,45 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Cairo", "Cairo", "system-ui", "sans-serif"]
+          "$value": [
+            "Cairo",
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Cairo", "Cairo", "system-ui", "sans-serif"]
+          "$value": [
+            "Cairo",
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Cairo", "Cairo", "system-ui", "sans-serif"]
+          "$value": [
+            "Cairo",
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Cairo",
       "latin": "Cairo",
       "numeralsFont": "Cairo",
       "latinSizeAdjust": 1,
-      "sources": ["cairo"],
+      "sources": [
+        "cairo"
+      ],
       "easternArabicDigits": true
     },
     "a11y": {
@@ -181,8 +257,13 @@
       "ar": "نوتو كوفي",
       "en": "Noto Kufi Arabic"
     },
-    "tags": ["editorial", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.2,
       "density": 0.5,
@@ -192,24 +273,40 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Noto Kufi Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Kufi Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Noto Kufi Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Kufi Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Noto Kufi Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Kufi Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Noto Kufi Arabic",
       "numeralsFont": "Noto Kufi Arabic",
       "easternArabicDigits": true,
-      "sources": ["noto-arabic"]
+      "sources": [
+        "noto-arabic"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -237,8 +334,13 @@
       "ar": "إنتر",
       "en": "Inter"
     },
-    "tags": ["technical", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -248,23 +350,39 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Inter", "system-ui", "sans-serif"]
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Inter", "system-ui", "sans-serif"]
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Inter", "system-ui", "sans-serif"]
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Inter",
       "easternArabicDigits": false,
-      "sources": ["inter"]
+      "sources": [
+        "inter"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -292,8 +410,13 @@
       "ar": "تجوال مع مانروب",
       "en": "Tajawal + Manrope"
     },
-    "tags": ["corporate", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -303,26 +426,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Tajawal", "Manrope", "system-ui", "sans-serif"]
+          "$value": [
+            "Tajawal",
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Tajawal", "Manrope", "system-ui", "sans-serif"]
+          "$value": [
+            "Tajawal",
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Tajawal", "Manrope", "system-ui", "sans-serif"]
+          "$value": [
+            "Tajawal",
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Tajawal",
       "latin": "Manrope",
       "numeralsFont": "Tajawal",
       "latinSizeAdjust": 0.85,
       "easternArabicDigits": true,
-      "sources": ["tajawal", "manrope"]
+      "sources": [
+        "tajawal",
+        "manrope"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -350,8 +494,13 @@
       "ar": "الإسكندرية مع بلس جاكرتا",
       "en": "Alexandria + Plus Jakarta Sans"
     },
-    "tags": ["corporate", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -361,26 +510,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Alexandria", "Plus Jakarta Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Alexandria",
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Alexandria", "Plus Jakarta Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Alexandria",
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Alexandria", "Plus Jakarta Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Alexandria",
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Alexandria",
       "latin": "Plus Jakarta Sans",
       "numeralsFont": "Alexandria",
       "latinSizeAdjust": 1.05,
       "easternArabicDigits": true,
-      "sources": ["alexandria", "plus-jakarta-sans"]
+      "sources": [
+        "alexandria",
+        "plus-jakarta-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -408,8 +578,13 @@
       "ar": "المراعي مع دي إم سانس",
       "en": "Almarai + DM Sans"
     },
-    "tags": ["minimal", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -419,26 +594,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Almarai", "DM Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Almarai",
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Almarai", "DM Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Almarai",
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Almarai", "DM Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Almarai",
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Almarai",
       "latin": "DM Sans",
       "numeralsFont": "Almarai",
       "latinSizeAdjust": 0.95,
       "easternArabicDigits": true,
-      "sources": ["almarai", "dm-sans"]
+      "sources": [
+        "almarai",
+        "dm-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -466,8 +662,13 @@
       "ar": "ريدكس برو مع أوتفت",
       "en": "Readex Pro + Outfit"
     },
-    "tags": ["technical", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -477,26 +678,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Readex Pro", "Outfit", "system-ui", "sans-serif"]
+          "$value": [
+            "Readex Pro",
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Readex Pro", "Outfit", "system-ui", "sans-serif"]
+          "$value": [
+            "Readex Pro",
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Readex Pro", "Outfit", "system-ui", "sans-serif"]
+          "$value": [
+            "Readex Pro",
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Readex Pro",
       "latin": "Outfit",
       "numeralsFont": "Readex Pro",
       "latinSizeAdjust": 1.05,
       "easternArabicDigits": true,
-      "sources": ["readex-pro", "outfit"]
+      "sources": [
+        "readex-pro",
+        "outfit"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -524,8 +746,13 @@
       "ar": "وزيرمتن مع أونست",
       "en": "Vazirmatn + Onest"
     },
-    "tags": ["minimal", "technical"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -535,26 +762,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Vazirmatn", "Onest", "system-ui", "sans-serif"]
+          "$value": [
+            "Vazirmatn",
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Vazirmatn", "Onest", "system-ui", "sans-serif"]
+          "$value": [
+            "Vazirmatn",
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Vazirmatn", "Onest", "system-ui", "sans-serif"]
+          "$value": [
+            "Vazirmatn",
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Vazirmatn",
       "latin": "Onest",
       "numeralsFont": "Vazirmatn",
       "latinSizeAdjust": 0.85,
       "easternArabicDigits": true,
-      "sources": ["vazirmatn", "onest"]
+      "sources": [
+        "vazirmatn",
+        "onest"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -582,8 +830,13 @@
       "ar": "روبيك",
       "en": "Rubik"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -593,26 +846,43 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Rubik", "system-ui", "sans-serif"]
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Rubik", "system-ui", "sans-serif"]
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Rubik", "system-ui", "sans-serif"]
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Rubik",
       "latin": "Rubik",
       "numeralsFont": "Rubik",
       "latinSizeAdjust": 1,
       "easternArabicDigits": true,
-      "sources": ["rubik"]
+      "sources": [
+        "rubik"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -640,8 +910,13 @@
       "ar": "تشانغا مع سورا",
       "en": "Changa + Sora"
     },
-    "tags": ["technical", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -651,26 +926,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Changa", "Sora", "system-ui", "sans-serif"]
+          "$value": [
+            "Changa",
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Changa", "Sora", "system-ui", "sans-serif"]
+          "$value": [
+            "Changa",
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Changa", "Sora", "system-ui", "sans-serif"]
+          "$value": [
+            "Changa",
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Changa",
       "latin": "Sora",
       "numeralsFont": "Changa",
       "latinSizeAdjust": 1,
       "easternArabicDigits": true,
-      "sources": ["changa", "sora"]
+      "sources": [
+        "changa",
+        "sora"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -698,8 +994,13 @@
       "ar": "زين مع فيغتري",
       "en": "Zain + Figtree"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -709,26 +1010,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Zain", "Figtree", "system-ui", "sans-serif"]
+          "$value": [
+            "Zain",
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Zain", "Figtree", "system-ui", "sans-serif"]
+          "$value": [
+            "Zain",
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Zain", "Figtree", "system-ui", "sans-serif"]
+          "$value": [
+            "Zain",
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Zain",
       "latin": "Figtree",
       "numeralsFont": "Zain",
       "latinSizeAdjust": 1,
       "easternArabicDigits": true,
-      "sources": ["zain", "figtree"]
+      "sources": [
+        "zain",
+        "figtree"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -756,8 +1078,13 @@
       "ar": "بيروتي مع إنسترومنت",
       "en": "Beiruti + Instrument Sans"
     },
-    "tags": ["editorial", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -767,26 +1094,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Beiruti", "Instrument Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Beiruti",
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Beiruti", "Instrument Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Beiruti",
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Beiruti", "Instrument Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Beiruti",
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Beiruti",
       "latin": "Instrument Sans",
       "numeralsFont": "Beiruti",
       "latinSizeAdjust": 0.75,
       "easternArabicDigits": true,
-      "sources": ["beiruti", "instrument-sans"]
+      "sources": [
+        "beiruti",
+        "instrument-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -814,8 +1162,13 @@
       "ar": "الفسطاط مع جيست",
       "en": "Fustat + Geist"
     },
-    "tags": ["minimal", "technical"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -825,26 +1178,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Fustat", "Geist", "system-ui", "sans-serif"]
+          "$value": [
+            "Fustat",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Fustat", "Geist", "system-ui", "sans-serif"]
+          "$value": [
+            "Fustat",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Fustat", "Geist", "system-ui", "sans-serif"]
+          "$value": [
+            "Fustat",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Fustat",
       "latin": "Geist",
       "numeralsFont": "Fustat",
       "latinSizeAdjust": 0.85,
       "easternArabicDigits": true,
-      "sources": ["fustat", "geist"]
+      "sources": [
+        "fustat",
+        "geist"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -872,8 +1246,13 @@
       "ar": "كوفام مع سبيس غروتسك",
       "en": "Kufam + Space Grotesk"
     },
-    "tags": ["technical", "retro"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.6,
@@ -883,26 +1262,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Kufam", "Space Grotesk", "system-ui", "sans-serif"]
+          "$value": [
+            "Kufam",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Kufam", "Space Grotesk", "system-ui", "sans-serif"]
+          "$value": [
+            "Kufam",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Kufam", "Space Grotesk", "system-ui", "sans-serif"]
+          "$value": [
+            "Kufam",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Kufam",
       "latin": "Space Grotesk",
       "numeralsFont": "Kufam",
       "latinSizeAdjust": 1.2,
       "easternArabicDigits": true,
-      "sources": ["kufam", "space-grotesk"]
+      "sources": [
+        "kufam",
+        "space-grotesk"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -930,8 +1330,13 @@
       "ar": "مدى مع بريكولاج",
       "en": "Mada + Bricolage Grotesque"
     },
-    "tags": ["editorial", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.4,
@@ -941,26 +1346,47 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Mada", "Bricolage Grotesque", "system-ui", "sans-serif"]
+          "$value": [
+            "Mada",
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Mada", "Bricolage Grotesque", "system-ui", "sans-serif"]
+          "$value": [
+            "Mada",
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Mada", "Bricolage Grotesque", "system-ui", "sans-serif"]
+          "$value": [
+            "Mada",
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Mada",
       "latin": "Bricolage Grotesque",
       "numeralsFont": "Mada",
       "latinSizeAdjust": 0.9,
       "easternArabicDigits": true,
-      "sources": ["mada", "bricolage-grotesque"]
+      "sources": [
+        "mada",
+        "bricolage-grotesque"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -988,8 +1414,13 @@
       "ar": "بالو بهايجان",
       "en": "Baloo Bhaijaan 2"
     },
-    "tags": ["playful", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.9,
       "density": 0.5,
@@ -999,26 +1430,43 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Baloo Bhaijaan 2", "system-ui", "sans-serif"]
+          "$value": [
+            "Baloo Bhaijaan 2",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Baloo Bhaijaan 2", "system-ui", "sans-serif"]
+          "$value": [
+            "Baloo Bhaijaan 2",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Baloo Bhaijaan 2", "system-ui", "sans-serif"]
+          "$value": [
+            "Baloo Bhaijaan 2",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar", "en"],
+      "languages": [
+        "ar",
+        "en"
+      ],
       "arabic": "Baloo Bhaijaan 2",
       "latin": "Baloo Bhaijaan 2",
       "numeralsFont": "Baloo Bhaijaan 2",
       "latinSizeAdjust": 1,
       "easternArabicDigits": true,
-      "sources": ["baloo-bhaijaan-2"]
+      "sources": [
+        "baloo-bhaijaan-2"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1046,8 +1494,13 @@
       "ar": "عناوين تشانغا ونص نوتو العربي",
       "en": "Changa headings, Noto Sans Arabic text"
     },
-    "tags": ["corporate", "technical"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -1057,25 +1510,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Changa", "system-ui", "sans-serif"]
+          "$value": [
+            "Changa",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Noto Sans Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Noto Sans Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "Noto Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Noto Sans Arabic",
       "headingArabic": "Changa",
       "numeralsFont": "Noto Sans Arabic",
       "easternArabicDigits": true,
-      "sources": ["noto-arabic", "changa"]
+      "sources": [
+        "noto-arabic",
+        "changa"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1103,8 +1573,13 @@
       "ar": "عناوين المسيري ونص تجوال",
       "en": "El Messiri headings, Tajawal text"
     },
-    "tags": ["editorial", "luxury"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1114,25 +1589,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["El Messiri", "system-ui", "sans-serif"]
+          "$value": [
+            "El Messiri",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Tajawal", "system-ui", "sans-serif"]
+          "$value": [
+            "Tajawal",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Tajawal", "system-ui", "sans-serif"]
+          "$value": [
+            "Tajawal",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Tajawal",
       "headingArabic": "El Messiri",
       "numeralsFont": "Tajawal",
       "easternArabicDigits": true,
-      "sources": ["tajawal", "el-messiri"]
+      "sources": [
+        "tajawal",
+        "el-messiri"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1160,8 +1652,13 @@
       "ar": "عناوين ريم كوفي ونص بلكس العربي",
       "en": "Reem Kufi headings, IBM Plex Sans Arabic text"
     },
-    "tags": ["editorial", "retro"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -1171,25 +1668,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Reem Kufi", "system-ui", "sans-serif"]
+          "$value": [
+            "Reem Kufi",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "IBM Plex Sans Arabic",
       "headingArabic": "Reem Kufi",
       "numeralsFont": "IBM Plex Sans Arabic",
       "easternArabicDigits": true,
-      "sources": ["plex", "reem-kufi"]
+      "sources": [
+        "plex",
+        "reem-kufi"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1217,8 +1731,13 @@
       "ar": "عناوين الأميري ونص نوتو نسخ",
       "en": "Amiri headings, Noto Naskh Arabic text"
     },
-    "tags": ["editorial", "luxury"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.4,
@@ -1228,25 +1747,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Amiri", "ui-serif", "serif"]
+          "$value": [
+            "Amiri",
+            "ui-serif",
+            "serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Noto Naskh Arabic", "ui-serif", "serif"]
+          "$value": [
+            "Noto Naskh Arabic",
+            "ui-serif",
+            "serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Noto Naskh Arabic", "ui-serif", "serif"]
+          "$value": [
+            "Noto Naskh Arabic",
+            "ui-serif",
+            "serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Noto Naskh Arabic",
       "headingArabic": "Amiri",
       "numeralsFont": "Noto Naskh Arabic",
       "easternArabicDigits": true,
-      "sources": ["noto-arabic", "amiri"]
+      "sources": [
+        "noto-arabic",
+        "amiri"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1274,8 +1810,13 @@
       "ar": "عناوين عارف رقعة ونص المراعي",
       "en": "Aref Ruqaa headings, Almarai text"
     },
-    "tags": ["luxury", "retro"],
-    "platforms": ["web"],
+    "tags": [
+      "luxury",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -1285,25 +1826,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Aref Ruqaa", "ui-serif", "serif"]
+          "$value": [
+            "Aref Ruqaa",
+            "ui-serif",
+            "serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Almarai", "system-ui", "sans-serif"]
+          "$value": [
+            "Almarai",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Almarai", "system-ui", "sans-serif"]
+          "$value": [
+            "Almarai",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Almarai",
       "headingArabic": "Aref Ruqaa",
       "numeralsFont": "Almarai",
       "easternArabicDigits": true,
-      "sources": ["almarai", "aref-ruqaa"]
+      "sources": [
+        "almarai",
+        "aref-ruqaa"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1331,8 +1889,13 @@
       "ar": "عناوين المركزي ونص الإسكندرية",
       "en": "Markazi Text headings, Alexandria text"
     },
-    "tags": ["editorial", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1342,25 +1905,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Markazi Text", "ui-serif", "serif"]
+          "$value": [
+            "Markazi Text",
+            "ui-serif",
+            "serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Alexandria", "system-ui", "sans-serif"]
+          "$value": [
+            "Alexandria",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Alexandria", "system-ui", "sans-serif"]
+          "$value": [
+            "Alexandria",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Alexandria",
       "headingArabic": "Markazi Text",
       "numeralsFont": "Alexandria",
       "easternArabicDigits": true,
-      "sources": ["alexandria", "markazi-text"]
+      "sources": [
+        "alexandria",
+        "markazi-text"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1388,8 +1968,13 @@
       "ar": "عناوين شهرزاد ونص هرمتان",
       "en": "Scheherazade New headings, Harmattan text"
     },
-    "tags": ["editorial", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.4,
@@ -1399,25 +1984,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Scheherazade New", "ui-serif", "serif"]
+          "$value": [
+            "Scheherazade New",
+            "ui-serif",
+            "serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Harmattan", "system-ui", "sans-serif"]
+          "$value": [
+            "Harmattan",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Harmattan", "system-ui", "sans-serif"]
+          "$value": [
+            "Harmattan",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Harmattan",
       "headingArabic": "Scheherazade New",
       "numeralsFont": "Harmattan",
       "easternArabicDigits": true,
-      "sources": ["harmattan", "scheherazade-new"]
+      "sources": [
+        "harmattan",
+        "scheherazade-new"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1445,8 +2047,13 @@
       "ar": "عناوين ليمونادة ونص القاهرة",
       "en": "Lemonada headings, Cairo text"
     },
-    "tags": ["playful", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -1456,25 +2063,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Lemonada", "system-ui", "sans-serif"]
+          "$value": [
+            "Lemonada",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Cairo", "system-ui", "sans-serif"]
+          "$value": [
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Cairo", "system-ui", "sans-serif"]
+          "$value": [
+            "Cairo",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Cairo",
       "headingArabic": "Lemonada",
       "numeralsFont": "Cairo",
       "easternArabicDigits": true,
-      "sources": ["cairo", "lemonada"]
+      "sources": [
+        "cairo",
+        "lemonada"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1502,8 +2126,13 @@
       "ar": "عناوين مرحى ونص زين",
       "en": "Marhey headings, Zain text"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -1513,25 +2142,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Marhey", "system-ui", "sans-serif"]
+          "$value": [
+            "Marhey",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Zain", "system-ui", "sans-serif"]
+          "$value": [
+            "Zain",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Zain", "system-ui", "sans-serif"]
+          "$value": [
+            "Zain",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Zain",
       "headingArabic": "Marhey",
       "numeralsFont": "Zain",
       "easternArabicDigits": true,
-      "sources": ["zain", "marhey"]
+      "sources": [
+        "zain",
+        "marhey"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1559,8 +2205,13 @@
       "ar": "عناوين هاندجت ونص تشانغا",
       "en": "Handjet headings, Changa text"
     },
-    "tags": ["technical", "retro"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.2,
       "density": 0.6,
@@ -1570,25 +2221,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Handjet", "system-ui", "sans-serif"]
+          "$value": [
+            "Handjet",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Changa", "system-ui", "sans-serif"]
+          "$value": [
+            "Changa",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Changa", "system-ui", "sans-serif"]
+          "$value": [
+            "Changa",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Changa",
       "headingArabic": "Handjet",
       "numeralsFont": "Changa",
       "easternArabicDigits": true,
-      "sources": ["changa", "handjet"]
+      "sources": [
+        "changa",
+        "handjet"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1616,8 +2284,13 @@
       "ar": "عناوين بلاي بن ونص مدى",
       "en": "Playpen Sans Arabic headings, Mada text"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -1627,25 +2300,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Playpen Sans Arabic", "system-ui", "sans-serif"]
+          "$value": [
+            "Playpen Sans Arabic",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Mada", "system-ui", "sans-serif"]
+          "$value": [
+            "Mada",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Mada", "system-ui", "sans-serif"]
+          "$value": [
+            "Mada",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Mada",
       "headingArabic": "Playpen Sans Arabic",
       "numeralsFont": "Mada",
       "easternArabicDigits": true,
-      "sources": ["mada", "playpen-sans"]
+      "sources": [
+        "mada",
+        "playpen-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1673,8 +2363,13 @@
       "ar": "عناوين اليمامة ونص بيروتي",
       "en": "Alyamama headings, Beiruti text"
     },
-    "tags": ["luxury", "editorial"],
-    "platforms": ["web"],
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -1684,25 +2379,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Alyamama", "system-ui", "sans-serif"]
+          "$value": [
+            "Alyamama",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Beiruti", "system-ui", "sans-serif"]
+          "$value": [
+            "Beiruti",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Beiruti", "system-ui", "sans-serif"]
+          "$value": [
+            "Beiruti",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Beiruti",
       "headingArabic": "Alyamama",
       "numeralsFont": "Beiruti",
       "easternArabicDigits": true,
-      "sources": ["beiruti", "alyamama"]
+      "sources": [
+        "beiruti",
+        "alyamama"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1730,8 +2442,13 @@
       "ar": "عناوين استعداد ونص وزيرمتن",
       "en": "Estedad headings, Vazirmatn text"
     },
-    "tags": ["minimal", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1741,25 +2458,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Estedad", "system-ui", "sans-serif"]
+          "$value": [
+            "Estedad",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Vazirmatn", "system-ui", "sans-serif"]
+          "$value": [
+            "Vazirmatn",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Vazirmatn", "system-ui", "sans-serif"]
+          "$value": [
+            "Vazirmatn",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Vazirmatn",
       "headingArabic": "Estedad",
       "numeralsFont": "Vazirmatn",
       "easternArabicDigits": true,
-      "sources": ["vazirmatn", "estedad"]
+      "sources": [
+        "vazirmatn",
+        "estedad"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1787,8 +2521,13 @@
       "ar": "عناوين كوفام ونص الفسطاط",
       "en": "Kufam headings, Fustat text"
     },
-    "tags": ["technical", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.6,
@@ -1798,25 +2537,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Kufam", "system-ui", "sans-serif"]
+          "$value": [
+            "Kufam",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Fustat", "system-ui", "sans-serif"]
+          "$value": [
+            "Fustat",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Fustat", "system-ui", "sans-serif"]
+          "$value": [
+            "Fustat",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Fustat",
       "headingArabic": "Kufam",
       "numeralsFont": "Fustat",
       "easternArabicDigits": true,
-      "sources": ["fustat", "kufam"]
+      "sources": [
+        "fustat",
+        "kufam"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1844,8 +2600,13 @@
       "ar": "عناوين نوتو نسخ ونص روبيك",
       "en": "Noto Naskh Arabic headings, Rubik text"
     },
-    "tags": ["editorial", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -1855,25 +2616,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Noto Naskh Arabic", "ui-serif", "serif"]
+          "$value": [
+            "Noto Naskh Arabic",
+            "ui-serif",
+            "serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Rubik", "system-ui", "sans-serif"]
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Rubik", "system-ui", "sans-serif"]
+          "$value": [
+            "Rubik",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["ar"],
+      "languages": [
+        "ar"
+      ],
       "arabic": "Rubik",
       "headingArabic": "Noto Naskh Arabic",
       "numeralsFont": "Rubik",
       "easternArabicDigits": true,
-      "sources": ["rubik", "noto-arabic"]
+      "sources": [
+        "rubik",
+        "noto-arabic"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1901,8 +2679,13 @@
       "ar": "عناوين سبيس غروتسك ونص سورا",
       "en": "Space Grotesk headings, Sora text"
     },
-    "tags": ["technical", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -1912,25 +2695,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Space Grotesk", "system-ui", "sans-serif"]
+          "$value": [
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Sora", "system-ui", "sans-serif"]
+          "$value": [
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Sora", "system-ui", "sans-serif"]
+          "$value": [
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Sora",
       "headingLatin": "Space Grotesk",
       "numeralsFont": "Sora",
       "easternArabicDigits": false,
-      "sources": ["sora", "space-grotesk"]
+      "sources": [
+        "sora",
+        "space-grotesk"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -1958,8 +2758,13 @@
       "ar": "عناوين بريكولاج ونص دي إم سانس",
       "en": "Bricolage Grotesque headings, DM Sans text"
     },
-    "tags": ["editorial", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1969,25 +2774,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Bricolage Grotesque", "system-ui", "sans-serif"]
+          "$value": [
+            "Bricolage Grotesque",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["DM Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["DM Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "DM Sans",
       "headingLatin": "Bricolage Grotesque",
       "numeralsFont": "DM Sans",
       "easternArabicDigits": false,
-      "sources": ["dm-sans", "bricolage-grotesque"]
+      "sources": [
+        "dm-sans",
+        "bricolage-grotesque"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2015,8 +2837,13 @@
       "ar": "عناوين سورا ونص مانروب",
       "en": "Sora headings, Manrope text"
     },
-    "tags": ["technical", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2026,25 +2853,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Sora", "system-ui", "sans-serif"]
+          "$value": [
+            "Sora",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Manrope", "system-ui", "sans-serif"]
+          "$value": [
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Manrope", "system-ui", "sans-serif"]
+          "$value": [
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Manrope",
       "headingLatin": "Sora",
       "numeralsFont": "Manrope",
       "easternArabicDigits": false,
-      "sources": ["manrope", "sora"]
+      "sources": [
+        "manrope",
+        "sora"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2072,8 +2916,13 @@
       "ar": "عناوين أوتفت ونص فيغتري",
       "en": "Outfit headings, Figtree text"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -2083,25 +2932,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Outfit", "system-ui", "sans-serif"]
+          "$value": [
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Figtree", "system-ui", "sans-serif"]
+          "$value": [
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Figtree", "system-ui", "sans-serif"]
+          "$value": [
+            "Figtree",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Figtree",
       "headingLatin": "Outfit",
       "numeralsFont": "Figtree",
       "easternArabicDigits": false,
-      "sources": ["figtree", "outfit"]
+      "sources": [
+        "figtree",
+        "outfit"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2129,8 +2995,13 @@
       "ar": "عناوين إنسترومنت ونص أونست",
       "en": "Instrument Sans headings, Onest text"
     },
-    "tags": ["editorial", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -2140,25 +3011,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Instrument Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Onest", "system-ui", "sans-serif"]
+          "$value": [
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Onest", "system-ui", "sans-serif"]
+          "$value": [
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Onest",
       "headingLatin": "Instrument Sans",
       "numeralsFont": "Onest",
       "easternArabicDigits": false,
-      "sources": ["onest", "instrument-sans"]
+      "sources": [
+        "onest",
+        "instrument-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2186,8 +3074,13 @@
       "ar": "جيست وأرقام جيست مونو",
       "en": "Geist, Geist Mono numerals"
     },
-    "tags": ["technical", "data-dense"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -2197,24 +3090,41 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Geist", "system-ui", "sans-serif"]
+          "$value": [
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Geist", "system-ui", "sans-serif"]
+          "$value": [
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Geist Mono", "Geist", "system-ui", "sans-serif"]
+          "$value": [
+            "Geist Mono",
+            "Geist",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Geist",
       "numeralsFont": "Geist Mono",
       "easternArabicDigits": false,
-      "sources": ["geist"]
+      "sources": [
+        "geist"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2242,8 +3152,13 @@
       "ar": "عناوين مانروب ونص بلس جاكرتا",
       "en": "Manrope headings, Plus Jakarta Sans text"
     },
-    "tags": ["corporate", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -2253,25 +3168,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Manrope", "system-ui", "sans-serif"]
+          "$value": [
+            "Manrope",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Plus Jakarta Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Plus Jakarta Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Plus Jakarta Sans",
       "headingLatin": "Manrope",
       "numeralsFont": "Plus Jakarta Sans",
       "easternArabicDigits": false,
-      "sources": ["plus-jakarta-sans", "manrope"]
+      "sources": [
+        "plus-jakarta-sans",
+        "manrope"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2299,8 +3231,13 @@
       "ar": "عناوين بلس جاكرتا ونص أوتفت",
       "en": "Plus Jakarta Sans headings, Outfit text"
     },
-    "tags": ["soft", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -2310,25 +3247,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Plus Jakarta Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Plus Jakarta Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Outfit", "system-ui", "sans-serif"]
+          "$value": [
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Outfit", "system-ui", "sans-serif"]
+          "$value": [
+            "Outfit",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Outfit",
       "headingLatin": "Plus Jakarta Sans",
       "numeralsFont": "Outfit",
       "easternArabicDigits": false,
-      "sources": ["outfit", "plus-jakarta-sans"]
+      "sources": [
+        "outfit",
+        "plus-jakarta-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2356,8 +3310,13 @@
       "ar": "عناوين دي إم سانس ونص بلكس",
       "en": "DM Sans headings, IBM Plex Sans text"
     },
-    "tags": ["corporate", "data-dense"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.6,
@@ -2367,25 +3326,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["DM Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "DM Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["IBM Plex Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "IBM Plex Sans",
       "headingLatin": "DM Sans",
       "numeralsFont": "IBM Plex Sans",
       "easternArabicDigits": false,
-      "sources": ["plex", "dm-sans"]
+      "sources": [
+        "plex",
+        "dm-sans"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2413,8 +3389,13 @@
       "ar": "عناوين جت برينز مونو ونص سبيس غروتسك",
       "en": "JetBrains Mono headings, Space Grotesk text"
     },
-    "tags": ["technical", "retro"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.6,
@@ -2424,25 +3405,43 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["JetBrains Mono", "ui-monospace", "monospace"]
+          "$value": [
+            "JetBrains Mono",
+            "ui-monospace",
+            "monospace"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Space Grotesk", "system-ui", "sans-serif"]
+          "$value": [
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["JetBrains Mono", "Space Grotesk", "system-ui", "sans-serif"]
+          "$value": [
+            "JetBrains Mono",
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Space Grotesk",
       "headingLatin": "JetBrains Mono",
       "numeralsFont": "JetBrains Mono",
       "easternArabicDigits": false,
-      "sources": ["space-grotesk", "jetbrains-mono"]
+      "sources": [
+        "space-grotesk",
+        "jetbrains-mono"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -2470,8 +3469,13 @@
       "ar": "عناوين أونست ونص إنسترومنت",
       "en": "Onest headings, Instrument Sans text"
     },
-    "tags": ["minimal", "editorial"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -2481,25 +3485,42 @@
       "font": {
         "heading": {
           "$type": "fontFamily",
-          "$value": ["Onest", "system-ui", "sans-serif"]
+          "$value": [
+            "Onest",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "body": {
           "$type": "fontFamily",
-          "$value": ["Instrument Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         },
         "numerals": {
           "$type": "fontFamily",
-          "$value": ["Instrument Sans", "system-ui", "sans-serif"]
+          "$value": [
+            "Instrument Sans",
+            "system-ui",
+            "sans-serif"
+          ]
         }
       }
     },
     "extras": {
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "latin": "Instrument Sans",
       "headingLatin": "Onest",
       "numeralsFont": "Instrument Sans",
       "easternArabicDigits": false,
-      "sources": ["instrument-sans", "onest"]
+      "sources": [
+        "instrument-sans",
+        "onest"
+      ]
     },
     "a11y": {
       "contrast": "n/a",

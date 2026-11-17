@@ -7,8 +7,16 @@
       "ar": "زوايا حادة",
       "en": "Sharp corners"
     },
-    "tags": ["brutalist", "technical"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "brutalist",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.1,
       "density": 0.5,
@@ -71,8 +79,16 @@
       "ar": "زوايا متوسطة",
       "en": "Medium corners"
     },
-    "tags": ["corporate", "minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -135,8 +151,16 @@
       "ar": "زوايا دائرية",
       "en": "Round corners"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -199,8 +223,16 @@
       "ar": "زوايا قائمة",
       "en": "Square corners"
     },
-    "tags": ["brutalist", "technical"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "brutalist",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -263,8 +295,16 @@
       "ar": "زوايا خفيفة",
       "en": "Subtle corners"
     },
-    "tags": ["minimal", "corporate"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.2,
       "density": 0.5,
@@ -327,8 +367,16 @@
       "ar": "زوايا لطيفة",
       "en": "Gentle corners"
     },
-    "tags": ["soft", "corporate"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.45,
       "density": 0.5,
@@ -391,8 +439,16 @@
       "ar": "زوايا ناعمة",
       "en": "Soft corners"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.75,
       "density": 0.5,
@@ -455,8 +511,16 @@
       "ar": "زوايا دائرية جدًا",
       "en": "Extra round corners"
     },
-    "tags": ["playful", "vivid"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.95,
       "density": 0.5,

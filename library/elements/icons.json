@@ -7,8 +7,13 @@
       "ar": "لوسيد بخط عادي",
       "en": "Lucide, regular stroke"
     },
-    "tags": ["minimal", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -122,8 +127,13 @@
       "ar": "لوسيد بخط رفيع",
       "en": "Lucide, light stroke"
     },
-    "tags": ["minimal", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.4,
@@ -237,8 +247,13 @@
       "ar": "فوسفور بوزن عادي",
       "en": "Phosphor, regular"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -468,8 +483,13 @@
       "ar": "فوسفور بوزن عريض",
       "en": "Phosphor, bold"
     },
-    "tags": ["playful", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -583,8 +603,13 @@
       "ar": "تابلر بخط عادي",
       "en": "Tabler, regular stroke"
     },
-    "tags": ["technical", "data-dense"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -698,8 +723,13 @@
       "ar": "ماتيريال سيمبولز بوزن عادي",
       "en": "Material Symbols, regular"
     },
-    "tags": ["material", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "material",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -867,8 +897,13 @@
       "ar": "فلونت بوزن عادي",
       "en": "Fluent, regular"
     },
-    "tags": ["fluent", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "fluent",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1036,8 +1071,13 @@
       "ar": "هيوج آيكنز بخط رفيع",
       "en": "Hugeicons, light stroke"
     },
-    "tags": ["soft", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -1151,8 +1191,13 @@
       "ar": "آيكنوار بخط رفيع",
       "en": "Iconoir, light stroke"
     },
-    "tags": ["minimal", "editorial"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.4,
@@ -1266,8 +1311,13 @@
       "ar": "هيرو آيكنز بخط رفيع",
       "en": "Heroicons, light stroke"
     },
-    "tags": ["minimal", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1439,8 +1489,13 @@
       "ar": "مينج كيوت بخط عادي",
       "en": "MingCute, regular line"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -1608,8 +1663,13 @@
       "ar": "كاربون بوزن عادي",
       "en": "Carbon, regular"
     },
-    "tags": ["technical", "data-dense"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.2,
       "density": 0.6,
@@ -1719,8 +1779,13 @@
       "ar": "بوتستراب بوزن عادي",
       "en": "Bootstrap Icons, regular"
     },
-    "tags": ["corporate", "technical"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -1830,8 +1895,13 @@
       "ar": "سولار بخط رفيع",
       "en": "Solar, linear"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -2061,8 +2131,13 @@
       "ar": "ستريملاين بخط دقيق",
       "en": "Streamline, fine line"
     },
-    "tags": ["minimal", "technical"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "technical"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2176,8 +2251,13 @@
       "ar": "آيكنا مون بوزن عادي",
       "en": "IconaMoon, regular"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -2407,8 +2487,13 @@
       "ar": "باسل بخط عادي",
       "en": "Basil, regular"
     },
-    "tags": ["soft", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -2576,8 +2661,13 @@
       "ar": "فوسفور بخط رفيع جدًا",
       "en": "Phosphor, thin"
     },
-    "tags": ["minimal", "luxury"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.4,
@@ -2691,8 +2781,13 @@
       "ar": "فوسفور خفيف في مربع مدوّر",
       "en": "Phosphor, light in a rounded square"
     },
-    "tags": ["soft", "minimal"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -2806,8 +2901,13 @@
       "ar": "فوسفور مصمت في دائرة",
       "en": "Phosphor, filled in a circle"
     },
-    "tags": ["playful", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.9,
       "density": 0.5,
@@ -3037,8 +3137,13 @@
       "ar": "فوسفور بلونين في مربع",
       "en": "Phosphor, two-tone in a square"
     },
-    "tags": ["playful", "editorial"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -3268,8 +3373,13 @@
       "ar": "هيرو آيكنز مصمت في مربع مدوّر",
       "en": "Heroicons, solid in a rounded square"
     },
-    "tags": ["corporate", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -3437,8 +3547,13 @@
       "ar": "ماتيريال مصمت في دائرة",
       "en": "Material Symbols, filled in a circle"
     },
-    "tags": ["material", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "material",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.9,
       "density": 0.5,
@@ -3606,8 +3721,13 @@
       "ar": "فلونت مصمت في مربع مدوّر",
       "en": "Fluent, filled in a rounded square"
     },
-    "tags": ["fluent", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "fluent",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -3775,8 +3895,13 @@
       "ar": "مينج كيوت مصمت في مربع",
       "en": "MingCute, filled in a square"
     },
-    "tags": ["playful", "brutalist"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "brutalist"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.5,
@@ -3944,8 +4069,13 @@
       "ar": "سولار مصمت في دائرة",
       "en": "Solar, bold in a circle"
     },
-    "tags": ["playful", "vivid"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.9,
       "density": 0.5,
@@ -4171,8 +4301,13 @@
       "ar": "سولار بلونين في مربع مدوّر",
       "en": "Solar, two-tone in a rounded square"
     },
-    "tags": ["soft", "playful"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.5,
@@ -4398,8 +4533,13 @@
       "ar": "آيكنا مون مصمت في دائرة",
       "en": "IconaMoon, filled in a circle"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.9,
       "density": 0.5,
@@ -4625,8 +4765,13 @@
       "ar": "آيكنا مون بخط خفيف",
       "en": "IconaMoon, light stroke"
     },
-    "tags": ["minimal", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "minimal",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.4,
@@ -4740,8 +4885,13 @@
       "ar": "باسل مصمت في مربع مدوّر",
       "en": "Basil, solid in a rounded square"
     },
-    "tags": ["soft", "corporate"],
-    "platforms": ["web"],
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.7,
       "density": 0.5,
@@ -4909,8 +5059,13 @@
       "ar": "لوسيد في دائرة",
       "en": "Lucide in a circle"
     },
-    "tags": ["corporate", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.8,
       "density": 0.4,
@@ -5024,8 +5179,13 @@
       "ar": "تابلر في مربع مدوّر",
       "en": "Tabler in a rounded square"
     },
-    "tags": ["technical", "soft"],
-    "platforms": ["web"],
+    "tags": [
+      "technical",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,

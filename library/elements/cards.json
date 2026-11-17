@@ -7,8 +7,15 @@
       "ar": "كرت بإطار",
       "en": "Bordered card"
     },
-    "tags": ["minimal", "corporate"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -55,8 +62,15 @@
       "ar": "كرت مرتفع",
       "en": "Elevated card"
     },
-    "tags": ["material", "soft"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "material",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -103,8 +117,15 @@
       "ar": "كرت ممتلئ",
       "en": "Filled card"
     },
-    "tags": ["editorial", "data-dense"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "editorial",
+      "data-dense"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -151,8 +172,15 @@
       "ar": "كرت ناعم",
       "en": "Soft card"
     },
-    "tags": ["soft", "minimal"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -199,8 +227,15 @@
       "ar": "كرت بإطار وزوايا قائمة",
       "en": "Sharp outline card"
     },
-    "tags": ["technical", "minimal"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.6,
@@ -247,8 +282,15 @@
       "ar": "كرت بظل حاد",
       "en": "Hard-shadow card"
     },
-    "tags": ["brutalist", "retro"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "brutalist",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -295,8 +337,15 @@
       "ar": "كرت ملوّن بظل حاد",
       "en": "Hard-shadow card, primary"
     },
-    "tags": ["brutalist", "vivid"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.3,
@@ -343,8 +392,15 @@
       "ar": "كرت يرتفع عند المرور",
       "en": "Lift-on-hover card"
     },
-    "tags": ["material", "soft"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "material",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -391,8 +447,15 @@
       "ar": "كرت بحافة علوية",
       "en": "Top-accent card"
     },
-    "tags": ["corporate", "editorial"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "corporate",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -439,8 +502,15 @@
       "ar": "كرت مرتفع بحافة علوية",
       "en": "Elevated top-accent card"
     },
-    "tags": ["material", "corporate"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "material",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -487,8 +557,15 @@
       "ar": "كرت بإطار متقطع",
       "en": "Dashed card"
     },
-    "tags": ["technical", "playful"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "technical",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -535,8 +612,15 @@
       "ar": "كرت مضغوط",
       "en": "Compact card"
     },
-    "tags": ["data-dense", "technical"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.2,
       "density": 0.9,
@@ -583,8 +667,15 @@
       "ar": "كرت واسع",
       "en": "Spacious card"
     },
-    "tags": ["luxury", "editorial"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.1,
@@ -631,8 +722,15 @@
       "ar": "كرت باللون الأساسي",
       "en": "Primary card"
     },
-    "tags": ["vivid", "playful"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -679,8 +777,15 @@
       "ar": "كرت باللون الثانوي",
       "en": "Secondary card"
     },
-    "tags": ["vivid", "playful"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -727,8 +832,15 @@
       "ar": "كرت برأس ملوّن",
       "en": "Colored-header card"
     },
-    "tags": ["corporate", "material"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "corporate",
+      "material"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -775,8 +887,15 @@
       "ar": "كرت بحافة جانبية ثانوية",
       "en": "Secondary side-accent card"
     },
-    "tags": ["playful", "soft"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "playful",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.2,
       "density": 0.6,
@@ -823,8 +942,15 @@
       "ar": "كرت بخط سفلي",
       "en": "Bottom-rule card"
     },
-    "tags": ["editorial", "minimal"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.6,
@@ -871,8 +997,15 @@
       "ar": "كرت على خلفية الصفحة",
       "en": "Page-tone card"
     },
-    "tags": ["minimal", "cupertino"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "minimal",
+      "cupertino"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.6,
@@ -919,8 +1052,15 @@
       "ar": "كرت بيانات",
       "en": "Data card"
     },
-    "tags": ["data-dense", "technical"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.9,
@@ -967,8 +1107,15 @@
       "ar": "كرت بإطار سميك",
       "en": "Thick-outline card"
     },
-    "tags": ["brutalist", "editorial"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "brutalist",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -1015,8 +1162,15 @@
       "ar": "كرت عائم",
       "en": "Floating card"
     },
-    "tags": ["soft", "luxury"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "soft",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.2,
@@ -1063,8 +1217,15 @@
       "ar": "كرت بحافة علوية ثانوية",
       "en": "Secondary top-accent card"
     },
-    "tags": ["playful", "corporate"],
-    "platforms": ["web", "desktop", "extension"],
+    "tags": [
+      "playful",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.6,

@@ -7,8 +7,15 @@
       "ar": "عربي من اليمين",
       "en": "Arabic, right to left"
     },
-    "tags": ["minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0,
@@ -23,8 +30,18 @@
       "language": "ar",
       "numerals": "latn",
       "calendar": "gregory",
-      "mirror": ["arrow", "chevron", "undo", "redo"],
-      "neverMirror": ["clock", "play", "check", "media"]
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -51,8 +68,15 @@
       "ar": "إنجليزي من اليسار",
       "en": "English, left to right"
     },
-    "tags": ["minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0,
@@ -67,8 +91,18 @@
       "language": "en",
       "numerals": "latn",
       "calendar": "gregory",
-      "mirror": ["arrow", "chevron", "undo", "redo"],
-      "neverMirror": ["clock", "play", "check", "media"]
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
     },
     "a11y": {
       "contrast": "n/a",
@@ -95,8 +129,15 @@
       "ar": "ثنائي اللغة",
       "en": "Bilingual"
     },
-    "tags": ["minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0,
@@ -111,8 +152,18 @@
       "language": "ar+en",
       "numerals": "latn",
       "calendar": "gregory",
-      "mirror": ["arrow", "chevron", "undo", "redo"],
-      "neverMirror": ["clock", "play", "check", "media"]
+      "mirror": [
+        "arrow",
+        "chevron",
+        "undo",
+        "redo"
+      ],
+      "neverMirror": [
+        "clock",
+        "play",
+        "check",
+        "media"
+      ]
     },
     "a11y": {
       "contrast": "n/a",

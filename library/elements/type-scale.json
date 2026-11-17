@@ -7,8 +7,16 @@
       "ar": "سلّم هادئ (1.2)",
       "en": "Minor third (1.2)"
     },
-    "tags": ["data-dense", "technical"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "data-dense",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.7,
@@ -72,8 +80,16 @@
       "ar": "سلّم متوازن (1.25)",
       "en": "Major third (1.25)"
     },
-    "tags": ["corporate", "minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -137,8 +153,16 @@
       "ar": "سلّم واضح (1.333)",
       "en": "Perfect fourth (1.333)"
     },
-    "tags": ["editorial", "vivid"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "editorial",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.3,
@@ -202,8 +226,16 @@
       "ar": "سلّم متقارب جدًا (1.067)",
       "en": "Minor second (1.067)"
     },
-    "tags": ["data-dense", "minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "data-dense",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.9,
@@ -267,8 +299,16 @@
       "ar": "سلّم متقارب (1.125)",
       "en": "Major second (1.125)"
     },
-    "tags": ["data-dense", "corporate"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "data-dense",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.8,
@@ -332,8 +372,16 @@
       "ar": "سلّم واضح (1.414)",
       "en": "Augmented fourth (1.414)"
     },
-    "tags": ["editorial", "vivid"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "editorial",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.4,
@@ -397,8 +445,16 @@
       "ar": "سلّم بارز (1.5)",
       "en": "Perfect fifth (1.5)"
     },
-    "tags": ["editorial", "luxury"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.3,
@@ -462,8 +518,16 @@
       "ar": "سلّم ذهبي (1.618)",
       "en": "Golden ratio (1.618)"
     },
-    "tags": ["luxury", "playful"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "luxury",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.2,

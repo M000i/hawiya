@@ -7,8 +7,16 @@
       "ar": "مسطح تقريبًا",
       "en": "Nearly flat"
     },
-    "tags": ["minimal", "brutalist"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "minimal",
+      "brutalist"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.5,
@@ -27,7 +35,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.06,
                   "hex": "#000000"
                 },
@@ -56,7 +68,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -91,7 +107,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.5,
                   "hex": "#000000"
                 },
@@ -120,7 +140,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.6,
                   "hex": "#000000"
                 },
@@ -172,8 +196,16 @@
       "ar": "ظلال ناعمة",
       "en": "Soft shadows"
     },
-    "tags": ["soft", "corporate"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -188,7 +220,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.06,
                   "hex": "#000000"
                 },
@@ -217,7 +253,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -246,7 +286,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.12,
                   "hex": "#000000"
                 },
@@ -270,7 +314,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.05,
                   "hex": "#000000"
                 },
@@ -301,7 +349,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.5,
                   "hex": "#000000"
                 },
@@ -330,7 +382,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.6,
                   "hex": "#000000"
                 },
@@ -359,7 +415,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.7,
                   "hex": "#000000"
                 },
@@ -411,8 +471,16 @@
       "ar": "ظلال عميقة",
       "en": "Deep shadows"
     },
-    "tags": ["material", "vivid"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "material",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -427,7 +495,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.12,
                   "hex": "#000000"
                 },
@@ -451,7 +523,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -480,7 +556,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.16,
                   "hex": "#000000"
                 },
@@ -509,7 +589,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.24,
                   "hex": "#000000"
                 },
@@ -540,7 +624,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.6,
                   "hex": "#000000"
                 },
@@ -569,7 +657,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.7,
                   "hex": "#000000"
                 },
@@ -598,7 +690,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.8,
                   "hex": "#000000"
                 },
@@ -650,8 +746,16 @@
       "ar": "ظل حاد",
       "en": "Crisp offset"
     },
-    "tags": ["brutalist", "retro"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "brutalist",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -666,7 +770,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 1,
                   "hex": "#000000"
                 },
@@ -695,7 +803,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 1,
                   "hex": "#000000"
                 },
@@ -724,7 +836,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 1,
                   "hex": "#000000"
                 },
@@ -755,7 +871,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.85,
                   "hex": "#ffffff"
                 },
@@ -784,7 +904,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.85,
                   "hex": "#ffffff"
                 },
@@ -813,7 +937,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.85,
                   "hex": "#ffffff"
                 },
@@ -864,8 +992,16 @@
       "ar": "ظل محيط",
       "en": "Ambient glow"
     },
-    "tags": ["soft", "minimal"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -880,7 +1016,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -909,7 +1049,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.1,
                   "hex": "#000000"
                 },
@@ -938,7 +1082,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.14,
                   "hex": "#000000"
                 },
@@ -969,7 +1117,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.55,
                   "hex": "#000000"
                 },
@@ -993,7 +1145,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.08,
                   "hex": "#ffffff"
                 },
@@ -1022,7 +1178,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.65,
                   "hex": "#000000"
                 },
@@ -1046,7 +1206,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.1,
                   "hex": "#ffffff"
                 },
@@ -1075,7 +1239,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.75,
                   "hex": "#000000"
                 },
@@ -1099,7 +1267,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.12,
                   "hex": "#ffffff"
                 },
@@ -1150,8 +1322,16 @@
       "ar": "ظل عائم",
       "en": "Floating"
     },
-    "tags": ["soft", "luxury"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1166,7 +1346,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -1195,7 +1379,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.14,
                   "hex": "#000000"
                 },
@@ -1224,7 +1412,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.22,
                   "hex": "#000000"
                 },
@@ -1255,7 +1447,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.5,
                   "hex": "#000000"
                 },
@@ -1279,7 +1475,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.08,
                   "hex": "#ffffff"
                 },
@@ -1308,7 +1508,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.65,
                   "hex": "#000000"
                 },
@@ -1332,7 +1536,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.1,
                   "hex": "#ffffff"
                 },
@@ -1361,7 +1569,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.75,
                   "hex": "#000000"
                 },
@@ -1385,7 +1597,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.12,
                   "hex": "#ffffff"
                 },
@@ -1436,8 +1652,16 @@
       "ar": "إطار خفيف",
       "en": "Hairline ring"
     },
-    "tags": ["minimal", "technical"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "minimal",
+      "technical"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.3,
       "density": 0.5,
@@ -1452,7 +1676,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -1481,7 +1709,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -1505,7 +1737,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.06,
                   "hex": "#000000"
                 },
@@ -1534,7 +1770,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.08,
                   "hex": "#000000"
                 },
@@ -1558,7 +1798,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.1,
                   "hex": "#000000"
                 },
@@ -1589,7 +1833,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.12,
                   "hex": "#ffffff"
                 },
@@ -1618,7 +1866,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.12,
                   "hex": "#ffffff"
                 },
@@ -1642,7 +1894,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.5,
                   "hex": "#000000"
                 },
@@ -1671,7 +1927,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.14,
                   "hex": "#ffffff"
                 },
@@ -1695,7 +1955,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.6,
                   "hex": "#000000"
                 },
@@ -1746,8 +2010,16 @@
       "ar": "ارتفاع بطبقتين",
       "en": "Two-layer elevation"
     },
-    "tags": ["material", "corporate"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "material",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -1762,7 +2034,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.12,
                   "hex": "#000000"
                 },
@@ -1786,7 +2062,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.24,
                   "hex": "#000000"
                 },
@@ -1815,7 +2095,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.16,
                   "hex": "#000000"
                 },
@@ -1839,7 +2123,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.23,
                   "hex": "#000000"
                 },
@@ -1868,7 +2156,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.19,
                   "hex": "#000000"
                 },
@@ -1892,7 +2184,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.23,
                   "hex": "#000000"
                 },
@@ -1923,7 +2219,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.6,
                   "hex": "#000000"
                 },
@@ -1947,7 +2247,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.7,
                   "hex": "#000000"
                 },
@@ -1976,7 +2280,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.65,
                   "hex": "#000000"
                 },
@@ -2000,7 +2308,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.7,
                   "hex": "#000000"
                 },
@@ -2029,7 +2341,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.7,
                   "hex": "#000000"
                 },
@@ -2053,7 +2369,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0, 0, 0],
+                  "components": [
+                    0,
+                    0,
+                    0
+                  ],
                   "alpha": 0.75,
                   "hex": "#000000"
                 },
@@ -2104,8 +2424,16 @@
       "ar": "ظل مائل للأزرق",
       "en": "Cool tinted"
     },
-    "tags": ["corporate", "soft"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "corporate",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2120,7 +2448,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.1176, 0.1608, 0.2314],
+                  "components": [
+                    0.1176,
+                    0.1608,
+                    0.2314
+                  ],
                   "alpha": 0.1,
                   "hex": "#1e293b"
                 },
@@ -2149,7 +2481,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.1176, 0.1608, 0.2314],
+                  "components": [
+                    0.1176,
+                    0.1608,
+                    0.2314
+                  ],
                   "alpha": 0.16,
                   "hex": "#1e293b"
                 },
@@ -2178,7 +2514,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.1176, 0.1608, 0.2314],
+                  "components": [
+                    0.1176,
+                    0.1608,
+                    0.2314
+                  ],
                   "alpha": 0.22,
                   "hex": "#1e293b"
                 },
@@ -2209,7 +2549,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.0078, 0.0235, 0.0902],
+                  "components": [
+                    0.0078,
+                    0.0235,
+                    0.0902
+                  ],
                   "alpha": 0.55,
                   "hex": "#020617"
                 },
@@ -2233,7 +2577,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.08,
                   "hex": "#ffffff"
                 },
@@ -2262,7 +2610,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.0078, 0.0235, 0.0902],
+                  "components": [
+                    0.0078,
+                    0.0235,
+                    0.0902
+                  ],
                   "alpha": 0.7,
                   "hex": "#020617"
                 },
@@ -2286,7 +2638,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.1,
                   "hex": "#ffffff"
                 },
@@ -2315,7 +2671,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.0078, 0.0235, 0.0902],
+                  "components": [
+                    0.0078,
+                    0.0235,
+                    0.0902
+                  ],
                   "alpha": 0.8,
                   "hex": "#020617"
                 },
@@ -2339,7 +2699,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.12,
                   "hex": "#ffffff"
                 },
@@ -2390,8 +2754,16 @@
       "ar": "ظل دافئ",
       "en": "Warm tinted"
     },
-    "tags": ["soft", "editorial"],
-    "platforms": ["web", "desktop", "extension", "mobile"],
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -2406,7 +2778,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.4863, 0.1765, 0.0706],
+                  "components": [
+                    0.4863,
+                    0.1765,
+                    0.0706
+                  ],
                   "alpha": 0.12,
                   "hex": "#7c2d12"
                 },
@@ -2435,7 +2811,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.4863, 0.1765, 0.0706],
+                  "components": [
+                    0.4863,
+                    0.1765,
+                    0.0706
+                  ],
                   "alpha": 0.16,
                   "hex": "#7c2d12"
                 },
@@ -2464,7 +2844,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.4863, 0.1765, 0.0706],
+                  "components": [
+                    0.4863,
+                    0.1765,
+                    0.0706
+                  ],
                   "alpha": 0.2,
                   "hex": "#7c2d12"
                 },
@@ -2495,7 +2879,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.1098, 0.0392, 0],
+                  "components": [
+                    0.1098,
+                    0.0392,
+                    0
+                  ],
                   "alpha": 0.55,
                   "hex": "#1c0a00"
                 },
@@ -2519,7 +2907,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.08,
                   "hex": "#ffffff"
                 },
@@ -2548,7 +2940,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.1098, 0.0392, 0],
+                  "components": [
+                    0.1098,
+                    0.0392,
+                    0
+                  ],
                   "alpha": 0.7,
                   "hex": "#1c0a00"
                 },
@@ -2572,7 +2968,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.1,
                   "hex": "#ffffff"
                 },
@@ -2601,7 +3001,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [0.1098, 0.0392, 0],
+                  "components": [
+                    0.1098,
+                    0.0392,
+                    0
+                  ],
                   "alpha": 0.8,
                   "hex": "#1c0a00"
                 },
@@ -2625,7 +3029,11 @@
               {
                 "color": {
                   "colorSpace": "srgb",
-                  "components": [1, 1, 1],
+                  "components": [
+                    1,
+                    1,
+                    1
+                  ],
                   "alpha": 0.12,
                   "hex": "#ffffff"
                 },
