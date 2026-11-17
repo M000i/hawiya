@@ -234,6 +234,21 @@ body {
   block-size: 24px;
   display: inline-flex;
 }
+/* An icon style's container (task 3.10): the same shapes as in the picker. */
+.r-extra .hw-icon--circle,
+.r-extra .hw-icon--square,
+.r-extra .hw-icon--rounded {
+  inline-size: 36px;
+  block-size: 36px;
+  padding: 7px;
+  border: 1px solid var(--r-border);
+}
+.r-extra .hw-icon--circle {
+  border-radius: 50%;
+}
+.r-extra .hw-icon--rounded {
+  border-radius: 8px;
+}
 .r-extra .hw-icon svg {
   inline-size: 100%;
   block-size: 100%;

@@ -460,3 +460,24 @@ test('numeric elements and settings: 8 scales, 8 corners, 10 shadows with dark v
   const modes = T.modes.map((t) => `${t.tokens.mode.default.$value}/${t.tokens.mode.switch.$value}`).sort();
   assert.deepEqual(modes, ['dark/none', 'dark/offered', 'light/none', 'light/offered', 'system/offered']);
 });
+
+// Task 3.10 (R-047): icon styles combine library, weight, fill and container; CC BY sets are named in the notices.
+test('icons: 25+ styles across libraries, weights, fills and containers; CC BY sets credited in the notices', () => {
+  const icons = lib.templates.icons;
+  assert.ok(icons.length >= 25, `${icons.length} icon styles`);
+  const seen = (k) => new Set(icons.map((t) => t.extras[k]));
+  assert.ok(seen('library').size >= 15, 'every confirmed library');
+  for (const w of ['thin', 'light', 'regular', 'bold']) assert.ok(seen('weight').has(w), w);
+  for (const f of ['outline', 'filled', 'duotone']) assert.ok(seen('fill').has(f), f);
+  for (const c of ['none', 'circle', 'square', 'rounded']) assert.ok(seen('container').has(c), c);
+  for (const t of icons) {
+    // The chosen fill is one the samples have (the extraction tool drew it).
+    assert.ok(Array.isArray(t.extras.samples[t.extras.fill]), `${t.id}: ${t.extras.fill} samples`);
+  }
+  const notices = fs.readFileSync(path.join(ROOT, 'THIRD_PARTY_NOTICES.md'), 'utf8');
+  for (const t of icons) {
+    const s = sources.find((x) => x.name === t.source.name);
+    if (s.license !== 'CC-BY-4.0') continue;
+    assert.ok(notices.includes(`## ${s.name}\n`) && notices.includes(s.note), `${t.id}: ${s.name} credited`);
+  }
+});

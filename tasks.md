@@ -1825,7 +1825,7 @@
     - المراجعة: ذاتية (مهمة B). مؤجلة: B-072 (المفتاح لا يصل للملفات الناتجة) و B-073.
     - انحرافات: ملفات خارج المتوقعة (الكود والاختبارات أعلاه، و `axes.json`)؛ والقوالب الثلاثة المراجَعة للوضع تغيّرت بإضافة المفتاح (`offered`) فأُعيد بناء بيانات الصفحة.
 
-- [ ] **3.10** أنماط الأيقونات (25+)
+- [x] **3.10** أنماط الأيقونات (25+)
   - الخطورة: B — محتوى
   - الحجم: متوسطة
   - تحقق المتطلبات: R-047
@@ -1834,7 +1834,30 @@
   - معيار القبول: 25 نمطًا أو أكثر من تركيب المكتبة والوزن والتعبئة والحاوية؛ المصادر ذات رخصة CC BY مذكورة في الإشعارات؛ الفحص أخضر
   - الاختبار: `npm run check`
   - ما ستراه أنت: افتح صفحة المراجعة على الأيقونات واعتمد ما يصلح
-  - دليل الإكمال: —
+  - دليل الإكمال:
+    - الملفات: `library/elements/icons.json` (15 نمطًا جديدًا بحالة «مسودة»؛ المجموع 32 من 15 مكتبة: أوزان رفيع جدًا وخفيف وعادي وعريض، وتعبئات مفرغة ومصمتة وبلونين، وحاويات بلا ودائرة ومربع ومربع مدوّر؛ وعيّناتها استخرجتها `node tools/icons-extract.js`)، `tools/review/review.js` و `review.css` (صف الأيقونات الأربع عشرة في بطاقة النمط صار يرسم حاوية النمط)، `tests/library.test.js` و `tests/e2e/review.spec.js`.
+    - مصادر CC BY (Solar و Streamline و IconaMoon و Basil) مذكورة في `THIRD_PARTY_NOTICES.md` بسطر نسبة منذ 3.5، والاختبار الجديد يتأكد من ذلك لكل نمط منها.
+    - `node tools/icons-extract.js` (آخر الأسطر):
+      ```
+      icons-iconamoon-fill-circle: outline, filled, duotone (14 icons)
+      icons-iconamoon-light: outline (14 icons)
+      icons-basil-solid-rounded: outline, filled (14 icons)
+      icons-lucide-circle: outline (14 icons)
+      icons-tabler-rounded: outline (14 icons)
+      ```
+    - `npm run check`:
+      ```
+        140 contrast checks; 67 sources, licenses allowed, none forbidden
+        لا تكرار — no duplicates: 8598 comparisons, every two templates differ in two axes
+        THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (13 files)
+      نجاح: فُحص 241 تمبلت (37 مراجَع، 204 مسودة) و 2 هوية بلا أي مخالفة
+      success: 241 templates (37 reviewed, 204 drafts), 2 identities checked, no problem
+      ```
+      `npm test`: «ℹ tests 580 / ℹ pass 580 / ℹ fail 0»؛ `npm run test:e2e`: «130 passed (27.8s)»؛ `npm run test:golden`: 12 من 12؛ `npm run lint`: 0 أخطاء (تحذيران قديمان)؛ `npm run format:check`: نجاح؛ `npm run build`: «37 templates published, 204 drafts left out».
+    - فحص بالعين في صفحة المراجعة (نسخة مؤقتة): تبويب «الأيقونات 5/32»؛ لوحة مقارنة للأنماط الجديدة أظهرت الحاويات والتعبئات والأيقونات ذات اللونين، والأسهم معكوسة في العربي.
+    - التخريب المتعمد: 7 حالات (نمط ينسخ حاوية نمط آخر فيصير شبه مكرر، نمط يفقد حاويته، نمط مصمت بلا عيّنات مصمتة، حذف سطر نسبة Solar، 24 نمطًا فقط، صفحة المراجعة تتجاهل الحاوية، و 25 نمطًا كحالة حدّ يجب أن تنجح) ← الستة اكتُشفت وحالة الحد نجحت.
+    - المراجعة: ذاتية (مهمة B).
+    - انحرافات: `tools/review/review.js` و `review.css` والاختبارات خارج الملفات المتوقعة (لترى الحاوية في صف الأيقونات وأنت تعتمد).
 
 - [ ] **3.11** الأزرار (22+)
   - الخطورة: B — محتوى

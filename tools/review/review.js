@@ -256,7 +256,8 @@
       box.appendChild(el('span', 'r-meta', t('icons')));
       H.icons.MEANINGS.forEach(function (meaning) {
         var icon = H.icons.render(tpl, meaning, {
-          fill: ex.fill === 'filled' || ex.fill === 'duotone' ? ex.fill : 'outline'
+          fill: ex.fill === 'filled' || ex.fill === 'duotone' ? ex.fill : 'outline',
+          container: ex.container // circle, square or rounded (icons.js allows only these), task 3.10
         });
         if (icon) box.appendChild(icon);
       });

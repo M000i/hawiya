@@ -259,3 +259,29 @@ test('a shadow template shows each size on a light and a dark surface', async ({
     fs.rmSync(L.dir, { recursive: true, force: true });
   }
 });
+
+// Task 3.10: an icon style's sample row shows its container and its fill.
+test('an icon style shows its icons in its container and fill', async ({ page }) => {
+  const L = library();
+  const s = await start(L.lib);
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  try {
+    await page.goto(s.url);
+    await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
+    await page.locator('.r-tab[data-element="icons"]').click();
+    const row = page.locator('.r-card[data-template="icons-phosphor-fill-circle"] .r-extra');
+    await expect(row.locator('.hw-icon')).toHaveCount(14);
+    await expect(row.locator('.hw-icon--circle')).toHaveCount(14);
+    const radius = await row
+      .locator('.hw-icon')
+      .first()
+      .evaluate((n) => getComputedStyle(n).borderRadius);
+    expect(radius).toBe('50%');
+    await expect(page.locator('.r-card[data-template="icons-lucide-outline"] .r-extra .hw-icon--none')).toHaveCount(14);
+  } finally {
+    s.child.kill();
+    fs.rmSync(L.dir, { recursive: true, force: true });
+  }
+});
