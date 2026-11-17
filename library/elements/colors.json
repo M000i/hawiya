@@ -7,16 +7,8 @@
       "ar": "أزرق وبنفسجي",
       "en": "Blue and violet"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -28,11 +20,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1451,
-              0.3882,
-              0.9216
-            ],
+            "components": [0.1451, 0.3882, 0.9216],
             "hex": "#2563eb"
           }
         },
@@ -40,11 +28,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4863,
-              0.2275,
-              0.9294
-            ],
+            "components": [0.4863, 0.2275, 0.9294],
             "hex": "#7c3aed"
           }
         }
@@ -67,7 +51,7 @@
     },
     "status": {
       "state": "reviewed",
-      "reviewedAt": "2026-11-15"
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -78,16 +62,8 @@
       "ar": "أخضر مزرق وكهرماني",
       "en": "Teal and amber"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -99,11 +75,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0588,
-              0.4627,
-              0.4314
-            ],
+            "components": [0.0588, 0.4627, 0.4314],
             "hex": "#0f766e"
           }
         },
@@ -111,11 +83,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.851,
-              0.4667,
-              0.0235
-            ],
+            "components": [0.851, 0.4667, 0.0235],
             "hex": "#d97706"
           }
         }
@@ -149,16 +117,8 @@
       "ar": "وردي ونيلي",
       "en": "Rose and indigo"
     },
-    "tags": [
-      "vivid",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -170,11 +130,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8824,
-              0.1137,
-              0.2824
-            ],
+            "components": [0.8824, 0.1137, 0.2824],
             "hex": "#e11d48"
           }
         },
@@ -182,11 +138,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3098,
-              0.2745,
-              0.898
-            ],
+            "components": [0.3098, 0.2745, 0.898],
             "hex": "#4f46e5"
           }
         }
@@ -209,7 +161,7 @@
     },
     "status": {
       "state": "reviewed",
-      "reviewedAt": "2026-11-15"
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -220,16 +172,8 @@
       "ar": "أزرق سماوي وبرتقالي",
       "en": "Sky and orange"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -241,11 +185,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0118,
-              0.4118,
-              0.6314
-            ],
+            "components": [0.0118, 0.4118, 0.6314],
             "hex": "#0369a1"
           }
         },
@@ -253,11 +193,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9765,
-              0.451,
-              0.0863
-            ],
+            "components": [0.9765, 0.451, 0.0863],
             "hex": "#f97316"
           }
         }
@@ -279,7 +215,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -290,16 +227,8 @@
       "ar": "زمردي وليموني",
       "en": "Emerald and lime"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -311,11 +240,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0157,
-              0.4706,
-              0.3412
-            ],
+            "components": [0.0157, 0.4706, 0.3412],
             "hex": "#047857"
           }
         },
@@ -323,11 +248,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3961,
-              0.6392,
-              0.051
-            ],
+            "components": [0.3961, 0.6392, 0.051],
             "hex": "#65a30d"
           }
         }
@@ -349,7 +270,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -360,16 +282,8 @@
       "ar": "نيلي وزهري",
       "en": "Indigo and pink"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -381,11 +295,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2627,
-              0.2196,
-              0.7922
-            ],
+            "components": [0.2627, 0.2196, 0.7922],
             "hex": "#4338ca"
           }
         },
@@ -393,11 +303,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9255,
-              0.2824,
-              0.6
-            ],
+            "components": [0.9255, 0.2824, 0.6],
             "hex": "#ec4899"
           }
         }
@@ -419,7 +325,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -430,16 +337,8 @@
       "ar": "رمادي أردوازي وأزرق سماوي",
       "en": "Slate and sky"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -451,11 +350,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2,
-              0.2549,
-              0.3333
-            ],
+            "components": [0.2, 0.2549, 0.3333],
             "hex": "#334155"
           }
         },
@@ -463,11 +358,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0549,
-              0.6471,
-              0.9137
-            ],
+            "components": [0.0549, 0.6471, 0.9137],
             "hex": "#0ea5e9"
           }
         }
@@ -489,7 +380,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -500,16 +392,8 @@
       "ar": "أحمر وكهرماني",
       "en": "Red and amber"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -521,11 +405,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7255,
-              0.1098,
-              0.1098
-            ],
+            "components": [0.7255, 0.1098, 0.1098],
             "hex": "#b91c1c"
           }
         },
@@ -533,11 +413,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9608,
-              0.6196,
-              0.0431
-            ],
+            "components": [0.9608, 0.6196, 0.0431],
             "hex": "#f59e0b"
           }
         }
@@ -559,7 +435,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -570,16 +447,8 @@
       "ar": "بنفسجي وفوشي",
       "en": "Violet and fuchsia"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -591,11 +460,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4275,
-              0.1569,
-              0.851
-            ],
+            "components": [0.4275, 0.1569, 0.851],
             "hex": "#6d28d9"
           }
         },
@@ -603,11 +468,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.851,
-              0.2745,
-              0.9373
-            ],
+            "components": [0.851, 0.2745, 0.9373],
             "hex": "#d946ef"
           }
         }
@@ -629,7 +490,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -640,16 +502,8 @@
       "ar": "سماوي ووردي",
       "en": "Cyan and rose"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -661,11 +515,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0549,
-              0.4549,
-              0.5647
-            ],
+            "components": [0.0549, 0.4549, 0.5647],
             "hex": "#0e7490"
           }
         },
@@ -673,11 +523,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9569,
-              0.2471,
-              0.3686
-            ],
+            "components": [0.9569, 0.2471, 0.3686],
             "hex": "#f43f5e"
           }
         }
@@ -699,7 +545,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -710,16 +557,8 @@
       "ar": "أخضر وأصفر",
       "en": "Green and yellow"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -731,11 +570,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0824,
-              0.502,
-              0.2392
-            ],
+            "components": [0.0824, 0.502, 0.2392],
             "hex": "#15803d"
           }
         },
@@ -743,11 +578,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9176,
-              0.702,
-              0.0314
-            ],
+            "components": [0.9176, 0.702, 0.0314],
             "hex": "#eab308"
           }
         }
@@ -769,7 +600,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -780,16 +612,8 @@
       "ar": "برتقالي وأخضر مزرق",
       "en": "Orange and teal"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -801,11 +625,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7608,
-              0.2549,
-              0.0471
-            ],
+            "components": [0.7608, 0.2549, 0.0471],
             "hex": "#c2410c"
           }
         },
@@ -813,11 +633,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.051,
-              0.5804,
-              0.5333
-            ],
+            "components": [0.051, 0.5804, 0.5333],
             "hex": "#0d9488"
           }
         }
@@ -839,7 +655,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -850,16 +667,8 @@
       "ar": "أرجواني وليموني",
       "en": "Purple and lime"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -871,11 +680,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4941,
-              0.1333,
-              0.8078
-            ],
+            "components": [0.4941, 0.1333, 0.8078],
             "hex": "#7e22ce"
           }
         },
@@ -883,11 +688,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5176,
-              0.8,
-              0.0863
-            ],
+            "components": [0.5176, 0.8, 0.0863],
             "hex": "#84cc16"
           }
         }
@@ -909,7 +710,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -920,16 +722,8 @@
       "ar": "فوشي وسماوي",
       "en": "Fuchsia and cyan"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -941,11 +735,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6353,
-              0.1098,
-              0.6863
-            ],
+            "components": [0.6353, 0.1098, 0.6863],
             "hex": "#a21caf"
           }
         },
@@ -953,11 +743,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0314,
-              0.5686,
-              0.698
-            ],
+            "components": [0.0314, 0.5686, 0.698],
             "hex": "#0891b2"
           }
         }
@@ -979,7 +765,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -990,16 +777,8 @@
       "ar": "رمادي حجري وبرتقالي",
       "en": "Stone and orange"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1011,11 +790,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2667,
-              0.251,
-              0.2353
-            ],
+            "components": [0.2667, 0.251, 0.2353],
             "hex": "#44403c"
           }
         },
@@ -1023,11 +798,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9176,
-              0.3451,
-              0.0471
-            ],
+            "components": [0.9176, 0.3451, 0.0471],
             "hex": "#ea580c"
           }
         }
@@ -1049,7 +820,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1060,16 +832,8 @@
       "ar": "رمادي معدني وزمردي",
       "en": "Zinc and emerald"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1081,11 +845,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1529,
-              0.1529,
-              0.1647
-            ],
+            "components": [0.1529, 0.1529, 0.1647],
             "hex": "#27272a"
           }
         },
@@ -1093,11 +853,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0627,
-              0.7255,
-              0.5059
-            ],
+            "components": [0.0627, 0.7255, 0.5059],
             "hex": "#10b981"
           }
         }
@@ -1119,7 +875,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1130,16 +887,8 @@
       "ar": "أزرق وأزرق سماوي",
       "en": "Blue and sky"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1151,11 +900,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1176,
-              0.251,
-              0.6863
-            ],
+            "components": [0.1176, 0.251, 0.6863],
             "hex": "#1e40af"
           }
         },
@@ -1163,11 +908,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2196,
-              0.7412,
-              0.9725
-            ],
+            "components": [0.2196, 0.7412, 0.9725],
             "hex": "#38bdf8"
           }
         }
@@ -1189,7 +930,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1200,16 +942,8 @@
       "ar": "زهري ونيلي",
       "en": "Pink and indigo"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1221,11 +955,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7451,
-              0.0941,
-              0.3647
-            ],
+            "components": [0.7451, 0.0941, 0.3647],
             "hex": "#be185d"
           }
         },
@@ -1233,11 +963,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3882,
-              0.4,
-              0.9451
-            ],
+            "components": [0.3882, 0.4, 0.9451],
             "hex": "#6366f1"
           }
         }
@@ -1259,7 +985,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1270,16 +997,8 @@
       "ar": "كهرماني وأزرق",
       "en": "Amber and blue"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1291,11 +1010,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7059,
-              0.3255,
-              0.0353
-            ],
+            "components": [0.7059, 0.3255, 0.0353],
             "hex": "#b45309"
           }
         },
@@ -1303,11 +1018,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2314,
-              0.5098,
-              0.9647
-            ],
+            "components": [0.2314, 0.5098, 0.9647],
             "hex": "#3b82f6"
           }
         }
@@ -1329,7 +1040,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1340,16 +1052,8 @@
       "ar": "أخضر مزرق وزهري",
       "en": "Teal and pink"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1361,11 +1065,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0667,
-              0.3686,
-              0.349
-            ],
+            "components": [0.0667, 0.3686, 0.349],
             "hex": "#115e59"
           }
         },
@@ -1373,11 +1073,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8588,
-              0.1529,
-              0.4667
-            ],
+            "components": [0.8588, 0.1529, 0.4667],
             "hex": "#db2777"
           }
         }
@@ -1399,7 +1095,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1410,16 +1107,8 @@
       "ar": "طماطمي وسماوي",
       "en": "Tomato and cyan"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1431,11 +1120,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.898,
-              0.302,
-              0.1804
-            ],
+            "components": [0.898, 0.302, 0.1804],
             "hex": "#e54d2e"
           }
         },
@@ -1443,11 +1128,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.6353,
-              0.7804
-            ],
+            "components": [0, 0.6353, 0.7804],
             "hex": "#00a2c7"
           }
         }
@@ -1469,7 +1150,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1480,16 +1162,8 @@
       "ar": "أحمر ويشمي",
       "en": "Red and jade"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1501,11 +1175,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.898,
-              0.2824,
-              0.302
-            ],
+            "components": [0.898, 0.2824, 0.302],
             "hex": "#e5484d"
           }
         },
@@ -1513,11 +1183,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1608,
-              0.6392,
-              0.5137
-            ],
+            "components": [0.1608, 0.6392, 0.5137],
             "hex": "#29a383"
           }
         }
@@ -1539,7 +1205,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1550,16 +1217,8 @@
       "ar": "ياقوتي وسوسني",
       "en": "Ruby and iris"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1571,11 +1230,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.898,
-              0.2745,
-              0.4
-            ],
+            "components": [0.898, 0.2745, 0.4],
             "hex": "#e54666"
           }
         },
@@ -1583,11 +1238,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3569,
-              0.3569,
-              0.8392
-            ],
+            "components": [0.3569, 0.3569, 0.8392],
             "hex": "#5b5bd6"
           }
         }
@@ -1609,7 +1260,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1620,16 +1272,8 @@
       "ar": "قرمزي وعشبي",
       "en": "Crimson and grass"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1641,11 +1285,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9137,
-              0.2392,
-              0.5098
-            ],
+            "components": [0.9137, 0.2392, 0.5098],
             "hex": "#e93d82"
           }
         },
@@ -1653,11 +1293,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2745,
-              0.6549,
-              0.3451
-            ],
+            "components": [0.2745, 0.6549, 0.3451],
             "hex": "#46a758"
           }
         }
@@ -1679,7 +1315,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1690,16 +1327,8 @@
       "ar": "زهري ونعناعي",
       "en": "Pink and mint"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1711,11 +1340,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8392,
-              0.251,
-              0.6235
-            ],
+            "components": [0.8392, 0.251, 0.6235],
             "hex": "#d6409f"
           }
         },
@@ -1723,11 +1348,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5255,
-              0.9176,
-              0.8314
-            ],
+            "components": [0.5255, 0.9176, 0.8314],
             "hex": "#86ead4"
           }
         }
@@ -1749,7 +1370,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1760,16 +1382,8 @@
       "ar": "برقوقي وليموني",
       "en": "Plum and lime"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1781,11 +1395,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6706,
-              0.2902,
-              0.7294
-            ],
+            "components": [0.6706, 0.2902, 0.7294],
             "hex": "#ab4aba"
           }
         },
@@ -1793,11 +1403,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7412,
-              0.9333,
-              0.3882
-            ],
+            "components": [0.7412, 0.9333, 0.3882],
             "hex": "#bdee63"
           }
         }
@@ -1819,7 +1425,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1830,16 +1437,8 @@
       "ar": "أرجواني وكهرماني",
       "en": "Purple and amber"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1851,11 +1450,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5569,
-              0.3059,
-              0.7765
-            ],
+            "components": [0.5569, 0.3059, 0.7765],
             "hex": "#8e4ec6"
           }
         },
@@ -1863,11 +1458,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.7725,
-              0.2392
-            ],
+            "components": [1, 0.7725, 0.2392],
             "hex": "#ffc53d"
           }
         }
@@ -1889,7 +1480,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1900,16 +1492,8 @@
       "ar": "بنفسجي وبرتقالي",
       "en": "Violet and orange"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1921,11 +1505,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4314,
-              0.3373,
-              0.8118
-            ],
+            "components": [0.4314, 0.3373, 0.8118],
             "hex": "#6e56cf"
           }
         },
@@ -1933,11 +1513,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8,
-              0.3059,
-              0
-            ],
+            "components": [0.8, 0.3059, 0],
             "hex": "#cc4e00"
           }
         }
@@ -1959,7 +1535,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1970,16 +1547,8 @@
       "ar": "سوسني وأصفر",
       "en": "Iris and yellow"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -1991,11 +1560,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3569,
-              0.3569,
-              0.8392
-            ],
+            "components": [0.3569, 0.3569, 0.8392],
             "hex": "#5b5bd6"
           }
         },
@@ -2003,11 +1568,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.902,
-              0.1608
-            ],
+            "components": [1, 0.902, 0.1608],
             "hex": "#ffe629"
           }
         }
@@ -2029,7 +1590,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2040,16 +1602,8 @@
       "ar": "نيلي وطماطمي",
       "en": "Indigo and tomato"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2061,11 +1615,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2431,
-              0.3882,
-              0.8667
-            ],
+            "components": [0.2431, 0.3882, 0.8667],
             "hex": "#3e63dd"
           }
         },
@@ -2073,11 +1623,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.898,
-              0.302,
-              0.1804
-            ],
+            "components": [0.898, 0.302, 0.1804],
             "hex": "#e54d2e"
           }
         }
@@ -2099,7 +1645,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2110,16 +1657,8 @@
       "ar": "أزرق وأزرق سماوي (راديكس)",
       "en": "Blue and sky (Radix Colors)"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2131,11 +1670,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.5647,
-              1
-            ],
+            "components": [0, 0.5647, 1],
             "hex": "#0090ff"
           }
         },
@@ -2143,11 +1678,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4863,
-              0.8863,
-              0.9961
-            ],
+            "components": [0.4863, 0.8863, 0.9961],
             "hex": "#7ce2fe"
           }
         }
@@ -2169,7 +1700,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2180,16 +1712,8 @@
       "ar": "سماوي وزهري",
       "en": "Cyan and pink"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2201,11 +1725,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.6353,
-              0.7804
-            ],
+            "components": [0, 0.6353, 0.7804],
             "hex": "#00a2c7"
           }
         },
@@ -2213,11 +1733,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8392,
-              0.251,
-              0.6235
-            ],
+            "components": [0.8392, 0.251, 0.6235],
             "hex": "#d6409f"
           }
         }
@@ -2239,7 +1755,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2250,16 +1767,8 @@
       "ar": "أخضر مزرق وقرمزي",
       "en": "Teal and crimson"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2271,11 +1780,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0706,
-              0.6471,
-              0.5804
-            ],
+            "components": [0.0706, 0.6471, 0.5804],
             "hex": "#12a594"
           }
         },
@@ -2283,11 +1788,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9137,
-              0.2392,
-              0.5098
-            ],
+            "components": [0.9137, 0.2392, 0.5098],
             "hex": "#e93d82"
           }
         }
@@ -2309,7 +1810,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2320,16 +1822,8 @@
       "ar": "يشمي وبنفسجي",
       "en": "Jade and violet"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2341,11 +1835,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1608,
-              0.6392,
-              0.5137
-            ],
+            "components": [0.1608, 0.6392, 0.5137],
             "hex": "#29a383"
           }
         },
@@ -2353,11 +1843,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4314,
-              0.3373,
-              0.8118
-            ],
+            "components": [0.4314, 0.3373, 0.8118],
             "hex": "#6e56cf"
           }
         }
@@ -2379,7 +1865,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2390,16 +1877,8 @@
       "ar": "أخضر وأرجواني",
       "en": "Green and purple"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2411,11 +1890,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1882,
-              0.6431,
-              0.4235
-            ],
+            "components": [0.1882, 0.6431, 0.4235],
             "hex": "#30a46c"
           }
         },
@@ -2423,11 +1898,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5569,
-              0.3059,
-              0.7765
-            ],
+            "components": [0.5569, 0.3059, 0.7765],
             "hex": "#8e4ec6"
           }
         }
@@ -2449,7 +1920,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2460,16 +1932,8 @@
       "ar": "عشبي ونيلي",
       "en": "Grass and indigo"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2481,11 +1945,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2745,
-              0.6549,
-              0.3451
-            ],
+            "components": [0.2745, 0.6549, 0.3451],
             "hex": "#46a758"
           }
         },
@@ -2493,11 +1953,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2431,
-              0.3882,
-              0.8667
-            ],
+            "components": [0.2431, 0.3882, 0.8667],
             "hex": "#3e63dd"
           }
         }
@@ -2519,7 +1975,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2530,16 +1987,8 @@
       "ar": "بني وأخضر مزرق",
       "en": "Brown and teal"
     },
-    "tags": [
-      "luxury",
-      "retro"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "retro"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2551,11 +2000,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6784,
-              0.498,
-              0.3451
-            ],
+            "components": [0.6784, 0.498, 0.3451],
             "hex": "#ad7f58"
           }
         },
@@ -2563,11 +2008,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0706,
-              0.6471,
-              0.5804
-            ],
+            "components": [0.0706, 0.6471, 0.5804],
             "hex": "#12a594"
           }
         }
@@ -2589,7 +2030,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2600,16 +2042,8 @@
       "ar": "برونزي وأزرق",
       "en": "Bronze and blue"
     },
-    "tags": [
-      "luxury",
-      "retro"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "retro"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2621,11 +2055,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6314,
-              0.502,
-              0.4471
-            ],
+            "components": [0.6314, 0.502, 0.4471],
             "hex": "#a18072"
           }
         },
@@ -2633,11 +2063,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.5647,
-              1
-            ],
+            "components": [0, 0.5647, 1],
             "hex": "#0090ff"
           }
         }
@@ -2659,7 +2085,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2670,16 +2097,8 @@
       "ar": "ذهبي وبرقوقي",
       "en": "Gold and plum"
     },
-    "tags": [
-      "luxury",
-      "retro"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "retro"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2691,11 +2110,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5922,
-              0.5137,
-              0.3961
-            ],
+            "components": [0.5922, 0.5137, 0.3961],
             "hex": "#978365"
           }
         },
@@ -2703,11 +2118,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6706,
-              0.2902,
-              0.7294
-            ],
+            "components": [0.6706, 0.2902, 0.7294],
             "hex": "#ab4aba"
           }
         }
@@ -2729,7 +2140,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2740,16 +2152,8 @@
       "ar": "برتقالي وأخضر",
       "en": "Orange and green"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2761,11 +2165,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9686,
-              0.4196,
-              0.0824
-            ],
+            "components": [0.9686, 0.4196, 0.0824],
             "hex": "#f76b15"
           }
         },
@@ -2773,11 +2173,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1882,
-              0.6431,
-              0.4235
-            ],
+            "components": [0.1882, 0.6431, 0.4235],
             "hex": "#30a46c"
           }
         }
@@ -2799,7 +2195,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2810,16 +2207,8 @@
       "ar": "نيلي وبرتقالي",
       "en": "Indigo and orange"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2831,11 +2220,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2314,
-              0.3569,
-              0.8588
-            ],
+            "components": [0.2314, 0.3569, 0.8588],
             "hex": "#3b5bdb"
           }
         },
@@ -2843,11 +2228,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9922,
-              0.4941,
-              0.0784
-            ],
+            "components": [0.9922, 0.4941, 0.0784],
             "hex": "#fd7e14"
           }
         }
@@ -2869,7 +2250,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2880,16 +2262,8 @@
       "ar": "أزرق وأصفر",
       "en": "Blue and yellow"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2901,11 +2275,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.098,
-              0.4431,
-              0.7608
-            ],
+            "components": [0.098, 0.4431, 0.7608],
             "hex": "#1971c2"
           }
         },
@@ -2913,11 +2283,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9804,
-              0.6902,
-              0.0196
-            ],
+            "components": [0.9804, 0.6902, 0.0196],
             "hex": "#fab005"
           }
         }
@@ -2939,7 +2305,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -2950,16 +2317,8 @@
       "ar": "سماوي وأحمر",
       "en": "Cyan and red"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -2971,11 +2330,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0471,
-              0.5216,
-              0.6
-            ],
+            "components": [0.0471, 0.5216, 0.6],
             "hex": "#0c8599"
           }
         },
@@ -2983,11 +2338,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9804,
-              0.3216,
-              0.3216
-            ],
+            "components": [0.9804, 0.3216, 0.3216],
             "hex": "#fa5252"
           }
         }
@@ -3009,7 +2360,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3020,16 +2372,8 @@
       "ar": "أخضر مزرق وزهري (أوبن كلر)",
       "en": "Teal and pink (Open Color)"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3041,11 +2385,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0353,
-              0.5725,
-              0.4078
-            ],
+            "components": [0.0353, 0.5725, 0.4078],
             "hex": "#099268"
           }
         },
@@ -3053,11 +2393,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8392,
-              0.2,
-              0.4235
-            ],
+            "components": [0.8392, 0.2, 0.4235],
             "hex": "#d6336c"
           }
         }
@@ -3079,7 +2415,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3090,16 +2427,8 @@
       "ar": "أخضر وعنبي",
       "en": "Green and grape"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3111,11 +2440,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1843,
-              0.6196,
-              0.2667
-            ],
+            "components": [0.1843, 0.6196, 0.2667],
             "hex": "#2f9e44"
           }
         },
@@ -3123,11 +2448,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7451,
-              0.2941,
-              0.8588
-            ],
+            "components": [0.7451, 0.2941, 0.8588],
             "hex": "#be4bdb"
           }
         }
@@ -3149,7 +2470,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3160,16 +2482,8 @@
       "ar": "ليموني وبنفسجي",
       "en": "Lime and violet"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3181,11 +2495,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3608,
-              0.5804,
-              0.051
-            ],
+            "components": [0.3608, 0.5804, 0.051],
             "hex": "#5c940d"
           }
         },
@@ -3193,11 +2503,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4745,
-              0.3137,
-              0.949
-            ],
+            "components": [0.4745, 0.3137, 0.949],
             "hex": "#7950f2"
           }
         }
@@ -3219,7 +2525,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3230,16 +2537,8 @@
       "ar": "عنبي وأخضر مزرق",
       "en": "Grape and teal"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3251,11 +2550,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6118,
-              0.2118,
-              0.7098
-            ],
+            "components": [0.6118, 0.2118, 0.7098],
             "hex": "#9c36b5"
           }
         },
@@ -3263,11 +2558,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2196,
-              0.851,
-              0.6627
-            ],
+            "components": [0.2196, 0.851, 0.6627],
             "hex": "#38d9a9"
           }
         }
@@ -3289,7 +2580,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3300,16 +2592,8 @@
       "ar": "بنفسجي وليموني",
       "en": "Violet and lime"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3321,11 +2605,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4039,
-              0.2549,
-              0.851
-            ],
+            "components": [0.4039, 0.2549, 0.851],
             "hex": "#6741d9"
           }
         },
@@ -3333,11 +2613,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4549,
-              0.7216,
-              0.0863
-            ],
+            "components": [0.4549, 0.7216, 0.0863],
             "hex": "#74b816"
           }
         }
@@ -3359,7 +2635,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3370,16 +2647,8 @@
       "ar": "أحمر وسماوي",
       "en": "Red and cyan"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3391,11 +2660,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8784,
-              0.1922,
-              0.1922
-            ],
+            "components": [0.8784, 0.1922, 0.1922],
             "hex": "#e03131"
           }
         },
@@ -3403,11 +2668,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0824,
-              0.6667,
-              0.749
-            ],
+            "components": [0.0824, 0.6667, 0.749],
             "hex": "#15aabf"
           }
         }
@@ -3429,7 +2690,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3440,16 +2702,8 @@
       "ar": "زهري وأخضر",
       "en": "Pink and green"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3461,11 +2715,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.651,
-              0.1176,
-              0.302
-            ],
+            "components": [0.651, 0.1176, 0.302],
             "hex": "#a61e4d"
           }
         },
@@ -3473,11 +2723,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.251,
-              0.7529,
-              0.3412
-            ],
+            "components": [0.251, 0.7529, 0.3412],
             "hex": "#40c057"
           }
         }
@@ -3499,7 +2745,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3510,16 +2757,8 @@
       "ar": "برتقالي وأزرق",
       "en": "Orange and blue"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3531,11 +2770,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9098,
-              0.349,
-              0.0471
-            ],
+            "components": [0.9098, 0.349, 0.0471],
             "hex": "#e8590c"
           }
         },
@@ -3543,11 +2778,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1333,
-              0.5451,
-              0.902
-            ],
+            "components": [0.1333, 0.5451, 0.902],
             "hex": "#228be6"
           }
         }
@@ -3569,7 +2800,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3580,16 +2812,8 @@
       "ar": "رمادي ونيلي",
       "en": "Gray and indigo"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3601,11 +2825,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2039,
-              0.2275,
-              0.251
-            ],
+            "components": [0.2039, 0.2275, 0.251],
             "hex": "#343a40"
           }
         },
@@ -3613,11 +2833,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3608,
-              0.4863,
-              0.9804
-            ],
+            "components": [0.3608, 0.4863, 0.9804],
             "hex": "#5c7cfa"
           }
         }
@@ -3639,7 +2855,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3650,16 +2867,8 @@
       "ar": "أصفر ونيلي",
       "en": "Yellow and indigo"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3671,11 +2880,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.902,
-              0.4667,
-              0
-            ],
+            "components": [0.902, 0.4667, 0],
             "hex": "#e67700"
           }
         },
@@ -3683,11 +2888,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.298,
-              0.4314,
-              0.9608
-            ],
+            "components": [0.298, 0.4314, 0.9608],
             "hex": "#4c6ef5"
           }
         }
@@ -3709,7 +2910,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3720,16 +2922,8 @@
       "ar": "نيلي وزهري (أوبن كلر)",
       "en": "Indigo and pink (Open Color)"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3741,11 +2935,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2118,
-              0.3098,
-              0.7804
-            ],
+            "components": [0.2118, 0.3098, 0.7804],
             "hex": "#364fc7"
           }
         },
@@ -3753,11 +2943,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9412,
-              0.3961,
-              0.5843
-            ],
+            "components": [0.9412, 0.3961, 0.5843],
             "hex": "#f06595"
           }
         }
@@ -3779,7 +2965,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3790,16 +2977,8 @@
       "ar": "أزرق وبرتقالي",
       "en": "Blue and orange"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3811,11 +2990,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0941,
-              0.3922,
-              0.6706
-            ],
+            "components": [0.0941, 0.3922, 0.6706],
             "hex": "#1864ab"
           }
         },
@@ -3823,11 +2998,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.5725,
-              0.1686
-            ],
+            "components": [1, 0.5725, 0.1686],
             "hex": "#ff922b"
           }
         }
@@ -3849,7 +3020,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3860,16 +3032,8 @@
       "ar": "أخضر مزرق وعنبي",
       "en": "Teal and grape"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3881,11 +3045,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0314,
-              0.498,
-              0.3569
-            ],
+            "components": [0.0314, 0.498, 0.3569],
             "hex": "#087f5b"
           }
         },
@@ -3893,11 +3053,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8,
-              0.3647,
-              0.9098
-            ],
+            "components": [0.8, 0.3647, 0.9098],
             "hex": "#cc5de8"
           }
         }
@@ -3919,7 +3075,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -3930,16 +3087,8 @@
       "ar": "عنبي وأصفر",
       "en": "Grape and yellow"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -3951,11 +3100,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5255,
-              0.1804,
-              0.6118
-            ],
+            "components": [0.5255, 0.1804, 0.6118],
             "hex": "#862e9c"
           }
         },
@@ -3963,11 +3108,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.8314,
-              0.2314
-            ],
+            "components": [1, 0.8314, 0.2314],
             "hex": "#ffd43b"
           }
         }
@@ -3989,7 +3130,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4000,16 +3142,8 @@
       "ar": "بنفسجي وأخضر مزرق",
       "en": "Violet and teal"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4021,11 +3155,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3725,
-              0.2392,
-              0.7686
-            ],
+            "components": [0.3725, 0.2392, 0.7686],
             "hex": "#5f3dc4"
           }
         },
@@ -4033,11 +3163,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1255,
-              0.7882,
-              0.5922
-            ],
+            "components": [0.1255, 0.7882, 0.5922],
             "hex": "#20c997"
           }
         }
@@ -4059,7 +3185,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4070,16 +3197,8 @@
       "ar": "أحمر وأزرق",
       "en": "Red and blue"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4091,11 +3210,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7882,
-              0.1647,
-              0.1647
-            ],
+            "components": [0.7882, 0.1647, 0.1647],
             "hex": "#c92a2a"
           }
         },
@@ -4103,11 +3218,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2,
-              0.6039,
-              0.9412
-            ],
+            "components": [0.2, 0.6039, 0.9412],
             "hex": "#339af0"
           }
         }
@@ -4129,7 +3240,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4140,16 +3252,8 @@
       "ar": "رمادي وأحمر",
       "en": "Gray and red"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4161,11 +3265,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2863,
-              0.3137,
-              0.3412
-            ],
+            "components": [0.2863, 0.3137, 0.3412],
             "hex": "#495057"
           }
         },
@@ -4173,11 +3273,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.4196,
-              0.4196
-            ],
+            "components": [1, 0.4196, 0.4196],
             "hex": "#ff6b6b"
           }
         }
@@ -4199,7 +3295,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4210,16 +3307,8 @@
       "ar": "بسيط حديث",
       "en": "Modern Minimal"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4231,11 +3320,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2314,
-              0.5098,
-              0.9647
-            ],
+            "components": [0.2314, 0.5098, 0.9647],
             "hex": "#3b82f6"
           }
         },
@@ -4243,11 +3328,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1451,
-              0.3882,
-              0.9216
-            ],
+            "components": [0.1451, 0.3882, 0.9216],
             "hex": "#2563eb"
           }
         }
@@ -4269,7 +3350,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4280,16 +3362,8 @@
       "ar": "زهر البنفسج",
       "en": "Violet Bloom"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4301,11 +3375,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4392,
-              0.2,
-              1
-            ],
+            "components": [0.4392, 0.2, 1],
             "hex": "#7033ff"
           }
         },
@@ -4313,11 +3383,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2902,
-              0.7843,
-              0.5216
-            ],
+            "components": [0.2902, 0.7843, 0.5216],
             "hex": "#4ac885"
           }
         }
@@ -4339,7 +3405,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4350,16 +3417,8 @@
       "ar": "موس الموكا",
       "en": "Mocha Mousse"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4371,11 +3430,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6392,
-              0.4667,
-              0.3922
-            ],
+            "components": [0.6392, 0.4667, 0.3922],
             "hex": "#a37764"
           }
         },
@@ -4383,11 +3438,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7647,
-              0.6196,
-              0.5333
-            ],
+            "components": [0.7647, 0.6196, 0.5333],
             "hex": "#c39e88"
           }
         }
@@ -4409,7 +3460,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4420,16 +3472,8 @@
       "ar": "علكة وردية",
       "en": "Bubblegum"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4441,11 +3485,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8157,
-              0.3098,
-              0.6
-            ],
+            "components": [0.8157, 0.3098, 0.6],
             "hex": "#d04f99"
           }
         },
@@ -4453,11 +3493,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5412,
-              0.8118,
-              0.8196
-            ],
+            "components": [0.5412, 0.8118, 0.8196],
             "hex": "#8acfd1"
           }
         }
@@ -4479,7 +3515,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4490,16 +3527,8 @@
       "ar": "ضباب الجمشت",
       "en": "Amethyst Haze"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4511,11 +3540,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5412,
-              0.4745,
-              0.6706
-            ],
+            "components": [0.5412, 0.4745, 0.6706],
             "hex": "#8a79ab"
           }
         },
@@ -4523,11 +3548,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.902,
-              0.6471,
-              0.7216
-            ],
+            "components": [0.902, 0.6471, 0.7216],
             "hex": "#e6a5b8"
           }
         }
@@ -4549,7 +3570,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4560,16 +3582,8 @@
       "ar": "دفتر",
       "en": "Notebook"
     },
-    "tags": [
-      "minimal",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4581,11 +3595,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3765,
-              0.3765,
-              0.3765
-            ],
+            "components": [0.3765, 0.3765, 0.3765],
             "hex": "#606060"
           }
         },
@@ -4593,11 +3603,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9529,
-              0.9176,
-              0.7843
-            ],
+            "components": [0.9529, 0.9176, 0.7843],
             "hex": "#f3eac8"
           }
         }
@@ -4619,7 +3625,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4630,16 +3637,8 @@
       "ar": "بستان كوداما",
       "en": "Kodama Grove"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4651,11 +3650,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5529,
-              0.6157,
-              0.3098
-            ],
+            "components": [0.5529, 0.6157, 0.3098],
             "hex": "#8d9d4f"
           }
         },
@@ -4663,11 +3658,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8706,
-              0.8078,
-              0.6275
-            ],
+            "components": [0.8706, 0.8078, 0.6275],
             "hex": "#decea0"
           }
         }
@@ -4689,7 +3680,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4700,16 +3692,8 @@
       "ar": "يوسفي",
       "en": "Tangerine"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4721,11 +3705,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8784,
-              0.3647,
-              0.2196
-            ],
+            "components": [0.8784, 0.3647, 0.2196],
             "hex": "#e05d38"
           }
         },
@@ -4733,11 +3713,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5255,
-              0.6549,
-              0.7843
-            ],
+            "components": [0.5255, 0.6549, 0.7843],
             "hex": "#86a7c8"
           }
         }
@@ -4759,7 +3735,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4770,16 +3747,8 @@
       "ar": "وردة كمومية",
       "en": "Quantum Rose"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4791,11 +3760,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.902,
-              0.0235,
-              0.4784
-            ],
+            "components": [0.902, 0.0235, 0.4784],
             "hex": "#e6067a"
           }
         },
@@ -4803,11 +3768,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.8392,
-              1
-            ],
+            "components": [1, 0.8392, 1],
             "hex": "#ffd6ff"
           }
         }
@@ -4829,7 +3790,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4840,16 +3802,8 @@
       "ar": "تقني جريء",
       "en": "Bold Tech"
     },
-    "tags": [
-      "technical",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["technical", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4861,11 +3815,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5451,
-              0.3608,
-              0.9647
-            ],
+            "components": [0.5451, 0.3608, 0.9647],
             "hex": "#8b5cf6"
           }
         },
@@ -4873,11 +3823,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4275,
-              0.1569,
-              0.851
-            ],
+            "components": [0.4275, 0.1569, 0.851],
             "hex": "#6d28d9"
           }
         }
@@ -4899,7 +3845,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4910,16 +3857,8 @@
       "ar": "فخامة أنيقة",
       "en": "Elegant Luxury"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -4931,11 +3870,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6078,
-              0.1725,
-              0.1725
-            ],
+            "components": [0.6078, 0.1725, 0.1725],
             "hex": "#9b2c2c"
           }
         },
@@ -4943,11 +3878,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9961,
-              0.9529,
-              0.7804
-            ],
+            "components": [0.9961, 0.9529, 0.7804],
             "hex": "#fef3c7"
           }
         }
@@ -4969,7 +3900,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -4980,16 +3912,8 @@
       "ar": "كهرماني بسيط",
       "en": "Amber Minimal"
     },
-    "tags": [
-      "minimal",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5001,11 +3925,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9608,
-              0.6196,
-              0.0431
-            ],
+            "components": [0.9608, 0.6196, 0.0431],
             "hex": "#f59e0b"
           }
         },
@@ -5013,11 +3933,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7059,
-              0.3255,
-              0.0353
-            ],
+            "components": [0.7059, 0.3255, 0.0353],
             "hex": "#b45309"
           }
         }
@@ -5039,7 +3955,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5050,16 +3967,8 @@
       "ar": "بروتالية جديدة",
       "en": "Neo Brutalism"
     },
-    "tags": [
-      "brutalist",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["brutalist", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5071,11 +3980,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.2,
-              0.2
-            ],
+            "components": [1, 0.2, 0.2],
             "hex": "#ff3333"
           }
         },
@@ -5083,11 +3988,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              1,
-              0
-            ],
+            "components": [1, 1, 0],
             "hex": "#ffff00"
           }
         }
@@ -5109,7 +4010,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5120,16 +4022,8 @@
       "ar": "طيني ناعم",
       "en": "Claymorphism"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5141,11 +4035,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3882,
-              0.4,
-              0.9451
-            ],
+            "components": [0.3882, 0.4, 0.9451],
             "hex": "#6366f1"
           }
         },
@@ -5153,11 +4043,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2627,
-              0.2196,
-              0.7922
-            ],
+            "components": [0.2627, 0.2196, 0.7922],
             "hex": "#4338ca"
           }
         }
@@ -5179,7 +4065,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5190,16 +4077,8 @@
       "ar": "سايبربانك",
       "en": "Cyberpunk"
     },
-    "tags": [
-      "retro",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["retro", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5211,11 +4090,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0,
-              0.7843
-            ],
+            "components": [1, 0, 0.7843],
             "hex": "#ff00c8"
           }
         },
@@ -5223,11 +4098,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              1,
-              0.8
-            ],
+            "components": [0, 1, 0.8],
             "hex": "#00ffcc"
           }
         }
@@ -5249,7 +4120,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5260,16 +4132,8 @@
       "ar": "أحلام باستيل",
       "en": "Pastel Dreams"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5281,11 +4145,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6549,
-              0.5451,
-              0.9804
-            ],
+            "components": [0.6549, 0.5451, 0.9804],
             "hex": "#a78bfa"
           }
         },
@@ -5293,11 +4153,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9137,
-              0.8471,
-              0.9922
-            ],
+            "components": [0.9137, 0.8471, 0.9922],
             "hex": "#e9d8fd"
           }
         }
@@ -5319,7 +4175,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5330,16 +4187,8 @@
       "ar": "كافيين",
       "en": "Caffeine"
     },
-    "tags": [
-      "editorial",
-      "retro"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["editorial", "retro"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5351,11 +4200,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3922,
-              0.2902,
-              0.251
-            ],
+            "components": [0.3922, 0.2902, 0.251],
             "hex": "#644a40"
           }
         },
@@ -5363,11 +4208,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.8745,
-              0.7098
-            ],
+            "components": [1, 0.8745, 0.7098],
             "hex": "#ffdfb5"
           }
         }
@@ -5389,7 +4230,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5400,16 +4242,8 @@
       "ar": "نسيم المحيط",
       "en": "Ocean Breeze"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5421,11 +4255,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1333,
-              0.7725,
-              0.3686
-            ],
+            "components": [0.1333, 0.7725, 0.3686],
             "hex": "#22c55e"
           }
         },
@@ -5433,11 +4263,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8196,
-              0.9804,
-              0.898
-            ],
+            "components": [0.8196, 0.9804, 0.898],
             "hex": "#d1fae5"
           }
         }
@@ -5459,7 +4285,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5470,16 +4297,8 @@
       "ar": "أركيد قديم",
       "en": "Retro Arcade"
     },
-    "tags": [
-      "retro",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["retro", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5491,11 +4310,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8275,
-              0.2118,
-              0.5098
-            ],
+            "components": [0.8275, 0.2118, 0.5098],
             "hex": "#d33682"
           }
         },
@@ -5503,11 +4318,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.149,
-              0.5451,
-              0.8235
-            ],
+            "components": [0.149, 0.5451, 0.8235],
             "hex": "#268bd2"
           }
         }
@@ -5529,7 +4340,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5540,16 +4352,8 @@
       "ar": "زهر منتصف الليل",
       "en": "Midnight Bloom"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5561,11 +4365,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4235,
-              0.3608,
-              0.9059
-            ],
+            "components": [0.4235, 0.3608, 0.9059],
             "hex": "#6c5ce7"
           }
         },
@@ -5573,11 +4373,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6314,
-              0.7882,
-              0.949
-            ],
+            "components": [0.6314, 0.7882, 0.949],
             "hex": "#a1c9f2"
           }
         }
@@ -5599,7 +4395,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5610,16 +4407,8 @@
       "ar": "أرض الحلوى",
       "en": "Candyland"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5631,11 +4420,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.7529,
-              0.7961
-            ],
+            "components": [1, 0.7529, 0.7961],
             "hex": "#ffc0cb"
           }
         },
@@ -5643,11 +4428,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5294,
-              0.8078,
-              0.9216
-            ],
+            "components": [0.5294, 0.8078, 0.9216],
             "hex": "#87ceeb"
           }
         }
@@ -5669,7 +4450,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5680,16 +4462,8 @@
       "ar": "أفق الغروب",
       "en": "Sunset Horizon"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5701,11 +4475,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.4941,
-              0.3725
-            ],
+            "components": [1, 0.4941, 0.3725],
             "hex": "#ff7e5f"
           }
         },
@@ -5713,11 +4483,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9961,
-              0.7059,
-              0.4824
-            ],
+            "components": [0.9961, 0.7059, 0.4824],
             "hex": "#feb47b"
           }
         }
@@ -5739,7 +4505,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5750,16 +4517,8 @@
       "ar": "ليلة النجوم",
       "en": "Starry Night"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5771,11 +4530,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2275,
-              0.3569,
-              0.6275
-            ],
+            "components": [0.2275, 0.3569, 0.6275],
             "hex": "#3a5ba0"
           }
         },
@@ -5783,11 +4538,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9686,
-              0.7843,
-              0.451
-            ],
+            "components": [0.9686, 0.7843, 0.451],
             "hex": "#f7c873"
           }
         }
@@ -5809,7 +4560,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5820,16 +4572,8 @@
       "ar": "مادة مظلمة",
       "en": "Darkmatter"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5841,11 +4585,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8471,
-              0.4745,
-              0.2627
-            ],
+            "components": [0.8471, 0.4745, 0.2627],
             "hex": "#d87943"
           }
         },
@@ -5853,11 +4593,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3725,
-              0.5294,
-              0.5294
-            ],
+            "components": [0.3725, 0.5294, 0.5294],
             "hex": "#5f8787"
           }
         }
@@ -5879,7 +4615,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5890,16 +4627,8 @@
       "ar": "بوب ناعم",
       "en": "Soft Pop"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5911,11 +4640,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3098,
-              0.2745,
-              0.898
-            ],
+            "components": [0.3098, 0.2745, 0.898],
             "hex": "#4f46e5"
           }
         },
@@ -5923,11 +4648,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0784,
-              0.7216,
-              0.651
-            ],
+            "components": [0.0784, 0.7216, 0.651],
             "hex": "#14b8a6"
           }
         }
@@ -5949,7 +4670,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -5960,16 +4682,8 @@
       "ar": "حديقة المريمية",
       "en": "Sage Garden"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -5981,11 +4695,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4863,
-              0.5647,
-              0.5098
-            ],
+            "components": [0.4863, 0.5647, 0.5098],
             "hex": "#7c9082"
           }
         },
@@ -5993,11 +4703,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6275,
-              0.6667,
-              0.5333
-            ],
+            "components": [0.6275, 0.6667, 0.5333],
             "hex": "#a0aa88"
           }
         }
@@ -6019,7 +4725,8 @@
       "license": "Apache-2.0"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6030,16 +4737,8 @@
       "ar": "أزرق (shadcn)",
       "en": "Blue (shadcn)"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6051,11 +4750,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0784,
-              0.2784,
-              0.902
-            ],
+            "components": [0.0784, 0.2784, 0.902],
             "hex": "#1447e6"
           }
         },
@@ -6063,11 +4758,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5686,
-              0.7725,
-              1
-            ],
+            "components": [0.5686, 0.7725, 1],
             "hex": "#91c5ff"
           }
         }
@@ -6089,7 +4780,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6100,16 +4792,8 @@
       "ar": "نيلي (shadcn)",
       "en": "Indigo (shadcn)"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6121,11 +4805,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2627,
-              0.1765,
-              0.8431
-            ],
+            "components": [0.2627, 0.1765, 0.8431],
             "hex": "#432dd7"
           }
         },
@@ -6133,11 +4813,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6431,
-              0.7059,
-              1
-            ],
+            "components": [0.6431, 0.7059, 1],
             "hex": "#a4b4ff"
           }
         }
@@ -6159,7 +4835,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6170,16 +4847,8 @@
       "ar": "ليموني (shadcn)",
       "en": "Lime (shadcn)"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6191,11 +4860,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6157,
-              0.898,
-              0
-            ],
+            "components": [0.6157, 0.898, 0],
             "hex": "#9de500"
           }
         },
@@ -6203,11 +4868,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2392,
-              0.3882,
-              0
-            ],
+            "components": [0.2392, 0.3882, 0],
             "hex": "#3d6300"
           }
         }
@@ -6229,7 +4890,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6240,16 +4902,8 @@
       "ar": "وردي (shadcn)",
       "en": "Rose (shadcn)"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6261,11 +4915,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7569,
-              0,
-              0.2275
-            ],
+            "components": [0.7569, 0, 0.2275],
             "hex": "#c1003a"
           }
         },
@@ -6273,11 +4923,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.6392,
-              0.6824
-            ],
+            "components": [1, 0.6392, 0.6824],
             "hex": "#ffa3ae"
           }
         }
@@ -6299,7 +4945,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6310,16 +4957,8 @@
       "ar": "بنفسجي (shadcn)",
       "en": "Violet (shadcn)"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6331,11 +4970,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4392,
-              0.0314,
-              0.9059
-            ],
+            "components": [0.4392, 0.0314, 0.9059],
             "hex": "#7008e7"
           }
         },
@@ -6343,11 +4978,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7686,
-              0.7059,
-              1
-            ],
+            "components": [0.7686, 0.7059, 1],
             "hex": "#c4b4ff"
           }
         }
@@ -6369,7 +5000,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6380,16 +5012,8 @@
       "ar": "أصفر (shadcn)",
       "en": "Yellow (shadcn)"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6401,11 +5025,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9686,
-              0.7882,
-              0
-            ],
+            "components": [0.9686, 0.7882, 0],
             "hex": "#f7c900"
           }
         },
@@ -6413,11 +5033,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7922,
-              0.5412,
-              0
-            ],
+            "components": [0.7922, 0.5412, 0],
             "hex": "#ca8a00"
           }
         }
@@ -6439,7 +5055,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6450,16 +5067,8 @@
       "ar": "هاوية",
       "en": "Abyss"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6471,11 +5080,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.7608,
-              0.9922,
-              0
-            ],
+            "components": [0.7608, 0.9922, 0],
             "hex": "#c2fd00"
           }
         },
@@ -6483,11 +5088,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8078,
-              0.7451,
-              0.9569
-            ],
+            "components": [0.8078, 0.7451, 0.9569],
             "hex": "#cebef4"
           }
         }
@@ -6509,7 +5110,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6520,16 +5122,8 @@
       "ar": "حمضي",
       "en": "Acid"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6541,11 +5135,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.2588,
-              0.9569
-            ],
+            "components": [1, 0.2588, 0.9569],
             "hex": "#ff42f4"
           }
         },
@@ -6553,11 +5143,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8,
-              0.9961,
-              0
-            ],
+            "components": [0.8, 0.9961, 0],
             "hex": "#ccfe00"
           }
         }
@@ -6579,7 +5165,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6590,16 +5177,8 @@
       "ar": "مائي",
       "en": "Aqua"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6611,11 +5190,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0745,
-              0.9255,
-              0.9529
-            ],
+            "components": [0.0745, 0.9255, 0.9529],
             "hex": "#13ecf3"
           }
         },
@@ -6623,11 +5198,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5882,
-              0.4353,
-              0.702
-            ],
+            "components": [0.5882, 0.4353, 0.702],
             "hex": "#966fb3"
           }
         }
@@ -6649,7 +5220,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6660,16 +5232,8 @@
       "ar": "خريف",
       "en": "Autumn"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6681,11 +5245,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.549,
-              0.0118,
-              0.1529
-            ],
+            "components": [0.549, 0.0118, 0.1529],
             "hex": "#8c0327"
           }
         },
@@ -6693,11 +5253,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8471,
-              0.3216,
-              0.3176
-            ],
+            "components": [0.8471, 0.3216, 0.3176],
             "hex": "#d85251"
           }
         }
@@ -6719,7 +5275,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6730,16 +5287,8 @@
       "ar": "أعمال",
       "en": "Business"
     },
-    "tags": [
-      "corporate",
-      "data-dense"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "data-dense"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6751,11 +5300,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1098,
-              0.3059,
-              0.502
-            ],
+            "components": [0.1098, 0.3059, 0.502],
             "hex": "#1c4e80"
           }
         },
@@ -6763,11 +5308,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9176,
-              0.4118,
-              0.2784
-            ],
+            "components": [0.9176, 0.4118, 0.2784],
             "hex": "#ea6947"
           }
         }
@@ -6789,7 +5330,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6800,16 +5342,8 @@
       "ar": "ألوان الطباعة",
       "en": "CMYK"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6821,11 +5355,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2706,
-              0.6824,
-              0.9333
-            ],
+            "components": [0.2706, 0.6824, 0.9333],
             "hex": "#45aeee"
           }
         },
@@ -6833,11 +5363,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.949,
-              0.2039
-            ],
+            "components": [1, 0.949, 0.2039],
             "hex": "#fff234"
           }
         }
@@ -6859,7 +5385,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6870,16 +5397,8 @@
       "ar": "قهوة",
       "en": "Coffee"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6891,11 +5410,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8588,
-              0.5725,
-              0.298
-            ],
+            "components": [0.8588, 0.5725, 0.298],
             "hex": "#db924c"
           }
         },
@@ -6903,11 +5418,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0667,
-              0.3412,
-              0.4275
-            ],
+            "components": [0.0667, 0.3412, 0.4275],
             "hex": "#11576d"
           }
         }
@@ -6929,7 +5440,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -6940,16 +5452,8 @@
       "ar": "مؤسسي",
       "en": "Corporate"
     },
-    "tags": [
-      "corporate",
-      "minimal"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "minimal"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -6961,11 +5465,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.5098,
-              0.7686
-            ],
+            "components": [0, 0.5098, 0.7686],
             "hex": "#0082c4"
           }
         },
@@ -6973,11 +5473,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3804,
-              0.451,
-              0.5529
-            ],
+            "components": [0.3804, 0.451, 0.5529],
             "hex": "#61738d"
           }
         }
@@ -6999,7 +5495,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7010,16 +5507,8 @@
       "ar": "كب كيك",
       "en": "Cupcake"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7031,11 +5520,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2667,
-              0.9216,
-              0.8275
-            ],
+            "components": [0.2667, 0.9216, 0.8275],
             "hex": "#44ebd3"
           }
         },
@@ -7043,11 +5528,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9765,
-              0.7961,
-              0.898
-            ],
+            "components": [0.9765, 0.7961, 0.898],
             "hex": "#f9cbe5"
           }
         }
@@ -7069,7 +5550,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7080,16 +5562,8 @@
       "ar": "سايبربانك (DaisyUI)",
       "en": "Cyberpunk (DaisyUI)"
     },
-    "tags": [
-      "retro",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["retro", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7101,11 +5575,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.4784,
-              0.6078
-            ],
+            "components": [1, 0.4784, 0.6078],
             "hex": "#ff7a9b"
           }
         },
@@ -7113,11 +5583,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.8863,
-              0.9569
-            ],
+            "components": [0, 0.8863, 0.9569],
             "hex": "#00e2f4"
           }
         }
@@ -7139,7 +5605,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7150,16 +5617,8 @@
       "ar": "داكن",
       "en": "Dark"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7171,11 +5630,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.3765,
-              0.3647,
-              1
-            ],
+            "components": [0.3765, 0.3647, 1],
             "hex": "#605dff"
           }
         },
@@ -7183,11 +5638,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9569,
-              0.1882,
-              0.5961
-            ],
+            "components": [0.9569, 0.1882, 0.5961],
             "hex": "#f43098"
           }
         }
@@ -7209,7 +5660,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7220,16 +5672,8 @@
       "ar": "خافت",
       "en": "Dim"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7241,11 +5685,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6235,
-              0.9098,
-              0.5529
-            ],
+            "components": [0.6235, 0.9098, 0.5529],
             "hex": "#9fe88d"
           }
         },
@@ -7253,11 +5693,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.4902,
-              0.3647
-            ],
+            "components": [1, 0.4902, 0.3647],
             "hex": "#ff7d5d"
           }
         }
@@ -7279,7 +5715,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7290,16 +5727,8 @@
       "ar": "خيال",
       "en": "Fantasy"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7311,11 +5740,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4196,
-              0,
-              0.4471
-            ],
+            "components": [0.4196, 0, 0.4471],
             "hex": "#6b0072"
           }
         },
@@ -7323,11 +5748,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.4588,
-              0.6902
-            ],
+            "components": [0, 0.4588, 0.6902],
             "hex": "#0075b0"
           }
         }
@@ -7349,7 +5770,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7360,16 +5782,8 @@
       "ar": "حديقة",
       "en": "Garden"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7381,11 +5795,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9608,
-              0,
-              0.4627
-            ],
+            "components": [0.9608, 0, 0.4627],
             "hex": "#f50076"
           }
         },
@@ -7393,11 +5803,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5569,
-              0.2549,
-              0.3843
-            ],
+            "components": [0.5569, 0.2549, 0.3843],
             "hex": "#8e4162"
           }
         }
@@ -7419,7 +5825,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7430,16 +5837,8 @@
       "ar": "هالوين",
       "en": "Halloween"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7451,11 +5850,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              1,
-              0.6039,
-              0.2
-            ],
+            "components": [1, 0.6039, 0.2],
             "hex": "#ff9a33"
           }
         },
@@ -7463,11 +5858,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4745,
-              0,
-              0.7451
-            ],
+            "components": [0.4745, 0, 0.7451],
             "hex": "#7900be"
           }
         }
@@ -7489,7 +5880,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7500,16 +5892,8 @@
       "ar": "ليل",
       "en": "Night"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7521,11 +5905,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2275,
-              0.7412,
-              0.9686
-            ],
+            "components": [0.2275, 0.7412, 0.9686],
             "hex": "#3abdf7"
           }
         },
@@ -7533,11 +5913,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5059,
-              0.549,
-              0.9725
-            ],
+            "components": [0.5059, 0.549, 0.9725],
             "hex": "#818cf8"
           }
         }
@@ -7559,7 +5935,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7570,16 +5947,8 @@
       "ar": "باستيل",
       "en": "Pastel"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7591,11 +5960,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9098,
-              0.8314,
-              1
-            ],
+            "components": [0.9098, 0.8314, 1],
             "hex": "#e8d4ff"
           }
         },
@@ -7603,11 +5968,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6392,
-              0.949,
-              0.8078
-            ],
+            "components": [0.6392, 0.949, 0.8078],
             "hex": "#a3f2ce"
           }
         }
@@ -7629,7 +5990,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7640,16 +6002,8 @@
       "ar": "سينثويف",
       "en": "Synthwave"
     },
-    "tags": [
-      "retro",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["retro", "vivid"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7661,11 +6015,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9725,
-              0.3804,
-              0.7059
-            ],
+            "components": [0.9725, 0.3804, 0.7059],
             "hex": "#f861b4"
           }
         },
@@ -7673,11 +6023,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4431,
-              0.8196,
-              0.9961
-            ],
+            "components": [0.4431, 0.8196, 0.9961],
             "hex": "#71d1fe"
           }
         }
@@ -7699,7 +6045,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7710,16 +6057,8 @@
       "ar": "فالنتاين",
       "en": "Valentine"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7731,11 +6070,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9569,
-              0.1882,
-              0.5961
-            ],
+            "components": [0.9569, 0.1882, 0.5961],
             "hex": "#f43098"
           }
         },
@@ -7743,11 +6078,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6627,
-              0.2863,
-              1
-            ],
+            "components": [0.6627, 0.2863, 1],
             "hex": "#a949ff"
           }
         }
@@ -7769,7 +6100,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7780,16 +6112,8 @@
       "ar": "شتاء",
       "en": "Winter"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7801,11 +6125,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0,
-              0.4392,
-              0.9294
-            ],
+            "components": [0, 0.4392, 0.9294],
             "hex": "#0070ed"
           }
         },
@@ -7813,11 +6133,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.2745,
-              0.2275,
-              0.6353
-            ],
+            "components": [0.2745, 0.2275, 0.6353],
             "hex": "#463aa2"
           }
         }
@@ -7839,7 +6155,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7850,16 +6167,8 @@
       "ar": "كاتبوتشينو لاتيه: undefined وundefined",
       "en": "Catppuccin Latte: mauve and peach"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7871,11 +6180,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5333,
-              0.2235,
-              0.9373
-            ],
+            "components": [0.5333, 0.2235, 0.9373],
             "hex": "#8839ef"
           }
         },
@@ -7883,11 +6188,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.9961,
-              0.3922,
-              0.0431
-            ],
+            "components": [0.9961, 0.3922, 0.0431],
             "hex": "#fe640b"
           }
         }
@@ -7909,7 +6210,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7920,16 +6222,8 @@
       "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
       "en": "Catppuccin Latte: red and teal (Catppuccin)"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -7941,11 +6235,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8235,
-              0.0588,
-              0.2235
-            ],
+            "components": [0.8235, 0.0588, 0.2235],
             "hex": "#d20f39"
           }
         },
@@ -7953,11 +6243,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0902,
-              0.5725,
-              0.6
-            ],
+            "components": [0.0902, 0.5725, 0.6],
             "hex": "#179299"
           }
         }
@@ -7979,7 +6265,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -7990,16 +6277,8 @@
       "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
       "en": "Catppuccin Latte: sapphire and yellow (Catppuccin)"
     },
-    "tags": [
-      "corporate",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -8011,11 +6290,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.1255,
-              0.6235,
-              0.7098
-            ],
+            "components": [0.1255, 0.6235, 0.7098],
             "hex": "#209fb5"
           }
         },
@@ -8023,11 +6298,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8745,
-              0.5569,
-              0.1137
-            ],
+            "components": [0.8745, 0.5569, 0.1137],
             "hex": "#df8e1d"
           }
         }
@@ -8049,7 +6320,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -8060,16 +6332,8 @@
       "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
       "en": "Catppuccin Latte: lavender and flamingo (Catppuccin)"
     },
-    "tags": [
-      "luxury",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["luxury", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -8081,11 +6345,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.4471,
-              0.5294,
-              0.9922
-            ],
+            "components": [0.4471, 0.5294, 0.9922],
             "hex": "#7287fd"
           }
         },
@@ -8093,11 +6353,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8667,
-              0.4706,
-              0.4706
-            ],
+            "components": [0.8667, 0.4706, 0.4706],
             "hex": "#dd7878"
           }
         }
@@ -8119,7 +6375,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -8130,16 +6387,8 @@
       "ar": "بريمر undefined وundefined",
       "en": "Primer #116329 and #8250df"
     },
-    "tags": [
-      "soft",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["soft", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -8151,11 +6400,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0667,
-              0.3882,
-              0.1608
-            ],
+            "components": [0.0667, 0.3882, 0.1608],
             "hex": "#116329"
           }
         },
@@ -8163,11 +6408,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5098,
-              0.3137,
-              0.8745
-            ],
+            "components": [0.5098, 0.3137, 0.8745],
             "hex": "#8250df"
           }
         }
@@ -8189,7 +6430,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -8200,16 +6442,8 @@
       "ar": "بريمر undefined وundefined (Primer Primitives)",
       "en": "Primer #99286e and #d4a72c (Primer Primitives)"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -8221,11 +6455,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.6,
-              0.1569,
-              0.4314
-            ],
+            "components": [0.6, 0.1569, 0.4314],
             "hex": "#99286e"
           }
         },
@@ -8233,11 +6463,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.8314,
-              0.6549,
-              0.1725
-            ],
+            "components": [0.8314, 0.6549, 0.1725],
             "hex": "#d4a72c"
           }
         }
@@ -8259,7 +6485,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -8270,16 +6497,8 @@
       "ar": "بريمر undefined وundefined (Primer Primitives)",
       "en": "Primer #953800 and #0969da (Primer Primitives)"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0.5,
       "density": 0.5,
@@ -8291,11 +6510,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.5843,
-              0.2196,
-              0
-            ],
+            "components": [0.5843, 0.2196, 0],
             "hex": "#953800"
           }
         },
@@ -8303,11 +6518,7 @@
           "$type": "color",
           "$value": {
             "colorSpace": "srgb",
-            "components": [
-              0.0353,
-              0.4118,
-              0.8549
-            ],
+            "components": [0.0353, 0.4118, 0.8549],
             "hex": "#0969da"
           }
         }
@@ -8329,7 +6540,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   }
 ]

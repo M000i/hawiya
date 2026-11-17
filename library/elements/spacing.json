@@ -7,16 +7,8 @@
       "ar": "مضغوط",
       "en": "Compact"
     },
-    "tags": [
-      "data-dense",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["data-dense", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.85,
@@ -123,16 +115,8 @@
       "ar": "مريح",
       "en": "Comfortable"
     },
-    "tags": [
-      "corporate",
-      "minimal"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "minimal"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -239,16 +223,8 @@
       "ar": "واسع",
       "en": "Airy"
     },
-    "tags": [
-      "editorial",
-      "luxury"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["editorial", "luxury"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.15,
@@ -355,16 +331,8 @@
       "ar": "كثيف جدًا",
       "en": "Dense"
     },
-    "tags": [
-      "data-dense",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["data-dense", "technical"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.95,
@@ -459,7 +427,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -470,16 +439,8 @@
       "ar": "متوازن",
       "en": "Balanced"
     },
-    "tags": [
-      "corporate",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.45,
@@ -574,7 +535,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -585,16 +547,8 @@
       "ar": "شبكة 6",
       "en": "Six-pixel grid"
     },
-    "tags": [
-      "editorial",
-      "luxury"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["editorial", "luxury"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.35,
@@ -689,7 +643,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   }
 ]

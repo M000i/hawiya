@@ -7,15 +7,8 @@
       "ar": "زر ممتلئ",
       "en": "Solid button"
     },
-    "tags": [
-      "corporate",
-      "material"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["corporate", "material"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -69,15 +62,8 @@
       "ar": "زر بإطار",
       "en": "Outline button"
     },
-    "tags": [
-      "minimal",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["minimal", "technical"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -131,15 +117,8 @@
       "ar": "زر ناعم",
       "en": "Soft button"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -193,15 +172,8 @@
       "ar": "زر ممتلئ كبسولي",
       "en": "Pill solid"
     },
-    "tags": [
-      "playful",
-      "soft"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["playful", "soft"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 1,
       "density": 0.5,
@@ -243,7 +215,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -254,15 +227,8 @@
       "ar": "زر ممتلئ بزوايا قائمة",
       "en": "Square solid"
     },
-    "tags": [
-      "brutalist",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["brutalist", "technical"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -304,7 +270,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -315,15 +282,8 @@
       "ar": "زر ممتلئ كبير",
       "en": "Large solid"
     },
-    "tags": [
-      "vivid",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["vivid", "corporate"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.6,
       "density": 0.3,
@@ -365,7 +325,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -376,15 +337,8 @@
       "ar": "زر ممتلئ صغير",
       "en": "Compact solid"
     },
-    "tags": [
-      "data-dense",
-      "technical"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["data-dense", "technical"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.2,
       "density": 0.9,
@@ -426,7 +380,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -437,15 +392,8 @@
       "ar": "زر ممتلئ باللون الثانوي",
       "en": "Secondary solid"
     },
-    "tags": [
-      "vivid",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["vivid", "playful"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -487,7 +435,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -498,15 +447,8 @@
       "ar": "زر ثانوي كبسولي كبير",
       "en": "Secondary pill, large"
     },
-    "tags": [
-      "playful",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["playful", "vivid"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 1,
       "density": 0.3,
@@ -548,7 +490,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -559,15 +502,8 @@
       "ar": "زر شفاف",
       "en": "Ghost"
     },
-    "tags": [
-      "minimal",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["minimal", "editorial"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.3,
       "density": 0.5,
@@ -609,7 +545,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -620,15 +557,8 @@
       "ar": "زر نصي برابط",
       "en": "Text link button"
     },
-    "tags": [
-      "minimal",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["minimal", "editorial"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -670,7 +600,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -681,15 +612,8 @@
       "ar": "زر بإطار كبسولي",
       "en": "Pill outline"
     },
-    "tags": [
-      "soft",
-      "minimal"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["soft", "minimal"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 1,
       "density": 0.5,
@@ -731,7 +655,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -742,15 +667,8 @@
       "ar": "زر بإطار سميك",
       "en": "Thick outline"
     },
-    "tags": [
-      "brutalist",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["brutalist", "editorial"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -792,7 +710,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -803,15 +722,8 @@
       "ar": "زر بظل حاد",
       "en": "Hard-shadow"
     },
-    "tags": [
-      "brutalist",
-      "retro"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["brutalist", "retro"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -853,7 +765,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -864,15 +777,8 @@
       "ar": "زر ملوّن بظل حاد",
       "en": "Hard-shadow, primary"
     },
-    "tags": [
-      "brutalist",
-      "vivid"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["brutalist", "vivid"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -914,7 +820,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -925,15 +832,8 @@
       "ar": "زر مرتفع",
       "en": "Elevated"
     },
-    "tags": [
-      "material",
-      "soft"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["material", "soft"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -975,7 +875,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -986,15 +887,8 @@
       "ar": "زر مرتفع كبسولي",
       "en": "Elevated pill"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 1,
       "density": 0.5,
@@ -1036,7 +930,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1047,15 +942,8 @@
       "ar": "زر بإطار متقطع",
       "en": "Dashed"
     },
-    "tags": [
-      "technical",
-      "minimal"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["technical", "minimal"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.2,
       "density": 0.8,
@@ -1097,7 +985,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1108,15 +997,8 @@
       "ar": "زر ناعم كبسولي صغير",
       "en": "Soft pill, compact"
     },
-    "tags": [
-      "soft",
-      "playful"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["soft", "playful"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 1,
       "density": 0.8,
@@ -1158,7 +1040,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1169,15 +1052,8 @@
       "ar": "زر هادئ",
       "en": "Quiet"
     },
-    "tags": [
-      "minimal",
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["minimal", "corporate"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.4,
       "density": 0.5,
@@ -1219,7 +1095,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1230,15 +1107,8 @@
       "ar": "زر بإطار كبير",
       "en": "Large outline"
     },
-    "tags": [
-      "corporate",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["corporate", "editorial"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.6,
       "density": 0.3,
@@ -1280,7 +1150,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1291,15 +1162,8 @@
       "ar": "زر شفاف صغير",
       "en": "Compact ghost"
     },
-    "tags": [
-      "data-dense",
-      "minimal"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["data-dense", "minimal"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.2,
       "density": 0.9,
@@ -1341,7 +1205,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -1352,15 +1217,8 @@
       "ar": "زر بإطار باللون الثانوي",
       "en": "Secondary outline"
     },
-    "tags": [
-      "playful",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension"
-    ],
+    "tags": ["playful", "editorial"],
+    "platforms": ["web", "desktop", "extension"],
     "metrics": {
       "roundness": 0.6,
       "density": 0.5,
@@ -1402,7 +1260,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   }
 ]

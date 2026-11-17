@@ -7,15 +7,8 @@
       "ar": "يتبع إعداد الجهاز",
       "en": "Follow the device"
     },
-    "tags": [
-      "minimal"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -56,15 +49,8 @@
       "ar": "فاتح أولًا",
       "en": "Light first"
     },
-    "tags": [
-      "corporate"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["corporate"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -105,16 +91,8 @@
       "ar": "داكن أولًا",
       "en": "Dark first"
     },
-    "tags": [
-      "technical",
-      "data-dense"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["technical", "data-dense"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -155,16 +133,8 @@
       "ar": "فاتح فقط، بلا مفتاح",
       "en": "Light only, no switch"
     },
-    "tags": [
-      "minimal",
-      "editorial"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["minimal", "editorial"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -193,7 +163,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   },
   {
@@ -204,16 +175,8 @@
       "ar": "داكن فقط، بلا مفتاح",
       "en": "Dark only, no switch"
     },
-    "tags": [
-      "technical",
-      "luxury"
-    ],
-    "platforms": [
-      "web",
-      "desktop",
-      "extension",
-      "mobile"
-    ],
+    "tags": ["technical", "luxury"],
+    "platforms": ["web", "desktop", "extension", "mobile"],
     "metrics": {
       "roundness": 0,
       "density": 0.5,
@@ -242,7 +205,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-17"
     }
   }
 ]
