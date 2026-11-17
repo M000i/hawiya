@@ -62,6 +62,10 @@ The picker reads it to steer its suggestions: through the server in Tier 1, from
 Start it as a background process whose output goes to a temporary file OUTSIDE `<project>` (e.g. in the
 system temp folder; the output contains the token). Then, in one command, check that file every 0.5 s for up
 to 10 s until it has a first line (e.g. `for i in $(seq 1 20); do [ -s "$F" ] && break; sleep 0.5; done; head -1 "$F"`).
+Some agents (e.g. Codex) stop every process a command started when that command ends, even with `&` or
+`nohup`. Then run the server command itself, in the foreground, as a long-running command you can keep reading
+(Codex: one exec_command; read its output by polling that same session) instead of a background process.
+Right after the ready line, check that the server still runs (e.g. `kill -0 <pid>`); if not, use that way.
 That line is JSON: `{"status":"ready","url":"http://127.0.0.1:47821/#token=…&project=…","existing":[…],"port":47821,"fallback":false}`
 (`existing` lists only output files already in design/; after Step 2 it should be empty — if not, stop the
 process and go back to Step 2). No such line within 10 seconds, or the process exits → try the other runtime,
@@ -70,7 +74,8 @@ out yet), carry on, and tell the user that their saved identities from earlier s
 Open the URL in the user's default browser (`open "<url>"` macOS, `xdg-open "<url>"` Linux,
 `start "" "<url>"` Windows) and show it in the chat: "اختر ما يعجبك ثم اضغط «تصدير»".
 Then wait for the process to exit. If your environment tells you when a background command finishes, end your
-turn and wait for that; otherwise wait on the process with a long timeout. It closes itself 60 minutes after
+turn and wait for that; otherwise wait on the process with a long timeout. While you wait, watch the process
+itself, not only its output: it may end without writing a last line. It closes itself 60 minutes after
 the last activity. If the user cancels in chat, stop the process and end the skill. If instead the user pastes
 a Hawiya export in chat (the page offers this when saving fails), stop the process and go to Step 5 with that
 text. Otherwise, the server's last output line is the outcome:
