@@ -1,0 +1,43 @@
+# Publishes the picker page to GitHub Pages. It runs the full check (check.yml) first and publishes only when the
+# check passes. Only the picker/ folder is published: no library, tools, tests or project notes.
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One publish at a time; a newer push waits instead of cancelling a publish halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    uses: ./.github/workflows/check.yml
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: picker
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

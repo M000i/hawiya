@@ -6,6 +6,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # pages.yml runs this same check first and publishes only if it passes.
+  workflow_call:
 
 permissions:
   contents: read
