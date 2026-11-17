@@ -98,6 +98,13 @@ test('every template in four states; approve changes the file and the counter', 
       .first()
       .evaluate((h) => h.shadowRoot.querySelector('.scene').style.getPropertyValue('--radius-md'));
     expect(radius).toBe('24px');
+    // The rest is «Calm corporate» (blue, IBM Plex), whatever identity file sorts first (arabic-heritage, task 3.13).
+    const base = await scenes.first().evaluate((h) => {
+      const st = h.shadowRoot.querySelector('.scene').style;
+      return [st.getPropertyValue('--color-primary'), st.getPropertyValue('--font-body')];
+    });
+    expect(base[0]).toBe('#2563eb');
+    expect(base[1]).toContain('IBM Plex Sans Arabic');
 
     await card.locator('[data-action="approve"]').click();
     await expect(page.locator('#count-reviewed')).toHaveText(String(n.reviewed + 1));
@@ -271,15 +278,23 @@ test('an icon style shows its icons in its container and fill', async ({ page })
     await page.goto(s.url);
     await expect(page.locator('html')).toHaveAttribute('data-ready', 'true');
     await page.locator('.r-tab[data-element="icons"]').click();
+    // The fourteen on a light and on a dark surface, each named, at a readable size.
     const row = page.locator('.r-card[data-template="icons-phosphor-fill-circle"] .r-extra');
-    await expect(row.locator('.hw-icon')).toHaveCount(14);
-    await expect(row.locator('.hw-icon--circle')).toHaveCount(14);
+    await expect(row.locator('.r-icons')).toHaveCount(2);
+    await expect(row.locator('.hw-icon')).toHaveCount(28);
+    await expect(row.locator('.hw-icon--circle')).toHaveCount(28);
+    await expect(row.locator('.r-icons[data-mode="light"] .r-icon-name').nth(3)).toHaveText('بحث');
+    const size = await row
+      .locator('.r-icons[data-mode="dark"] .hw-icon--circle svg')
+      .first()
+      .evaluate((n) => n.getBoundingClientRect().width);
+    expect(size).toBeGreaterThanOrEqual(26);
     const radius = await row
       .locator('.hw-icon')
       .first()
       .evaluate((n) => getComputedStyle(n).borderRadius);
     expect(radius).toBe('50%');
-    await expect(page.locator('.r-card[data-template="icons-lucide-outline"] .r-extra .hw-icon--none')).toHaveCount(14);
+    await expect(page.locator('.r-card[data-template="icons-lucide-outline"] .r-extra .hw-icon--none')).toHaveCount(28);
   } finally {
     s.child.kill();
     fs.rmSync(L.dir, { recursive: true, force: true });

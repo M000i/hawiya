@@ -171,9 +171,14 @@
 
   /* ---------- identities ---------- */
 
-  // The first ready identity's choices, with any missing choice taken from the first template of its element.
+  // «Calm corporate»'s choices (the first ready identity if it is missing), with any missing choice taken from the
+  // first template of its element. By id, not by file order: identities are read in file-name order (task 3.13).
+  var BASE_IDENTITY = 'calm-corporate';
   function baseSelections() {
-    var first = data.identities[0];
+    var first =
+      data.identities.filter(function (i) {
+        return i && i.id === BASE_IDENTITY;
+      })[0] || data.identities[0];
     var sel = {};
     ELEMENTS.forEach(function (e) {
       var list = clean(data.elements[e]);
@@ -253,13 +258,27 @@
         box.appendChild(row);
       });
     } else if (element === 'icons' && H.icons) {
-      box.appendChild(el('span', 'r-meta', t('icons')));
-      H.icons.MEANINGS.forEach(function (meaning) {
-        var icon = H.icons.render(tpl, meaning, {
-          fill: ex.fill === 'filled' || ex.fill === 'duotone' ? ex.fill : 'outline',
-          container: ex.container // circle, square or rounded (icons.js allows only these), task 3.10
+      // The scene shows icons small: the fourteen at a readable size, each named, on a light and a dark surface.
+      ['light', 'dark'].forEach(function (mode) {
+        var panel = el('div', 'r-icons');
+        panel.setAttribute('data-mode', mode);
+        panel.appendChild(
+          el('span', 'r-meta', t('icons') + ' · ' + t(mode === 'light' ? 'shadowsLight' : 'shadowsDark'))
+        );
+        var grid = el('div', 'r-icon-grid');
+        H.icons.MEANINGS.forEach(function (meaning) {
+          var icon = H.icons.render(tpl, meaning, {
+            fill: ex.fill === 'filled' || ex.fill === 'duotone' ? ex.fill : 'outline',
+            container: ex.container // circle, square or rounded (icons.js allows only these), task 3.10
+          });
+          if (!icon) return;
+          var tile = el('span', 'r-icon-tile');
+          tile.appendChild(icon);
+          tile.appendChild(el('span', 'r-icon-name', t('meaning.' + meaning)));
+          grid.appendChild(tile);
         });
-        if (icon) box.appendChild(icon);
+        panel.appendChild(grid);
+        box.appendChild(panel);
       });
     } else if (element === 'fonts') {
       box.appendChild(el('span', 'r-meta', t('digits')));

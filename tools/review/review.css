@@ -229,19 +229,55 @@ body {
 .r-shadows[data-mode='dark'] .r-shadow-tile {
   background: #27272a;
 }
+/* Icon samples: the fourteen at 32px, each named, on fixed light and dark surfaces like the shadow samples. */
+.r-icons {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  inline-size: 100%;
+}
+.r-icons[data-mode='light'] {
+  background: #ffffff;
+  color: #18181b;
+  border: 1px solid #e4e4e7;
+}
+.r-icons[data-mode='dark'] {
+  background: #18181b;
+  color: #e4e4e7;
+}
+.r-icons .r-meta {
+  color: inherit;
+  opacity: 0.75;
+}
+.r-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 16px 8px;
+}
+.r-icon-tile {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+.r-icon-name {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: center;
+}
 .r-extra .hw-icon {
-  inline-size: 24px;
-  block-size: 24px;
+  inline-size: 32px;
+  block-size: 32px;
   display: inline-flex;
 }
 /* An icon style's container (task 3.10): the same shapes as in the picker. */
 .r-extra .hw-icon--circle,
 .r-extra .hw-icon--square,
 .r-extra .hw-icon--rounded {
-  inline-size: 36px;
-  block-size: 36px;
-  padding: 7px;
-  border: 1px solid var(--r-border);
+  inline-size: 48px;
+  block-size: 48px;
+  padding: 10px;
+  border: 1px solid currentColor;
 }
 .r-extra .hw-icon--circle {
   border-radius: 50%;
