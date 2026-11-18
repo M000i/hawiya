@@ -1263,5 +1263,329 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-17"
     }
+  },
+  {
+    "id": "card-double-border",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "كرت بإطار مزدوج",
+      "en": "Double-bordered card"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.2,
+      "density": 0.4,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<article class=\"hw-card\"><h3 class=\"hw-card-title\">{title}</h3><p class=\"hw-card-body\">{body}</p></article>",
+      "css": ".hw-card{background:var(--color-surface);border:3px double var(--color-border);border-radius:var(--radius-sm);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "card-soft-round",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "كرت ناعم بزوايا كبيرة",
+      "en": "Soft rounded card"
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.8,
+      "density": 0.4,
+      "intensity": 0.3
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<article class=\"hw-card\"><h3 class=\"hw-card-title\">{title}</h3><p class=\"hw-card-body\">{body}</p></article>",
+      "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);border-radius:var(--radius-lg);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "card-ledger",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "كرت دفتر بحافة علوية",
+      "en": "Ledger card"
+    },
+    "tags": [
+      "data-dense",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.9,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<article class=\"hw-card\"><h3 class=\"hw-card-title\">{title}</h3><p class=\"hw-card-body\">{body}</p></article>",
+      "css": ".hw-card{background:var(--color-background);border:1px solid var(--color-border);border-block-start:2px solid var(--color-primary);border-radius:0;padding:var(--space-3)}.hw-card-title{margin:0 0 var(--space-1);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "card-earthy-side",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "كرت بحافة جانبية ثانوية وزوايا كبيرة",
+      "en": "Side accent, rounded"
+    },
+    "tags": [
+      "soft",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.7,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<article class=\"hw-card\"><h3 class=\"hw-card-title\">{title}</h3><p class=\"hw-card-body\">{body}</p></article>",
+      "css": ".hw-card{background:var(--color-surface);border:none;border-inline-start:6px solid var(--color-secondary);box-shadow:var(--shadow-md);border-radius:var(--radius-lg);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "card-secondary-outline",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "كرت بإطار باللون الثانوي",
+      "en": "Secondary outline card"
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<article class=\"hw-card\"><h3 class=\"hw-card-title\">{title}</h3><p class=\"hw-card-body\">{body}</p></article>",
+      "css": ".hw-card{background:var(--color-surface);border:2px solid var(--color-secondary);border-radius:var(--radius-md);padding:var(--space-5)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
+  },
+  {
+    "id": "card-primary-outline-sharp",
+    "element": "cards",
+    "kind": "composite",
+    "name": {
+      "ar": "كرت بإطار أساسي وزوايا قائمة",
+      "en": "Sharp primary outline card"
+    },
+    "tags": [
+      "technical",
+      "brutalist"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension"
+    ],
+    "metrics": {
+      "roundness": 0,
+      "density": 0.6,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "card": {
+        "padding": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "recipe": {
+      "html": "<article class=\"hw-card\"><h3 class=\"hw-card-title\">{title}</h3><p class=\"hw-card-body\">{body}</p></article>",
+      "css": ".hw-card{background:var(--color-background);border:2px solid var(--color-primary);border-radius:0;padding:var(--space-4)}.hw-card-title{margin:0 0 var(--space-2);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Logical margins only; text alignment follows the page direction."
+    },
+    "source": {
+      "name": "Hawiya",
+      "url": "https://github.com/hawiya/hawiya",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "draft"
+    }
   }
 ]
