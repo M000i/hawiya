@@ -49,6 +49,13 @@ const checkSources = validate.compile({
       copyright: LINES,
       use: { type: 'string', minLength: 1, maxLength: 300 },
       note: { type: 'string', minLength: 1, maxLength: 500 },
+      // The font families this source provides (task 5.1): npm run check needs every font a template names here.
+      fonts: {
+        type: 'array',
+        minItems: 1,
+        uniqueItems: true,
+        items: { type: 'string', minLength: 1, maxLength: 100 }
+      },
       also: {
         type: 'array',
         minItems: 1,

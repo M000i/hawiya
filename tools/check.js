@@ -5,6 +5,8 @@
  *
  *   npm run check                                       library/ and picker/data/
  *   node tools/check.js --library <dir> --data <dir>    other folders (tests)
+ *   npm run check -- --publish                          before publishing (the GitHub check): also fails when the
+ *                                                       page would leave a ready identity out (task 5.1, B-079)
  *
  * Every template is checked, drafts too (AC-14: the whole library is green), and every problem is printed with the
  * file and the template id, then the command exits 1. Nothing is written. What is checked, by kind:
@@ -26,7 +28,8 @@
  *   logical         no "left" / "right" in recipes (CSS, HTML attribute values, the reduced-motion CSS) or in
  *                   token names and values: logical properties (start / end) only (R-092)
  *   recipe          the recipe allow-list (picker/js/core/recipe.js): no script, no outside request
- *   identity        a ready identity names a template of the right element for every element; and (task 3.13,
+ *   identity        a ready identity names a template of the right element for every element (one that is a
+ *                   draft is allowed but named: the page leaves the identity out; --publish refuses it); and (task 3.13,
  *                   R-040) once the library has no other problem, each ready identity is built (resolve.js) in
  *                   Arabic, English and both (its direction swapped for each direction template) with every
  *                   template of the library, drafts too: the blocking rules (rules.js: fonts, contrast in light
@@ -36,7 +39,9 @@
  *                   address and license; every license (template, source, "also" parts) is on the allowed list;
  *                   nothing (template source, address, icon library, font names, sources.json entry) matches a
  *                   forbidden source of licenses.json; extras.sources ids exist; every source is used; every license
- *                   a third-party source uses has its full text (the notices print it); both files have their shape
+ *                   a third-party source uses has its full text (the notices print it); both files have their shape;
+ *                   (task 5.1, B-078) every font a template names (fontFamily tokens, the families of a fonts
+ *                   template's extras) is in the "fonts" list of exactly one source, and the template names it
  *   notices         THIRD_PARTY_NOTICES.md is exactly what `npm run notices` makes from sources.json and
  *                   licenses.json (checked when both files are sound)
  *   data            picker/data is exactly what `npm run build` makes from the library (only checked when the
@@ -502,7 +507,8 @@ function check({
   libraryDir = path.join(ROOT, 'library'),
   dataDir = path.join(ROOT, 'picker', 'data'),
   noticesFile = path.join(ROOT, 'THIRD_PARTY_NOTICES.md'),
-  skillDir = ROOT
+  skillDir = ROOT,
+  publish = false
 } = {}) {
   const problems = [];
   const add = (kind, file, template, message) => problems.push({ kind, file, template, message });
@@ -518,7 +524,17 @@ function check({
     comparisons: 0,
     skillLines: 0
   };
-  const result = { problems, counts, dataChecked: false, noticesChecked: false, libraryDir, dataDir, noticesFile };
+  // leftOut (task 5.1, B-079): ready identities the page leaves out because they use a draft, with the reasons.
+  const result = {
+    problems,
+    counts,
+    leftOut: [],
+    dataChecked: false,
+    noticesChecked: false,
+    libraryDir,
+    dataDir,
+    noticesFile
+  };
   const valid = []; // { file, label, t } for every template that passed the schema (license checks below)
   const io = (list, kind = 'structure') => list.splice(0).forEach((p) => add(kind, null, null, p));
   const raw = [];
@@ -711,6 +727,7 @@ function check({
           else seen.set(value.id, name);
         }
         if (!r.valid) continue;
+        const drafts = [];
         for (const element of ELEMENTS) {
           if (!own(value.templates, element)) {
             say('identity', `${element}: no template chosen`);
@@ -720,6 +737,17 @@ function check({
           const hit = byId.get(id);
           if (!hit) say('identity', `${element}: "${id}" does not exist`);
           else if (hit.element !== element) say('identity', `${element}: "${id}" is a ${hit.element} template`);
+          else if (hit.state !== 'reviewed') drafts.push(`${element}: "${id}" is a draft`);
+        }
+        // The build leaves this identity out of the page (build.select). While the owner reviews that is allowed
+        // and named in the report; publishing (--publish, the GitHub check) needs every ready identity on the page.
+        if (drafts.length) {
+          result.leftOut.push({ file: name, id: label, reasons: drafts });
+          if (publish)
+            say(
+              'identity',
+              `${drafts.join('; ')}: the page leaves this identity out, and publishing needs every ready identity on it (review the drafts first)`
+            );
         }
       }
       io(raw);
@@ -1275,6 +1303,49 @@ function originIds(t) {
   return [x.library].concat(Array.isArray(x.sources) ? x.sources : []);
 }
 
+// The CSS generic families: keywords the browser resolves, not fonts with a source.
+const GENERIC_FAMILIES = new Set([
+  'serif',
+  'sans-serif',
+  'monospace',
+  'cursive',
+  'fantasy',
+  'system-ui',
+  'ui-serif',
+  'ui-sans-serif',
+  'ui-monospace',
+  'ui-rounded',
+  'emoji',
+  'math',
+  'fangsong'
+]);
+const FONT_EXTRAS = ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin'];
+
+// Every named font family of a template: each fontFamily token at any depth (a name or a list of names), and the
+// family names a fonts template records in extras (the ones the page loads from Google Fonts). CSS generic families
+// and the system fonts of systemFont ("-apple-system", BlinkMacSystemFont...) name the device's own fonts.
+function fontFamilies(t) {
+  const out = new Set();
+  const take = (v) => {
+    for (const name of Array.isArray(v) ? v : [v])
+      if (
+        typeof name === 'string' &&
+        name.trim() &&
+        !GENERIC_FAMILIES.has(name.trim().toLowerCase()) &&
+        !systemFont(name)
+      )
+        out.add(name.trim());
+  };
+  const walk = (node) => {
+    if (!isObject(node)) return;
+    if (node.$type === 'fontFamily') take(node.$value);
+    for (const [k, v] of Object.entries(node)) if (!k.startsWith('$')) walk(v);
+  };
+  walk(t.tokens);
+  if (t.element === 'fonts' && isObject(t.extras)) for (const k of FONT_EXTRAS) take(t.extras[k]);
+  return out;
+}
+
 function licenseProblems(libraryDir, valid, add, counts) {
   const raw = [];
   const read = (name) => {
@@ -1321,6 +1392,8 @@ function licenseProblems(libraryDir, valid, add, counts) {
 
   const byName = new Map();
   const byId = new Map();
+  const fontSource = new Map(); // font family, exactly as written -> id of the source that lists it (task 5.1)
+  const fontsSeen = new Map(); // the same, in lower case: two sources may not list one font
   const used = new Set();
   let own = 0;
   for (const s of sources) {
@@ -1329,6 +1402,14 @@ function licenseProblems(libraryDir, valid, add, counts) {
     if (byName.has(s.name)) say(`name "${s.name}" is listed twice`);
     byId.set(s.id, s);
     byName.set(s.name, s);
+    for (const f of s.fonts || []) {
+      const key = f.toLowerCase(); // one font, whatever its letter case
+      if (fontsSeen.has(key)) say(`font "${f}" is also listed by "${fontsSeen.get(key)}"`);
+      else {
+        fontsSeen.set(key, s.id);
+        fontSource.set(f, s.id);
+      }
+    }
     // Only the project's own entry may be "own" (left out of the notices), and it must say so.
     if (s.own) own++;
     if (s.own && s.id !== OWN_ID)
@@ -1373,6 +1454,15 @@ function licenseProblems(libraryDir, valid, add, counts) {
           if (!byId.has(id)) say(`extras.sources: "${id}" is not in sources.json`);
           else used.add(id);
         }
+    }
+    // Task 5.1 (B-078): every font the template names comes from a source it names, recorded in sources.json.
+    const named = new Set([src && src.id].concat(Array.isArray(extra) ? extra : []).filter(Boolean));
+    for (const family of fontFamilies(t)) {
+      const from = fontSource.get(family);
+      if (!from) say(`font "${family}" is listed by no source in sources.json (record its source and license)`);
+      else if (!named.has(from)) {
+        say(`font "${family}" comes from "${from}", which this template does not name (source or extras.sources)`);
+      }
     }
     if (iconify(t.source.url)) say("source address is an Iconify page; name the set's own repository");
     const hit = forbiddenIn(originTexts(t), forbidden, originIds(t));
@@ -1530,6 +1620,13 @@ function report(result) {
   const rel = (p) => path.relative(process.cwd(), p) || '.';
   const lines = [`hawiya check: ${rel(result.libraryDir)} and ${rel(result.dataDir)}`];
   const scope = `${counts.templates} templates (${counts.reviewed} reviewed, ${counts.drafts} drafts), ${counts.identities} identities`;
+  const left = result.leftOut || [];
+  const leftLines = left.length
+    ? [
+        `  left out of the page until reviewed: ${left.map((x) => `${x.id} (${x.reasons.join('; ')})`).join(', ')}`,
+        `  ${left.length} هوية لا تظهر في الصفحة حتى تُراجَع مسوداتها: ${left.map((x) => x.id).join('، ')}`
+      ]
+    : [];
   if (!problems.length) {
     lines.push(`  checked: ${KINDS.join(', ')}`);
     lines.push(`  ${counts.pairs} contrast checks; ${counts.sources} sources, licenses allowed, none forbidden`);
@@ -1543,6 +1640,7 @@ function report(result) {
     lines.push(
       `  SKILL.md: ${counts.skillLines} lines (under ${SKILL_MAX_LINES}); its ${SKILL_REFERENCES.length} reference files are there and named in it`
     );
+    lines.push(...leftLines);
     lines.push(
       `نجاح: فُحص ${counts.templates} تمبلت (${counts.reviewed} مراجَع، ${counts.drafts} مسودة) و ${counts.identities} هوية بلا أي مخالفة`
     );
@@ -1557,6 +1655,7 @@ function report(result) {
   if (!result.noticesChecked)
     lines.push('  (THIRD_PARTY_NOTICES.md is compared once sources.json and licenses.json are sound)');
   if (!result.dataChecked) lines.push('  (picker/data is compared with the library once the library has no problem)');
+  lines.push(...leftLines);
   lines.push(`فشل: ${problems.length} مخالفة (فُحص ${counts.templates} تمبلت و ${counts.identities} هوية)`);
   lines.push(`failed: ${problems.length} problem(s) in ${scope}`);
   return lines.join('\n');
@@ -1572,9 +1671,10 @@ function main(argv) {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (own(flags, a) && argv[i + 1]) opts[flags[a]] = path.resolve(argv[++i]);
+    else if (a === '--publish') opts.publish = true;
     else {
       process.stderr.write(
-        `hawiya check: unknown option ${a}\nusage: node tools/check.js [--library <dir>] [--data <dir>] [--notices <file>]\n`
+        `hawiya check: unknown option ${a}\nusage: node tools/check.js [--library <dir>] [--data <dir>] [--notices <file>] [--publish]\n`
       );
       return 2;
     }

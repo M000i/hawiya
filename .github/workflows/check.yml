@@ -35,8 +35,9 @@ jobs:
       - name: Tests (npm test)
         run: npm test
 
-      - name: Library check (npm run check)
-        run: npm run check
+      - name: Library check (npm run check -- --publish)
+        # --publish: also fails when the page would leave a ready identity out (one waits for a draft's review).
+        run: npm run check -- --publish
 
       - name: picker/data matches the library
         run: |

@@ -122,7 +122,11 @@
     "copyright": [
       "Copyright © 2017 IBM Corp. with Reserved Font Name \"Plex\""
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "IBM Plex Sans",
+      "IBM Plex Sans Arabic"
+    ]
   },
   {
     "id": "noto-arabic",
@@ -134,7 +138,12 @@
     "copyright": [
       "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Noto Sans Arabic",
+      "Noto Kufi Arabic",
+      "Noto Naskh Arabic"
+    ]
   },
   {
     "id": "noto-latin",
@@ -146,7 +155,10 @@
     "copyright": [
       "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/latin-greek-cyrillic)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Noto Sans"
+    ]
   },
   {
     "id": "cairo",
@@ -158,7 +170,10 @@
     "copyright": [
       "Copyright 2009 The Cairo Project Authors (https://github.com/Gue3bara/Cairo)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Cairo"
+    ]
   },
   {
     "id": "lucide",
@@ -215,7 +230,10 @@
     "copyright": [
       "Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Inter"
+    ]
   },
   {
     "id": "material-symbols",
@@ -377,7 +395,10 @@
     "copyright": [
       "Copyright 2018 The Readex Pro Project Authors (https://github.com/ThomasJockin/readexpro), with Reserved Font Name “RevReading Lexend”."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Readex Pro"
+    ]
   },
   {
     "id": "alexandria",
@@ -389,7 +410,10 @@
     "copyright": [
       "Copyright 2022 The Alexandria Project Authors (https://github.com/Gue3bara/Alexandria)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Alexandria"
+    ]
   },
   {
     "id": "tajawal",
@@ -401,7 +425,10 @@
     "copyright": [
       "Copyright 2018 Boutros International. (http://www.boutrosfonts.com)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Tajawal"
+    ]
   },
   {
     "id": "almarai",
@@ -413,7 +440,10 @@
     "copyright": [
       "Copyright 2019 The Almarai Project Authors (https://github.com/JuergenWillrodt/Almarai)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Almarai"
+    ]
   },
   {
     "id": "vazirmatn",
@@ -425,7 +455,10 @@
     "copyright": [
       "Copyright 2015 The Vazirmatn Project Authors (https://github.com/rastikerdar/vazirmatn)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Vazirmatn"
+    ]
   },
   {
     "id": "rubik",
@@ -437,7 +470,10 @@
     "copyright": [
       "Copyright 2015 The Rubik Project Authors (https://github.com/googlefonts/rubik)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Rubik"
+    ]
   },
   {
     "id": "changa",
@@ -449,7 +485,10 @@
     "copyright": [
       "Copyright 2018 The Changa Project Authors (https://github.com/googlefonts/changa-vf)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Changa"
+    ]
   },
   {
     "id": "el-messiri",
@@ -461,7 +500,10 @@
     "copyright": [
       "Copyright 2015 The El Messiri Project Authors (https://github.com/Gue3bara/El-Messiri)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "El Messiri"
+    ]
   },
   {
     "id": "zain",
@@ -473,7 +515,10 @@
     "copyright": [
       "Copyright 2024 The Zain Project Authors (https://github.com/googlefonts/zain)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Zain"
+    ]
   },
   {
     "id": "mada",
@@ -485,7 +530,10 @@
     "copyright": [
       "Copyright 2015-2022 The Mada Project Authors (https://github.com/aliftype/mada), with Reserved Font Name \"Source\"."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Mada"
+    ]
   },
   {
     "id": "kufam",
@@ -497,7 +545,10 @@
     "copyright": [
       "Copyright 2019 The Kufam Project Authors (https://github.com/originaltype/kufam)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Kufam"
+    ]
   },
   {
     "id": "fustat",
@@ -509,7 +560,10 @@
     "copyright": [
       "Copyright 2024 The Fustat Project Authors (https://github.com/Kief-Type-Foundry/Fustat)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Fustat"
+    ]
   },
   {
     "id": "beiruti",
@@ -521,7 +575,10 @@
     "copyright": [
       "Copyright 2024 The Beiruti Project Authors (https://github.com/googlefonts/beiruti)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Beiruti"
+    ]
   },
   {
     "id": "baloo-bhaijaan-2",
@@ -533,7 +590,10 @@
     "copyright": [
       "Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Baloo Bhaijaan 2"
+    ]
   },
   {
     "id": "harmattan",
@@ -551,7 +611,10 @@
       "Copyright (c) 2014-2025, SIL Global (https://www.sil.org/).",
       "with Reserved Font Names \"Harmattan\" and \"SIL\"."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Harmattan"
+    ]
   },
   {
     "id": "amiri",
@@ -563,7 +626,10 @@
     "copyright": [
       "Copyright 2010-2022 The Amiri Project Authors (https://github.com/aliftype/amiri)."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Amiri"
+    ]
   },
   {
     "id": "markazi-text",
@@ -575,7 +641,10 @@
     "copyright": [
       "Copyright 2017 The Markazi Text Project Authors (https://github.com/BornaIz/markazitext)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Markazi Text"
+    ]
   },
   {
     "id": "reem-kufi",
@@ -587,7 +656,10 @@
     "copyright": [
       "Copyright 2015-2022 The Reem Kufi Project Authors (https://github.com/aliftype/reem-kufi), with Reserved Font Name \"Josefin Sans\"."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Reem Kufi"
+    ]
   },
   {
     "id": "scheherazade-new",
@@ -600,7 +672,10 @@
       "Copyright (c) 1994-2026, SIL Global (https://www.sil.org/),",
       "with Reserved Font Names \"Scheherazade\" and \"SIL\"."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Scheherazade New"
+    ]
   },
   {
     "id": "aref-ruqaa",
@@ -612,7 +687,10 @@
     "copyright": [
       "Copyright 2015-2020 The Aref Ruqaa Project Authors (https://github.com/alif-type/aref-ruqaa), with Reserved Font Name EURM10."
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Aref Ruqaa"
+    ]
   },
   {
     "id": "lemonada",
@@ -624,7 +702,10 @@
     "copyright": [
       "Copyright 2011 The Lemonada Project Authors (https://github.com/Gue3bara/Lemonada)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Lemonada"
+    ]
   },
   {
     "id": "marhey",
@@ -636,7 +717,10 @@
     "copyright": [
       "Copyright 2022 The Marhey Project Authors (https://github.com/namelatype/Marhey)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Marhey"
+    ]
   },
   {
     "id": "handjet",
@@ -648,7 +732,10 @@
     "copyright": [
       "Copyright 2018 The Handjet Project Authors (https://github.com/rosettatype/Handjet/)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Handjet"
+    ]
   },
   {
     "id": "playpen-sans",
@@ -660,7 +747,10 @@
     "copyright": [
       "Copyright 2023 The Playpen Sans Project Authors (https://github.com/TypeTogether/Playpen-Sans)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Playpen Sans Arabic"
+    ]
   },
   {
     "id": "alyamama",
@@ -672,7 +762,10 @@
     "copyright": [
       "Copyright 2025 The Alyamama Project Authors (https://github.com/Mestaratype/AlYamama)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Alyamama"
+    ]
   },
   {
     "id": "estedad",
@@ -684,7 +777,10 @@
     "copyright": [
       "Copyright 2022 The Estedad Project Authors (https://github.com/aminabedi68/Estedad)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Estedad"
+    ]
   },
   {
     "id": "geist",
@@ -696,7 +792,11 @@
     "copyright": [
       "Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.git)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Geist",
+      "Geist Mono"
+    ]
   },
   {
     "id": "manrope",
@@ -708,7 +808,10 @@
     "copyright": [
       "Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Manrope"
+    ]
   },
   {
     "id": "dm-sans",
@@ -720,7 +823,10 @@
     "copyright": [
       "Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "DM Sans"
+    ]
   },
   {
     "id": "plus-jakarta-sans",
@@ -732,7 +838,10 @@
     "copyright": [
       "Copyright 2020 The Plus Jakarta Sans Project Authors (https://github.com/tokotype/PlusJakartaSans)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Plus Jakarta Sans"
+    ]
   },
   {
     "id": "outfit",
@@ -744,7 +853,10 @@
     "copyright": [
       "Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Outfit"
+    ]
   },
   {
     "id": "figtree",
@@ -756,7 +868,10 @@
     "copyright": [
       "Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Figtree"
+    ]
   },
   {
     "id": "onest",
@@ -768,7 +883,10 @@
     "copyright": [
       "Copyright 2021 The Onest Project Authors (https://github.com/googlefonts/onest)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Onest"
+    ]
   },
   {
     "id": "sora",
@@ -780,7 +898,10 @@
     "copyright": [
       "Copyright 2019 The Sora Project Authors (https://github.com/sora-xor/sora-font)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Sora"
+    ]
   },
   {
     "id": "space-grotesk",
@@ -792,7 +913,10 @@
     "copyright": [
       "Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Space Grotesk"
+    ]
   },
   {
     "id": "instrument-sans",
@@ -804,7 +928,10 @@
     "copyright": [
       "Copyright 2022 The Instrument Sans Project Authors (https://github.com/Instrument/instrument-sans)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Instrument Sans"
+    ]
   },
   {
     "id": "bricolage-grotesque",
@@ -816,7 +943,10 @@
     "copyright": [
       "Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateliertriay/bricolage)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Bricolage Grotesque"
+    ]
   },
   {
     "id": "jetbrains-mono",
@@ -828,6 +958,9 @@
     "copyright": [
       "Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)"
     ],
-    "use": "Font, served by Google Fonts."
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "JetBrains Mono"
+    ]
   }
 ]

@@ -425,6 +425,39 @@ const CASES = [
         t.license = 'CC0-1.0';
       }),
     /"CC0-1\.0" has no text/
+  ],
+  // Task 5.1 (B-078): every font a template names is listed by one of its sources in sources.json.
+  [
+    'license',
+    'pair-zain-figtree',
+    (c) =>
+      c.edit(
+        'elements/fonts.json',
+        (l) => void (c.find(l, 'pair-zain-figtree').tokens.font.heading.$value = ['Fraunces', 'serif'])
+      ),
+    /font "Fraunces" is listed by no source/
+  ],
+  [
+    'license',
+    'pair-tajawal-manrope',
+    (c) => c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-tajawal-manrope').extras.latin = 'Lora')),
+    /font "Lora" is listed by no source/
+  ],
+  [
+    'license',
+    'pair-rubik',
+    (c) =>
+      c.edit(
+        'elements/fonts.json',
+        (l) => void (c.find(l, 'pair-rubik').tokens.font.body.$value = ['Inter', 'sans-serif'])
+      ),
+    /font "Inter" comes from "inter", which this template does not name/
+  ],
+  [
+    'license',
+    'onest',
+    (c) => c.edit('sources.json', (l) => void l.find((x) => x.id === 'onest').fonts.push('Cairo')),
+    /"Cairo" is also listed by "cairo"/
   ]
 ];
 
@@ -1412,4 +1445,84 @@ test('SKILL.md: the session file example passes the session schema and lists the
     suggested.filter((t) => !tags.includes(t)),
     []
   );
+});
+
+// Task 5.1 (B-078): the fonts list of a source is a list of distinct names. The error is on the list itself (an
+// unknown field would be reported on the source, so these fail without the "fonts" shape in notices.js).
+test('sources.json: a fonts list that is empty, names a font twice, or is not a list is refused', () => {
+  for (const [fonts, re] of [
+    [[], /^\/\d+\/fonts must have at least 1 items/],
+    [['Cairo', 'Cairo'], /^\/\d+\/fonts must not have duplicate items/],
+    ['Cairo', /^\/\d+\/fonts must be array/]
+  ]) {
+    const c = copy();
+    try {
+      c.edit('sources.json', (l) => void (l.find((x) => x.id === 'cairo').fonts = fonts));
+      const r = c.run();
+      assert.ok(has(r.problems, 'license', null, re), `${JSON.stringify(fonts)}:\n${show(r.problems)}`);
+    } finally {
+      clean(c);
+    }
+  }
+});
+
+// Task 5.1 (B-078): each family the page loads (the five extras names) is checked; system fonts and generic
+// families are not fonts with a source; two sources may not list one font, whatever its letter case.
+test('fonts: every extras family is checked; system fonts are exempt; a font listed twice in any case is found', () => {
+  for (const key of ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin']) {
+    const c = copy();
+    try {
+      c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-tajawal-manrope').extras[key] = 'Lora'));
+      const r = c.run();
+      assert.ok(
+        has(r.problems, 'license', 'pair-tajawal-manrope', /font "Lora" is listed by no source/),
+        `${key}:\n${show(r.problems)}`
+      );
+    } finally {
+      clean(c);
+    }
+  }
+  const c = copy();
+  try {
+    c.edit('elements/fonts.json', (l) => {
+      const stack = c.find(l, 'pair-rubik').tokens.font.body.$value;
+      stack.splice(1, 0, '-apple-system', 'BlinkMacSystemFont', 'Segoe UI Emoji', 'ui-sans-serif');
+    });
+    c.edit('sources.json', (l) => void l.find((x) => x.id === 'onest').fonts.push('cairo'));
+    const r = c.run();
+    assert.ok(!r.problems.some((p) => p.template === 'pair-rubik'), show(r.problems));
+    assert.ok(has(r.problems, 'license', 'onest', /font "cairo" is also listed by "cairo"/), show(r.problems));
+  } finally {
+    clean(c);
+  }
+});
+
+// Task 5.1 (B-079): a ready identity that uses a draft is left out of the page. The check passes while the owner
+// still reviews (task 5.4 before 5.6), but names it; with --publish (the GitHub check before publishing) it fails.
+test('an identity waiting for a draft is named; --publish refuses it', () => {
+  const c = copy();
+  try {
+    c.edit('elements/icons.json', (l) => void (c.find(l, 'icons-phosphor-thin').status = { state: 'draft' }));
+    build.build({ libraryDir: c.lib, outDir: c.data });
+    const r = c.run();
+    assert.deepEqual(r.problems, [], show(r.problems));
+    const luxury = r.leftOut.find((x) => x.id === 'luxury');
+    assert.ok(luxury, JSON.stringify(r.leftOut));
+    assert.deepEqual(luxury.reasons, ['icons: "icons-phosphor-thin" is a draft']);
+    const text = check.report(r);
+    assert.match(text, /left out of the page until reviewed: luxury \(icons: "icons-phosphor-thin" is a draft\)/);
+    assert.match(text, /هوية لا تظهر في الصفحة حتى تُراجَع مسوداتها: luxury/);
+
+    const strict = c.run({ publish: true });
+    assert.ok(has(strict.problems, 'identity', 'luxury', /is a draft.*publishing/), show(strict.problems));
+    assert.equal(strict.problems.length, r.leftOut.length, show(strict.problems));
+
+    const plain = spawnSync(process.execPath, [TOOL, ...c.args], { encoding: 'utf8' });
+    assert.equal(plain.status, 0, plain.stderr);
+    const pub = spawnSync(process.execPath, [TOOL, ...c.args, '--publish'], { encoding: 'utf8' });
+    assert.equal(pub.status, 1, pub.stdout);
+    assert.match(pub.stderr, /\[identity\] identities\/luxury\.json › luxury: .*is a draft/);
+  } finally {
+    clean(c);
+  }
 });
