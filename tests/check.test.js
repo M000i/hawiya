@@ -153,6 +153,22 @@ const CASES = [
   ],
   [
     'names',
+    'spacing-balanced',
+    (c) =>
+      c.edit(
+        'elements/spacing.json',
+        (l) => void (c.find(l, 'spacing-balanced').name.ar = 'متوازن: undefined وundefined')
+      ),
+    /left over from a missing value/
+  ],
+  [
+    'names',
+    'spacing-grid-6',
+    (c) => c.edit('elements/spacing.json', (l) => void (c.find(l, 'spacing-grid-6').name.en = 'Grid [object Object]')),
+    /left over from a missing value/
+  ],
+  [
+    'names',
     'spacing-compact',
     (c) => c.edit('elements/spacing.json', (l) => void delete c.find(l, 'spacing-compact').name.en)
   ],

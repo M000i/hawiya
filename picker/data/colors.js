@@ -7969,7 +7969,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined",
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: \u062e\u0628\u0651\u0627\u0632\u064a \u0648\u062e\u0648\u062e\u064a",
       "en": "Catppuccin Latte: mauve and peach"
     },
     "tags": [
@@ -8040,7 +8040,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined (Catppuccin)",
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: \u0623\u062d\u0645\u0631 \u0648\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 (Catppuccin)",
       "en": "Catppuccin Latte: red and teal (Catppuccin)"
     },
     "tags": [
@@ -8111,7 +8111,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined (Catppuccin)",
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: \u0623\u0632\u0631\u0642 \u064a\u0627\u0642\u0648\u062a\u064a \u0648\u0623\u0635\u0641\u0631 (Catppuccin)",
       "en": "Catppuccin Latte: sapphire and yellow (Catppuccin)"
     },
     "tags": [
@@ -8182,7 +8182,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: undefined \u0648undefined (Catppuccin)",
+      "ar": "\u0643\u0627\u062a\u0628\u0648\u062a\u0634\u064a\u0646\u0648 \u0644\u0627\u062a\u064a\u0647: \u062e\u0632\u0627\u0645\u064a \u0648\u0648\u0631\u062f\u064a \u0641\u0644\u0627\u0645\u0646\u063a\u0648 (Catppuccin)",
       "en": "Catppuccin Latte: lavender and flamingo (Catppuccin)"
     },
     "tags": [
@@ -8253,8 +8253,8 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0628\u0631\u064a\u0645\u0631 undefined \u0648undefined",
-      "en": "Primer #116329 and #8250df"
+      "ar": "\u0628\u0631\u064a\u0645\u0631: \u0623\u062e\u0636\u0631 \u0648\u0623\u0631\u062c\u0648\u0627\u0646\u064a",
+      "en": "Primer: green and purple"
     },
     "tags": [
       "soft",
@@ -8324,8 +8324,8 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0628\u0631\u064a\u0645\u0631 undefined \u0648undefined (Primer Primitives)",
-      "en": "Primer #99286e and #d4a72c (Primer Primitives)"
+      "ar": "\u0628\u0631\u064a\u0645\u0631: \u0632\u0647\u0631\u064a \u0648\u0623\u0635\u0641\u0631 (Primer Primitives)",
+      "en": "Primer: pink and yellow (Primer Primitives)"
     },
     "tags": [
       "vivid",
@@ -8395,8 +8395,8 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "\u0628\u0631\u064a\u0645\u0631 undefined \u0648undefined (Primer Primitives)",
-      "en": "Primer #953800 and #0969da (Primer Primitives)"
+      "ar": "\u0628\u0631\u064a\u0645\u0631: \u0628\u0631\u062a\u0642\u0627\u0644\u064a \u0648\u0623\u0632\u0631\u0642 (Primer Primitives)",
+      "en": "Primer: orange and blue (Primer Primitives)"
     },
     "tags": [
       "vivid",

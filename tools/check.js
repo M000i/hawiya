@@ -17,7 +17,7 @@
  *   id              ids unique across the library (templates), and across the ready identities
  *   tags            library/tags.json lists exactly the 16 fixed tags with both names; every tag used is one of them
  *   names           both names present: no blank or padded name, the Arabic name in Arabic letters, the English
- *                   name without them
+ *                   name without them, and no "undefined", "null", "NaN" or "[object Object]" left in either
  *   contrast        the declared level (a11y.contrast) holds: a palette reaches it in light and dark (the rules
  *                   engine, rules.js); a button or card puts text only on fills the contrast rule checks, in every
  *                   state; a template with no text/background pair declares "n/a"
@@ -67,6 +67,8 @@ const TAGS = SCHEMAS.template.$defs.tag.enum.slice();
 const checkIdentity = validate.compile(build.IDENTITY_SCHEMA);
 
 const ARABIC = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+// What a script leaves in a name when a value it fills in is missing (verify, task 4.7).
+const LEFTOVER = /\b(?:undefined|null|NaN)\b|\[object Object\]/;
 const PHYSICAL = /(^|[^a-z0-9])(left|right)(?![a-z])/i; // "_" and digits separate words too
 
 const own = (o, k) => o !== null && typeof o === 'object' && Object.prototype.hasOwnProperty.call(o, k);
@@ -110,6 +112,11 @@ function nameProblems(name) {
     if (!v.trim()) out.push(`the ${lang === 'ar' ? 'Arabic' : 'English'} name is blank`);
     else if (v !== v.trim())
       out.push(`the ${lang === 'ar' ? 'Arabic' : 'English'} name has spaces at its start or end`);
+    const leftover = v.match(LEFTOVER);
+    if (leftover)
+      out.push(
+        `the ${lang === 'ar' ? 'Arabic' : 'English'} name "${v}" has "${leftover[0]}", left over from a missing value`
+      );
   }
   if (typeof name.ar === 'string' && name.ar.trim() && !ARABIC.test(name.ar))
     out.push(`the Arabic name "${name.ar}" has no Arabic letters`);

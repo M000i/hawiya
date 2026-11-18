@@ -7956,7 +7956,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "كاتبوتشينو لاتيه: undefined وundefined",
+      "ar": "كاتبوتشينو لاتيه: خبّازي وخوخي",
       "en": "Catppuccin Latte: mauve and peach"
     },
     "tags": [
@@ -8027,7 +8027,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
+      "ar": "كاتبوتشينو لاتيه: أحمر وأخضر مزرق (Catppuccin)",
       "en": "Catppuccin Latte: red and teal (Catppuccin)"
     },
     "tags": [
@@ -8098,7 +8098,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
+      "ar": "كاتبوتشينو لاتيه: أزرق ياقوتي وأصفر (Catppuccin)",
       "en": "Catppuccin Latte: sapphire and yellow (Catppuccin)"
     },
     "tags": [
@@ -8169,7 +8169,7 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "كاتبوتشينو لاتيه: undefined وundefined (Catppuccin)",
+      "ar": "كاتبوتشينو لاتيه: خزامي ووردي فلامنغو (Catppuccin)",
       "en": "Catppuccin Latte: lavender and flamingo (Catppuccin)"
     },
     "tags": [
@@ -8240,8 +8240,8 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "بريمر undefined وundefined",
-      "en": "Primer #116329 and #8250df"
+      "ar": "بريمر: أخضر وأرجواني",
+      "en": "Primer: green and purple"
     },
     "tags": [
       "soft",
@@ -8311,8 +8311,8 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "بريمر undefined وundefined (Primer Primitives)",
-      "en": "Primer #99286e and #d4a72c (Primer Primitives)"
+      "ar": "بريمر: زهري وأصفر (Primer Primitives)",
+      "en": "Primer: pink and yellow (Primer Primitives)"
     },
     "tags": [
       "vivid",
@@ -8382,8 +8382,8 @@
     "element": "colors",
     "kind": "curated",
     "name": {
-      "ar": "بريمر undefined وundefined (Primer Primitives)",
-      "en": "Primer #953800 and #0969da (Primer Primitives)"
+      "ar": "بريمر: برتقالي وأزرق (Primer Primitives)",
+      "en": "Primer: orange and blue (Primer Primitives)"
     },
     "tags": [
       "vivid",
