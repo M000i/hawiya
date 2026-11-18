@@ -72,7 +72,8 @@ function hexToComponents(hex) {
   return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
 }
 
-// "selector { --a: 1; --b: 2; }" blocks → [{ selector, vars: Map }], nested @media/@layer flattened with context.
+// "selector { --a: 1; --b: 2; }" blocks → [{ selector, vars: Map }], nested @media/@layer flattened with context;
+// top-level statements such as @import are skipped.
 function cssBlocks(css) {
   const noComments = css.replace(/\/\*[\s\S]*?\*\//g, '');
   const blocks = [];
@@ -95,6 +96,8 @@ function cssBlocks(css) {
       blocks.push({ head: b.head, context: stack.map((s) => s.head), vars });
     } else if (stack.length) {
       if (ch === ';' || /\S|\s/.test(ch)) buf += ch;
+    } else if (ch === ';') {
+      buf = ''; // a statement at-rule at the top level (@import, CHG-5) ends here and heads no block
     } else {
       buf += ch;
     }
@@ -986,4 +989,57 @@ test('[6.2] a value rounding to 100% writes no rule; a role without recorded rul
   assert.match(md, /declare \*\*EB Garamond\*\* again as `"EB Garamond Hawiya 135"`/);
   assert.match(md, /Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family \(for example `size-adjust: 110%;`/);
   assert.match(generate.valueFiles(mixed)['tokens.css'], /--font-heading: "Inter", "Amiri", /);
+});
+
+// Task 6.8 (CHG-5, R-105, R-106): tokens.css loads every font of the identity itself; DESIGN.md gives the exact links.
+test('[6.8] tokens.css starts with two Google Fonts @import lines per family, for every published font template', () => {
+  const build = require('../tools/build.js');
+  const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
+  assert.ok(data.templates.fonts.length > 40, 'the published font templates');
+  for (const tpl of data.templates.fonts) {
+    const id = libraryIdentity(tpl.id);
+    const files = generate.valueFiles(id);
+    const families = [];
+    for (const role of ['heading', 'body', 'numerals'])
+      for (const fam of [id.tokens.font[role].arabic, id.tokens.font[role].latin]) if (fam && !families.includes(fam)) families.push(fam);
+    const expected = families.flatMap((fam) => {
+      const q = fam.replace(/ /g, '+');
+      return [
+        `@import url("https://fonts.googleapis.com/css2?family=${q}&display=swap");`,
+        `@import url("https://fonts.googleapis.com/css2?family=${q}:wght@700&display=swap");`
+      ];
+    });
+    const css = files['tokens.css'];
+    const lines = css.split('\n');
+    const start = lines.indexOf(' */') + 1;
+    assert.deepEqual(lines.slice(start, start + expected.length), expected, tpl.id);
+    assert.equal(lines[start + expected.length], '', `${tpl.id}: a blank line after the imports`);
+    assert.equal((css.match(/^@import /gm) || []).length, expected.length, `${tpl.id}: no other @import`);
+    assert.ok(css.search(/^@import /m) < css.search(/@font-face|:root \{/), `${tpl.id}: the imports come before every rule`);
+    assert.ok(!files['theme.css'].includes('@import url('), `${tpl.id}: theme.css has no @import`);
+  }
+  // One family for both languages: two lines only.
+  const cairo = generate.valueFiles(libraryIdentity('pair-cairo'))['tokens.css'];
+  assert.equal((cairo.match(/^@import /gm) || []).length, 2);
+});
+
+test('[6.8] DESIGN.md says tokens.css loads the fonts and gives the same links as the style guide', () => {
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  const md = generate.designMd(id);
+  assert.ok(
+    md.includes(
+      'Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:'
+    )
+  );
+  const block = /```html\n([\s\S]*?)\n```/.exec(md);
+  assert.ok(block, 'an html code block with the links');
+  assert.deepEqual(block[1].split('\n'), [
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&amp;display=swap">',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&amp;display=swap">',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&amp;display=swap">',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&amp;display=swap">'
+  ]);
+  const guide = generate.styleGuide(id);
+  for (const l of block[1].split('\n')) assert.ok(guide.includes(l), `the style guide has ${l}`);
+  assert.ok(!md.includes('Load the fonts from Google Fonts.'), 'the old vague sentence is gone');
 });

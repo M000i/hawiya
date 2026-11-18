@@ -498,8 +498,10 @@
       ' * ' + GENERATED,
       ' * Light is the default. Dark applies when the system prefers dark (unless <html data-theme="light">)',
       ' * and always with <html data-theme="dark">. Use logical properties (inline-start / inline-end) for layout.',
+      ' * The @import lines load the identity fonts from Google Fonts, so linking this file alone is enough.',
       ' */'
     ];
+    lines = lines.concat(fontImports(t), ['']);
     var faces = fontFaceRules(t);
     if (faces.length) lines = lines.concat(faces, ['']);
     lines.push(':root {');
@@ -921,7 +923,16 @@
       b.push('Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family (for example `size-adjust: ' + pct(t.font[manual[0]].latinSizeAdjust) + ';` when self-hosting the font or copying the Google Fonts `@font-face` rules). It scales only that family\'s letters wherever they appear, so it needs no extra markup and never compounds. If two roles use the same Latin family with different values, give each its own `@font-face` family name.');
     }
     b.push('');
-    b.push('Load the fonts from Google Fonts. Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).');
+    // Task 6.8 (CHG-5, R-106): the exact links, and which file loads what, so no agent leaves a family unloaded.
+    b.push('Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:');
+    b.push('');
+    b.push('```html');
+    fontLinks(t).forEach(function (l) {
+      b.push(l);
+    });
+    b.push('```');
+    b.push('');
+    b.push('Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).');
     b.push('');
     b.push('Line height: ' + t.font.lineHeight.ar + ' for Arabic text and ' + t.font.lineHeight.en + ' for Latin text (`--line-height-ar`, `--line-height-en`). Arabic needs the extra height for its marks and descenders.');
     b.push('');
@@ -1076,15 +1087,31 @@
     return out;
   }
 
-  // Two links per family: the regular weight always exists; the bold one may not, and its failure is harmless.
-  function fontLinks(t) {
-    var lines = [];
+  // Two Google Fonts stylesheets per family: the regular weight always exists; the bold one may not, and its failure
+  // is harmless. One request for both weights would fail whole when a family lacks the bold one.
+  function fontUrls(t) {
+    var urls = [];
     fontFamilies(t).forEach(function (fam) {
-      var qf = fam.replace(/ /g, '+');
-      lines.push('<link rel="stylesheet" href="' + escapeHtml('https://fonts.googleapis.com/css2?family=' + qf + '&display=swap') + '">');
-      lines.push('<link rel="stylesheet" href="' + escapeHtml('https://fonts.googleapis.com/css2?family=' + qf + ':wght@700&display=swap') + '">');
+      var qf = fam.replace(/ /g, '+'); // familyName in the schema allows only letters, digits, spaces and hyphens
+      urls.push('https://fonts.googleapis.com/css2?family=' + qf + '&display=swap');
+      urls.push('https://fonts.googleapis.com/css2?family=' + qf + ':wght@700&display=swap');
     });
-    return lines;
+    return urls;
+  }
+
+  function fontLinks(t) {
+    return fontUrls(t).map(function (u) {
+      return '<link rel="stylesheet" href="' + escapeHtml(u) + '">';
+    });
+  }
+
+  // Task 6.8 (CHG-5, R-105): tokens.css loads the fonts itself, so linking it alone draws both families. CSS takes an
+  // @import only before every other rule, so these lines come right after the header comment. Not in theme.css:
+  // Tailwind places its content after its own rules, where an @import is ignored.
+  function fontImports(t) {
+    return fontUrls(t).map(function (u) {
+      return '@import url("' + u + '");';
+    });
   }
 
   function sgCss(id) {

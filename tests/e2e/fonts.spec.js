@@ -422,3 +422,65 @@ test('the preview and the font cards use the exported @font-face rules; nothing 
   expect(cairo).toMatch(/^"Cairo", /);
   expect(errors).toEqual([]);
 });
+
+// Task 6.8 (CHG-5, R-105): a page that links the exported tokens.css alone, with no Google Fonts link of its own,
+// draws the Arabic text in the identity's Arabic family and the Latin text in the adjusted Latin family (as the
+// page Claude Code built in /verify 6.7 did, where the Arabic heading fell back to a system font). Needs internet.
+test('a page linking only the exported tokens.css draws Amiri and the adjusted EB Garamond (needs internet)', async ({
+  page
+}) => {
+  const fs = require('fs');
+  await page.goto(PAGE);
+  await page.locator('#identity-list [data-identity="classic-naskh"]').click();
+  const tokens = await page.evaluate(
+    () => window.Hawiya.generate.valueFiles(window.Hawiya.state.identity())['tokens.css']
+  );
+  const dir = test.info().outputPath('site');
+  fs.mkdirSync(path.join(dir, 'design'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'design', 'tokens.css'), tokens);
+  fs.writeFileSync(
+    path.join(dir, 'index.html'),
+    '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">' +
+      '<link rel="stylesheet" href="design/tokens.css">' +
+      '<style>body{font-family:var(--font-body)} h1{font-family:var(--font-heading);font-weight:700}' +
+      ' span{font-size:40px}</style></head><body>' +
+      '<h1 id="ar">مرحبا بكم في هوية</h1><p><span id="en" lang="en">Hawiya Design</span></p>' +
+      '<p><span id="plain" lang="en" style="font-family:\'EB Garamond\'">Hawiya Design</span></p></body></html>'
+  );
+  await page.goto(pathToFileURL(path.join(dir, 'index.html')).href);
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(async () => {
+    await document.fonts.load('700 32px Amiri', 'مرحبا');
+    await document.fonts.load('40px "EB Garamond Hawiya 135"', 'Hawiya');
+    await document.fonts.load('40px "EB Garamond"', 'Hawiya');
+  });
+
+  // The font the browser really draws each text with.
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('DOM.enable');
+  await cdp.send('CSS.enable');
+  const { root } = await cdp.send('DOM.getDocument');
+  const drawn = async (selector) => {
+    const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+    const { fonts } = await cdp.send('CSS.getPlatformFontsForNode', { nodeId });
+    return Object.fromEntries(fonts.map((f) => [f.familyName, f.glyphCount]));
+  };
+  // Every Arabic letter in Amiri; only the spaces come from EB Garamond (the Latin family leads the stack, and the
+  // space is in its range). No system font (in /verify 6.7: Geeza Pro).
+  const ar = await drawn('#ar');
+  expect(ar.Amiri).toBe('مرحبا بكم في هوية'.replace(/ /g, '').length);
+  expect(Object.keys(ar).filter((f) => f !== 'Amiri' && f !== 'EB Garamond')).toEqual([]);
+  expect(Object.keys(await drawn('#en'))).toEqual(['EB Garamond']);
+  // Loaded by the @import lines of tokens.css, not by a copy installed on the machine.
+  const loaded = await page.evaluate(() =>
+    [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family.replace(/"/g, ''))
+  );
+  expect(loaded).toEqual(expect.arrayContaining(['Amiri', 'EB Garamond', 'EB Garamond Hawiya 135']));
+  // The Latin text is drawn through the adjusted copy: 1.35 times as wide as the plain family at the same size.
+  const ratio = await page.evaluate(
+    () =>
+      document.getElementById('en').getBoundingClientRect().width /
+      document.getElementById('plain').getBoundingClientRect().width
+  );
+  expect(ratio).toBeCloseTo(1.35, 2);
+});

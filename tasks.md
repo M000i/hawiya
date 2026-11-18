@@ -3129,7 +3129,7 @@
       - R-095 و R-103 متحققان.
     - الملفات (هذه المهمة): `tasks.md` (هذا الدليل).
 
-- [ ] **6.8** `tokens.css` يحمّل خطوط الهوية بنفسه، و `DESIGN.md` يذكر روابطها (CHG-5)
+- [x] **6.8** `tokens.css` يحمّل خطوط الهوية بنفسه، و `DESIGN.md` يذكر روابطها (CHG-5)
   - الخطورة: A — بدونه يظهر النص العربي بخط النظام في صفحة الوكيل (ملاحظة A من `/verify` للمهمة 6.7)
   - الحجم: صغيرة
   - تحقق المتطلبات: R-105، R-106
@@ -3143,7 +3143,21 @@
     - التصدير يعمل بلا إنترنت كما هو، والمعاينة لا تتغير.
   - الاختبار: golden G-11 أولًا، ثم اختبارات `tests/generate.test.js`، واختبار متصفح بصفحة تربط `tokens.css` وحده، ثم `npm test` و `npm run test:golden` و `npm run test:e2e`
   - ما ستراه أنت: صدّر «كلاسيكي نسخي» وافتح `tokens.css`: أول ما فيه بعد التعليق سطور تبدأ بـ `@import url("https://fonts.googleapis.com/`
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - الملفات:
+      - `picker/js/core/generate.js`: الدالة `fontUrls` تعطي رابطين لكل خط (العادي و `:wght@700`)، يستعملهما `style-guide.html` و `DESIGN.md`. والدالة `fontImports` تكتب سطور `@import` في `tokens.css` بعد تعليق الرأس مباشرة، لكل هوية. `theme.css` بلا `@import`. وفي `DESIGN.md` حلّت محل «Load the fonts from Google Fonts.» فقرة تقول إن `tokens.css` يحمّل الخطوط بنفسه إذا رُبط بـ `<link>` أو استُورد قبل أي CSS آخر، ومعها روابط `<link>` الحرفية لمستعملي `theme.css`.
+      - `tests/golden.test.js`: G-11. `tests/generate.test.js`: اختباران [6.8] (كل قوالب الخطوط المنشورة الـ54، ونص `DESIGN.md` وروابطه مطابقة لدليل الهوية)، وقارئ CSS في الاختبارات يتخطى سطور `@import`. `tests/e2e/fonts.spec.js`: صفحة تربط `tokens.css` وحده. `tests/fixtures/expected/*`: `tokens.css` و `DESIGN.md` للهويات الثلاث أُعيدت كتابتها وراجعتُ الفرق. `golden.md`: G-11 «يُختبر».
+    - golden G-11: متوقع: أول 4 سطور بعد تعليق الرأس `@import` لـ `family=Amiri` ثم `Amiri:wght@700` ثم `EB+Garamond` ثم `EB+Garamond:wght@700`، قبل أي قاعدة / فعلي: مطابق / ✔ (فشل قبل كتابة الكود: «✖ G-11 font imports … fail 1»).
+    - القياس في Chrome: صفحة فيها `<link rel="stylesheet" href="design/tokens.css">` وحده لـ «كلاسيكي نسخي»: حروف العنوان العربي الـ14 كلها بـ Amiri (والمسافات بـ EB Garamond لأنه أول الترتيب)، والإنجليزي بـ EB Garamond بنسبة عرض 1.35، والخطوط الثلاثة محمّلة من سطور `@import`. وبتعطيل السطور مؤقتًا فشل الاختبار بالسبب نفسه الذي ظهر في /verify: «- "Amiri": 14, + "Geeza Pro": 14».
+    - `npm test`:
+      ```
+      ℹ tests 628
+      ℹ pass 628
+      ℹ fail 0
+      ```
+    - `npm run test:golden`: «ℹ pass 17 / ℹ fail 0». `npx playwright test`: «137 passed (34.8s)»، ثم بعد إصلاحات المراجعة `tests/e2e/fonts.spec.js`: «9 passed (33.4s)». `npm run check -- --publish`: «success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem». `npm run build`: «total: 319 templates published, 0 drafts left out; 14 identities published, 0 left out» (`picker/data` لم يتغير). `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: نجاح.
+    - المراجعة المستقلة: لا ملاحظة عالية ولا متوسطة؛ تحقّق المراجع أن أسماء الخطوط لا يمكنها حقن شيء في الرابط أو CSS (نمط `familyName` يُفحص في كل طريق)، وأن المعاينة لا تتصل بجهة جديدة. أربع منخفضة: (1) حالة G-11 في `golden.md` ← أُصلحت؛ (2) `tokens.css` المستورد بعد Tailwind يُهمل سطور `@import` ← وُضّحت عبارة `DESIGN.md` («with `<link>` (or importing it before any other CSS)»)؛ (3) `&amp;` في روابط `DESIGN.md` حرفية داخل كتلة الكود ← بلا تغيير: الكتلة HTML وهذا ترميزها الصحيح ومطابق لدليل الهوية، والروابط الصريحة في `tokens.css`؛ (4) اختبار المتصفح يعتمد على عدد حروف ثابت وعلى أن الخط غير مثبت في الجهاز ← أُصلح: يقارن بعدد الحروف العربية، ويتحقق أن الخطوط محمّلة من `@import`.
+    - انحراف: لا.
 
 - [ ] **6.9** تحديث الصفحة المنشورة على GitHub Pages بإصلاح 6.8 — **بإذن صريح منك فقط**
   - الخطورة: B — نشر

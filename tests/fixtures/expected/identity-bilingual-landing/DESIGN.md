@@ -271,7 +271,16 @@ Eleven-step ramps for tints and shades, the same in both modes (50 lightest, 950
 
 The Latin size adjustment is already applied in tokens.css and theme.css: their `@font-face` rules declare **IBM Plex Sans** again as `"IBM Plex Sans Hawiya 96"` with `size-adjust: 96%;`, loading the same font files from Google Fonts, and the font stacks start with that name. Use the stacks as they are: do not add `size-adjust` yourself and do not change font sizes for Latin text. Without tokens.css or theme.css, copy those `@font-face` rules into your CSS.
 
-Load the fonts from Google Fonts. Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).
+Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&amp;display=swap">
+```
+
+Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).
 
 Line height: 1.7 for Arabic text and 1.5 for Latin text (`--line-height-ar`, `--line-height-en`). Arabic needs the extra height for its marks and descenders.
 

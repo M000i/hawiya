@@ -269,7 +269,14 @@ Eleven-step ramps for tints and shades, the same in both modes (50 lightest, 950
 - **Numerals:** Arabic **IBM Plex Sans Arabic**, then `system-ui, sans-serif`.
 
 
-Load the fonts from Google Fonts. Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).
+Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@700&amp;display=swap">
+```
+
+Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).
 
 Line height: 1.7 for Arabic text and 1.5 for Latin text (`--line-height-ar`, `--line-height-en`). Arabic needs the extra height for its marks and descenders.
 

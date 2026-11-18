@@ -174,3 +174,29 @@ test('G-09 size adjustment: «القاهرة» (1) → no @font-face rule', () =
 test('G-10 size adjustment: «الأميري مع إي بي غاراموند» with its own value 1.1 → size-adjust: 110%', () => {
   assertAdjusted(fontExport('pair-amiri-eb-garamond', { 'latin-size-adjust': 1.1 }), 'EB Garamond', 'Amiri', '110%');
 });
+
+// G-11 (CHG-5, task 6.8, R-105): tokens.css loads every font of the identity itself, so linking it alone is enough:
+// right after the header comment, two Google Fonts @import lines per family (regular, then bold), before any rule.
+test('G-11 font imports: «الأميري مع إي بي غاراموند» → tokens.css starts with the Amiri and EB Garamond @import lines', () => {
+  const files = fontExport('pair-amiri-eb-garamond');
+  const lines = files['tokens.css'].split('\n');
+  const afterHeader = lines.indexOf(' */') + 1;
+  assert.ok(afterHeader > 0, 'tokens.css: header comment');
+  assert.deepEqual(lines.slice(afterHeader, afterHeader + 4), [
+    '@import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");',
+    '@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap");',
+    '@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");',
+    '@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap");'
+  ]);
+  // Nothing but comments and blank lines before the last @import (CSS ignores an @import placed after a rule).
+  const lastImport = lines.map((l) => l.startsWith('@import ')).lastIndexOf(true);
+  const before = lines
+    .slice(0, lastImport)
+    .join('\n')
+    .replace(/\/\*[\s\S]*?\*\//g, '');
+  assert.deepEqual(
+    before.split('\n').filter((l) => l.trim() && !l.startsWith('@import ')),
+    []
+  );
+  assert.ok(!files['theme.css'].includes('@import url('), 'theme.css: no @import (Tailwind places it after its rules)');
+});
