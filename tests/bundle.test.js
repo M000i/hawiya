@@ -145,6 +145,8 @@ test('no date or time in any file', () => {
 test('loads as plain browser scripts in the documented order', () => {
   const dir = path.join(ROOT, 'picker', 'js', 'core');
   const sandbox = { self: {} };
+  // The page loads its data first (picker/index.html): font-faces.js carries the @font-face rules (task 6.2).
+  vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'picker', 'data', 'font-faces.js'), 'utf8'), sandbox);
   for (const f of ['schemas.js', 'validate.js', 'contrast.js', 'generate.js', 'bundle.js']) vm.runInNewContext(fs.readFileSync(path.join(dir, f), 'utf8'), sandbox);
   // the identity is parsed inside the page's own realm, as the page would do
   sandbox.text = JSON.stringify(IDENTITIES[0][1]);
@@ -158,7 +160,10 @@ test('the browser (Chrome) builds exactly the same files and fingerprints as Nod
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'hawiya-bundle-'));
   try {
     const core = path.join(ROOT, 'picker', 'js', 'core');
-    const scripts = ['schemas.js', 'validate.js', 'contrast.js', 'generate.js', 'bundle.js'].map((f) => `<script src="${'file://' + path.join(core, f)}"></script>`).join('\n');
+    // As the page does: its data first (font-faces.js carries the @font-face rules, task 6.2), then the core scripts.
+    const scripts = [path.join(ROOT, 'picker', 'data', 'font-faces.js'), ...['schemas.js', 'validate.js', 'contrast.js', 'generate.js', 'bundle.js'].map((f) => path.join(core, f))]
+      .map((f) => `<script src="${'file://' + f}"></script>`)
+      .join('\n');
     fs.writeFileSync(path.join(dir, 'p.html'), `<!doctype html><meta charset="utf-8">\n${scripts}\n`);
     await c.open('file://' + path.join(dir, 'p.html'));
     for (const [name, id] of IDENTITIES) {

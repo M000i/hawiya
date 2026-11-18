@@ -14,6 +14,10 @@ npm run test:golden
 | G-04 | سلّم الخط | أساس 16، نسبة 1.25، خمس درجات | 16، 20، 25، 31.25، 39.06 | `tests/golden.test.js` → `G-04 type scale` | 1.6 | يُختبر |
 | G-05 | تحويل اللون إلى OKLCH | `#FFFFFF` | الإضاءة 1، التشبع 0 | `tests/golden.test.js` → `G-05 OKLCH` | 1.3 | يُختبر |
 | G-06 | تحويل اللون إلى OKLCH | `#FF0000` | الإضاءة 0.628، التشبع 0.258، الزاوية 29.2 | `tests/golden.test.js` → `G-06 OKLCH` | 1.3 | يُختبر |
+| G-07 | تعديل حجم الخط اللاتيني (CHG-4) | «الأميري مع إي بي غاراموند»، القيمة 1.35 | `size-adjust: 135%` في قواعد `@font-face` للخط اللاتيني في `tokens.css` و `theme.css` و `style-guide.html`، واسم الخط `"EB Garamond Hawiya 135"` أول ترتيب الخطوط | `tests/golden.test.js` → `G-07 size adjustment` | 6.2 | يُختبر |
+| G-08 | تعديل حجم الخط اللاتيني (CHG-4) | «نوتو نسخ مع فراونسيز»، القيمة 0.9 | `size-adjust: 90%` | `tests/golden.test.js` → `G-08 size adjustment` | 6.2 | يُختبر |
+| G-09 | تعديل حجم الخط اللاتيني (CHG-4) | «القاهرة» للغتين، القيمة 1 | بلا قاعدة `@font-face` | `tests/golden.test.js` → `G-09 size adjustment` | 6.2 | يُختبر |
+| G-10 | تعديل حجم الخط اللاتيني (CHG-4) | «الأميري مع إي بي غاراموند» بقيمة مخصّصة 1.1 | `size-adjust: 110%` | `tests/golden.test.js` → `G-10 size adjustment` | 6.2 | يُختبر |
 
 ## أمثلة المهام (من `tasks.md`)
 

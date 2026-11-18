@@ -123,3 +123,54 @@ test('T-2.14 rules: #767676 on white at AAA → blocked', () => {
   assert.equal(r.allowed, false);
   assert.ok(contrast.ratio(r.suggestion, '#FFFFFF') >= 7);
 });
+
+// G-07 to G-10 (CHG-4, task 6.2, R-103): the Latin size adjustment is written into the exported CSS as @font-face
+// rules of the Latin family with size-adjust, under a name of its own that the font stacks start with.
+function fontExport(fontsTemplate, overrides) {
+  const resolve = require('../picker/js/core/resolve.js');
+  const bundle = require('../picker/js/core/bundle.js');
+  const build = require('../tools/build.js');
+  const path = require('node:path');
+  const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
+  const calm = data.identities.find((i) => i.id === 'calm-corporate');
+  const selections = {};
+  for (const [element, template] of Object.entries(calm.templates)) selections[element] = { template };
+  selections.fonts = { template: fontsTemplate };
+  if (overrides) selections.fonts.overrides = overrides;
+  return bundle.build(resolve.resolve({ name: 'Golden', selections }, data)).files;
+}
+// Every @font-face block of a CSS text: { family, sizeAdjust }.
+const fontFaces = (css) =>
+  [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => ({
+    family: (/font-family: "([^"]+)";/.exec(m[1]) || [])[1],
+    sizeAdjust: (/size-adjust: ([^;]+);/.exec(m[1]) || [])[1]
+  }));
+function assertAdjusted(files, latin, arabic, percent) {
+  const name = `${latin} Hawiya ${percent.replace('%', '')}`;
+  for (const f of ['tokens.css', 'theme.css', 'style-guide.html']) {
+    const faces = fontFaces(files[f]);
+    assert.ok(faces.length >= 2, `${f}: @font-face rules`);
+    for (const face of faces) assert.deepEqual(face, { family: name, sizeAdjust: percent }, f);
+  }
+  assert.match(files['tokens.css'], new RegExp(`--font-body: "${name}", "${latin}", "${arabic}", `));
+}
+
+test('G-07 size adjustment: «الأميري مع إي بي غاراموند» (1.35) → size-adjust: 135%', () => {
+  assertAdjusted(fontExport('pair-amiri-eb-garamond'), 'EB Garamond', 'Amiri', '135%');
+});
+
+test('G-08 size adjustment: «نوتو نسخ مع فراونسيز» (0.9) → size-adjust: 90%', () => {
+  assertAdjusted(fontExport('pair-noto-naskh-arabic-fraunces'), 'Fraunces', 'Noto Naskh Arabic', '90%');
+});
+
+test('G-09 size adjustment: «القاهرة» (1) → no @font-face rule', () => {
+  const files = fontExport('pair-cairo');
+  for (const f of ['tokens.css', 'theme.css', 'style-guide.html']) {
+    assert.deepEqual(fontFaces(files[f]), [], f);
+    assert.ok(!files[f].includes(' Hawiya 1'), `${f}: no adjusted family name`);
+  }
+});
+
+test('G-10 size adjustment: «الأميري مع إي بي غاراموند» with its own value 1.1 → size-adjust: 110%', () => {
+  assertAdjusted(fontExport('pair-amiri-eb-garamond', { 'latin-size-adjust': 1.1 }), 'EB Garamond', 'Amiri', '110%');
+});

@@ -462,7 +462,8 @@ test('[1.8] a test page colored only by tokens.css shows the light and dark valu
     assert.equal(r.radius, `${id.tokens.radius.md}px`);
     assert.equal(r.pad, `${id.tokens.spacing.scale[4]}px`);
     assert.equal(r.size, `${id.tokens.typeScale.steps[id.tokens.typeScale.steps.indexOf(id.tokens.typeScale.base) + 1]}px`);
-    assert.match(r.font, /^"IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif$/);
+    // CHG-4 (task 6.2): the fixture's pair has a Latin size adjustment (0.96), so the stack starts with the adjusted family.
+    assert.match(r.font, /^"IBM Plex Sans Hawiya 96", "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif$/);
     assert.equal(r.scheme, 'light');
 
     await c.media([{ name: 'prefers-color-scheme', value: 'dark' }]);
@@ -891,4 +892,98 @@ test('[1.10] in a real browser: no errors, the name shows as plain text, both mo
     c.close();
     fs.rmSync(dir, { recursive: true, force: true });
   }
+});
+
+// Task 6.2 (CHG-4, R-103): the Latin size adjustment as @font-face rules in tokens.css, theme.css and style-guide.html.
+function libraryIdentity(fontsTemplate, overrides) {
+  const resolve = require('../picker/js/core/resolve.js');
+  const build = require('../tools/build.js');
+  const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
+  const calm = data.identities.find((i) => i.id === 'calm-corporate');
+  const selections = {};
+  for (const [element, template] of Object.entries(calm.templates)) selections[element] = { template };
+  selections.fonts = { template: fontsTemplate };
+  if (overrides) selections.fonts.overrides = overrides;
+  return resolve.resolve({ name: 'T', selections }, data);
+}
+
+test('[6.2] two families with the value 1: no rule and the stacks as before; an adjusted pair: the rules of every recorded face', () => {
+  const plainPair = generate.valueFiles(libraryIdentity('pair-zain-figtree'));
+  for (const f of ['tokens.css', 'theme.css']) assert.ok(!plainPair[f].includes('@font-face') && !/"[^"]+ Hawiya \d/.test(plainPair[f]), f);
+  assert.match(plainPair['tokens.css'], /--font-body: "Figtree", "Zain", /);
+  assert.ok(!generate.styleGuide(libraryIdentity('pair-zain-figtree')).includes('@font-face'));
+
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  const css = generate.valueFiles(id)['tokens.css'];
+  const record = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'library', 'font-faces.json'), 'utf8')).families['EB Garamond'];
+  const blocks = [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => m[1]);
+  assert.equal(blocks.length, record.faces.length, 'one rule per recorded face (3 weights × latin-ext, latin)');
+  record.faces.forEach((f, i) => {
+    assert.ok(blocks[i].includes(`src: url(${f.url}) format("woff2");`), `face ${i}: file`);
+    assert.ok(blocks[i].includes(`unicode-range: ${f.unicodeRange};`), `face ${i}: range`);
+    assert.ok(blocks[i].includes(`font-weight: ${f.weight};`), `face ${i}: weight`);
+    assert.ok(blocks[i].includes('font-style: normal;') && blocks[i].includes('font-display: swap;'), `face ${i}`);
+  });
+  assert.ok(css.indexOf('@font-face') < css.indexOf(':root {'), 'the rules come before the variables');
+  assert.ok(generate.valueFiles(id)['theme.css'].indexOf('@font-face') < generate.valueFiles(id)['theme.css'].indexOf('@theme {'));
+  // The Tailwind default text font follows too.
+  assert.match(generate.valueFiles(id)['theme.css'], /--font-sans: "EB Garamond Hawiya 135", "EB Garamond", "Amiri", /);
+  // tokens.json and identity.json are unchanged by the adjustment: the names and value stay as they were.
+  assert.ok(!generate.valueFiles(id)['tokens.json'].includes('Hawiya 135'));
+});
+
+test('[6.2] DESIGN.md says the rules are ready and not to add size-adjust again; the old instruction stays without rules', () => {
+  const md = generate.designMd(libraryIdentity('pair-amiri-eb-garamond'));
+  assert.match(md, /The Latin size adjustment is already applied in tokens\.css and theme\.css: their `@font-face` rules declare \*\*EB Garamond\*\* again as `"EB Garamond Hawiya 135"` with `size-adjust: 135%;`/);
+  assert.match(md, /do not add `size-adjust` yourself and do not change font sizes for Latin text/);
+  assert.ok(!md.includes('when self-hosting the font'), 'the old instruction is gone');
+  const report = lint(md);
+  assert.deepEqual([report.summary.errors, report.summary.warnings], [0, 0]);
+  // A pair with the value 1: no adjustment text that asks for anything new.
+  assert.ok(!generate.designMd(libraryIdentity('pair-zain-figtree')).includes('already applied'));
+});
+
+test('[6.2] without recorded rules nothing changes; unsound recorded rules are refused, never written into CSS', () => {
+  const dir = path.join(__dirname, '..', 'picker', 'js', 'core');
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  const run = (fontFaces) => {
+    const sandbox = { self: { Hawiya: { data: { fontFaces } } } };
+    for (const f of ['schemas.js', 'validate.js', 'contrast.js', 'generate.js']) vm().runInNewContext(fs.readFileSync(path.join(dir, f), 'utf8'), sandbox);
+    sandbox.text = JSON.stringify(id);
+    return vm().runInNewContext('self.Hawiya.generate.valueFiles(JSON.parse(text))["tokens.css"]', sandbox);
+  };
+  const none = run({});
+  assert.ok(!none.includes('@font-face') && none.includes('--font-body: "EB Garamond", "Amiri", '), 'no record: the stack as before');
+  const good = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'library', 'font-faces.json'), 'utf8')).families;
+  assert.equal(run(good), generate.valueFiles(id)['tokens.css'], 'the page data gives the same file as Node');
+  for (const [what, change] of [
+    ['a file elsewhere', (f) => (f.url = 'https://example.com/s/x/v1/a.woff2')],
+    ['a range that leaves the rule', (f) => (f.unicodeRange = 'U+0000-00FF; } * { color: red')],
+    ['another weight', (f) => (f.weight = '400; color: red')]
+  ]) {
+    const bad = JSON.parse(JSON.stringify(good));
+    change(bad['EB Garamond'].faces[0]);
+    assert.throws(() => run(bad), /recorded @font-face rules of "EB Garamond" are not sound/, what);
+  }
+});
+const vm = () => require('node:vm');
+
+// Review of 6.2: a value that rounds to 100% is the value 1; a role whose family the record lacks keeps the old
+// instruction next to the ready one; the reference variables say the value is already applied.
+test('[6.2] a value rounding to 100% writes no rule; a role without recorded rules keeps its instruction; no double adjustment', () => {
+  const near = generate.valueFiles(libraryIdentity('pair-amiri-eb-garamond', { 'latin-size-adjust': 1.00001 }))['tokens.css'];
+  assert.ok(!near.includes('@font-face') && near.includes('--font-body: "EB Garamond", "Amiri", '), '1.00001 is 100%');
+
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  const css = generate.valueFiles(id)['tokens.css'];
+  assert.match(css, /\/\* Latin size adjustment: already applied by the @font-face rules above; for reference only, never multiply sizes by it \*\/\n {2}--font-heading-latin-size-adjust: 1\.35;/);
+  assert.ok(!generate.valueFiles(libraryIdentity('pair-zain-figtree'))['tokens.css'].includes('already applied'), 'value 1: no comment');
+
+  // A hand-edited identity: the heading pairs a Latin family the record lacks, with its own value.
+  const mixed = JSON.parse(JSON.stringify(id));
+  mixed.tokens.font.heading = { arabic: 'Amiri', latin: 'Inter', fallback: ['ui-serif', 'serif'], latinSizeAdjust: 1.1 };
+  const md = generate.designMd(mixed);
+  assert.match(md, /declare \*\*EB Garamond\*\* again as `"EB Garamond Hawiya 135"`/);
+  assert.match(md, /Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family \(for example `size-adjust: 110%;`/);
+  assert.match(generate.valueFiles(mixed)['tokens.css'], /--font-heading: "Inter", "Amiri", /);
 });

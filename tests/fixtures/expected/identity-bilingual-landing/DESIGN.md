@@ -269,7 +269,7 @@ Eleven-step ramps for tints and shades, the same in both modes (50 lightest, 950
 - **Numerals:** Arabic **IBM Plex Sans Arabic**, Latin **IBM Plex Sans**, then `system-ui, sans-serif`. Latin size adjustment: **0.96** (the Latin family drawn at 96% so it looks the same size as the Arabic one).
 
 
-Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family (for example `size-adjust: 96%;` when self-hosting the font or copying the Google Fonts `@font-face` rules). It scales only that family's letters wherever they appear, so it needs no extra markup and never compounds. If two roles use the same Latin family with different values, give each its own `@font-face` family name.
+The Latin size adjustment is already applied in tokens.css and theme.css: their `@font-face` rules declare **IBM Plex Sans** again as `"IBM Plex Sans Hawiya 96"` with `size-adjust: 96%;`, loading the same font files from Google Fonts, and the font stacks start with that name. Use the stacks as they are: do not add `size-adjust` yourself and do not change font sizes for Latin text. Without tokens.css or theme.css, copy those `@font-face` rules into your CSS.
 
 Load the fonts from Google Fonts. Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).
 

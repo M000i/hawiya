@@ -13,18 +13,31 @@
  *
  *    generate.styleGuide(identity)  (task 1.10) - style-guide.html; generate.cssVariables(identity, mode) - the
  *    preview's variables. The page builds all six files through bundle.js (task 1.11).
+ *
+ *    Latin size adjustment (task 6.2, R-103): tokens.css, theme.css and style-guide.html carry @font-face rules of the
+ *    adjusted Latin family, from the rules recorded by `npm run fonts` (picker/data/font-faces.js). Browser: load
+ *    that data script before using the generator, as the page does; Node reads the same file.
  */
 (function (root, factory) {
   var api;
   if (typeof module === 'object' && module && module.exports && typeof require === 'function') {
+    var faces; // read once
     api = factory(function () {
-      return { validate: require('./validate.js'), schemas: require('./schemas.js'), contrast: require('./contrast.js') };
+      if (!faces) {
+        // The page data the build makes (picker/data/font-faces.js, task 6.1), run the way the page runs it, so Node
+        // gets exactly what the page gets as window.Hawiya.data.fontFaces.
+        var ctx = {};
+        ctx.self = ctx;
+        require('vm').runInNewContext(require('fs').readFileSync(require.resolve('../../data/font-faces.js'), 'utf8'), ctx);
+        faces = JSON.parse(JSON.stringify(ctx.Hawiya.data.fontFaces));
+      }
+      return { validate: require('./validate.js'), schemas: require('./schemas.js'), contrast: require('./contrast.js'), fontFaces: faces };
     });
     module.exports = api;
   } else {
     api = factory(function () {
       var H = root.Hawiya || {};
-      return { validate: H.validate, schemas: H.schemas, contrast: H.contrast };
+      return { validate: H.validate, schemas: H.schemas, contrast: H.contrast, fontFaces: H.data && H.data.fontFaces };
     });
     root.Hawiya = root.Hawiya || {};
     root.Hawiya.generate = api;
@@ -310,9 +323,71 @@
 
   /* ---------- CSS ---------- */
 
+  /* ---------- Latin size adjustment (task 6.2, R-103) ----------
+   * A size adjustment between the two families of a role (R-090) only takes effect through the size-adjust descriptor
+   * of the Latin family's @font-face rules, and a Google Fonts <link> cannot carry one. So the exported CSS declares
+   * the Latin family again under a name of its own, '<Latin> Hawiya <percent>', from the font files Google Fonts
+   * serves (recorded by `npm run fonts`, picker/data/font-faces.js), with size-adjust; the font stack starts with that
+   * name, then the Latin family itself (used if those files ever stop loading), then the Arabic one. A value that
+   * rounds to 100%, one family for both languages, or a family the record lacks: no rule, and the stack is as before. */
+  var FACE_URL = /^https:\/\/fonts\.gstatic\.com\/s\/[a-z0-9]+\/v[0-9]+\/[A-Za-z0-9_-]+\.woff2$/;
+  var FACE_RANGE = /^U\+[0-9A-F]{1,6}(-[0-9A-F]{1,6})?(, U\+[0-9A-F]{1,6}(-[0-9A-F]{1,6})?)*$/;
+
+  // The recorded faces of a Latin family, or null. The build checked them; checked again here because each value is
+  // written into CSS: a woff2 file on fonts.gstatic.com, U+ ranges, and a weight of 400, 600 or 700 only.
+  function recordedFaces(family) {
+    var all = deps().fontFaces;
+    if (!all || !hasOwn(all, family)) return null;
+    var faces = all[family] && all[family].faces;
+    if (!Array.isArray(faces) || !faces.length) return null;
+    faces.forEach(function (f) {
+      if (!f || !FACE_URL.test(f.url) || !FACE_RANGE.test(f.unicodeRange) || [400, 600, 700].indexOf(f.weight) === -1)
+        fail('the recorded @font-face rules of "' + family + '" are not sound (run npm run fonts, then npm run build)');
+    });
+    return faces;
+  }
+
+  function adjustedFamily(ref) {
+    if (!ref.latin || !ref.arabic || ref.latin === ref.arabic) return null;
+    // A value that rounds to 100% (1.00001) changes nothing: no rule, as with 1.
+    if (!hasOwn(ref, 'latinSizeAdjust') || pct(ref.latinSizeAdjust) === '100%') return null;
+    if (!recordedFaces(ref.latin)) return null;
+    return ref.latin + ' Hawiya ' + pct(ref.latinSizeAdjust).slice(0, -1);
+  }
+
+  // The @font-face rules of the adjusted Latin families of an identity, once per name (the roles usually share one).
+  function fontFaceRules(t) {
+    var seen = {};
+    var lines = [];
+    FONT_ROLES.forEach(function (role) {
+      var ref = t.font[role];
+      var name = adjustedFamily(ref);
+      if (!name || hasOwn(seen, name)) return;
+      seen[name] = true;
+      var size = pct(ref.latinSizeAdjust);
+      lines.push('/* ' + ref.latin + ' drawn at ' + size + ' so it looks the same size as ' + ref.arabic + ' (files from Google Fonts) */');
+      recordedFaces(ref.latin).forEach(function (f) {
+        lines.push(
+          '@font-face {',
+          '  font-family: "' + name + '";',
+          '  font-style: normal;',
+          '  font-weight: ' + f.weight + ';',
+          '  font-display: swap;',
+          '  src: url(' + f.url + ') format("woff2");',
+          '  unicode-range: ' + f.unicodeRange + ';',
+          '  size-adjust: ' + size + ';',
+          '}'
+        );
+      });
+    });
+    return lines;
+  }
+
   function cssFont(ref) {
     var fl = familyList(ref);
-    return fl.names
+    var adjusted = adjustedFamily(ref);
+    return (adjusted ? [adjusted] : [])
+      .concat(fl.names)
       .map(function (n) {
         return '"' + n + '"'; // familyName in the schema allows only letters, digits, spaces and hyphens
       })
@@ -387,6 +462,9 @@
     FONT_ROLES.forEach(function (role) {
       out.push(['--font-' + role, cssFont(t.font[role])]);
     });
+    // With @font-face rules (task 6.2) the value is already applied: say so, so it is never applied a second time.
+    if (FONT_ROLES.some(function (role) { return adjustedFamily(t.font[role]); }))
+      out.push({ comment: 'Latin size adjustment: already applied by the @font-face rules above; for reference only, never multiply sizes by it' });
     FONT_ROLES.forEach(function (role) {
       if (hasOwn(t.font[role], 'latinSizeAdjust')) out.push(['--font-' + role + '-latin-size-adjust', String(t.font[role].latinSizeAdjust)]);
     });
@@ -420,9 +498,11 @@
       ' * ' + GENERATED,
       ' * Light is the default. Dark applies when the system prefers dark (unless <html data-theme="light">)',
       ' * and always with <html data-theme="dark">. Use logical properties (inline-start / inline-end) for layout.',
-      ' */',
-      ':root {'
+      ' */'
     ];
+    var faces = fontFaceRules(t);
+    if (faces.length) lines = lines.concat(faces, ['']);
+    lines.push(':root {');
     lines = lines.concat(decls(root, '  '), ['}', '', DARK_MEDIA + ' {', '  ' + DARK_AUTO + ' {'], decls(dark, '    '), ['  }', '}', '', DARK_FORCED + ' {'], decls(dark, '  '), ['}']);
     return lines.join('\n') + '\n';
   }
@@ -465,9 +545,11 @@
       ' * Colors and shadows switch to the dark mode with the system setting (unless <html data-theme="light">)',
       ' * or with <html data-theme="dark">; utilities such as bg-primary and shadow-md follow on their own,',
       ' * and the dark: variant below follows the same rule (it replaces any other dark: variant of the project).',
-      ' */',
-      '@theme {'
+      ' */'
     ];
+    var faces = fontFaceRules(t);
+    if (faces.length) lines = lines.concat(faces, ['']);
+    lines.push('@theme {');
     lines = lines.concat(
       decls(theme, '  '),
       [
@@ -806,9 +888,37 @@
       var ref = t.font[role];
       return ref.arabic && ref.latin && hasOwn(ref, 'latinSizeAdjust');
     });
-    if (adjusted.length) {
+    // Task 6.2 (R-103): with the rules in tokens.css and theme.css, the agent has nothing to write but must not
+    // double the adjustment.
+    var ready = [];
+    FONT_ROLES.forEach(function (role) {
+      var ref = t.font[role];
+      var name = adjustedFamily(ref);
+      if (name && !ready.some(function (r) { return r.name === name; })) ready.push({ name: name, ref: ref });
+    });
+    if (ready.length) {
       b.push('');
-      b.push('Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family (for example `size-adjust: ' + pct(t.font[adjusted[0]].latinSizeAdjust) + ';` when self-hosting the font or copying the Google Fonts `@font-face` rules). It scales only that family\'s letters wherever they appear, so it needs no extra markup and never compounds. If two roles use the same Latin family with different values, give each its own `@font-face` family name.');
+      b.push(
+        'The Latin size adjustment is already applied in tokens.css and theme.css: their `@font-face` rules declare ' +
+          ready
+            .map(function (r) {
+              return '**' + r.ref.latin + '** again as `"' + r.name + '"` with `size-adjust: ' + pct(r.ref.latinSizeAdjust) + ';`';
+            })
+            .join(', and ') +
+          ', loading the same font files from Google Fonts, and the font stacks start with that name. Use the stacks as they are: do not add `size-adjust` yourself and do not change font sizes for Latin text. Without tokens.css or theme.css, copy those `@font-face` rules into your CSS.'
+      );
+    }
+    // The old instruction: every adjusted role when no rule is written (as before 6.2), otherwise only a role whose
+    // family the record lacks (a hand-edited identity.json), so no role's value is ever left without a word.
+    var manual = ready.length
+      ? adjusted.filter(function (role) {
+          var ref = t.font[role];
+          return !adjustedFamily(ref) && pct(ref.latinSizeAdjust) !== '100%';
+        })
+      : adjusted;
+    if (manual.length) {
+      b.push('');
+      b.push('Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family (for example `size-adjust: ' + pct(t.font[manual[0]].latinSizeAdjust) + ';` when self-hosting the font or copying the Google Fonts `@font-face` rules). It scales only that family\'s letters wherever they appear, so it needs no extra markup and never compounds. If two roles use the same Latin family with different values, give each its own `@font-face` family name.');
     }
     b.push('');
     b.push('Load the fonts from Google Fonts. Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).');
@@ -981,7 +1091,7 @@
     var t = id.tokens;
     var names = sizeNames(t.typeScale);
     var root = rampPairs(t).concat(basePairs(id));
-    var lines = [':root {'].concat(decls(root, '  '), ['}']);
+    var lines = fontFaceRules(t).concat([':root {'], decls(root, '  '), ['}']);
     ['light', 'dark'].forEach(function (mode) {
       lines.push('[data-mode="' + mode + '"] {');
       lines = lines.concat(decls([['color-scheme', mode]].concat(modePairs(t, mode)), '  '));
