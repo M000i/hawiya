@@ -42,6 +42,9 @@
  *                   a third-party source uses has its full text (the notices print it); both files have their shape;
  *                   (task 5.1, B-078) every font a template names (fontFamily tokens, the families of a fonts
  *                   template's extras) is in the "fonts" list of exactly one source, and the template names it
+ *   font-faces      (task 6.1, R-104) font-faces.json has the @font-face rules of the Latin family of every reviewed
+ *                   fonts template that pairs two families, in its strict shape (fonts.gstatic.com woff2 files only,
+ *                   U+ ranges only), and no family that no fonts template pairs
  *   notices         THIRD_PARTY_NOTICES.md is exactly what `npm run notices` makes from sources.json and
  *                   licenses.json (checked when both files are sound)
  *   data            picker/data is exactly what `npm run build` makes from the library (only checked when the
@@ -521,6 +524,7 @@ function check({
     pairs: 0,
     dataFiles: 0,
     sources: 0,
+    fontFaces: 0,
     comparisons: 0,
     skillLines: 0
   };
@@ -695,6 +699,7 @@ function check({
   }
 
   licenseProblems(libraryDir, valid, add, counts);
+  fontFaceProblems(libraryDir, valid, add, counts);
   axesProblems(libraryDir, valid, add, counts);
   // THIRD_PARTY_NOTICES.md: only sound sources and licenses can be rendered.
   if (!problems.some((p) => p.kind === 'license' && (p.file === 'sources.json' || p.file === 'licenses.json'))) {
@@ -1346,6 +1351,51 @@ function fontFamilies(t) {
   return out;
 }
 
+// font-faces.json (task 6.1, R-104): the Latin family of every reviewed fonts template that pairs two families has
+// its @font-face rules, the file has its strict shape (build.fontFacesProblems: nothing that could break out of CSS),
+// and it holds no family that no fonts template pairs (drafts count: their rules are ready before the review).
+function fontFaceProblems(libraryDir, valid, add, counts) {
+  const name = 'font-faces.json';
+  const needed = new Map(); // Latin family -> ids of the reviewed templates that pair it
+  const known = new Set();
+  for (const { t } of valid) {
+    const family = build.adjustableLatin(t);
+    if (!family) continue;
+    known.add(family);
+    if (t.status.state !== 'reviewed') continue;
+    if (!needed.has(family)) needed.set(family, []);
+    needed.get(family).push(t.id);
+  }
+  const missing = (value) => {
+    for (const [family, ids] of needed)
+      if (!value || !own(value.families, family))
+        add(
+          'font-faces',
+          name,
+          ids.join(', '),
+          `the Latin family "${family}" has no @font-face rules (run npm run fonts)`
+        );
+  };
+  const file = path.join(libraryDir, name);
+  if (!fs.existsSync(file)) {
+    if (needed.size) add('font-faces', name, null, 'missing (run npm run fonts)');
+    missing(null);
+    return;
+  }
+  const raw = [];
+  const value = build.readJson(file, raw);
+  raw.forEach((p) => add('font-faces', name, null, p));
+  if (value === undefined) return;
+  const bad = build.fontFacesProblems(value);
+  bad.forEach((p) => add('font-faces', name, null, p));
+  if (bad.length) return;
+  missing(value);
+  for (const family of Object.keys(value.families))
+    if (!known.has(family))
+      add('font-faces', name, null, `"${family}" is paired by no fonts template; remove it (run npm run fonts)`);
+  counts.fontFaces = Object.keys(value.families).length;
+}
+
 function licenseProblems(libraryDir, valid, add, counts) {
   const raw = [];
   const read = (name) => {
@@ -1609,6 +1659,7 @@ const KINDS = [
   'recipe',
   'identity',
   'license',
+  'font-faces',
   'axes',
   'notices',
   'data',
@@ -1630,6 +1681,7 @@ function report(result) {
   if (!problems.length) {
     lines.push(`  checked: ${KINDS.join(', ')}`);
     lines.push(`  ${counts.pairs} contrast checks; ${counts.sources} sources, licenses allowed, none forbidden`);
+    lines.push(`  ${counts.fontFaces} Latin families with their @font-face rules (font-faces.json)`);
     lines.push(`  لا تكرار — no duplicates: ${counts.comparisons} comparisons, every two templates differ in two axes`);
     lines.push(
       `  ${counts.identitiesBuilt} ready identities built in Arabic, English and both: the blocking rules pass in light and dark; each DESIGN.md passes the official check`

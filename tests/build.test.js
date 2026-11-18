@@ -64,14 +64,14 @@ test('drafts never reach the output; reviewed templates arrive unchanged', () =>
   assert.deepEqual(summary.elements.buttons, { published: 1, drafts: 1, file: true });
 });
 
-test('one data file per element plus identities.js and starter.js; an element with no file gives an empty list and is reported', () => {
+test('one data file per element plus identities.js, starter.js and font-faces.js; an element with no file gives an empty list and is reported', () => {
   const lib = copyFixture();
   fs.rmSync(path.join(lib, 'elements', 'colors.json'));
   const out = tmp();
   const { summary } = builder.build({ libraryDir: lib, outDir: out });
   assert.deepEqual(summary.elements.colors, { published: 0, drafts: 0, file: false });
   assert.match(builder.report(summary, { libraryDir: lib, outDir: out }), /colors\s+published\s+0\s+drafts left out\s+0\s+\(no file\)/);
-  const expectedFiles = [...builder.ELEMENTS.map((e) => `${e}.js`), 'identities.js', 'starter.js'].sort();
+  const expectedFiles = [...builder.ELEMENTS.map((e) => `${e}.js`), 'identities.js', 'starter.js', 'font-faces.js'].sort();
   assert.deepEqual(fs.readdirSync(out).sort(), expectedFiles);
   assert.equal(builder.ELEMENTS.length, 11);
   const data = loadData(out);
@@ -317,7 +317,7 @@ test('command line: counts printed, --dry-run writes nothing, problems exit 1, b
 
   r = spawnSync(process.execPath, [TOOL, '--library', FIXTURE, '--out', out], { encoding: 'utf8' });
   assert.equal(r.status, 0, r.stderr);
-  assert.equal(fs.readdirSync(out).length, 13);
+  assert.equal(fs.readdirSync(out).length, 14);
 
   const lib = copyFixture();
   fs.writeFileSync(path.join(lib, 'elements', 'fonts.json'), '[{]');
@@ -354,5 +354,76 @@ test('a real browser loads the data from file:// (page opened as a file)', async
     assert.deepEqual(c.errors(), []);
   } finally {
     c.close();
+  }
+});
+
+// Task 6.1 (R-104): font-faces.js carries the record's @font-face rules for the Latin families the published fonts
+// templates pair with an Arabic family, nothing else; a record that breaks its strict shape stops the build.
+test('font-faces.js holds the rules of the Latin families the published pairs use; a bad record stops the build', () => {
+  const face = (weight, subset) => ({
+    weight,
+    subset,
+    unicodeRange: subset === 'latin' ? 'U+0000-00FF, U+2000-206F' : 'U+0100-02BA',
+    url: `https://fonts.gstatic.com/s/test/v1/${subset}${weight}.woff2`
+  });
+  const entry = {
+    weights: [400, 700],
+    faces: [face(400, 'latin-ext'), face(400, 'latin'), face(700, 'latin-ext'), face(700, 'latin')]
+  };
+  const record = {
+    source: 'https://fonts.googleapis.com/css2',
+    weights: [400, 600, 700],
+    subsets: ['latin-ext', 'latin'],
+    families: { 'IBM Plex Sans': entry, 'Unused Sans': entry }
+  };
+
+  // No record: an empty object (npm run check is the one that requires it).
+  let out = tmp();
+  builder.build({ libraryDir: FIXTURE, outDir: out });
+  assert.deepEqual(plain(loadData(out).fontFaces), {});
+
+  const lib = copyFixture();
+  // The fixture's pair predates the family names in extras (task 3.8): give it the two, as the real library has.
+  const fontsFile = path.join(lib, 'elements', 'fonts.json');
+  const fonts = readJson(fontsFile);
+  fonts[0].extras = { ...fonts[0].extras, arabic: 'IBM Plex Sans Arabic', latin: 'IBM Plex Sans' };
+  writeJson(fontsFile, fonts);
+  writeJson(path.join(lib, 'font-faces.json'), record);
+  out = tmp();
+  const { summary } = builder.build({ libraryDir: lib, outDir: out });
+  const data = loadData(out);
+  assert.deepEqual(plain(data.fontFaces), { 'IBM Plex Sans': entry }, 'only the family a published pair uses');
+  assert.ok(Object.isFrozen(data.fontFaces['IBM Plex Sans'].faces[0]));
+  assert.equal(summary.fontFaces, 1);
+  assert.match(builder.report(summary, { libraryDir: lib, outDir: out }), /font faces\s+1 Latin families/);
+
+  const bad = [
+    ['a quote in a range', (r) => (r.families['IBM Plex Sans'].faces[0].unicodeRange = "U+0000-00FF; } body { color: red")],
+    ['a file outside fonts.gstatic.com', (r) => (r.families['IBM Plex Sans'].faces[1].url = 'https://example.com/s/x/v1/a.woff2')],
+    ['a family name with a quote', (r) => (r.families['Bad" Sans'] = entry)],
+    ['no 400', (r) => (r.families['IBM Plex Sans'] = { weights: [700], faces: [face(700, 'latin')] })],
+    ['a weight without latin', (r) => (r.families['IBM Plex Sans'] = { weights: [400, 700], faces: [face(400, 'latin'), face(700, 'latin-ext')] })],
+    ['a face twice', (r) => r.families['IBM Plex Sans'].faces.push(face(400, 'latin'))],
+    ['a weight without latin-ext', (r) => (r.families['IBM Plex Sans'].faces = r.families['IBM Plex Sans'].faces.filter((f) => f.subset === 'latin'))],
+    ['an unlisted weight', (r) => r.families['IBM Plex Sans'].faces.push(face(600, 'latin'))]
+  ];
+  for (const [what, change] of bad) {
+    const r = plain(record);
+    change(r);
+    writeJson(path.join(lib, 'font-faces.json'), r);
+    assert.throws(() => builder.build({ libraryDir: lib, outDir: tmp() }), builder.LibraryError, what);
+  }
+});
+
+test('the real library: font-faces.js has every Latin family the published pairs use', () => {
+  const out = tmp();
+  builder.build({ libraryDir: path.join(ROOT, 'library'), outDir: out });
+  const data = loadData(out);
+  const pairs = new Set(data.templates.fonts.map(builder.adjustableLatin).filter(Boolean));
+  assert.ok(pairs.size >= 17, `${pairs.size} families`);
+  assert.deepEqual(Object.keys(data.fontFaces).sort(), [...pairs].sort());
+  for (const [family, e] of Object.entries(plain(data.fontFaces))) {
+    assert.deepEqual(e.weights, [400, 600, 700], family);
+    for (const f of e.faces) assert.match(f.url, /^https:\/\/fonts\.gstatic\.com\/s\/[a-z0-9]+\/v\d+\/[\w-]+\.woff2$/, family);
   }
 });

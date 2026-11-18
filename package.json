@@ -12,6 +12,7 @@
     "build": "node tools/build.js",
     "check": "node tools/check.js",
     "notices": "node tools/notices.js",
+    "fonts": "node tools/font-faces.js",
     "review": "node tools/review-server.js",
     "dev": "node scripts/serve.js sandbox",
     "test": "node --test tests/*.test.js tests/server/*.test.js",
@@ -19,7 +20,7 @@
     "test:golden": "node --test tests/golden.test.js",
     "test:e2e": "playwright test",
     "lint": "eslint",
-    "format:check": "prettier --check picker/i18n picker/js/ui picker/index.html picker/css tests/e2e tests/i18n.test.js playwright.config.js eslint.config.js picker/js/core/resolve.js tests/resolve.test.js tests/storage.test.js picker/scenes tests/preview.test.js tools/icons-extract.js picker/js/core/rules.js tests/rules.test.js picker/js/core/match.js tests/match.test.js picker/js/core/autofill.js tests/autofill.test.js tests/session.test.js picker/js/core/recipe.js tests/recipe.test.js tools/check.js tests/check.test.js tools/notices.js tools/review-server.js tools/review tests/review.test.js tests/icons-extract.test.js"
+    "format:check": "prettier --check picker/i18n picker/js/ui picker/index.html picker/css tests/e2e tests/i18n.test.js playwright.config.js eslint.config.js picker/js/core/resolve.js tests/resolve.test.js tests/storage.test.js picker/scenes tests/preview.test.js tools/icons-extract.js picker/js/core/rules.js tests/rules.test.js picker/js/core/match.js tests/match.test.js picker/js/core/autofill.js tests/autofill.test.js tests/session.test.js picker/js/core/recipe.js tests/recipe.test.js tools/check.js tests/check.test.js tools/notices.js tools/font-faces.js tests/font-faces.test.js tools/review-server.js tools/review tests/review.test.js tests/icons-extract.test.js"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

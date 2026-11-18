@@ -2811,7 +2811,7 @@
 - البوابة: GATE-6 (تُقفل عبر /gate)
 - إعادة تحقق بسبب CHG-4: المهام 1.8 و 1.9 و 1.10 و 2.11 و 3.8 تبقى `[x]` (بوابات المراحل 1 إلى 3 مقفلة)، وتُعاد اختباراتها وتُحدَّث داخل 6.2 و 6.3، بقرار المالك (سطر CHG-4 في `decisions.md`).
 
-- [ ] **6.1** سجل قواعد `@font-face` للخطوط معدّلة الحجم، وفحصه
+- [x] **6.1** سجل قواعد `@font-face` للخطوط معدّلة الحجم، وفحصه
   - الخطورة: A — قواعد ناقصة أو خاطئة تكسر تعديل الحجم في كل تصدير
   - الحجم: متوسطة
   - تحقق المتطلبات: R-104، R-064
@@ -2825,7 +2825,67 @@
     - الفحص والبناء والاختبارات لا تتصل بالإنترنت؛ `npm run fonts` وحده يتصل، بـ Google Fonts فقط.
   - الاختبار: `tests/font-faces.test.js` على رد CSS ثابت محفوظ في الاختبار، وحالات في `tests/check.test.js` تفشل بدون القاعدة، ثم `npm test` و `npm run check -- --publish`
   - ما ستراه أنت: `npm run check` ينجح كما هو الآن، وإذا حذفت خطًا من `library/font-faces.json` يفشل ويذكر اسم الخط
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - الملفات:
+      - `tools/font-faces.js` (جديد): الأمر `npm run fonts`. يسأل Google Fonts عن كل خط وكل وزن (طلب لكل وزن)، ويحفظ المقطعين latin-ext و latin فقط. يتوقف دون كتابة عند أي رد غير متوقع: فشل طلب، أو ملف ليس woff2، أو عنوان خارج `fonts.gstatic.com`، أو قاعدة بلا تعليق مقطعها أو بلا نمطها، أو خط لا تعرفه Google، أو خط بلا وزن 400.
+      - `library/font-faces.json` (جديد، جُلب اليوم): 17 خطًا لاتينيًا، لكل منها الأوزان 400 و 600 و 700 والمقطعان، فالمجموع 102 قاعدة.
+      - `tools/build.js`: شكل السجل الصارم (`FONT_FACES_SCHEMA`) وقواعده، و `adjustableLatin`، وملف جديد في `picker/data` هو `font-faces.js` فيه خطوط الأزواج المنشورة فقط. وصار الأمر يقرأ التمبلتات دون السجل الذي يستبدله.
+      - `tools/check.js`: نوع فحص جديد `font-faces`.
+      - `picker/data/font-faces.js` (مولَّد)، و `package.json` (الأمر `fonts`، وإضافة الملفين الجديدين إلى فحص التنسيق).
+      - الاختبارات: `tests/font-faces.test.js` (جديد، 11 اختبارًا)، و `tests/fixtures/font-faces/eb-garamond-600.css` (رد حقيقي من Google Fonts)، و `tests/build.test.js` (3 جديدة، وعدد ملفات البيانات صار 14)، و `tests/check.test.js` (حالة في الجدول المشترك واختباران جديدان).
+    - الأمان: كل قيمة في السجل ستُكتب في CSS في المهمة 6.2، فشكلها مقيّد:
+      - اسم الخط حروف وأرقام ومسافات فقط.
+      - النطاق `U+…` فقط.
+      - العنوان ملف woff2 على `fonts.gstatic.com` فقط.
+      - فلا تمر علامة تنصيص ولا قوس ولا فاصلة منقوطة. وجرّبت الاختبارات الحقن في النطاق والعنوان واسم الخط فرُفض.
+    - `npm run fonts` مرتين متتاليتين: الناتج نفسه بايتًا ببايت:
+      ```
+      hawiya fonts: wrote library/font-faces.json (17 Latin families, 102 faces)
+      3c079236006b65a295846223e4c6d9c53dbe31df  library/font-faces.json
+      hawiya fonts: wrote library/font-faces.json (17 Latin families, 102 faces)
+      3c079236006b65a295846223e4c6d9c53dbe31df  library/font-faces.json
+      ```
+    - `npm test`:
+      ```
+      ℹ tests 616
+      ℹ suites 0
+      ℹ pass 616
+      ℹ fail 0
+      ```
+    - `node --test tests/font-faces.test.js`:
+      ```
+      ✔ a real answer: only the normal latin-ext and latin faces are kept, with their range and woff2 file (1.120208ms)
+      ✔ anything unexpected stops the run and leaves the file as it was (112.347ms)
+      ✔ npm run fonts is wired to tools/font-faces.js; the committed record passes its own check (16.446625ms)
+      ✔ a face without its subset comment or its style stops the run instead of being dropped (0.430625ms)
+      ✔ a family Google Fonts does not know is named (0.111334ms)
+      ✔ npm run fonts replaces a bad record instead of being stopped by it (57.549583ms)
+      ✔ a failed write is a clear error, not a crash (25.25425ms)
+      ```
+    - `npm run check -- --publish`:
+      ```
+        17 Latin families with their @font-face rules (font-faces.json)
+        THIRD_PARTY_NOTICES.md matches sources.json; picker/data matches the library (14 files)
+      نجاح: فُحص 319 تمبلت (319 مراجَع، 0 مسودة) و 14 هوية بلا أي مخالفة
+      success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem
+      ```
+    - الفحص على نسخة حُذف منها خط «EB Garamond» من السجل:
+      ```
+        ✗ [font-faces] font-faces.json › pair-amiri-eb-garamond: the Latin family "EB Garamond" has no @font-face rules (run npm run fonts)
+      فشل: 1 مخالفة (فُحص 319 تمبلت و 14 هوية)
+      ```
+    - `npm run build`: «font faces  17 Latin families with @font-face rules»، و«total: 319 templates published, 0 drafts left out; 14 identities published, 0 left out».
+    - `npx playwright test`: «135 passed (40.0s)». `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: نجاح.
+    - الإنترنت: الفحص والبناء واختبارات `npm test` لا تتصل بشيء، وردود Google في الاختبارات محفوظة أو مصنوعة. أما `npx playwright test` ففيه اختبار قديم من مرحلة سابقة (`tests/e2e/fonts.spec.js`، «needs internet») يحمّل الخطوط من Google Fonts كما كان.
+    - المراجعة المستقلة (مهمة A): بلا ملاحظة A.
+      - الحماية من الحقن صحيحة، والناتج ثابت، والأوامر الثلاثة تنجح، ولا اتصال بالإنترنت في الفحص والبناء.
+      - تفسير «كل زوج بخطين» سليم: `resolve.js` يقبل قيمة مخصّصة على أي زوج بخطين، والخط المعدَّل دائمًا `extras.latin`.
+      - أربع ملاحظات B أُصلحت كلها:
+        - الفحص صار يطلب latin-ext لكل وزن.
+        - القاعدة بلا تعليق مقطعها أو بلا نمطها توقف الأمر بدل أن تسقط بصمت.
+        - `npm run fonts` يصلح سجلًا معطوبًا بدل أن يمنعه السجل نفسه.
+        - الخط الذي لا تعرفه Google يُذكر باسمه، وفشل الكتابة رسالة واضحة، والطلب يتوقف بعد 30 ثانية.
+    - انحراف بموافقة المالك (2026-11-18): السجل يغطي الخط اللاتيني لكل زوج بخطين مختلفين (17 خطًا)، لا أزواج القيمة غير 1 فقط كما في نص الخطة، لأن الهوية يمكنها أن تضع قيمتها على أي زوج بخطين. الخطوط الثلاثة الزائدة: Noto Sans و Sora و Figtree. سُجّل التفسير في `decisions.md`.
 
 - [ ] **6.2** المولّد: قواعد الخط معدّلة الحجم في الملفات المصدَّرة
   - الخطورة: A — رقم خاطئ يغيّر حجم كل نص لاتيني في مشروع المستخدم

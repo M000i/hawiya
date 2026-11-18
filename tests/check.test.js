@@ -430,6 +430,13 @@ const CASES = [
       }),
     /"CC0-1\.0" has no text/
   ],
+  // Task 6.1 (R-104): the Latin family of every reviewed two-family pair has its @font-face rules.
+  [
+    'font-faces',
+    'pair-noto-naskh-arabic-fraunces',
+    (c) => c.edit('font-faces.json', (v) => void delete v.families.Fraunces),
+    /the Latin family "Fraunces" has no @font-face rules \(run npm run fonts\)/
+  ],
   // Task 5.1 (B-078): every font a template names is listed by one of its sources in sources.json.
   [
     'license',
@@ -1471,6 +1478,109 @@ test('sources.json: a fonts list that is empty, names a font twice, or is not a 
     } finally {
       clean(c);
     }
+  }
+});
+
+// Task 6.1 (R-104): font-faces.json is held to its strict shape (its values reach the exported CSS), may not carry a
+// family no pair uses, and must exist once a reviewed pair needs it. A draft pair's family is allowed but not required.
+test('font-faces.json: shape, unused families, a missing file, and drafts', () => {
+  const cases = [
+    [
+      'a file outside fonts.gstatic.com',
+      (c) =>
+        c.edit(
+          'font-faces.json',
+          (v) => void (v.families['EB Garamond'].faces[0].url = 'https://example.com/s/ebgaramond/v1/a.woff2')
+        ),
+      [null, /\/families\/EB Garamond\/faces\/0\/url must match pattern/]
+    ],
+    [
+      'a range that could leave CSS',
+      (c) =>
+        c.edit(
+          'font-faces.json',
+          (v) => void (v.families.Lora.faces[1].unicodeRange = 'U+0000-00FF; } * { color: red')
+        ),
+      [null, /\/families\/Lora\/faces\/1\/unicodeRange must match pattern/]
+    ],
+    [
+      'a weight without its latin face',
+      (c) =>
+        c.edit(
+          'font-faces.json',
+          (v) =>
+            void (v.families.Lora.faces = v.families.Lora.faces.filter(
+              (f) => !(f.weight === 700 && f.subset === 'latin')
+            ))
+        ),
+      [null, /^Lora: weight 700 has no face for the latin subset$/]
+    ],
+    [
+      'a family no pair uses',
+      (c) => c.edit('font-faces.json', (v) => void (v.families['Old Sans'] = v.families.Lora)),
+      [null, /^"Old Sans" is paired by no fonts template; remove it \(run npm run fonts\)$/]
+    ],
+    [
+      'no file',
+      (c) => fs.rmSync(path.join(c.lib, 'font-faces.json')),
+      [null, /^missing \(run npm run fonts\)$/],
+      ['pair-amiri-eb-garamond', /the Latin family "EB Garamond" has no @font-face rules/]
+    ]
+  ];
+  for (const [what, mutate, ...expected] of cases) {
+    const c = copy();
+    try {
+      mutate(c);
+      const r = c.run();
+      for (const [template, re] of expected)
+        assert.ok(has(r.problems, 'font-faces', template, re), `${what}:\n${show(r.problems)}`);
+      assert.ok(
+        r.problems.every((p) => p.kind === 'font-faces'),
+        `${what}: only font-faces problems\n${show(r.problems)}`
+      );
+    } finally {
+      clean(c);
+    }
+  }
+
+  // A draft pair: its family may be recorded (ready before the review) and is not required.
+  const c = copy();
+  try {
+    c.edit(
+      'elements/fonts.json',
+      (l) => void (c.find(l, 'pair-noto-naskh-arabic-fraunces').status = { state: 'draft' })
+    );
+    c.edit('identities/classic-naskh.json', (v) => void (v.templates.fonts = 'pair-amiri-eb-garamond'));
+    build.build({ libraryDir: c.lib, outDir: c.data });
+    assert.deepEqual(
+      c.run().problems.filter((p) => p.kind === 'font-faces'),
+      [],
+      'recorded draft family: no problem'
+    );
+    c.edit('font-faces.json', (v) => void delete v.families.Fraunces);
+    build.build({ libraryDir: c.lib, outDir: c.data });
+    assert.deepEqual(
+      c.run().problems.filter((p) => p.kind === 'font-faces'),
+      [],
+      'missing draft family: no problem'
+    );
+  } finally {
+    clean(c);
+  }
+});
+
+test('the command line names the family whose rules are missing', () => {
+  const c = copy();
+  try {
+    c.edit('font-faces.json', (v) => void delete v.families['EB Garamond']);
+    const out = spawnSync(process.execPath, [TOOL, ...c.args], { encoding: 'utf8' });
+    assert.equal(out.status, 1);
+    assert.match(
+      out.stderr,
+      /✗ \[font-faces\] font-faces\.json › pair-amiri-eb-garamond: the Latin family "EB Garamond" has no @font-face rules/
+    );
+  } finally {
+    clean(c);
   }
 });
 

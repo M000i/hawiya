@@ -15,7 +15,9 @@
  * works when opened as a file (file:// cannot fetch). Each sets window.Hawiya.data.templates[<element>] (or
  * .identities) to a frozen array; starter.js sets window.Hawiya.data.starter to { <element>: [templates the published
  * ready identities use] }, so the page can start without loading every element (task 2.9). Every non-ASCII character is written as \uXXXX, so the bytes do not depend on how the page declares
- * its encoding, and "<" is escaped so the data can never close a <script> element.
+ * its encoding, and "<" is escaped so the data can never close a <script> element. font-faces.js (task 6.1) sets
+ * window.Hawiya.data.fontFaces to { <Latin family>: { weights, faces } } from <library>/font-faces.json, for the Latin
+ * families the published fonts templates pair with an Arabic one (the generator writes them with size-adjust, 6.2).
  *
  * Rules:
  * - Published = status.state is exactly "reviewed". Everything else (drafts) is left out and counted.
@@ -60,6 +62,92 @@ const IDENTITY_SCHEMA = {
   }
 };
 const checkIdentity = validate.compile(IDENTITY_SCHEMA);
+
+// library/font-faces.json (task 6.1, R-104): the Google Fonts @font-face rules of every Latin family a size adjustment
+// can apply to, written by `npm run fonts` (tools/font-faces.js). The generator writes them into the exported CSS
+// (task 6.2), so every value that reaches CSS is held to a strict pattern here: a family name of letters, digits and
+// spaces, a unicode-range of U+ ranges only, and a woff2 file on fonts.gstatic.com. No quote, brace or ";" can pass.
+const FONT_FACE_WEIGHTS = [400, 600, 700]; // what the exported pages use: body 400, labels 600, headings 700
+const FONT_FACE_SUBSETS = ['latin-ext', 'latin']; // Google's order; the Latin family only draws Latin text here
+const FONT_FACES_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['source', 'weights', 'subsets', 'families'],
+  properties: {
+    source: { const: 'https://fonts.googleapis.com/css2' },
+    weights: { const: FONT_FACE_WEIGHTS },
+    subsets: { const: FONT_FACE_SUBSETS },
+    families: {
+      type: 'object',
+      propertyNames: { pattern: '^[A-Za-z0-9]+( [A-Za-z0-9]+)*$', maxLength: 60 },
+      additionalProperties: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['weights', 'faces'],
+        properties: {
+          // The weights Google Fonts has for this family, of FONT_FACE_WEIGHTS: 400 always.
+          weights: { type: 'array', minItems: 1, uniqueItems: true, items: { enum: FONT_FACE_WEIGHTS } },
+          faces: {
+            type: 'array',
+            minItems: 1,
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              required: ['weight', 'subset', 'unicodeRange', 'url'],
+              properties: {
+                weight: { enum: FONT_FACE_WEIGHTS },
+                subset: { enum: FONT_FACE_SUBSETS },
+                unicodeRange: {
+                  type: 'string',
+                  maxLength: 2000,
+                  pattern: '^U\\+[0-9A-F]{1,6}(-[0-9A-F]{1,6})?(, U\\+[0-9A-F]{1,6}(-[0-9A-F]{1,6})?)*$'
+                },
+                url: { type: 'string', maxLength: 300, pattern: '^https://fonts\\.gstatic\\.com/s/[a-z0-9]+/v[0-9]+/[A-Za-z0-9_-]+\\.woff2$' }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+const checkFontFaces = validate.compile(FONT_FACES_SCHEMA);
+
+// The Latin family a size adjustment can apply to (R-090, resolve.js): a fonts template that pairs two different
+// families, Arabic and Latin. The library value may be 1, but an identity can set its own (latin-size-adjust), so
+// every such family needs its @font-face rules. null for any other template.
+function adjustableLatin(t) {
+  if (!t || t.element !== 'fonts' || !t.extras) return null;
+  const { arabic, latin } = t.extras;
+  return typeof arabic === 'string' && typeof latin === 'string' && arabic !== latin ? latin : null;
+}
+
+// Problems of a font-faces.json value beyond its schema: each family lists 400, every listed weight has a face for
+// each recorded subset (latin and latin-ext: accented Latin letters need theirs), the faces use only listed weights,
+// and no weight/subset pair appears twice.
+function fontFacesProblems(value) {
+  const out = [];
+  const r = checkFontFaces(value);
+  if (!r.valid) {
+    r.errors.slice(0, 5).forEach((e) => out.push(`${e.instancePath || '/'} ${e.message}`));
+    return out;
+  }
+  for (const [family, entry] of Object.entries(value.families)) {
+    if (!entry.weights.includes(400)) out.push(`${family}: weight 400 is missing`);
+    const seen = new Set();
+    for (const f of entry.faces) {
+      const key = `${f.weight} ${f.subset}`;
+      if (seen.has(key)) out.push(`${family}: weight ${f.weight}, subset ${f.subset} is listed twice`);
+      seen.add(key);
+      if (!entry.weights.includes(f.weight)) out.push(`${family}: a face has weight ${f.weight}, which "weights" does not list`);
+    }
+    for (const w of entry.weights)
+      for (const sub of FONT_FACE_SUBSETS)
+        if (!seen.has(`${w} ${sub}`)) out.push(`${family}: weight ${w} has no face for the ${sub} subset`);
+  }
+  return out;
+}
+
 const UTF8 = new TextDecoder('utf-8', { fatal: true }); // a leading BOM is dropped; any bad byte is an error
 
 class LibraryError extends Error {}
@@ -134,7 +222,8 @@ function isDir(p) {
   }
 }
 
-function load(libraryDir) {
+// fontFaces: false skips font-faces.json (npm run fonts reads the templates of a library whose record it replaces).
+function load(libraryDir, { fontFaces: readFaces = true } = {}) {
   const problems = [];
   const elementsDir = path.join(libraryDir, 'elements');
   if (!isDir(elementsDir)) throw new LibraryError(`no library found: ${elementsDir} is missing`);
@@ -198,12 +287,24 @@ function load(libraryDir) {
     }
   }
 
+  // font-faces.json is optional here (a test library may have none); npm run check requires the families it needs.
+  let fontFaces = null;
+  const facesFile = path.join(libraryDir, 'font-faces.json');
+  if (readFaces && fs.existsSync(facesFile)) {
+    const value = readJson(facesFile, problems);
+    if (value !== undefined) {
+      const bad = fontFacesProblems(value);
+      bad.forEach((p) => problems.push(`${facesFile}: ${p}`));
+      if (!bad.length) fontFaces = value;
+    }
+  }
+
   if (problems.length) {
     const err = new LibraryError(`the library has ${problems.length} problem(s); nothing was written`);
     err.problems = problems;
     throw err;
   }
-  return { templates, hasFile, byId, identities };
+  return { templates, hasFile, byId, identities, fontFaces };
 }
 
 function isPublished(t) {
@@ -239,6 +340,14 @@ function select(lib) {
     else data.identities.push(value);
   }
   summary.identities.published = data.identities.length;
+  // The @font-face rules of the Latin families the published fonts templates pair (task 6.1), by family name.
+  // A family the record does not hold is simply absent: npm run check names it.
+  data.fontFaces = {};
+  const families = new Set(data.templates.fonts ? data.templates.fonts.map(adjustableLatin).filter(Boolean) : []);
+  for (const family of [...families].sort())
+    if (lib.fontFaces && Object.prototype.hasOwnProperty.call(lib.fontFaces.families, family))
+      data.fontFaces[family] = lib.fontFaces.families[family];
+  summary.fontFaces = Object.keys(data.fontFaces).length;
   return { data, summary };
 }
 
@@ -258,7 +367,13 @@ function scriptText(json) {
 
 function renderFile(kind, key, list) {
   const target =
-    kind === 'identities' ? 'd.identities' : kind === 'starter' ? 'd.starter' : `d.templates[${JSON.stringify(key)}]`;
+    kind === 'identities'
+      ? 'd.identities'
+      : kind === 'starter'
+        ? 'd.starter'
+        : kind === 'fontFaces'
+          ? 'd.fontFaces'
+          : `d.templates[${JSON.stringify(key)}]`;
   return (
     '/* GENERATED by tools/build.js from library/ (reviewed templates only). Do not edit: change the library and run\n' +
     '   `npm run build`. Browser: window.Hawiya.data. */\n' +
@@ -296,6 +411,7 @@ function render(data) {
   for (const e of ELEMENTS) files[`${e}.js`] = renderFile('templates', e, data.templates[e]);
   files['identities.js'] = renderFile('identities', null, data.identities);
   files['starter.js'] = renderFile('starter', null, starter(data));
+  files['font-faces.js'] = renderFile('fontFaces', null, data.fontFaces || {});
   return files;
 }
 
@@ -351,6 +467,7 @@ function report(summary, { libraryDir, outDir, dryRun }) {
   const ids = summary.identities;
   lines.push(`  ${'identities'.padEnd(11)} published ${String(ids.published).padStart(3)}   left out ${String(ids.excluded.length).padStart(3)}`);
   for (const x of ids.excluded) lines.push(`    left out ${x.file}: ${x.reasons.join('; ')}`);
+  lines.push(`  ${'font faces'.padEnd(11)} ${summary.fontFaces || 0} Latin families with @font-face rules`);
   lines.push(`total: ${summary.totals.published} templates published, ${summary.totals.drafts} drafts left out; ${ids.published} identities published, ${ids.excluded.length} left out`);
   return lines.join('\n');
 }
@@ -380,4 +497,25 @@ function main(argv) {
 
 if (require.main === module) process.exitCode = main(process.argv.slice(2));
 
-module.exports = { ELEMENTS, IDENTITY_SCHEMA, build, load, select, render, renderFile, starter, scriptText, report, main, readJson, listJson, LibraryError, WriteError };
+module.exports = {
+  ELEMENTS,
+  IDENTITY_SCHEMA,
+  FONT_FACES_SCHEMA,
+  FONT_FACE_WEIGHTS,
+  FONT_FACE_SUBSETS,
+  adjustableLatin,
+  fontFacesProblems,
+  build,
+  load,
+  select,
+  render,
+  renderFile,
+  starter,
+  scriptText,
+  report,
+  main,
+  readJson,
+  listJson,
+  LibraryError,
+  WriteError
+};
