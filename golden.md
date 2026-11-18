@@ -18,6 +18,7 @@ npm run test:golden
 | G-08 | تعديل حجم الخط اللاتيني (CHG-4) | «نوتو نسخ مع فراونسيز»، القيمة 0.9 | `size-adjust: 90%` | `tests/golden.test.js` → `G-08 size adjustment` | 6.2 | يُختبر |
 | G-09 | تعديل حجم الخط اللاتيني (CHG-4) | «القاهرة» للغتين، القيمة 1 | بلا قاعدة `@font-face` | `tests/golden.test.js` → `G-09 size adjustment` | 6.2 | يُختبر |
 | G-10 | تعديل حجم الخط اللاتيني (CHG-4) | «الأميري مع إي بي غاراموند» بقيمة مخصّصة 1.1 | `size-adjust: 110%` | `tests/golden.test.js` → `G-10 size adjustment` | 6.2 | يُختبر |
+| G-11 | تحميل الخطوط في `tokens.css` (CHG-5) | «الأميري مع إي بي غاراموند» | أول سطور `tokens.css` بعد تعليق الرأس: `@import` لـ `family=Amiri` ثم `family=Amiri:wght@700` ثم السطران نفسهما لـ `EB+Garamond`، قبل أي قاعدة | `tests/golden.test.js` → `G-11 font imports` | 6.8 | لم يُكتب بعد |
 
 ## أمثلة المهام (من `tasks.md`)
 
