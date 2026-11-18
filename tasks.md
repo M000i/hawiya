@@ -3159,7 +3159,7 @@
     - المراجعة المستقلة: لا ملاحظة عالية ولا متوسطة؛ تحقّق المراجع أن أسماء الخطوط لا يمكنها حقن شيء في الرابط أو CSS (نمط `familyName` يُفحص في كل طريق)، وأن المعاينة لا تتصل بجهة جديدة. أربع منخفضة: (1) حالة G-11 في `golden.md` ← أُصلحت؛ (2) `tokens.css` المستورد بعد Tailwind يُهمل سطور `@import` ← وُضّحت عبارة `DESIGN.md` («with `<link>` (or importing it before any other CSS)»)؛ (3) `&amp;` في روابط `DESIGN.md` حرفية داخل كتلة الكود ← بلا تغيير: الكتلة HTML وهذا ترميزها الصحيح ومطابق لدليل الهوية، والروابط الصريحة في `tokens.css`؛ (4) اختبار المتصفح يعتمد على عدد حروف ثابت وعلى أن الخط غير مثبت في الجهاز ← أُصلح: يقارن بعدد الحروف العربية، ويتحقق أن الخطوط محمّلة من `@import`.
     - انحراف: لا.
 
-- [ ] **6.9** تحديث الصفحة المنشورة على GitHub Pages بإصلاح 6.8 — **بإذن صريح منك فقط**
+- [x] **6.9** تحديث الصفحة المنشورة على GitHub Pages بإصلاح 6.8 — **بإذن صريح منك فقط**
   - الخطورة: B — نشر
   - الحجم: صغيرة
   - تحقق المتطلبات: R-095، R-105، R-106
@@ -3168,7 +3168,24 @@
   - معيار القبول: بعد الرفع، فحوص GitHub ناجحة، والتصدير من الصفحة المنشورة يكتب `tokens.css` يبدأ بسطور `@import`، وملفات الصفحة المنشورة مطابقة للمحلية
   - الاختبار: فتح الصفحة المنشورة والتصدير منها، ومقارنة ملفاتها بالمحلية
   - ما ستراه أنت: **يحتاج إذنك بالرفع**. ثم افتح https://m000i.github.io/hawiya/ وصدّر هوية، وستجد السطور نفسها في `tokens.css`
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - إذن المالك: سُئل عن رفع 3 commits إلى `main` (دليل 6.6، و CHG-5، والمهمة 6.8: 15 ملفًا، بلا البريد الخاص ولا ملفات `sandbox/`)، فاختار «Yes, push to main». لم يُرفع أي وسم.
+    - الرفع: «6b568da..7458dc1  main -> main».
+    - فحوص GitHub:
+      ```
+      completed	success	task 6.8: tokens.css loads the identity fonts itself with @import lin…	check	main	push	44384137076	1m59s
+      completed	success	task 6.8: tokens.css loads the identity fonts itself with @import lin…	pages	main	push	44384136831	2m20s
+      ```
+    - ملفات الصفحة المنشورة مقابل `picker/`: «files 57, differ 0».
+    - التصدير من الصفحة المنشورة («كلاسيكي نسخي») في Chrome: أول سطور `tokens.css` بعد التعليق:
+      ```
+      @import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap");
+      ```
+      و «size-adjust 135%: 6»، و «theme.css @import url(: false»، و «DESIGN.md links: 4 true».
+    - انحراف: لا. هذا الـ commit (الدليل) محلي، ويُرفع مع ما بعده بإذن.
 
 - [ ] **6.7** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
