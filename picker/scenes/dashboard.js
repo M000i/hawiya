@@ -73,6 +73,12 @@
     '  .sc-dash { grid-template-columns: minmax(0, 1fr); }',
     '  .sc-side { display: flex; flex-wrap: wrap; align-items: center; border-inline-end: 0; border-block-end: 1px solid var(--color-border); }',
     '  .sc-brand { margin-block-end: 0; margin-inline-end: var(--space-3); }',
+    // Phone width (task 5.5, B-076, B-084): the column never grows past the screen to fit the table, and a large
+    // spacing of the identity does not eat the narrow width (a real page tightens its padding on a phone too).
+    '  .sc-main { grid-template-columns: minmax(0, 1fr); padding: var(--space-3); gap: var(--space-4); }',
+    '  .sc-kpis { grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }',
+    '  .sc-table-wrap { padding: var(--space-3); }',
+    '  .sc-table th, .sc-table td { padding-inline: var(--space-1); }',
     '}'
   ].join('\n');
 

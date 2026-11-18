@@ -55,7 +55,12 @@
     '.sc-check { display: flex; align-items: center; gap: var(--space-2); font-size: var(--sc-small); }',
     '.sc-box { inline-size: 1.1em; block-size: 1.1em; border-radius: var(--radius-sm); background: var(--color-primary); border: 1px solid var(--color-primary); }',
     '.sc-form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }',
-    '.sc-link { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: 3px; font-size: var(--sc-small); }'
+    '.sc-link { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: 3px; font-size: var(--sc-small); }',
+    // Phone width (task 5.5, B-076): a large spacing of the identity does not squeeze the form below its button.
+    '@container (max-width: 34rem) {',
+    '  .sc-form-page { padding: var(--space-4) var(--space-2); }',
+    '  .sc-form { padding: var(--space-4); }',
+    '}'
   ].join('\n');
 
   function render(ctx) {

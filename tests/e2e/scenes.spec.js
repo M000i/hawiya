@@ -130,3 +130,33 @@ test('dashboard numbers use the identity digits in Arabic and Latin digits in En
   await page.locator('[data-preview-lang="en"]').click();
   expect(await kpi()).toBe('48,250');
 });
+
+// Task 5.5 (R-028, R-065, B-076, B-084): at phone width every scene fits for every ready identity, the new ones of
+// CHG-3 too (drawn from a copy of the page that publishes the drafts they wait for), in both languages. Their
+// spacing, corners, fonts and buttons are what overflowed before (the default identity alone never did).
+test('at phone width every scene fits for every ready identity, in both languages', async ({ page }) => {
+  test.setTimeout(180000);
+  const { fullPickerPage } = require('../helpers/full-library.js');
+  await page.setViewportSize({ width: 375, height: 800 });
+  await page.route('https://fonts.googleapis.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/css', body: '' })
+  );
+  const errors = watchErrors(page);
+  await page.goto(fullPickerPage());
+  const ids = await page.evaluate(() => window.Hawiya.data.identities.map((i) => i.id));
+  expect(ids.length).toBeGreaterThanOrEqual(14);
+  const seen = [];
+  for (const id of ids) {
+    await page.locator(`#identity-list [data-identity="${id}"]`).click();
+    for (const scene of SCENES) {
+      for (const lang of ['ar', 'en']) {
+        await show(page, scene, lang, 'light');
+        const s = await state(page);
+        seen.push([id, scene, lang, s.pageOverflow, s.outside <= 0]);
+      }
+    }
+  }
+  expect(seen.filter(([, , , pageOverflow, fits]) => pageOverflow !== 0 || !fits)).toEqual([]);
+  expect(seen.length).toBe(ids.length * SCENES.length * 2);
+  expect(errors).toEqual([]);
+});
