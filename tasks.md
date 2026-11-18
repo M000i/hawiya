@@ -2963,7 +2963,7 @@
       - الرابعة سُجّلت B-112: قيمة 1 في زوج بخطين ما زالت تطلب `size-adjust: 100%` في `DESIGN.md`، وهي قديمة، وتغييرها يخالف شرط «لا تغيير مع القيمة 1». ومعها حدود المائل والوزن 500.
     - انحراف: لا شيء عن الخطة. `picker/index.html` لم يكن في الملفات المتوقعة، وأضيف إليه سطر واحد يحمّل البيانات، ولولاه لما كتب التصدير من الصفحة القواعد.
 
-- [ ] **6.3** المعاينة ومعرض الخطوط بالقواعد نفسها
+- [x] **6.3** المعاينة ومعرض الخطوط بالقواعد نفسها
   - الخطورة: B — واجهة
   - الحجم: صغيرة
   - تحقق المتطلبات: R-103، R-028
@@ -2976,7 +2976,36 @@
     - إعادة تحقق 2.11 بسبب CHG-4: اختباراته تنجح.
   - الاختبار: اختبار متصفح: مع «الأميري مع إي بي غاراموند» تحوي الصفحة قاعدة `size-adjust: 135%` وتستعمل المعاينة الاسم الخاص، ومع «القاهرة» لا. ثم `npx playwright test`
   - ما ستراه أنت: اختر «الأميري مع إي بي غاراموند» وبدّل المعاينة بين العربي والإنجليزي، فيبدو الإنجليزي بحجم العربي تقريبًا
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - الملفات:
+      - `picker/js/core/generate.js`: `generate.fontFace(ref)` يعطي اسم الخط المعدَّل وقواعده، كما يكتبها التصدير نفسه.
+      - `picker/js/ui/elements/fonts.js`: `fonts.declare(ref)` يضيف القواعد إلى الصفحة مرة واحدة لكل اسم، في `<style id="hawiya-font-faces">`. وبطاقة الخط تستعمل الاسم المعدَّل، ولا تكبّر حجم الخط إلا إذا لم توجد قواعد للخط، فلا يتضاعف التعديل.
+      - `picker/js/ui/preview.js`: المعاينة تعلن قواعد خطوط الهوية في الصفحة، فيستعملها ظل المعاينة (shadow root). صفحة المراجعة بلا محمّل خطوط، فتبقى كما هي.
+      - `tests/e2e/fonts.spec.js`: اختبار جديد.
+    - `npx playwright test tests/e2e/fonts.spec.js` (8 اختبارات، منها اختبارات 2.11 لإعادة التحقق بسبب CHG-4):
+      ```
+        ✓  1 tests/e2e/fonts.spec.js:175:1 › without internet: a notice, the system font, and everything still works (1.2s)
+        ✓  2 tests/e2e/fonts.spec.js:141:1 › a font card chooses the font; the card shows the size adjustment and the numerals font (1.2s)
+        ✓  6 tests/e2e/fonts.spec.js:359:1 › the preview and the font cards use the exported @font-face rules; nothing is scaled twice (1.6s)
+        ✓  8 tests/e2e/fonts.spec.js:234:1 › every library font loads, draws the recorded digits, and keeps its measured size adjustment (needs internet) (41.7s)
+
+        8 passed (43.6s)
+      ```
+      الاختبار الجديد يتحقق من أربعة أمور:
+      - قواعد الصفحة الست هي قواعد `tokens.css` المصدَّر نفسها، ومُعلنة مرة واحدة.
+      - المشاهد الأربعة تبدأ بـ `"EB Garamond Hawiya 135"`، والمتصفح يعرف الأوجه الستة بـ `135%`.
+      - بطاقتا «الأميري» و«بيروتي» تستعملان الاسم المعدَّل بلا تكبير، أما «زين مع فيغتري» (القيمة 1) فكما كانت.
+      - «القاهرة» بلا اسم معدَّل.
+    - القياس الفعلي بالإنترنت (هوية «كلاسيكي نسخي»، المعاينة بالإنجليزي، العنوان بوزن 700)، بعد تحميل الخطين:
+      ```
+      preview: {"canvas":{"adjusted":1708.6,"plain":1265.6,"ratio":1.35},"weight":"700","faces":["EB Garamond 700 U+0-FF, U+13","EB Garamond Hawiya 135 400 U+0-FF, U+13","EB Garamond Hawiya 135 700 U+0-FF, U+13"],"heading":"Run your team from one place","family":"\"EB Garamond Hawiya 135\"","loaded":2,"ratio":1.35}
+      ```
+      (القياس الأول أعطى 1.315 لأن الخط العادي لم يكن قد حُمّل بعد. بعد انتظار تحميل الخطين صار 1.35 بالطريقتين.)
+    - `npm test`: «ℹ tests 624 / ℹ pass 624 / ℹ fail 0». `npx playwright test`: «136 passed (44.8s)». `npm run check -- --publish`: «success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem». `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: نجاح.
+    - المراجعة الذاتية (مهمة B):
+      - بلا إنترنت: القواعد تُعلن لكن ملفاتها لا تُحمَّل، فيعود النص إلى الخط الأصلي ثم إلى خط النظام، ويظهر تنبيه الخطوط كما كان.
+      - التعديل لا يتضاعف: البطاقة تكبّر الحجم فقط إذا لم توجد قواعد للخط.
+    - انحراف: لا شيء.
 
 - [ ] **6.4** تشديد اختبارات الهويات الجاهزة (B-108، B-109)
   - الخطورة: B — اختبارات

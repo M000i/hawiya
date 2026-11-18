@@ -1269,6 +1269,16 @@
    * The page preview (task 2.6) uses it so the preview shows exactly what the exported files hold.
    * Expects an identity that already passed the checker (from resolve.js).
    */
+  // The size-adjusted Latin family of one font role and its @font-face rules, as the exported CSS writes them:
+  // { name, css } or null (task 6.3: the page declares them for the preview and the fonts gallery). ref is
+  // { arabic, latin, latinSizeAdjust }, a role of identity.tokens.font or the families of a fonts template.
+  generate.fontFace = function (ref) {
+    if (!ref || typeof ref !== 'object') return null;
+    var name = adjustedFamily(ref);
+    if (!name) return null;
+    return { name: name, css: fontFaceRules({ font: { heading: ref, body: ref, numerals: ref } }).join('\n') };
+  };
+
   generate.cssVariables = function (id, mode) {
     if (mode !== 'light' && mode !== 'dark') fail('mode must be light or dark');
     return modePairs(id.tokens, mode)

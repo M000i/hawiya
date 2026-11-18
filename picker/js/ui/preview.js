@@ -151,6 +151,12 @@
     H.generate.cssVariables(identity, M).forEach(function (p) {
       wrap.style.setProperty(p[0], p[1]);
     });
+    // The stacks start with the size-adjusted Latin family (task 6.3, R-103): declare its @font-face rules in the
+    // page, as the exported CSS does. The review page (tools/review) has no font loader and no rules: stacks as before.
+    if (H.fonts && typeof H.fonts.declare === 'function')
+      ['heading', 'body', 'numerals'].forEach(function (role) {
+        H.fonts.declare(identity.tokens.font[role]);
+      });
     // The scene's language decides the line height (Arabic needs more), like the exported pages do.
     wrap.style.setProperty('--line-height', String(identity.tokens.font.lineHeight[L]));
     var sz = sizes(identity);

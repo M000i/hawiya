@@ -352,3 +352,73 @@ test('a font card shows the heading family of a pair and loads it', async ({ pag
   expect(out.body).toMatch(/^"?Tajawal"?,/);
   expect(out.requested).toEqual(expect.arrayContaining(['Tajawal', 'El Messiri']));
 });
+
+// Task 6.3 (R-103): the preview and the font cards draw the Latin family through the same @font-face rules the
+// exported CSS writes (size-adjust), declared once in the page, never scaled a second time. No network: Google Fonts
+// answers with an empty stylesheet and the font files are refused, so only the rules and names are checked here.
+test('the preview and the font cards use the exported @font-face rules; nothing is scaled twice', async ({ page }) => {
+  const errors = watchErrors(page);
+  await recordFonts(page);
+  await page.route('https://fonts.gstatic.com/**', (route) => route.abort());
+  await page.goto(PAGE);
+  await page.locator('#identity-list [data-identity="classic-naskh"]').click();
+
+  const rules = (css) => [...css.matchAll(/@font-face \{[^}]*\}/g)].map((m) => m[0]);
+  const exported = await page.evaluate(
+    () => window.Hawiya.generate.valueFiles(window.Hawiya.state.identity())['tokens.css']
+  );
+  const declared = () => page.evaluate(() => (document.getElementById('hawiya-font-faces') || {}).textContent || '');
+  expect(rules(exported)).toHaveLength(6);
+  for (const r of rules(exported)) expect(await declared()).toContain(r);
+  expect(rules(await declared())).toHaveLength(6); // declared once, however often the preview renders
+
+  // The preview (in its shadow root) uses that family, then the plain one, then Arabic.
+  for (const scene of ['landing', 'dashboard', 'form', 'mobile']) {
+    await page.locator(`[data-preview-scene="${scene}"]`).click();
+    const family = await page.evaluate(() => {
+      const sr = document.getElementById('preview').shadowRoot;
+      return getComputedStyle(sr.querySelector('.scene')).getPropertyValue('--font-body').trim();
+    });
+    expect(family, scene).toMatch(/^"EB Garamond Hawiya 135", "EB Garamond", "Amiri", /);
+  }
+  // The document knows the faces with their size adjustment, so the shadow root can use them.
+  const faces = await page.evaluate(() =>
+    [...document.fonts].filter((f) => f.family.replace(/"/g, '') === 'EB Garamond Hawiya 135').map((f) => f.sizeAdjust)
+  );
+  expect(faces).toEqual(Array(6).fill('135%'));
+
+  // The cards: the adjusted family, no font-size scaling on top of it.
+  await openFonts(page);
+  const card = async (id) =>
+    panel(page)
+      .locator(`[data-template="${id}"]`)
+      .evaluate((n) => {
+        const l = n.querySelector('.f-latin');
+        return {
+          family: l.style.fontFamily,
+          adjusted: l.getAttribute('data-adjusted-family'),
+          scaled: l.style.getPropertyValue('--f-adjust'),
+          ratio:
+            parseFloat(getComputedStyle(l).fontSize) / parseFloat(getComputedStyle(n.querySelector('.f-ar')).fontSize)
+        };
+      });
+  const amiri = await card('pair-amiri-eb-garamond');
+  expect(amiri).toMatchObject({ adjusted: 'EB Garamond Hawiya 135', scaled: '', ratio: 1 });
+  expect(amiri.family).toMatch(/^"EB Garamond Hawiya 135", "EB Garamond", /);
+  const beiruti = await card('pair-beiruti-instrument-sans');
+  expect(beiruti).toMatchObject({ adjusted: 'Instrument Sans Hawiya 75', scaled: '', ratio: 1 });
+  // A pair with the value 1: no rule, no name, as before.
+  expect(await card('pair-zain-figtree')).toMatchObject({ adjusted: null, scaled: '1', ratio: 1 });
+  expect(await declared()).toContain('"Instrument Sans Hawiya 75"');
+  expect(await declared()).not.toContain('Figtree Hawiya');
+
+  // A single-family font: the preview stacks have no adjusted family.
+  await panel(page).locator('[data-template="pair-cairo"]').click();
+  const cairo = await page.evaluate(() =>
+    getComputedStyle(document.getElementById('preview').shadowRoot.querySelector('.scene'))
+      .getPropertyValue('--font-body')
+      .trim()
+  );
+  expect(cairo).toMatch(/^"Cairo", /);
+  expect(errors).toEqual([]);
+});

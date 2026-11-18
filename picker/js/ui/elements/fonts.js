@@ -6,6 +6,11 @@
  *   fonts.load(families)          adds the Google Fonts stylesheet of each family once (the chosen font, for the preview)
  *   fonts.observe(node, families) loads them only when the node comes on screen (cards)
  *   fonts.requested()             families requested so far
+ *   fonts.declare(ref)            (task 6.3, R-103) the size-adjusted Latin family of a font role or pair
+ *                                 ({ arabic, latin, latinSizeAdjust }): its @font-face rules are added to the page
+ *                                 once (generate.fontFace: the same rules the exported CSS writes) and its name is
+ *                                 returned, or null (value 1, one family, no recorded rules). Declared in the
+ *                                 document, so the preview's shadow root uses them too.
  * If a stylesheet cannot load (no internet, blocked), the page shows a notice once; text keeps the system fonts
  * that follow every family in the stacks. Family names are checked (letters, digits, spaces, hyphens) before
  * they are put in a URL.
@@ -49,6 +54,25 @@
     });
   }
 
+  var declared = {};
+  function declare(ref) {
+    var g = H.generate && H.generate.fontFace;
+    if (typeof g !== 'function') return null;
+    var face = g(ref);
+    if (!face) return null;
+    if (!declared[face.name]) {
+      declared[face.name] = true;
+      var sheet = document.getElementById('hawiya-font-faces');
+      if (!sheet) {
+        sheet = document.createElement('style');
+        sheet.id = 'hawiya-font-faces';
+        document.head.appendChild(sheet);
+      }
+      sheet.appendChild(document.createTextNode(face.css + '\n'));
+    }
+    return face.name;
+  }
+
   function observe(node, families) {
     if (typeof IntersectionObserver !== 'function') return load(families);
     if (!observer) {
@@ -70,6 +94,7 @@
   H.fonts = {
     load: load,
     observe: observe,
+    declare: declare,
     requested: function () {
       return Object.keys(requested);
     },
@@ -161,9 +186,12 @@
       if (ex.latin && ex.latin !== ex.arabic) {
         var l = ctx.el('span', 'f-latin', ctx.t('fonts.specimen.latin'));
         l.setAttribute('lang', 'en');
-        l.style.fontFamily = stack([ex.latin]);
-        // R-090: the Latin family drawn at the pair's size adjustment, as the exported files ask.
-        if (typeof ex.latinSizeAdjust === 'number') l.style.setProperty('--f-adjust', String(ex.latinSizeAdjust));
+        // R-090, R-103 (task 6.3): the Latin family drawn at the pair's size adjustment through the same @font-face
+        // rules the exported CSS writes; only without them (no recorded rules) by scaling the font size, never both.
+        var adjusted = declare({ arabic: ex.arabic, latin: ex.latin, latinSizeAdjust: ex.latinSizeAdjust });
+        l.style.fontFamily = stack(adjusted ? [adjusted, ex.latin] : [ex.latin]);
+        if (adjusted) l.setAttribute('data-adjusted-family', adjusted);
+        else if (typeof ex.latinSizeAdjust === 'number') l.style.setProperty('--f-adjust', String(ex.latinSizeAdjust));
         l.setAttribute('data-size-adjust', String(ex.latinSizeAdjust));
         box.appendChild(l);
       } else if (ex.latin) {
