@@ -3620,7 +3620,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -3703,7 +3704,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -3786,7 +3788,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -3869,7 +3872,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -3947,7 +3951,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -4025,7 +4030,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -4103,7 +4109,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -4181,7 +4188,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -4259,7 +4267,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -4342,7 +4351,8 @@
       "license": "OFL-1.1"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   }
 ]

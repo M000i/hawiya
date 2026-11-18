@@ -20,7 +20,7 @@
     "radius": "radius-soft",
     "shadows": "shadow-tinted-cool",
     "icons": "icons-hugeicons-circle",
-    "buttons": "button-surface-pill-large",
+    "buttons": "button-surface-raised",
     "cards": "card-soft-round",
     "spacing": "spacing-comfortable",
     "direction": "direction-both"

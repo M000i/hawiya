@@ -3552,5 +3552,820 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-17"
     }
+  },
+  {
+    "id": "pair-amiri-eb-garamond",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0627\u0644\u0623\u0645\u064a\u0631\u064a \u0645\u0639 \u0625\u064a \u0628\u064a \u063a\u0627\u0631\u0627\u0645\u0648\u0646\u062f",
+      "en": "Amiri + EB Garamond"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Amiri",
+            "EB Garamond",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Amiri",
+            "EB Garamond",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Amiri",
+            "EB Garamond",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Amiri",
+      "latin": "EB Garamond",
+      "numeralsFont": "Amiri",
+      "latinSizeAdjust": 1.35,
+      "easternArabicDigits": true,
+      "sources": [
+        "amiri",
+        "eb-garamond"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 1.35: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Amiri (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Amiri",
+      "url": "https://github.com/aliftype/amiri",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-noto-naskh-arabic-fraunces",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u0648\u062a\u0648 \u0646\u0633\u062e \u0645\u0639 \u0641\u0631\u0627\u0648\u0646\u0633\u064a\u0632",
+      "en": "Noto Naskh Arabic + Fraunces"
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.6,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Naskh Arabic",
+            "Fraunces",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Naskh Arabic",
+            "Fraunces",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Noto Naskh Arabic",
+            "Fraunces",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Noto Naskh Arabic",
+      "latin": "Fraunces",
+      "numeralsFont": "Noto Naskh Arabic",
+      "latinSizeAdjust": 0.9,
+      "easternArabicDigits": true,
+      "sources": [
+        "noto-arabic",
+        "fraunces"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.9: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Noto Naskh Arabic (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Noto Arabic",
+      "url": "https://github.com/notofonts/arabic",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-markazi-text-lora",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0645\u0631\u0643\u0632\u064a \u0645\u0639 \u0644\u0648\u0631\u0627",
+      "en": "Markazi Text + Lora"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Markazi Text",
+            "Lora",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Markazi Text",
+            "Lora",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Markazi Text",
+            "Lora",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Markazi Text",
+      "latin": "Lora",
+      "numeralsFont": "Markazi Text",
+      "latinSizeAdjust": 0.75,
+      "easternArabicDigits": true,
+      "sources": [
+        "markazi-text",
+        "lora"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.75: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Markazi Text (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Markazi Text",
+      "url": "https://github.com/BornaIz/markazitext",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-readex-pro-ibm-plex-sans",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u064a\u062f\u0643\u0633 \u0628\u0631\u0648 \u0645\u0639 \u0628\u0644\u0643\u0633 \u0648\u0623\u0631\u0642\u0627\u0645 \u0628\u0644\u0643\u0633 \u0645\u0648\u0646\u0648",
+      "en": "Readex Pro + IBM Plex Sans, IBM Plex Mono numerals"
+    },
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.4,
+      "density": 0.7,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Readex Pro",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Readex Pro",
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Mono",
+            "Readex Pro",
+            "ui-monospace",
+            "monospace"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Readex Pro",
+      "latin": "IBM Plex Sans",
+      "numeralsFont": "IBM Plex Mono",
+      "latinSizeAdjust": 0.95,
+      "easternArabicDigits": false,
+      "sources": [
+        "readex-pro",
+        "plex"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.95: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Numerals in IBM Plex Mono (fixed width, Western digits): it does not draw Eastern Arabic digits (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Readex Pro",
+      "url": "https://github.com/ThomasJockin/readexpro",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-en-fraunces-eb-garamond",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0641\u0631\u0627\u0648\u0646\u0633\u064a\u0632 \u0648\u0646\u0635 \u0625\u064a \u0628\u064a \u063a\u0627\u0631\u0627\u0645\u0648\u0646\u062f",
+      "en": "Fraunces headings, EB Garamond text"
+    },
+    "tags": [
+      "editorial",
+      "soft"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Fraunces",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "EB Garamond",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "EB Garamond",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "EB Garamond",
+      "numeralsFont": "EB Garamond",
+      "easternArabicDigits": false,
+      "sources": [
+        "eb-garamond",
+        "fraunces"
+      ],
+      "headingLatin": "Fraunces"
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by EB Garamond (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "EB Garamond",
+      "url": "https://github.com/octaviopardo/EBGaramond12",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-en-playfair-display-lora",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0628\u0644\u0627\u064a\u0641\u064a\u0631 \u0648\u0646\u0635 \u0644\u0648\u0631\u0627",
+      "en": "Playfair Display headings, Lora text"
+    },
+    "tags": [
+      "editorial",
+      "luxury"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Playfair Display",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Lora",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Lora",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Lora",
+      "headingLatin": "Playfair Display",
+      "numeralsFont": "Lora",
+      "easternArabicDigits": false,
+      "sources": [
+        "lora",
+        "playfair-display"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Lora (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Lora",
+      "url": "https://github.com/cyrealtype/Lora-Cyrillic",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-en-ibm-plex-serif-sans-mono",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0628\u0644\u0643\u0633 \u0633\u064a\u0631\u0641 \u0648\u0646\u0635 \u0628\u0644\u0643\u0633 \u0648\u0623\u0631\u0642\u0627\u0645 \u0628\u0644\u0643\u0633 \u0645\u0648\u0646\u0648",
+      "en": "IBM Plex Serif headings, Plex Sans text, Plex Mono numerals"
+    },
+    "tags": [
+      "data-dense",
+      "corporate"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.7,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Serif",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Sans",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "IBM Plex Mono",
+            "IBM Plex Sans",
+            "ui-monospace",
+            "monospace"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "IBM Plex Sans",
+      "numeralsFont": "IBM Plex Mono",
+      "easternArabicDigits": false,
+      "sources": [
+        "plex"
+      ],
+      "headingLatin": "IBM Plex Serif"
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by IBM Plex Mono (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "IBM Plex",
+      "url": "https://github.com/IBM/plex",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-en-space-grotesk-space-mono",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0628\u064a\u0633 \u063a\u0631\u0648\u062a\u0633\u0643 \u0648\u0623\u0631\u0642\u0627\u0645 \u0633\u0628\u064a\u0633 \u0645\u0648\u0646\u0648",
+      "en": "Space Grotesk, Space Mono numerals"
+    },
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.3,
+      "density": 0.6,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Space Grotesk",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Space Mono",
+            "Space Grotesk",
+            "ui-monospace",
+            "monospace"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "en"
+      ],
+      "latin": "Space Grotesk",
+      "numeralsFont": "Space Mono",
+      "easternArabicDigits": false,
+      "sources": [
+        "space-grotesk",
+        "space-mono"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Latin only: for English projects. Eastern Arabic digits: not drawn by Space Mono (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Space Grotesk",
+      "url": "https://github.com/floriankarsten/space-grotesk",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-ar-amiri-scheherazade-new",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0639\u0646\u0627\u0648\u064a\u0646 \u0648\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0623\u0645\u064a\u0631\u064a \u0648\u0646\u0635 \u0634\u0647\u0631\u0632\u0627\u062f",
+      "en": "Amiri headings and numerals, Scheherazade New text"
+    },
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Amiri",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Scheherazade New",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Amiri",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar"
+      ],
+      "arabic": "Scheherazade New",
+      "headingArabic": "Amiri",
+      "numeralsFont": "Amiri",
+      "easternArabicDigits": true,
+      "sources": [
+        "scheherazade-new",
+        "amiri"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Arabic only: Amiri for headings and numerals, Scheherazade New for text. Eastern Arabic digits: drawn by Amiri (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Scheherazade New",
+      "url": "https://github.com/silnrsi/font-scheherazade",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "pair-scheherazade-new-playfair-display",
+    "element": "fonts",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0634\u0647\u0631\u0632\u0627\u062f \u0645\u0639 \u0628\u0644\u0627\u064a\u0641\u064a\u0631",
+      "en": "Scheherazade New + Playfair Display"
+    },
+    "tags": [
+      "retro",
+      "editorial"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.4,
+      "intensity": 0.4
+    },
+    "tokens": {
+      "font": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "Scheherazade New",
+            "Playfair Display",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "Scheherazade New",
+            "Playfair Display",
+            "ui-serif",
+            "serif"
+          ]
+        },
+        "numerals": {
+          "$type": "fontFamily",
+          "$value": [
+            "Scheherazade New",
+            "Playfair Display",
+            "ui-serif",
+            "serif"
+          ]
+        }
+      }
+    },
+    "extras": {
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "arabic": "Scheherazade New",
+      "latin": "Playfair Display",
+      "numeralsFont": "Scheherazade New",
+      "latinSizeAdjust": 0.8,
+      "easternArabicDigits": true,
+      "sources": [
+        "scheherazade-new",
+        "playfair-display"
+      ]
+    },
+    "a11y": {
+      "contrast": "n/a",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true,
+      "notes": "Size adjustment 0.8: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Scheherazade New (measured in Chrome with the real files, task 5.2)."
+    },
+    "source": {
+      "name": "Scheherazade New",
+      "url": "https://github.com/silnrsi/font-scheherazade",
+      "license": "OFL-1.1"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
   }
 ]);

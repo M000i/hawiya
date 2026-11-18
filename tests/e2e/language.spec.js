@@ -98,12 +98,18 @@ test('the language key flips every text and the direction, and back', async ({ p
   // Arabic: only brand and technical names stay in Latin letters.
   const latin = new Set((await visibleText(page)).match(LATIN_WORD));
   // Brand and technical names: the tool's own, and the font names the ready identity cards show (task 3.14: ten
-  // identities, each with its fonts, such as Kufam or Space Grotesk).
+  // identities, each with its fonts, such as Kufam or Space Grotesk; task 5.6: a numerals font such as IBM Plex Mono).
   const fontNames = await page.evaluate(() =>
     window.Hawiya.data.identities
       .map((i) => window.Hawiya.library.find('fonts', i.templates.fonts))
       .filter(Boolean)
-      .flatMap((t) => [t.extras.arabic, t.extras.latin, t.extras.headingArabic, t.extras.headingLatin])
+      .flatMap((t) => [
+        t.extras.arabic,
+        t.extras.latin,
+        t.extras.headingArabic,
+        t.extras.headingLatin,
+        t.extras.numeralsFont
+      ])
       .filter(Boolean)
       .join(' ')
   );

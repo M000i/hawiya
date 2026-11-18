@@ -722,6 +722,290 @@
         "state": "reviewed",
         "reviewedAt": "2026-11-17"
       }
+    },
+    {
+      "id": "palette-tailwind-rose-yellow",
+      "element": "colors",
+      "kind": "curated",
+      "name": {
+        "ar": "\u062e\u0645\u0631\u064a \u0648\u0630\u0647\u0628\u064a",
+        "en": "Wine and gold"
+      },
+      "tags": [
+        "luxury",
+        "editorial"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "color": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.5333,
+                0.0745,
+                0.2157
+              ],
+              "hex": "#881337"
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6314,
+                0.3843,
+                0.0275
+              ],
+              "hex": "#a16207"
+            }
+          }
+        }
+      },
+      "extras": {
+        "palette": "Tailwind CSS v3 rose-900 / yellow-700"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Tailwind CSS",
+        "url": "https://github.com/tailwindlabs/tailwindcss",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "palette-tailwind-teal-sky",
+      "element": "colors",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a",
+        "en": "Teal and sky"
+      },
+      "tags": [
+        "soft",
+        "minimal"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "color": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.051,
+                0.5804,
+                0.5333
+              ],
+              "hex": "#0d9488"
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0078,
+                0.5176,
+                0.7804
+              ],
+              "hex": "#0284c7"
+            }
+          }
+        }
+      },
+      "extras": {
+        "palette": "Tailwind CSS v3 teal-600 / sky-600"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Tailwind CSS",
+        "url": "https://github.com/tailwindlabs/tailwindcss",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "palette-tailwind-navy-emerald",
+      "element": "colors",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0643\u062d\u0644\u064a \u0648\u0632\u0645\u0631\u062f\u064a",
+        "en": "Navy and emerald"
+      },
+      "tags": [
+        "corporate",
+        "data-dense"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "color": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.1176,
+                0.2275,
+                0.5412
+              ],
+              "hex": "#1e3a8a"
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.0196,
+                0.5882,
+                0.4118
+              ],
+              "hex": "#059669"
+            }
+          }
+        }
+      },
+      "extras": {
+        "palette": "Tailwind CSS v3 blue-900 / emerald-600"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Tailwind CSS",
+        "url": "https://github.com/tailwindlabs/tailwindcss",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "palette-tailwind-olive-terracotta",
+      "element": "colors",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0632\u064a\u062a\u0648\u0646\u064a \u0648\u0637\u0648\u0628\u064a",
+        "en": "Olive and terracotta"
+      },
+      "tags": [
+        "soft",
+        "retro"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "color": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.2471,
+                0.3843,
+                0.0706
+              ],
+              "hex": "#3f6212"
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6039,
+                0.2039,
+                0.0706
+              ],
+              "hex": "#9a3412"
+            }
+          }
+        }
+      },
+      "extras": {
+        "palette": "Tailwind CSS v3 lime-800 / orange-800"
+      },
+      "a11y": {
+        "contrast": "AAA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Tailwind CSS",
+        "url": "https://github.com/tailwindlabs/tailwindcss",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
     }
   ],
   "modes": [
@@ -1168,6 +1452,90 @@
       "source": {
         "name": "Tajawal",
         "url": "https://github.com/googlefonts/tajawal",
+        "license": "OFL-1.1"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-17"
+      }
+    },
+    {
+      "id": "pair-alexandria-plus-jakarta-sans",
+      "element": "fonts",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0627\u0644\u0625\u0633\u0643\u0646\u062f\u0631\u064a\u0629 \u0645\u0639 \u0628\u0644\u0633 \u062c\u0627\u0643\u0631\u062a\u0627",
+        "en": "Alexandria + Plus Jakarta Sans"
+      },
+      "tags": [
+        "corporate",
+        "soft"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.6,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "font": {
+          "heading": {
+            "$type": "fontFamily",
+            "$value": [
+              "Alexandria",
+              "Plus Jakarta Sans",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "body": {
+            "$type": "fontFamily",
+            "$value": [
+              "Alexandria",
+              "Plus Jakarta Sans",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "numerals": {
+            "$type": "fontFamily",
+            "$value": [
+              "Alexandria",
+              "Plus Jakarta Sans",
+              "system-ui",
+              "sans-serif"
+            ]
+          }
+        }
+      },
+      "extras": {
+        "languages": [
+          "ar",
+          "en"
+        ],
+        "arabic": "Alexandria",
+        "latin": "Plus Jakarta Sans",
+        "numeralsFont": "Alexandria",
+        "latinSizeAdjust": 1.05,
+        "easternArabicDigits": true,
+        "sources": [
+          "alexandria",
+          "plus-jakarta-sans"
+        ]
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Size adjustment 1.05: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Alexandria (measured in Chrome with the real files, task 3.8)."
+      },
+      "source": {
+        "name": "Alexandria",
+        "url": "https://github.com/Gue3bara/Alexandria",
         "license": "OFL-1.1"
       },
       "status": {
@@ -1758,6 +2126,258 @@
         "state": "reviewed",
         "reviewedAt": "2026-11-17"
       }
+    },
+    {
+      "id": "pair-amiri-eb-garamond",
+      "element": "fonts",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0627\u0644\u0623\u0645\u064a\u0631\u064a \u0645\u0639 \u0625\u064a \u0628\u064a \u063a\u0627\u0631\u0627\u0645\u0648\u0646\u062f",
+        "en": "Amiri + EB Garamond"
+      },
+      "tags": [
+        "editorial",
+        "luxury"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.4,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "font": {
+          "heading": {
+            "$type": "fontFamily",
+            "$value": [
+              "Amiri",
+              "EB Garamond",
+              "ui-serif",
+              "serif"
+            ]
+          },
+          "body": {
+            "$type": "fontFamily",
+            "$value": [
+              "Amiri",
+              "EB Garamond",
+              "ui-serif",
+              "serif"
+            ]
+          },
+          "numerals": {
+            "$type": "fontFamily",
+            "$value": [
+              "Amiri",
+              "EB Garamond",
+              "ui-serif",
+              "serif"
+            ]
+          }
+        }
+      },
+      "extras": {
+        "languages": [
+          "ar",
+          "en"
+        ],
+        "arabic": "Amiri",
+        "latin": "EB Garamond",
+        "numeralsFont": "Amiri",
+        "latinSizeAdjust": 1.35,
+        "easternArabicDigits": true,
+        "sources": [
+          "amiri",
+          "eb-garamond"
+        ]
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Size adjustment 1.35: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Amiri (measured in Chrome with the real files, task 5.2)."
+      },
+      "source": {
+        "name": "Amiri",
+        "url": "https://github.com/aliftype/amiri",
+        "license": "OFL-1.1"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "pair-noto-naskh-arabic-fraunces",
+      "element": "fonts",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0646\u0648\u062a\u0648 \u0646\u0633\u062e \u0645\u0639 \u0641\u0631\u0627\u0648\u0646\u0633\u064a\u0632",
+        "en": "Noto Naskh Arabic + Fraunces"
+      },
+      "tags": [
+        "soft",
+        "editorial"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.6,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "font": {
+          "heading": {
+            "$type": "fontFamily",
+            "$value": [
+              "Noto Naskh Arabic",
+              "Fraunces",
+              "ui-serif",
+              "serif"
+            ]
+          },
+          "body": {
+            "$type": "fontFamily",
+            "$value": [
+              "Noto Naskh Arabic",
+              "Fraunces",
+              "ui-serif",
+              "serif"
+            ]
+          },
+          "numerals": {
+            "$type": "fontFamily",
+            "$value": [
+              "Noto Naskh Arabic",
+              "Fraunces",
+              "ui-serif",
+              "serif"
+            ]
+          }
+        }
+      },
+      "extras": {
+        "languages": [
+          "ar",
+          "en"
+        ],
+        "arabic": "Noto Naskh Arabic",
+        "latin": "Fraunces",
+        "numeralsFont": "Noto Naskh Arabic",
+        "latinSizeAdjust": 0.9,
+        "easternArabicDigits": true,
+        "sources": [
+          "noto-arabic",
+          "fraunces"
+        ]
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Size adjustment 0.9: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Eastern Arabic digits: drawn by Noto Naskh Arabic (measured in Chrome with the real files, task 5.2)."
+      },
+      "source": {
+        "name": "Noto Arabic",
+        "url": "https://github.com/notofonts/arabic",
+        "license": "OFL-1.1"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "pair-readex-pro-ibm-plex-sans",
+      "element": "fonts",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0631\u064a\u062f\u0643\u0633 \u0628\u0631\u0648 \u0645\u0639 \u0628\u0644\u0643\u0633 \u0648\u0623\u0631\u0642\u0627\u0645 \u0628\u0644\u0643\u0633 \u0645\u0648\u0646\u0648",
+        "en": "Readex Pro + IBM Plex Sans, IBM Plex Mono numerals"
+      },
+      "tags": [
+        "corporate",
+        "data-dense"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.4,
+        "density": 0.7,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "font": {
+          "heading": {
+            "$type": "fontFamily",
+            "$value": [
+              "Readex Pro",
+              "IBM Plex Sans",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "body": {
+            "$type": "fontFamily",
+            "$value": [
+              "Readex Pro",
+              "IBM Plex Sans",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "numerals": {
+            "$type": "fontFamily",
+            "$value": [
+              "IBM Plex Mono",
+              "Readex Pro",
+              "ui-monospace",
+              "monospace"
+            ]
+          }
+        }
+      },
+      "extras": {
+        "languages": [
+          "ar",
+          "en"
+        ],
+        "arabic": "Readex Pro",
+        "latin": "IBM Plex Sans",
+        "numeralsFont": "IBM Plex Mono",
+        "latinSizeAdjust": 0.95,
+        "easternArabicDigits": false,
+        "sources": [
+          "readex-pro",
+          "plex"
+        ]
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Size adjustment 0.95: Arabic body height over Latin x-height, relative to IBM Plex (designed together). Numerals in IBM Plex Mono (fixed width, Western digits): it does not draw Eastern Arabic digits (measured in Chrome with the real files, task 5.2)."
+      },
+      "source": {
+        "name": "Readex Pro",
+        "url": "https://github.com/ThomasJockin/readexpro",
+        "license": "OFL-1.1"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
     }
   ],
   "type-scale": [
@@ -1978,6 +2598,79 @@
       "status": {
         "state": "reviewed",
         "reviewedAt": "2026-11-15"
+      }
+    },
+    {
+      "id": "scale-minor-second",
+      "element": "type-scale",
+      "kind": "numeric",
+      "name": {
+        "ar": "\u0633\u0644\u0651\u0645 \u0645\u062a\u0642\u0627\u0631\u0628 \u062c\u062f\u064b\u0627 (1.067)",
+        "en": "Minor second (1.067)"
+      },
+      "tags": [
+        "data-dense",
+        "minimal"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0,
+        "density": 0.9,
+        "intensity": 0.1
+      },
+      "tokens": {
+        "typeScale": {
+          "base": {
+            "$type": "dimension",
+            "$value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "ratio": {
+            "$type": "number",
+            "$value": 1.067
+          },
+          "steps": {
+            "$type": "number",
+            "$value": 6
+          },
+          "below": {
+            "$type": "number",
+            "$value": 1
+          }
+        },
+        "lineHeight": {
+          "ar": {
+            "$type": "number",
+            "$value": 1.65
+          },
+          "en": {
+            "$type": "number",
+            "$value": 1.45
+          }
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-17"
       }
     },
     {
@@ -2604,6 +3297,78 @@
             "$type": "dimension",
             "$value": {
               "value": 16,
+              "unit": "px"
+            }
+          },
+          "full": {
+            "$type": "dimension",
+            "$value": {
+              "value": 9999,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-17"
+      }
+    },
+    {
+      "id": "radius-soft",
+      "element": "radius",
+      "kind": "numeric",
+      "name": {
+        "ar": "\u0632\u0648\u0627\u064a\u0627 \u0646\u0627\u0639\u0645\u0629",
+        "en": "Soft corners"
+      },
+      "tags": [
+        "soft",
+        "playful"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0.75,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "radius": {
+          "sm": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "md": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "lg": {
+            "$type": "dimension",
+            "$value": {
+              "value": 28,
               "unit": "px"
             }
           },
@@ -5125,6 +5890,336 @@
       }
     },
     {
+      "id": "shadow-tinted-cool",
+      "element": "shadows",
+      "kind": "numeric",
+      "name": {
+        "ar": "\u0638\u0644 \u0645\u0627\u0626\u0644 \u0644\u0644\u0623\u0632\u0631\u0642",
+        "en": "Cool tinted"
+      },
+      "tags": [
+        "corporate",
+        "soft"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.5,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "shadow": {
+          "light": {
+            "sm": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.1176,
+                      0.1608,
+                      0.2314
+                    ],
+                    "alpha": 0.1,
+                    "hex": "#1e293b"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 1,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 2,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 0,
+                    "unit": "px"
+                  }
+                }
+              ]
+            },
+            "md": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.1176,
+                      0.1608,
+                      0.2314
+                    ],
+                    "alpha": 0.16,
+                    "hex": "#1e293b"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 6,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": -2,
+                    "unit": "px"
+                  }
+                }
+              ]
+            },
+            "lg": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.1176,
+                      0.1608,
+                      0.2314
+                    ],
+                    "alpha": 0.22,
+                    "hex": "#1e293b"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 40,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": -8,
+                    "unit": "px"
+                  }
+                }
+              ]
+            }
+          },
+          "dark": {
+            "sm": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.0078,
+                      0.0235,
+                      0.0902
+                    ],
+                    "alpha": 0.55,
+                    "hex": "#020617"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 1,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 2,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 0,
+                    "unit": "px"
+                  }
+                },
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "alpha": 0.08,
+                    "hex": "#ffffff"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 1,
+                    "unit": "px"
+                  }
+                }
+              ]
+            },
+            "md": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.0078,
+                      0.0235,
+                      0.0902
+                    ],
+                    "alpha": 0.7,
+                    "hex": "#020617"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 6,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": -2,
+                    "unit": "px"
+                  }
+                },
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "alpha": 0.1,
+                    "hex": "#ffffff"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 1,
+                    "unit": "px"
+                  }
+                }
+              ]
+            },
+            "lg": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0.0078,
+                      0.0235,
+                      0.0902
+                    ],
+                    "alpha": 0.8,
+                    "hex": "#020617"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 40,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": -8,
+                    "unit": "px"
+                  }
+                },
+                {
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "alpha": 0.12,
+                    "hex": "#ffffff"
+                  },
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 1,
+                    "unit": "px"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-17"
+      }
+    },
+    {
       "id": "shadow-tinted-warm",
       "element": "shadows",
       "kind": "numeric",
@@ -7111,6 +8206,486 @@
         "state": "reviewed",
         "reviewedAt": "2026-11-17"
       }
+    },
+    {
+      "id": "icons-tabler-light",
+      "element": "icons",
+      "kind": "curated",
+      "name": {
+        "ar": "\u062a\u0627\u0628\u0644\u0631 \u0628\u062e\u0637 \u0631\u0641\u064a\u0639",
+        "en": "Tabler, light stroke"
+      },
+      "tags": [
+        "minimal",
+        "editorial"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.5,
+        "density": 0.5,
+        "intensity": 0.3
+      },
+      "tokens": {
+        "icon": {
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "strokeWidth": {
+            "$type": "number",
+            "$value": 1.25
+          }
+        }
+      },
+      "extras": {
+        "library": "tabler",
+        "weight": "light",
+        "fill": "outline",
+        "container": "none",
+        "viewBox": "0 0 24 24",
+        "samples": {
+          "outline": [
+            {
+              "meaning": "arrow",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 12h14m-6 6l6-6m-6-6l6 6\"/>"
+            },
+            {
+              "meaning": "chevron",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m9 6l6 6l-6 6\"/>"
+            },
+            {
+              "meaning": "undo",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"m9 14l-4-4l4-4\"/>\u003cpath d=\"M5 10h11a4 4 0 1 1 0 8h-1\"/>\u003c/g>"
+            },
+            {
+              "meaning": "search",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6\"/>"
+            },
+            {
+              "meaning": "home",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M5 12H3l9-9l9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7\"/>\u003cpath d=\"M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6\"/>\u003c/g>"
+            },
+            {
+              "meaning": "settings",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065\"/>\u003cpath d=\"M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0\"/>\u003c/g>"
+            },
+            {
+              "meaning": "user",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2\"/>"
+            },
+            {
+              "meaning": "bell",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6M9 17v1a3 3 0 0 0 6 0v-1\"/>"
+            },
+            {
+              "meaning": "plus",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 5v14m-7-7h14\"/>"
+            },
+            {
+              "meaning": "close",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M18 6L6 18M6 6l12 12\"/>"
+            },
+            {
+              "meaning": "menu",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"/>"
+            },
+            {
+              "meaning": "check",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m5 12l5 5L20 7\"/>"
+            },
+            {
+              "meaning": "clock",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0\"/>\u003cpath d=\"M12 7v5l3 3\"/>\u003c/g>"
+            },
+            {
+              "meaning": "play",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 4v16l13-8z\"/>"
+            }
+          ]
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Arrows, chevrons and undo mirror in RTL; clock, play and check never do (R-093). Samples copied by tools/icons-extract.js."
+      },
+      "source": {
+        "name": "Tabler Icons",
+        "url": "https://github.com/tabler/tabler-icons",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "icons-hugeicons-circle",
+      "element": "icons",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0647\u064a\u0648\u062c \u0622\u064a\u0643\u0646\u0632 \u0641\u064a \u062f\u0627\u0626\u0631\u0629",
+        "en": "Hugeicons in a circle"
+      },
+      "tags": [
+        "soft",
+        "corporate"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.9,
+        "density": 0.4,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "icon": {
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "strokeWidth": {
+            "$type": "number",
+            "$value": 1.5
+          }
+        }
+      },
+      "extras": {
+        "library": "hugeicons",
+        "weight": "regular",
+        "fill": "outline",
+        "container": "circle",
+        "viewBox": "0 0 24 24",
+        "samples": {
+          "outline": [
+            {
+              "meaning": "arrow",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6\"/>"
+            },
+            {
+              "meaning": "chevron",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M9 6s6 4.419 6 6s-6 6-6 6\"/>"
+            },
+            {
+              "meaning": "undo",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\">\u003cpath d=\"M12 21A9 9 0 1 0 4.204 7.5\"/>\u003cpath d=\"M3 3v1.278c0 2.192 0 3.288.707 3.887c.708.6 1.789.42 3.95.059L9 8\"/>\u003c/g>"
+            },
+            {
+              "meaning": "search",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m17 17l4 4m-2-10a8 8 0 1 0-16 0a8 8 0 0 0 16 0\"/>"
+            },
+            {
+              "meaning": "home",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M3 11.99v2.51c0 3.3 0 4.95 1.025 5.975S6.7 21.5 10 21.5h4c3.3 0 4.95 0 5.975-1.025S21 17.8 21 14.5v-2.51c0-1.682 0-2.522-.356-3.25s-1.02-1.244-2.346-2.276l-2-1.555C14.233 3.303 13.2 2.5 12 2.5s-2.233.803-4.298 2.409l-2 1.555C4.375 7.496 3.712 8.012 3.356 8.74S3 10.308 3 11.99\"/>"
+            },
+            {
+              "meaning": "settings",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\">\u003cpath d=\"M15.5 12a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0Z\"/>\u003cpath stroke-linecap=\"round\" d=\"M21.011 14.097c.522-.141.783-.212.886-.346c.103-.135.103-.351.103-.784v-1.934c0-.433 0-.65-.103-.784s-.364-.205-.886-.345c-1.95-.526-3.171-2.565-2.668-4.503c.139-.533.208-.8.142-.956s-.256-.264-.635-.479l-1.725-.98c-.372-.21-.558-.316-.725-.294s-.356.21-.733.587c-1.459 1.455-3.873 1.455-5.333 0c-.377-.376-.565-.564-.732-.587c-.167-.022-.353.083-.725.295l-1.725.979c-.38.215-.57.323-.635.48c-.066.155.003.422.141.955c.503 1.938-.718 3.977-2.669 4.503c-.522.14-.783.21-.886.345S2 10.6 2 11.033v1.934c0 .433 0 .65.103.784s.364.205.886.346c1.95.526 3.171 2.565 2.668 4.502c-.139.533-.208.8-.142.956s.256.264.635.48l1.725.978c.372.212.558.317.725.295s.356-.21.733-.587c1.46-1.457 3.876-1.457 5.336 0c.377.376.565.564.732.587c.167.022.353-.083.726-.295l1.724-.979c.38-.215.57-.323.635-.48s-.003-.422-.141-.955c-.504-1.937.716-3.976 2.666-4.502Z\"/>\u003c/g>"
+            },
+            {
+              "meaning": "user",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\">\u003cpath d=\"M20 21a7.53 7.53 0 0 0-7.005-6.934L12 14q-.531.015-1 .038c-3.7.181-6.716 3.268-7 6.962\"/>\u003ccircle cx=\"12\" cy=\"7\" r=\"4\"/>\u003c/g>"
+            },
+            {
+              "meaning": "bell",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M15.5 18a3.5 3.5 0 1 1-7 0m10.731 0H4.77a1.769 1.769 0 0 1-1.25-3.02l.602-.603A3 3 0 0 0 5 12.256V9.5a7 7 0 0 1 14 0v2.756a3 3 0 0 0 .879 2.121l.603.603a1.77 1.77 0 0 1-1.25 3.02\"/>"
+            },
+            {
+              "meaning": "plus",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M12.001 5v14.002m7.001-7H5\"/>"
+            },
+            {
+              "meaning": "close",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M18 6L6 18m12 0L6 6\"/>"
+            },
+            {
+              "meaning": "menu",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M4 5h16M4 12h16M4 19h16\"/>"
+            },
+            {
+              "meaning": "check",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m5 14l3.5 3.5L19 6.5\"/>"
+            },
+            {
+              "meaning": "clock",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\">\u003ccircle cx=\"12\" cy=\"12\" r=\"10\"/>\u003cpath stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 8v4l2 2\"/>\u003c/g>"
+            },
+            {
+              "meaning": "play",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M18.89 12.846c-.353 1.343-2.023 2.292-5.364 4.19c-3.23 1.835-4.845 2.752-6.146 2.384a3.25 3.25 0 0 1-1.424-.841C5 17.614 5 15.743 5 12s0-5.614.956-6.579a3.25 3.25 0 0 1 1.424-.84c1.301-.37 2.916.548 6.146 2.383c3.34 1.898 5.011 2.847 5.365 4.19a3.3 3.3 0 0 1 0 1.692Z\"/>"
+            }
+          ]
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Arrows, chevrons and undo mirror in RTL; clock, play and check never do (R-093). Samples copied by tools/icons-extract.js."
+      },
+      "source": {
+        "name": "Hugeicons",
+        "url": "https://github.com/hugeicons/hugeicons",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "icons-lucide-thin-square",
+      "element": "icons",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0644\u0648\u0633\u064a\u062f \u0628\u062e\u0637 \u0631\u0641\u064a\u0639 \u062c\u062f\u064b\u0627 \u0641\u064a \u0645\u0631\u0628\u0639",
+        "en": "Lucide, thin stroke in a square"
+      },
+      "tags": [
+        "technical",
+        "data-dense"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.2,
+        "density": 0.6,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "icon": {
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 20,
+              "unit": "px"
+            }
+          },
+          "strokeWidth": {
+            "$type": "number",
+            "$value": 1
+          }
+        }
+      },
+      "extras": {
+        "library": "lucide",
+        "weight": "thin",
+        "fill": "outline",
+        "container": "square",
+        "viewBox": "0 0 24 24",
+        "samples": {
+          "outline": [
+            {
+              "meaning": "arrow",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 12h14m-7-7l7 7l-7 7\"/>"
+            },
+            {
+              "meaning": "chevron",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m9 18l6-6l-6-6\"/>"
+            },
+            {
+              "meaning": "undo",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M9 14L4 9l5-5\"/>\u003cpath d=\"M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11\"/>\u003c/g>"
+            },
+            {
+              "meaning": "search",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"m21 21l-4.34-4.34\"/>\u003ccircle cx=\"11\" cy=\"11\" r=\"8\"/>\u003c/g>"
+            },
+            {
+              "meaning": "home",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"/>\u003cpath d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>\u003c/g>"
+            },
+            {
+              "meaning": "settings",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M9.671 4.136a2.34 2.34 0 0 1 4.659 0a2.34 2.34 0 0 0 3.319 1.915a2.34 2.34 0 0 1 2.33 4.033a2.34 2.34 0 0 0 0 3.831a2.34 2.34 0 0 1-2.33 4.033a2.34 2.34 0 0 0-3.319 1.915a2.34 2.34 0 0 1-4.659 0a2.34 2.34 0 0 0-3.32-1.915a2.34 2.34 0 0 1-2.33-4.033a2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915\"/>\u003ccircle cx=\"12\" cy=\"12\" r=\"3\"/>\u003c/g>"
+            },
+            {
+              "meaning": "user",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003cpath d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\"/>\u003ccircle cx=\"12\" cy=\"7\" r=\"4\"/>\u003c/g>"
+            },
+            {
+              "meaning": "bell",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326\"/>"
+            },
+            {
+              "meaning": "plus",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 12h14m-7-7v14\"/>"
+            },
+            {
+              "meaning": "close",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M18 6L6 18M6 6l12 12\"/>"
+            },
+            {
+              "meaning": "menu",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 5h16M4 12h16M4 19h16\"/>"
+            },
+            {
+              "meaning": "check",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M20 6L9 17l-5-5\"/>"
+            },
+            {
+              "meaning": "clock",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\">\u003ccircle cx=\"12\" cy=\"12\" r=\"10\"/>\u003cpath d=\"M12 6v6l4 2\"/>\u003c/g>"
+            },
+            {
+              "meaning": "play",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z\"/>"
+            }
+          ]
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Arrows, chevrons and undo mirror in RTL; clock, play and check never do (R-093). Samples copied by tools/icons-extract.js."
+      },
+      "source": {
+        "name": "Lucide",
+        "url": "https://github.com/lucide-icons/lucide",
+        "license": "ISC"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "icons-iconoir-rounded",
+      "element": "icons",
+      "kind": "curated",
+      "name": {
+        "ar": "\u0622\u064a\u0643\u0648\u0646\u0648\u0627\u0631 \u0641\u064a \u0645\u0631\u0628\u0639 \u0645\u0633\u062a\u062f\u064a\u0631",
+        "en": "Iconoir in a rounded square"
+      },
+      "tags": [
+        "soft",
+        "editorial"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "metrics": {
+        "roundness": 0.7,
+        "density": 0.4,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "icon": {
+          "size": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          },
+          "strokeWidth": {
+            "$type": "number",
+            "$value": 1.5
+          }
+        }
+      },
+      "extras": {
+        "library": "iconoir",
+        "weight": "regular",
+        "fill": "outline",
+        "container": "rounded",
+        "viewBox": "0 0 24 24",
+        "samples": {
+          "outline": [
+            {
+              "meaning": "arrow",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M3 12h18m0 0l-8.5-8.5M21 12l-8.5 8.5\"/>"
+            },
+            {
+              "meaning": "chevron",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m9 6l6 6l-6 6\"/>"
+            },
+            {
+              "meaning": "undo",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\">\u003cpath d=\"M4.5 8H15s5 0 5 4.706C20 18 15 18 15 18H6.286\"/>\u003cpath d=\"M7.5 11.5L4 8l3.5-3.5\"/>\u003c/g>"
+            },
+            {
+              "meaning": "search",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m17 17l4 4M3 11a8 8 0 1 0 16 0a8 8 0 0 0-16 0\"/>"
+            },
+            {
+              "meaning": "home",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m2 8l9.732-4.866a.6.6 0 0 1 .536 0L22 8m-2 3v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8\"/>"
+            },
+            {
+              "meaning": "settings",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\">\u003cpath d=\"M12 15a3 3 0 1 0 0-6a3 3 0 0 0 0 6\"/>\u003cpath d=\"m19.622 10.395l-1.097-2.65L20 6l-2-2l-1.735 1.483l-2.707-1.113L12.935 2h-1.954l-.632 2.401l-2.645 1.115L6 4L4 6l1.453 1.789l-1.08 2.657L2 11v2l2.401.656L5.516 16.3L4 18l2 2l1.791-1.46l2.606 1.072L11 22h2l.604-2.387l2.651-1.098C16.697 18.832 18 20 18 20l2-2l-1.484-1.75l1.098-2.652l2.386-.62V11z\"/>\u003c/g>"
+            },
+            {
+              "meaning": "user",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\">\u003cpath d=\"M5 20v-1a7 7 0 1 1 14 0v1\"/>\u003cpath d=\"M12 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8\"/>\u003c/g>"
+            },
+            {
+              "meaning": "bell",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M18 8.4c0-1.697-.632-3.325-1.757-4.525S13.59 2 12 2s-3.117.674-4.243 1.875C6.632 5.075 6 6.703 6 8.4C6 15.867 3 18 3 18h18s-3-2.133-3-9.6M13.73 21a2 2 0 0 1-3.46 0\"/>"
+            },
+            {
+              "meaning": "plus",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M6 12h6m6 0h-6m0 0V6m0 6v6\"/>"
+            },
+            {
+              "meaning": "close",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243\"/>"
+            },
+            {
+              "meaning": "menu",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M3 5h18M3 12h18M3 19h18\"/>"
+            },
+            {
+              "meaning": "check",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"m5 13l4 4L19 7\"/>"
+            },
+            {
+              "meaning": "clock",
+              "body": "\u003cg fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\">\u003cpath d=\"M12 6v6h6\"/>\u003cpath d=\"M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10\"/>\u003c/g>"
+            },
+            {
+              "meaning": "play",
+              "body": "\u003cpath fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M6.906 4.537A.6.6 0 0 0 6 5.053v13.894a.6.6 0 0 0 .906.516l11.723-6.947a.6.6 0 0 0 0-1.032z\"/>"
+            }
+          ]
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Arrows, chevrons and undo mirror in RTL; clock, play and check never do (R-093). Samples copied by tools/icons-extract.js."
+      },
+      "source": {
+        "name": "Iconoir",
+        "url": "https://github.com/iconoir-icons/iconoir",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
     }
   ],
   "buttons": [
@@ -7671,6 +9246,254 @@
         "state": "reviewed",
         "reviewedAt": "2026-11-17"
       }
+    },
+    {
+      "id": "button-double-outline",
+      "element": "buttons",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0645\u0632\u062f\u0648\u062c",
+        "en": "Double outline button"
+      },
+      "tags": [
+        "editorial",
+        "luxury"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0,
+        "density": 0.5,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "button": {
+          "paddingBlock": {
+            "$type": "dimension",
+            "$value": {
+              "value": 8,
+              "unit": "px"
+            }
+          },
+          "paddingInline": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:3px double var(--color-primary)}.hw-btn:hover{background-color:var(--color-surface);border-color:var(--color-accent-text)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical padding only; an icon before the label follows the text direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "button-compact-outline-square",
+      "element": "buttons",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0632\u0631 \u0628\u0625\u0637\u0627\u0631 \u0635\u063a\u064a\u0631 \u0628\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629",
+        "en": "Compact square outline"
+      },
+      "tags": [
+        "data-dense",
+        "corporate"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0,
+        "density": 0.9,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "button": {
+          "paddingBlock": {
+            "$type": "dimension",
+            "$value": {
+              "value": 4,
+              "unit": "px"
+            }
+          },
+          "paddingInline": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-1);padding-inline:var(--space-3);border-radius:0;font-family:var(--font-body);font-size:var(--font-size-sm);line-height:1.2;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease;background:transparent;color:var(--color-accent-text);border:1px solid var(--color-primary)}.hw-btn:hover{background-color:var(--color-surface);border-color:var(--color-accent-text)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical padding only; an icon before the label follows the text direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "button-secondary-framed-large",
+      "element": "buttons",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0632\u0631 \u062b\u0627\u0646\u0648\u064a \u0643\u0628\u064a\u0631 \u0628\u0625\u0637\u0627\u0631 \u0623\u0633\u0627\u0633\u064a",
+        "en": "Large secondary, primary frame"
+      },
+      "tags": [
+        "retro",
+        "vivid"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0.6,
+        "density": 0.3,
+        "intensity": 0.8
+      },
+      "tokens": {
+        "button": {
+          "paddingBlock": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "paddingInline": {
+            "$type": "dimension",
+            "$value": {
+              "value": 24,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-3);padding-inline:var(--space-6);border-radius:var(--radius-lg);font-family:var(--font-body);font-size:var(--font-size-lg);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-secondary);color:var(--color-on-secondary);border:2px solid var(--color-primary)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical padding only; an icon before the label follows the text direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "button-surface-raised",
+      "element": "buttons",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0632\u0631 \u0628\u0627\u0631\u0632 \u0639\u0644\u0649 \u0627\u0644\u0633\u0637\u062d \u0628\u0625\u0637\u0627\u0631",
+        "en": "Raised surface button"
+      },
+      "tags": [
+        "material",
+        "corporate"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0.4,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "button": {
+          "paddingBlock": {
+            "$type": "dimension",
+            "$value": {
+              "value": 8,
+              "unit": "px"
+            }
+          },
+          "paddingInline": {
+            "$type": "dimension",
+            "$value": {
+              "value": 16,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003cbutton class=\"hw-btn\" type=\"button\">{label}\u003c/button>",
+        "css": ".hw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding-block:var(--space-2);padding-inline:var(--space-4);border-radius:var(--radius-md);font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.2;cursor:pointer;transition:box-shadow .15s ease;background:var(--color-surface);color:var(--color-on-surface);border:1px solid var(--color-control-border);box-shadow:var(--shadow-sm)}.hw-btn:hover{box-shadow:var(--shadow-md)}.hw-btn:active{transform:translateY(1px)}.hw-btn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}.hw-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": ".hw-btn{transition:none}.hw-btn:active{transform:none}"
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical padding only; an icon before the label follows the text direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
     }
   ],
   "cards": [
@@ -8223,6 +10046,226 @@
         "state": "reviewed",
         "reviewedAt": "2026-11-17"
       }
+    },
+    {
+      "id": "card-double-border",
+      "element": "cards",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0643\u0631\u062a \u0628\u0625\u0637\u0627\u0631 \u0645\u0632\u062f\u0648\u062c",
+        "en": "Double-bordered card"
+      },
+      "tags": [
+        "editorial",
+        "luxury"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0.2,
+        "density": 0.4,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "card": {
+          "padding": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+        "css": ".hw-card{background:var(--color-surface);border:3px double var(--color-border);border-radius:var(--radius-sm);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical margins only; text alignment follows the page direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "card-soft-round",
+      "element": "cards",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0643\u0631\u062a \u0646\u0627\u0639\u0645 \u0628\u0632\u0648\u0627\u064a\u0627 \u0643\u0628\u064a\u0631\u0629",
+        "en": "Soft rounded card"
+      },
+      "tags": [
+        "soft",
+        "minimal"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0.8,
+        "density": 0.4,
+        "intensity": 0.3
+      },
+      "tokens": {
+        "card": {
+          "padding": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+        "css": ".hw-card{background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);border-radius:var(--radius-lg);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical margins only; text alignment follows the page direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "card-ledger",
+      "element": "cards",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0643\u0631\u062a \u062f\u0641\u062a\u0631 \u0628\u062d\u0627\u0641\u0629 \u0639\u0644\u0648\u064a\u0629",
+        "en": "Ledger card"
+      },
+      "tags": [
+        "data-dense",
+        "corporate"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0,
+        "density": 0.9,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "card": {
+          "padding": {
+            "$type": "dimension",
+            "$value": {
+              "value": 12,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+        "css": ".hw-card{background:var(--color-background);border:1px solid var(--color-border);border-block-start:2px solid var(--color-primary);border-radius:0;padding:var(--space-3)}.hw-card-title{margin:0 0 var(--space-1);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical margins only; text alignment follows the page direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
+    },
+    {
+      "id": "card-earthy-side",
+      "element": "cards",
+      "kind": "composite",
+      "name": {
+        "ar": "\u0643\u0631\u062a \u0628\u062d\u0627\u0641\u0629 \u062c\u0627\u0646\u0628\u064a\u0629 \u062b\u0627\u0646\u0648\u064a\u0629 \u0648\u0632\u0648\u0627\u064a\u0627 \u0643\u0628\u064a\u0631\u0629",
+        "en": "Side accent, rounded"
+      },
+      "tags": [
+        "soft",
+        "retro"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension"
+      ],
+      "metrics": {
+        "roundness": 0.7,
+        "density": 0.5,
+        "intensity": 0.5
+      },
+      "tokens": {
+        "card": {
+          "padding": {
+            "$type": "dimension",
+            "$value": {
+              "value": 32,
+              "unit": "px"
+            }
+          }
+        }
+      },
+      "recipe": {
+        "html": "\u003carticle class=\"hw-card\">\u003ch3 class=\"hw-card-title\">{title}\u003c/h3>\u003cp class=\"hw-card-body\">{body}\u003c/p>\u003c/article>",
+        "css": ".hw-card{background:var(--color-surface);border:none;border-inline-start:6px solid var(--color-secondary);box-shadow:var(--shadow-md);border-radius:var(--radius-lg);padding:var(--space-6)}.hw-card-title{margin:0 0 var(--space-3);font-family:var(--font-heading);font-size:var(--font-size-lg);color:var(--color-on-surface)}.hw-card-body{margin:0;font-family:var(--font-body);font-size:var(--font-size-base);line-height:var(--line-height);color:var(--color-muted-text)}"
+      },
+      "a11y": {
+        "contrast": "AA",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true,
+        "notes": "Logical margins only; text alignment follows the page direction."
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-18"
+      }
     }
   ],
   "spacing": [
@@ -8572,6 +10615,122 @@
       "status": {
         "state": "reviewed",
         "reviewedAt": "2026-11-15"
+      }
+    },
+    {
+      "id": "spacing-dense",
+      "element": "spacing",
+      "kind": "numeric",
+      "name": {
+        "ar": "\u0643\u062b\u064a\u0641 \u062c\u062f\u064b\u0627",
+        "en": "Dense"
+      },
+      "tags": [
+        "data-dense",
+        "technical"
+      ],
+      "platforms": [
+        "web",
+        "desktop",
+        "extension",
+        "mobile"
+      ],
+      "metrics": {
+        "roundness": 0,
+        "density": 0.95,
+        "intensity": 0.4
+      },
+      "tokens": {
+        "spacing": {
+          "unit": {
+            "$type": "dimension",
+            "$value": {
+              "value": 2,
+              "unit": "px"
+            }
+          },
+          "scale": {
+            "0": {
+              "$type": "dimension",
+              "$value": {
+                "value": 0,
+                "unit": "px"
+              }
+            },
+            "1": {
+              "$type": "dimension",
+              "$value": {
+                "value": 2,
+                "unit": "px"
+              }
+            },
+            "2": {
+              "$type": "dimension",
+              "$value": {
+                "value": 4,
+                "unit": "px"
+              }
+            },
+            "3": {
+              "$type": "dimension",
+              "$value": {
+                "value": 6,
+                "unit": "px"
+              }
+            },
+            "4": {
+              "$type": "dimension",
+              "$value": {
+                "value": 8,
+                "unit": "px"
+              }
+            },
+            "5": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              }
+            },
+            "6": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              }
+            },
+            "7": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              }
+            },
+            "8": {
+              "$type": "dimension",
+              "$value": {
+                "value": 32,
+                "unit": "px"
+              }
+            }
+          }
+        }
+      },
+      "a11y": {
+        "contrast": "n/a",
+        "reducedMotion": null
+      },
+      "rtl": {
+        "supported": true
+      },
+      "source": {
+        "name": "Hawiya",
+        "url": "https://github.com/hawiya/hawiya",
+        "license": "MIT"
+      },
+      "status": {
+        "state": "reviewed",
+        "reviewedAt": "2026-11-17"
       }
     },
     {

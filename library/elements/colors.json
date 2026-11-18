@@ -8515,7 +8515,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8585,7 +8586,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8655,7 +8657,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8713,7 +8716,7 @@
       "palette": "Tailwind CSS v3 lime-800 / orange-800"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -8725,7 +8728,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8783,7 +8787,7 @@
       "palette": "Tailwind CSS v3 slate-800 / violet-400"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -8795,7 +8799,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8853,7 +8858,7 @@
       "palette": "Tailwind CSS v3 green-900 / rose-400"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -8865,7 +8870,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8923,7 +8929,7 @@
       "palette": "Tailwind CSS v3 indigo-900 / teal-400"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -8935,7 +8941,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -8993,7 +9000,7 @@
       "palette": "Tailwind CSS v3 cyan-800 / lime-400"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -9005,7 +9012,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -9063,7 +9071,7 @@
       "palette": "Tailwind CSS v3 purple-900 / yellow-400"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -9075,7 +9083,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -9133,7 +9142,7 @@
       "palette": "Tailwind CSS v3 sky-900 / pink-400"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -9145,7 +9154,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -9203,7 +9213,7 @@
       "palette": "Tailwind CSS v3 emerald-800 / cyan-500"
     },
     "a11y": {
-      "contrast": "AA",
+      "contrast": "AAA",
       "reducedMotion": null
     },
     "rtl": {
@@ -9215,7 +9225,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   }
 ]

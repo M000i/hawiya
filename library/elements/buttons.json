@@ -1483,7 +1483,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -1544,7 +1545,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -1605,7 +1607,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -1666,7 +1669,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -1727,7 +1731,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   },
   {
@@ -1788,7 +1793,8 @@
       "license": "MIT"
     },
     "status": {
-      "state": "draft"
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
     }
   }
 ]

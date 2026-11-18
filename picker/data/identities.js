@@ -97,6 +97,62 @@
     }
   },
   {
+    "id": "classic-naskh",
+    "name": {
+      "ar": "\u0643\u0644\u0627\u0633\u064a\u0643\u064a \u0646\u0633\u062e\u064a",
+      "en": "Classic naskh"
+    },
+    "description": {
+      "ar": "\u062e\u0645\u0631\u064a \u0648\u0630\u0647\u0628\u064a \u0645\u0639 \u062e\u0637 \u0627\u0644\u0623\u0645\u064a\u0631\u064a \u0627\u0644\u0646\u0633\u062e\u064a \u0648 EB Garamond\u060c \u0648\u0625\u0637\u0627\u0631\u0627\u062a \u0645\u0632\u062f\u0648\u062c\u0629\u060c \u0644\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062b\u0642\u0627\u0641\u0629 \u0648\u0627\u0644\u0646\u0634\u0631.",
+      "en": "Wine and gold with Amiri naskh and EB Garamond, and double frames, for culture and publishing sites."
+    },
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-rose-yellow",
+      "modes": "modes-light-first",
+      "fonts": "pair-amiri-eb-garamond",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-subtle",
+      "shadows": "shadow-flat",
+      "icons": "icons-tabler-light",
+      "buttons": "button-double-outline",
+      "cards": "card-double-border",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "clean-health",
+    "name": {
+      "ar": "\u0635\u062d\u064a \u0646\u0642\u064a",
+      "en": "Clean health"
+    },
+    "description": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a \u0639\u0644\u0649 \u062e\u0644\u0641\u064a\u0629 \u0647\u0627\u062f\u0626\u0629\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0646\u0627\u0639\u0645\u0629 \u0648\u0645\u0633\u0627\u0641\u0627\u062a \u0645\u0631\u064a\u062d\u0629\u060c \u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u0635\u062d\u0629 \u0648\u0627\u0644\u0639\u064a\u0627\u062f\u0627\u062a.",
+      "en": "Teal and sky on a calm background, soft corners and comfortable spacing, for health and clinic apps."
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-teal-sky",
+      "modes": "modes-system",
+      "fonts": "pair-alexandria-plus-jakarta-sans",
+      "type-scale": "scale-major-second",
+      "radius": "radius-soft",
+      "shadows": "shadow-tinted-cool",
+      "icons": "icons-hugeicons-circle",
+      "buttons": "button-surface-raised",
+      "cards": "card-soft-round",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "dark-tech",
     "name": {
       "ar": "\u062f\u0627\u0643\u0646 \u062a\u0642\u0646\u064a",
@@ -121,6 +177,34 @@
       "buttons": "button-compact-solid",
       "cards": "card-compact",
       "spacing": "spacing-compact",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "earthy-natural",
+    "name": {
+      "ar": "\u0637\u0628\u064a\u0639\u064a \u062a\u0631\u0627\u0628\u064a",
+      "en": "Earthy natural"
+    },
+    "description": {
+      "ar": "\u0632\u064a\u062a\u0648\u0646\u064a \u0648\u0637\u0648\u0628\u064a \u0645\u0639 \u0646\u0648\u062a\u0648 \u0646\u0633\u062e \u0648 Fraunces\u060c \u0648\u062d\u0648\u0627\u0641 \u062f\u0627\u0641\u0626\u0629\u060c \u0644\u0644\u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u0637\u0628\u064a\u0639\u064a\u0629 \u0648\u0627\u0644\u0645\u0637\u0627\u0639\u0645.",
+      "en": "Olive and terracotta with Noto Naskh and Fraunces, and warm edges, for natural products and restaurants."
+    },
+    "tags": [
+      "soft",
+      "retro"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-olive-terracotta",
+      "modes": "modes-light-first",
+      "fonts": "pair-noto-naskh-arabic-fraunces",
+      "type-scale": "scale-augmented-fourth",
+      "radius": "radius-gentle",
+      "shadows": "shadow-tinted-warm",
+      "icons": "icons-iconoir-rounded",
+      "buttons": "button-secondary-framed-large",
+      "cards": "card-earthy-side",
+      "spacing": "spacing-balanced",
       "direction": "direction-both"
     }
   },
@@ -261,6 +345,34 @@
       "buttons": "button-quiet",
       "cards": "card-plain",
       "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "sober-finance",
+    "name": {
+      "ar": "\u0645\u0627\u0644\u064a \u0631\u0635\u064a\u0646",
+      "en": "Sober finance"
+    },
+    "description": {
+      "ar": "\u0643\u062d\u0644\u064a \u0648\u0632\u0645\u0631\u062f\u064a\u060c \u0648\u0643\u062b\u0627\u0641\u0629 \u0639\u0627\u0644\u064a\u0629 \u0648\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629 \u0648\u0623\u0631\u0642\u0627\u0645 \u0628\u062e\u0637 \u062b\u0627\u0628\u062a \u0627\u0644\u0639\u0631\u0636\u060c \u0644\u0644\u0648\u062d\u0627\u062a \u0627\u0644\u0645\u0627\u0644 \u0648\u0627\u0644\u0645\u062d\u0627\u0633\u0628\u0629.",
+      "en": "Navy and emerald, dense, square corners and fixed-width numerals, for finance and accounting dashboards."
+    },
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-navy-emerald",
+      "modes": "modes-light-first",
+      "fonts": "pair-readex-pro-ibm-plex-sans",
+      "type-scale": "scale-minor-second",
+      "radius": "radius-sharp",
+      "shadows": "shadow-ring",
+      "icons": "icons-lucide-thin-square",
+      "buttons": "button-compact-outline-square",
+      "cards": "card-ledger",
+      "spacing": "spacing-dense",
       "direction": "direction-both"
     }
   },

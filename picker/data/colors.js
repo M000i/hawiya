@@ -8460,5 +8460,786 @@
       "state": "reviewed",
       "reviewedAt": "2026-11-17"
     }
+  },
+  {
+    "id": "palette-tailwind-rose-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u062e\u0645\u0631\u064a \u0648\u0630\u0647\u0628\u064a",
+      "en": "Wine and gold"
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5333,
+              0.0745,
+              0.2157
+            ],
+            "hex": "#881337"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6314,
+              0.3843,
+              0.0275
+            ],
+            "hex": "#a16207"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 rose-900 / yellow-700"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-teal-sky",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0648\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a",
+      "en": "Teal and sky"
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.051,
+              0.5804,
+              0.5333
+            ],
+            "hex": "#0d9488"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0078,
+              0.5176,
+              0.7804
+            ],
+            "hex": "#0284c7"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 teal-600 / sky-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-navy-emerald",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0643\u062d\u0644\u064a \u0648\u0632\u0645\u0631\u062f\u064a",
+      "en": "Navy and emerald"
+    },
+    "tags": [
+      "corporate",
+      "data-dense"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1176,
+              0.2275,
+              0.5412
+            ],
+            "hex": "#1e3a8a"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0196,
+              0.5882,
+              0.4118
+            ],
+            "hex": "#059669"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 blue-900 / emerald-600"
+    },
+    "a11y": {
+      "contrast": "AA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-olive-terracotta",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u064a\u062a\u0648\u0646\u064a \u0648\u0637\u0648\u0628\u064a",
+      "en": "Olive and terracotta"
+    },
+    "tags": [
+      "soft",
+      "retro"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.5
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2471,
+              0.3843,
+              0.0706
+            ],
+            "hex": "#3f6212"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6039,
+              0.2039,
+              0.0706
+            ],
+            "hex": "#9a3412"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 lime-800 / orange-800"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-slate-violet",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0623\u0631\u062f\u0648\u0627\u0632\u064a \u062f\u0627\u0643\u0646 \u0648\u0628\u0646\u0641\u0633\u062c\u064a \u0641\u0627\u062a\u062d",
+      "en": "Dark slate and light violet"
+    },
+    "tags": [
+      "technical",
+      "corporate"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1176,
+              0.1608,
+              0.2314
+            ],
+            "hex": "#1e293b"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6549,
+              0.5451,
+              0.9804
+            ],
+            "hex": "#a78bfa"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 slate-800 / violet-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-green-rose",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u062e\u0636\u0631 \u062f\u0627\u0643\u0646 \u0648\u0648\u0631\u062f\u064a",
+      "en": "Deep green and rose"
+    },
+    "tags": [
+      "editorial",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0784,
+              0.3255,
+              0.1765
+            ],
+            "hex": "#14532d"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9843,
+              0.4431,
+              0.5216
+            ],
+            "hex": "#fb7185"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 green-900 / rose-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-indigo-teal",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0646\u064a\u0644\u064a \u062f\u0627\u0643\u0646 \u0648\u0623\u062e\u0636\u0631 \u0645\u0632\u0631\u0642 \u0641\u0627\u062a\u062d",
+      "en": "Deep indigo and light teal"
+    },
+    "tags": [
+      "technical",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1922,
+              0.1804,
+              0.5059
+            ],
+            "hex": "#312e81"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1765,
+              0.8314,
+              0.749
+            ],
+            "hex": "#2dd4bf"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 indigo-900 / teal-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-cyan-lime",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0633\u0645\u0627\u0648\u064a \u062f\u0627\u0643\u0646 \u0648\u0644\u064a\u0645\u0648\u0646\u064a",
+      "en": "Deep cyan and lime"
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0824,
+              0.3686,
+              0.4588
+            ],
+            "hex": "#155e75"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6392,
+              0.902,
+              0.2078
+            ],
+            "hex": "#a3e635"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 cyan-800 / lime-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-purple-yellow",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0631\u062c\u0648\u0627\u0646\u064a \u062f\u0627\u0643\u0646 \u0648\u0623\u0635\u0641\u0631",
+      "en": "Deep purple and yellow"
+    },
+    "tags": [
+      "luxury",
+      "vivid"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.8
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3451,
+              0.1098,
+              0.5294
+            ],
+            "hex": "#581c87"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9804,
+              0.8,
+              0.0824
+            ],
+            "hex": "#facc15"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 purple-900 / yellow-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-sky-pink",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0633\u0645\u0627\u0648\u064a \u062f\u0627\u0643\u0646 \u0648\u0632\u0647\u0631\u064a",
+      "en": "Deep sky and pink"
+    },
+    "tags": [
+      "playful",
+      "editorial"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.7
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0471,
+              0.2902,
+              0.4314
+            ],
+            "hex": "#0c4a6e"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9569,
+              0.4471,
+              0.7137
+            ],
+            "hex": "#f472b6"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 sky-900 / pink-400"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
+  },
+  {
+    "id": "palette-tailwind-emerald-cyan",
+    "element": "colors",
+    "kind": "curated",
+    "name": {
+      "ar": "\u0632\u0645\u0631\u062f\u064a \u062f\u0627\u0643\u0646 \u0648\u0633\u0645\u0627\u0648\u064a",
+      "en": "Deep emerald and cyan"
+    },
+    "tags": [
+      "minimal",
+      "soft"
+    ],
+    "platforms": [
+      "web",
+      "desktop",
+      "extension",
+      "mobile"
+    ],
+    "metrics": {
+      "roundness": 0.5,
+      "density": 0.5,
+      "intensity": 0.6
+    },
+    "tokens": {
+      "color": {
+        "primary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0235,
+              0.3725,
+              0.2745
+            ],
+            "hex": "#065f46"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0235,
+              0.7137,
+              0.8314
+            ],
+            "hex": "#06b6d4"
+          }
+        }
+      }
+    },
+    "extras": {
+      "palette": "Tailwind CSS v3 emerald-800 / cyan-500"
+    },
+    "a11y": {
+      "contrast": "AAA",
+      "reducedMotion": null
+    },
+    "rtl": {
+      "supported": true
+    },
+    "source": {
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "license": "MIT"
+    },
+    "status": {
+      "state": "reviewed",
+      "reviewedAt": "2026-11-18"
+    }
   }
 ]);
