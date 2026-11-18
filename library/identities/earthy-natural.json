@@ -1,0 +1,28 @@
+{
+  "id": "earthy-natural",
+  "name": {
+    "ar": "طبيعي ترابي",
+    "en": "Earthy natural"
+  },
+  "description": {
+    "ar": "زيتوني وطوبي مع نوتو نسخ و Fraunces، وحواف دافئة، للمنتجات الطبيعية والمطاعم.",
+    "en": "Olive and terracotta with Noto Naskh and Fraunces, and warm edges, for natural products and restaurants."
+  },
+  "tags": [
+    "soft",
+    "retro"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-olive-terracotta",
+    "modes": "modes-light-first",
+    "fonts": "pair-noto-naskh-arabic-fraunces",
+    "type-scale": "scale-augmented-fourth",
+    "radius": "radius-gentle",
+    "shadows": "shadow-tinted-warm",
+    "icons": "icons-iconoir-rounded",
+    "buttons": "button-secondary-framed-large",
+    "cards": "card-earthy-side",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

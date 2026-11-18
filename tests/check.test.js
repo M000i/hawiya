@@ -1289,16 +1289,16 @@ test('axes: a heading family that resolves to the same font as the other templat
 
 // Task 3.13 (R-040): each ready identity is built in Arabic, English and both; the blocking rules and the official
 // DESIGN.md check run on what it makes.
-test('ready identities: the ten of the spec are built in every direction, pass the rules, and lint clean', () => {
+test('ready identities: the fourteen of the spec are built in every direction, pass the rules, and lint clean', () => {
   const r = check.check();
   assert.deepEqual(r.problems, [], show(r.problems));
-  assert.equal(r.counts.identities, 10);
-  assert.equal(r.counts.identitiesBuilt, 10);
+  assert.equal(r.counts.identities, 14);
+  assert.equal(r.counts.identitiesBuilt, 14);
   const names = fs
     .readdirSync(path.join(LIB, 'identities'))
     .map((f) => JSON.parse(fs.readFileSync(path.join(LIB, 'identities', f), 'utf8')).name.ar)
     .sort();
-  // spec.md, section 14 item 10.
+  // spec.md, section 10 items 10 and 12 (CHG-3).
   const SPEC = [
     'مؤسسي هادئ',
     'بسيط أبيض',
@@ -1309,7 +1309,11 @@ test('ready identities: the ten of the spec are built in every direction, pass t
     'تحريري',
     'بروتالي',
     'حكومي رسمي',
-    'عربي تراثي'
+    'عربي تراثي',
+    'كلاسيكي نسخي',
+    'صحي نقي',
+    'مالي رصين',
+    'طبيعي ترابي'
   ];
   assert.deepEqual(names, SPEC.slice().sort());
 });
@@ -1514,8 +1518,11 @@ test('an identity waiting for a draft is named; --publish refuses it', () => {
     assert.ok(luxury, JSON.stringify(r.leftOut));
     assert.deepEqual(luxury.reasons, ['icons: "icons-phosphor-thin" is a draft']);
     const text = check.report(r);
-    assert.match(text, /left out of the page until reviewed: luxury \(icons: "icons-phosphor-thin" is a draft\)/);
-    assert.match(text, /هوية لا تظهر في الصفحة حتى تُراجَع مسوداتها: luxury/);
+    assert.match(
+      text,
+      /left out of the page until reviewed: (.*, )?luxury \(icons: "icons-phosphor-thin" is a draft\)/
+    );
+    assert.match(text, /هوية لا تظهر في الصفحة حتى تُراجَع مسوداتها: (.*، )?luxury/);
 
     const strict = c.run({ publish: true });
     assert.ok(has(strict.problems, 'identity', 'luxury', /is a draft.*publishing/), show(strict.problems));

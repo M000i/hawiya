@@ -1,0 +1,28 @@
+{
+  "id": "clean-health",
+  "name": {
+    "ar": "صحي نقي",
+    "en": "Clean health"
+  },
+  "description": {
+    "ar": "أخضر مزرق وأزرق سماوي على خلفية هادئة، وزوايا ناعمة ومسافات مريحة، لتطبيقات الصحة والعيادات.",
+    "en": "Teal and sky on a calm background, soft corners and comfortable spacing, for health and clinic apps."
+  },
+  "tags": [
+    "soft",
+    "minimal"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-teal-sky",
+    "modes": "modes-system",
+    "fonts": "pair-alexandria-plus-jakarta-sans",
+    "type-scale": "scale-major-second",
+    "radius": "radius-soft",
+    "shadows": "shadow-tinted-cool",
+    "icons": "icons-hugeicons-circle",
+    "buttons": "button-surface-pill-large",
+    "cards": "card-soft-round",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

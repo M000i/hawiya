@@ -1,0 +1,28 @@
+{
+  "id": "classic-naskh",
+  "name": {
+    "ar": "كلاسيكي نسخي",
+    "en": "Classic naskh"
+  },
+  "description": {
+    "ar": "خمري وذهبي مع خط الأميري النسخي و EB Garamond، وإطارات مزدوجة، لمواقع الثقافة والنشر.",
+    "en": "Wine and gold with Amiri naskh and EB Garamond, and double frames, for culture and publishing sites."
+  },
+  "tags": [
+    "editorial",
+    "retro"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-rose-yellow",
+    "modes": "modes-light-first",
+    "fonts": "pair-amiri-eb-garamond",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-subtle",
+    "shadows": "shadow-flat",
+    "icons": "icons-tabler-light",
+    "buttons": "button-double-outline",
+    "cards": "card-double-border",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

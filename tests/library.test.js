@@ -40,8 +40,8 @@ const dimPx = (tok) => {
 };
 
 // Task 3.14 (R-061, AC-11, AC-12): the published library is the reviewed one, about 250 templates or more, with no
-// draft; the ten ready identities are all published.
-test('the published library: every template reviewed (about 250 or more), no draft, the ten identities published', () => {
+// draft; every ready identity is published unless it waits for a draft's review (task 5.4, CHG-3: 14 in all).
+test('the published library: every template reviewed (about 250 or more), no draft, the ready identities published', () => {
   let reviewed = 0;
   for (const e of build.ELEMENTS) {
     const list = lib.templates[e].filter((t) => t.status.state === 'reviewed');
@@ -58,8 +58,16 @@ test('the published library: every template reviewed (about 250 or more), no dra
     assert.equal(sel.summary.elements[e].drafts, lib.templates[e].length - list.length, e);
   }
   assert.ok(reviewed >= 240, `${reviewed} reviewed templates`);
-  assert.equal(sel.data.identities.length, 10);
-  assert.deepEqual(sel.summary.identities.excluded, []);
+  // 14 ready identities (10 of the first version, 4 of CHG-3). One left out of the page only waits for the owner's
+  // review of a draft it uses (task 5.4 before 5.6); nothing else may leave one out.
+  assert.equal(lib.identities.length, 14);
+  assert.equal(sel.data.identities.length + sel.summary.identities.excluded.length, 14);
+  for (const x of sel.summary.identities.excluded)
+    assert.ok(
+      x.reasons.every((r) => / is a draft$/.test(r)),
+      `${x.id}: ${x.reasons.join('; ')}`
+    );
+  assert.ok(sel.data.identities.length >= 10, `${sel.data.identities.length} identities published`);
   // The two first identities differ in most choices, so they show the range of the library.
   const a = sel.data.identities.find((i) => i.id === 'calm-corporate');
   const b = sel.data.identities.find((i) => i.id === 'warm-friendly');

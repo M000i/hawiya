@@ -1,0 +1,28 @@
+{
+  "id": "sober-finance",
+  "name": {
+    "ar": "مالي رصين",
+    "en": "Sober finance"
+  },
+  "description": {
+    "ar": "كحلي وزمردي، وكثافة عالية وزوايا قائمة وأرقام بخط ثابت العرض، للوحات المال والمحاسبة.",
+    "en": "Navy and emerald, dense, square corners and fixed-width numerals, for finance and accounting dashboards."
+  },
+  "tags": [
+    "corporate",
+    "data-dense"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-navy-emerald",
+    "modes": "modes-light-first",
+    "fonts": "pair-readex-pro-ibm-plex-sans",
+    "type-scale": "scale-minor-second",
+    "radius": "radius-sharp",
+    "shadows": "shadow-ring",
+    "icons": "icons-lucide-thin-square",
+    "buttons": "button-compact-outline-square",
+    "cards": "card-ledger",
+    "spacing": "spacing-dense",
+    "direction": "direction-both"
+  }
+}
