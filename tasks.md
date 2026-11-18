@@ -2653,6 +2653,106 @@
       15. بلا إنترنت: 14 هوية، والتصدير يعمل، وتنبيه الخطوط ظاهر.
     - ملاحظات A: لا شيء. ملاحظات B: لا جديد، وظهرت المسجّلتان B-095 و B-103.
     - لم يتغيّر أي ملف في المشروع أثناء التحقق، ولا شيء بقي يعمل.
+    - المخرجات كما هي (أُضيفت بعد مراجعة الكود، منقولة من سجل جلسة 5.8):
+      - الخطوة 8 (رسالة الصفحة بعد «تصدير»):
+        ```
+        {
+          "flag": "ready",
+          "msg": [
+            "حُفظت الملفات في مجلد design داخل مشروعك: identity.json، DESIGN.md، tokens.json، tokens.css، theme.css، style-guide.html. يمكنك إغلاق هذه الصفحة."
+          ]
+        }
+        ```
+      - الخطوات 9 إلى 11 (ملفات `design/`، وسطر الالتزام، وما تغيّر خارج `design/`):
+        ```
+        DESIGN.md
+        hawiya-session.json
+        identity.json
+        style-guide.html
+        theme.css
+        tokens.css
+        tokens.json
+        - Follow design/DESIGN.md for all UI work (colors, fonts, corners, components). التزم بـ design/DESIGN.md.
+
+        ?? CLAUDE.md
+        /*
+         * Hawiya theme for Tailwind CSS v4. Import it after Tailwind:
+        identity valid; colors: {"template":"palette-blue","overrides":{"primary":"#b91c1c"}} fonts: pair-amiri-eb-garamond radius: {"template":"radius-medium","overrides":{"md":24}}
+        ```
+      - الخطوة 12. سكربت المقارنة وسم السطرين «Claude» خطأً (اسم مجلد Codex تغيّر). السطر الثاني في كل وضع هو صفحة Codex (`sandbox/v58-codex/index.html`):
+        ```
+        light  Claude {"dir":"rtl","font":"\"EB Garamond\"","fontLoaded":true,"btnBg":"rgb(185, 28, 28)","btnRadius":"24px","cardRadius":"12px"}
+        light  Claude {"dir":"rtl","font":"\"EB Garamond\"","fontLoaded":true,"btnBg":"rgb(185, 28, 28)","btnRadius":"24px","cardRadius":"12px"}
+        dark   Claude {"dir":"rtl","font":"\"EB Garamond\"","fontLoaded":true,"btnBg":"rgb(203, 74, 65)","btnRadius":"24px","cardRadius":"12px"}
+        dark   Claude {"dir":"rtl","font":"\"EB Garamond\"","fontLoaded":true,"btnBg":"rgb(203, 74, 65)","btnRadius":"24px","cardRadius":"12px"}
+        ```
+      - الخطوة 13 (بعد إغلاق المتصفح تمامًا وفتحه من جديد):
+        ```
+        before: ['حُفظت «هوية التحقق النهائي».'] | picked: ودود ناعمFri
+        {
+         "noToken": {
+          "items": [
+           "افتح الهوية هوية التحقق النهائي"
+          ],
+          "emptyVisible": false,
+          "pressedOnLoad": "مؤسسي هادئ"
+         },
+         "withToken": {
+          "items": [
+           "افتح الهوية هوية التحقق النهائي"
+          ],
+          "emptyVisible": false,
+          "pressedOnLoad": "ودود ناعمF"
+         },
+         "afterOpen": {
+          "pressed": "ودود ناعمF",
+          "msg": [
+           "فُتحت «هوية التحقق النهائي». تعديلاتك تُحفظ تلقائيًا، واضغط «احفظ» لتحديثها في القائمة."
+          ]
+         }
+        }
+        ```
+      - الخطوة 14:
+        ```
+        {"url":"https://m000i.github.io/hawiya/","clipboardChars":63264,"status":["نُسخت. الصقها في محادثة الوكيل."],"files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"]}
+        head: illegal byte count -- 0
+        agent exit 0
+        DESIGN.md identical
+        identity.json differs; equal ignoring final newline: True
+        style-guide.html not written
+        theme.css identical
+        tokens.css identical
+        tokens.json differs; equal ignoring final newline: True
+        ```
+        و`identity.json` الذي كتبه الوكيل (أمر منفصل؛ سطر `head` أعلاه خطأ في أمري لا في الأداة):
+        ```
+        identity: مالي رصين | fonts: pair-readex-pro-ibm-plex-sans | buttons: button-compact-outline-square
+        ```
+      - الخطوة 15:
+        ```
+        {
+         "online": false,
+         "identities": 14,
+         "notices": [
+          "تعذّر تحميل الخطوط من Google Fonts (لا اتصال بالإنترنت أو الاتصال محجوب)، فتظهر الصفحة والمعاينة بخط النظام. اختياراتك تُحفظ وتُصدَّر كما هي.",
+          "لا توجد بيانات عن مشروعك، فالصفحة تعمل بالإعدادات الافتراضية."
+         ],
+         "exported": {
+          "flag": "ready",
+          "files": [
+           "identity.json",
+           "DESIGN.md",
+           "tokens.json",
+           "tokens.css",
+           "theme.css",
+           "style-guide.html"
+          ]
+         },
+         "failedHosts": [
+          "fonts.googleapis.com"
+         ]
+        }
+        ```
     - الملفات (هذه المهمة): `tasks.md` (هذا الدليل).
 
 
@@ -2680,7 +2780,7 @@
   | T-1.4، T-1.5، T-2.4، T-2.14 | كما في المرحلتين 1 و 2 | نفسها | ✔ |
 - جولات التدقيق: 1.
   - مراجع مستقل على كل تغييرات المرحلة منذ `gate-4`.
-  - التراخيص: المصادر الخمسة الجديدة وقوائم الخطوط متسقة، وقيم اللوحات الـ22 تطابق Tailwind v3، ولا مصدر ممنوع.
+  - التراخيص: المصادر الخمسة الجديدة وقوائم الخطوط متسقة، ولا مصدر ممنوع. قيم الألوان الـ22 في اللوحات الـ11 الجديدة تطابق Tailwind v3: تحقق منها المراجع من ذاكرته، والقيم نفسها أُخذت في المهمة 5.3 من ملف ألوان Tailwind v3 مقروءًا نصًا.
   - الأرقام: 281 ← 319 (+38)، والخطوط 44 ← 54، والألوان 119 ← 130، والأزرار والكروت 23 ← 29، والأيقونات 32 ← 37، والمصادر 67 ← 72، والهويات 14.
   - التباين: الـ8 المعلنة AAA تبلغه، والثلاث المعلنة AA لا تبلغه.
   - الهويات الأربع عشرة بلا مخالفات ولا ملاحظات.
@@ -2697,7 +2797,7 @@
   - من البوابة: B-105 إلى B-110، وأهمها B-108 (اختبارا عدد الهويات خُفّفا مؤقتًا في 5.4 ولم يُشدَّدا) و B-109 (لا اختبار «بلا ملاحظات» لكل الهويات).
   - وحُلّت في المرحلة: B-070، B-076، B-078، B-079، B-084، B-097.
 - شرط الخروج:
-  - صفحة المراجعة تعرض «مراجَع» 319 (54/54، 130/130، 29/29، 29/29، 37/37).
+  - صفحة المراجعة تعرض «مراجَع» 319: الخطوط 54/54، والألوان 130/130، والأزرار 29/29، والكروت 29/29، والأيقونات 37/37، والعناصر الستة التي لم تتغيّر في المرحلة 40/40 (الظلال 10، والزوايا 8، وسلّم الخط 8، والمسافات 6، والفاتح والداكن 5، والاتجاه 3).
   - سيناريو القسم 13 نجح كاملًا (المهمة 5.8).
   - المالك فتح https://m000i.github.io/hawiya/ بنفسه ورأى 14 هوية جاهزة، وأكّد ذلك.
 - الـ tag: `gate-5`
