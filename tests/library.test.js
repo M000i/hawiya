@@ -40,7 +40,7 @@ const dimPx = (tok) => {
 };
 
 // Task 3.14 (R-061, AC-11, AC-12): the published library is the reviewed one, about 250 templates or more, with no
-// draft; every ready identity is published unless it waits for a draft's review (task 5.4, CHG-3: 14 in all).
+// draft; every ready identity is published (CHG-3: 14 in all; task 6.4, B-108: none may be left out).
 test('the published library: every template reviewed (about 250 or more), no draft, the ready identities published', () => {
   let reviewed = 0;
   for (const e of build.ELEMENTS) {
@@ -58,16 +58,15 @@ test('the published library: every template reviewed (about 250 or more), no dra
     assert.equal(sel.summary.elements[e].drafts, lib.templates[e].length - list.length, e);
   }
   assert.ok(reviewed >= 240, `${reviewed} reviewed templates`);
-  // 14 ready identities (10 of the first version, 4 of CHG-3). One left out of the page only waits for the owner's
-  // review of a draft it uses (task 5.4 before 5.6); nothing else may leave one out.
+  // 14 ready identities (10 of the first version, 4 of CHG-3), every one on the page: none left out (task 6.4, B-108;
+  // the loosening of task 5.4, while the four waited for the review of their drafts, ended with 5.6).
   assert.equal(lib.identities.length, 14);
-  assert.equal(sel.data.identities.length + sel.summary.identities.excluded.length, 14);
-  for (const x of sel.summary.identities.excluded)
-    assert.ok(
-      x.reasons.every((r) => / is a draft$/.test(r)),
-      `${x.id}: ${x.reasons.join('; ')}`
-    );
-  assert.ok(sel.data.identities.length >= 10, `${sel.data.identities.length} identities published`);
+  assert.deepEqual(
+    sel.summary.identities.excluded.map((x) => `${x.id}: ${x.reasons.join('; ')}`),
+    [],
+    'no ready identity left out of the page'
+  );
+  assert.equal(sel.data.identities.length, 14);
   // The two first identities differ in most choices, so they show the range of the library.
   const a = sel.data.identities.find((i) => i.id === 'calm-corporate');
   const b = sel.data.identities.find((i) => i.id === 'warm-friendly');
@@ -281,6 +280,34 @@ test('button and card recipes use only variables the generated tokens.css define
   // Cards take any of the identity's radii or none (task 3.12).
   for (const t of lib.templates.cards)
     assert.match(t.recipe.css, /\.hw-card\{[^}]*border-radius:(var\(--radius-(sm|md|lg)\)|0)[;}]/, t.id);
+});
+
+// Task 6.4 (B-109, R-040): every ready identity, as published, passes every blocking rule AND raises no warning at all
+// (not only the corner one), in each language its direction templates give (Arabic, English, both). A ready identity
+// is a finished choice: a warning there would be shown to every user who opens it (as the clean health button did
+// until task 5.6).
+test('every ready identity: no blocking problem and no warning of any kind, in Arabic, English and both', () => {
+  const find = (e, id) => lib.templates[e].find((t) => t.id === id);
+  const directions = lib.templates.direction.map((t) => t.id);
+  assert.ok(directions.length >= 3, directions.join(', '));
+  const seen = [];
+  for (const ready of sel.data.identities) {
+    for (const d of directions) {
+      const selections = Object.fromEntries(
+        build.ELEMENTS.map((e) => [e, { template: e === 'direction' ? d : ready.templates[e] }])
+      );
+      const id = resolve.resolve({ name: ready.id, selections }, sel.data);
+      const problems = rules.identity(id, find).problems.map((p) => p.rule + ' ' + (p.template || p.element));
+      const w = rules.warnings(id, find);
+      seen.push([`${ready.id} (${d})`, problems, w.warnings.map((x) => x.rule), w.unchecked]);
+    }
+  }
+  assert.equal(seen.length, 14 * directions.length);
+  assert.deepEqual(
+    seen.filter(([, p, w, u]) => p.length || w.length || u.length),
+    [],
+    'blocking problems, warnings, or elements the warnings could not check'
+  );
 });
 
 test('picker/data is exactly what the library builds to', () => {
