@@ -3049,7 +3049,7 @@
     - المراجعة الذاتية (مهمة B): الاختباران يفشلان فعلًا على الحالتين القديمتين، ولم يتغيّر أي ملف خارج الاختبارات.
     - انحراف: لا شيء.
 
-- [ ] **6.5** تجربة Claude Code و Codex بقياس حجم الخط اللاتيني
+- [x] **6.5** تجربة Claude Code و Codex بقياس حجم الخط اللاتيني
   - الخطورة: B — تحقق
   - الحجم: متوسطة
   - تحقق المتطلبات: R-103، AC-28
@@ -3061,7 +3061,36 @@
     - ومع «القاهرة» لا فرق في الحجم.
   - الاختبار: سكربت قياس بالمتصفح على الصفحتين، كما في الخطوة 12 من السيناريو
   - ما ستراه أنت: افتح الصفحتين فترى الإنجليزي فيهما بالحجم نفسه، وقريبًا من حجم العربي
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - الإعداد:
+      - أربعة مشاريع فارغة، والمهارة منسوخة من المستودع المحلي (`8056495`).
+      - الهويتان صُدّرتا من الصفحة نفسها في Chrome: «كلاسيكي نسخي» (الأميري مع إي بي غاراموند، 1.35) و«ودود ناعم» (القاهرة، 1).
+      - سطر الالتزام في `CLAUDE.md` لمشروعي Claude Code، و `AGENTS.md` لمشروعي Codex.
+      - الطلب نفسه للوكيلين: «ابنِ صفحة بسيطة في index.html: عنوان عربي، وتحته سطر قصير بالإنجليزية، وزر أساسي، وكرت فيه نص قصير.»
+      ```
+      classic-naskh 6 files | --font-body: "EB Garamond Hawiya 135", "EB Garamond", "Amiri", ui-serif, serif; | size-adjust: 135%
+      warm-friendly 6 files | --font-body: "Cairo", system-ui, sans-serif; | no size-adjust rule
+      ```
+    - القياس (سكربت بالمتصفح، بالإنترنت، بعد تحميل الخطوط): عرض السطر الإنجليزي بخطوط الصفحة ÷ عرضه بالخط الأصلي، بالفاتح والداكن:
+      ```
+      claude-eb    light {"text":"A simple page, built to match th","first":"\"EB Garamond Hawiya 135\"","ratio":1.35,"loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+      claude-eb    dark  {"text":"A simple page, built to match th","first":"\"EB Garamond Hawiya 135\"","ratio":1.35,"loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+      codex-eb     light {"text":"Good things start with a simple ","first":"\"EB Garamond Hawiya 135\"","ratio":1.35,"loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+      codex-eb     dark  {"text":"Good things start with a simple ","first":"\"EB Garamond Hawiya 135\"","ratio":1.35,"loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+      claude-cairo light {"text":"A simple page built with the pro","first":"Cairo","ratio":1,"loaded":["Cairo"]}
+      claude-cairo dark  {"text":"A simple page built with the pro","first":"Cairo","ratio":1,"loaded":["Cairo"]}
+      codex-cairo  light {"text":"A small step. A beautiful beginn","first":"Cairo","ratio":1,"loaded":["Cairo"]}
+      codex-cairo  dark  {"text":"A small step. A beautiful beginn","first":"Cairo","ratio":1,"loaded":["Cairo"]}
+      ```
+    - النتيجة:
+      - مع «الأميري مع إي بي غاراموند»: النسبة 1.35 بالضبط في الصفحتين وبالوضعين، داخل هامش 2%.
+      - مع «القاهرة»: 1.00، أي لا فرق.
+      - الوكيلان استعملا `design/tokens.css` و `var(--font-heading)` و `var(--font-body)`، ولم يضف أيٌّ منهما `size-adjust` أو `@font-face` بنفسه، فلا يتضاعف التعديل.
+      - لم يتغيّر في المشاريع الأربعة إلا `index.html`.
+    - التشغيل: نجح الوكيلان في المشاريع الأربعة. المحاولة الأولى لـ Claude Code توقفت بخطأ في أمري: قائمة الأدوات ابتلعت نص الطلب. أعدتها بالطلب من الإدخال.
+    - المراجعة الذاتية (مهمة B): القياس على السطر الإنجليزي الحقيقي في كل صفحة، بخطوطها الفعلية بعد تحميلها، ومقارنة بالخط الأصلي نفسه.
+    - انحراف: الهويتان صُدّرتا من الصفحة مباشرة بدل جلسة المهارة الكاملة مع الوكيل. تلك الجلسة يغطيها `/verify` في 6.7.
+    - الملفات (هذه المهمة): `tasks.md` (هذا الدليل).
 
 - [ ] **6.6** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
   - الخطورة: A — نشر علني
