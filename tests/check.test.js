@@ -407,11 +407,15 @@ const CASES = [
     'license',
     'readex-pro',
     (c) => {
-      // Readex Pro is used by one pair only (task 3.8): pointing that pair elsewhere leaves its source unused.
+      // Readex Pro is used by two pairs (tasks 3.8, 5.2): pointing both elsewhere leaves its source unused.
       c.edit('elements/fonts.json', (l) => {
         const t = c.find(l, 'pair-readex-pro-outfit');
         t.source = { name: 'IBM Plex', url: 'https://github.com/IBM/plex', license: 'OFL-1.1' };
         t.extras.sources = ['plex', 'outfit'];
+        // Task 5.2: a second pair uses Readex Pro.
+        const u = c.find(l, 'pair-readex-pro-ibm-plex-sans');
+        u.source = { name: 'IBM Plex', url: 'https://github.com/IBM/plex', license: 'OFL-1.1' };
+        u.extras.sources = ['plex'];
       });
     },
     /no template uses this source/
@@ -433,15 +437,15 @@ const CASES = [
     (c) =>
       c.edit(
         'elements/fonts.json',
-        (l) => void (c.find(l, 'pair-zain-figtree').tokens.font.heading.$value = ['Fraunces', 'serif'])
+        (l) => void (c.find(l, 'pair-zain-figtree').tokens.font.heading.$value = ['Cormorant Garamond', 'serif'])
       ),
-    /font "Fraunces" is listed by no source/
+    /font "Cormorant Garamond" is listed by no source/
   ],
   [
     'license',
     'pair-tajawal-manrope',
-    (c) => c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-tajawal-manrope').extras.latin = 'Lora')),
-    /font "Lora" is listed by no source/
+    (c) => c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-tajawal-manrope').extras.latin = 'Merriweather')),
+    /font "Merriweather" is listed by no source/
   ],
   [
     'license',
@@ -1472,10 +1476,10 @@ test('fonts: every extras family is checked; system fonts are exempt; a font lis
   for (const key of ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin']) {
     const c = copy();
     try {
-      c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-tajawal-manrope').extras[key] = 'Lora'));
+      c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-tajawal-manrope').extras[key] = 'Merriweather'));
       const r = c.run();
       assert.ok(
-        has(r.problems, 'license', 'pair-tajawal-manrope', /font "Lora" is listed by no source/),
+        has(r.problems, 'license', 'pair-tajawal-manrope', /font "Merriweather" is listed by no source/),
         `${key}:\n${show(r.problems)}`
       );
     } finally {

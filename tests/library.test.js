@@ -415,7 +415,16 @@ test('fonts: 40+ pairs (bilingual, Arabic, English) from the confirmed fonts, ea
     'JetBrains Mono',
     'Geist Mono',
     // the starter pair of task 2.2 (Noto Sans: the Latin half of Noto Sans Arabic)
-    'Noto Sans'
+    'Noto Sans',
+    // Task 5.2 (CHG-3, B-070): candidates of the project file whose licenses were read (OFL 1.1, google/fonts),
+    // and two more members of the IBM Plex family already recorded
+    'EB Garamond',
+    'Fraunces',
+    'Lora',
+    'Playfair Display',
+    'Space Mono',
+    'IBM Plex Mono',
+    'IBM Plex Serif'
   ]);
   const fonts = lib.templates.fonts;
   const kinds = { bilingual: 0, arabic: 0, english: 0 };

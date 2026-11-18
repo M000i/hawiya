@@ -76,6 +76,11 @@ own license. The full text of every license follows the list.
 | [Instrument Sans](https://github.com/Instrument/instrument-sans) | OFL-1.1 | Font, served by Google Fonts. |
 | [Bricolage Grotesque](https://github.com/ateliertriay/bricolage) | OFL-1.1 | Font, served by Google Fonts. |
 | [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) | OFL-1.1 | Font, served by Google Fonts. |
+| [EB Garamond](https://github.com/octaviopardo/EBGaramond12) | OFL-1.1 | Font, served by Google Fonts. |
+| [Fraunces](https://github.com/undercasetype/Fraunces) | OFL-1.1 | Font, served by Google Fonts. |
+| [Lora](https://github.com/cyrealtype/Lora-Cyrillic) | OFL-1.1 | Font, served by Google Fonts. |
+| [Playfair Display](https://github.com/aaronbell/Playfair-Display) | OFL-1.1 | Font, served by Google Fonts. |
+| [Space Mono](https://github.com/googlefonts/spacemono) | OFL-1.1 | Font, served by Google Fonts. |
 
 ## Tailwind CSS
 
@@ -757,6 +762,56 @@ Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateli
 
 ```text
 Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+```
+
+## EB Garamond
+
+- Repository: https://github.com/octaviopardo/EBGaramond12
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/ebgaramond/OFL.txt on 2026-11-18
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2017 The EB Garamond Project Authors (https://github.com/octaviopardo/EBGaramond12)
+```
+
+## Fraunces
+
+- Repository: https://github.com/undercasetype/Fraunces
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/fraunces/OFL.txt on 2026-11-18
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2018 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces)
+```
+
+## Lora
+
+- Repository: https://github.com/cyrealtype/Lora-Cyrillic
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/lora/OFL.txt on 2026-11-18
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2011 The Lora Project Authors (https://github.com/cyrealtype/Lora-Cyrillic), with Reserved Font Name "Lora".
+```
+
+## Playfair Display
+
+- Repository: https://github.com/aaronbell/Playfair-Display
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/playfairdisplay/OFL.txt on 2026-11-18
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2017 The Playfair Display Project Authors (https://github.com/clauseggers/Playfair-Display), with Reserved Font Name "Playfair Display"
+```
+
+## Space Mono
+
+- Repository: https://github.com/googlefonts/spacemono
+- License: SIL Open Font License 1.1 (`OFL-1.1`), read from https://github.com/google/fonts/blob/main/ofl/spacemono/OFL.txt on 2026-11-18
+- Used for: Font, served by Google Fonts.
+
+```text
+Copyright 2016 The Space Mono Project Authors (https://github.com/googlefonts/spacemono)
 ```
 
 ## License texts

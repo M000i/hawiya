@@ -125,7 +125,9 @@
     "use": "Font, served by Google Fonts.",
     "fonts": [
       "IBM Plex Sans",
-      "IBM Plex Sans Arabic"
+      "IBM Plex Sans Arabic",
+      "IBM Plex Mono",
+      "IBM Plex Serif"
     ]
   },
   {
@@ -961,6 +963,81 @@
     "use": "Font, served by Google Fonts.",
     "fonts": [
       "JetBrains Mono"
+    ]
+  },
+  {
+    "id": "eb-garamond",
+    "name": "EB Garamond",
+    "url": "https://github.com/octaviopardo/EBGaramond12",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/ebgaramond/OFL.txt",
+    "licenseReadAt": "2026-11-18",
+    "copyright": [
+      "Copyright 2017 The EB Garamond Project Authors (https://github.com/octaviopardo/EBGaramond12)"
+    ],
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "EB Garamond"
+    ]
+  },
+  {
+    "id": "fraunces",
+    "name": "Fraunces",
+    "url": "https://github.com/undercasetype/Fraunces",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/fraunces/OFL.txt",
+    "licenseReadAt": "2026-11-18",
+    "copyright": [
+      "Copyright 2018 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces)"
+    ],
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Fraunces"
+    ]
+  },
+  {
+    "id": "lora",
+    "name": "Lora",
+    "url": "https://github.com/cyrealtype/Lora-Cyrillic",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/lora/OFL.txt",
+    "licenseReadAt": "2026-11-18",
+    "copyright": [
+      "Copyright 2011 The Lora Project Authors (https://github.com/cyrealtype/Lora-Cyrillic), with Reserved Font Name \"Lora\"."
+    ],
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Lora"
+    ]
+  },
+  {
+    "id": "playfair-display",
+    "name": "Playfair Display",
+    "url": "https://github.com/aaronbell/Playfair-Display",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/playfairdisplay/OFL.txt",
+    "licenseReadAt": "2026-11-18",
+    "copyright": [
+      "Copyright 2017 The Playfair Display Project Authors (https://github.com/clauseggers/Playfair-Display), with Reserved Font Name \"Playfair Display\""
+    ],
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Playfair Display"
+    ]
+  },
+  {
+    "id": "space-mono",
+    "name": "Space Mono",
+    "url": "https://github.com/googlefonts/spacemono",
+    "license": "OFL-1.1",
+    "licenseFile": "https://github.com/google/fonts/blob/main/ofl/spacemono/OFL.txt",
+    "licenseReadAt": "2026-11-18",
+    "copyright": [
+      "Copyright 2016 The Space Mono Project Authors (https://github.com/googlefonts/spacemono)"
+    ],
+    "use": "Font, served by Google Fonts.",
+    "fonts": [
+      "Space Mono"
     ]
   }
 ]

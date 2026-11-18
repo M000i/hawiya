@@ -2317,7 +2317,7 @@
       - من ملاحظاتها B أُصلحت أربع: اختبار الشكل صار يميّز القاعدة، وأسماء `extras` الخمسة مختبرة، والتكرار بأي حالة أحرف، وحُذف اختبار كان سيُفشل `npm test` أثناء المراجعة (5.4 إلى 5.6).
       - المتوقع: فحص GitHub سيكون أحمر ما دامت هوية تنتظر مراجعة، ولا رفع قبل 5.7.
 
-- [ ] **5.2** خطوط وأزواج جديدة: نسخ عربي، و Serif، وعرض، و Mono (نحو 10)
+- [x] **5.2** خطوط وأزواج جديدة: نسخ عربي، و Serif، وعرض، و Mono (نحو 10)
   - الخطورة: B — مكتبة
   - الحجم: متوسطة
   - تحقق المتطلبات: R-043، R-064، R-090، R-094، R-102
@@ -2326,7 +2326,62 @@
   - معيار القبول: نحو 10 تمبلتات خطوط جديدة بحالة «مسودة» من Google Fonts برخصة OFL، فيها زوج نسخ عربي مع Serif إنجليزي (مثل Amiri مع EB Garamond) ومرشحو B-070؛ كل خط مقاس كبقية الخطوط؛ الفحص ينجح
   - الاختبار: `npm run check`، واختبار الخطوط في المتصفح (`tests/e2e/fonts.spec.js`)
   - ما ستراه أنت: أزواج الخطوط الجديدة في صفحة المراجعة بحالة «مسودة»، والعربي فيها بخط النسخ
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-18):
+    - الملفات:
+      - `library/elements/fonts.json`: 10 أزواج جديدة بحالة «مسودة»، فصار المجموع 54.
+        - ثنائية اللغة (5):
+          - الأميري مع EB Garamond، وهو زوج النسخ مع Serif لهوية «كلاسيكي نسخي»، تعديل الحجم 1.35.
+          - نوتو نسخ مع Fraunces، 0.9.
+          - مركزي مع Lora، 0.75.
+          - ريدكس برو مع بلكس وأرقام IBM Plex Mono ثابتة العرض، 0.95، والأرقام غربية.
+          - شهرزاد مع Playfair Display، 0.8.
+        - إنجليزية (4): عناوين Fraunces ونص EB Garamond؛ عناوين Playfair Display ونص Lora؛ عناوين IBM Plex Serif ونص بلكس وأرقام Plex Mono؛ Space Grotesk وأرقام Space Mono.
+        - عربية (1): عناوين وأرقام الأميري ونص شهرزاد.
+      - `library/sources.json`: 5 مصادر جديدة (EB Garamond، Fraunces، Lora، Playfair Display، Space Mono)، وانضم IBM Plex Mono و IBM Plex Serif إلى قائمة مصدر IBM Plex، فصار المجموع 72 مصدرًا.
+      - `THIRD_PARTY_NOTICES.md`: صار يذكر 71 مصدرًا.
+      - `tests/library.test.js`: قائمة الخطوط المؤكدة صار فيها الخطوط السبعة التي قُرئت رخصها في هذه المهمة.
+      - `tests/check.test.js`: أمثلة «خط بلا مصدر» صارت خطوطًا غير موجودة في المكتبة (Cormorant Garamond و Merriweather)، وحالة «مصدر غير مستعمل» صارت تحوّل زوجي ريدكس برو.
+    - الرخص: كلها OFL 1.1. قُرئ `OFL.txt` و `METADATA.pb` لكل خط من مستودع google/fonts في 2026-11-18، ومنهما سطر الحقوق والمستودع.
+    - القياس في Chrome بملفات Google Fonts الحقيقية، بطريقة المهمة 3.8:
+      - كل خط جديد يُحمَّل بالوزنين 400 و 700.
+      - الأرقام المشرقية: يرسمها الأميري ونوتو نسخ ومركزي وشهرزاد وريدكس برو، ولا يرسمها EB Garamond و Fraunces و Lora و Playfair و Plex Mono و Space Mono.
+      - تعديل الحجم: ارتفاع الحروف العربية (ه م س و) ÷ ارتفاع x اللاتيني، منسوبًا إلى بلكس.
+    - الاختلاف في محورين: 8 تراكيب أولى رفضها الفحص لأنها تختلف عن زوج موجود في خط واحد فقط، فغُيّرت، ولم يبقَ تكرار.
+    - `npx playwright test tests/e2e/fonts.spec.js`:
+      ```
+        ✓  3 tests/e2e/fonts.spec.js:194:1 › recorded Eastern Arabic digit support matches the real fonts (needs internet) (7.4s)
+        ✓  2 tests/e2e/fonts.spec.js:234:1 › every library font loads, draws the recorded digits, and keeps its measured size adjustment (needs internet) (28.6s)
+
+        7 passed (29.7s)
+      ```
+    - `npm run check`:
+      ```
+      نجاح: فُحص 291 تمبلت (281 مراجَع، 10 مسودة) و 10 هوية بلا أي مخالفة
+      success: 291 templates (281 reviewed, 10 drafts), 10 identities checked, no problem
+      ```
+    - `npm test`:
+      ```
+      ℹ tests 600
+      ℹ suites 0
+      ℹ pass 600
+      ℹ fail 0
+      ```
+    - بقية الفحوص:
+      - `npm run check -- --publish`: نجاح.
+      - `npm run build`: «281 templates published, 10 drafts left out»، ولم يتغيّر `picker/data`.
+      - `npx playwright test`: «134 passed».
+      - `npm run test:golden`: 12 من 12.
+      - `npm run format:check`: نجاح.
+      - `npm run lint`: 0 أخطاء وتحذيران قديمان.
+    - صفحة المراجعة: قسم «الخطوط 44/54»، والبطاقات العشر بشارة «مسودة»، ومعاينة «الأميري مع إي بي غاراموند» تعرض العربي بالأميري (نسخ).
+    - مراجعة ذاتية (مهمة B) مقابل معيار القبول:
+      - نحو 10 خطوط جديدة بحالة «مسودة»: 10 ✔.
+      - من Google Fonts برخصة OFL: ✔.
+      - زوج نسخ عربي مع Serif إنجليزي: الأميري مع EB Garamond ✔.
+      - مرشحو B-070: Fraunces و Playfair Display و EB Garamond، وخطا Mono غير Geist Mono و JetBrains Mono ✔.
+      - كل خط مقاس: ✔.
+      - الفحص ينجح: ✔.
+    - ملاحظة: زوج أول بعناوين الرقعة مع شهرزاد و EB Garamond استُبدل بزوج «شهرزاد مع Playfair»، لأن الاختبار القائم لا يسمح بخط عناوين منفصل إلا في الزوج أحادي اللغة.
 
 - [ ] **5.3** ألوان وأزرار وكروت وأيقونات تحتاجها الهويات الأربع، مع زيادة عامة (نحو 30)
   - الخطورة: B — مكتبة
