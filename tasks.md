@@ -3187,7 +3187,7 @@
       و «size-adjust 135%: 6»، و «theme.css @import url(: false»، و «DESIGN.md links: 4 true».
     - انحراف: لا. هذا الـ commit (الدليل) محلي، ويُرفع مع ما بعده بإذن.
 
-- [ ] **6.7** تشغيل /verify على السيناريو الشامل من `spec.md`
+- [x] **6.7** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
   - الحجم: متوسطة
   - تحقق المتطلبات: كل المتطلبات (القسم 13)، R-103، R-105، R-106، AC-28، AC-29
@@ -3196,7 +3196,72 @@
   - معيار القبول: الخطوات الخمس عشرة تنجح كلها، والخطوة 12 فيها حجم خط لاتيني متطابق بين الصفحتين، والنص العربي فيهما بالخط العربي للهوية (CHG-5)؛ أي فشل يُسجَّل ويُصلَح قبل البوابة
   - الاختبار: `/verify` على السيناريو خطوة بخطوة
   - ما ستراه أنت: **يحتاج منك تشغيل `/verify`**
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-19):
+    - التشغيل الأول لـ /verify (2026-11-18) وجد ملاحظة A في الخطوة 12: النص العربي في صفحتي الوكيلين بخط النظام (Geeza Pro)، لأن الصفحة تربط `tokens.css` وحده ولا تحمّل الخطوط. أصلحتها 6.8 ونُشرت في 6.9 (CHG-5).
+    - إعادة /verify بعد 6.9: الخطوات الخمس عشرة نجحت كلها فعليًا. المهارة ثُبّتت من المستودع المنشور (`7458dc1`) في مشروع فارغ.
+      1. Claude Code سأل عن النوع واللغة، وكتب ملف الجلسة (تطبيق ويب، عربي وإنجليزي)، وفتح الصفحة.
+      2. ظهرت 14 هوية.
+      3. «مؤسسي هادئ» غيّرت الخط (IBM Plex Sans) ولون الزر rgb(37,99,235) وزواياه 8 بكسل في المشاهد الأربعة.
+      4. الإنجليزي من اليسار لليمين والعربي من اليمين، وأضعف تباين 4.51.
+      5. الوضع الموجّه: البنفسجي #7c3aed وزوج «الأميري مع إي بي غاراموند»، ثم «كمّل الباقي» ملأ 9 عناصر؛ خط المعاينة `"EB Garamond Hawiya 135", "EB Garamond", "Amiri"`.
+      6. منع AAA مع السبب (5.7 من 7) واقتراح #6900D8، ولم يُطبَّق شيء.
+      7. تحذير «زوايا الزر (24 بكسل) أكبر من زوايا الكرت (12 بكسل)»، وأزاله «تجاهل» مع بقاء القيمة.
+      8. «حُفظت الملفات في مجلد design داخل مشروعك».
+      9. الملفات الستة موجودة؛ `size-adjust: 135%` ست مرات في `tokens.css` و `theme.css` و `style-guide.html`؛ في `tokens.css` أربعة أسطر `@import` وفي `theme.css` صفر.
+      10. دليل الهوية من اليمين لليسار، وخط العناوين هو المعدّل، والزر rgb(124,58,237)، و `--radius-md` 24 بكسل.
+      11. سطر الالتزام في `CLAUDE.md` مرة واحدة، ولا تغيير خارج `design/`.
+      12. صفحتا Claude Code و Codex (`codex exec`) متطابقتان بالفاتح والداكن، والنسبة اللاتينية 1.35 في الصفحتين، والعنوان العربي مرسوم بالأميري في الصفحتين (لا Geeza Pro). كلتاهما تربط `design/tokens.css` وحده.
+      13. الهوية المحفوظة بقيت بعد إغلاق المتصفح تمامًا وفُتحت باختياراتها.
+      14. النسخ من الصفحة المنشورة لهوية «كلاسيكي نسخي»: وكيل بلا مهارة كتب الملفات الخمسة، ثلاثة مطابقة بايتًا ببايت (منها `tokens.css` بسطور `@import` الأربعة) وملفا JSON بلا السطر الأخير (B-095).
+      15. بلا إنترنت: 14 هوية، والتصدير يعمل، وتنبيه الخطوط ظاهر.
+    - ملاحظات A: لا شيء. ملاحظات B: لا جديد، وظهرت المسجّلة B-095.
+    - Codex في المحاولة الأولى انتظر مدخلات من stdin ولم يبدأ؛ أُعيد تشغيله مع `< /dev/null` فبنى الصفحة. هذا من طريقة تشغيل الاختبار، لا من المشروع.
+    - لم يتغيّر أي ملف في المشروع أثناء التحقق، ولا شيء بقي يعمل.
+    - المخرجات كما هي:
+      - الخطوة 12 (اللون والزوايا والخط، ثم النسبة اللاتينية، ثم الروابط، ثم الخط المرسوم فعليًا للعنوان العربي):
+        ```
+        light  Claude {"dir":"rtl","font":"\"EB Garamond Hawiya 135\"","fontLoaded":true,"btnBg":"rgb(124, 58, 237)","btnRadius":"24px","cardRadius":"12px"}
+        light  Codex  {"dir":"rtl","font":"\"EB Garamond Hawiya 135\"","fontLoaded":true,"btnBg":"rgb(124, 58, 237)","btnRadius":"24px","cardRadius":"12px"}
+        dark   Claude {"dir":"rtl","font":"\"EB Garamond Hawiya 135\"","fontLoaded":true,"btnBg":"rgb(144, 107, 239)","btnRadius":"24px","cardRadius":"12px"}
+        dark   Codex  {"dir":"rtl","font":"\"EB Garamond Hawiya 135\"","fontLoaded":true,"btnBg":"rgb(144, 107, 239)","btnRadius":"24px","cardRadius":"12px"}
+        claude       light {"text":"Simple, clear, and built for eve","first":"\"EB Garamond Hawiya 135\"","ratio":1.35,"loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+        codex        light {"text":"Every great idea starts with a s","first":"\"EB Garamond Hawiya 135\"","ratio":1.35,"loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+        == links
+        7:<link rel="stylesheet" href="design/tokens.css">
+        --
+        8:    <link rel="stylesheet" href="design/tokens.css">
+        == drawn Arabic heading font
+        claude  [{"familyName":"Amiri","postScriptName":"Amiri-Bold","isCustomFont":true,"glyphCount":17},{"familyName":"EB Garamond","postScriptName":"EBGaramond-Bold","isCustomFont":true,"glyphCount":3}]
+        codex   [{"familyName":"Amiri","postScriptName":"Amiri-Bold","isCustomFont":true,"glyphCount":23},{"familyName":"EB Garamond","postScriptName":"EBGaramond-Bold","isCustomFont":true,"glyphCount":4}]
+        ```
+      - الخطوة 13:
+        ```
+        "before": ["حُفظت «هوية التحقق النهائي»."]
+        "withToken": {"items": ["افتح الهوية هوية التحقق النهائي"], "emptyVisible": false, "pressedOnLoad": "صحي نقيCle"}
+        "afterOpen": {"pressed": "صحي نقيCle", "msg": ["فُتحت «هوية التحقق النهائي». تعديلاتك تُحفظ تلقائيًا، واضغط «احفظ» لتحديثها في القائمة."]}
+        ```
+      - الخطوة 14:
+        ```
+        {"url":"https://m000i.github.io/hawiya/","clipboardChars":65947,"status":["نُسخت. الصقها في محادثة الوكيل."],"files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"]}
+        agent exit 0
+        DESIGN.md identical
+        identity.json differs; equal ignoring final newline: True
+        style-guide.html not written
+        theme.css identical
+        tokens.css identical
+        tokens.json differs; equal ignoring final newline: True
+        size-adjust in tokens.css: 6
+        8:@import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");
+        9:@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap");
+        10:@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+        11:@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap");
+        identity: كلاسيكي نسخي | fonts: pair-amiri-eb-garamond
+        ```
+        (`style-guide.html` ليس في نص «انسخ للوكيل» عمدًا؛ النص يطلب زر التنزيل له، كما في 4.7 و 5.8.)
+      - الخطوة 15:
+        ```
+        { "online": false, "identities": 14, "notices": [  "تعذّر تحميل الخطوط من Google Fonts (لا اتصال بالإنترنت أو الاتصال محجوب)، فتظهر الصفحة والمعاينة بخط النظام. اختياراتك تُحفظ وتُصدَّر كما هي.", ...], "exported": {  "flag": "ready", "files": [ "identity.json", "DESIGN.md", "tokens.json", "tokens.css", "theme.css", "style-guide.html" ] }, "failedHosts": [  "fonts.googleapis.com",  "fonts.gstatic.com" ]}
+        ```
 
 ---
 
