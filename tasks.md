@@ -3417,7 +3417,7 @@
     - `npx playwright test`: «138 passed (33.6s)». `npm run build`: بلا تغيير في `picker/data`. `npm run check -- --publish`: «نجاح: فُحص 319 تمبلت (319 مراجَع، 0 مسودة) و 14 هوية بلا أي مخالفة» (ومنه فحص `DESIGN.md` الرسمي). `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: نجاح. التصدير بلا إنترنت يعمل (اختبار «without internet» نجح).
     - المراجعة المستقلة (مهمة A): بلا ملاحظة A. قارن المراجع 104 هويات بين `HEAD` والنسخة الجديدة: `style-guide.html` والمعاينة وترتيب الخطوط مطابقة بايتًا ببايت، وتغيّر `tokens.css` و `theme.css` فقط؛ وتوزيع الحروف على الخطوط في المتصفح كما كان. ملاحظتا B أُصلحتا قبل الإغلاق: رأس `theme.css` كان يقول «كل الخطوط» حتى مع خط غير مسجّل، و `DESIGN.md` بلا أي خط مسجّل كان يبدأ بأن الملفين يحمّلان الخطوط؛ ولهما اختبار جديد.
 
-- [ ] **7.3** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
+- [x] **7.3** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
   - الخطورة: A — نشر علني
   - الحجم: صغيرة
   - تحقق المتطلبات: R-095، R-107، R-108
@@ -3426,7 +3426,31 @@
   - معيار القبول: بعد إذنك: الرفع، ونجاح فحوص GitHub، والتصدير من الصفحة المنشورة يكتب `tokens.css` بلا `@import` وفيه قواعد `"Amiri"`، وملفات الصفحة المنشورة مطابقة للمحلية
   - الاختبار: فتح الصفحة المنشورة والتصدير منها، ومقارنة ملفاتها بالمحلية
   - ما ستراه أنت: **يحتاج إذنك بالرفع**. ثم افتح https://m000i.github.io/hawiya/ وصدّر «كلاسيكي نسخي»، وستجد قواعد `"Amiri"` في `tokens.css`
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-23):
+    - إذن المالك: سُئل «Should I push to main when you run /build for 7.3?» فأجاب «Yes, push». رُفعت 3 commits إلى `main` (CHG-6، والمهمتان 7.1 و 7.2: 27 ملفًا، بلا البريد الخاص ولا ملفات `sandbox/`). لم يُرفع أي وسم.
+    - الرفع:
+      ```
+      To https://github.com/M000i/hawiya.git
+         94e8ba0..0eff186  main -> main
+      ```
+    - GitHub:
+      ```
+      pages completed success 45072708941
+      check completed success 45072708953
+      ```
+    - الصفحة المنشورة:
+      - ملفات `picker/` كلها مطابقة للمحلية بايتًا ببايت: «files 57, differ 0»، ومنها `data/font-faces.js` بخطوطه الـ54.
+      - التصدير منها بهوية «كلاسيكي نسخي»:
+        ```
+        {"identities":14,"fontFaceFamilies":54,"tokensImport":0,"tokensAmiri":6,"tokensEB":6,"tokensAdjusted135":6,"themeAmiri":6,"themeImport":0,"designMd":true,"errors":[]}
+         * The @font-face rules below load every font of the identity from the Google Fonts files, so linking or
+         * importing this file alone is enough, wherever it comes among the stylesheets.
+         */
+        /* Amiri (files from Google Fonts) */
+        @font-face {
+          font-family: "Amiri";
+        ```
+        أي: `tokens.css` بلا `@import`، وفيه 6 قواعد `"Amiri"` (400 و 700 × arabic و latin-ext و latin) و 6 لـ `"EB Garamond"` و 6 معدّلة بـ 135%، و `theme.css` فيه قواعد `"Amiri"` نفسها بلا `@import`.
 
 - [ ] **7.4** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
