@@ -3629,7 +3629,7 @@
         ```
         أي الأرقام نفسها التي في 7.3: `tokens.css` بلا `@import`، و 6 قواعد `"Amiri"` و 6 لـ `"EB Garamond"` و 6 معدّلة بـ 135%، و `theme.css` فيه قواعد `"Amiri"` بلا `@import`، والحزمة سليمة (`verify` فارغ). وقاعدة خطوط الجهاز موجودة في الصفحة المنشورة، ولا خط جهاز في السجل.
 
-- [ ] **8.3** تشغيل /verify على السيناريو الشامل من `spec.md`
+- [x] **8.3** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
   - الحجم: متوسطة
   - تحقق المتطلبات: كل المتطلبات (القسم 13)، R-109
@@ -3638,7 +3638,52 @@
   - معيار القبول: الخطوات الخمس عشرة تنجح كلها؛ أي فشل يُسجَّل ويُصلَح قبل البوابة
   - الاختبار: `/verify` على السيناريو خطوة بخطوة
   - ما ستراه أنت: **يحتاج منك تشغيل `/verify`**
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-23):
+    - /verify بعد CHG-7: 14 خطوة من 15 نجحت فعليًا؛ ونصف Codex من الخطوة 12 **لم يُجرَّب** لأن أداة `codex` غير مثبّتة على الجهاز الآن (تثبيتها يحتاج إذن المالك)، فهو في التحقق اليدوي للمالك. سجّل المالك الدليل بقراره («Yes, record it») مع العلم بذلك. المهارة ثُبّتت من المستودع المنشور (`415f21f`) في مشروع فارغ، و Claude Code (هذه الجلسة) اتبع `SKILL.md`، والصفحة فُتحت في Chrome مخفي بملف تعريف منفصل بدل متصفح المالك.
+      1. ملف الجلسة (تطبيق ويب، عربي وإنجليزي)، والخادم جاهز على 47821 بلا منفذ بديل.
+      2. 14 هوية، كلها بالاسمين، ورسالة «الاقتراحات مبنية على بيانات مشروعك».
+      3. في المشاهد الأربعة (landing و dashboard و form و mobile): «بروتالي» (Sora، rgb(255,51,51)، 0 بكسل) و«مؤسسي هادئ» (IBM Plex Sans، rgb(37,99,235)، 8 بكسل).
+      4. الإنجليزي `ltr` والعربي `rtl`، وأضعف تباين نص 4.6 في الهويات الـ14 بالفاتح والداكن.
+      5. الوضع الموجّه: #7c3aed و `pair-amiri-eb-garamond`، ثم «كمّل الباقي» ملأ 9 عناصر؛ خط المعاينة `"EB Garamond Hawiya 135", "EB Garamond", Amiri, ui-serif, serif`.
+      6. منع AAA مع السبب (5.7:1 من 7:1، و 4.83:1 للثانوي) واقتراح #6900D8، والألوان لم تتغيّر.
+      7. «زوايا الزر (24 بكسل) أكبر من زوايا الكرت (12 بكسل)»، و«تجاهل» أخفاه وبقيت 24.
+      8. «حُفظت الملفات في مجلد design داخل مشروعك»، والخادم: `{"status":"saved","written":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"]}`.
+      9. الملفات الستة؛ `size-adjust: 135%` ست مرات في `tokens.css` و `theme.css` و `style-guide.html`؛ صفر `@import`؛ 6 قواعد `"Amiri"` في `tokens.css` و `theme.css`.
+      10. دليل الهوية `rtl`، والعنوان `"EB Garamond Hawiya 135"`، والزر rgb(124,58,237) بزوايا 24px، و `--radius-md` 24px.
+      11. سطر الالتزام في `CLAUDE.md` مرة واحدة، و `git status` لا يُظهر غير `CLAUDE.md` و `design/`.
+      12. Claude Code (`claude -p`) بنى `index.html` يربط `design/tokens.css` وحده؛ النتيجة بالفاتح والداكن مطابقة للهوية، والعنوان العربي مرسوم بالأميري، والإنجليزي بالخط المعدَّل 135%. نصف Codex لم يُجرَّب (انظر أعلاه).
+      13. «تحقق 8.3» بقيت بعد إغلاق المتصفح تمامًا، وفُتحت باختياراتها (#7c3aed، الأميري و إي بي غاراموند، 24).
+      14. النسخ من الصفحة المنشورة لهوية «كلاسيكي نسخي» (77,989 حرفًا، كما في 7.4): وكيل بلا مهارة (`claude -p --disable-slash-commands`) كتب الملفات الخمسة؛ `DESIGN.md` و `tokens.css` و `theme.css` مطابقة بايتًا ببايت، و `identity.json` و `tokens.json` ينقصهما السطر الفارغ الأخير فقط (B-095 ظهرت مرة أخرى، ولم تظهر في 7.4)؛ `tokens.css` بلا `@import` وفيه 6 قواعد `"Amiri"`.
+      15. بلا إنترنت: 14 هوية، والتصدير يعمل (6 ملفات)، وتنبيه الخطوط ظاهر.
+    - شروط خروج المرحلة 8: اختبار تمبلت خط أرقامه `system-ui` نجح (8.1)، و `npm run check` يذكر 54 خطًا، والسيناريو كما أعلاه عدا نصف Codex.
+    - ملاحظات A: لا شيء. ملاحظات B: لا جديد (عادت B-095).
+    - لم يتغيّر أي ملف في المشروع أثناء التحقق، ولا شيء بقي يعمل.
+    - المخرجات كما هي:
+      - الخطوة 12:
+        ```
+        light {"dir":"rtl","links":["design/tokens.css"],"h1Font":"\"EB Garamond Hawiya 135\"","btnBg":"rgb(124, 58, 237)","btnRadius":"24px","cardRadius":"12px","loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+        light h1 drawn with [{"familyName":"Amiri","postScriptName":"Amiri-Bold","isCustomFont":true,"glyphCount":17},{"familyName":"EB Garamond","postScriptName":"EBGaramond-Bold","isCustomFont":true,"glyphCount":3}]
+        dark {"dir":"rtl","links":["design/tokens.css"],"h1Font":"\"EB Garamond Hawiya 135\"","btnBg":"rgb(144, 107, 239)","btnRadius":"24px","cardRadius":"12px","loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+        {"text":"A clean, minimal landing page bu","first":"\"EB Garamond Hawiya 135\"","sizeAdjust":"135%"}
+        ```
+      - الخطوة 14:
+        ```
+        {"url":"https://m000i.github.io/hawiya/","clipboardChars":77989,"status":"نُسخت. الصقها في محادثة الوكيل.","files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"],"identity":"كلاسيكي نسخي | fonts: pair-amiri-eb-garamond"}
+        agent exit 0
+        identity.json DIFFERS
+        DESIGN.md identical
+        tokens.json DIFFERS
+        tokens.css identical
+        theme.css identical
+        style-guide.html not written
+        @import lines in tokens.css: 0
+        Amiri rules in tokens.css: 6
+        ```
+        (الفرق في الملفين: `\ No newline at end of file` فقط؛ 5304 مقابل 5303 بايت، و 25169 مقابل 25168.)
+      - الخطوة 15:
+        ```
+        offline {"online":false,"identities":14,"fontsNotice":true,"exported":{"flag":"ready","files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"]},"failedHosts":["fonts.googleapis.com"]}
+        ```
 
 ---
 
