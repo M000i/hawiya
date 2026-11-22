@@ -3326,7 +3326,7 @@
     - `npm run check` يفشل برسالة فيها اسم الخط إذا نقصت قواعد أي خط في تمبلت «مراجَع»، أو كان فيها عنوان من خارج `fonts.gstatic.com`.
     - البناء ينقل قواعد خطوط التمبلتات المنشورة إلى `picker/data/font-faces.js`، ويُسجَّل حجمه قبل الضغط وبعده (gzip).
   - الاختبار: `tests/font-faces.test.js` على ردود ثابتة (منها خط عربي بلا 600 وخط بلا `latin-ext`)، و `tests/check.test.js` لخط ناقص، ثم `npm run fonts` (يحتاج إنترنت) و `npm run build` و `npm run check -- --publish` و `npm test`
-  - ما ستراه أنت: لا شيء يتغيّر في الصفحة؛ `npm run check` ينجح ويذكر عدد الخطوط المسجّلة 44، وإذا حذفت خطًا عربيًا من `library/font-faces.json` يفشل ويذكر اسمه
+  - ما ستراه أنت: لا شيء يتغيّر في الصفحة؛ `npm run check` ينجح ويذكر عدد الخطوط المسجّلة 54 (صُحّح في 8.1: B-116)، وإذا حذفت خطًا عربيًا من `library/font-faces.json` يفشل ويذكر اسمه
   - دليل الإكمال (2026-11-23):
     - الملفات: `tools/font-faces.js`، `tools/build.js`، `tools/check.js`، `library/font-faces.json` (أُعيد كتابته)، `picker/data/font-faces.js` (أُعيد بناؤه)، `tests/font-faces.test.js`، `tests/check.test.js`، `tests/build.test.js`، `tests/generate.test.js`.
     - ما تغيّر:
@@ -3563,7 +3563,7 @@
 - البوابة: GATE-8 (تُقفل عبر /gate)
 - CHG-7: لا تُعاد مهام المرحلة 7 المقفلة. اختبارات 7.1 تتحدّث داخل 8.1، ويُصحَّح فيها عدد الخطوط في سطر «ما ستراه أنت» للمهمة 7.1 (54 لا 44، B-116).
 
-- [ ] **8.1** قائمة واحدة لأسماء الخطوط بلا خطوط الجهاز
+- [x] **8.1** قائمة واحدة لأسماء الخطوط بلا خطوط الجهاز
   - الخطورة: A — خلاف القائمتين يوقف `npm run fonts` ويُفشل الفحص لتمبلت يقبله فحص المصادر
   - الحجم: صغيرة
   - تحقق المتطلبات: R-109، R-108، R-064
@@ -3577,7 +3577,22 @@
     - الملفات المصدَّرة للمكتبة الحالية لا تتغيّر بايتًا ببايت (الملفات المتوقعة في `tests/fixtures/expected` كما هي)، و `library/font-faces.json` لا يتغيّر.
   - الاختبار: اختبار في `tests/check.test.js` بتمبلت `numeralsFont` فيه `system-ui` و `headingLatin` فيه ` Inter ` بفراغين؛ و `tests/font-faces.test.js` لقائمة الأمر؛ و `tests/generate.test.js` لهوية خطها اللاتيني `system-ui`؛ ثم `npm test` و `npm run check -- --publish` و `npm run test:e2e`
   - ما ستراه أنت: لا شيء يتغيّر في الصفحة؛ `npm run check` ينجح ويذكر 54 خطًا مسجّلًا
-  - دليل الإكمال: —
+  - دليل الإكمال:
+    - الملفات: `picker/js/core/generate.js` (القاعدة الوحيدة: `GENERIC_FAMILIES` و `SYSTEM_FONTS` و `systemFont` و `deviceFont`، مصدَّرة؛ `fontFamilies` بلا خطوط الجهاز؛ نص `DESIGN.md` و `theme.css` لهوية كل خطوطها من الجهاز)، `tools/build.js` (`templateFamily` و `templateFamilies` بحذف الفراغات وبلا خطوط الجهاز، وإعادة تصدير القاعدة)، `tools/check.js` (حُذفت نسخ القائمة والقاعدة؛ `fontFaceProblems` و `fontFamilies` يستعملان `build.templateFamily` و `build.templateFamilies`)، `tests/check.test.js` و `tests/font-faces.test.js` و `tests/generate.test.js` (اختبار لكل منها)، `tasks.md` (سطر 7.1: 54 لا 44)، `backlog.md` (B-122 إلى B-125).
+    - `npm test`:
+      ```
+      ℹ tests 635
+      ℹ suites 0
+      ℹ pass 635
+      ℹ fail 0
+      ℹ cancelled 0
+      ```
+    - `npm run check -- --publish`: «54 font families with their @font-face rules (font-faces.json)» و «نجاح: فُحص 319 تمبلت (319 مراجَع، 0 مسودة) و 14 هوية بلا أي مخالفة».
+    - `npm run test:e2e`: «138 passed (32.5s)».
+    - `npm run test:golden`: «tests 17 / fail 0». `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: نجاح.
+    - `npm run build`: «54 families with @font-face rules»، ولم يتغيّر `picker/data` ولا `library/font-faces.json` ولا `tests/fixtures/expected` (`git status` نظيف لها).
+    - المراجعة المستقلة: لا ملاحظة A؛ تأكّد أن الاختبارات الثلاثة الجديدة تفشل على الكود القديم (فشل الفحص بـ «the family "system-ui" has no @font-face rules»). ملاحظة B عن `fontFamilies` في الفحص (تنفيذ ثانٍ للقائمة) أُصلحت؛ والباقي مؤجل: B-122 (معاينة الخطوط في الصفحة قائمة خامسة)، B-123 (`"system-ui"` بتنصيص في سلسلة الخطوط)، B-124 (إعفاء النصوص التي تبدأ بـ «-» من فحص المصادر)، و B-125 (اسم بفراغات يصل كما هو إلى الهوية).
+    - انحراف: القاعدة في `generate.js` لا في `build.js`، لأن المولّد يعمل في المتصفح ولا يصل إلى `tools/`؛ والبناء يأخذها منه، فهي في مكان واحد.
 
 - [ ] **8.2** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
   - الخطورة: A — نشر علني

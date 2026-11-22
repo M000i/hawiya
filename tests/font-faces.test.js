@@ -89,6 +89,33 @@ test('every family a fonts template names is asked for (Arabic, Latin, heading, 
   assert.equal(build.adjustableLatin({ element: 'colors', extras: { arabic: 'A', latin: 'B' } }), null);
 });
 
+// Task 8.1 (CHG-7, R-109): the command asks for the build's own list: names without the spaces around them, and no
+// device font (a system font or a generic family), which Google Fonts does not serve.
+test('the command never asks Google for a device font, and asks for a name with spaces once, trimmed', () => {
+  const lib = library();
+  const file = path.join(lib, 'elements', 'fonts.json');
+  const all = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const before = fonts.families(lib);
+  const t = all.find((x) => x.id === 'pair-readex-pro-outfit');
+  t.extras.numeralsFont = 'system-ui';
+  t.extras.headingLatin = ' Inter ';
+  t.extras.headingArabic = '-apple-system';
+  all.find((x) => x.id === 'pair-cairo').extras.latin = ' BlinkMacSystemFont ';
+  fs.writeFileSync(file, JSON.stringify(all, null, 2) + '\n');
+  const names = fonts.families(lib);
+  assert.deepEqual(names, before, 'the same 54 families');
+  assert.equal(names.length, 54);
+  for (const f of ['system-ui', '-apple-system', ' Inter ', ' BlinkMacSystemFont ', 'BlinkMacSystemFont'])
+    assert.ok(!names.includes(f), f);
+  assert.deepEqual(build.templateFamilies(t), ['Inter', 'Outfit', 'Readex Pro']);
+  assert.deepEqual(build.templateFamilies({ element: 'fonts', extras: { arabic: ' ', latin: 'sans-serif' } }), []);
+  assert.equal(
+    build.templateFamily({ element: 'fonts', extras: { note: 'Inter' } }, 'note'),
+    null,
+    'only the five keys'
+  );
+});
+
 test('run: the record of every family, weights Google lacks left out; the same answers give the same bytes', async () => {
   const lib = library();
   const asked = [];

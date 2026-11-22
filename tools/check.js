@@ -1237,8 +1237,6 @@ function axesProblems(libraryDir, valid, add, counts) {
 // The shapes of sources.json and licenses.json live in notices.js, which also refuses to render without them.
 const { checkSources, checkLicenses, OWN_ID } = notices;
 const ICONIFY = /iconify|icones\.js\.org/i;
-// System font names a font stack may end with: they name the device's own font and ship nothing.
-const SYSTEM_FONTS = new Set(['apple color emoji', 'blinkmacsystemfont', 'segoe ui emoji', 'segoe ui symbol']);
 
 // Lower-case words: "Remix-Design/RemixIcon" → " remix design remixicon ". Keywords match whole words, so "SF Pro"
 // is found in "SF Pro Text" and "Apple" in "developer.apple.com", but "apple" is not in "Pineapple".
@@ -1281,7 +1279,8 @@ const iconify = (url) => typeof url === 'string' && ICONIFY.test(url);
 
 // Extras that are not names: the copied SVG samples and free text, which may mention a forbidden source in passing.
 const PROSE = new Set(['samples', 'viewBox', 'note', 'notes', 'description']);
-const systemFont = (f) => f.startsWith('-') || SYSTEM_FONTS.has(f.trim().toLowerCase());
+// The device-font rule is the generator's, shared through the build (task 8.1, R-109): one place for every tool.
+const { systemFont, deviceFont } = build;
 
 // Every name a template gives for where it comes from: source, address, every text in extras (icon library, font
 // names, palette name, ...; not the copied SVG samples), font families. System font names are left out.
@@ -1309,38 +1308,14 @@ function originIds(t) {
   return [x.library].concat(Array.isArray(x.sources) ? x.sources : []);
 }
 
-// The CSS generic families: keywords the browser resolves, not fonts with a source.
-const GENERIC_FAMILIES = new Set([
-  'serif',
-  'sans-serif',
-  'monospace',
-  'cursive',
-  'fantasy',
-  'system-ui',
-  'ui-serif',
-  'ui-sans-serif',
-  'ui-monospace',
-  'ui-rounded',
-  'emoji',
-  'math',
-  'fangsong'
-]);
-const FONT_EXTRAS = ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin'];
-
 // Every named font family of a template: each fontFamily token at any depth (a name or a list of names), and the
-// family names a fonts template records in extras (the ones the page loads from Google Fonts). CSS generic families
-// and the system fonts of systemFont ("-apple-system", BlinkMacSystemFont...) name the device's own fonts.
+// family names a fonts template records in extras (the ones the page loads from Google Fonts). Device fonts (CSS
+// generic families and system fonts such as "-apple-system" or BlinkMacSystemFont: deviceFont) are left out.
 function fontFamilies(t) {
   const out = new Set();
   const take = (v) => {
     for (const name of Array.isArray(v) ? v : [v])
-      if (
-        typeof name === 'string' &&
-        name.trim() &&
-        !GENERIC_FAMILIES.has(name.trim().toLowerCase()) &&
-        !systemFont(name)
-      )
-        out.add(name.trim());
+      if (typeof name === 'string' && name.trim() && !deviceFont(name)) out.add(name.trim());
   };
   const walk = (node) => {
     if (!isObject(node)) return;
@@ -1348,7 +1323,7 @@ function fontFamilies(t) {
     for (const [k, v] of Object.entries(node)) if (!k.startsWith('$')) walk(v);
   };
   walk(t.tokens);
-  if (t.element === 'fonts' && isObject(t.extras)) for (const k of FONT_EXTRAS) take(t.extras[k]);
+  build.templateFamilies(t).forEach((name) => out.add(name)); // the one list of a fonts template (task 8.1, R-109)
   return out;
 }
 
@@ -1366,8 +1341,8 @@ function fontFaceProblems(libraryDir, valid, add, counts) {
     families.forEach((f) => known.add(f));
     if (!families.length || t.status.state !== 'reviewed') continue;
     for (const k of build.FONT_EXTRAS) {
-      const family = t.extras[k];
-      if (typeof family !== 'string' || !family) continue;
+      const family = build.templateFamily(t, k); // trimmed; a device font needs no rules (task 8.1, R-109)
+      if (!family) continue;
       if (!needed.has(family)) needed.set(family, { ids: [], subsets: new Set() });
       const n = needed.get(family);
       if (!n.ids.includes(t.id)) n.ids.push(t.id);

@@ -159,6 +159,25 @@
     return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
   }
 
+  /* ---------- The device's own fonts (task 8.1, CHG-7, R-109) ----------
+   * The CSS generic families (keywords the browser resolves) and the system fonts ("-apple-system",
+   * BlinkMacSystemFont, ...) name fonts the device already has, not fonts with a source: no Google Fonts file, no
+   * record in library/font-faces.json, no link and no @import. The one rule for `npm run fonts`, the build and
+   * `npm run check` (tools/build.js: templateFamilies) and this generator (fontFamilies). Letter case and the spaces
+   * around a name do not count. */
+  var GENERIC_FAMILIES = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-serif',
+    'ui-sans-serif', 'ui-monospace', 'ui-rounded', 'emoji', 'math', 'fangsong'];
+  var SYSTEM_FONTS = ['apple color emoji', 'blinkmacsystemfont', 'segoe ui emoji', 'segoe ui symbol'];
+
+  function systemFont(name) {
+    var n = String(name).trim().toLowerCase();
+    return n.charAt(0) === '-' || SYSTEM_FONTS.indexOf(n) !== -1;
+  }
+
+  function deviceFont(name) {
+    return systemFont(name) || GENERIC_FAMILIES.indexOf(String(name).trim().toLowerCase()) !== -1;
+  }
+
   function rem(px) {
     return px / 16; // division by a power of two: exact, so the printed number is the same in every engine
   }
@@ -613,7 +632,8 @@
     var missing = unrecordedFamilies(t);
     if (own.length && !missing.length) lines.push(' * The @font-face rules below load every font of the identity from the Google Fonts files.');
     else if (own.length) lines.push(' * The @font-face rules below load the identity fonts from the Google Fonts files, except ' + missing.join(', ') + ':', ' * this file does not load ' + (missing.length > 1 ? 'them' : 'it') + '; add the Google Fonts links of DESIGN.md.');
-    else lines.push(' * This file loads no font: add the Google Fonts links of DESIGN.md.');
+    else if (missing.length) lines.push(' * This file loads no font: add the Google Fonts links of DESIGN.md.');
+    else lines.push(' * Every font of the identity is one the device already has: there is no font file to load.'); // task 8.1
     lines.push(' */');
     if (own.length) lines = lines.concat(own, ['']);
     var faces = fontFaceRules(t);
@@ -1000,7 +1020,11 @@
         })
         .join(' and ');
     };
-    if (unrecorded.length === fontFamilies(t).length)
+    var loaded = fontFamilies(t);
+    if (!loaded.length)
+      // Device fonts only (task 8.1, R-109): nothing to load.
+      b.push('Every font of the identity is one the device already has (a system font or a generic family): there is no font file to load and no link to add.');
+    else if (unrecorded.length === loaded.length)
       // No family has recorded rules (a hand-edited identity): only the @import lines of tokens.css, as in CHG-5.
       b.push(
         'Fonts load from Google Fonts. tokens.css loads them with `@import` lines, which a browser ignores unless tokens.css comes before any other CSS, and theme.css does not load them, so add these links to the `<head>` of every page:'
@@ -1016,12 +1040,14 @@
           ' Only for the font stacks without either file, add these links to the `<head>` of every page:'
       );
     b.push('');
-    b.push('```html');
-    fontLinks(t).forEach(function (l) {
-      b.push(l);
-    });
-    b.push('```');
-    b.push('');
+    if (loaded.length) {
+      b.push('```html');
+      fontLinks(t).forEach(function (l) {
+        b.push(l);
+      });
+      b.push('```');
+      b.push('');
+    }
     b.push('Font stacks for code: `--font-heading`, `--font-body` and `--font-numerals` in tokens.css (Latin family first, so Latin text uses it and Arabic letters fall through to the Arabic family).');
     b.push('');
     b.push('Line height: ' + t.font.lineHeight.ar + ' for Arabic text and ' + t.font.lineHeight.en + ' for Latin text (`--line-height-ar`, `--line-height-en`). Arabic needs the extra height for its marks and descenders.');
@@ -1167,11 +1193,13 @@
     return '<span lang="ar">' + escapeHtml(l[0]) + '</span> <span class="en" lang="en">' + escapeHtml(l[1]) + '</span>';
   }
 
+  // The families of the identity that load from Google Fonts: a device font (deviceFont) keeps its place in the font
+  // stacks (cssFont) but has no record, no link and no @import (task 8.1, R-109).
   function fontFamilies(t) {
     var out = [];
     FONT_ROLES.forEach(function (role) {
       [t.font[role].arabic, t.font[role].latin].forEach(function (fam) {
-        if (fam && out.indexOf(fam) === -1) out.push(fam);
+        if (fam && !deviceFont(fam) && out.indexOf(fam) === -1) out.push(fam);
       });
     });
     return out;
@@ -1395,6 +1423,9 @@
     if (!name) return null;
     return { name: name, css: fontFaceRules({ font: { heading: ref, body: ref, numerals: ref } }).join('\n') };
   };
+
+  generate.systemFont = systemFont;
+  generate.deviceFont = deviceFont;
 
   generate.cssVariables = function (id, mode) {
     if (mode !== 'light' && mode !== 'dark') fail('mode must be light or dark');

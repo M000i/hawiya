@@ -40,6 +40,8 @@ const path = require('node:path');
 const validate = require('../picker/js/core/validate.js');
 const SCHEMAS = require('../picker/js/core/schemas.js');
 const recipe = require('../picker/js/core/recipe.js');
+// The device-font rule (task 8.1, R-109) lives in the generator, which the page runs too; nothing else is used here.
+const { deviceFont, systemFont } = require('../picker/js/core/generate.js');
 
 const ROOT = path.join(__dirname, '..');
 const T = SCHEMAS.template;
@@ -126,12 +128,25 @@ function adjustableLatin(t) {
   return typeof arabic === 'string' && typeof latin === 'string' && arabic !== latin ? latin : null;
 }
 
+// The family a fonts template names in one of its FONT_EXTRAS keys, as it loads from Google Fonts (task 8.1, R-109):
+// the name without the spaces around it; null for none, for a device font (a system font or a generic family:
+// generate.deviceFont, no file to load) and for any other template.
+function templateFamily(t, key) {
+  if (!t || t.element !== 'fonts' || !t.extras || !FONT_EXTRAS.includes(key)) return null;
+  const v = t.extras[key];
+  if (typeof v !== 'string' || !v.trim() || deviceFont(v)) return null;
+  return v.trim();
+}
+
 // Every family a fonts template names in its extras (task 7.1, R-108), sorted: the Arabic and Latin families, the
-// heading ones, and the numerals family. Each needs its @font-face rules (R-107). [] for any other template.
+// heading ones, and the numerals family. Each needs its @font-face rules (R-107). The one list (task 8.1, R-109) for
+// `npm run fonts`, the build and `npm run check`; a device font is not in it. [] for any other template.
 function templateFamilies(t) {
-  if (!t || t.element !== 'fonts' || !t.extras) return [];
   const out = new Set();
-  for (const k of FONT_EXTRAS) if (typeof t.extras[k] === 'string' && t.extras[k]) out.add(t.extras[k]);
+  for (const k of FONT_EXTRAS) {
+    const family = templateFamily(t, k);
+    if (family) out.add(family);
+  }
   return [...out].sort();
 }
 
@@ -525,6 +540,9 @@ module.exports = {
   FONT_EXTRAS,
   adjustableLatin,
   templateFamilies,
+  templateFamily,
+  deviceFont,
+  systemFont,
   fontFacesProblems,
   build,
   load,

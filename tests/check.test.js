@@ -1652,6 +1652,57 @@ test('fonts: every extras family is checked; system fonts are exempt; a font lis
   }
 });
 
+// Task 8.1 (CHG-7, R-109): one list of a fonts template's families for npm run fonts, the build, the check and the
+// generator: names without the spaces around them, without device fonts (system-ui), as the source check reads them.
+test('a device font as the numerals font and a name with spaces pass: no record asked for, none carried, no link', () => {
+  const c = copy();
+  try {
+    c.edit('elements/fonts.json', (l) => {
+      c.find(l, 'pair-tajawal-manrope').extras.numeralsFont = 'system-ui'; // the government identity uses it
+      const spaced = c.find(l, 'pair-readex-pro-outfit'); // no identity uses it
+      spaced.extras.headingLatin = ' Inter ';
+      spaced.extras.sources.push('inter');
+    });
+    build.build({ libraryDir: c.lib, outDir: c.data });
+    const r = c.run({ publish: true });
+    assert.deepEqual(r.problems, [], show(r.problems));
+    assert.equal(r.counts.fontFaces, 54, 'the record is unchanged');
+
+    const loaded = build.load(c.lib);
+    const t = loaded.templates.fonts.find((x) => x.id === 'pair-tajawal-manrope');
+    assert.deepEqual(build.templateFamilies(t), ['Manrope', 'Tajawal']);
+    assert.equal(build.templateFamily(t, 'numeralsFont'), null);
+    const spaced = loaded.templates.fonts.find((x) => x.id === 'pair-readex-pro-outfit');
+    assert.deepEqual(build.templateFamilies(spaced), ['Inter', 'Outfit', 'Readex Pro']);
+    assert.equal(build.templateFamily(spaced, 'headingLatin'), 'Inter');
+    // npm run fonts asks Google for the same list; the build carries no record for system-ui.
+    assert.ok(!require('../tools/font-faces.js').families(c.lib).includes('system-ui'));
+    const { data } = build.select(loaded);
+    assert.ok(
+      !Object.keys(data.fontFaces).some((f) => f !== f.trim() || build.deviceFont(f)),
+      'no device font, no spaces'
+    );
+    assert.ok(Object.prototype.hasOwnProperty.call(data.fontFaces, 'Inter'));
+
+    // The exported files of the government identity, with that numerals font: no Google Fonts address or @import.
+    const generate = require('../picker/js/core/generate.js');
+    const resolve = require('../picker/js/core/resolve.js');
+    const gov = data.identities.find((i) => i.id === 'government');
+    assert.equal(gov.templates.fonts, 'pair-tajawal-manrope');
+    const selections = {};
+    for (const [element, template] of Object.entries(gov.templates)) selections[element] = { template };
+    const id = resolve.resolve({ name: 'T', selections }, data);
+    assert.ok(JSON.stringify(id.tokens.font.numerals).includes('system-ui'), 'the numerals stack names it');
+    const files = generate.valueFiles(id);
+    for (const text of [files['tokens.css'], files['theme.css'], generate.designMd(id), generate.styleGuide(id)]) {
+      assert.ok(!/family=system-ui/.test(text) && !/@import url\(/.test(text));
+      assert.ok(!text.includes('font-family: "system-ui";'));
+    }
+  } finally {
+    clean(c);
+  }
+});
+
 // Task 5.1 (B-079): a ready identity that uses a draft is left out of the page. The check passes while the owner
 // still reviews (task 5.4 before 5.6), but names it; with --publish (the GitHub check before publishing) it fails.
 test('an identity waiting for a draft is named; --publish refuses it', () => {

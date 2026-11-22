@@ -1071,6 +1071,47 @@ test('[7.2] a family without recorded rules is named in theme.css and DESIGN.md;
   assert.ok(!md.includes('Except **') && !md.includes('load every font of the identity themselves'));
 });
 
+// Task 8.1 (CHG-7, R-109): a device font (system-ui) keeps its place in the font stacks, but gets no Google Fonts link,
+// no @import, no @font-face rule and is never named as a font without a record; with device fonts only, nothing loads.
+test('[8.1] a device font as the Latin family: in the stacks, with no link, @import or rule, and not named as unrecorded', () => {
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  for (const role of ['heading', 'body', 'numerals']) id.tokens.font[role] = { ...id.tokens.font[role], latin: 'system-ui' };
+  const files = generate.valueFiles(id);
+  const md = generate.designMd(id);
+  const guide = generate.styleGuide(id);
+  for (const [f, text] of [['tokens.css', files['tokens.css']], ['theme.css', files['theme.css']], ['DESIGN.md', md], ['style-guide.html', guide]]) {
+    assert.ok(!/@import url\(/.test(text), `${f}: no @import line`);
+    assert.ok(!/family=system-ui/.test(text), `${f}: no Google Fonts address for system-ui`);
+    assert.ok(!text.includes('font-family: "system-ui";') && !text.includes('system-ui Hawiya'), `${f}: no @font-face rule for system-ui`);
+  }
+  // The headers and DESIGN.md: every loaded font is recorded, so none is named as missing.
+  assert.ok(files['tokens.css'].includes(' * The @font-face rules below load every font of the identity from the Google Fonts files, so linking or\n'));
+  assert.ok(files['theme.css'].includes(' * The @font-face rules below load every font of the identity from the Google Fonts files.\n'));
+  assert.ok(!md.includes('Except **') && !md.includes('tokens.css loads them with `@import`'), 'DESIGN.md names no unrecorded font');
+  assert.match(md, /- \*\*Body:\*\* Arabic \*\*Amiri\*\*, Latin \*\*system-ui\*\*, then /, 'the role still lists it');
+  assert.deepEqual(/```html\n([\s\S]*?)\n```/.exec(md)[1].split('\n'), [
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&amp;display=swap">',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&amp;display=swap">'
+  ]);
+  assert.ok(files['tokens.css'].includes('  font-family: "Amiri";'), 'the Arabic family keeps its rules');
+  // The stack keeps the order: the Latin family first, then the Arabic one, then the fallbacks.
+  assert.match(files['tokens.css'], /--font-body: "system-ui", "Amiri", /);
+  assert.equal(generate.deviceFont(' System-UI '), true);
+  assert.equal(generate.deviceFont('-apple-system'), true);
+  assert.equal(generate.deviceFont('BlinkMacSystemFont'), true);
+  assert.equal(generate.deviceFont('Inter'), false);
+
+  // Device fonts only: nothing to load, and the files say so instead of pointing to links or @import lines.
+  for (const role of ['heading', 'body', 'numerals']) id.tokens.font[role] = { ...id.tokens.font[role], arabic: 'system-ui' };
+  const only = generate.valueFiles(id);
+  const onlyMd = generate.designMd(id);
+  assert.ok(!only['tokens.css'].includes('@font-face') && !/^@import /m.test(only['tokens.css']));
+  assert.ok(only['theme.css'].includes(' * Every font of the identity is one the device already has: there is no font file to load.\n'));
+  assert.ok(onlyMd.includes('Every font of the identity is one the device already has (a system font or a generic family): there is no font file to load and no link to add.'));
+  assert.ok(!onlyMd.includes('```html') && !onlyMd.includes('@import` lines, which'), 'no links and no @import story');
+  assert.ok(!generate.styleGuide(id).includes('fonts.googleapis.com/css2?'), 'the style guide links no font');
+});
+
 // Task 7.2: a hand-edited identity that uses a recorded Arabic family as its Latin one, with its own value: the
 // adjusted family takes that family's Latin faces only, so Arabic letters are never scaled.
 test('[7.2] the adjusted family never takes arabic faces', () => {
