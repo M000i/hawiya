@@ -16,9 +16,10 @@ npm run test:golden
 | G-06 | تحويل اللون إلى OKLCH | `#FF0000` | الإضاءة 0.628، التشبع 0.258، الزاوية 29.2 | `tests/golden.test.js` → `G-06 OKLCH` | 1.3 | يُختبر |
 | G-07 | تعديل حجم الخط اللاتيني (CHG-4) | «الأميري مع إي بي غاراموند»، القيمة 1.35 | `size-adjust: 135%` في قواعد `@font-face` للخط اللاتيني في `tokens.css` و `theme.css` و `style-guide.html`، واسم الخط `"EB Garamond Hawiya 135"` أول ترتيب الخطوط | `tests/golden.test.js` → `G-07 size adjustment` | 6.2 | يُختبر |
 | G-08 | تعديل حجم الخط اللاتيني (CHG-4) | «نوتو نسخ مع فراونسيز»، القيمة 0.9 | `size-adjust: 90%` | `tests/golden.test.js` → `G-08 size adjustment` | 6.2 | يُختبر |
-| G-09 | تعديل حجم الخط اللاتيني (CHG-4) | «القاهرة» للغتين، القيمة 1 | بلا قاعدة `@font-face` | `tests/golden.test.js` → `G-09 size adjustment` | 6.2 | يُختبر |
+| G-09 | تعديل حجم الخط اللاتيني (CHG-4) | «القاهرة» للغتين، القيمة 1 | بلا قاعدة `@font-face` معدّلة الحجم (لا `size-adjust` ولا اسم خط خاص)؛ قواعد «Cairo» باسمه الأصلي (CHG-6) لا تُحسب | `tests/golden.test.js` → `G-09 size adjustment` | 6.2، 7.2 | يُختبر |
 | G-10 | تعديل حجم الخط اللاتيني (CHG-4) | «الأميري مع إي بي غاراموند» بقيمة مخصّصة 1.1 | `size-adjust: 110%` | `tests/golden.test.js` → `G-10 size adjustment` | 6.2 | يُختبر |
-| G-11 | تحميل الخطوط في `tokens.css` (CHG-5) | «الأميري مع إي بي غاراموند» | أول سطور `tokens.css` بعد تعليق الرأس: `@import` لـ `family=Amiri` ثم `family=Amiri:wght@700` ثم السطران نفسهما لـ `EB+Garamond`، قبل أي قاعدة | `tests/golden.test.js` → `G-11 font imports` | 6.8 | يُختبر |
+| G-11 | (استُبدل بـ G-12 في CHG-6) تحميل الخطوط في `tokens.css` (CHG-5) | «الأميري مع إي بي غاراموند» | أول سطور `tokens.css` بعد تعليق الرأس: `@import` لـ `family=Amiri` ثم `family=Amiri:wght@700` ثم السطران نفسهما لـ `EB+Garamond`، قبل أي قاعدة | `tests/golden.test.js` → `G-11 font imports` | 6.8 | مُلغى (يُحذف اختباره في 7.2) |
+| G-12 | قواعد خطوط الهوية في `tokens.css` (CHG-6) | هوية «كلاسيكي نسخي» (زوج «الأميري مع إي بي غاراموند») | بلا أي سطر `@import`؛ قاعدة `@font-face` بـ `font-family: "Amiri";` للوزن 400 وأخرى للوزن 700 (لا 600)، كل منهما بحروف `arabic` وعنوان ملفها ومداها كما في `library/font-faces.json` حرفيًا؛ وقواعد `"EB Garamond"` باسمه الأصلي للأوزان 400 و 600 و 700؛ وقواعد `"EB Garamond Hawiya 135"` باقية كما في G-07 | `tests/golden.test.js` → `G-12 identity font faces` | 7.2 | يُكتب في 7.2 |
 
 ## أمثلة المهام (من `tasks.md`)
 
