@@ -3594,7 +3594,7 @@
     - المراجعة المستقلة: لا ملاحظة A؛ تأكّد أن الاختبارات الثلاثة الجديدة تفشل على الكود القديم (فشل الفحص بـ «the family "system-ui" has no @font-face rules»). ملاحظة B عن `fontFamilies` في الفحص (تنفيذ ثانٍ للقائمة) أُصلحت؛ والباقي مؤجل: B-122 (معاينة الخطوط في الصفحة قائمة خامسة)، B-123 (`"system-ui"` بتنصيص في سلسلة الخطوط)، B-124 (إعفاء النصوص التي تبدأ بـ «-» من فحص المصادر)، و B-125 (اسم بفراغات يصل كما هو إلى الهوية).
     - انحراف: القاعدة في `generate.js` لا في `build.js`، لأن المولّد يعمل في المتصفح ولا يصل إلى `tools/`؛ والبناء يأخذها منه، فهي في مكان واحد.
 
-- [ ] **8.2** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
+- [x] **8.2** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
   - الخطورة: A — نشر علني
   - الحجم: صغيرة
   - تحقق المتطلبات: R-095، R-109
@@ -3603,7 +3603,31 @@
   - معيار القبول: بعد إذنك: الرفع، ونجاح فحوص GitHub والنشر، وملفات الصفحة المنشورة مطابقة للمحلية، والتصدير منها لهوية «كلاسيكي نسخي» كما في 7.3
   - الاختبار: مقارنة ملفات الصفحة المنشورة بالمحلية، والتصدير منها
   - ما ستراه أنت: **يحتاج إذنك بالرفع**. ثم افتح https://m000i.github.io/hawiya/ فتعمل كما كانت
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-23):
+    - إذن المالك: سُئل «Do I have your permission to push to GitHub Pages for task 8.2?» فأجاب «Yes, push». رُفعت 2 commits إلى `main` (CHG-7 والمهمة 8.1: 11 ملفًا، ببريد GitHub العام `noreply` لا البريد الخاص، وبلا ملفات `sandbox/`). لم يُرفع أي وسم.
+    - الرفع:
+      ```
+      To https://github.com/M000i/hawiya.git
+         a3b9d58..415f21f  main -> main
+      ```
+    - GitHub:
+      ```
+      check completed success 45078526854
+      pages completed success 45078526924
+      ```
+    - الصفحة المنشورة:
+      - ملفات `picker/` كلها مطابقة للمحلية بايتًا ببايت: «files 57, differ 0»، ومنها `js/core/generate.js` الجديد.
+      - التصدير منها بهوية «كلاسيكي نسخي» (في المتصفح على https://m000i.github.io/hawiya/):
+        ```
+        {"identities":14,"fontFaceFamilies":54,"deviceFamilyRecorded":0,"deviceFontFn":"function","tokensImport":0,"tokensAmiri":6,"tokensEB":6,"tokensAdjusted135":6,"themeAmiri":6,"themeImport":0,"designMd":true,"verify":[]}
+         * The @font-face rules below load every font of the identity from the Google Fonts files, so linking or
+         * importing this file alone is enough, wherever it comes among the stylesheets.
+         */
+        /* Amiri (files from Google Fonts) */
+        @font-face {
+          font-family: "Amiri";
+        ```
+        أي الأرقام نفسها التي في 7.3: `tokens.css` بلا `@import`، و 6 قواعد `"Amiri"` و 6 لـ `"EB Garamond"` و 6 معدّلة بـ 135%، و `theme.css` فيه قواعد `"Amiri"` بلا `@import`، والحزمة سليمة (`verify` فارغ). وقاعدة خطوط الجهاز موجودة في الصفحة المنشورة، ولا خط جهاز في السجل.
 
 - [ ] **8.3** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
