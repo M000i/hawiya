@@ -269,7 +269,7 @@ Eleven-step ramps for tints and shades, the same in both modes (50 lightest, 950
 - **Numerals:** Latin **JetBrains Mono**, then `ui-monospace, monospace`.
 
 
-Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:
+Fonts load from the Google Fonts files. tokens.css and theme.css load every font of the identity themselves with `@font-face` rules, so linking or importing either one is enough, wherever it comes among your stylesheets; add no Google Fonts links or `@import` lines for them. Only for the font stacks without either file, add these links to the `<head>` of every page:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&amp;display=swap">

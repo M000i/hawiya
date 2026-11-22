@@ -912,15 +912,17 @@ function libraryIdentity(fontsTemplate, overrides) {
 
 test('[6.2] two families with the value 1: no rule and the stacks as before; an adjusted pair: the rules of every recorded face', () => {
   const plainPair = generate.valueFiles(libraryIdentity('pair-zain-figtree'));
-  for (const f of ['tokens.css', 'theme.css']) assert.ok(!plainPair[f].includes('@font-face') && !/"[^"]+ Hawiya \d/.test(plainPair[f]), f);
+  // Task 7.2: the families under their own names (R-107), but no size-adjusted rule.
+  for (const f of ['tokens.css', 'theme.css'])
+    assert.ok(!/(^|[\s;{])size-adjust:/m.test(plainPair[f]) && !/"[^"]+ Hawiya \d/.test(plainPair[f]), f);
   assert.match(plainPair['tokens.css'], /--font-body: "Figtree", "Zain", /);
   assert.ok(!generate.styleGuide(libraryIdentity('pair-zain-figtree')).includes('@font-face'));
 
   const id = libraryIdentity('pair-amiri-eb-garamond');
   const css = generate.valueFiles(id)['tokens.css'];
   const record = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'library', 'font-faces.json'), 'utf8')).families['EB Garamond'];
-  const blocks = [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => m[1]);
-  assert.equal(blocks.length, record.faces.length, 'one rule per recorded face (3 weights × latin-ext, latin)');
+  const blocks = [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => m[1]).filter((b) => b.includes('"EB Garamond Hawiya 135"'));
+  assert.equal(blocks.length, record.faces.length, 'one adjusted rule per recorded face (3 weights × latin-ext, latin)');
   record.faces.forEach((f, i) => {
     assert.ok(blocks[i].includes(`src: url(${f.url}) format("woff2");`), `face ${i}: file`);
     assert.ok(blocks[i].includes(`unicode-range: ${f.unicodeRange};`), `face ${i}: range`);
@@ -957,6 +959,8 @@ test('[6.2] without recorded rules nothing changes; unsound recorded rules are r
   };
   const none = run({});
   assert.ok(!none.includes('@font-face') && none.includes('--font-body: "EB Garamond", "Amiri", '), 'no record: the stack as before');
+  // Task 7.2: no record, so both families keep their @import lines (CHG-5) at the top.
+  assert.equal((none.match(/^@import url\("https:\/\/fonts\.googleapis\.com\/css2\?family=(Amiri|EB\+Garamond)[:&]/gm) || []).length, 4);
   const good = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'library', 'font-faces.json'), 'utf8')).families;
   assert.equal(run(good), generate.valueFiles(id)['tokens.css'], 'the page data gives the same file as Node');
   for (const [what, change] of [
@@ -975,7 +979,7 @@ const vm = () => require('node:vm');
 // instruction next to the ready one; the reference variables say the value is already applied.
 test('[6.2] a value rounding to 100% writes no rule; a role without recorded rules keeps its instruction; no double adjustment', () => {
   const near = generate.valueFiles(libraryIdentity('pair-amiri-eb-garamond', { 'latin-size-adjust': 1.00001 }))['tokens.css'];
-  assert.ok(!near.includes('@font-face') && near.includes('--font-body: "EB Garamond", "Amiri", '), '1.00001 is 100%');
+  assert.ok(!/(^|[\s;{])size-adjust:/m.test(near) && !/Hawiya \d/.test(near) && near.includes('--font-body: "EB Garamond", "Amiri", '), '1.00001 is 100%');
 
   const id = libraryIdentity('pair-amiri-eb-garamond');
   const css = generate.valueFiles(id)['tokens.css'];
@@ -989,12 +993,22 @@ test('[6.2] a value rounding to 100% writes no rule; a role without recorded rul
   assert.match(md, /declare \*\*EB Garamond\*\* again as `"EB Garamond Hawiya 135"`/);
   assert.match(md, /Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family \(for example `size-adjust: 110%;`/);
   assert.match(generate.valueFiles(mixed)['tokens.css'], /--font-heading: "Roboto", "Amiri", /);
+  // Task 7.2: the family the record lacks keeps its @import lines, and DESIGN.md names it; the others have rules.
+  const mixedCss = generate.valueFiles(mixed)['tokens.css'];
+  assert.deepEqual(mixedCss.match(/^@import .*$/gm), [
+    '@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");',
+    '@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");'
+  ]);
+  assert.ok(mixedCss.includes('  font-family: "Amiri";') && mixedCss.includes('  font-family: "EB Garamond";'));
+  assert.match(md, /Except \*\*Roboto\*\*: tokens\.css loads it with `@import`, which a browser ignores unless tokens\.css comes before any other CSS/);
 });
 
-// Task 6.8 (CHG-5, R-105, R-106): tokens.css loads every font of the identity itself; DESIGN.md gives the exact links.
-test('[6.8] tokens.css starts with two Google Fonts @import lines per family, for every published font template', () => {
+// Task 7.2 (CHG-6, R-107; replaces the @import lines of 6.8): tokens.css and theme.css declare every font of the
+// identity under its own name, every recorded face, and carry no @import, for every published font template.
+test('[7.2] tokens.css and theme.css have the rules of every family of the identity and no @import, for every published font template', () => {
   const build = require('../tools/build.js');
-  const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
+  const lib = build.load(path.join(__dirname, '..', 'library'));
+  const data = build.select(lib).data;
   assert.ok(data.templates.fonts.length > 40, 'the published font templates');
   for (const tpl of data.templates.fonts) {
     const id = libraryIdentity(tpl.id);
@@ -1002,35 +1016,82 @@ test('[6.8] tokens.css starts with two Google Fonts @import lines per family, fo
     const families = [];
     for (const role of ['heading', 'body', 'numerals'])
       for (const fam of [id.tokens.font[role].arabic, id.tokens.font[role].latin]) if (fam && !families.includes(fam)) families.push(fam);
-    const expected = families.flatMap((fam) => {
-      const q = fam.replace(/ /g, '+');
-      return [
-        `@import url("https://fonts.googleapis.com/css2?family=${q}&display=swap");`,
-        `@import url("https://fonts.googleapis.com/css2?family=${q}:wght@700&display=swap");`
-      ];
-    });
-    const css = files['tokens.css'];
-    const lines = css.split('\n');
-    const start = lines.indexOf(' */') + 1;
-    assert.deepEqual(lines.slice(start, start + expected.length), expected, tpl.id);
-    assert.equal(lines[start + expected.length], '', `${tpl.id}: a blank line after the imports`);
-    assert.equal((css.match(/^@import /gm) || []).length, expected.length, `${tpl.id}: no other @import`);
-    assert.ok(css.search(/^@import /m) < css.search(/@font-face|:root \{/), `${tpl.id}: the imports come before every rule`);
-    assert.ok(!files['theme.css'].includes('@import url('), `${tpl.id}: theme.css has no @import`);
+    for (const f of ['tokens.css', 'theme.css']) {
+      const css = files[f];
+      assert.ok(!/^@import /m.test(css), `${tpl.id} ${f}: no @import`);
+      const blocks = [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => m[1]);
+      for (const fam of families) {
+        const own = blocks.filter((b) => b.includes(`  font-family: "${fam}";`));
+        const faces = lib.fontFaces.families[fam].faces;
+        assert.equal(own.length, faces.length, `${tpl.id} ${f}: every recorded face of ${fam}`);
+        faces.forEach((face, i) => {
+          assert.ok(own[i].includes(`src: url(${face.url}) format("woff2");`), `${tpl.id} ${f} ${fam} ${i}: file`);
+          assert.ok(own[i].includes(`unicode-range: ${face.unicodeRange};`), `${tpl.id} ${f} ${fam} ${i}: range`);
+          assert.ok(own[i].includes(`font-weight: ${face.weight};`) && !own[i].includes('size-adjust'), `${tpl.id} ${f} ${fam} ${i}`);
+        });
+      }
+      // Only the identity's families, and the adjusted ones (CHG-4) from latin and latin-ext faces only.
+      for (const b of blocks) {
+        const fam = /font-family: "([^"]+)";/.exec(b)[1];
+        if (families.includes(fam)) continue;
+        const m = / Hawiya [0-9.]+$/.exec(fam);
+        assert.ok(m && families.includes(fam.slice(0, m.index)), `${tpl.id} ${f}: unexpected family ${fam}`);
+        const latin = fam.slice(0, m.index);
+        assert.ok(
+          lib.fontFaces.families[latin].faces.some((x) => b.includes(`src: url(${x.url})`) && x.subset !== 'arabic'),
+          `${tpl.id} ${f}: the adjusted ${fam} uses Latin faces only`
+        );
+      }
+      assert.ok(css.indexOf('@font-face') < css.search(/:root \{|@theme \{/), `${tpl.id} ${f}: the rules come first`);
+    }
   }
-  // One family for both languages: two lines only.
+  // One family for both languages: its rules, no @import.
   const cairo = generate.valueFiles(libraryIdentity('pair-cairo'))['tokens.css'];
-  assert.equal((cairo.match(/^@import /gm) || []).length, 2);
+  assert.ok(!/^@import /m.test(cairo) && cairo.includes('  font-family: "Cairo";'));
 });
 
-test('[6.8] DESIGN.md says tokens.css loads the fonts and gives the same links as the style guide', () => {
+// Review of 7.2: the theme.css header and DESIGN.md say what loads a family the record lacks, also when none is recorded.
+test('[7.2] a family without recorded rules is named in theme.css and DESIGN.md; with none recorded, DESIGN.md says so', () => {
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  const mixed = JSON.parse(JSON.stringify(id));
+  mixed.tokens.font.heading = { ...mixed.tokens.font.heading, latin: 'Roboto' };
+  const theme = generate.valueFiles(mixed)['theme.css'];
+  assert.ok(theme.includes(' * The @font-face rules below load the identity fonts from the Google Fonts files, except Roboto:\n * this file does not load it; add the Google Fonts links of DESIGN.md.'));
+  assert.ok(!theme.includes('  font-family: "Roboto";') && !/^@import /m.test(theme));
+  assert.match(generate.designMd(mixed), /Except \*\*Roboto\*\*: tokens\.css loads it with `@import`, which a browser ignores unless tokens\.css comes before any other CSS, and theme\.css does not load it, so add its links below to every page\./);
+  assert.ok(generate.valueFiles(id)['theme.css'].includes(' * The @font-face rules below load every font of the identity from the Google Fonts files.\n'));
+
+  const none = JSON.parse(JSON.stringify(id));
+  for (const role of ['heading', 'body', 'numerals']) none.tokens.font[role] = { ...none.tokens.font[role], arabic: 'Foo Arabic', latin: 'Roboto' };
+  const files = generate.valueFiles(none);
+  assert.ok(files['theme.css'].includes(' * This file loads no font: add the Google Fonts links of DESIGN.md.') && !files['theme.css'].includes('@font-face {'));
+  assert.ok(files['tokens.css'].includes(' * The @import lines load Foo Arabic, Roboto from Google Fonts; a browser takes them only while this file\n * comes before any other CSS.\n */'));
+  const md = generate.designMd(none);
+  assert.ok(md.includes('Fonts load from Google Fonts. tokens.css loads them with `@import` lines, which a browser ignores unless tokens.css comes before any other CSS, and theme.css does not load them, so add these links to the `<head>` of every page:'));
+  assert.ok(!md.includes('Except **') && !md.includes('load every font of the identity themselves'));
+});
+
+// Task 7.2: a hand-edited identity that uses a recorded Arabic family as its Latin one, with its own value: the
+// adjusted family takes that family's Latin faces only, so Arabic letters are never scaled.
+test('[7.2] the adjusted family never takes arabic faces', () => {
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  id.tokens.font.body = { ...id.tokens.font.body, latin: 'Cairo', latinSizeAdjust: 1.1 };
+  const css = generate.valueFiles(id)['tokens.css'];
+  const adjusted = [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => m[1]).filter((b) => b.includes('"Cairo Hawiya 110"'));
+  const cairo = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'library', 'font-faces.json'), 'utf8')).families.Cairo.faces;
+  assert.equal(adjusted.length, cairo.filter((f) => f.subset !== 'arabic').length);
+  for (const f of cairo.filter((x) => x.subset === 'arabic')) assert.ok(!adjusted.some((b) => b.includes(f.url)), 'no arabic file');
+});
+
+test('[6.8, 7.2] DESIGN.md says tokens.css and theme.css load the fonts and gives the same links as the style guide', () => {
   const id = libraryIdentity('pair-amiri-eb-garamond');
   const md = generate.designMd(id);
   assert.ok(
     md.includes(
-      'Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:'
+      'Fonts load from the Google Fonts files. tokens.css and theme.css load every font of the identity themselves with `@font-face` rules, so linking or importing either one is enough, wherever it comes among your stylesheets; add no Google Fonts links or `@import` lines for them. Only for the font stacks without either file, add these links to the `<head>` of every page:'
     )
   );
+  assert.ok(!md.includes('Except **'), 'every family is recorded');
   const block = /```html\n([\s\S]*?)\n```/.exec(md);
   assert.ok(block, 'an html code block with the links');
   assert.deepEqual(block[1].split('\n'), [

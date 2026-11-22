@@ -333,8 +333,9 @@
   var FACE_URL = /^https:\/\/fonts\.gstatic\.com\/s\/[a-z0-9]+\/v[0-9]+\/[A-Za-z0-9_-]+\.woff2$/;
   var FACE_RANGE = /^U\+[0-9A-F]{1,6}(-[0-9A-F]{1,6})?(, U\+[0-9A-F]{1,6}(-[0-9A-F]{1,6})?)*$/;
 
-  // The recorded faces of a Latin family, or null. The build checked them; checked again here because each value is
-  // written into CSS: a woff2 file on fonts.gstatic.com, U+ ranges, and a weight of 400, 600 or 700 only.
+  // The recorded faces of a family (task 6.1; every family of the library since task 7.1), or null. The build checked
+  // them; checked again here because each value is written into CSS: a woff2 file on fonts.gstatic.com, U+ ranges,
+  // and a weight of 400, 600 or 700 only.
   function recordedFaces(family) {
     var all = deps().fontFaces;
     if (!all || !hasOwn(all, family)) return null;
@@ -347,11 +348,22 @@
     return faces;
   }
 
+  // The Latin-script faces of a family (latin-ext and latin): the size-adjusted family draws Latin text only, so a
+  // family that also has arabic faces (Cairo, in a hand-edited identity) never scales Arabic letters (task 7.2).
+  function latinFaces(family) {
+    var faces = recordedFaces(family);
+    return faces
+      ? faces.filter(function (f) {
+          return f.subset === 'latin' || f.subset === 'latin-ext';
+        })
+      : [];
+  }
+
   function adjustedFamily(ref) {
     if (!ref.latin || !ref.arabic || ref.latin === ref.arabic) return null;
     // A value that rounds to 100% (1.00001) changes nothing: no rule, as with 1.
     if (!hasOwn(ref, 'latinSizeAdjust') || pct(ref.latinSizeAdjust) === '100%') return null;
-    if (!recordedFaces(ref.latin)) return null;
+    if (!latinFaces(ref.latin).length) return null;
     return ref.latin + ' Hawiya ' + pct(ref.latinSizeAdjust).slice(0, -1);
   }
 
@@ -366,7 +378,7 @@
       seen[name] = true;
       var size = pct(ref.latinSizeAdjust);
       lines.push('/* ' + ref.latin + ' drawn at ' + size + ' so it looks the same size as ' + ref.arabic + ' (files from Google Fonts) */');
-      recordedFaces(ref.latin).forEach(function (f) {
+      latinFaces(ref.latin).forEach(function (f) {
         lines.push(
           '@font-face {',
           '  font-family: "' + name + '";',
@@ -381,6 +393,39 @@
       });
     });
     return lines;
+  }
+
+  /* ---------- Every font of the identity (task 7.2, CHG-6, R-107) ----------
+   * tokens.css and theme.css declare every family of the identity under its own name, from the recorded Google Fonts
+   * files, so they draw both families wherever they come among the stylesheets or however a bundler joins them (an
+   * @import is ignored after any rule). A family the record lacks (a hand-edited identity.json) keeps its @import
+   * lines at the top of tokens.css (unrecordedFamilies, fontImports). */
+  function familyFaceRules(t) {
+    var lines = [];
+    fontFamilies(t).forEach(function (fam) {
+      var faces = recordedFaces(fam);
+      if (!faces) return;
+      lines.push('/* ' + fam + ' (files from Google Fonts) */');
+      faces.forEach(function (f) {
+        lines.push(
+          '@font-face {',
+          '  font-family: "' + fam + '";', // familyName in the schema allows only letters, digits, spaces and hyphens
+          '  font-style: normal;',
+          '  font-weight: ' + f.weight + ';',
+          '  font-display: swap;',
+          '  src: url(' + f.url + ') format("woff2");',
+          '  unicode-range: ' + f.unicodeRange + ';',
+          '}'
+        );
+      });
+    });
+    return lines;
+  }
+
+  function unrecordedFamilies(t) {
+    return fontFamilies(t).filter(function (fam) {
+      return !recordedFaces(fam);
+    });
   }
 
   function cssFont(ref) {
@@ -497,11 +542,25 @@
       ' * Hawiya design tokens: CSS variables for the light and dark modes.',
       ' * ' + GENERATED,
       ' * Light is the default. Dark applies when the system prefers dark (unless <html data-theme="light">)',
-      ' * and always with <html data-theme="dark">. Use logical properties (inline-start / inline-end) for layout.',
-      ' * The @import lines load the identity fonts from Google Fonts, so linking this file alone is enough.',
-      ' */'
+      ' * and always with <html data-theme="dark">. Use logical properties (inline-start / inline-end) for layout.'
     ];
-    lines = lines.concat(fontImports(t), ['']);
+    // Task 7.2 (R-107): @font-face rules for every recorded family; @import only for a family the record lacks (CSS
+    // takes it only before every other rule). The header says which, so an agent knows what this file loads.
+    var imports = fontImports(t);
+    var own = familyFaceRules(t);
+    var unrecorded = unrecordedFamilies(t);
+    if (own.length && !imports.length)
+      lines.push(
+        ' * The @font-face rules below load every font of the identity from the Google Fonts files, so linking or',
+        ' * importing this file alone is enough, wherever it comes among the stylesheets.'
+      );
+    if (imports.length) {
+      lines.push(' * The @import lines load ' + unrecorded.join(', ') + ' from Google Fonts; a browser takes them only while this file');
+      lines.push(' * comes before any other CSS.' + (own.length ? ' The @font-face rules below load the other fonts from the Google Fonts files.' : ''));
+    }
+    lines.push(' */');
+    if (imports.length) lines = lines.concat(imports, ['']);
+    if (own.length) lines = lines.concat(own, ['']);
     var faces = fontFaceRules(t);
     if (faces.length) lines = lines.concat(faces, ['']);
     lines.push(':root {');
@@ -547,8 +606,16 @@
       ' * Colors and shadows switch to the dark mode with the system setting (unless <html data-theme="light">)',
       ' * or with <html data-theme="dark">; utilities such as bg-primary and shadow-md follow on their own,',
       ' * and the dark: variant below follows the same rule (it replaces any other dark: variant of the project).',
-      ' */'
     ];
+    // Task 7.2 (R-107): the rules of every recorded family; the header names a family the record lacks (no rule here,
+    // and Tailwind would drop an @import), so an agent adds its links (DESIGN.md).
+    var own = familyFaceRules(t);
+    var missing = unrecordedFamilies(t);
+    if (own.length && !missing.length) lines.push(' * The @font-face rules below load every font of the identity from the Google Fonts files.');
+    else if (own.length) lines.push(' * The @font-face rules below load the identity fonts from the Google Fonts files, except ' + missing.join(', ') + ':', ' * this file does not load ' + (missing.length > 1 ? 'them' : 'it') + '; add the Google Fonts links of DESIGN.md.');
+    else lines.push(' * This file loads no font: add the Google Fonts links of DESIGN.md.');
+    lines.push(' */');
+    if (own.length) lines = lines.concat(own, ['']);
     var faces = fontFaceRules(t);
     if (faces.length) lines = lines.concat(faces, ['']);
     lines.push('@theme {');
@@ -923,8 +990,31 @@
       b.push('Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family (for example `size-adjust: ' + pct(t.font[manual[0]].latinSizeAdjust) + ';` when self-hosting the font or copying the Google Fonts `@font-face` rules). It scales only that family\'s letters wherever they appear, so it needs no extra markup and never compounds. If two roles use the same Latin family with different values, give each its own `@font-face` family name.');
     }
     b.push('');
-    // Task 6.8 (CHG-5, R-106): the exact links, and which file loads what, so no agent leaves a family unloaded.
-    b.push('Fonts load from Google Fonts. tokens.css loads every font of the identity itself (its first lines are `@import` rules), so linking tokens.css with `<link>` (or importing it before any other CSS) is enough. With theme.css (Tailwind), or the font stacks without tokens.css, add these links to the `<head>` of every page:');
+    // Task 6.8 (CHG-5), task 7.2 (CHG-6, R-106): which file loads what, and the exact links, so no agent leaves a
+    // family unloaded.
+    var unrecorded = unrecordedFamilies(t);
+    var bold = function (list) {
+      return list
+        .map(function (f) {
+          return '**' + f + '**';
+        })
+        .join(' and ');
+    };
+    if (unrecorded.length === fontFamilies(t).length)
+      // No family has recorded rules (a hand-edited identity): only the @import lines of tokens.css, as in CHG-5.
+      b.push(
+        'Fonts load from Google Fonts. tokens.css loads them with `@import` lines, which a browser ignores unless tokens.css comes before any other CSS, and theme.css does not load them, so add these links to the `<head>` of every page:'
+      );
+    else
+      b.push(
+        'Fonts load from the Google Fonts files. tokens.css and theme.css load every font of the identity themselves with `@font-face` rules, so linking or importing either one is enough, wherever it comes among your stylesheets; add no Google Fonts links or `@import` lines for them.' +
+          (unrecorded.length
+            ? ' Except ' +
+              bold(unrecorded) +
+              ': tokens.css loads ' + (unrecorded.length > 1 ? 'them' : 'it') + ' with `@import`, which a browser ignores unless tokens.css comes before any other CSS, and theme.css does not load ' + (unrecorded.length > 1 ? 'them' : 'it') + ', so add ' + (unrecorded.length > 1 ? 'their' : 'its') + ' links below to every page.'
+            : '') +
+          ' Only for the font stacks without either file, add these links to the `<head>` of every page:'
+      );
     b.push('');
     b.push('```html');
     fontLinks(t).forEach(function (l) {
@@ -1089,9 +1179,9 @@
 
   // Two Google Fonts stylesheets per family: the regular weight always exists; the bold one may not, and its failure
   // is harmless. One request for both weights would fail whole when a family lacks the bold one.
-  function fontUrls(t) {
+  function fontUrls(t, families) {
     var urls = [];
-    fontFamilies(t).forEach(function (fam) {
+    (families || fontFamilies(t)).forEach(function (fam) {
       var qf = fam.replace(/ /g, '+'); // familyName in the schema allows only letters, digits, spaces and hyphens
       urls.push('https://fonts.googleapis.com/css2?family=' + qf + '&display=swap');
       urls.push('https://fonts.googleapis.com/css2?family=' + qf + ':wght@700&display=swap');
@@ -1105,11 +1195,11 @@
     });
   }
 
-  // Task 6.8 (CHG-5, R-105): tokens.css loads the fonts itself, so linking it alone draws both families. CSS takes an
-  // @import only before every other rule, so these lines come right after the header comment. Not in theme.css:
-  // Tailwind places its content after its own rules, where an @import is ignored.
+  // Task 6.8 (CHG-5), task 7.2 (CHG-6): the @import lines of the families the record lacks only (the others have their
+  // @font-face rules, familyFaceRules). CSS takes an @import only before every other rule, so they come right after
+  // the header comment of tokens.css. Not in theme.css: Tailwind places its content after its own rules.
   function fontImports(t) {
-    return fontUrls(t).map(function (u) {
+    return fontUrls(t, unrecordedFamilies(t)).map(function (u) {
       return '@import url("' + u + '");';
     });
   }

@@ -368,8 +368,11 @@ test('the preview and the font cards use the exported @font-face rules; nothing 
     () => window.Hawiya.generate.valueFiles(window.Hawiya.state.identity())['tokens.css']
   );
   const declared = () => page.evaluate(() => (document.getElementById('hawiya-font-faces') || {}).textContent || '');
-  expect(rules(exported)).toHaveLength(6);
-  for (const r of rules(exported)) expect(await declared()).toContain(r);
+  // The adjusted family's rules (task 7.2: tokens.css also has every family under its own name, which the page loads
+  // through its own Google Fonts links instead).
+  const adjusted = rules(exported).filter((r) => r.includes('"EB Garamond Hawiya 135"'));
+  expect(adjusted).toHaveLength(6);
+  for (const r of adjusted) expect(await declared()).toContain(r);
   expect(rules(await declared())).toHaveLength(6); // declared once, however often the preview renders
 
   // The preview (in its shadow root) uses that family, then the plain one, then Arabic.
@@ -471,7 +474,7 @@ test('a page linking only the exported tokens.css draws Amiri and the adjusted E
   expect(ar.Amiri).toBe('مرحبا بكم في هوية'.replace(/ /g, '').length);
   expect(Object.keys(ar).filter((f) => f !== 'Amiri' && f !== 'EB Garamond')).toEqual([]);
   expect(Object.keys(await drawn('#en'))).toEqual(['EB Garamond']);
-  // Loaded by the @import lines of tokens.css, not by a copy installed on the machine.
+  // Loaded by the @font-face rules of tokens.css (task 7.2; @import lines before it), not by an installed copy.
   const loaded = await page.evaluate(() =>
     [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family.replace(/"/g, ''))
   );
@@ -483,4 +486,78 @@ test('a page linking only the exported tokens.css draws Amiri and the adjusted E
       document.getElementById('plain').getBoundingClientRect().width
   );
   expect(ratio).toBeCloseTo(1.35, 2);
+});
+
+// Task 7.2 (CHG-6, AC-30): tokens.css and theme.css declare every font with @font-face rules, so the Arabic family is
+// drawn wherever the file comes: (a) linked after another stylesheet, (b) its text joined after other rules in one
+// sheet, as a bundler does (an @import would be ignored there), (c) the rules of theme.css. No Google Fonts link.
+test('tokens.css after other CSS, joined after other rules, and theme.css all draw Amiri (needs internet)', async ({
+  page
+}) => {
+  const fs = require('fs');
+  await page.goto(PAGE);
+  await page.locator('#identity-list [data-identity="classic-naskh"]').click();
+  const files = await page.evaluate(() => window.Hawiya.generate.valueFiles(window.Hawiya.state.identity()));
+  expect(files['tokens.css']).not.toMatch(/^@import /m);
+  const dir = test.info().outputPath('order');
+  fs.mkdirSync(path.join(dir, 'design'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'design', 'tokens.css'), files['tokens.css']);
+  fs.writeFileSync(path.join(dir, 'design', 'theme.css'), files['theme.css']);
+  const other = 'body { margin: 0; color: #111 }\np { margin: 0 0 8px }\n';
+  fs.writeFileSync(path.join(dir, 'app.css'), other);
+  fs.writeFileSync(path.join(dir, 'bundle.css'), other + files['tokens.css']);
+  const body =
+    '<h1 id="ar">مرحبا بكم في هوية</h1><p><span id="en" lang="en">Hawiya Design</span></p>' +
+    '<p><span id="plain" lang="en" style="font-family:\'EB Garamond\'">Hawiya Design</span></p>';
+  const tokenStyle =
+    '<style>body{font-family:var(--font-body)} h1{font-family:var(--font-heading);font-weight:700} span{font-size:40px}</style>';
+  // theme.css is for Tailwind: its @theme block is not plain CSS, so the page names the families itself.
+  const themeStyle =
+    '<style>body,h1{font-family:"EB Garamond Hawiya 135","EB Garamond","Amiri",serif} h1{font-weight:700} span{font-size:40px}</style>';
+  const pages = {
+    'after-another':
+      '<link rel="stylesheet" href="app.css"><link rel="stylesheet" href="design/tokens.css">' + tokenStyle,
+    joined: '<link rel="stylesheet" href="bundle.css">' + tokenStyle,
+    theme: '<link rel="stylesheet" href="design/theme.css">' + themeStyle
+  };
+  for (const [name, head] of Object.entries(pages)) {
+    const html =
+      '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">' +
+      head +
+      '</head><body>' +
+      body +
+      '</body></html>';
+    expect(html).not.toContain('googleapis');
+    fs.writeFileSync(path.join(dir, `${name}.html`), html);
+    await page.goto(pathToFileURL(path.join(dir, `${name}.html`)).href);
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await document.fonts.load('700 32px Amiri', 'مرحبا');
+      await document.fonts.load('40px "EB Garamond Hawiya 135"', 'Hawiya');
+      await document.fonts.load('40px "EB Garamond"', 'Hawiya');
+    });
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send('DOM.enable');
+    await cdp.send('CSS.enable');
+    const { root } = await cdp.send('DOM.getDocument');
+    const drawn = async (selector) => {
+      const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+      const { fonts } = await cdp.send('CSS.getPlatformFontsForNode', { nodeId });
+      return Object.fromEntries(fonts.map((f) => [f.familyName, f.glyphCount]));
+    };
+    const ar = await drawn('#ar');
+    expect(ar.Amiri, `${name}: every Arabic letter in Amiri`).toBe('مرحبا بكم في هوية'.replace(/ /g, '').length);
+    expect(
+      Object.keys(ar).filter((f) => f !== 'Amiri' && f !== 'EB Garamond'),
+      `${name}: no system font`
+    ).toEqual([]);
+    expect(Object.keys(await drawn('#en')), name).toEqual(['EB Garamond']);
+    const ratio = await page.evaluate(
+      () =>
+        document.getElementById('en').getBoundingClientRect().width /
+        document.getElementById('plain').getBoundingClientRect().width
+    );
+    expect(ratio, `${name}: the Latin text at 1.35`).toBeCloseTo(1.35, 2);
+    await cdp.detach();
+  }
 });

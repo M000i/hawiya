@@ -145,12 +145,18 @@ const fontFaces = (css) =>
     family: (/font-family: "([^"]+)";/.exec(m[1]) || [])[1],
     sizeAdjust: (/size-adjust: ([^;]+);/.exec(m[1]) || [])[1]
   }));
+// Task 7.2 (CHG-6): tokens.css and theme.css also declare every family under its own name, never with size-adjust.
 function assertAdjusted(files, latin, arabic, percent) {
   const name = `${latin} Hawiya ${percent.replace('%', '')}`;
   for (const f of ['tokens.css', 'theme.css', 'style-guide.html']) {
     const faces = fontFaces(files[f]);
-    assert.ok(faces.length >= 2, `${f}: @font-face rules`);
-    for (const face of faces) assert.deepEqual(face, { family: name, sizeAdjust: percent }, f);
+    const adjusted = faces.filter((face) => face.family === name);
+    assert.ok(adjusted.length >= 2, `${f}: @font-face rules of the adjusted family`);
+    for (const face of adjusted) assert.deepEqual(face, { family: name, sizeAdjust: percent }, f);
+    for (const face of faces.filter((x) => x.family !== name)) {
+      assert.ok([latin, arabic].includes(face.family), `${f}: ${face.family}`);
+      assert.equal(face.sizeAdjust, undefined, `${f}: ${face.family} under its own name has no size-adjust`);
+    }
   }
   assert.match(files['tokens.css'], new RegExp(`--font-body: "${name}", "${latin}", "${arabic}", `));
 }
@@ -163,40 +169,68 @@ test('G-08 size adjustment: «نوتو نسخ مع فراونسيز» (0.9) → 
   assertAdjusted(fontExport('pair-noto-naskh-arabic-fraunces'), 'Fraunces', 'Noto Naskh Arabic', '90%');
 });
 
-test('G-09 size adjustment: «القاهرة» (1) → no @font-face rule', () => {
+// G-09 reworded in CHG-6 (task 7.2): no size-adjusted rule; the rules of «Cairo» under its own name do not count.
+test('G-09 size adjustment: «القاهرة» (1) → no size-adjusted @font-face rule', () => {
   const files = fontExport('pair-cairo');
   for (const f of ['tokens.css', 'theme.css', 'style-guide.html']) {
-    assert.deepEqual(fontFaces(files[f]), [], f);
-    assert.ok(!files[f].includes(' Hawiya 1'), `${f}: no adjusted family name`);
+    const faces = fontFaces(files[f]);
+    assert.deepEqual(faces.filter((x) => x.family !== 'Cairo' || x.sizeAdjust !== undefined), [], f);
+    assert.ok(!files[f].includes(' Hawiya 1') && !/(^|[\s;{])size-adjust:/m.test(files[f]), `${f}: no adjusted family`);
   }
+  assert.ok(fontFaces(files['tokens.css']).length > 0, 'tokens.css: the rules of Cairo under its own name (R-107)');
 });
 
 test('G-10 size adjustment: «الأميري مع إي بي غاراموند» with its own value 1.1 → size-adjust: 110%', () => {
   assertAdjusted(fontExport('pair-amiri-eb-garamond', { 'latin-size-adjust': 1.1 }), 'EB Garamond', 'Amiri', '110%');
 });
 
-// G-11 (CHG-5, task 6.8, R-105): tokens.css loads every font of the identity itself, so linking it alone is enough:
-// right after the header comment, two Google Fonts @import lines per family (regular, then bold), before any rule.
-test('G-11 font imports: «الأميري مع إي بي غاراموند» → tokens.css starts with the Amiri and EB Garamond @import lines', () => {
-  const files = fontExport('pair-amiri-eb-garamond');
-  const lines = files['tokens.css'].split('\n');
-  const afterHeader = lines.indexOf(' */') + 1;
-  assert.ok(afterHeader > 0, 'tokens.css: header comment');
-  assert.deepEqual(lines.slice(afterHeader, afterHeader + 4), [
-    '@import url("https://fonts.googleapis.com/css2?family=Amiri&display=swap");',
-    '@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap");',
-    '@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");',
-    '@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap");'
-  ]);
-  // Nothing but comments and blank lines before the last @import (CSS ignores an @import placed after a rule).
-  const lastImport = lines.map((l) => l.startsWith('@import ')).lastIndexOf(true);
-  const before = lines
-    .slice(0, lastImport)
-    .join('\n')
-    .replace(/\/\*[\s\S]*?\*\//g, '');
+// G-12 (CHG-6, task 7.2, R-107; replaces G-11): tokens.css declares every font of the identity itself with
+// @font-face rules from the recorded Google Fonts files, so it draws both families wherever it comes among the
+// stylesheets: no @import at all. «Classic naskh» (pair-amiri-eb-garamond).
+test('G-12 identity font faces: «كلاسيكي نسخي» → tokens.css has the recorded Amiri and EB Garamond rules, no @import', () => {
+  const path = require('node:path');
+  const build = require('../tools/build.js');
+  const lib = build.load(path.join(__dirname, '..', 'library'));
+  const data = build.select(lib).data;
+  const resolve = require('../picker/js/core/resolve.js');
+  const bundle = require('../picker/js/core/bundle.js');
+  const naskh = data.identities.find((i) => i.id === 'classic-naskh');
+  assert.equal(naskh.templates.fonts, 'pair-amiri-eb-garamond');
+  const selections = {};
+  for (const [element, template] of Object.entries(naskh.templates)) selections[element] = { template };
+  const css = bundle.build(resolve.resolve({ name: 'Golden', selections }, data)).files['tokens.css'];
+  assert.ok(!/^@import /m.test(css), 'no @import line');
+  // Every @font-face block: family, weight, src file, range, size-adjust.
+  const blocks = [...css.matchAll(/@font-face \{([^}]*)\}/g)].map((m) => ({
+    family: (/font-family: "([^"]+)";/.exec(m[1]) || [])[1],
+    weight: Number((/font-weight: (\d+);/.exec(m[1]) || [])[1]),
+    url: (/src: url\(([^)]+)\) format\("woff2"\);/.exec(m[1]) || [])[1],
+    range: (/unicode-range: ([^;]+);/.exec(m[1]) || [])[1],
+    sizeAdjust: (/size-adjust: ([^;]+);/.exec(m[1]) || [])[1]
+  }));
+  const record = lib.fontFaces.families;
+  const amiri = blocks.filter((b) => b.family === 'Amiri');
+  assert.deepEqual([...new Set(amiri.map((b) => b.weight))], [400, 700], 'Amiri 400 and 700, no 600');
+  for (const w of [400, 700]) {
+    const arabic = record.Amiri.faces.find((f) => f.weight === w && f.subset === 'arabic');
+    assert.ok(
+      amiri.some((b) => b.weight === w && b.url === arabic.url && b.range === arabic.unicodeRange && !b.sizeAdjust),
+      `Amiri ${w}: the recorded arabic file and range, exactly`
+    );
+  }
   assert.deepEqual(
-    before.split('\n').filter((l) => l.trim() && !l.startsWith('@import ')),
-    []
+    amiri.map((b) => [b.weight, b.url, b.range]),
+    record.Amiri.faces.map((f) => [f.weight, f.url, f.unicodeRange]),
+    'every recorded Amiri face, in the recorded order'
   );
-  assert.ok(!files['theme.css'].includes('@import url('), 'theme.css: no @import (Tailwind places it after its rules)');
+  const eb = blocks.filter((b) => b.family === 'EB Garamond');
+  assert.deepEqual([...new Set(eb.map((b) => b.weight))], [400, 600, 700], 'EB Garamond under its own name');
+  assert.ok(eb.every((b) => !b.sizeAdjust));
+  const adjusted = blocks.filter((b) => b.family === 'EB Garamond Hawiya 135');
+  assert.ok(adjusted.length >= 6 && adjusted.every((b) => b.sizeAdjust === '135%'), 'the adjusted family stays (G-07)');
+  assert.deepEqual(
+    blocks.map((b) => b.family).filter((f) => !['Amiri', 'EB Garamond', 'EB Garamond Hawiya 135'].includes(f)),
+    [],
+    'no other family'
+  );
 });
