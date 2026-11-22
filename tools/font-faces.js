@@ -12,13 +12,16 @@
  * descriptor of the Latin family's @font-face rules, and a Google Fonts <link> cannot carry one. So the rules are
  * recorded once here, and the generator writes them into the exported CSS with the value (task 6.2, R-103).
  *
- * What it records: for the Latin family of every fonts template that pairs two different families (drafts too, so a
- * pair is ready before its review), the normal-style faces of the subsets latin-ext and latin, for each of the
- * weights 400, 600 and 700 that Google Fonts has (it answers 400 Bad Request for a weight a family lacks). Each face is
+ * What it records: for every family a fonts template names (task 7.1, R-108: Arabic, Latin, heading and numerals
+ * families; drafts too, so a template is ready before its review), the normal-style faces of the subsets arabic,
+ * latin-ext and latin that Google serves for it, for each of the weights 400, 600 and 700 that Google Fonts has (it
+ * answers 400 Bad Request for a weight a family lacks). The generator writes them into the exported CSS: the Latin
+ * family again with size-adjust (task 6.2), and every family under its own name (task 7.2, R-107). Each face is
  * { weight, subset, unicodeRange, url }. The CSS is asked for with a current Chrome user agent, so Google answers with
  * woff2 files. Same answers from Google Fonts -> same bytes (no clock, families sorted, faces by weight then subset).
- * Anything unexpected (a failed request, a face without woff2, a file outside fonts.gstatic.com, a family without 400
- * or without the latin subset) stops the run and nothing is written; the result must pass the build's own schema.
+ * Anything unexpected (a failed request, a face without woff2, a file outside fonts.gstatic.com, a family without 400,
+ * without the arabic and the latin subset, or with other subsets at another weight) stops the run and nothing is
+ * written; the result must pass the build's own schema.
  */
 
 const fs = require('node:fs');
@@ -32,11 +35,11 @@ const USER_AGENT =
 
 class FontFacesError extends Error {}
 
-// The Latin families of a library folder that need @font-face rules, sorted.
+// The families of a library folder that need @font-face rules: every family a fonts template names, sorted.
 function families(libraryDir) {
   // The record being replaced is not read: a bad or outdated one must not stop its own repair.
   const lib = build.load(libraryDir, { fontFaces: false });
-  return [...new Set(lib.templates.fonts.map(build.adjustableLatin).filter(Boolean))].sort();
+  return [...new Set(lib.templates.fonts.flatMap(build.templateFamilies))].sort();
 }
 
 function requestUrl(family, weight) {
@@ -46,6 +49,8 @@ function requestUrl(family, weight) {
 // One Google Fonts CSS answer -> the faces of `family` at `weight` for the recorded subsets. Every @font-face block
 // must follow a /* subset */ comment and name its style, as Google writes them; other subsets and styles are left
 // out. A block without its comment or style stops the run, so a change in Google's format never drops a face unseen.
+// One exception (task 7.1): a family with emoji or symbols (Playpen Sans Arabic) also gets numbered slices without a
+// comment, files named "<id>.<n>.woff2"; they draw pictographs, not Arabic or Latin text, and are left out by name.
 function parse(css, family, weight) {
   const faces = [];
   const re = /\/\*\s*([a-z0-9-]+)\s*\*\/\s*@font-face\s*\{([^}]*)\}/g;
@@ -70,9 +75,13 @@ function parse(css, family, weight) {
     faces.push({ weight, subset, unicodeRange: decls['unicode-range'] || '', url: src[1] });
   }
   if (!blocks) throw new FontFacesError(`${family} ${weight}: the answer holds no @font-face rule`);
-  const all = (css.match(/@font-face/g) || []).length;
-  if (all !== blocks)
-    throw new FontFacesError(`${family} ${weight}: ${all - blocks} @font-face rule(s) without a /* subset */ comment`);
+  // What is left without the commented blocks: only numbered slices may remain.
+  const rest = css.replace(re, '');
+  const loose = (rest.match(/@font-face\s*\{[^}]*\}?/g) || []).filter(
+    (b) => !/src:\s*url\([^)\s]+\.[0-9]+\.woff2\) format\('woff2'\);/.test(b)
+  ).length;
+  if (loose)
+    throw new FontFacesError(`${family} ${weight}: ${loose} @font-face rule(s) without a /* subset */ comment`);
   return faces;
 }
 
@@ -150,7 +159,7 @@ async function main(argv) {
   try {
     const r = await run(opts);
     process.stdout.write(
-      `hawiya fonts: wrote ${path.relative(process.cwd(), r.file) || r.file} (${r.families} Latin families, ${r.faces} faces)\n`
+      `hawiya fonts: wrote ${path.relative(process.cwd(), r.file) || r.file} (${r.families} families, ${r.faces} faces)\n`
     );
     return 0;
   } catch (e) {

@@ -430,12 +430,13 @@ const CASES = [
       }),
     /"CC0-1\.0" has no text/
   ],
-  // Task 6.1 (R-104): the Latin family of every reviewed two-family pair has its @font-face rules.
+  // Task 6.1 (R-104), task 7.1 (R-108): every family a reviewed fonts template names has its @font-face rules
+  // (Marhey: the heading Arabic family of one template only).
   [
     'font-faces',
-    'pair-noto-naskh-arabic-fraunces',
-    (c) => c.edit('font-faces.json', (v) => void delete v.families.Fraunces),
-    /the Latin family "Fraunces" has no @font-face rules \(run npm run fonts\)/
+    'pair-ar-marhey-zain',
+    (c) => c.edit('font-faces.json', (v) => void delete v.families.Marhey),
+    /the family "Marhey" has no @font-face rules \(run npm run fonts\)/
   ],
   // Task 5.1 (B-078): every font a template names is listed by one of its sources in sources.json.
   [
@@ -1481,8 +1482,9 @@ test('sources.json: a fonts list that is empty, names a font twice, or is not a 
   }
 });
 
-// Task 6.1 (R-104): font-faces.json is held to its strict shape (its values reach the exported CSS), may not carry a
-// family no pair uses, and must exist once a reviewed pair needs it. A draft pair's family is allowed but not required.
+// Task 6.1 (R-104), task 7.1 (R-108): font-faces.json is held to its strict shape (its values reach the exported CSS),
+// may not carry a family no template names, must exist once a reviewed template needs it, and gives an Arabic family
+// its arabic faces and a Latin family its latin ones. A draft template's family is allowed but not required.
 test('font-faces.json: shape, unused families, a missing file, and drafts', () => {
   const cases = [
     [
@@ -1518,13 +1520,52 @@ test('font-faces.json: shape, unused families, a missing file, and drafts', () =
     [
       'a family no pair uses',
       (c) => c.edit('font-faces.json', (v) => void (v.families['Old Sans'] = v.families.Lora)),
-      [null, /^"Old Sans" is paired by no fonts template; remove it \(run npm run fonts\)$/]
+      [null, /^"Old Sans" is named by no fonts template; remove it \(run npm run fonts\)$/]
     ],
     [
       'no file',
       (c) => fs.rmSync(path.join(c.lib, 'font-faces.json')),
       [null, /^missing \(run npm run fonts\)$/],
-      ['pair-amiri-eb-garamond', /the Latin family "EB Garamond" has no @font-face rules/]
+      ['pair-ar-marhey-zain', /the family "Marhey" has no @font-face rules/]
+    ],
+    [
+      'an Arabic family without its arabic faces (a sound shape: its latin ones remain)',
+      (c) =>
+        c.edit(
+          'font-faces.json',
+          (v) => void (v.families.Marhey.faces = v.families.Marhey.faces.filter((f) => f.subset !== 'arabic'))
+        ),
+      [
+        'pair-ar-marhey-zain',
+        /^the family "Marhey" has no arabic @font-face rules at weight 400, and a template uses it for Arabic text$/
+      ]
+    ],
+    [
+      'a Latin family without its latin faces (a sound shape: arabic ones instead)',
+      (c) =>
+        c.edit(
+          'font-faces.json',
+          (v) =>
+            void (v.families.Inter.faces = v.families.Inter.faces
+              .filter((f) => f.subset === 'latin')
+              .map((f) => ({ ...f, subset: 'arabic' })))
+        ),
+      [
+        'font-inter',
+        /^the family "Inter" has no latin @font-face rules at weight 400, and a template uses it for Latin text$/
+      ]
+    ],
+    [
+      'Google drops a subset at one weight',
+      (c) =>
+        c.edit(
+          'font-faces.json',
+          (v) =>
+            void (v.families.Amiri.faces = v.families.Amiri.faces.filter(
+              (f) => !(f.weight === 700 && f.subset === 'arabic')
+            ))
+        ),
+      [null, /^Amiri: weight 700 has no face for the arabic subset$/]
     ]
   ];
   for (const [what, mutate, ...expected] of cases) {
@@ -1543,21 +1584,17 @@ test('font-faces.json: shape, unused families, a missing file, and drafts', () =
     }
   }
 
-  // A draft pair: its family may be recorded (ready before the review) and is not required.
+  // A draft template: its family may be recorded (ready before the review) and is not required.
   const c = copy();
   try {
-    c.edit(
-      'elements/fonts.json',
-      (l) => void (c.find(l, 'pair-noto-naskh-arabic-fraunces').status = { state: 'draft' })
-    );
-    c.edit('identities/classic-naskh.json', (v) => void (v.templates.fonts = 'pair-amiri-eb-garamond'));
+    c.edit('elements/fonts.json', (l) => void (c.find(l, 'pair-ar-marhey-zain').status = { state: 'draft' }));
     build.build({ libraryDir: c.lib, outDir: c.data });
     assert.deepEqual(
       c.run().problems.filter((p) => p.kind === 'font-faces'),
       [],
       'recorded draft family: no problem'
     );
-    c.edit('font-faces.json', (v) => void delete v.families.Fraunces);
+    c.edit('font-faces.json', (v) => void delete v.families.Marhey);
     build.build({ libraryDir: c.lib, outDir: c.data });
     assert.deepEqual(
       c.run().problems.filter((p) => p.kind === 'font-faces'),
@@ -1572,12 +1609,12 @@ test('font-faces.json: shape, unused families, a missing file, and drafts', () =
 test('the command line names the family whose rules are missing', () => {
   const c = copy();
   try {
-    c.edit('font-faces.json', (v) => void delete v.families['EB Garamond']);
+    c.edit('font-faces.json', (v) => void delete v.families.Marhey);
     const out = spawnSync(process.execPath, [TOOL, ...c.args], { encoding: 'utf8' });
     assert.equal(out.status, 1);
     assert.match(
       out.stderr,
-      /✗ \[font-faces\] font-faces\.json › pair-amiri-eb-garamond: the Latin family "EB Garamond" has no @font-face rules/
+      /✗ \[font-faces\] font-faces\.json › pair-ar-marhey-zain: the family "Marhey" has no @font-face rules/
     );
   } finally {
     clean(c);

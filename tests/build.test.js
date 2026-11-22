@@ -357,24 +357,25 @@ test('a real browser loads the data from file:// (page opened as a file)', async
   }
 });
 
-// Task 6.1 (R-104): font-faces.js carries the record's @font-face rules for the Latin families the published fonts
-// templates pair with an Arabic family, nothing else; a record that breaks its strict shape stops the build.
-test('font-faces.js holds the rules of the Latin families the published pairs use; a bad record stops the build', () => {
+// Task 6.1 (R-104), task 7.1 (R-108): font-faces.js carries the record's @font-face rules for every family the
+// published fonts templates name, nothing else; a record that breaks its strict shape stops the build.
+test('font-faces.js holds the rules of the families the published templates name; a bad record stops the build', () => {
   const face = (weight, subset) => ({
     weight,
     subset,
-    unicodeRange: subset === 'latin' ? 'U+0000-00FF, U+2000-206F' : 'U+0100-02BA',
+    unicodeRange: subset === 'latin' ? 'U+0000-00FF, U+2000-206F' : subset === 'arabic' ? 'U+0600-06FF' : 'U+0100-02BA',
     url: `https://fonts.gstatic.com/s/test/v1/${subset}${weight}.woff2`
   });
   const entry = {
     weights: [400, 700],
     faces: [face(400, 'latin-ext'), face(400, 'latin'), face(700, 'latin-ext'), face(700, 'latin')]
   };
+  const arabicEntry = { weights: [400], faces: [face(400, 'arabic'), face(400, 'latin')] };
   const record = {
     source: 'https://fonts.googleapis.com/css2',
     weights: [400, 600, 700],
-    subsets: ['latin-ext', 'latin'],
-    families: { 'IBM Plex Sans': entry, 'Unused Sans': entry }
+    subsets: ['arabic', 'latin-ext', 'latin'],
+    families: { 'IBM Plex Sans': entry, 'IBM Plex Sans Arabic': arabicEntry, 'Unused Sans': entry }
   };
 
   // No record: an empty object (npm run check is the one that requires it).
@@ -392,10 +393,14 @@ test('font-faces.js holds the rules of the Latin families the published pairs us
   out = tmp();
   const { summary } = builder.build({ libraryDir: lib, outDir: out });
   const data = loadData(out);
-  assert.deepEqual(plain(data.fontFaces), { 'IBM Plex Sans': entry }, 'only the family a published pair uses');
+  assert.deepEqual(
+    plain(data.fontFaces),
+    { 'IBM Plex Sans': entry, 'IBM Plex Sans Arabic': arabicEntry },
+    'the Arabic and the Latin family of the published template, not the unused one'
+  );
   assert.ok(Object.isFrozen(data.fontFaces['IBM Plex Sans'].faces[0]));
-  assert.equal(summary.fontFaces, 1);
-  assert.match(builder.report(summary, { libraryDir: lib, outDir: out }), /font faces\s+1 Latin families/);
+  assert.equal(summary.fontFaces, 2);
+  assert.match(builder.report(summary, { libraryDir: lib, outDir: out }), /font faces\s+2 families with @font-face rules/);
 
   const bad = [
     ['a quote in a range', (r) => (r.families['IBM Plex Sans'].faces[0].unicodeRange = "U+0000-00FF; } body { color: red")],
@@ -404,9 +409,16 @@ test('font-faces.js holds the rules of the Latin families the published pairs us
     ['no 400', (r) => (r.families['IBM Plex Sans'] = { weights: [700], faces: [face(700, 'latin')] })],
     ['a weight without latin', (r) => (r.families['IBM Plex Sans'] = { weights: [400, 700], faces: [face(400, 'latin'), face(700, 'latin-ext')] })],
     ['a face twice', (r) => r.families['IBM Plex Sans'].faces.push(face(400, 'latin'))],
-    ['a weight without latin-ext', (r) => (r.families['IBM Plex Sans'].faces = r.families['IBM Plex Sans'].faces.filter((f) => f.subset === 'latin'))],
+    ['700 without the latin-ext that 400 has', (r) => (r.families['IBM Plex Sans'].faces = r.families['IBM Plex Sans'].faces.filter((f) => !(f.weight === 700 && f.subset === 'latin-ext')))],
+    ['700 with an arabic subset that 400 lacks', (r) => r.families['IBM Plex Sans'].faces.push(face(700, 'arabic'))],
+    ['400 with neither arabic nor latin', (r) => (r.families['Unused Sans'] = { weights: [400], faces: [face(400, 'latin-ext')] })],
+    ['an unknown subset', (r) => r.families['IBM Plex Sans'].faces.push({ ...face(400, 'latin'), subset: 'greek' })],
     ['an unlisted weight', (r) => r.families['IBM Plex Sans'].faces.push(face(600, 'latin'))]
   ];
+  // Valid shapes Google serves: a family without latin-ext (Tajawal), an Arabic family without 600 (Amiri).
+  const fine = plain(record);
+  fine.families['IBM Plex Sans'].faces = fine.families['IBM Plex Sans'].faces.filter((f) => f.subset === 'latin');
+  assert.deepEqual(builder.fontFacesProblems(fine), []);
   for (const [what, change] of bad) {
     const r = plain(record);
     change(r);
@@ -415,15 +427,15 @@ test('font-faces.js holds the rules of the Latin families the published pairs us
   }
 });
 
-test('the real library: font-faces.js has every Latin family the published pairs use', () => {
+test('the real library: font-faces.js has every family the published fonts templates name', () => {
   const out = tmp();
   builder.build({ libraryDir: path.join(ROOT, 'library'), outDir: out });
   const data = loadData(out);
-  const pairs = new Set(data.templates.fonts.map(builder.adjustableLatin).filter(Boolean));
-  assert.ok(pairs.size >= 17, `${pairs.size} families`);
-  assert.deepEqual(Object.keys(data.fontFaces).sort(), [...pairs].sort());
+  const families = new Set(data.templates.fonts.flatMap(builder.templateFamilies));
+  assert.ok(families.size >= 54, `${families.size} families`);
+  assert.deepEqual(Object.keys(data.fontFaces).sort(), [...families].sort());
   for (const [family, e] of Object.entries(plain(data.fontFaces))) {
-    assert.deepEqual(e.weights, [400, 600, 700], family);
+    assert.ok(e.weights.includes(400) && e.weights.includes(700), family);
     for (const f of e.faces) assert.match(f.url, /^https:\/\/fonts\.gstatic\.com\/s\/[a-z0-9]+\/v\d+\/[\w-]+\.woff2$/, family);
   }
 });

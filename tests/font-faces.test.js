@@ -63,13 +63,24 @@ test('the request asks css2 for one family and one weight, with a Chrome user ag
   assert.match(fonts.USER_AGENT, /Chrome\/\d+/);
 });
 
-test('every Latin family a two-family pair uses is asked for, drafts too, and nothing else', () => {
+// Task 7.1 (R-108): every family a fonts template names, not only the size-adjusted Latin ones.
+test('every family a fonts template names is asked for (Arabic, Latin, heading, numerals), drafts too', () => {
   const names = fonts.families(path.join(ROOT, 'library'));
   const all = JSON.parse(fs.readFileSync(path.join(ROOT, 'library', 'elements', 'fonts.json'), 'utf8'));
-  const expected = [...new Set(all.map(build.adjustableLatin).filter(Boolean))].sort();
+  const expected = [
+    ...new Set(
+      all.flatMap((t) =>
+        ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin'].map((k) => t.extras[k]).filter(Boolean)
+      )
+    )
+  ].sort();
   assert.deepEqual(names, expected);
-  assert.ok(names.includes('EB Garamond') && names.includes('Fraunces'));
-  // A one-family template (Cairo for both languages) and an English pair (no Arabic family) need no rules.
+  assert.equal(names.length, 54);
+  for (const f of ['Amiri', 'EB Garamond', 'Cairo', 'Marhey', 'IBM Plex Mono', 'Geist Mono'])
+    assert.ok(names.includes(f), f);
+  assert.deepEqual(build.templateFamilies(all.find((t) => t.id === 'pair-cairo')), ['Cairo']);
+  assert.deepEqual(build.templateFamilies({ element: 'colors', extras: { arabic: 'A' } }), []);
+  // The size-adjusted Latin family (task 6.2) is still only the Latin one of a two-family pair.
   assert.equal(build.adjustableLatin(all.find((t) => t.id === 'pair-cairo')), null);
   assert.equal(
     build.adjustableLatin({ element: 'fonts', extras: { latin: 'Geist', headingLatin: 'Geist Mono' } }),
@@ -200,20 +211,24 @@ test('a face without its subset comment or its style stops the run instead of be
     ['latin'],
     'an unknown subset name is simply not recorded…'
   );
+  // …and refused when Google names it so at one weight only (task 7.1: every weight has the subsets of 400).
   const record = {
     source: fonts.SOURCE,
     weights: build.FONT_FACE_WEIGHTS,
     subsets: build.FONT_FACE_SUBSETS,
     families: {
       'EB Garamond': {
-        weights: [400],
-        faces: fonts.parse(renamed, 'EB Garamond', 600).map((f) => ({ ...f, weight: 400 }))
+        weights: [400, 600],
+        faces: [
+          ...fonts.parse(REAL, 'EB Garamond', 600).map((f) => ({ ...f, weight: 400 })),
+          ...fonts.parse(renamed, 'EB Garamond', 600)
+        ]
       }
     }
   };
   assert.deepEqual(
     build.fontFacesProblems(record),
-    ['EB Garamond: weight 400 has no face for the latin-ext subset'],
+    ['EB Garamond: weight 600 has no face for the latin-ext subset'],
     '…and then refused'
   );
   const noStyle = REAL.replace(
@@ -221,6 +236,75 @@ test('a face without its subset comment or its style stops the run instead of be
     '$1'
   );
   assert.throws(() => fonts.parse(noStyle, 'EB Garamond', 600), /the latin face names no font-style/);
+});
+
+// Task 7.1 (R-108): Arabic families. Google answers with an arabic face first; some families lack latin-ext (Tajawal)
+// or a weight (Amiri has no 600); a family with emoji (Playpen Sans Arabic) also gets numbered slices without a
+// subset comment, which are left out by their file name only.
+const ARABIC = `/* arabic */
+@font-face {
+  font-family: 'Amiri';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/amiri/v30/J7aRnpd8CGxBHpUrtLMA7w.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+200C-200E, U+2010-2011, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+/* latin */
+@font-face {
+  font-family: 'Amiri';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/amiri/v30/J7aRnpd8CGxBHpUgtLMA7w.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153;
+}
+`;
+const SLICE = `@font-face {
+  font-family: 'Amiri';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/amiri/v30/J7aRnpd8CGxBHpUrtLMA7w.1.woff2) format('woff2');
+  unicode-range: U+200d, U+2620, U+1f308;
+}
+`;
+
+test('an Arabic family: its arabic and latin faces are kept in Google order; numbered emoji slices are left out', () => {
+  assert.deepEqual(
+    fonts.parse(ARABIC, 'Amiri', 400).map((f) => f.subset),
+    ['arabic', 'latin']
+  );
+  assert.deepEqual(fonts.parse(SLICE + SLICE + ARABIC, 'Amiri', 400), fonts.parse(ARABIC, 'Amiri', 400));
+  // Only a numbered file is a slice: any other block without a comment still stops the run.
+  const loose = SLICE.replace('.1.woff2', '.woff2');
+  assert.throws(
+    () => fonts.parse(loose + ARABIC, 'Amiri', 400),
+    /1 @font-face rule\(s\) without a \/\* subset \*\/ comment/
+  );
+});
+
+test('collect: a family without 600 and without latin-ext is recorded as Google serves it', async () => {
+  const value = await fonts.collect(['Amiri'], async (url) =>
+    url.includes('wght@600') ? null : ARABIC.replace(/font-weight: 400/g, `font-weight: ${/wght@(\d+)/.exec(url)[1]}`)
+  );
+  assert.deepEqual(value.families.Amiri.weights, [400, 700]);
+  assert.deepEqual(
+    value.families.Amiri.faces.map((f) => `${f.weight} ${f.subset}`),
+    ['400 arabic', '400 latin', '700 arabic', '700 latin']
+  );
+  assert.deepEqual(build.fontFacesProblems(value), []);
+  // Google dropping the arabic face at one weight is refused.
+  await assert.rejects(
+    fonts.collect(['Amiri'], async (url) =>
+      url.includes('wght@600')
+        ? null
+        : url.includes('wght@700')
+          ? ARABIC.replace(/font-weight: 400/g, 'font-weight: 700').replace(/\/\* arabic \*\/[\s\S]*?\}\n/, '')
+          : ARABIC
+    ),
+    /Amiri: weight 700 has no face for the arabic subset/
+  );
 });
 
 test('a family Google Fonts does not know is named', async () => {

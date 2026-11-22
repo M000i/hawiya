@@ -42,9 +42,10 @@
  *                   a third-party source uses has its full text (the notices print it); both files have their shape;
  *                   (task 5.1, B-078) every font a template names (fontFamily tokens, the families of a fonts
  *                   template's extras) is in the "fonts" list of exactly one source, and the template names it
- *   font-faces      (task 6.1, R-104) font-faces.json has the @font-face rules of the Latin family of every reviewed
- *                   fonts template that pairs two families, in its strict shape (fonts.gstatic.com woff2 files only,
- *                   U+ ranges only), and no family that no fonts template pairs
+ *   font-faces      (task 6.1, R-104; task 7.1, R-108) font-faces.json has the @font-face rules of every family a
+ *                   reviewed fonts template names (Arabic, Latin, heading, numerals), with the arabic subset for an
+ *                   Arabic family and the latin subset for a Latin one, in its strict shape (fonts.gstatic.com woff2
+ *                   files only, U+ ranges only), and no family that no fonts template names
  *   notices         THIRD_PARTY_NOTICES.md is exactly what `npm run notices` makes from sources.json and
  *                   licenses.json (checked when both files are sound)
  *   data            picker/data is exactly what `npm run build` makes from the library (only checked when the
@@ -1351,30 +1352,44 @@ function fontFamilies(t) {
   return out;
 }
 
-// font-faces.json (task 6.1, R-104): the Latin family of every reviewed fonts template that pairs two families has
-// its @font-face rules, the file has its strict shape (build.fontFacesProblems: nothing that could break out of CSS),
-// and it holds no family that no fonts template pairs (drafts count: their rules are ready before the review).
+// font-faces.json (task 6.1, R-104; task 7.1, R-108): every family a reviewed fonts template names has its @font-face
+// rules, an Arabic family (arabic, headingArabic) with the arabic subset at 400 and a Latin one (latin, headingLatin)
+// with the latin subset at 400; the file has its strict shape (build.fontFacesProblems: nothing that could break out of
+// CSS), and it holds no family that no fonts template names (drafts count: their rules are ready before the review).
+const SCRIPT_OF = { arabic: 'arabic', headingArabic: 'arabic', latin: 'latin', headingLatin: 'latin' };
 function fontFaceProblems(libraryDir, valid, add, counts) {
   const name = 'font-faces.json';
-  const needed = new Map(); // Latin family -> ids of the reviewed templates that pair it
+  const needed = new Map(); // family -> { ids: reviewed templates that name it, subsets: the subsets their roles need }
   const known = new Set();
   for (const { t } of valid) {
-    const family = build.adjustableLatin(t);
-    if (!family) continue;
-    known.add(family);
-    if (t.status.state !== 'reviewed') continue;
-    if (!needed.has(family)) needed.set(family, []);
-    needed.get(family).push(t.id);
+    const families = build.templateFamilies(t);
+    families.forEach((f) => known.add(f));
+    if (!families.length || t.status.state !== 'reviewed') continue;
+    for (const k of build.FONT_EXTRAS) {
+      const family = t.extras[k];
+      if (typeof family !== 'string' || !family) continue;
+      if (!needed.has(family)) needed.set(family, { ids: [], subsets: new Set() });
+      const n = needed.get(family);
+      if (!n.ids.includes(t.id)) n.ids.push(t.id);
+      if (SCRIPT_OF[k]) n.subsets.add(SCRIPT_OF[k]);
+    }
   }
   const missing = (value) => {
-    for (const [family, ids] of needed)
-      if (!value || !own(value.families, family))
-        add(
-          'font-faces',
-          name,
-          ids.join(', '),
-          `the Latin family "${family}" has no @font-face rules (run npm run fonts)`
-        );
+    for (const [family, n] of needed) {
+      if (!value || !own(value.families, family)) {
+        add('font-faces', name, n.ids.join(', '), `the family "${family}" has no @font-face rules (run npm run fonts)`);
+        continue;
+      }
+      const at400 = new Set(value.families[family].faces.filter((f) => f.weight === 400).map((f) => f.subset));
+      for (const sub of n.subsets)
+        if (!at400.has(sub))
+          add(
+            'font-faces',
+            name,
+            n.ids.join(', '),
+            `the family "${family}" has no ${sub} @font-face rules at weight 400, and a template uses it for ${sub === 'arabic' ? 'Arabic' : 'Latin'} text`
+          );
+    }
   };
   const file = path.join(libraryDir, name);
   if (!fs.existsSync(file)) {
@@ -1392,7 +1407,7 @@ function fontFaceProblems(libraryDir, valid, add, counts) {
   missing(value);
   for (const family of Object.keys(value.families))
     if (!known.has(family))
-      add('font-faces', name, null, `"${family}" is paired by no fonts template; remove it (run npm run fonts)`);
+      add('font-faces', name, null, `"${family}" is named by no fonts template; remove it (run npm run fonts)`);
   counts.fontFaces = Object.keys(value.families).length;
 }
 
@@ -1681,7 +1696,7 @@ function report(result) {
   if (!problems.length) {
     lines.push(`  checked: ${KINDS.join(', ')}`);
     lines.push(`  ${counts.pairs} contrast checks; ${counts.sources} sources, licenses allowed, none forbidden`);
-    lines.push(`  ${counts.fontFaces} Latin families with their @font-face rules (font-faces.json)`);
+    lines.push(`  ${counts.fontFaces} font families with their @font-face rules (font-faces.json)`);
     lines.push(`  لا تكرار — no duplicates: ${counts.comparisons} comparisons, every two templates differ in two axes`);
     lines.push(
       `  ${counts.identitiesBuilt} ready identities built in Arabic, English and both: the blocking rules pass in light and dark; each DESIGN.md passes the official check`

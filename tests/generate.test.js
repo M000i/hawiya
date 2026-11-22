@@ -984,11 +984,11 @@ test('[6.2] a value rounding to 100% writes no rule; a role without recorded rul
 
   // A hand-edited identity: the heading pairs a Latin family the record lacks, with its own value.
   const mixed = JSON.parse(JSON.stringify(id));
-  mixed.tokens.font.heading = { arabic: 'Amiri', latin: 'Inter', fallback: ['ui-serif', 'serif'], latinSizeAdjust: 1.1 };
+  mixed.tokens.font.heading = { arabic: 'Amiri', latin: 'Roboto', fallback: ['ui-serif', 'serif'], latinSizeAdjust: 1.1 };
   const md = generate.designMd(mixed);
   assert.match(md, /declare \*\*EB Garamond\*\* again as `"EB Garamond Hawiya 135"`/);
   assert.match(md, /Apply a Latin size adjustment to the font itself, not to elements: add the `size-adjust` descriptor to the `@font-face` rules of the Latin family \(for example `size-adjust: 110%;`/);
-  assert.match(generate.valueFiles(mixed)['tokens.css'], /--font-heading: "Inter", "Amiri", /);
+  assert.match(generate.valueFiles(mixed)['tokens.css'], /--font-heading: "Roboto", "Amiri", /);
 });
 
 // Task 6.8 (CHG-5, R-105, R-106): tokens.css loads every font of the identity itself; DESIGN.md gives the exact links.

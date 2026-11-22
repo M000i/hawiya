@@ -3312,7 +3312,7 @@
 - البوابة: GATE-7 (تُقفل عبر /gate)
 - CHG-6: لا تُعاد مهام المرحلة 6 المقفلة. اختبارات 6.8 (golden G-11 وسطور `@import`) وملفاتها المتوقعة تتحدّث داخل 7.2، و G-09 يُعاد صياغته فيها (قواعد الخط باسمه الأصلي لا تُحسب)، بقرار المالك (سطر CHG-6 في `decisions.md`).
 
-- [ ] **7.1** سجل قواعد `@font-face` لكل خطوط المكتبة، وفحصه
+- [x] **7.1** سجل قواعد `@font-face` لكل خطوط المكتبة، وفحصه
   - الخطورة: A — خط ناقص في السجل يعيد ظهور الخط العربي بخط النظام
   - الحجم: متوسطة
   - تحقق المتطلبات: R-108، R-104
@@ -3327,7 +3327,48 @@
     - البناء ينقل قواعد خطوط التمبلتات المنشورة إلى `picker/data/font-faces.js`، ويُسجَّل حجمه قبل الضغط وبعده (gzip).
   - الاختبار: `tests/font-faces.test.js` على ردود ثابتة (منها خط عربي بلا 600 وخط بلا `latin-ext`)، و `tests/check.test.js` لخط ناقص، ثم `npm run fonts` (يحتاج إنترنت) و `npm run build` و `npm run check -- --publish` و `npm test`
   - ما ستراه أنت: لا شيء يتغيّر في الصفحة؛ `npm run check` ينجح ويذكر عدد الخطوط المسجّلة 44، وإذا حذفت خطًا عربيًا من `library/font-faces.json` يفشل ويذكر اسمه
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-23):
+    - الملفات: `tools/font-faces.js`، `tools/build.js`، `tools/check.js`، `library/font-faces.json` (أُعيد كتابته)، `picker/data/font-faces.js` (أُعيد بناؤه)، `tests/font-faces.test.js`، `tests/check.test.js`، `tests/build.test.js`، `tests/generate.test.js`.
+    - ما تغيّر:
+      - `build.templateFamilies(t)`: كل خط تسمّيه تمبلتات الخطوط (`arabic` و `latin` و `numeralsFont` و `headingArabic` و `headingLatin`). السجل والبناء والفحص يستعملونها بدل `adjustableLatin` (الذي بقي لخط اللاتيني المعدَّل، 6.2).
+      - الحروف المسجّلة `arabic` ثم `latin-ext` ثم `latin` (ترتيب Google). قاعدة الشكل: لكل خط الوزن 400، وفيه `arabic` أو `latin`، وكل وزن آخر بالحروف نفسها التي للوزن 400.
+      - `npm run check`: لكل خط في تمبلت «مراجَع» قواعده، وللخط العربي (`arabic`، `headingArabic`) حروف `arabic` بالوزن 400، وللاتيني (`latin`، `headingLatin`) حروف `latin` بالوزن 400.
+      - Google يرسل لـ Playpen Sans Arabic قطع رموز تعبيرية مرقّمة (`<id>.<n>.woff2`) بلا تعليق الحروف؛ تُترك هي وحدها، وأي قاعدة أخرى بلا تعليق توقف الأمر كما كانت.
+      - اختبار 6.2 الذي يحتاج خطًا ليس في السجل صار يستعمل Roboto بدل Inter (Inter صار مسجّلًا).
+    - انحرافان معتمدان عن نص المهمة:
+      - عدد الخطوط **54** لا 44: التقدير في CHG-6 لم يعدّ خطوط العناوين (`headingArabic`، `headingLatin`).
+      - حجم `picker/data/font-faces.js`: 43,653 ← 202,573 بايت قبل الضغط (التقدير نحو 140 ألفًا)، و 2,667 ← 8,119 بايت مضغوطًا بـ gzip (التقدير نحو 25 ألفًا).
+    - ما يقدّمه Google فعلًا: الأميري وتجوال والمراعي وزين و Space Mono وعارف رقعة بلا وزن 600؛ تجوال والمراعي وزين بلا `latin-ext`؛ وكل خط عربي فيه `latin` أيضًا.
+    - قواعد الخطوط اللاتينية الـ17 القديمة لم تتغيّر بايتًا ببايت (17 من 17)، وتشغيل `npm run fonts` مرتين أعطى الملف نفسه بايتًا ببايت (`cmp`: identical bytes)، فالملفات المصدَّرة لم تتغيّر (اختبارات الملفات المتوقعة نجحت كما هي).
+    - `npm run fonts`:
+      ```
+      hawiya fonts: wrote library/font-faces.json (54 families, 394 faces)
+      identical bytes
+      ```
+    - `npm run build`:
+      ```
+        identities  published  14   left out   0
+        font faces  54 families with @font-face rules
+      total: 319 templates published, 0 drafts left out; 14 identities published, 0 left out
+      ```
+    - `npm run check -- --publish`:
+      ```
+        54 font families with their @font-face rules (font-faces.json)
+      نجاح: فُحص 319 تمبلت (319 مراجَع، 0 مسودة) و 14 هوية بلا أي مخالفة
+      success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem
+      ```
+    - `npm test`:
+      ```
+      ℹ tests 630
+      ℹ suites 0
+      ℹ pass 630
+      ℹ fail 0
+      ℹ cancelled 0
+      ℹ skipped 0
+      ℹ todo 0
+      ```
+    - `npx playwright test`: «137 passed (33.4s)». `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: نجاح.
+    - المراجعة المستقلة (مهمة A): بلا ملاحظة A. تحقق المراجع بالبيانات الحقيقية أن الخط اللاتيني المعدَّل دائمًا أحد الـ17 وكلها بلا حروف `arabic`، فلا يصل `size-adjust` إلى حروف عربية في أي تصدير اليوم. ملاحظات B: (1) هوية معدّلة باليد تجعل خطًا عربيًا مسجّلًا (مثل Cairo) لاتينيًا بقيمة غير 1 ستكتب قواعده العربية بـ `size-adjust`؛ تُغطيها المهمة 7.2 (قواعد المعدَّل من `latin` و `latin-ext` فقط)؛ (2) B-115؛ (3) الحجم سُجّل هنا؛ (4) العدد 54 سُجّل هنا.
 
 - [ ] **7.2** المولّد: قواعد كل خطوط الهوية في `tokens.css` و `theme.css` بدل `@import`
   - الخطورة: A — رابط أو قاعدة خاطئة تكسر خطوط كل مشروع يستعمل الملفات

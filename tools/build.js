@@ -16,8 +16,9 @@
  * .identities) to a frozen array; starter.js sets window.Hawiya.data.starter to { <element>: [templates the published
  * ready identities use] }, so the page can start without loading every element (task 2.9). Every non-ASCII character is written as \uXXXX, so the bytes do not depend on how the page declares
  * its encoding, and "<" is escaped so the data can never close a <script> element. font-faces.js (task 6.1) sets
- * window.Hawiya.data.fontFaces to { <Latin family>: { weights, faces } } from <library>/font-faces.json, for the Latin
- * families the published fonts templates pair with an Arabic one (the generator writes them with size-adjust, 6.2).
+ * window.Hawiya.data.fontFaces to { <family>: { weights, faces } } from <library>/font-faces.json, for every family
+ * the published fonts templates name (task 7.1, R-108: Arabic, Latin, heading and numerals families); the generator
+ * writes them into the exported CSS (size-adjusted Latin family, 6.2; every family by its own name, 7.2).
  *
  * Rules:
  * - Published = status.state is exactly "reviewed". Everything else (drafts) is left out and counted.
@@ -63,12 +64,15 @@ const IDENTITY_SCHEMA = {
 };
 const checkIdentity = validate.compile(IDENTITY_SCHEMA);
 
-// library/font-faces.json (task 6.1, R-104): the Google Fonts @font-face rules of every Latin family a size adjustment
-// can apply to, written by `npm run fonts` (tools/font-faces.js). The generator writes them into the exported CSS
+// library/font-faces.json (task 6.1, R-104; task 7.1, R-108): the Google Fonts @font-face rules of every family a fonts
+// template names (templateFamilies), written by `npm run fonts` (tools/font-faces.js). The generator writes them into the exported CSS
 // (task 6.2), so every value that reaches CSS is held to a strict pattern here: a family name of letters, digits and
 // spaces, a unicode-range of U+ ranges only, and a woff2 file on fonts.gstatic.com. No quote, brace or ";" can pass.
 const FONT_FACE_WEIGHTS = [400, 600, 700]; // what the exported pages use: body 400, labels 600, headings 700
-const FONT_FACE_SUBSETS = ['latin-ext', 'latin']; // Google's order; the Latin family only draws Latin text here
+// Google's order (a later face wins where ranges overlap). Each family has the ones Google serves for it: an Arabic
+// family arabic (and often latin-ext and latin), a Latin family latin (and usually latin-ext).
+const FONT_FACE_SUBSETS = ['arabic', 'latin-ext', 'latin'];
+const FONT_EXTRAS = ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin']; // the families of a fonts template
 const FONT_FACES_SCHEMA = {
   type: 'object',
   additionalProperties: false,
@@ -122,9 +126,19 @@ function adjustableLatin(t) {
   return typeof arabic === 'string' && typeof latin === 'string' && arabic !== latin ? latin : null;
 }
 
-// Problems of a font-faces.json value beyond its schema: each family lists 400, every listed weight has a face for
-// each recorded subset (latin and latin-ext: accented Latin letters need theirs), the faces use only listed weights,
-// and no weight/subset pair appears twice.
+// Every family a fonts template names in its extras (task 7.1, R-108), sorted: the Arabic and Latin families, the
+// heading ones, and the numerals family. Each needs its @font-face rules (R-107). [] for any other template.
+function templateFamilies(t) {
+  if (!t || t.element !== 'fonts' || !t.extras) return [];
+  const out = new Set();
+  for (const k of FONT_EXTRAS) if (typeof t.extras[k] === 'string' && t.extras[k]) out.add(t.extras[k]);
+  return [...out].sort();
+}
+
+// Problems of a font-faces.json value beyond its schema: each family lists 400 and has the arabic or the latin subset
+// at 400, every listed weight has faces for the same subsets as 400 (a subset Google drops at one weight is seen), the
+// faces use only listed weights, and no weight/subset pair appears twice. Which subset a family must have for its role
+// in a template (arabic for an Arabic family, latin for a Latin one) is npm run check's (it knows the templates).
 function fontFacesProblems(value) {
   const out = [];
   const r = checkFontFaces(value);
@@ -141,9 +155,14 @@ function fontFacesProblems(value) {
       seen.add(key);
       if (!entry.weights.includes(f.weight)) out.push(`${family}: a face has weight ${f.weight}, which "weights" does not list`);
     }
+    const subsetsAt = (w) => FONT_FACE_SUBSETS.filter((sub) => seen.has(`${w} ${sub}`));
+    const base = subsetsAt(400);
+    if (entry.weights.includes(400) && !base.includes('arabic') && !base.includes('latin'))
+      out.push(`${family}: weight 400 has neither the arabic nor the latin subset`);
     for (const w of entry.weights)
       for (const sub of FONT_FACE_SUBSETS)
-        if (!seen.has(`${w} ${sub}`)) out.push(`${family}: weight ${w} has no face for the ${sub} subset`);
+        if (base.includes(sub) !== seen.has(`${w} ${sub}`))
+          out.push(`${family}: weight ${w} ${base.includes(sub) ? 'has no' : 'has a'} face for the ${sub} subset${base.includes(sub) ? '' : ', which weight 400 lacks'}`);
   }
   return out;
 }
@@ -340,10 +359,10 @@ function select(lib) {
     else data.identities.push(value);
   }
   summary.identities.published = data.identities.length;
-  // The @font-face rules of the Latin families the published fonts templates pair (task 6.1), by family name.
+  // The @font-face rules of every family the published fonts templates name (task 7.1), by family name.
   // A family the record does not hold is simply absent: npm run check names it.
   data.fontFaces = {};
-  const families = new Set(data.templates.fonts ? data.templates.fonts.map(adjustableLatin).filter(Boolean) : []);
+  const families = new Set(data.templates.fonts ? data.templates.fonts.flatMap(templateFamilies) : []);
   for (const family of [...families].sort())
     if (lib.fontFaces && Object.prototype.hasOwnProperty.call(lib.fontFaces.families, family))
       data.fontFaces[family] = lib.fontFaces.families[family];
@@ -467,7 +486,7 @@ function report(summary, { libraryDir, outDir, dryRun }) {
   const ids = summary.identities;
   lines.push(`  ${'identities'.padEnd(11)} published ${String(ids.published).padStart(3)}   left out ${String(ids.excluded.length).padStart(3)}`);
   for (const x of ids.excluded) lines.push(`    left out ${x.file}: ${x.reasons.join('; ')}`);
-  lines.push(`  ${'font faces'.padEnd(11)} ${summary.fontFaces || 0} Latin families with @font-face rules`);
+  lines.push(`  ${'font faces'.padEnd(11)} ${summary.fontFaces || 0} families with @font-face rules`);
   lines.push(`total: ${summary.totals.published} templates published, ${summary.totals.drafts} drafts left out; ${ids.published} identities published, ${ids.excluded.length} left out`);
   return lines.join('\n');
 }
@@ -503,7 +522,9 @@ module.exports = {
   FONT_FACES_SCHEMA,
   FONT_FACE_WEIGHTS,
   FONT_FACE_SUBSETS,
+  FONT_EXTRAS,
   adjustableLatin,
+  templateFamilies,
   fontFacesProblems,
   build,
   load,
