@@ -3319,7 +3319,7 @@
   - تعتمد على: GATE-6
   - الملفات المتوقعة: `tools/font-faces.js`، `tools/build.js`، `tools/check.js`، `library/font-faces.json` (يُعاد كتابته)، `picker/data/font-faces.js` (يُعاد بناؤه)، `tests/font-faces.test.js`، `tests/check.test.js`، `tests/build.test.js`
   - معيار القبول:
-    - `npm run fonts` يكتب قواعد كل خط تسمّيه تمبلتات الخطوط (العربي واللاتيني وخط الأرقام، 44 خطًا اليوم، مسودات أيضًا)، بالحروف `arabic` و `latin-ext` و `latin` التي يقدّمها Google لكل خط، والأوزان 400 و 600 و 700 المتاحة منها، وعناوين ملفات من `https://fonts.gstatic.com/` فقط.
+    - `npm run fonts` يكتب قواعد كل خط تسمّيه تمبلتات الخطوط (العربي واللاتيني وخط الأرقام، 54 خطًا اليوم مع خطوط العناوين (صُحّح في GATE-8: B-116)، مسودات أيضًا)، بالحروف `arabic` و `latin-ext` و `latin` التي يقدّمها Google لكل خط، والأوزان 400 و 600 و 700 المتاحة منها، وعناوين ملفات من `https://fonts.gstatic.com/` فقط.
     - لكل خط عربي في تمبلت قواعد `arabic` بالوزن 400، ولكل خط لاتيني قواعد `latin` بالوزن 400؛ والوزن الذي يقدّمه الخط له الحروف نفسها التي للوزن 400. خط بلا `latin-ext` (مثل تجوال) مقبول.
     - قواعد الخطوط اللاتينية الـ17 الحالية لا تتغيّر عناوينها إن لم يغيّرها Google.
     - الرد نفسه من Google Fonts يعطي الملف نفسه بايتًا ببايت.
@@ -3684,6 +3684,37 @@
         ```
         offline {"online":false,"identities":14,"fontsNotice":true,"exported":{"flag":"ready","files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"]},"failedHosts":["fonts.googleapis.com"]}
         ```
+
+
+### تقرير البوابة GATE-8
+- تاريخ الإغلاق: 2026-11-23
+- المهام: 3 من 3 مكتملة (A = 2: 8.1 و 8.2 للنشر العلني، B = 1: 8.3)، ولكل مهمة دليل مسجّل. كلها من CHG-7.
+- الاختبارات:
+  - `npm test`: «tests 635 / pass 635 / fail 0».
+  - `npm run build`: «54 families with @font-face rules» و «total: 319 templates published, 0 drafts left out; 14 identities published, 0 left out»، ولم يتغيّر أي ملف.
+  - `npm run check -- --publish`: «54 font families with their @font-face rules (font-faces.json)» و «نجاح: فُحص 319 تمبلت (319 مراجَع، 0 مسودة) و 14 هوية بلا أي مخالفة».
+  - `npm run notices`: بلا تغيير (71 مصدرًا).
+  - `npx playwright test`: «138 passed».
+  - `npm run lint`: 0 أخطاء وتحذيران قديمان.
+  - `npm run format:check`: نجاح.
+- golden: `npm run test:golden` أعطى «tests 17 / pass 17 / fail 0». المرحلة بلا أمثلة golden جديدة:
+
+  | المثال | متوقع | فعلي | مطابق |
+  |---|---|---|---|
+  | G-01 إلى G-10، G-12، T-1.4، T-1.5، T-2.4، T-2.14 | كما في GATE-7 | نفسها | ✔ |
+  | G-11 | مُلغى (استُبدل بـ G-12) | — | — |
+- جولات التدقيق: 2.
+  - الجولة 1: مراجع مستقل على كل تغييرات المرحلة منذ `gate-7`. أعاد إنتاج الأرقام: 635 اختبارًا، و 54 خطًا هي اتحاد `build.templateFamilies` على تمبلتات الخطوط الـ54 بلا زيادة ولا نقص (44 بلا خطوط العناوين)، و `picker/data/font-faces.js` 202,573 بايت (8,119 مضغوطًا)، و 57 ملفًا في `picker/`، و 94 مهمة (A = 46، B = 48). الأدوات الأربع في R-109 تستعمل القاعدة نفسها، ولا ثغرة فيها غير المؤجل. لا مشكلة أمنية.
+  - الجولة 2: تأكيد إصلاح ملاحظة A، ولا رقم قديم باقٍ في `spec.md` و `plan.md` و `tasks.md` (ما بقي دليل تاريخي).
+  - لا يلزم `/security-review`، لأن المرحلة بلا دخول أو دفع أو بيانات شخصية.
+- ملاحظات A المصلحة: معيار قبول المهمة 7.1 كان يقول «44 خطًا اليوم» والفعلي 54؛ صُحّح إلى 54 (B-116).
+- ملاحظات B المؤجلة:
+  - من مهام المرحلة: B-122 إلى B-125 (مراجعة 8.1)، وعادت B-095 في الخطوة 14 من 8.3.
+  - من البوابة: B-126 (R-108 بلا خطوط العناوين، عبر /change)، B-127 (R-109 ينسب القاعدة إلى `build.js` وهي في المولّد، عبر /change)، B-128 (جدول التغطية ناقص لـ R-064 و R-095)؛ ووُسّعت B-122 (معرض الخطوط أيضًا) و B-123 (8 تمبلتات serif لا تكرر `system-ui` في البدائل)، وصُحّحت ملاحظة حلّ B-116.
+- شرط الخروج:
+  - المالك شغّل `node --test --test-name-pattern="a device font as the numerals font" tests/check.test.js` و `npm run check` بنفسه، وأكّد نجاحهما («Both succeeded»)، و `npm run check` يذكر 54 خطًا.
+  - سيناريو القسم 13 نجح في 14 خطوة من 15 فعليًا (المهمة 8.3)؛ ونصف Codex من الخطوة 12 لم يُجرَّب لأن `codex` غير مثبّت، وقبل المالك ذلك بتأكيده.
+- الـ tag: `gate-8`
 
 ---
 
