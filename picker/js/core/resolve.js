@@ -59,6 +59,7 @@
     'direction'
   ];
   var GENERIC = ['system-ui', 'sans-serif', 'serif', 'monospace', 'ui-sans-serif', 'ui-serif', 'ui-monospace'];
+  var FONT_KEYS = ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin']; // a fonts template's families
   var PROJECT_TYPES = ['landing', 'website', 'web-app', 'dashboard', 'html-page'];
   var CONTRAST = ['AA', 'AAA'];
   var MOTION = ['none', 'subtle', 'medium', 'strong'];
@@ -194,7 +195,12 @@
   /* ---------- per element ---------- */
 
   function fontRoles(t, ov, problems) {
-    var ex = t.extras || {};
+    // The font names without the spaces around them (task 9.1, CHG-8, R-109): the identity's familyName allows none.
+    var ex = {};
+    Object.keys(t.extras || {}).forEach(function (k) {
+      var v = t.extras[k];
+      ex[k] = FONT_KEYS.indexOf(k) !== -1 && typeof v === 'string' ? v.trim() : v;
+    });
     var fam = t.tokens && t.tokens.font && t.tokens.font.body && t.tokens.font.body.$value;
     if (typeof ex.arabic !== 'string' && typeof ex.latin !== 'string')
       problems.push('fonts: the template names no font family');

@@ -1703,6 +1703,38 @@ test('a device font as the numerals font and a name with spaces pass: no record 
   }
 });
 
+// Task 9.1 (CHG-8, R-109): a text in extras that only starts with "-" is not a system font, so the source check still
+// reads it (B-124); and a fonts template naming a font an identity cannot hold fails the check, even when no
+// identity uses that template (B-125).
+test('a "-" text with spaces is still checked for forbidden sources; a font an identity cannot hold is named', () => {
+  const c = copy();
+  try {
+    c.edit('elements/fonts.json', (l) => {
+      c.find(l, 'pair-readex-pro-outfit').extras.foundry = '  -SF Pro by Apple'; // no identity uses this template
+      c.find(l, 'pair-zain-figtree').extras.numeralsFont = '-apple-system'; // nor this one
+      c.find(l, 'pair-rubik').extras.headingLatin = ' Rubik '; // trimmed, it is a sound name
+    });
+    build.build({ libraryDir: c.lib, outDir: c.data });
+    const r = c.run();
+    assert.ok(
+      has(r.problems, 'license', 'pair-readex-pro-outfit', /comes from the forbidden source "Apple assets/),
+      show(r.problems)
+    );
+    assert.ok(
+      has(
+        r.problems,
+        'schema',
+        'pair-zain-figtree',
+        /^extras\.numeralsFont: the font "-apple-system" cannot go into an identity/
+      ),
+      show(r.problems)
+    );
+    assert.equal(r.problems.length, 2, show(r.problems));
+  } finally {
+    clean(c);
+  }
+});
+
 // Task 5.1 (B-079): a ready identity that uses a draft is left out of the page. The check passes while the owner
 // still reviews (task 5.4 before 5.6), but names it; with --publish (the GitHub check before publishing) it fails.
 test('an identity waiting for a draft is named; --publish refuses it', () => {

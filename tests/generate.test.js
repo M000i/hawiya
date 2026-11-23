@@ -1094,8 +1094,9 @@ test('[8.1] a device font as the Latin family: in the stacks, with no link, @imp
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&amp;display=swap">'
   ]);
   assert.ok(files['tokens.css'].includes('  font-family: "Amiri";'), 'the Arabic family keeps its rules');
-  // The stack keeps the order: the Latin family first, then the Arabic one, then the fallbacks.
-  assert.match(files['tokens.css'], /--font-body: "system-ui", "Amiri", /);
+  // The stack keeps the order: the Latin family first, then the Arabic one, then the fallbacks. Task 9.1 (B-123): a
+  // device font is written as CSS reads it, unquoted (a quoted "system-ui" names a font that does not exist).
+  assert.match(files['tokens.css'], /--font-body: system-ui, "Amiri", /);
   assert.equal(generate.deviceFont(' System-UI '), true);
   assert.equal(generate.deviceFont('-apple-system'), true);
   assert.equal(generate.deviceFont('BlinkMacSystemFont'), true);
@@ -1110,6 +1111,29 @@ test('[8.1] a device font as the Latin family: in the stacks, with no link, @imp
   assert.ok(onlyMd.includes('Every font of the identity is one the device already has (a system font or a generic family): there is no font file to load and no link to add.'));
   assert.ok(!onlyMd.includes('```html') && !onlyMd.includes('@import` lines, which'), 'no links and no @import story');
   assert.ok(!generate.styleGuide(id).includes('fonts.googleapis.com/css2?'), 'the style guide links no font');
+});
+
+// Task 9.1 (CHG-8, R-109, B-123, B-124): a device font is unquoted in every font stack, so the browser takes it as the
+// device's own font even when the fallbacks do not name it (serif pairs); only known names or a "-" name without
+// spaces are system fonts.
+test('[9.1] a device font is unquoted in the font stacks of tokens.css and theme.css; systemFont reads names only', () => {
+  const id = libraryIdentity('pair-amiri-eb-garamond');
+  assert.ok(!id.tokens.font.numerals.fallback.includes('system-ui'), 'a serif pair: its fallbacks do not repeat system-ui');
+  id.tokens.font.numerals = { ...id.tokens.font.numerals, latin: 'system-ui' };
+  id.tokens.font.heading = { ...id.tokens.font.heading, latin: 'BlinkMacSystemFont' };
+  const files = generate.valueFiles(id);
+  assert.match(files['tokens.css'], /--font-numerals: system-ui, "Amiri", ui-serif, serif;/);
+  assert.match(files['tokens.css'], /--font-heading: BlinkMacSystemFont, "Amiri", ui-serif, serif;/);
+  assert.match(files['theme.css'], /--font-numerals: system-ui, "Amiri", ui-serif, serif;/);
+  for (const f of ['tokens.css', 'theme.css']) assert.ok(!/"system-ui"|"BlinkMacSystemFont"/.test(files[f]), f);
+  // tokens.json keeps the plain names (DTCG fontFamily strings).
+  assert.ok(JSON.parse(files['tokens.json']).font.family.numerals.$value.includes('system-ui'));
+  assert.equal(generate.systemFont('-apple-system'), true);
+  assert.equal(generate.systemFont(' -apple-system '), true);
+  assert.equal(generate.systemFont('Apple Color Emoji'), true);
+  assert.equal(generate.systemFont('  -SF Pro by Apple'), false);
+  assert.equal(generate.systemFont('-'), false);
+  assert.equal(generate.deviceFont('-foo bar'), false);
 });
 
 // Task 7.2: a hand-edited identity that uses a recorded Arabic family as its Latin one, with its own value: the

@@ -74,6 +74,7 @@ const ROOT = path.join(__dirname, '..');
 const ELEMENTS = build.ELEMENTS;
 const TAGS = SCHEMAS.template.$defs.tag.enum.slice();
 const checkIdentity = validate.compile(build.IDENTITY_SCHEMA);
+const FAMILY_NAME = new RegExp(SCHEMAS.identity.$defs.familyName.pattern); // an identity's font name
 
 const ARABIC = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
 // What a script leaves in a name when a value it fills in is missing (verify, task 4.7).
@@ -621,6 +622,18 @@ function check({
       say('structure', `says element "${t.element}" but is in ${file}`);
     if (!result.valid) return; // the deeper checks need the template's shape
     valid.push({ file, label, t });
+    // Task 9.1 (CHG-8, R-109, B-125): every family a fonts template names goes into the identity (resolve.js, without
+    // the spaces around it), whose familyName allows only letters, digits, spaces and hyphens; so a name it cannot
+    // hold (-apple-system) is named here, even when no ready identity uses the template yet.
+    if (t.element === 'fonts' && isObject(t.extras))
+      for (const k of build.FONT_EXTRAS) {
+        const v = t.extras[k];
+        if (typeof v === 'string' && !FAMILY_NAME.test(v.trim()))
+          say(
+            'schema',
+            `extras.${k}: the font "${v}" cannot go into an identity (a font name of letters, digits, spaces and hyphens, starting and ending with a letter or digit)`
+          );
+      }
     if ((t.element === 'buttons' || t.element === 'cards') && t.kind !== 'composite')
       say('schema', `a ${t.element.slice(0, -1)} is a composite template with a recipe (kind is "${t.kind}")`);
 

@@ -164,14 +164,16 @@
    * BlinkMacSystemFont, ...) name fonts the device already has, not fonts with a source: no Google Fonts file, no
    * record in library/font-faces.json, no link and no @import. The one rule for `npm run fonts`, the build and
    * `npm run check` (tools/build.js: templateFamilies) and this generator (fontFamilies). Letter case and the spaces
-   * around a name do not count. */
+   * around a name do not count. A system font is a known name or a "-" name without spaces (-apple-system), so a
+   * text that only starts with "-" is not one (task 9.1, CHG-8). In the font stacks a device font is unquoted
+   * (cssFont): a quoted "system-ui" names a font that does not exist. */
   var GENERIC_FAMILIES = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-serif',
     'ui-sans-serif', 'ui-monospace', 'ui-rounded', 'emoji', 'math', 'fangsong'];
   var SYSTEM_FONTS = ['apple color emoji', 'blinkmacsystemfont', 'segoe ui emoji', 'segoe ui symbol'];
 
   function systemFont(name) {
     var n = String(name).trim().toLowerCase();
-    return n.charAt(0) === '-' || SYSTEM_FONTS.indexOf(n) !== -1;
+    return /^-[a-z0-9-]*[a-z0-9]$/.test(n) || SYSTEM_FONTS.indexOf(n) !== -1;
   }
 
   function deviceFont(name) {
@@ -453,7 +455,9 @@
     return (adjusted ? [adjusted] : [])
       .concat(fl.names)
       .map(function (n) {
-        return '"' + n + '"'; // familyName in the schema allows only letters, digits, spaces and hyphens
+        // familyName in the schema allows only letters, digits, spaces and hyphens; a device font stays a keyword
+        // or system name, as CSS reads it (task 9.1, B-123)
+        return deviceFont(n) ? n : '"' + n + '"';
       })
       .concat(fl.fallback)
       .join(', ');

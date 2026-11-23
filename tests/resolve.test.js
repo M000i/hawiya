@@ -192,6 +192,30 @@ test('adjustments are applied, normalized and recorded', () => {
   assert.deepEqual(resolve.resolve(d, FROZEN).tokens.spacing.scale, [0, 3, 5, 10, 15, 20, 30, 40, 60]);
 });
 
+// Task 9.1 (CHG-8, R-109, B-125): a template's font names reach the identity without the spaces around them.
+test('font names reach the identity trimmed, so the identity passes the checker', () => {
+  const data = build.select(build.load(path.join(__dirname, '..', 'library'))).data;
+  const t = data.templates.fonts.find((x) => x.id === 'pair-tajawal-manrope');
+  Object.assign(t.extras, {
+    arabic: ' Tajawal ',
+    latin: 'Manrope  ',
+    headingLatin: ' Inter',
+    numeralsFont: ' system-ui '
+  });
+  const calm = data.identities.find((i) => i.id === 'calm-corporate');
+  const selections = {};
+  for (const [element, template] of Object.entries(calm.templates)) selections[element] = { template };
+  selections.fonts = { template: 'pair-tajawal-manrope' };
+  const id = resolve.resolve({ name: 'T', selections }, data);
+  assert.equal(id.tokens.font.body.arabic, 'Tajawal');
+  assert.equal(id.tokens.font.body.latin, 'Manrope');
+  assert.equal(id.tokens.font.heading.latin, 'Inter');
+  assert.equal(id.tokens.font.numerals.arabic, 'system-ui');
+  // The pair is still one of two different families, so its size adjustment is kept.
+  assert.equal(id.tokens.font.body.latinSizeAdjust, 0.85);
+  assert.equal(validate.check('identity', id).valid, true);
+});
+
 test('same choices give the same identity, whatever the key order', () => {
   const a = fromIdentity('warm-friendly');
   a.selections.colors.overrides = { primary: '#123456', secondary: '#abcdef' };
