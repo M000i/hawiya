@@ -143,6 +143,8 @@ test('«Copy for the agent» copies the instructions and the five text files', a
   const copied = await page.evaluate(() => navigator.clipboard.readText());
   const published = await exported(page);
   expect(copied).toBe(fmt.agentText(published.files));
+  // Task 9.3 (R-110): the instructions ask to keep the last line break of each file.
+  expect(copied).toContain('Every file ends with exactly one line break');
   const back = fmt.parseAgentText(copied);
   expect(Object.keys(back)).toEqual(FIVE);
   for (const n of FIVE) expect(back[n]).toBe(published.files[n]);

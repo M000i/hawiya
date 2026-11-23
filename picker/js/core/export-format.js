@@ -73,6 +73,8 @@
       'Save each file below into the design/ folder at the project root, byte for byte, without editing it.',
       'Do not replace existing files in design/ without asking the user first.',
       'Each file starts after its "' + BEGIN + '<name>' + BEGIN_END + '" line and ends right before the "' + END + '" line.',
+      // Task 9.3 (CHG-8, R-110, B-095): agents tended to drop that last line break.
+      'Every file ends with exactly one line break (the one right before its "' + END + '" line): keep it when you save the file, so the saved file matches the export byte for byte.',
       'After saving, follow design/DESIGN.md for all UI work.'
     ];
     if (skipped.length) {

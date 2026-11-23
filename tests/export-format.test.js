@@ -51,6 +51,27 @@ test('agent text starts with plain instructions and names the design folder', ()
   assert.match(head, /do not replace/i);
 });
 
+// Task 9.3 (CHG-8, R-110, B-095): agents pasting the text dropped the last line break of a file, so the saved file no
+// longer matched the export byte for byte. The instructions now say each file ends with one line break to keep; the
+// other lines are as before.
+test('the instructions say to keep the one line break each file ends with; nothing else changes', () => {
+  const text = fmt.agentText(filesOf(SAMPLES[0]));
+  const head = text.slice(0, text.indexOf('\n\n')).split('\n');
+  assert.deepEqual(head, [
+    'Hawiya export: the UI identity chosen by the user.',
+    'Save each file below into the design/ folder at the project root, byte for byte, without editing it.',
+    'Do not replace existing files in design/ without asking the user first.',
+    'Each file starts after its "===== HAWIYA FILE: design/<name> =====" line and ends right before the "===== HAWIYA END FILE =====" line.',
+    'Every file ends with exactly one line break (the one right before its "===== HAWIYA END FILE =====" line): keep it when you save the file, so the saved file matches the export byte for byte.',
+    'After saving, follow design/DESIGN.md for all UI work.',
+    'Not included here (ask the user to use the Download button): style-guide.html.'
+  ]);
+  // The new line is plain text: the parser still finds the five files, and each still ends with one line break.
+  const back = fmt.parseAgentText(text);
+  assert.deepEqual(Object.keys(back), TEXT_FILES);
+  for (const n of TEXT_FILES) assert.ok(back[n].endsWith('\n') && !back[n].endsWith('\n\n'), n);
+});
+
 test('style-guide.html is never pasted into the chat (download only), other text files are', () => {
   const files = filesOf(SAMPLES[0]);
   const back = fmt.parseAgentText(fmt.agentText(files));
