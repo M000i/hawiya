@@ -3797,7 +3797,7 @@
     - المراجعة المستقلة: لا ملاحظة A ولا B. السطر لا يُخلط بسطر حدود (لا يبدأ بعلامة البداية ولا يساوي علامة النهاية، ويأتي قبل أول ملف)؛ وصفه صحيح (آخر سطر جديد في كل ملف هو الذي قبل علامة النهاية مباشرة، ولا ملف ناتج ينتهي بسطرين)؛ `checkContent` ما زال يمنع سطر حدود داخل ملف؛ و `SKILL.md` و `references/export-format.md` يقولان الشيء نفسه؛ والاختباران يفشلان على الكود القديم.
     - انحراف: لا شيء.
 
-- [ ] **9.4** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
+- [x] **9.4** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
   - الخطورة: A — نشر علني
   - الحجم: صغيرة
   - تحقق المتطلبات: R-095، R-109، R-110
@@ -3806,7 +3806,28 @@
   - معيار القبول: بعد إذنك: الرفع، ونجاح فحوص GitHub والنشر، وملفات الصفحة المنشورة مطابقة للمحلية، والنص المنسوخ منها فيه السطر الجديد
   - الاختبار: مقارنة ملفات الصفحة المنشورة بالمحلية، والنسخ منها
   - ما ستراه أنت: **يحتاج إذنك بالرفع**. ثم افتح https://m000i.github.io/hawiya/ فتعمل كما كانت
-  - دليل الإكمال: —
+  - دليل الإكمال (2026-11-23):
+    - إذن المالك: سُئل «Do I have your permission to push to GitHub Pages for task 9.4?» فأجاب «Yes, push». رُفعت 8 commits إلى `main` (8.2 و 8.3 و gate 8 وملاحظات المراجعة و CHG-8 و 9.1 و 9.2 و 9.3)، كلها ببريد GitHub العام `noreply` لا البريد الخاص، وبلا ملفات `sandbox/`. لم يُرفع أي وسم.
+    - الرفع:
+      ```
+      To https://github.com/M000i/hawiya.git
+         415f21f..0f3f8c6  main -> main
+      ```
+    - GitHub:
+      ```
+      check completed success 45126819366
+      pages completed success 45126819350
+      ```
+    - الصفحة المنشورة:
+      - ملفات `picker/` كلها مطابقة للمحلية بايتًا ببايت: «files 57, differ 0»، ومنها `js/core/generate.js` و `js/core/resolve.js` و `js/core/export-format.js` و `js/ui/app.js` و `js/ui/elements/fonts.js`.
+      - النسخ منها بزر «انسخ للوكيل» (Chrome على https://m000i.github.io/hawiya/، هوية «كلاسيكي نسخي»، زر «تصدير» ثم «انسخ للوكيل»، وقراءة الحافظة):
+        ```
+        {"url":"https://m000i.github.io/hawiya/","clipboardChars":78180,"status":"نُسخت. الصقها في محادثة الوكيل.","files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"],"identity":"كلاسيكي نسخي | fonts: pair-amiri-eb-garamond"}
+        5:Every file ends with exactly one line break (the one right before its "===== HAWIYA END FILE =====" line): keep it when you save the file,
+        blocks match 5 differ 0
+        ```
+        السطر الجديد في السطر 5 من النص المنسوخ، وكل ملف من الخمسة في النص مطابق حرفيًا لملف التصدير.
+    - انحراف: لا شيء.
 
 - [ ] **9.5** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
