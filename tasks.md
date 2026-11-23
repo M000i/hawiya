@@ -3617,7 +3617,7 @@
       ```
     - الصفحة المنشورة:
       - ملفات `picker/` كلها مطابقة للمحلية بايتًا ببايت: «files 57, differ 0»، ومنها `js/core/generate.js` الجديد.
-      - التصدير منها بهوية «كلاسيكي نسخي» (في المتصفح على https://m000i.github.io/hawiya/):
+      - التصدير منها بهوية «كلاسيكي نسخي» (في المتصفح على https://m000i.github.io/hawiya/؛ بُنيت الملفات بوحدات الصفحة المنشورة نفسها `H.resolve.resolve` و `H.bundle.build` من وحدة التحكم، لا بزر «تصدير»؛ والزر نفسه جُرّب على الصفحة المنشورة في الخطوة 14 من 8.3. صُحّح بعد مراجعة الكود):
         ```
         {"identities":14,"fontFaceFamilies":54,"deviceFamilyRecorded":0,"deviceFontFn":"function","tokensImport":0,"tokensAmiri":6,"tokensEB":6,"tokensAdjusted135":6,"themeAmiri":6,"themeImport":0,"designMd":true,"verify":[]}
          * The @font-face rules below load every font of the identity from the Google Fonts files, so linking or
@@ -3643,7 +3643,7 @@
       1. ملف الجلسة (تطبيق ويب، عربي وإنجليزي)، والخادم جاهز على 47821 بلا منفذ بديل.
       2. 14 هوية، كلها بالاسمين، ورسالة «الاقتراحات مبنية على بيانات مشروعك».
       3. في المشاهد الأربعة (landing و dashboard و form و mobile): «بروتالي» (Sora، rgb(255,51,51)، 0 بكسل) و«مؤسسي هادئ» (IBM Plex Sans، rgb(37,99,235)، 8 بكسل).
-      4. الإنجليزي `ltr` والعربي `rtl`، وأضعف تباين نص 4.6 في الهويات الـ14 بالفاتح والداكن.
+      4. الإنجليزي `ltr` والعربي `rtl`، وأضعف تباين نص 4.6 في الهويات الـ14 بالفاتح والداكن، بين 8 أزواج ألوان فقط قاسها سكربت التحقق (`onSurface` و `mutedText` و `accentText` على `background` و `surface`، و `onPrimary` على `primary`، و `onSecondary` على `secondary`)؛ لا يقارَن برقم 4.51 في 7.4 الذي قيس بطريقة أخرى، ولم يتغيّر أي لون في المرحلة 8 (صُحّح بعد مراجعة الكود).
       5. الوضع الموجّه: #7c3aed و `pair-amiri-eb-garamond`، ثم «كمّل الباقي» ملأ 9 عناصر؛ خط المعاينة `"EB Garamond Hawiya 135", "EB Garamond", Amiri, ui-serif, serif`.
       6. منع AAA مع السبب (5.7:1 من 7:1، و 4.83:1 للثانوي) واقتراح #6900D8، والألوان لم تتغيّر.
       7. «زوايا الزر (24 بكسل) أكبر من زوايا الكرت (12 بكسل)»، و«تجاهل» أخفاه وبقيت 24.
