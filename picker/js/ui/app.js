@@ -28,20 +28,23 @@
     return H.library.find(element, id);
   }
 
+  // The families a font template names, without the spaces around them (task 9.2, CHG-8, R-109); H.fonts.load
+  // skips a device font, which has no Google Fonts file.
   function families(fontTemplate) {
     var ex = fontTemplate.extras || {};
     var names = [];
     [ex.arabic, ex.latin, ex.headingArabic, ex.headingLatin, ex.numeralsFont].forEach(function (n) {
-      if (typeof n === 'string' && names.indexOf(n) === -1) names.push(n);
+      if (typeof n === 'string' && n.trim() && names.indexOf(n.trim()) === -1) names.push(n.trim());
     });
     return names;
   }
 
   function cssFamily(fontTemplate) {
+    var device = H.generate && H.generate.deviceFont;
     return (
       families(fontTemplate)
         .map(function (n) {
-          return '"' + n + '"';
+          return typeof device === 'function' && device(n) ? n : '"' + n + '"'; // a device font stays unquoted
         })
         .join(', ') + ', system-ui, sans-serif'
     );

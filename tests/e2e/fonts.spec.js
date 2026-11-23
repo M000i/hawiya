@@ -353,6 +353,76 @@ test('a font card shows the heading family of a pair and loads it', async ({ pag
   expect(out.requested).toEqual(expect.arrayContaining(['Tajawal', 'El Messiri']));
 });
 
+// Task 9.2 (CHG-8, R-109, B-122): the page never asks Google Fonts for a device font (a family it does not serve,
+// which would answer 400 and show the offline notice although the user is online), and reads names without the
+// spaces around them; a device font keeps its place in the card's stacks, unquoted.
+test('the font cards and the font loader skip device fonts and trim names; no false offline notice', async ({
+  page
+}) => {
+  const asked = [];
+  await page.route('https://fonts.googleapis.com/**', (route) => {
+    const url = route.request().url();
+    asked.push(decodeURIComponent(url));
+    // Google Fonts answers 400 for a family it does not serve.
+    if (/family=(system-ui|BlinkMacSystemFont|sans-serif|-apple-system)/i.test(url))
+      return route.fulfill({ status: 400 });
+    return route.fulfill({ status: 200, contentType: 'text/css', body: '' });
+  });
+  await page.goto(PAGE);
+  const out = await page.evaluate(async () => {
+    const H = window.Hawiya;
+    const ctx = {
+      el: (tag, cls, text) => {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text !== undefined) e.textContent = text;
+        return e;
+      },
+      t: (k, v) => H.i18n.t(k, v)
+    };
+    const tpl = {
+      id: 'x',
+      extras: {
+        languages: ['ar', 'en'],
+        arabic: ' Tajawal ',
+        latin: 'Manrope',
+        headingLatin: ' Inter ',
+        numeralsFont: 'system-ui',
+        latinSizeAdjust: 1,
+        easternArabicDigits: false
+      }
+    };
+    const box = H.galleryParts.fonts.sample(tpl, ctx);
+    document.body.appendChild(box);
+    box.scrollIntoView(); // its files load only when it is on screen
+    // The loader the preview uses (app.js), with device fonts and a spaced name.
+    H.fonts.load(['system-ui', ' Inter ', 'sans-serif', 'BlinkMacSystemFont', 'Lora']);
+    await new Promise((r) => setTimeout(r, 600));
+    const digits = box.querySelector('.f-digits');
+    return {
+      requested: H.fonts.requested(),
+      numerals: digits.getAttribute('data-numerals'),
+      digitsFont: digits.style.fontFamily,
+      arFont: box.querySelector('.f-ar').style.fontFamily,
+      heading: box.querySelector('.f-heading').getAttribute('data-heading'),
+      families: box.querySelector('.f-families').textContent,
+      offline: !document.getElementById('fonts-offline').hidden
+    };
+  });
+  expect(asked.filter((u) => /family=(system-ui|BlinkMacSystemFont|sans-serif|-apple-system)/i.test(u))).toEqual([]);
+  expect(asked.filter((u) => /family=\+|\+:wght|\+&/.test(u))).toEqual([]); // no name with a space around it
+  expect(out.requested).toEqual(expect.arrayContaining(['Tajawal', 'Manrope', 'Inter', 'Lora']));
+  expect(out.requested.filter((n) => n !== n.trim() || /^(system-ui|sans-serif|BlinkMacSystemFont)$/.test(n))).toEqual(
+    []
+  );
+  expect(out.numerals).toBe('system-ui');
+  expect(out.digitsFont).toMatch(/^system-ui,/);
+  expect(out.arFont).toMatch(/^"?Tajawal"?,/); // the browser may drop the quotes of a plain name
+  expect(out.heading).toBe('Inter');
+  expect(out.families).toBe('Tajawal + Manrope + Inter + system-ui');
+  expect(out.offline).toBe(false);
+});
+
 // Task 6.3 (R-103): the preview and the font cards draw the Latin family through the same @font-face rules the
 // exported CSS writes (size-adjust), declared once in the page, never scaled a second time. No network: Google Fonts
 // answers with an empty stylesheet and the font files are refused, so only the rules and names are checked here.

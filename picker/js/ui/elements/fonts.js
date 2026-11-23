@@ -13,7 +13,8 @@
  *                                 document, so the preview's shadow root uses them too.
  * If a stylesheet cannot load (no internet, blocked), the page shows a notice once; text keeps the system fonts
  * that follow every family in the stacks. Family names are checked (letters, digits, spaces, hyphens) before
- * they are put in a URL.
+ * they are put in a URL. A device font (generate.deviceFont: system-ui, BlinkMacSystemFont, ...) has no Google Fonts
+ * file, so it is never requested, and names are read without the spaces around them (task 9.2, CHG-8, R-109).
  *
  * Gallery part:
  *   before  the project language setting: Arabic only / English only / bilingual. It chooses the direction
@@ -33,14 +34,25 @@
   var observer = null;
   var failed = false;
 
+  // The generator's device-font rule (task 9.2, R-109): generate.js loads before any font is requested.
+  function deviceFont(name) {
+    var g = H.generate && H.generate.deviceFont;
+    return typeof g === 'function' && g(name);
+  }
+
+  function trimmed(name) {
+    return typeof name === 'string' ? name.trim() : name;
+  }
+
   function notify() {
     var n = document.getElementById('fonts-offline');
     if (n) n.hidden = false;
   }
 
   function load(families) {
-    (families || []).forEach(function (name) {
-      if (typeof name !== 'string' || !NAME.test(name) || requested[name]) return;
+    (families || []).forEach(function (raw) {
+      var name = trimmed(raw);
+      if (typeof name !== 'string' || !NAME.test(name) || deviceFont(name) || requested[name]) return;
       requested[name] = true;
       var link = document.createElement('link');
       link.rel = 'stylesheet';
@@ -113,18 +125,31 @@
     { id: 'ar+en', dir: 'both', key: 'fonts.project.both' }
   ];
 
-  // Every family a font template names: body, heading (task 3.8) and numerals; their files load together.
+  // A template's extras with its font names read without the spaces around them (task 9.2, R-109).
+  var FONT_KEYS = ['arabic', 'latin', 'numeralsFont', 'headingArabic', 'headingLatin'];
+  function fontExtras(tpl) {
+    var raw = tpl.extras || {};
+    var ex = {};
+    Object.keys(raw).forEach(function (k) {
+      ex[k] = FONT_KEYS.indexOf(k) !== -1 ? trimmed(raw[k]) : raw[k];
+    });
+    return ex;
+  }
+
+  // Every family a font template names: body, heading (task 3.8) and numerals; their files load together (the
+  // loader skips a device font).
   function families(tpl) {
-    var ex = tpl.extras || {};
+    var ex = fontExtras(tpl);
     return [ex.arabic, ex.latin, ex.headingArabic, ex.headingLatin, ex.numeralsFont].filter(function (n, i, all) {
       return typeof n === 'string' && NAME.test(n) && all.indexOf(n) === i;
     });
   }
 
+  // A device font stays unquoted, as CSS reads it (a quoted "system-ui" names no font; task 9.2, like cssFont).
   function stack(names) {
     return names
       .map(function (n) {
-        return '"' + n + '"';
+        return deviceFont(n) ? n : '"' + n + '"';
       })
       .concat(['system-ui', 'sans-serif'])
       .join(', ');
@@ -162,7 +187,7 @@
 
   H.galleryParts.fonts = {
     sample: function (tpl, ctx) {
-      var ex = tpl.extras || {};
+      var ex = fontExtras(tpl);
       var box = ctx.el('span', 'g-sample f-sample');
       var names = families(tpl);
       // A pair with its own heading families shows them first, bold, on the same specimen text (task 3.8).
