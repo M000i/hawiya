@@ -1,0 +1,36 @@
+{
+  "id": "mono-portfolio",
+  "name": {
+    "ar": "معرض أعمال",
+    "en": "Mono portfolio"
+  },
+  "description": {
+    "ar": "رمادي فحمي مع نيلي، وخط Beiruti مع Instrument Sans وبطاقات بلا إطار، لمعارض الأعمال.",
+    "en": "Charcoal gray with indigo, Beiruti with Instrument Sans and frameless cards, for portfolios."
+  },
+  "tags": [
+    "minimal",
+    "editorial"
+  ],
+  "sectors": [
+    "creative",
+    "professional"
+  ],
+  "types": [
+    "website",
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-open-color-gray-indigo",
+    "modes": "modes-system",
+    "fonts": "pair-beiruti-instrument-sans",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-sharp",
+    "shadows": "shadow-flat",
+    "icons": "icons-iconoir-regular",
+    "buttons": "button-ghost",
+    "cards": "card-plain",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

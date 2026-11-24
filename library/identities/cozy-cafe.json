@@ -1,0 +1,36 @@
+{
+  "id": "cozy-cafe",
+  "name": {
+    "ar": "مقهى",
+    "en": "Cozy cafe"
+  },
+  "description": {
+    "ar": "بني القهوة مع كريمي، وخط Noto Naskh مع Fraunces، للمقاهي والمخابز.",
+    "en": "Coffee brown with cream, Noto Naskh with Fraunces, for cafes and bakeries."
+  },
+  "tags": [
+    "soft",
+    "retro"
+  ],
+  "sectors": [
+    "food",
+    "hospitality"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-caffeine",
+    "modes": "modes-light-first",
+    "fonts": "pair-noto-naskh-arabic-fraunces",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-soft",
+    "shadows": "shadow-tinted-warm",
+    "icons": "icons-phosphor-light-rounded",
+    "buttons": "button-large-outline",
+    "cards": "card-earthy-side",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

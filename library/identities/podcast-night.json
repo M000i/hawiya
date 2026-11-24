@@ -1,0 +1,36 @@
+{
+  "id": "podcast-night",
+  "name": {
+    "ar": "بودكاست",
+    "en": "Podcast night"
+  },
+  "description": {
+    "ar": "وردي وسماوي نيونيان على داكن، وخط Changa مع Sora، للبودكاست والمحتوى الصوتي.",
+    "en": "Neon pink and sky on dark, Changa with Sora, for podcasts and audio content."
+  },
+  "tags": [
+    "vivid",
+    "retro"
+  ],
+  "sectors": [
+    "media",
+    "creative"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-daisyui-synthwave",
+    "modes": "modes-dark-only",
+    "fonts": "pair-changa-sora",
+    "type-scale": "scale-augmented-fourth",
+    "radius": "radius-round",
+    "shadows": "shadow-ambient",
+    "icons": "icons-solar-duotone-rounded",
+    "buttons": "button-secondary-solid",
+    "cards": "card-hover-lift",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

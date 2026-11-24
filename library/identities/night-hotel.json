@@ -1,0 +1,35 @@
+{
+  "id": "night-hotel",
+  "name": {
+    "ar": "فندق ليلي",
+    "en": "Night hotel"
+  },
+  "description": {
+    "ar": "بنفسجي ليلي مع أزرق فاتح، داكن أولًا، وخط Scheherazade مع Playfair وأزرار بإطار مزدوج، للفنادق والشقق الفاخرة.",
+    "en": "Night violet with light blue, dark first, Scheherazade with Playfair and double-outline buttons, for hotels and luxury apartments."
+  },
+  "tags": [
+    "luxury",
+    "editorial"
+  ],
+  "sectors": [
+    "hospitality",
+    "realestate"
+  ],
+  "types": [
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-midnight-bloom",
+    "modes": "modes-dark-first",
+    "fonts": "pair-scheherazade-new-playfair-display",
+    "type-scale": "scale-augmented-fourth",
+    "radius": "radius-gentle",
+    "shadows": "shadow-floating",
+    "icons": "icons-tabler-light",
+    "buttons": "button-double-outline",
+    "cards": "card-floating",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

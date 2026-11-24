@@ -1,0 +1,36 @@
+{
+  "id": "bright-school",
+  "name": {
+    "ar": "مدرسة مشرقة",
+    "en": "Bright school"
+  },
+  "description": {
+    "ar": "برتقالي وأزرق مبهجان، وخط Rubik وأيقونات عريضة، للمدارس والأنشطة الطلابية.",
+    "en": "Cheerful orange and blue, Rubik and bold icons, for schools and student activities."
+  },
+  "tags": [
+    "playful",
+    "vivid"
+  ],
+  "sectors": [
+    "education",
+    "kids"
+  ],
+  "types": [
+    "website",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-open-color-orange-blue",
+    "modes": "modes-light-first",
+    "fonts": "pair-rubik",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-soft",
+    "shadows": "shadow-deep",
+    "icons": "icons-tabler-bold-circle",
+    "buttons": "button-secondary-outline",
+    "cards": "card-split-top",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

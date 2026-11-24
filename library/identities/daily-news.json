@@ -1,0 +1,34 @@
+{
+  "id": "daily-news",
+  "name": {
+    "ar": "صحيفة يومية",
+    "en": "Daily news"
+  },
+  "description": {
+    "ar": "أحمر الصحافة مع أزرق، وزوايا قائمة وكثافة عالية، لمواقع الأخبار والمجلات.",
+    "en": "Press red with blue, square corners and high density, for news sites and magazines."
+  },
+  "tags": [
+    "editorial",
+    "data-dense"
+  ],
+  "sectors": [
+    "media"
+  ],
+  "types": [
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-open-color-red-blue",
+    "modes": "modes-system",
+    "fonts": "pair-noto-sans-arabic-noto-sans",
+    "type-scale": "scale-major-second",
+    "radius": "radius-square",
+    "shadows": "shadow-flat",
+    "icons": "icons-heroicons-regular",
+    "buttons": "button-square-solid",
+    "cards": "card-filled",
+    "spacing": "spacing-compact",
+    "direction": "direction-both"
+  }
+}

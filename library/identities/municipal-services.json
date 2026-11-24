@@ -1,0 +1,36 @@
+{
+  "id": "municipal-services",
+  "name": {
+    "ar": "خدمات البلدية",
+    "en": "Municipal services"
+  },
+  "description": {
+    "ar": "أزرق مع برتقالي، وأيقونات ممتلئة وأزرار كبيرة سهلة اللمس، لبوابات الخدمات العامة.",
+    "en": "Blue with orange, filled icons and large easy-to-tap buttons, for public service portals."
+  },
+  "tags": [
+    "corporate",
+    "material"
+  ],
+  "sectors": [
+    "government",
+    "nonprofit"
+  ],
+  "types": [
+    "web-app",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-open-color-blue-orange",
+    "modes": "modes-system",
+    "fonts": "pair-almarai-dm-sans",
+    "type-scale": "scale-major-second",
+    "radius": "radius-gentle",
+    "shadows": "shadow-soft",
+    "icons": "icons-material-symbols-filled-circle",
+    "buttons": "button-solid",
+    "cards": "card-header",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

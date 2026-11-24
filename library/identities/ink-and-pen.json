@@ -1,0 +1,35 @@
+{
+  "id": "ink-and-pen",
+  "name": {
+    "ar": "حبر وقلم",
+    "en": "Ink and pen"
+  },
+  "description": {
+    "ar": "رمادي الحبر مع أحمر خفيف، وخط Markazi مع Lora ومسافات واسعة، للكتّاب ودور النشر.",
+    "en": "Ink gray with a light red, Markazi with Lora and airy spacing, for writers and publishers."
+  },
+  "tags": [
+    "editorial",
+    "minimal"
+  ],
+  "sectors": [
+    "culture",
+    "media"
+  ],
+  "types": [
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-open-color-gray-red",
+    "modes": "modes-light-only",
+    "fonts": "pair-markazi-text-lora",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-square",
+    "shadows": "shadow-flat",
+    "icons": "icons-tabler-light",
+    "buttons": "button-link",
+    "cards": "card-bottom-accent",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

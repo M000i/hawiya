@@ -73,6 +73,6 @@ test('a session without sectors still ranks by feel, and a health app finds the 
   // A new tab: changing only the end of the link would not load the page again.
   const other = await page.context().newPage();
   await open(other, '#session=' + b64url({ type: 'landing', language: 'ar', tags: ['playful', 'vivid'] }));
-  expect((await order(other))[0]).toBe('playful-colorful');
+  expect(['candy-land', 'playful-colorful']).toContain((await order(other))[0]); // the two playful kids identities
   await expect(other.locator('#identity-ranked')).toBeVisible();
 });

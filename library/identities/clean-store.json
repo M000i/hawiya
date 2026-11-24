@@ -1,0 +1,36 @@
+{
+  "id": "clean-store",
+  "name": {
+    "ar": "متجر أنيق",
+    "en": "Clean store"
+  },
+  "description": {
+    "ar": "رمادي حجري مع برتقالي، وبطاقات بلون الصفحة وأيقونات في دوائر، للمتاجر الإلكترونية.",
+    "en": "Stone gray with orange, page-tone cards and circled icons, for online stores."
+  },
+  "tags": [
+    "minimal",
+    "corporate"
+  ],
+  "sectors": [
+    "commerce",
+    "fashion"
+  ],
+  "types": [
+    "landing",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-stone-orange",
+    "modes": "modes-light-first",
+    "fonts": "pair-almarai-dm-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-gentle",
+    "shadows": "shadow-soft",
+    "icons": "icons-lucide-circle",
+    "buttons": "button-solid",
+    "cards": "card-plain",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

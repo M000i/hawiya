@@ -1,0 +1,36 @@
+{
+  "id": "saas-startup",
+  "name": {
+    "ar": "شركة ناشئة",
+    "en": "SaaS startup"
+  },
+  "description": {
+    "ar": "نيلي مع وردي، وخط Alexandria مع Plus Jakarta، وبطاقات ترتفع عند المرور، للشركات الناشئة.",
+    "en": "Indigo with pink, Alexandria with Plus Jakarta and lift-on-hover cards, for startups."
+  },
+  "tags": [
+    "soft",
+    "corporate"
+  ],
+  "sectors": [
+    "technology",
+    "commerce"
+  ],
+  "types": [
+    "landing",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-indigo-pink",
+    "modes": "modes-system",
+    "fonts": "pair-alexandria-plus-jakarta-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-medium",
+    "shadows": "shadow-soft",
+    "icons": "icons-heroicons-solid-rounded",
+    "buttons": "button-solid",
+    "cards": "card-hover-lift",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

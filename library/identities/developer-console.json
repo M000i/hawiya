@@ -1,0 +1,36 @@
+{
+  "id": "developer-console",
+  "name": {
+    "ar": "لوحة المطوّر",
+    "en": "Developer console"
+  },
+  "description": {
+    "ar": "داكن فقط مع بنفسجي فاتح، وزوايا قائمة وحدود منقطة، لأدوات المطورين وواجهات الأوامر.",
+    "en": "Dark only with light violet, square corners and dashed borders, for developer tools and consoles."
+  },
+  "tags": [
+    "technical",
+    "minimal"
+  ],
+  "sectors": [
+    "technology"
+  ],
+  "types": [
+    "web-app",
+    "dashboard",
+    "html-page"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-slate-violet",
+    "modes": "modes-dark-only",
+    "fonts": "pair-kufam-space-grotesk",
+    "type-scale": "scale-minor-third",
+    "radius": "radius-square",
+    "shadows": "shadow-ring",
+    "icons": "icons-streamline-regular",
+    "buttons": "button-dashed",
+    "cards": "card-outline-sharp",
+    "spacing": "spacing-compact",
+    "direction": "direction-both"
+  }
+}

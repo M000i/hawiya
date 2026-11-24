@@ -1,0 +1,35 @@
+{
+  "id": "busy-marketplace",
+  "name": {
+    "ar": "سوق",
+    "en": "Busy marketplace"
+  },
+  "description": {
+    "ar": "سماوي غامق مع برتقالي، وكثافة عالية وبطاقات مضغوطة، للأسواق والمنصات بكثير من المنتجات.",
+    "en": "Deep sky with orange, high density and compact cards, for marketplaces with many products."
+  },
+  "tags": [
+    "data-dense",
+    "vivid"
+  ],
+  "sectors": [
+    "commerce"
+  ],
+  "types": [
+    "web-app",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-sky-orange",
+    "modes": "modes-light-first",
+    "fonts": "pair-tajawal-manrope",
+    "type-scale": "scale-major-second",
+    "radius": "radius-medium",
+    "shadows": "shadow-elevation",
+    "icons": "icons-bootstrap-regular",
+    "buttons": "button-compact-solid",
+    "cards": "card-compact",
+    "spacing": "spacing-compact",
+    "direction": "direction-both"
+  }
+}

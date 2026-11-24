@@ -1,0 +1,36 @@
+{
+  "id": "fresh-pharmacy",
+  "name": {
+    "ar": "صيدلية",
+    "en": "Fresh pharmacy"
+  },
+  "description": {
+    "ar": "أخضر نعناعي مع وردي، وزوايا ناعمة وأزرار هادئة، للصيدليات ومتاجر العناية.",
+    "en": "Mint green with pink, soft corners and soft buttons, for pharmacies and care stores."
+  },
+  "tags": [
+    "soft",
+    "minimal"
+  ],
+  "sectors": [
+    "health",
+    "commerce"
+  ],
+  "types": [
+    "web-app",
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-open-color-teal-pink",
+    "modes": "modes-light-first",
+    "fonts": "pair-noto-sans-arabic-noto-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-soft",
+    "shadows": "shadow-ambient",
+    "icons": "icons-solar-regular",
+    "buttons": "button-soft",
+    "cards": "card-hover-lift",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

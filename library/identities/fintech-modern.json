@@ -1,0 +1,36 @@
+{
+  "id": "fintech-modern",
+  "name": {
+    "ar": "تقنية مالية",
+    "en": "Modern fintech"
+  },
+  "description": {
+    "ar": "نيلي عميق مع فيروزي فاتح، وأرقام واضحة وكثافة عالية، لتطبيقات الدفع والمحافظ الرقمية.",
+    "en": "Deep indigo with light teal, clear numbers and tight density, for payment and digital wallet apps."
+  },
+  "tags": [
+    "technical",
+    "data-dense"
+  ],
+  "sectors": [
+    "finance",
+    "technology"
+  ],
+  "types": [
+    "web-app",
+    "dashboard"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-indigo-teal",
+    "modes": "modes-system",
+    "fonts": "pair-vazirmatn-onest",
+    "type-scale": "scale-major-second",
+    "radius": "radius-medium",
+    "shadows": "shadow-tinted-cool",
+    "icons": "icons-carbon-regular",
+    "buttons": "button-solid",
+    "cards": "card-data",
+    "spacing": "spacing-compact",
+    "direction": "direction-both"
+  }
+}

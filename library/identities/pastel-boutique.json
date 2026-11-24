@@ -1,0 +1,35 @@
+{
+  "id": "pastel-boutique",
+  "name": {
+    "ar": "بوتيك",
+    "en": "Pastel boutique"
+  },
+  "description": {
+    "ar": "فيروزي عميق مع وردي، وزوايا مستديرة جدًا وظلال دافئة، للبوتيكات ومتاجر الهدايا.",
+    "en": "Deep teal with pink, very round corners and warm shadows, for boutiques and gift shops."
+  },
+  "tags": [
+    "soft",
+    "playful"
+  ],
+  "sectors": [
+    "fashion",
+    "commerce"
+  ],
+  "types": [
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-teal-pink",
+    "modes": "modes-light-only",
+    "fonts": "pair-zain-figtree",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-extra-round",
+    "shadows": "shadow-tinted-warm",
+    "icons": "icons-iconamoon-regular",
+    "buttons": "button-secondary-outline",
+    "cards": "card-soft-round",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

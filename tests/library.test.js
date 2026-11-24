@@ -60,13 +60,14 @@ test('the published library: every template reviewed (about 250 or more), no dra
   assert.ok(reviewed >= 240, `${reviewed} reviewed templates`);
   // 14 ready identities (10 of the first version, 4 of CHG-3), every one on the page: none left out (task 6.4, B-108;
   // the loosening of task 5.4, while the four waited for the review of their drafts, ended with 5.6).
-  assert.equal(lib.identities.length, 14);
+  // 2026-11-25: 31 more, 45 in all.
+  assert.equal(lib.identities.length, 45);
   assert.deepEqual(
     sel.summary.identities.excluded.map((x) => `${x.id}: ${x.reasons.join('; ')}`),
     [],
     'no ready identity left out of the page'
   );
-  assert.equal(sel.data.identities.length, 14);
+  assert.equal(sel.data.identities.length, 45);
   // The two first identities differ in most choices, so they show the range of the library.
   const a = sel.data.identities.find((i) => i.id === 'calm-corporate');
   const b = sel.data.identities.find((i) => i.id === 'warm-friendly');
@@ -302,7 +303,7 @@ test('every ready identity: no blocking problem and no warning of any kind, in A
       seen.push([`${ready.id} (${d})`, problems, w.warnings.map((x) => x.rule), w.unchecked]);
     }
   }
-  assert.equal(seen.length, 14 * directions.length);
+  assert.equal(seen.length, 45 * directions.length);
   assert.deepEqual(
     seen.filter(([, p, w, u]) => p.length || w.length || u.length),
     [],
@@ -581,4 +582,19 @@ test('cards: 22+ recipes in the identity colors, corners and shadows, each with 
     assert.ok(s && s.license === t.source.license, `${t.id}: source and license recorded`);
     assert.equal(t.rtl.supported, true, t.id);
   }
+});
+
+// 2026-11-25: with 45 ready identities, each one still looks like itself: its own palette, both names unique, and
+// no two that differ in fewer than four elements.
+test('ready identities are distinct: own palette, unique names, at least four elements apart', () => {
+  const ids = sel.data.identities;
+  const palettes = ids.map((i) => i.templates.colors);
+  assert.equal(new Set(palettes).size, ids.length, 'two identities share a palette');
+  assert.equal(new Set(ids.map((i) => i.name.ar)).size, ids.length, 'an Arabic name is used twice');
+  assert.equal(new Set(ids.map((i) => i.name.en)).size, ids.length, 'an English name is used twice');
+  for (let x = 0; x < ids.length; x++)
+    for (let y = x + 1; y < ids.length; y++) {
+      const apart = build.ELEMENTS.filter((e) => ids[x].templates[e] !== ids[y].templates[e]).length;
+      assert.ok(apart >= 4, `${ids[x].id} and ${ids[y].id} differ in only ${apart} elements`);
+    }
 });

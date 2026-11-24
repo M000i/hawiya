@@ -1,0 +1,35 @@
+{
+  "id": "candy-land",
+  "name": {
+    "ar": "حلوى",
+    "en": "Candy land"
+  },
+  "description": {
+    "ar": "وردي غامق مع نيلي، وخط Baloo وزوايا مستديرة جدًا، لتطبيقات الأطفال والألعاب.",
+    "en": "Deep pink with indigo, Baloo and very round corners, for kids apps and games."
+  },
+  "tags": [
+    "playful",
+    "vivid"
+  ],
+  "sectors": [
+    "kids"
+  ],
+  "types": [
+    "landing",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-pink-indigo",
+    "modes": "modes-light-only",
+    "fonts": "pair-baloo-bhaijaan-2",
+    "type-scale": "scale-golden",
+    "radius": "radius-extra-round",
+    "shadows": "shadow-deep",
+    "icons": "icons-iconamoon-fill-circle",
+    "buttons": "button-elevated",
+    "cards": "card-secondary",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

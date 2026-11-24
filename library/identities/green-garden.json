@@ -1,0 +1,36 @@
+{
+  "id": "green-garden",
+  "name": {
+    "ar": "حديقة",
+    "en": "Green garden"
+  },
+  "description": {
+    "ar": "أخضر غامق مع وردي، وزوايا مستديرة وأيقونات خفيفة، للمشاتل والمنتجات العضوية.",
+    "en": "Deep green with rose, round corners and Phosphor icons, for nurseries and organic products."
+  },
+  "tags": [
+    "soft",
+    "editorial"
+  ],
+  "sectors": [
+    "nature",
+    "food"
+  ],
+  "types": [
+    "website",
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-green-rose",
+    "modes": "modes-light-first",
+    "fonts": "pair-alexandria-plus-jakarta-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-round",
+    "shadows": "shadow-soft",
+    "icons": "icons-phosphor-regular",
+    "buttons": "button-soft",
+    "cards": "card-earthy-side",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

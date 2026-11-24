@@ -86,15 +86,16 @@ test('typical projects get the identity a person would pick first', () => {
     [{ type: 'dashboard', language: 'ar', tags: ['corporate', 'data-dense'], sectors: ['finance'] }, 'sober-finance'],
     [{ type: 'web-app', language: 'ar', tags: ['soft', 'minimal'], sectors: ['health'] }, 'clean-health'],
     [{ type: 'website', language: 'ar', tags: ['corporate', 'minimal'], sectors: ['government'] }, 'government'],
-    [{ type: 'landing', language: 'ar+en', tags: ['playful', 'vivid'], sectors: ['kids'] }, 'playful-colorful'],
+    [{ type: 'landing', language: 'ar+en', tags: ['playful', 'vivid'], sectors: ['kids'] }, 'candy-land'],
     [{ type: 'dashboard', language: 'en', tags: ['technical', 'data-dense'], sectors: ['technology'] }, 'dark-tech'],
     [{ type: 'landing', language: 'ar', tags: ['luxury'], sectors: ['fashion'] }, 'luxury'],
-    [{ type: 'website', language: 'ar', tags: ['editorial'], sectors: ['media'] }, 'editorial'],
+    [{ type: 'website', language: 'ar', tags: ['editorial'], sectors: ['media'] }, ['daily-news', 'editorial']],
     [{ type: 'website', language: 'ar', tags: ['soft', 'retro'], sectors: ['nature', 'food'] }, 'earthy-natural']
   ];
   for (const [session, first] of cases) {
     const r = fit.rank(identities, session, primaryOf);
-    assert.equal(r[0].id, first, `${session.sectors} ${session.type}: got ${ids(r).slice(0, 3)}`);
+    const ok = [].concat(first);
+    assert.ok(ok.includes(r[0].id), `${session.sectors} ${session.type}: got ${ids(r).slice(0, 3)}`);
     assert.equal(r.length, identities.length, 'every identity is still shown');
   }
 });

@@ -1,0 +1,36 @@
+{
+  "id": "stone-property",
+  "name": {
+    "ar": "عقاري",
+    "en": "Stone property"
+  },
+  "description": {
+    "ar": "رمادي أردوازي مع سماوي، وخط Tajawal مع Manrope وبطاقات مرتفعة، للعقار والمقاولات.",
+    "en": "Slate gray with sky, Tajawal with Manrope and raised cards, for real estate and construction."
+  },
+  "tags": [
+    "corporate",
+    "minimal"
+  ],
+  "sectors": [
+    "realestate",
+    "professional"
+  ],
+  "types": [
+    "website",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-slate-sky",
+    "modes": "modes-light-first",
+    "fonts": "pair-tajawal-manrope",
+    "type-scale": "scale-major-third",
+    "radius": "radius-medium",
+    "shadows": "shadow-elevation",
+    "icons": "icons-lucide-outline",
+    "buttons": "button-solid",
+    "cards": "card-top-accent-elevated",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

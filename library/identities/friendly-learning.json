@@ -1,0 +1,35 @@
+{
+  "id": "friendly-learning",
+  "name": {
+    "ar": "تعلّم ممتع",
+    "en": "Friendly learning"
+  },
+  "description": {
+    "ar": "نيلي مع فيروزي، وزوايا مستديرة وأيقونات ثنائية اللون، لمنصات التعلّم عن بعد.",
+    "en": "Indigo with teal, round corners and two-tone icons, for online learning platforms."
+  },
+  "tags": [
+    "soft",
+    "playful"
+  ],
+  "sectors": [
+    "education",
+    "technology"
+  ],
+  "types": [
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-soft-pop",
+    "modes": "modes-system",
+    "fonts": "pair-readex-pro-outfit",
+    "type-scale": "scale-major-third",
+    "radius": "radius-round",
+    "shadows": "shadow-elevation",
+    "icons": "icons-solar-duotone-rounded",
+    "buttons": "button-elevated",
+    "cards": "card-elevated",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

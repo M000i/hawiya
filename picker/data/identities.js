@@ -13,6 +13,78 @@
   d.identities = list;
 })(typeof self !== 'undefined' ? self : this, [
   {
+    "id": "ai-glow",
+    "name": {
+      "ar": "\u0630\u0643\u0627\u0621 \u0627\u0635\u0637\u0646\u0627\u0639\u064a",
+      "en": "AI glow"
+    },
+    "description": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0633\u0627\u0637\u0639 \u0639\u0644\u0649 \u062e\u0644\u0641\u064a\u0629 \u062f\u0627\u0643\u0646\u0629\u060c \u0648\u0638\u0644\u0627\u0644 \u0637\u0627\u0641\u064a\u0629 \u0648\u0623\u0632\u0631\u0627\u0631 \u0643\u0628\u064a\u0631\u0629\u060c \u0644\u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a.",
+      "en": "Bright violet on a dark background, floating shadows and large buttons, for AI products."
+    },
+    "tags": [
+      "vivid",
+      "technical"
+    ],
+    "sectors": [
+      "technology",
+      "creative"
+    ],
+    "types": [
+      "landing",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-shadcn-violet",
+      "modes": "modes-dark-first",
+      "fonts": "pair-fustat-geist",
+      "type-scale": "scale-augmented-fourth",
+      "radius": "radius-round",
+      "shadows": "shadow-floating",
+      "icons": "icons-hugeicons-regular",
+      "buttons": "button-large-solid",
+      "cards": "card-floating",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "andalusian",
+    "name": {
+      "ar": "\u0623\u0646\u062f\u0644\u0633\u064a",
+      "en": "Andalusian"
+    },
+    "description": {
+      "ar": "\u0637\u0648\u0628\u064a \u0645\u0639 \u0641\u064a\u0631\u0648\u0632\u064a\u060c \u0648\u062e\u0637 Scheherazade \u0645\u0639 Playfair \u0648\u0625\u0637\u0627\u0631\u0627\u062a \u0645\u0632\u062f\u0648\u062c\u0629\u060c \u0644\u0644\u062a\u0631\u0627\u062b \u0648\u0627\u0644\u0633\u064a\u0627\u062d\u0629 \u0627\u0644\u062b\u0642\u0627\u0641\u064a\u0629.",
+      "en": "Terracotta with teal, Scheherazade with Playfair and double frames, for heritage and cultural travel."
+    },
+    "tags": [
+      "retro",
+      "editorial"
+    ],
+    "sectors": [
+      "culture",
+      "hospitality"
+    ],
+    "types": [
+      "website",
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-orange-teal",
+      "modes": "modes-light-first",
+      "fonts": "pair-scheherazade-new-playfair-display",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-subtle",
+      "shadows": "shadow-tinted-warm",
+      "icons": "icons-phosphor-duotone-square",
+      "buttons": "button-double-outline",
+      "cards": "card-double-border",
+      "spacing": "spacing-grid-6",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "arabic-heritage",
     "name": {
       "ar": "\u0639\u0631\u0628\u064a \u062a\u0631\u0627\u062b\u064a",
@@ -50,6 +122,76 @@
     }
   },
   {
+    "id": "bold-agency",
+    "name": {
+      "ar": "\u0648\u0643\u0627\u0644\u0629 \u062c\u0631\u064a\u0626\u0629",
+      "en": "Bold agency"
+    },
+    "description": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0639\u0645\u064a\u0642 \u0645\u0639 \u0623\u0635\u0641\u0631\u060c \u0648\u0638\u0644\u0627\u0644 \u0635\u0644\u0628\u0629 \u0648\u0632\u0648\u0627\u064a\u0627 \u062d\u0627\u062f\u0629\u060c \u0644\u0644\u0648\u0643\u0627\u0644\u0627\u062a \u0627\u0644\u0625\u0628\u062f\u0627\u0639\u064a\u0629 \u0648\u0627\u0644\u062d\u0645\u0644\u0627\u062a.",
+      "en": "Deep purple with yellow, hard shadows and sharp corners, for creative agencies and campaigns."
+    },
+    "tags": [
+      "brutalist",
+      "vivid"
+    ],
+    "sectors": [
+      "creative"
+    ],
+    "types": [
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-purple-yellow",
+      "modes": "modes-light-first",
+      "fonts": "pair-mada-bricolage-grotesque",
+      "type-scale": "scale-golden",
+      "radius": "radius-sharp",
+      "shadows": "shadow-crisp",
+      "icons": "icons-phosphor-bold",
+      "buttons": "button-brutalist",
+      "cards": "card-brutalist-primary",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "bright-school",
+    "name": {
+      "ar": "\u0645\u062f\u0631\u0633\u0629 \u0645\u0634\u0631\u0642\u0629",
+      "en": "Bright school"
+    },
+    "description": {
+      "ar": "\u0628\u0631\u062a\u0642\u0627\u0644\u064a \u0648\u0623\u0632\u0631\u0642 \u0645\u0628\u0647\u062c\u0627\u0646\u060c \u0648\u062e\u0637 Rubik \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0639\u0631\u064a\u0636\u0629\u060c \u0644\u0644\u0645\u062f\u0627\u0631\u0633 \u0648\u0627\u0644\u0623\u0646\u0634\u0637\u0629 \u0627\u0644\u0637\u0644\u0627\u0628\u064a\u0629.",
+      "en": "Cheerful orange and blue, Rubik and bold icons, for schools and student activities."
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "sectors": [
+      "education",
+      "kids"
+    ],
+    "types": [
+      "website",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-open-color-orange-blue",
+      "modes": "modes-light-first",
+      "fonts": "pair-rubik",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-soft",
+      "shadows": "shadow-deep",
+      "icons": "icons-tabler-bold-circle",
+      "buttons": "button-secondary-outline",
+      "cards": "card-split-top",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "brutalist",
     "name": {
       "ar": "\u0628\u0631\u0648\u062a\u0627\u0644\u064a",
@@ -82,6 +224,41 @@
       "buttons": "button-brutalist-primary",
       "cards": "card-brutalist",
       "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "busy-marketplace",
+    "name": {
+      "ar": "\u0633\u0648\u0642",
+      "en": "Busy marketplace"
+    },
+    "description": {
+      "ar": "\u0633\u0645\u0627\u0648\u064a \u063a\u0627\u0645\u0642 \u0645\u0639 \u0628\u0631\u062a\u0642\u0627\u0644\u064a\u060c \u0648\u0643\u062b\u0627\u0641\u0629 \u0639\u0627\u0644\u064a\u0629 \u0648\u0628\u0637\u0627\u0642\u0627\u062a \u0645\u0636\u063a\u0648\u0637\u0629\u060c \u0644\u0644\u0623\u0633\u0648\u0627\u0642 \u0648\u0627\u0644\u0645\u0646\u0635\u0627\u062a \u0628\u0643\u062b\u064a\u0631 \u0645\u0646 \u0627\u0644\u0645\u0646\u062a\u062c\u0627\u062a.",
+      "en": "Deep sky with orange, high density and compact cards, for marketplaces with many products."
+    },
+    "tags": [
+      "data-dense",
+      "vivid"
+    ],
+    "sectors": [
+      "commerce"
+    ],
+    "types": [
+      "web-app",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-sky-orange",
+      "modes": "modes-light-first",
+      "fonts": "pair-tajawal-manrope",
+      "type-scale": "scale-major-second",
+      "radius": "radius-medium",
+      "shadows": "shadow-elevation",
+      "icons": "icons-bootstrap-regular",
+      "buttons": "button-compact-solid",
+      "cards": "card-compact",
+      "spacing": "spacing-compact",
       "direction": "direction-both"
     }
   },
@@ -124,6 +301,41 @@
     }
   },
   {
+    "id": "candy-land",
+    "name": {
+      "ar": "\u062d\u0644\u0648\u0649",
+      "en": "Candy land"
+    },
+    "description": {
+      "ar": "\u0648\u0631\u062f\u064a \u063a\u0627\u0645\u0642 \u0645\u0639 \u0646\u064a\u0644\u064a\u060c \u0648\u062e\u0637 Baloo \u0648\u0632\u0648\u0627\u064a\u0627 \u0645\u0633\u062a\u062f\u064a\u0631\u0629 \u062c\u062f\u064b\u0627\u060c \u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u0623\u0637\u0641\u0627\u0644 \u0648\u0627\u0644\u0623\u0644\u0639\u0627\u0628.",
+      "en": "Deep pink with indigo, Baloo and very round corners, for kids apps and games."
+    },
+    "tags": [
+      "playful",
+      "vivid"
+    ],
+    "sectors": [
+      "kids"
+    ],
+    "types": [
+      "landing",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-pink-indigo",
+      "modes": "modes-light-only",
+      "fonts": "pair-baloo-bhaijaan-2",
+      "type-scale": "scale-golden",
+      "radius": "radius-extra-round",
+      "shadows": "shadow-deep",
+      "icons": "icons-iconamoon-fill-circle",
+      "buttons": "button-elevated",
+      "cards": "card-secondary",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "classic-naskh",
     "name": {
       "ar": "\u0643\u0644\u0627\u0633\u064a\u0643\u064a \u0646\u0633\u062e\u064a",
@@ -158,6 +370,41 @@
       "buttons": "button-double-outline",
       "cards": "card-double-border",
       "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "classic-university",
+    "name": {
+      "ar": "\u062c\u0627\u0645\u0639\u064a \u0639\u0631\u064a\u0642",
+      "en": "Classic university"
+    },
+    "description": {
+      "ar": "\u0643\u062d\u0644\u064a \u0645\u0639 \u0630\u0647\u0628\u064a\u060c \u0648\u062e\u0637 Scheherazade \u0645\u0639 Playfair \u0648\u0632\u0648\u0627\u064a\u0627 \u062d\u0627\u062f\u0629\u060c \u0644\u0644\u062c\u0627\u0645\u0639\u0627\u062a \u0648\u0627\u0644\u0645\u0631\u0627\u0643\u0632 \u0627\u0644\u0628\u062d\u062b\u064a\u0629.",
+      "en": "Navy with gold, Scheherazade with Playfair and sharp corners, for universities and research centers."
+    },
+    "tags": [
+      "editorial",
+      "retro"
+    ],
+    "sectors": [
+      "education",
+      "culture"
+    ],
+    "types": [
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-starry-night",
+      "modes": "modes-light-first",
+      "fonts": "pair-scheherazade-new-playfair-display",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-sharp",
+      "shadows": "shadow-flat",
+      "icons": "icons-iconoir-regular",
+      "buttons": "button-outline-thick",
+      "cards": "card-outline-sharp",
+      "spacing": "spacing-balanced",
       "direction": "direction-both"
     }
   },
@@ -198,6 +445,112 @@
     }
   },
   {
+    "id": "clean-store",
+    "name": {
+      "ar": "\u0645\u062a\u062c\u0631 \u0623\u0646\u064a\u0642",
+      "en": "Clean store"
+    },
+    "description": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u062d\u062c\u0631\u064a \u0645\u0639 \u0628\u0631\u062a\u0642\u0627\u0644\u064a\u060c \u0648\u0628\u0637\u0627\u0642\u0627\u062a \u0628\u0644\u0648\u0646 \u0627\u0644\u0635\u0641\u062d\u0629 \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0641\u064a \u062f\u0648\u0627\u0626\u0631\u060c \u0644\u0644\u0645\u062a\u0627\u062c\u0631 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0629.",
+      "en": "Stone gray with orange, page-tone cards and circled icons, for online stores."
+    },
+    "tags": [
+      "minimal",
+      "corporate"
+    ],
+    "sectors": [
+      "commerce",
+      "fashion"
+    ],
+    "types": [
+      "landing",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-stone-orange",
+      "modes": "modes-light-first",
+      "fonts": "pair-almarai-dm-sans",
+      "type-scale": "scale-major-third",
+      "radius": "radius-gentle",
+      "shadows": "shadow-soft",
+      "icons": "icons-lucide-circle",
+      "buttons": "button-solid",
+      "cards": "card-plain",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "cozy-cafe",
+    "name": {
+      "ar": "\u0645\u0642\u0647\u0649",
+      "en": "Cozy cafe"
+    },
+    "description": {
+      "ar": "\u0628\u0646\u064a \u0627\u0644\u0642\u0647\u0648\u0629 \u0645\u0639 \u0643\u0631\u064a\u0645\u064a\u060c \u0648\u062e\u0637 Noto Naskh \u0645\u0639 Fraunces\u060c \u0644\u0644\u0645\u0642\u0627\u0647\u064a \u0648\u0627\u0644\u0645\u062e\u0627\u0628\u0632.",
+      "en": "Coffee brown with cream, Noto Naskh with Fraunces, for cafes and bakeries."
+    },
+    "tags": [
+      "soft",
+      "retro"
+    ],
+    "sectors": [
+      "food",
+      "hospitality"
+    ],
+    "types": [
+      "landing",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-caffeine",
+      "modes": "modes-light-first",
+      "fonts": "pair-noto-naskh-arabic-fraunces",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-soft",
+      "shadows": "shadow-tinted-warm",
+      "icons": "icons-phosphor-light-rounded",
+      "buttons": "button-large-outline",
+      "cards": "card-earthy-side",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "daily-news",
+    "name": {
+      "ar": "\u0635\u062d\u064a\u0641\u0629 \u064a\u0648\u0645\u064a\u0629",
+      "en": "Daily news"
+    },
+    "description": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0627\u0644\u0635\u062d\u0627\u0641\u0629 \u0645\u0639 \u0623\u0632\u0631\u0642\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629 \u0648\u0643\u062b\u0627\u0641\u0629 \u0639\u0627\u0644\u064a\u0629\u060c \u0644\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u0623\u062e\u0628\u0627\u0631 \u0648\u0627\u0644\u0645\u062c\u0644\u0627\u062a.",
+      "en": "Press red with blue, square corners and high density, for news sites and magazines."
+    },
+    "tags": [
+      "editorial",
+      "data-dense"
+    ],
+    "sectors": [
+      "media"
+    ],
+    "types": [
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-open-color-red-blue",
+      "modes": "modes-system",
+      "fonts": "pair-noto-sans-arabic-noto-sans",
+      "type-scale": "scale-major-second",
+      "radius": "radius-square",
+      "shadows": "shadow-flat",
+      "icons": "icons-heroicons-regular",
+      "buttons": "button-square-solid",
+      "cards": "card-filled",
+      "spacing": "spacing-compact",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "dark-tech",
     "name": {
       "ar": "\u062f\u0627\u0643\u0646 \u062a\u0642\u0646\u064a",
@@ -228,6 +581,77 @@
       "icons": "icons-tabler-outline",
       "buttons": "button-compact-solid",
       "cards": "card-compact",
+      "spacing": "spacing-compact",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "desert-resort",
+    "name": {
+      "ar": "\u0645\u0646\u062a\u062c\u0639 \u0635\u062d\u0631\u0627\u0648\u064a",
+      "en": "Desert resort"
+    },
+    "description": {
+      "ar": "\u0643\u0647\u0631\u0645\u0627\u0646\u064a \u0631\u0645\u0644\u064a \u0645\u0639 \u0623\u0632\u0631\u0642\u060c \u0648\u0645\u0633\u0627\u0641\u0627\u062a \u0648\u0627\u0633\u0639\u0629 \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0631\u0641\u064a\u0639\u0629\u060c \u0644\u0644\u0645\u0646\u062a\u062c\u0639\u0627\u062a \u0648\u0627\u0644\u0645\u062e\u064a\u0645\u0627\u062a \u0648\u0627\u0644\u0633\u064a\u0627\u062d\u0629.",
+      "en": "Sand amber with blue, airy spacing and thin icons, for resorts, camps and tourism."
+    },
+    "tags": [
+      "luxury",
+      "soft"
+    ],
+    "sectors": [
+      "hospitality"
+    ],
+    "types": [
+      "landing",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-amber-blue",
+      "modes": "modes-light-first",
+      "fonts": "pair-beiruti-instrument-sans",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-soft",
+      "shadows": "shadow-floating",
+      "icons": "icons-phosphor-thin",
+      "buttons": "button-large-outline",
+      "cards": "card-spacious",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "developer-console",
+    "name": {
+      "ar": "\u0644\u0648\u062d\u0629 \u0627\u0644\u0645\u0637\u0648\u0651\u0631",
+      "en": "Developer console"
+    },
+    "description": {
+      "ar": "\u062f\u0627\u0643\u0646 \u0641\u0642\u0637 \u0645\u0639 \u0628\u0646\u0641\u0633\u062c\u064a \u0641\u0627\u062a\u062d\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629 \u0648\u062d\u062f\u0648\u062f \u0645\u0646\u0642\u0637\u0629\u060c \u0644\u0623\u062f\u0648\u0627\u062a \u0627\u0644\u0645\u0637\u0648\u0631\u064a\u0646 \u0648\u0648\u0627\u062c\u0647\u0627\u062a \u0627\u0644\u0623\u0648\u0627\u0645\u0631.",
+      "en": "Dark only with light violet, square corners and dashed borders, for developer tools and consoles."
+    },
+    "tags": [
+      "technical",
+      "minimal"
+    ],
+    "sectors": [
+      "technology"
+    ],
+    "types": [
+      "web-app",
+      "dashboard",
+      "html-page"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-slate-violet",
+      "modes": "modes-dark-only",
+      "fonts": "pair-kufam-space-grotesk",
+      "type-scale": "scale-minor-third",
+      "radius": "radius-square",
+      "shadows": "shadow-ring",
+      "icons": "icons-streamline-regular",
+      "buttons": "button-dashed",
+      "cards": "card-outline-sharp",
       "spacing": "spacing-compact",
       "direction": "direction-both"
     }
@@ -306,6 +730,149 @@
     }
   },
   {
+    "id": "fast-food",
+    "name": {
+      "ar": "\u0648\u062c\u0628\u0627\u062a \u0633\u0631\u064a\u0639\u0629",
+      "en": "Fast food"
+    },
+    "description": {
+      "ar": "\u0623\u062d\u0645\u0631 \u0648\u0643\u0647\u0631\u0645\u0627\u0646\u064a\u060c \u0648\u062e\u0637 Rubik \u0648\u0632\u0648\u0627\u064a\u0627 \u0645\u0633\u062a\u062f\u064a\u0631\u0629 \u062c\u062f\u064b\u0627\u060c \u0644\u0645\u0637\u0627\u0639\u0645 \u0627\u0644\u0648\u062c\u0628\u0627\u062a \u0627\u0644\u0633\u0631\u064a\u0639\u0629 \u0648\u0627\u0644\u062a\u0648\u0635\u064a\u0644.",
+      "en": "Red and amber, Rubik and very round corners, for fast food and delivery."
+    },
+    "tags": [
+      "vivid",
+      "playful"
+    ],
+    "sectors": [
+      "food",
+      "commerce"
+    ],
+    "types": [
+      "landing",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-red-amber",
+      "modes": "modes-light-first",
+      "fonts": "pair-rubik",
+      "type-scale": "scale-augmented-fourth",
+      "radius": "radius-extra-round",
+      "shadows": "shadow-deep",
+      "icons": "icons-solar-bold-circle",
+      "buttons": "button-large-solid",
+      "cards": "card-primary",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "fintech-modern",
+    "name": {
+      "ar": "\u062a\u0642\u0646\u064a\u0629 \u0645\u0627\u0644\u064a\u0629",
+      "en": "Modern fintech"
+    },
+    "description": {
+      "ar": "\u0646\u064a\u0644\u064a \u0639\u0645\u064a\u0642 \u0645\u0639 \u0641\u064a\u0631\u0648\u0632\u064a \u0641\u0627\u062a\u062d\u060c \u0648\u0623\u0631\u0642\u0627\u0645 \u0648\u0627\u0636\u062d\u0629 \u0648\u0643\u062b\u0627\u0641\u0629 \u0639\u0627\u0644\u064a\u0629\u060c \u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u062f\u0641\u0639 \u0648\u0627\u0644\u0645\u062d\u0627\u0641\u0638 \u0627\u0644\u0631\u0642\u0645\u064a\u0629.",
+      "en": "Deep indigo with light teal, clear numbers and tight density, for payment and digital wallet apps."
+    },
+    "tags": [
+      "technical",
+      "data-dense"
+    ],
+    "sectors": [
+      "finance",
+      "technology"
+    ],
+    "types": [
+      "web-app",
+      "dashboard"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-indigo-teal",
+      "modes": "modes-system",
+      "fonts": "pair-vazirmatn-onest",
+      "type-scale": "scale-major-second",
+      "radius": "radius-medium",
+      "shadows": "shadow-tinted-cool",
+      "icons": "icons-carbon-regular",
+      "buttons": "button-solid",
+      "cards": "card-data",
+      "spacing": "spacing-compact",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "fresh-pharmacy",
+    "name": {
+      "ar": "\u0635\u064a\u062f\u0644\u064a\u0629",
+      "en": "Fresh pharmacy"
+    },
+    "description": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0646\u0639\u0646\u0627\u0639\u064a \u0645\u0639 \u0648\u0631\u062f\u064a\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0646\u0627\u0639\u0645\u0629 \u0648\u0623\u0632\u0631\u0627\u0631 \u0647\u0627\u062f\u0626\u0629\u060c \u0644\u0644\u0635\u064a\u062f\u0644\u064a\u0627\u062a \u0648\u0645\u062a\u0627\u062c\u0631 \u0627\u0644\u0639\u0646\u0627\u064a\u0629.",
+      "en": "Mint green with pink, soft corners and soft buttons, for pharmacies and care stores."
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "sectors": [
+      "health",
+      "commerce"
+    ],
+    "types": [
+      "web-app",
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-open-color-teal-pink",
+      "modes": "modes-light-first",
+      "fonts": "pair-noto-sans-arabic-noto-sans",
+      "type-scale": "scale-major-third",
+      "radius": "radius-soft",
+      "shadows": "shadow-ambient",
+      "icons": "icons-solar-regular",
+      "buttons": "button-soft",
+      "cards": "card-hover-lift",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "friendly-learning",
+    "name": {
+      "ar": "\u062a\u0639\u0644\u0651\u0645 \u0645\u0645\u062a\u0639",
+      "en": "Friendly learning"
+    },
+    "description": {
+      "ar": "\u0646\u064a\u0644\u064a \u0645\u0639 \u0641\u064a\u0631\u0648\u0632\u064a\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0645\u0633\u062a\u062f\u064a\u0631\u0629 \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u062b\u0646\u0627\u0626\u064a\u0629 \u0627\u0644\u0644\u0648\u0646\u060c \u0644\u0645\u0646\u0635\u0627\u062a \u0627\u0644\u062a\u0639\u0644\u0651\u0645 \u0639\u0646 \u0628\u0639\u062f.",
+      "en": "Indigo with teal, round corners and two-tone icons, for online learning platforms."
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "sectors": [
+      "education",
+      "technology"
+    ],
+    "types": [
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-soft-pop",
+      "modes": "modes-system",
+      "fonts": "pair-readex-pro-outfit",
+      "type-scale": "scale-major-third",
+      "radius": "radius-round",
+      "shadows": "shadow-elevation",
+      "icons": "icons-solar-duotone-rounded",
+      "buttons": "button-elevated",
+      "cards": "card-elevated",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "government",
     "name": {
       "ar": "\u062d\u0643\u0648\u0645\u064a \u0631\u0633\u0645\u064a",
@@ -340,6 +907,147 @@
       "cards": "card-header",
       "spacing": "spacing-balanced",
       "direction": "direction-rtl"
+    }
+  },
+  {
+    "id": "green-garden",
+    "name": {
+      "ar": "\u062d\u062f\u064a\u0642\u0629",
+      "en": "Green garden"
+    },
+    "description": {
+      "ar": "\u0623\u062e\u0636\u0631 \u063a\u0627\u0645\u0642 \u0645\u0639 \u0648\u0631\u062f\u064a\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0645\u0633\u062a\u062f\u064a\u0631\u0629 \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u062e\u0641\u064a\u0641\u0629\u060c \u0644\u0644\u0645\u0634\u0627\u062a\u0644 \u0648\u0627\u0644\u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u0639\u0636\u0648\u064a\u0629.",
+      "en": "Deep green with rose, round corners and Phosphor icons, for nurseries and organic products."
+    },
+    "tags": [
+      "soft",
+      "editorial"
+    ],
+    "sectors": [
+      "nature",
+      "food"
+    ],
+    "types": [
+      "website",
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-green-rose",
+      "modes": "modes-light-first",
+      "fonts": "pair-alexandria-plus-jakarta-sans",
+      "type-scale": "scale-major-third",
+      "radius": "radius-round",
+      "shadows": "shadow-soft",
+      "icons": "icons-phosphor-regular",
+      "buttons": "button-soft",
+      "cards": "card-earthy-side",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "heritage-banking",
+    "name": {
+      "ar": "\u0645\u0635\u0631\u0641\u064a \u0623\u0635\u064a\u0644",
+      "en": "Heritage banking"
+    },
+    "description": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0639\u0645\u064a\u0642 \u0648\u0630\u0647\u0628\u064a\u060c \u0648\u062e\u0637 Markazi \u0645\u0639 Lora\u060c \u0648\u062d\u0648\u0627\u0641 \u0647\u0627\u062f\u0626\u0629\u060c \u0644\u0644\u0645\u0635\u0627\u0631\u0641 \u0648\u0627\u0644\u062a\u0645\u0648\u064a\u0644 \u0627\u0644\u0625\u0633\u0644\u0627\u0645\u064a.",
+      "en": "Deep green and gold, Markazi with Lora and calm edges, for banks and Islamic finance."
+    },
+    "tags": [
+      "corporate",
+      "retro"
+    ],
+    "sectors": [
+      "finance",
+      "professional"
+    ],
+    "types": [
+      "website",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-green-yellow",
+      "modes": "modes-light-first",
+      "fonts": "pair-markazi-text-lora",
+      "type-scale": "scale-major-third",
+      "radius": "radius-subtle",
+      "shadows": "shadow-elevation",
+      "icons": "icons-heroicons-regular",
+      "buttons": "button-large-outline",
+      "cards": "card-top-accent-elevated",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "ink-and-pen",
+    "name": {
+      "ar": "\u062d\u0628\u0631 \u0648\u0642\u0644\u0645",
+      "en": "Ink and pen"
+    },
+    "description": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0627\u0644\u062d\u0628\u0631 \u0645\u0639 \u0623\u062d\u0645\u0631 \u062e\u0641\u064a\u0641\u060c \u0648\u062e\u0637 Markazi \u0645\u0639 Lora \u0648\u0645\u0633\u0627\u0641\u0627\u062a \u0648\u0627\u0633\u0639\u0629\u060c \u0644\u0644\u0643\u062a\u0651\u0627\u0628 \u0648\u062f\u0648\u0631 \u0627\u0644\u0646\u0634\u0631.",
+      "en": "Ink gray with a light red, Markazi with Lora and airy spacing, for writers and publishers."
+    },
+    "tags": [
+      "editorial",
+      "minimal"
+    ],
+    "sectors": [
+      "culture",
+      "media"
+    ],
+    "types": [
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-open-color-gray-red",
+      "modes": "modes-light-only",
+      "fonts": "pair-markazi-text-lora",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-square",
+      "shadows": "shadow-flat",
+      "icons": "icons-tabler-light",
+      "buttons": "button-link",
+      "cards": "card-bottom-accent",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "law-office",
+    "name": {
+      "ar": "\u0645\u0643\u062a\u0628 \u0645\u062d\u0627\u0645\u0627\u0629",
+      "en": "Law office"
+    },
+    "description": {
+      "ar": "\u0643\u062d\u0644\u064a \u0645\u0639 \u0645\u0631\u062c\u0627\u0646\u064a\u060c \u0648\u062e\u0637 Markazi \u0645\u0639 Lora \u0648\u0632\u0648\u0627\u064a\u0627 \u0642\u0627\u0626\u0645\u0629\u060c \u0644\u0645\u0643\u0627\u062a\u0628 \u0627\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0648\u0627\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a.",
+      "en": "Navy with coral, Markazi with Lora and square corners, for law firms and consulting."
+    },
+    "tags": [
+      "corporate",
+      "editorial"
+    ],
+    "sectors": [
+      "professional"
+    ],
+    "types": [
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-daisyui-business",
+      "modes": "modes-light-only",
+      "fonts": "pair-markazi-text-lora",
+      "type-scale": "scale-major-third",
+      "radius": "radius-square",
+      "shadows": "shadow-ring",
+      "icons": "icons-heroicons-regular",
+      "buttons": "button-large-outline",
+      "cards": "card-bottom-accent",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
     }
   },
   {
@@ -380,6 +1088,183 @@
     }
   },
   {
+    "id": "ministry-formal",
+    "name": {
+      "ar": "\u0648\u0632\u0627\u0631\u064a \u0631\u0633\u0645\u064a",
+      "en": "Formal ministry"
+    },
+    "description": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0631\u0633\u0645\u064a \u0645\u0639 \u0633\u0645\u0627\u0648\u064a\u060c \u0648\u062e\u0637 Noto Sans\u060c \u0648\u0628\u0637\u0627\u0642\u0627\u062a \u0628\u062d\u0627\u0641\u0629 \u0639\u0644\u0648\u064a\u0629\u060c \u0644\u0644\u0648\u0632\u0627\u0631\u0627\u062a \u0648\u0627\u0644\u062c\u0647\u0627\u062a \u0627\u0644\u0631\u0633\u0645\u064a\u0629.",
+      "en": "Official blue with sky, Noto Sans and top-accent cards, for ministries and official bodies."
+    },
+    "tags": [
+      "corporate",
+      "fluent"
+    ],
+    "sectors": [
+      "government"
+    ],
+    "types": [
+      "website",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-blue-sky",
+      "modes": "modes-light-first",
+      "fonts": "pair-noto-sans-arabic-noto-sans",
+      "type-scale": "scale-major-third",
+      "radius": "radius-subtle",
+      "shadows": "shadow-ring",
+      "icons": "icons-fluent-regular",
+      "buttons": "button-solid",
+      "cards": "card-top-accent",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "mono-portfolio",
+    "name": {
+      "ar": "\u0645\u0639\u0631\u0636 \u0623\u0639\u0645\u0627\u0644",
+      "en": "Mono portfolio"
+    },
+    "description": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0641\u062d\u0645\u064a \u0645\u0639 \u0646\u064a\u0644\u064a\u060c \u0648\u062e\u0637 Beiruti \u0645\u0639 Instrument Sans \u0648\u0628\u0637\u0627\u0642\u0627\u062a \u0628\u0644\u0627 \u0625\u0637\u0627\u0631\u060c \u0644\u0645\u0639\u0627\u0631\u0636 \u0627\u0644\u0623\u0639\u0645\u0627\u0644.",
+      "en": "Charcoal gray with indigo, Beiruti with Instrument Sans and frameless cards, for portfolios."
+    },
+    "tags": [
+      "minimal",
+      "editorial"
+    ],
+    "sectors": [
+      "creative",
+      "professional"
+    ],
+    "types": [
+      "website",
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-open-color-gray-indigo",
+      "modes": "modes-system",
+      "fonts": "pair-beiruti-instrument-sans",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-sharp",
+      "shadows": "shadow-flat",
+      "icons": "icons-iconoir-regular",
+      "buttons": "button-ghost",
+      "cards": "card-plain",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "municipal-services",
+    "name": {
+      "ar": "\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u0628\u0644\u062f\u064a\u0629",
+      "en": "Municipal services"
+    },
+    "description": {
+      "ar": "\u0623\u0632\u0631\u0642 \u0645\u0639 \u0628\u0631\u062a\u0642\u0627\u0644\u064a\u060c \u0648\u0623\u064a\u0642\u0648\u0646\u0627\u062a \u0645\u0645\u062a\u0644\u0626\u0629 \u0648\u0623\u0632\u0631\u0627\u0631 \u0643\u0628\u064a\u0631\u0629 \u0633\u0647\u0644\u0629 \u0627\u0644\u0644\u0645\u0633\u060c \u0644\u0628\u0648\u0627\u0628\u0627\u062a \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u0639\u0627\u0645\u0629.",
+      "en": "Blue with orange, filled icons and large easy-to-tap buttons, for public service portals."
+    },
+    "tags": [
+      "corporate",
+      "material"
+    ],
+    "sectors": [
+      "government",
+      "nonprofit"
+    ],
+    "types": [
+      "web-app",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-open-color-blue-orange",
+      "modes": "modes-system",
+      "fonts": "pair-almarai-dm-sans",
+      "type-scale": "scale-major-second",
+      "radius": "radius-gentle",
+      "shadows": "shadow-soft",
+      "icons": "icons-material-symbols-filled-circle",
+      "buttons": "button-solid",
+      "cards": "card-header",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "night-hotel",
+    "name": {
+      "ar": "\u0641\u0646\u062f\u0642 \u0644\u064a\u0644\u064a",
+      "en": "Night hotel"
+    },
+    "description": {
+      "ar": "\u0628\u0646\u0641\u0633\u062c\u064a \u0644\u064a\u0644\u064a \u0645\u0639 \u0623\u0632\u0631\u0642 \u0641\u0627\u062a\u062d\u060c \u062f\u0627\u0643\u0646 \u0623\u0648\u0644\u064b\u0627\u060c \u0648\u062e\u0637 Scheherazade \u0645\u0639 Playfair \u0648\u0623\u0632\u0631\u0627\u0631 \u0628\u0625\u0637\u0627\u0631 \u0645\u0632\u062f\u0648\u062c\u060c \u0644\u0644\u0641\u0646\u0627\u062f\u0642 \u0648\u0627\u0644\u0634\u0642\u0642 \u0627\u0644\u0641\u0627\u062e\u0631\u0629.",
+      "en": "Night violet with light blue, dark first, Scheherazade with Playfair and double-outline buttons, for hotels and luxury apartments."
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "sectors": [
+      "hospitality",
+      "realestate"
+    ],
+    "types": [
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-midnight-bloom",
+      "modes": "modes-dark-first",
+      "fonts": "pair-scheherazade-new-playfair-display",
+      "type-scale": "scale-augmented-fourth",
+      "radius": "radius-gentle",
+      "shadows": "shadow-floating",
+      "icons": "icons-tabler-light",
+      "buttons": "button-double-outline",
+      "cards": "card-floating",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "pastel-boutique",
+    "name": {
+      "ar": "\u0628\u0648\u062a\u064a\u0643",
+      "en": "Pastel boutique"
+    },
+    "description": {
+      "ar": "\u0641\u064a\u0631\u0648\u0632\u064a \u0639\u0645\u064a\u0642 \u0645\u0639 \u0648\u0631\u062f\u064a\u060c \u0648\u0632\u0648\u0627\u064a\u0627 \u0645\u0633\u062a\u062f\u064a\u0631\u0629 \u062c\u062f\u064b\u0627 \u0648\u0638\u0644\u0627\u0644 \u062f\u0627\u0641\u0626\u0629\u060c \u0644\u0644\u0628\u0648\u062a\u064a\u0643\u0627\u062a \u0648\u0645\u062a\u0627\u062c\u0631 \u0627\u0644\u0647\u062f\u0627\u064a\u0627.",
+      "en": "Deep teal with pink, very round corners and warm shadows, for boutiques and gift shops."
+    },
+    "tags": [
+      "soft",
+      "playful"
+    ],
+    "sectors": [
+      "fashion",
+      "commerce"
+    ],
+    "types": [
+      "landing"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-teal-pink",
+      "modes": "modes-light-only",
+      "fonts": "pair-zain-figtree",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-extra-round",
+      "shadows": "shadow-tinted-warm",
+      "icons": "icons-iconamoon-regular",
+      "buttons": "button-secondary-outline",
+      "cards": "card-soft-round",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "playful-colorful",
     "name": {
       "ar": "\u0645\u0631\u062d \u0645\u0644\u0648\u0651\u0646",
@@ -413,6 +1298,113 @@
       "buttons": "button-secondary-solid",
       "cards": "card-primary",
       "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "podcast-night",
+    "name": {
+      "ar": "\u0628\u0648\u062f\u0643\u0627\u0633\u062a",
+      "en": "Podcast night"
+    },
+    "description": {
+      "ar": "\u0648\u0631\u062f\u064a \u0648\u0633\u0645\u0627\u0648\u064a \u0646\u064a\u0648\u0646\u064a\u0627\u0646 \u0639\u0644\u0649 \u062f\u0627\u0643\u0646\u060c \u0648\u062e\u0637 Changa \u0645\u0639 Sora\u060c \u0644\u0644\u0628\u0648\u062f\u0643\u0627\u0633\u062a \u0648\u0627\u0644\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0635\u0648\u062a\u064a.",
+      "en": "Neon pink and sky on dark, Changa with Sora, for podcasts and audio content."
+    },
+    "tags": [
+      "vivid",
+      "retro"
+    ],
+    "sectors": [
+      "media",
+      "creative"
+    ],
+    "types": [
+      "landing",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-daisyui-synthwave",
+      "modes": "modes-dark-only",
+      "fonts": "pair-changa-sora",
+      "type-scale": "scale-augmented-fourth",
+      "radius": "radius-round",
+      "shadows": "shadow-ambient",
+      "icons": "icons-solar-duotone-rounded",
+      "buttons": "button-secondary-solid",
+      "cards": "card-hover-lift",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "rose-perfume",
+    "name": {
+      "ar": "\u0639\u0637\u0648\u0631",
+      "en": "Rose perfume"
+    },
+    "description": {
+      "ar": "\u0623\u062d\u0645\u0631 \u062f\u0627\u0643\u0646 \u0645\u0639 \u0643\u0631\u064a\u0645\u064a\u060c \u0648\u062e\u0637 Amiri \u0645\u0639 EB Garamond \u0648\u0625\u0637\u0627\u0631\u0627\u062a \u0645\u0632\u062f\u0648\u062c\u0629\u060c \u0644\u0644\u0639\u0637\u0648\u0631 \u0648\u0627\u0644\u0645\u062c\u0648\u0647\u0631\u0627\u062a.",
+      "en": "Dark red with cream, Amiri with EB Garamond and double frames, for perfume and jewelry."
+    },
+    "tags": [
+      "luxury",
+      "editorial"
+    ],
+    "sectors": [
+      "fashion"
+    ],
+    "types": [
+      "landing",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-elegant-luxury",
+      "modes": "modes-light-first",
+      "fonts": "pair-amiri-eb-garamond",
+      "type-scale": "scale-perfect-fifth",
+      "radius": "radius-sharp",
+      "shadows": "shadow-flat",
+      "icons": "icons-phosphor-thin",
+      "buttons": "button-double-outline",
+      "cards": "card-double-border",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "saas-startup",
+    "name": {
+      "ar": "\u0634\u0631\u0643\u0629 \u0646\u0627\u0634\u0626\u0629",
+      "en": "SaaS startup"
+    },
+    "description": {
+      "ar": "\u0646\u064a\u0644\u064a \u0645\u0639 \u0648\u0631\u062f\u064a\u060c \u0648\u062e\u0637 Alexandria \u0645\u0639 Plus Jakarta\u060c \u0648\u0628\u0637\u0627\u0642\u0627\u062a \u062a\u0631\u062a\u0641\u0639 \u0639\u0646\u062f \u0627\u0644\u0645\u0631\u0648\u0631\u060c \u0644\u0644\u0634\u0631\u0643\u0627\u062a \u0627\u0644\u0646\u0627\u0634\u0626\u0629.",
+      "en": "Indigo with pink, Alexandria with Plus Jakarta and lift-on-hover cards, for startups."
+    },
+    "tags": [
+      "soft",
+      "corporate"
+    ],
+    "sectors": [
+      "technology",
+      "commerce"
+    ],
+    "types": [
+      "landing",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-indigo-pink",
+      "modes": "modes-system",
+      "fonts": "pair-alexandria-plus-jakarta-sans",
+      "type-scale": "scale-major-third",
+      "radius": "radius-medium",
+      "shadows": "shadow-soft",
+      "icons": "icons-heroicons-solid-rounded",
+      "buttons": "button-solid",
+      "cards": "card-hover-lift",
+      "spacing": "spacing-comfortable",
       "direction": "direction-both"
     }
   },
@@ -491,6 +1483,42 @@
     }
   },
   {
+    "id": "stone-property",
+    "name": {
+      "ar": "\u0639\u0642\u0627\u0631\u064a",
+      "en": "Stone property"
+    },
+    "description": {
+      "ar": "\u0631\u0645\u0627\u062f\u064a \u0623\u0631\u062f\u0648\u0627\u0632\u064a \u0645\u0639 \u0633\u0645\u0627\u0648\u064a\u060c \u0648\u062e\u0637 Tajawal \u0645\u0639 Manrope \u0648\u0628\u0637\u0627\u0642\u0627\u062a \u0645\u0631\u062a\u0641\u0639\u0629\u060c \u0644\u0644\u0639\u0642\u0627\u0631 \u0648\u0627\u0644\u0645\u0642\u0627\u0648\u0644\u0627\u062a.",
+      "en": "Slate gray with sky, Tajawal with Manrope and raised cards, for real estate and construction."
+    },
+    "tags": [
+      "corporate",
+      "minimal"
+    ],
+    "sectors": [
+      "realestate",
+      "professional"
+    ],
+    "types": [
+      "website",
+      "web-app"
+    ],
+    "templates": {
+      "colors": "palette-tailwind-slate-sky",
+      "modes": "modes-light-first",
+      "fonts": "pair-tajawal-manrope",
+      "type-scale": "scale-major-third",
+      "radius": "radius-medium",
+      "shadows": "shadow-elevation",
+      "icons": "icons-lucide-outline",
+      "buttons": "button-solid",
+      "cards": "card-top-accent-elevated",
+      "spacing": "spacing-balanced",
+      "direction": "direction-both"
+    }
+  },
+  {
     "id": "warm-friendly",
     "name": {
       "ar": "\u0648\u062f\u0648\u062f \u0646\u0627\u0639\u0645",
@@ -524,6 +1552,77 @@
       "icons": "icons-phosphor-regular",
       "buttons": "button-soft",
       "cards": "card-elevated",
+      "spacing": "spacing-airy",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "warm-giving",
+    "name": {
+      "ar": "\u0639\u0637\u0627\u0621",
+      "en": "Warm giving"
+    },
+    "description": {
+      "ar": "\u0628\u0631\u062a\u0642\u0627\u0644\u064a \u062f\u0627\u0641\u0626 \u0645\u0639 \u0623\u0632\u0631\u0642\u060c \u0648\u062e\u0637 Cairo \u0648\u0632\u0648\u0627\u064a\u0627 \u0645\u0633\u062a\u062f\u064a\u0631\u0629\u060c \u0644\u0644\u062c\u0645\u0639\u064a\u0627\u062a \u0627\u0644\u062e\u064a\u0631\u064a\u0629 \u0648\u0627\u0644\u062a\u0637\u0648\u0639.",
+      "en": "Warm orange with blue, Cairo and round corners, for charities and volunteering."
+    },
+    "tags": [
+      "soft",
+      "vivid"
+    ],
+    "sectors": [
+      "nonprofit"
+    ],
+    "types": [
+      "landing",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-primer-orange-blue",
+      "modes": "modes-light-first",
+      "fonts": "pair-cairo",
+      "type-scale": "scale-major-third",
+      "radius": "radius-round",
+      "shadows": "shadow-tinted-warm",
+      "icons": "icons-hugeicons-circle",
+      "buttons": "button-large-solid",
+      "cards": "card-split-top",
+      "spacing": "spacing-comfortable",
+      "direction": "direction-both"
+    }
+  },
+  {
+    "id": "wellness-calm",
+    "name": {
+      "ar": "\u0639\u0627\u0641\u064a\u0629",
+      "en": "Calm wellness"
+    },
+    "description": {
+      "ar": "\u0623\u062e\u0636\u0631 \u0645\u0631\u064a\u0645\u064a\u0629 \u0647\u0627\u062f\u0626\u060c \u0648\u0645\u0633\u0627\u0641\u0627\u062a \u0648\u0627\u0633\u0639\u0629 \u0648\u0638\u0644\u0627\u0644 \u0637\u0627\u0641\u064a\u0629\u060c \u0644\u0645\u0631\u0627\u0643\u0632 \u0627\u0644\u0639\u0627\u0641\u064a\u0629 \u0648\u0627\u0644\u064a\u0648\u063a\u0627 \u0648\u0627\u0644\u062a\u063a\u0630\u064a\u0629.",
+      "en": "Quiet sage green, airy spacing and floating shadows, for wellness, yoga and nutrition."
+    },
+    "tags": [
+      "soft",
+      "minimal"
+    ],
+    "sectors": [
+      "health",
+      "nature"
+    ],
+    "types": [
+      "landing",
+      "website"
+    ],
+    "templates": {
+      "colors": "palette-tweakcn-sage-garden",
+      "modes": "modes-light-only",
+      "fonts": "pair-zain-figtree",
+      "type-scale": "scale-perfect-fourth",
+      "radius": "radius-round",
+      "shadows": "shadow-floating",
+      "icons": "icons-basil-regular",
+      "buttons": "button-large-outline",
+      "cards": "card-floating",
       "spacing": "spacing-airy",
       "direction": "direction-both"
     }

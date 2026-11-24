@@ -239,9 +239,9 @@ test('a saved identity that uses a non-starter template opens on a fresh page (i
 test('the ready identity entry shows the cards; template names follow the interface language', async ({ page }) => {
   await page.goto(PAGE);
   await toggle(page, 'identities').click();
-  // Every ready identity is published: the ten of the first version and the four of CHG-3 (task 6.4, B-108).
+  // Every ready identity is published: 14 until 2026-11-24, 45 since 2026-11-25 (task 6.4, B-108).
   const published = await page.evaluate(() => window.Hawiya.data.identities.length);
-  expect(published).toBe(14);
+  expect(published).toBe(45);
   await expect(panel(page, 'identities').locator('[data-identity]')).toHaveCount(published);
   await panel(page, 'identities').locator('[data-identity="warm-friendly"]').click();
   await expect(page.locator('#identity-list [data-identity="warm-friendly"]')).toHaveAttribute('aria-pressed', 'true');

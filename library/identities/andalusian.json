@@ -1,0 +1,36 @@
+{
+  "id": "andalusian",
+  "name": {
+    "ar": "أندلسي",
+    "en": "Andalusian"
+  },
+  "description": {
+    "ar": "طوبي مع فيروزي، وخط Scheherazade مع Playfair وإطارات مزدوجة، للتراث والسياحة الثقافية.",
+    "en": "Terracotta with teal, Scheherazade with Playfair and double frames, for heritage and cultural travel."
+  },
+  "tags": [
+    "retro",
+    "editorial"
+  ],
+  "sectors": [
+    "culture",
+    "hospitality"
+  ],
+  "types": [
+    "website",
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-orange-teal",
+    "modes": "modes-light-first",
+    "fonts": "pair-scheherazade-new-playfair-display",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-subtle",
+    "shadows": "shadow-tinted-warm",
+    "icons": "icons-phosphor-duotone-square",
+    "buttons": "button-double-outline",
+    "cards": "card-double-border",
+    "spacing": "spacing-grid-6",
+    "direction": "direction-both"
+  }
+}

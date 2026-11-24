@@ -1,0 +1,36 @@
+{
+  "id": "wellness-calm",
+  "name": {
+    "ar": "عافية",
+    "en": "Calm wellness"
+  },
+  "description": {
+    "ar": "أخضر مريمية هادئ، ومسافات واسعة وظلال طافية، لمراكز العافية واليوغا والتغذية.",
+    "en": "Quiet sage green, airy spacing and floating shadows, for wellness, yoga and nutrition."
+  },
+  "tags": [
+    "soft",
+    "minimal"
+  ],
+  "sectors": [
+    "health",
+    "nature"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-sage-garden",
+    "modes": "modes-light-only",
+    "fonts": "pair-zain-figtree",
+    "type-scale": "scale-perfect-fourth",
+    "radius": "radius-round",
+    "shadows": "shadow-floating",
+    "icons": "icons-basil-regular",
+    "buttons": "button-large-outline",
+    "cards": "card-floating",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

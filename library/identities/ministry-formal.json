@@ -1,0 +1,35 @@
+{
+  "id": "ministry-formal",
+  "name": {
+    "ar": "وزاري رسمي",
+    "en": "Formal ministry"
+  },
+  "description": {
+    "ar": "أزرق رسمي مع سماوي، وخط Noto Sans، وبطاقات بحافة علوية، للوزارات والجهات الرسمية.",
+    "en": "Official blue with sky, Noto Sans and top-accent cards, for ministries and official bodies."
+  },
+  "tags": [
+    "corporate",
+    "fluent"
+  ],
+  "sectors": [
+    "government"
+  ],
+  "types": [
+    "website",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-blue-sky",
+    "modes": "modes-light-first",
+    "fonts": "pair-noto-sans-arabic-noto-sans",
+    "type-scale": "scale-major-third",
+    "radius": "radius-subtle",
+    "shadows": "shadow-ring",
+    "icons": "icons-fluent-regular",
+    "buttons": "button-solid",
+    "cards": "card-top-accent",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

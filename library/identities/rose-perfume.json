@@ -1,0 +1,35 @@
+{
+  "id": "rose-perfume",
+  "name": {
+    "ar": "عطور",
+    "en": "Rose perfume"
+  },
+  "description": {
+    "ar": "أحمر داكن مع كريمي، وخط Amiri مع EB Garamond وإطارات مزدوجة، للعطور والمجوهرات.",
+    "en": "Dark red with cream, Amiri with EB Garamond and double frames, for perfume and jewelry."
+  },
+  "tags": [
+    "luxury",
+    "editorial"
+  ],
+  "sectors": [
+    "fashion"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-elegant-luxury",
+    "modes": "modes-light-first",
+    "fonts": "pair-amiri-eb-garamond",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-sharp",
+    "shadows": "shadow-flat",
+    "icons": "icons-phosphor-thin",
+    "buttons": "button-double-outline",
+    "cards": "card-double-border",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

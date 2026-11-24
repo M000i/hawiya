@@ -1,0 +1,36 @@
+{
+  "id": "heritage-banking",
+  "name": {
+    "ar": "مصرفي أصيل",
+    "en": "Heritage banking"
+  },
+  "description": {
+    "ar": "أخضر عميق وذهبي، وخط Markazi مع Lora، وحواف هادئة، للمصارف والتمويل الإسلامي.",
+    "en": "Deep green and gold, Markazi with Lora and calm edges, for banks and Islamic finance."
+  },
+  "tags": [
+    "corporate",
+    "retro"
+  ],
+  "sectors": [
+    "finance",
+    "professional"
+  ],
+  "types": [
+    "website",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-green-yellow",
+    "modes": "modes-light-first",
+    "fonts": "pair-markazi-text-lora",
+    "type-scale": "scale-major-third",
+    "radius": "radius-subtle",
+    "shadows": "shadow-elevation",
+    "icons": "icons-heroicons-regular",
+    "buttons": "button-large-outline",
+    "cards": "card-top-accent-elevated",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

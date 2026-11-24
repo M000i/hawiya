@@ -1,0 +1,35 @@
+{
+  "id": "warm-giving",
+  "name": {
+    "ar": "عطاء",
+    "en": "Warm giving"
+  },
+  "description": {
+    "ar": "برتقالي دافئ مع أزرق، وخط Cairo وزوايا مستديرة، للجمعيات الخيرية والتطوع.",
+    "en": "Warm orange with blue, Cairo and round corners, for charities and volunteering."
+  },
+  "tags": [
+    "soft",
+    "vivid"
+  ],
+  "sectors": [
+    "nonprofit"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-primer-orange-blue",
+    "modes": "modes-light-first",
+    "fonts": "pair-cairo",
+    "type-scale": "scale-major-third",
+    "radius": "radius-round",
+    "shadows": "shadow-tinted-warm",
+    "icons": "icons-hugeicons-circle",
+    "buttons": "button-large-solid",
+    "cards": "card-split-top",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}

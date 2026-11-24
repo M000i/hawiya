@@ -1,0 +1,35 @@
+{
+  "id": "classic-university",
+  "name": {
+    "ar": "جامعي عريق",
+    "en": "Classic university"
+  },
+  "description": {
+    "ar": "كحلي مع ذهبي، وخط Scheherazade مع Playfair وزوايا حادة، للجامعات والمراكز البحثية.",
+    "en": "Navy with gold, Scheherazade with Playfair and sharp corners, for universities and research centers."
+  },
+  "tags": [
+    "editorial",
+    "retro"
+  ],
+  "sectors": [
+    "education",
+    "culture"
+  ],
+  "types": [
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-tweakcn-starry-night",
+    "modes": "modes-light-first",
+    "fonts": "pair-scheherazade-new-playfair-display",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-sharp",
+    "shadows": "shadow-flat",
+    "icons": "icons-iconoir-regular",
+    "buttons": "button-outline-thick",
+    "cards": "card-outline-sharp",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "ai-glow",
+  "name": {
+    "ar": "ذكاء اصطناعي",
+    "en": "AI glow"
+  },
+  "description": {
+    "ar": "بنفسجي ساطع على خلفية داكنة، وظلال طافية وأزرار كبيرة، لمنتجات الذكاء الاصطناعي.",
+    "en": "Bright violet on a dark background, floating shadows and large buttons, for AI products."
+  },
+  "tags": [
+    "vivid",
+    "technical"
+  ],
+  "sectors": [
+    "technology",
+    "creative"
+  ],
+  "types": [
+    "landing",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-shadcn-violet",
+    "modes": "modes-dark-first",
+    "fonts": "pair-fustat-geist",
+    "type-scale": "scale-augmented-fourth",
+    "radius": "radius-round",
+    "shadows": "shadow-floating",
+    "icons": "icons-hugeicons-regular",
+    "buttons": "button-large-solid",
+    "cards": "card-floating",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

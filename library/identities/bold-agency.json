@@ -1,0 +1,34 @@
+{
+  "id": "bold-agency",
+  "name": {
+    "ar": "وكالة جريئة",
+    "en": "Bold agency"
+  },
+  "description": {
+    "ar": "بنفسجي عميق مع أصفر، وظلال صلبة وزوايا حادة، للوكالات الإبداعية والحملات.",
+    "en": "Deep purple with yellow, hard shadows and sharp corners, for creative agencies and campaigns."
+  },
+  "tags": [
+    "brutalist",
+    "vivid"
+  ],
+  "sectors": [
+    "creative"
+  ],
+  "types": [
+    "landing"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-purple-yellow",
+    "modes": "modes-light-first",
+    "fonts": "pair-mada-bricolage-grotesque",
+    "type-scale": "scale-golden",
+    "radius": "radius-sharp",
+    "shadows": "shadow-crisp",
+    "icons": "icons-phosphor-bold",
+    "buttons": "button-brutalist",
+    "cards": "card-brutalist-primary",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

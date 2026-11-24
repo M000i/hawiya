@@ -1,0 +1,34 @@
+{
+  "id": "law-office",
+  "name": {
+    "ar": "مكتب محاماة",
+    "en": "Law office"
+  },
+  "description": {
+    "ar": "كحلي مع مرجاني، وخط Markazi مع Lora وزوايا قائمة، لمكاتب المحاماة والاستشارات.",
+    "en": "Navy with coral, Markazi with Lora and square corners, for law firms and consulting."
+  },
+  "tags": [
+    "corporate",
+    "editorial"
+  ],
+  "sectors": [
+    "professional"
+  ],
+  "types": [
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-daisyui-business",
+    "modes": "modes-light-only",
+    "fonts": "pair-markazi-text-lora",
+    "type-scale": "scale-major-third",
+    "radius": "radius-square",
+    "shadows": "shadow-ring",
+    "icons": "icons-heroicons-regular",
+    "buttons": "button-large-outline",
+    "cards": "card-bottom-accent",
+    "spacing": "spacing-balanced",
+    "direction": "direction-both"
+  }
+}

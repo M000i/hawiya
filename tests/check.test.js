@@ -1297,11 +1297,11 @@ test('axes: a heading family that resolves to the same font as the other templat
 
 // Task 3.13 (R-040): each ready identity is built in Arabic, English and both; the blocking rules and the official
 // DESIGN.md check run on what it makes.
-test('ready identities: the fourteen of the spec are built in every direction, pass the rules, and lint clean', () => {
+test('ready identities: the 45 (14 of the spec, 31 added 2026-11-25) are built in every direction, pass the rules, and lint clean', () => {
   const r = check.check();
   assert.deepEqual(r.problems, [], show(r.problems));
-  assert.equal(r.counts.identities, 14);
-  assert.equal(r.counts.identitiesBuilt, 14);
+  assert.equal(r.counts.identities, 45);
+  assert.equal(r.counts.identitiesBuilt, 45);
   const names = fs
     .readdirSync(path.join(LIB, 'identities'))
     .map((f) => JSON.parse(fs.readFileSync(path.join(LIB, 'identities', f), 'utf8')).name.ar)
@@ -1323,7 +1323,8 @@ test('ready identities: the fourteen of the spec are built in every direction, p
     'مالي رصين',
     'طبيعي ترابي'
   ];
-  assert.deepEqual(names, SPEC.slice().sort());
+  SPEC.forEach((n) => assert.ok(names.includes(n), `${n} is still there`));
+  assert.equal(new Set(names).size, names.length, 'no two identities share an Arabic name');
 });
 
 test('a ready identity blocked in one language only is found, with the rule, the element and the language', () => {

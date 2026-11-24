@@ -1,0 +1,35 @@
+{
+  "id": "desert-resort",
+  "name": {
+    "ar": "منتجع صحراوي",
+    "en": "Desert resort"
+  },
+  "description": {
+    "ar": "كهرماني رملي مع أزرق، ومسافات واسعة وأيقونات رفيعة، للمنتجعات والمخيمات والسياحة.",
+    "en": "Sand amber with blue, airy spacing and thin icons, for resorts, camps and tourism."
+  },
+  "tags": [
+    "luxury",
+    "soft"
+  ],
+  "sectors": [
+    "hospitality"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-amber-blue",
+    "modes": "modes-light-first",
+    "fonts": "pair-beiruti-instrument-sans",
+    "type-scale": "scale-perfect-fifth",
+    "radius": "radius-soft",
+    "shadows": "shadow-floating",
+    "icons": "icons-phosphor-thin",
+    "buttons": "button-large-outline",
+    "cards": "card-spacious",
+    "spacing": "spacing-airy",
+    "direction": "direction-both"
+  }
+}

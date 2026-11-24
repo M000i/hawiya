@@ -1,0 +1,36 @@
+{
+  "id": "fast-food",
+  "name": {
+    "ar": "وجبات سريعة",
+    "en": "Fast food"
+  },
+  "description": {
+    "ar": "أحمر وكهرماني، وخط Rubik وزوايا مستديرة جدًا، لمطاعم الوجبات السريعة والتوصيل.",
+    "en": "Red and amber, Rubik and very round corners, for fast food and delivery."
+  },
+  "tags": [
+    "vivid",
+    "playful"
+  ],
+  "sectors": [
+    "food",
+    "commerce"
+  ],
+  "types": [
+    "landing",
+    "web-app"
+  ],
+  "templates": {
+    "colors": "palette-tailwind-red-amber",
+    "modes": "modes-light-first",
+    "fonts": "pair-rubik",
+    "type-scale": "scale-augmented-fourth",
+    "radius": "radius-extra-round",
+    "shadows": "shadow-deep",
+    "icons": "icons-solar-bold-circle",
+    "buttons": "button-large-solid",
+    "cards": "card-primary",
+    "spacing": "spacing-comfortable",
+    "direction": "direction-both"
+  }
+}
