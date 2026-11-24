@@ -4045,7 +4045,7 @@
       - بعرض 375×812: زر «المثال» ظاهر بنصه «المثال» بعد النزول (التمرير 2489)؛ ضغطه يُظهر المعاينة على الشاشة كلها (أعلاها 0 وارتفاعها 812) والتركيز على `preview-close`؛ و Esc يغلقها فيعود التمرير 2489 والتركيز إلى `preview-open`.
     - انحراف: لا شيء.
 
-- [ ] **10.4** تشغيل /verify على السيناريو الشامل من `spec.md`
+- [x] **10.4** تشغيل /verify على السيناريو الشامل من `spec.md`
   - الخطورة: B — تحقق
   - الحجم: متوسطة
   - تحقق المتطلبات: كل المتطلبات (القسم 13)، R-111
@@ -4054,6 +4054,48 @@
   - معيار القبول: الخطوات الخمس عشرة تنجح، ومنها الإضافة في الخطوة 4 (المعاينة باقية أثناء التمرير، وزر «المثال» على الجوال)؛ والملفات المصدَّرة للهويات الأربع عشرة مطابقة لما في GATE-9
   - الاختبار: `/verify` على السيناريو خطوة بخطوة
   - ما ستراه أنت: **يحتاج منك تشغيل `/verify`**
+  - دليل الإكمال (2026-11-24):
+    - /verify بعد CHG-9: 14 خطوة من 15 نجحت فعليًا، ومنها الإضافة في الخطوة 4؛ ونصف Codex من الخطوة 12 **لم يُجرَّب** لأن أداة `codex` غير مثبّتة (B-129)، فهو في التحقق اليدوي للمالك. سجّل المالك النتيجة («Yes, record it»).
+    - مشروع تجريبي فارغ، والأداة منسوخة من GitHub (`4b13379`)، ثم الخطوات:
+      1. ملف الجلسة (تطبيق ويب، عربي وإنجليزي)، والخادم جاهز على 47821 بلا منفذ بديل.
+      2. 14 هوية، كلها بالاسمين، ورسالة «الاقتراحات مبنية على بيانات مشروعك (الوسوم وألوان العلامة)».
+      3. في المشاهد الأربعة (من الصفحة كملف): «بروتالي» (Sora، rgb(255,51,51)، 0 بكسل) و«مؤسسي هادئ» (IBM Plex Sans، rgb(37,99,235)، 8 بكسل).
+      4. الإنجليزي `ltr` والعربي `rtl`، وأضعف تباين نص 4.6.
+         - الإضافة (CHG-9)، على الصفحة المنشورة وعلى الصفحة كملف، بالعربي والإنجليزي، وكل شيء مفتوح: بعرض 1440×900 و 1100×600 أعلى المعاينة 0 بعد النزول إلى «الاختيار الموجّه» وإلى «التصدير» (أسفلها 709 أو 701 على 900، و 568 على 600)، والقوائم يمينًا بالعربي ويسارًا بالإنجليزي. بعرض 375×812: زر «المثال» / «Preview» ظاهر بعد النزول (التمرير 2489 بالعربي و 2485 بالإنجليزي)، يفتح المعاينة على الشاشة كلها (أعلاها 0 وارتفاعها 812، والتركيز على «إغلاق المثال» / «Close preview»)، و Esc ثم زر الإغلاق يعيدان التمرير نفسه والتركيز إلى الزر، بلا تمرير جانبي.
+      5. الوضع الموجّه: #7c3aed و `pair-amiri-eb-garamond`، ثم «كمّل الباقي» ملأ 9 عناصر؛ خط المعاينة `"EB Garamond Hawiya 135", "EB Garamond", Amiri, ui-serif, serif`.
+      6. منع AAA مع السبب (5.7:1 من 7:1، و 4.83:1 للثانوي) واقتراح #6900D8، والألوان لم تتغيّر.
+      7. «زوايا الزر (24 بكسل) أكبر من زوايا الكرت (12 بكسل)»، و«تجاهل» أخفاه وبقيت 24.
+      8. «حُفظت الملفات في مجلد design داخل مشروعك»، والخادم: `{"status":"saved","written":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"]}`.
+      9. الملفات الستة في `design/`.
+      10. دليل الهوية `rtl`، والعنوان `"EB Garamond Hawiya 135"`، والزر rgb(124,58,237) بزوايا 24px، و `--radius-md` 24px؛ و `identity.json`: «تحقق 8.3 #7c3aed pair-amiri-eb-garamond 24».
+      11. سطر الالتزام في `CLAUDE.md` مرة واحدة (العدد 1 بعد محاولة إضافته مرتين)، و `git status` لا يُظهر غير `CLAUDE.md` و `design/`.
+      12. Claude Code (`claude -p`) بنى `index.html` يربط `design/tokens.css` وحده؛ بالفاتح والداكن الزر rgb(124,58,237) و rgb(144,107,239) كما في الهوية (#7c3aed و #906bef)، والزوايا 24 و 12، والعنوان العربي مرسوم بالأميري، والإنجليزي بالخط المعدَّل 135%. نصف Codex لم يُجرَّب.
+      13. خادم ثانٍ بالملفات الستة الموجودة، و«تحقق 8.3» بقيت بعد إغلاق المتصفح وفُتحت باختياراتها (#7c3aed، الأميري و إي بي غاراموند، 24).
+      14. النسخ من الصفحة المنشورة لهوية «كلاسيكي نسخي» (78,180 حرفًا، وسطر R-110 في السطر 5): وكيل بلا مهارة (`claude -p --disable-slash-commands`) كتب الملفات الخمسة، **وكلها مطابقة بايتًا ببايت** للتصدير (للمرة الثالثة على التوالي).
+      15. بلا إنترنت: 14 هوية، والتصدير يعمل (6 ملفات)، وتنبيه الخطوط ظاهر، والطلب الوحيد الفاشل إلى `fonts.googleapis.com`.
+    - الملفات المصدَّرة للهويات الأربع عشرة مقارنةً بـ `gate-9` (المحرّك والمكتبة من الوسم مقابل الحالية): «identities 14 files compared 84 differ 0 [] same identity list true».
+    - بعد السيناريو: `npm test` «tests 639 / pass 639 / fail 0»؛ `npm run check -- --publish` «success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem». ولم يتغيّر أي ملف في المشروع أثناء التحقق، والخوادم أُوقفت.
+    - ملاحظات A: لا شيء. ملاحظات B: لا جديد (نصف Codex في B-129؛ وقول الوكيل في الخطوة 14 إن `style-guide.html` ليس في النص المنسوخ صحيح ومقصود، فهو من زر «تنزيل»).
+    - المخرجات كما هي:
+      - الخطوة 12:
+        ```
+        light {"dir":"rtl","links":["design/tokens.css"],"h1Font":"\"EB Garamond Hawiya 135\"","btnBg":"rgb(124, 58, 237)","btnRadius":"24px","cardRadius":"12px","loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+        light h1 drawn with [{"familyName":"Amiri","postScriptName":"Amiri-Bold","isCustomFont":true,"glyphCount":13},{"familyName":"EB Garamond","postScriptName":"EBGaramond-Bold","isCustomFont":true,"glyphCount":2}]
+        dark {"dir":"rtl","links":["design/tokens.css"],"h1Font":"\"EB Garamond Hawiya 135\"","btnBg":"rgb(144, 107, 239)","btnRadius":"24px","cardRadius":"12px","loaded":["Amiri","EB Garamond","EB Garamond Hawiya 135"]}
+        dark h1 drawn with [{"familyName":"Amiri","postScriptName":"Amiri-Bold","isCustomFont":true,"glyphCount":13},{"familyName":"EB Garamond","postScriptName":"EBGaramond-Bold","isCustomFont":true,"glyphCount":2}]
+        {"text":"A clean, simple starting point f","first":"\"EB Garamond Hawiya 135\"","sizeAdjust":"135%"}
+        ```
+      - الخطوة 14:
+        ```
+        {"url":"https://m000i.github.io/hawiya/","clipboardChars":78180,"status":"نُسخت. الصقها في محادثة الوكيل.","files":["identity.json","DESIGN.md","tokens.json","tokens.css","theme.css","style-guide.html"],"identity":"كلاسيكي نسخي | fonts: pair-amiri-eb-garamond"}
+        agent exit 0
+        same identity.json
+        same DESIGN.md
+        same tokens.json
+        same tokens.css
+        same theme.css
+        ```
+    - انحراف: لا شيء.
 
 ## تغطية المتطلبات
 
