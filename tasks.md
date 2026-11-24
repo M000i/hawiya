@@ -3934,7 +3934,7 @@
 - البوابة: GATE-10 (تُقفل عبر /gate)
 - CHG-9: لا تُعاد مهام المراحل المقفلة. اختبارات البطاقات في أول شاشة (R-020) وترتيب العمودين حسب اللغة (R-032) وعدم التمرير الجانبي على 375 ومشاهد المعاينة على عرض الجوال يجب أن تبقى ناجحة داخل 10.1 و 10.2.
 
-- [ ] **10.1** تثبيت المعاينة في عمودها على الشاشة العريضة
+- [x] **10.1** تثبيت المعاينة في عمودها على الشاشة العريضة
   - الخطورة: B — واجهة فقط
   - الحجم: صغيرة
   - تحقق المتطلبات: R-111، R-032
@@ -3947,6 +3947,32 @@
     - القوائم يمينًا بالعربي ويسارًا بالإنجليزي كما هي، ولا يتغيّر شيء تحت عرض 760.
   - الاختبار: `tests/e2e/layout.spec.js` ثم `npm run test:e2e`
   - ما ستراه أنت: **مهمة في الواجهة، وسأنبّهك قبلها.** على شاشة الكمبيوتر انزل في القوائم حتى «التصدير»، فتبقى المعاينة أمامك
+  - دليل الإكمال (2026-11-24):
+    - الملفات: `picker/css/picker.css` (`.preview-wrap` تثبت أعلى الشاشة بـ `position: sticky`، وارتفاعها لا يزيد على الشاشة ناقص 32 نقطة هي الهامش السفلي للتخطيط فلا تُدفع للأعلى في آخر الصفحة، وتتمرّر داخلها إن طالت؛ هامش 6 نقاط داخلها يُلغيه هامش سالب فلا يُقصّ إطار التركيز؛ وتحت 760 نقطة تعود كما كانت)، و `tests/e2e/layout.spec.js` (جديد، 5 اختبارات).
+    - الاختبارات الجديدة: على 1440×900 و 1100×600، باللغتين، وكل شيء مفتوح، تبقى المعاينة كاملة داخل الشاشة بعد النزول إلى «الاختيار الموجّه» ثم «التصدير»، والقوائم يمينًا بالعربي ويسارًا بالإنجليزي؛ على 1100×600 المعاينة أطول من الشاشة وآخر سطر فيها يُبلغ بالتمرير داخلها؛ رسائل القواعد تبقى أعلى الشاشة بعد النزول إلى «التصدير»؛ وعلى 375 المعاينة غير مثبّتة وتأتي بعد القوائم.
+    - على الكود القديم: «3 failed / 2 passed» (الاختباران الناجحان: رسائل القواعد و 375، وهما يثبتان أن ما كان لم يتغيّر).
+    - المحاولة الأولى بارتفاع الشاشة كاملًا فشلت على 1100×600 عند «التصدير»: «top: -26»، لأن آخر الصفحة يدفع المعاينة للأعلى بمقدار الهامش السفلي؛ صُحّح بطرح 32 نقطة من الارتفاع.
+    - `npx playwright test tests/e2e/layout.spec.js`:
+      ```
+        ✓  5 tests/e2e/layout.spec.js:123:1 › under 760 px nothing changes: the preview is not pinned and still comes after the choices (434ms)
+        ✓  4 tests/e2e/layout.spec.js:88:1 › wide screen 1100x600: a preview taller than the screen scrolls inside, so its last line can be reached (450ms)
+        ✓  3 tests/e2e/layout.spec.js:107:1 › wide screen: the rule messages still stay pinned above the choices while the page scrolls (1.4s)
+        ✓  2 tests/e2e/layout.spec.js:59:3 › wide screen 1100x600: the preview stays in view down to the export, in both languages (1.4s)
+        ✓  1 tests/e2e/layout.spec.js:59:3 › wide screen 1440x900: the preview stays in view down to the export, in both languages (1.4s)
+
+        5 passed (2.1s)
+      ```
+    - `npm run test:e2e` (ومنها اختبارات البطاقات في أول شاشة وترتيب العمودين وعرض 375 ومشاهد الجوال):
+      ```
+        ✓  124 tests/e2e/scenes.spec.js:137:1 › at phone width every scene fits for every ready identity, in both languages (12.4s)
+        ✓   37 tests/e2e/fonts.spec.js:234:1 › every library font loads, draws the recorded digits, and keeps its measured size adjustment (needs internet) (34.2s)
+
+        144 passed (40.8s)
+      ```
+    - `npm test`: «tests 639 / pass 639 / fail 0». `npm run test:golden`: «tests 17 / fail 0». `npm run check -- --publish`: «success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem». `npm run build`: لم يتغيّر `picker/data` ولا `library/`. `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: «All matched files use Prettier code style!».
+    - فحص بالعين (Chrome، 1440×900، الصفحة من خادم محلي): بعد النزول إلى «الاختيار الموجّه» (التمرير 2439) المعاينة في أعلى الشاشة (`top: 0`) بجانب القوائم.
+    - مراجعة ذاتية (مهمة B): التغيير في CSS فقط ولا يمس الملفات المصدَّرة؛ تحت 760 تعود القيم الخمس كما كانت؛ رسائل القواعد في عمود القوائم فلا تتعارض مع تثبيت المعاينة؛ التمرير داخل المعاينة لا يحدث إلا إن كانت أطول من الشاشة، وبعد آخرها يكمل المتصفح تمرير الصفحة.
+    - انحراف: لا شيء.
 
 - [ ] **10.2** زر «المثال» على الشاشة الضيقة
   - الخطورة: B — واجهة فقط
