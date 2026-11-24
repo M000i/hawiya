@@ -162,6 +162,71 @@
     });
   }
 
+  // The preview.open button on narrow screens (task 10.2, R-111, AC-31): the preview opens over the page as a dialog;
+  // the close key or Esc closes it, and the page goes back to where it was, with the focus on the button.
+  // Widening the window past 760 px closes it too, since the preview is then pinned beside the choices.
+  function setupPreviewSheet() {
+    var narrow = window.matchMedia('(max-width: 760px)');
+    var openBtn = document.getElementById('preview-open');
+    var closeBtn = document.getElementById('preview-close');
+    var wrap = document.getElementById('preview-wrap');
+    var main = wrap.parentNode;
+    var savedY = 0;
+    var inerted = [];
+    var isOpen = function () {
+      return document.body.classList.contains('preview-sheet-open');
+    };
+
+    function open() {
+      if (!narrow.matches || isOpen()) return;
+      savedY = window.scrollY;
+      // Everything but the preview leaves the keyboard and screen-reader order while it is open.
+      inerted = Array.prototype.filter.call(document.body.children, function (n) {
+        return n !== main && n.tagName !== 'SCRIPT' && !n.inert;
+      });
+      Array.prototype.forEach.call(main.children, function (n) {
+        if (n !== wrap && !n.inert) inerted.push(n);
+      });
+      inerted.forEach(function (n) {
+        n.inert = true;
+      });
+      document.body.classList.add('preview-sheet-open');
+      wrap.setAttribute('role', 'dialog');
+      wrap.setAttribute('aria-modal', 'true');
+      openBtn.setAttribute('aria-expanded', 'true');
+      wrap.scrollTop = 0;
+      closeBtn.focus();
+    }
+
+    function close() {
+      if (!isOpen()) return;
+      document.body.classList.remove('preview-sheet-open');
+      inerted.forEach(function (n) {
+        n.inert = false;
+      });
+      inerted = [];
+      wrap.removeAttribute('role');
+      wrap.removeAttribute('aria-modal');
+      openBtn.setAttribute('aria-expanded', 'false');
+      window.scrollTo(0, savedY);
+      openBtn.focus({ preventScroll: true });
+    }
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) {
+        e.preventDefault();
+        close();
+      }
+    });
+    var onWidth = function () {
+      if (!narrow.matches) close();
+    };
+    if (narrow.addEventListener) narrow.addEventListener('change', onWidth);
+    else narrow.addListener(onWidth);
+  }
+
   function init() {
     els.swatches = document.getElementById('swatches');
     els.colorInput = document.getElementById('color-input');
@@ -221,6 +286,7 @@
         b.setAttribute('aria-pressed', String(b.getAttribute('data-preview-mode') === e.detail.mode));
       });
     });
+    setupPreviewSheet();
     // The choices live in a <form> for grouping only: Enter in a text field must not reload the page.
     document.getElementById('controls').addEventListener('submit', function (e) {
       e.preventDefault();

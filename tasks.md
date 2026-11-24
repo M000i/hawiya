@@ -3974,7 +3974,7 @@
     - مراجعة ذاتية (مهمة B): التغيير في CSS فقط ولا يمس الملفات المصدَّرة؛ تحت 760 تعود القيم الخمس كما كانت؛ رسائل القواعد في عمود القوائم فلا تتعارض مع تثبيت المعاينة؛ التمرير داخل المعاينة لا يحدث إلا إن كانت أطول من الشاشة، وبعد آخرها يكمل المتصفح تمرير الصفحة.
     - انحراف: لا شيء.
 
-- [ ] **10.2** زر «المثال» على الشاشة الضيقة
+- [x] **10.2** زر «المثال» على الشاشة الضيقة
   - الخطورة: B — واجهة فقط
   - الحجم: متوسطة
   - تحقق المتطلبات: R-111، R-020، R-032
@@ -3988,6 +3988,35 @@
     - نصوص الزر وزر الإغلاق مترجمة بالعربي والإنجليزي (AC-22)، وتباينهما يحقق WCAG AA.
   - الاختبار: `tests/e2e/layout.spec.js` ثم `npm run test:e2e`
   - ما ستراه أنت: **مهمة في الواجهة، وسأنبّهك قبلها.** على الجوال اضغط «المثال» فتظهر المعاينة، وأغلقها فترجع لمكانك في القوائم
+  - دليل الإكمال (2026-11-24):
+    - الملفات: `picker/index.html` (زر «المثال» `#preview-open` بعد التخطيط، وزر «إغلاق المثال» `#preview-close` في رأس المعاينة، و `id` للمعاينة)، `picker/css/picker.css` (الزران مخفيان على الشاشة العريضة؛ تحت 760 يثبت زر «المثال» في الزاوية السفلية وللصفحة 88 نقطة في آخرها حتى لا يغطي شيئًا؛ عند الفتح تغطي المعاينة الشاشة وتتمرّر وحدها، ورأسها بزر الإغلاق يبقى أعلاها، والصفحة خلفها لا تتحرك)، `picker/js/ui/app.js` (`setupPreviewSheet`: الفتح يحفظ موضع التمرير، ويجعل باقي الصفحة خارج ترتيب لوحة المفاتيح وقارئ الشاشة (`inert`)، ويعطي المعاينة `role="dialog"` و `aria-modal`، وينقل التركيز إلى زر الإغلاق؛ الإغلاق بالزر أو Esc يعيد كل ذلك والموضع والتركيز إلى زر «المثال»؛ وتوسيع النافذة فوق 760 يغلقها)، `picker/i18n/ar.js` و `picker/i18n/en.js` (`preview.open`: «المثال» / «Preview»، `preview.close`: «إغلاق المثال» / «Close preview»)، `tests/e2e/layout.spec.js` (4 اختبارات جديدة، فصار فيه 9).
+    - الاختبارات الجديدة: على 375×800 باللغتين: الزر ظاهر بنصه بعد النزول إلى «الاختيار الموجّه»؛ يفتح المعاينة فوق الصفحة كاملة (`role` و `aria-modal` و `aria-expanded`، والقوائم و الرأس `inert`، والتركيز على زر الإغلاق، والموضع لم يتغيّر، بلا تمرير جانبي)؛ مفتاحا الوضع الداكن والفاتح يعملان داخلها؛ زر الإغلاق يبقى ظاهرًا بعد التمرير إلى آخرها؛ Esc ثم زر الإغلاق يعيدان الموضع نفسه والتركيز إلى زر «المثال». الزر لا يغطي أول بطاقة هوية. على 1440 لا يظهر الزران، وتوسيع النافذة يغلق المعاينة المفتوحة. تباين الزرين 4.5 أو أكثر باللغتين.
+    - على الكود قبل المهمة: «4 failed / 5 passed» (الأربعة الجديدة فشلت، واختبارات 10.1 الخمسة نجحت).
+    - أول تشغيل لـ `npm test` فشل: «picker/js/ui/app.js contains Arabic text»، لأن كلمة «المثال» كانت في تعليقات الكود؛ صارت `preview.open`.
+    - الفحص بالعين (Chrome، 375×812، خادم محلي): بعد النزول (التمرير 2490) الزر ظاهر في الزاوية؛ ضغطه يُظهر المعاينة كاملة وزر «إغلاق المثال» أعلاها؛ وبعد تمرير المعاينة 600 نقطة بقي زر الإغلاق أعلى الشاشة (`top: 16`). أضفت تثبيت الرأس بعد هذا الفحص، لأنه كان يختفي مع التمرير، وأضفت له اختبارًا.
+    - `npx playwright test tests/e2e/layout.spec.js`:
+      ```
+        ✓  8 tests/e2e/layout.spec.js:246:1 › phone 375x800: the button leaves the first ready identity card uncovered, in both languages (1.1s)
+        ✓  5 tests/e2e/layout.spec.js:259:1 › wide screen: no «المثال» button and no close key; widening the window closes an open preview (1.3s)
+        ✓  4 tests/e2e/layout.spec.js:275:1 › phone 375x800: the «المثال» button and the close key reach WCAG AA in both languages (1.2s)
+        ✓  6 tests/e2e/layout.spec.js:166:1 › phone 375x800: the «المثال» button opens the preview over the page; Esc and the close key bring you back (1.5s)
+        ✓  2 tests/e2e/layout.spec.js:61:3 › wide screen 1440x900: the preview stays in view down to the export, in both languages (1.8s)
+        ✓  3 tests/e2e/layout.spec.js:109:1 › wide screen: the rule messages still stay pinned above the choices while the page scrolls (1.9s)
+        ✓  1 tests/e2e/layout.spec.js:61:3 › wide screen 1100x600: the preview stays in view down to the export, in both languages (1.7s)
+
+        9 passed (2.9s)
+      ```
+    - `npm run test:e2e` (ومنها البطاقات في أول شاشة على 375×800، وعدم التمرير الجانبي على 375 مع كل شيء مفتوح، ومشاهد الجوال، وحلقة التركيز عند كل محطة، وتباين نص الأداة):
+      ```
+        ✓  148 tests/e2e/storage.spec.js:385:1 › 3.0b review: an old draft in another project never overwrites a saved identity changed since; it saves a copy (1.6s)
+        ✓  128 tests/e2e/scenes.spec.js:137:1 › at phone width every scene fits for every ready identity, in both languages (12.3s)
+        ✓   37 tests/e2e/fonts.spec.js:234:1 › every library font loads, draws the recorded digits, and keeps its measured size adjustment (needs internet) (30.9s)
+
+        148 passed (35.7s)
+      ```
+    - `npm test`: «tests 639 / pass 639 / fail 0» (ومنها اختبار المفاتيح المتطابقة في اللغتين وكل مفتاح مستعمل). `npm run test:golden`: «tests 17 / fail 0». `npm run check -- --publish`: «success: 319 templates (319 reviewed, 0 drafts), 14 identities checked, no problem». `npm run build`: لم يتغيّر `picker/data` ولا `library/`. `npm run lint`: 0 أخطاء وتحذيران قديمان. `npm run format:check`: «All matched files use Prettier code style!».
+    - مراجعة ذاتية (مهمة B): لا يمس الملفات المصدَّرة ولا الحفظ؛ الزران خارج ترتيب لوحة المفاتيح على الشاشة العريضة (`display: none`)؛ أثناء الفتح لا يصل التركيز إلى ما خلف المعاينة؛ Esc لا يفعل شيئًا والمعاينة مغلقة.
+    - انحراف: ربط الزرين في `picker/js/ui/app.js` بدل `picker/js/ui/preview.js` المذكور في الملفات المتوقعة، لأن `preview.js` محرّك الرسم فقط ومفاتيح المعاينة كلها مربوطة في `app.js`. وأُضيف ثبات رأس المعاينة المفتوحة بزر الإغلاق، وهو داخل معيار «بزر إغلاق».
 
 - [ ] **10.3** تحديث الصفحة المنشورة على GitHub Pages — **بإذن صريح منك فقط**
   - الخطورة: A — نشر علني

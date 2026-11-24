@@ -250,6 +250,8 @@
   'preview.scene.form': 'نموذج',
   'preview.scene.mobile': 'جوال',
   'preview.approximate': 'تقريبي',
+  'preview.open': 'المثال',
+  'preview.close': 'إغلاق المثال',
 
   'export.title': 'التصدير',
   'export.button': 'تصدير',

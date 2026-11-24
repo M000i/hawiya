@@ -1,6 +1,6 @@
-// Task 10.1 (CHG-9, R-111, AC-31): on a wide screen the preview stays in view while the choices scroll; taller
-// than the screen, it scrolls inside. The choices column keeps its side per language, the rule messages stay
-// pinned, and nothing changes under 760 px.
+// Tasks 10.1 and 10.2 (CHG-9, R-111, AC-31): on a wide screen the preview stays in view while the choices scroll;
+// taller than the screen, it scrolls inside. The choices column keeps its side per language and the rule messages
+// stay pinned. Under 760 px the preview is not pinned: the «المثال» button opens it over the page instead.
 'use strict';
 const { test, expect } = require('@playwright/test');
 const path = require('path');
@@ -8,6 +8,8 @@ const { pathToFileURL } = require('url');
 
 const PAGE = pathToFileURL(path.join(__dirname, '../../picker/index.html')).href;
 const ELEMENTS = require('../../picker/js/core/resolve.js').ELEMENTS;
+const ar = require('../../picker/i18n/ar.js');
+const en = require('../../picker/i18n/en.js');
 const WIDE = [
   { width: 1440, height: 900 },
   { width: 1100, height: 600 }
@@ -134,4 +136,162 @@ test('under 760 px nothing changes: the preview is not pinned and still comes af
     };
   });
   expect(m).toEqual({ position: 'static', overflowY: 'visible', afterChoices: true });
+});
+
+// What the narrow-screen sheet looks like right now.
+const sheet = (page) =>
+  page.evaluate(() => {
+    const wrap = document.querySelector('.preview-wrap');
+    const r = wrap.getBoundingClientRect();
+    const btn = document.getElementById('preview-open');
+    const close = document.getElementById('preview-close');
+    let el = document.activeElement;
+    return {
+      open: document.body.classList.contains('preview-sheet-open'),
+      role: wrap.getAttribute('role'),
+      modal: wrap.getAttribute('aria-modal'),
+      expanded: btn.getAttribute('aria-expanded'),
+      covers:
+        Math.round(r.top) === 0 &&
+        Math.round(r.height) === window.innerHeight &&
+        Math.round(r.width) === window.innerWidth,
+      choicesInert: document.getElementById('controls').inert && document.querySelector('.top').inert,
+      closeShown: getComputedStyle(close).display !== 'none',
+      focus: el && el.id,
+      scrolled: Math.round(window.scrollY),
+      sideways: document.documentElement.scrollWidth - document.documentElement.clientWidth
+    };
+  });
+
+test('phone 375x800: the «المثال» button opens the preview over the page; Esc and the close key bring you back', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  const errors = watchErrors(page);
+  await start(page);
+  const button = page.locator('#preview-open');
+  for (const lang of ['ar', 'en']) {
+    const dict = lang === 'ar' ? ar : en;
+    if (lang === 'en') await page.locator('#lang-toggle').click();
+    await expect(button).toBeVisible();
+    await expect(button).toHaveText(dict['preview.open']);
+    // Always in reach: still on screen after scrolling down to the guided choices.
+    await page.evaluate(() => document.getElementById('guided-title').scrollIntoView({ block: 'start' }));
+    const before = await page.evaluate(() => Math.round(window.scrollY));
+    expect(before).toBeGreaterThan(800);
+    const box = await button.boundingBox();
+    expect(box.y + box.height).toBeLessThanOrEqual(800);
+
+    for (const how of ['Escape', 'close key']) {
+      await button.click();
+      let s = await sheet(page);
+      expect([lang, how, s]).toEqual([
+        lang,
+        how,
+        {
+          open: true,
+          role: 'dialog',
+          modal: 'true',
+          expanded: 'true',
+          covers: true,
+          choicesInert: true,
+          closeShown: true,
+          focus: 'preview-close',
+          scrolled: before,
+          sideways: 0
+        }
+      ]);
+      await expect(page.locator('#preview-close')).toHaveText(dict['preview.close']);
+      // The close key stays on screen while the open preview scrolls to its end.
+      const closeAtEnd = await page.evaluate(() => {
+        const wrap = document.querySelector('.preview-wrap');
+        wrap.scrollTop = wrap.scrollHeight;
+        const r = document.getElementById('preview-close').getBoundingClientRect();
+        const out = { scrolledInside: wrap.scrollTop > 0, onScreen: r.top >= 0 && r.bottom <= window.innerHeight };
+        wrap.scrollTop = 0;
+        return out;
+      });
+      expect([lang, how, closeAtEnd]).toEqual([lang, how, { scrolledInside: true, onScreen: true }]);
+      // The preview's own keys still work inside.
+      await page.locator('[data-preview-mode="dark"]').click();
+      await expect(page.locator('[data-preview-mode="dark"]')).toHaveAttribute('aria-pressed', 'true');
+      await page.locator('[data-preview-mode="light"]').click();
+      await expect(page.locator('[data-preview-mode="light"]')).toHaveAttribute('aria-pressed', 'true');
+
+      if (how === 'Escape') await page.keyboard.press('Escape');
+      else await page.locator('#preview-close').click();
+      s = await sheet(page);
+      expect([lang, how, s]).toEqual([
+        lang,
+        how,
+        {
+          open: false,
+          role: null,
+          modal: null,
+          expanded: 'false',
+          covers: false,
+          choicesInert: false,
+          closeShown: false,
+          focus: 'preview-open',
+          scrolled: before,
+          sideways: 0
+        }
+      ]);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
+  }
+  expect(errors).toEqual([]);
+});
+
+test('phone 375x800: the button leaves the first ready identity card uncovered, in both languages', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  await start(page);
+  for (const lang of ['ar', 'en']) {
+    if (lang === 'en') await page.locator('#lang-toggle').click();
+    const card = await page.locator('#identity-list [data-identity]').first().boundingBox();
+    const btn = await page.locator('#preview-open').boundingBox();
+    expect([lang, card.y + card.height < 800, card.y + card.height <= btn.y]).toEqual([lang, true, true]);
+  }
+});
+
+test('wide screen: no «المثال» button and no close key; widening the window closes an open preview', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await start(page);
+  await expect(page.locator('#preview-open')).toBeHidden();
+  await expect(page.locator('#preview-close')).toBeHidden();
+  await page.setViewportSize({ width: 375, height: 800 });
+  await page.locator('#preview-open').click();
+  expect((await sheet(page)).open).toBe(true);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect.poll(async () => (await sheet(page)).open).toBe(false);
+  const s = await sheet(page);
+  expect([s.role, s.choicesInert, s.closeShown]).toEqual([null, false, false]);
+});
+
+test('phone 375x800: the «المثال» button and the close key reach WCAG AA in both languages', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  await start(page);
+  const ratioOf = (id) =>
+    page.evaluate((target) => {
+      const rgb = (s) => s.match(/\d+(\.\d+)?/g).map(Number);
+      const lum = (c) => {
+        const f = (x) => ((x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4));
+        return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]);
+      };
+      const cs = getComputedStyle(document.getElementById(target));
+      const a = lum(rgb(cs.color));
+      const b = lum(rgb(cs.backgroundColor));
+      return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+    }, id);
+  for (const lang of ['ar', 'en']) {
+    if (lang === 'en') await page.locator('#lang-toggle').click();
+    expect([lang, (await ratioOf('preview-open')) >= 4.5]).toEqual([lang, true]);
+    await page.locator('#preview-open').click();
+    expect([lang, (await ratioOf('preview-close')) >= 4.5]).toEqual([lang, true]);
+    await page.keyboard.press('Escape');
+  }
 });

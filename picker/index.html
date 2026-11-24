@@ -150,9 +150,11 @@
         </section>
       </form>
 
-      <section class="preview-wrap" aria-labelledby="preview-title">
+      <section class="preview-wrap" id="preview-wrap" aria-labelledby="preview-title">
         <div class="preview-head">
           <h2 id="preview-title" data-i18n="preview.title"></h2>
+          <!-- Narrow screens only (task 10.2, R-111): closes the preview opened by the preview.open button. -->
+          <button type="button" class="preview-close" id="preview-close" data-i18n="preview.close"></button>
           <div class="preview-controls">
             <div class="seg" role="group" data-i18n-attr="aria-label:preview.langLabel">
               <button type="button" data-preview-lang="ar" aria-pressed="false" data-i18n="preview.ar"></button>
@@ -197,6 +199,16 @@
         <p class="note" id="mobile-notice" data-i18n="notice.mobile"></p>
       </section>
     </main>
+
+    <!-- Narrow screens only (task 10.2, R-111): opens the preview over the page, always in reach. -->
+    <button
+      type="button"
+      class="preview-open"
+      id="preview-open"
+      aria-controls="preview-wrap"
+      aria-expanded="false"
+      data-i18n="preview.open"
+    ></button>
 
     <script src="i18n/ar.js"></script>
     <script src="i18n/en.js"></script>

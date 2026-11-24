@@ -102,6 +102,12 @@ body {
   margin: -6px;
 }
 
+/* The preview.open button and the close key exist for narrow screens only (task 10.2); the rules below show them. */
+.preview-open,
+.preview-close {
+  display: none;
+}
+
 @media (max-width: 760px) {
   .layout {
     grid-template-columns: 1fr;
@@ -113,6 +119,51 @@ body {
     overflow: visible;
     padding: 0;
     margin: 0;
+  }
+  /* The preview.open button (task 10.2, R-111): always in reach; the page ends with room for it. */
+  .layout {
+    padding-block-end: 88px;
+  }
+  .preview-open {
+    position: fixed;
+    inset-block-end: 16px;
+    inset-inline-end: 16px;
+    z-index: 20;
+    display: inline-flex;
+    padding-block: 10px;
+    padding-inline: 20px;
+    font: inherit;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--fg);
+    border: 0;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgb(17 24 39 / 30%);
+    cursor: pointer;
+  }
+  /* Open: the preview covers the page and scrolls on its own; the page behind keeps its place. */
+  body.preview-sheet-open {
+    overflow: hidden;
+  }
+  body.preview-sheet-open .preview-wrap {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--bg);
+  }
+  body.preview-sheet-open .preview-close {
+    display: inline-flex;
+  }
+  /* The header with the close key stays on top while the open preview scrolls (its 16px padding above it). */
+  body.preview-sheet-open .preview-head {
+    position: sticky;
+    inset-block-start: -16px;
+    z-index: 1;
+    margin-block-start: -16px;
+    padding-block: 16px 8px;
+    background: var(--bg);
   }
   .top {
     padding-inline: 16px;
@@ -509,6 +560,20 @@ body {
 
 .preview-head h2 {
   margin: 0;
+}
+
+/* The close key of the preview opened over the page on a narrow screen (task 10.2). */
+.preview-close {
+  margin-inline-start: auto;
+  font: inherit;
+  font-weight: 700;
+  padding-block: 6px;
+  padding-inline: 14px;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .preview-controls {

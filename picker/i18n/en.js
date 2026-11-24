@@ -255,6 +255,8 @@
   'preview.scene.form': 'Form',
   'preview.scene.mobile': 'Mobile',
   'preview.approximate': 'Approximate',
+  'preview.open': 'Preview',
+  'preview.close': 'Close preview',
 
   'export.title': 'Export',
   'export.button': 'Export',
