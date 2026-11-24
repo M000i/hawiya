@@ -12,6 +12,15 @@
     "luxury",
     "editorial"
   ],
+  "sectors": [
+    "fashion",
+    "hospitality",
+    "realestate"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
   "templates": {
     "colors": "palette-radix-gold-plum",
     "modes": "modes-dark-first",

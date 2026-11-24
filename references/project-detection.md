@@ -30,6 +30,31 @@ entry named primary or brand, a logo color in the theme file. Write each as lowe
 `rgb()`, `hsl()`, 3-digit hex). Leave out grays, black, white and plain framework defaults. None found: leave
 the list out; never invent one.
 
+## Sectors (1 or 2)
+What the project is about, from the README, the page text and the product name. The main one first. The
+picker ranks the ready identities by it, so pick what a user of the project would say it is.
+| Signs | `sectors` |
+|---|---|
+| Banking, payments, invoices, accounting, investment | `finance` |
+| Clinics, hospitals, pharmacies, fitness, wellbeing | `health` |
+| Ministries, municipalities, e-government, public services | `government` |
+| Schools, courses, e-learning, universities | `education` |
+| Software, SaaS, developer tools, AI, IT | `technology` |
+| Online stores, products, carts, retail | `commerce` |
+| Restaurants, cafes, recipes, delivery | `food` |
+| Museums, heritage, Quran, poetry, Islamic or Arabic culture | `culture` |
+| News, magazines, blogs, publishing, podcasts | `media` |
+| Agencies, portfolios, design studios, events | `creative` |
+| Children, families, games, toys | `kids` |
+| Agriculture, environment, organic or natural products | `nature` |
+| Travel, hotels, tourism, booking stays | `hospitality` |
+| Fashion, perfume, beauty, jewelry | `fashion` |
+| Real estate, property, construction | `realestate` |
+| Charities, volunteering, community groups | `nonprofit` |
+| Law firms, consulting, accounting offices, B2B services | `professional` |
+
+None fits: leave `sectors` out (the picker then keeps its own order).
+
 ## Tags (1 to 3)
 The wanted feel, only from this list: minimal, corporate, editorial, playful, luxury, glass, brutalist,
 neumorphic, retro, material, cupertino, fluent, technical, data-dense, vivid, soft.

@@ -276,6 +276,26 @@ body {
   justify-self: start;
 }
 
+.identity-why {
+  grid-column: 2;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.identity-best {
+  padding-inline: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--fg);
+  border-radius: 999px;
+}
+
+.identity-ranked {
+  margin: -4px 0 8px;
+  font-weight: 600;
+}
+
 .identity-lead {
   margin: 0 0 8px;
 }

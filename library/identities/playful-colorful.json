@@ -12,6 +12,15 @@
     "playful",
     "vivid"
   ],
+  "sectors": [
+    "kids",
+    "education",
+    "commerce"
+  ],
+  "types": [
+    "landing",
+    "web-app"
+  ],
   "templates": {
     "colors": "palette-tweakcn-bubblegum",
     "modes": "modes-light-first",

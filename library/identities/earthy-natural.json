@@ -12,6 +12,15 @@
     "soft",
     "retro"
   ],
+  "sectors": [
+    "nature",
+    "food",
+    "hospitality"
+  ],
+  "types": [
+    "website",
+    "landing"
+  ],
   "templates": {
     "colors": "palette-tailwind-olive-terracotta",
     "modes": "modes-light-first",

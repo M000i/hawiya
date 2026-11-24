@@ -12,6 +12,16 @@
     "corporate",
     "minimal"
   ],
+  "sectors": [
+    "professional",
+    "finance",
+    "realestate"
+  ],
+  "types": [
+    "web-app",
+    "website",
+    "dashboard"
+  ],
   "templates": {
     "colors": "palette-blue",
     "modes": "modes-system",

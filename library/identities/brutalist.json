@@ -12,6 +12,14 @@
     "brutalist",
     "vivid"
   ],
+  "sectors": [
+    "creative",
+    "media"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
   "templates": {
     "colors": "palette-tweakcn-neo-brutalism",
     "modes": "modes-light-first",

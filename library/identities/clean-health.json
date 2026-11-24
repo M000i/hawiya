@@ -12,6 +12,14 @@
     "soft",
     "minimal"
   ],
+  "sectors": [
+    "health",
+    "education"
+  ],
+  "types": [
+    "web-app",
+    "website"
+  ],
   "templates": {
     "colors": "palette-tailwind-teal-sky",
     "modes": "modes-system",

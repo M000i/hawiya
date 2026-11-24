@@ -1044,6 +1044,16 @@
         "maxItems": 3,
         "uniqueItems": true
       },
+      "sectors": {
+        "description": "What the project is about (1 or 2, the main one first); the page ranks the ready identities by it.",
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/sector"
+        },
+        "minItems": 1,
+        "maxItems": 2,
+        "uniqueItems": true
+      },
       "brandColors": {
         "type": "array",
         "items": {
@@ -1082,6 +1092,27 @@
           "cards",
           "spacing",
           "direction"
+        ]
+      },
+      "sector": {
+        "enum": [
+          "finance",
+          "health",
+          "government",
+          "education",
+          "technology",
+          "commerce",
+          "food",
+          "culture",
+          "media",
+          "creative",
+          "kids",
+          "nature",
+          "hospitality",
+          "fashion",
+          "realestate",
+          "nonprofit",
+          "professional"
         ]
       },
       "tag": {

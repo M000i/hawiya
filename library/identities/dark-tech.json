@@ -12,6 +12,13 @@
     "technical",
     "data-dense"
   ],
+  "sectors": [
+    "technology"
+  ],
+  "types": [
+    "dashboard",
+    "web-app"
+  ],
   "templates": {
     "colors": "palette-daisyui-night",
     "modes": "modes-dark-first",

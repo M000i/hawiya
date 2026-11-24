@@ -12,6 +12,14 @@
     "corporate",
     "data-dense"
   ],
+  "sectors": [
+    "finance",
+    "professional"
+  ],
+  "types": [
+    "dashboard",
+    "web-app"
+  ],
   "templates": {
     "colors": "palette-tailwind-navy-emerald",
     "modes": "modes-light-first",

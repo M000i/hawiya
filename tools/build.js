@@ -45,6 +45,7 @@ const { deviceFont, systemFont } = require('../picker/js/core/generate.js');
 
 const ROOT = path.join(__dirname, '..');
 const T = SCHEMAS.template;
+const S = SCHEMAS.session;
 const ELEMENTS = T.$defs.element.enum.slice(); // the 11 elements that have templates
 
 const IDENTITY_SCHEMA = {
@@ -61,6 +62,9 @@ const IDENTITY_SCHEMA = {
       properties: { ar: { type: 'string', minLength: 1, maxLength: 300 }, en: { type: 'string', minLength: 1, maxLength: 300 } }
     },
     tags: { type: 'array', items: T.$defs.tag, minItems: 1, maxItems: 5, uniqueItems: true },
+    // What the identity suits, for ranking it against the project's session (picker/js/core/fit.js).
+    sectors: { type: 'array', items: S.$defs.sector, minItems: 1, maxItems: 5, uniqueItems: true },
+    types: { type: 'array', items: S.properties.type, minItems: 1, maxItems: 5, uniqueItems: true },
     templates: { type: 'object', minProperties: 1, propertyNames: { enum: ELEMENTS }, additionalProperties: T.$defs.id }
   }
 };

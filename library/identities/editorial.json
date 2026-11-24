@@ -12,6 +12,14 @@
     "editorial",
     "minimal"
   ],
+  "sectors": [
+    "media",
+    "education",
+    "creative"
+  ],
+  "types": [
+    "website"
+  ],
   "templates": {
     "colors": "palette-tweakcn-notebook",
     "modes": "modes-light-only",

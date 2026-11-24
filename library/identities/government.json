@@ -12,6 +12,15 @@
     "corporate",
     "minimal"
   ],
+  "sectors": [
+    "government",
+    "nonprofit",
+    "education"
+  ],
+  "types": [
+    "website",
+    "web-app"
+  ],
   "templates": {
     "colors": "palette-tailwind-emerald-lime",
     "modes": "modes-light-first",

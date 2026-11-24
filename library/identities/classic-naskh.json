@@ -12,6 +12,16 @@
     "editorial",
     "retro"
   ],
+  "sectors": [
+    "culture",
+    "media",
+    "education",
+    "nonprofit"
+  ],
+  "types": [
+    "website",
+    "landing"
+  ],
   "templates": {
     "colors": "palette-tailwind-rose-yellow",
     "modes": "modes-light-first",

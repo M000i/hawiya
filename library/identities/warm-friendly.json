@@ -12,6 +12,16 @@
     "soft",
     "playful"
   ],
+  "sectors": [
+    "food",
+    "nonprofit",
+    "commerce",
+    "kids"
+  ],
+  "types": [
+    "landing",
+    "website"
+  ],
   "templates": {
     "colors": "palette-teal",
     "modes": "modes-light-first",

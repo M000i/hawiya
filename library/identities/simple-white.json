@@ -12,6 +12,16 @@
     "minimal",
     "corporate"
   ],
+  "sectors": [
+    "technology",
+    "commerce",
+    "professional"
+  ],
+  "types": [
+    "web-app",
+    "landing",
+    "html-page"
+  ],
   "templates": {
     "colors": "palette-tailwind-zinc-emerald",
     "modes": "modes-light-only",

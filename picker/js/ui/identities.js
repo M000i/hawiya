@@ -8,6 +8,11 @@
  * complete and the preview and the draft follow at once. The card whose templates are exactly the current
  * choices is marked as pressed.
  * Card content comes from the library and is written as text only.
+ *
+ * Order: with a session (what the agent read in the project), the cards go from the best fit down
+ * (picker/js/core/fit.js), the first is marked as the best fit, and the first five that fit at all say why
+ * (the two strongest of: sector, feel, brand color, project type). Without a session the library order
+ * stays and nothing is added.
  */
 (function () {
   'use strict';
@@ -21,6 +26,104 @@
 
   function template(element, id) {
     return H.library.find(element, id);
+  }
+
+  // Every text key is written out here, so the i18n test sees it used.
+  var WHY = {
+    sector: { key: 'fit.why.sector' },
+    tags: { key: 'fit.why.tags' },
+    type: { key: 'fit.why.type' },
+    brand: { key: 'fit.why.brand' }
+  };
+  var NAMES = {
+    sector: {
+      finance: { key: 'fit.sector.finance' },
+      health: { key: 'fit.sector.health' },
+      government: { key: 'fit.sector.government' },
+      education: { key: 'fit.sector.education' },
+      technology: { key: 'fit.sector.technology' },
+      commerce: { key: 'fit.sector.commerce' },
+      food: { key: 'fit.sector.food' },
+      culture: { key: 'fit.sector.culture' },
+      media: { key: 'fit.sector.media' },
+      creative: { key: 'fit.sector.creative' },
+      kids: { key: 'fit.sector.kids' },
+      nature: { key: 'fit.sector.nature' },
+      hospitality: { key: 'fit.sector.hospitality' },
+      fashion: { key: 'fit.sector.fashion' },
+      realestate: { key: 'fit.sector.realestate' },
+      nonprofit: { key: 'fit.sector.nonprofit' },
+      professional: { key: 'fit.sector.professional' }
+    },
+    tags: {
+      minimal: { key: 'fit.tag.minimal' },
+      corporate: { key: 'fit.tag.corporate' },
+      editorial: { key: 'fit.tag.editorial' },
+      playful: { key: 'fit.tag.playful' },
+      luxury: { key: 'fit.tag.luxury' },
+      glass: { key: 'fit.tag.glass' },
+      brutalist: { key: 'fit.tag.brutalist' },
+      neumorphic: { key: 'fit.tag.neumorphic' },
+      retro: { key: 'fit.tag.retro' },
+      material: { key: 'fit.tag.material' },
+      cupertino: { key: 'fit.tag.cupertino' },
+      fluent: { key: 'fit.tag.fluent' },
+      technical: { key: 'fit.tag.technical' },
+      'data-dense': { key: 'fit.tag.dataDense' },
+      vivid: { key: 'fit.tag.vivid' },
+      soft: { key: 'fit.tag.soft' }
+    },
+    type: {
+      landing: { key: 'fit.type.landing' },
+      website: { key: 'fit.type.website' },
+      'web-app': { key: 'fit.type.webApp' },
+      dashboard: { key: 'fit.type.dashboard' },
+      'html-page': { key: 'fit.type.htmlPage' }
+    }
+  };
+  var SHOW_WHY = 5; // cards that say why they fit
+  var WHY_SHOWN = 2; // the strongest reasons only, so the card stays short
+
+  function t(key, params) {
+    return H.i18n.t(key, params);
+  }
+
+  function primaryOf(identity) {
+    var colors = template('colors', identity.templates.colors);
+    var tok = colors && colors.tokens.color.primary;
+    var hex = tok && tok.$value && tok.$value.hex;
+    return typeof hex === 'string' && /^#[0-9a-fA-F]{6}$/.test(hex) ? hex.toLowerCase() : null;
+  }
+
+  // The identities in the order to show, each with its score and reasons.
+  function ranked() {
+    var all = ready();
+    var byId = {};
+    all.forEach(function (i) {
+      byId[i.id] = i;
+    });
+    var order = H.fit
+      ? H.fit.rank(all, H.session || null, primaryOf)
+      : all.map(function (i) {
+          return { id: i.id, score: 0, reasons: [] };
+        });
+    return order.map(function (r) {
+      return { identity: byId[r.id], score: r.score, reasons: r.reasons };
+    });
+  }
+
+  function whyText(reasons) {
+    return reasons
+      .map(function (r) {
+        var names = NAMES[r.kind] || {};
+        var list = r.values
+          .map(function (v) {
+            return names[v] ? t(names[v].key) : v;
+          })
+          .join(t('fit.sep'));
+        return t(WHY[r.kind].key, { list: list });
+      })
+      .join(' \u00b7 ');
   }
 
   function el(tag, cls, text) {
@@ -59,7 +162,7 @@
     }, 'all'); // a ready identity is a choice for every element (nothing left to fill)
   }
 
-  function card(identity) {
+  function card(identity, fit, best) {
     var b = el('button', 'identity-card');
     b.type = 'button';
     b.setAttribute('data-identity', identity.id);
@@ -88,6 +191,7 @@
     en.setAttribute('dir', 'ltr');
     names.appendChild(ar);
     names.appendChild(en);
+    if (best) names.appendChild(el('span', 'identity-best', t('identity.best')));
     b.appendChild(names);
 
     var lang = H.i18n.lang();
@@ -103,6 +207,7 @@
       f.setAttribute('dir', 'ltr');
       b.appendChild(f);
     }
+    if (fit && fit.reasons.length) b.appendChild(el('span', 'identity-why', whyText(fit.reasons.slice(0, WHY_SHOWN))));
     b.addEventListener('click', function () {
       use(identity.id);
     });
@@ -114,14 +219,22 @@
 
   function fill(list) {
     list.textContent = '';
-    ready().forEach(function (identity) {
-      list.appendChild(card(identity));
+    ranked().forEach(function (r, i) {
+      var fits = r.score > 0;
+      list.appendChild(card(r.identity, fits && i < SHOW_WHY ? r : null, fits && i === 0));
+    });
+  }
+
+  function anyFit() {
+    return ranked().some(function (r) {
+      return r.score > 0;
     });
   }
 
   function render() {
     lists.forEach(fill);
     els.empty.hidden = ready().length > 0;
+    els.ranked.hidden = !anyFit();
     mark();
   }
 
@@ -155,10 +268,12 @@
 
   function init() {
     els.empty = document.getElementById('identity-empty');
+    els.ranked = document.getElementById('identity-ranked');
     lists.push(document.getElementById('identity-list'));
     render();
     document.addEventListener('hawiya:state', mark);
     document.addEventListener('hawiya:lang', render);
+    document.addEventListener('hawiya:session', render); // a session from the server can arrive after the start
   }
 
   function boot() {

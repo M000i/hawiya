@@ -12,6 +12,15 @@
     "retro",
     "editorial"
   ],
+  "sectors": [
+    "culture",
+    "hospitality",
+    "food"
+  ],
+  "types": [
+    "website",
+    "landing"
+  ],
   "templates": {
     "colors": "palette-radix-brown-teal",
     "modes": "modes-light-first",

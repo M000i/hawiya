@@ -26,6 +26,15 @@
       "retro",
       "editorial"
     ],
+    "sectors": [
+      "culture",
+      "hospitality",
+      "food"
+    ],
+    "types": [
+      "website",
+      "landing"
+    ],
     "templates": {
       "colors": "palette-radix-brown-teal",
       "modes": "modes-light-first",
@@ -53,6 +62,14 @@
     "tags": [
       "brutalist",
       "vivid"
+    ],
+    "sectors": [
+      "creative",
+      "media"
+    ],
+    "types": [
+      "landing",
+      "website"
     ],
     "templates": {
       "colors": "palette-tweakcn-neo-brutalism",
@@ -82,6 +99,16 @@
       "corporate",
       "minimal"
     ],
+    "sectors": [
+      "professional",
+      "finance",
+      "realestate"
+    ],
+    "types": [
+      "web-app",
+      "website",
+      "dashboard"
+    ],
     "templates": {
       "colors": "palette-blue",
       "modes": "modes-system",
@@ -109,6 +136,16 @@
     "tags": [
       "editorial",
       "retro"
+    ],
+    "sectors": [
+      "culture",
+      "media",
+      "education",
+      "nonprofit"
+    ],
+    "types": [
+      "website",
+      "landing"
     ],
     "templates": {
       "colors": "palette-tailwind-rose-yellow",
@@ -138,6 +175,14 @@
       "soft",
       "minimal"
     ],
+    "sectors": [
+      "health",
+      "education"
+    ],
+    "types": [
+      "web-app",
+      "website"
+    ],
     "templates": {
       "colors": "palette-tailwind-teal-sky",
       "modes": "modes-system",
@@ -165,6 +210,13 @@
     "tags": [
       "technical",
       "data-dense"
+    ],
+    "sectors": [
+      "technology"
+    ],
+    "types": [
+      "dashboard",
+      "web-app"
     ],
     "templates": {
       "colors": "palette-daisyui-night",
@@ -194,6 +246,15 @@
       "soft",
       "retro"
     ],
+    "sectors": [
+      "nature",
+      "food",
+      "hospitality"
+    ],
+    "types": [
+      "website",
+      "landing"
+    ],
     "templates": {
       "colors": "palette-tailwind-olive-terracotta",
       "modes": "modes-light-first",
@@ -221,6 +282,14 @@
     "tags": [
       "editorial",
       "minimal"
+    ],
+    "sectors": [
+      "media",
+      "education",
+      "creative"
+    ],
+    "types": [
+      "website"
     ],
     "templates": {
       "colors": "palette-tweakcn-notebook",
@@ -250,6 +319,15 @@
       "corporate",
       "minimal"
     ],
+    "sectors": [
+      "government",
+      "nonprofit",
+      "education"
+    ],
+    "types": [
+      "website",
+      "web-app"
+    ],
     "templates": {
       "colors": "palette-tailwind-emerald-lime",
       "modes": "modes-light-first",
@@ -277,6 +355,15 @@
     "tags": [
       "luxury",
       "editorial"
+    ],
+    "sectors": [
+      "fashion",
+      "hospitality",
+      "realestate"
+    ],
+    "types": [
+      "landing",
+      "website"
     ],
     "templates": {
       "colors": "palette-radix-gold-plum",
@@ -306,6 +393,15 @@
       "playful",
       "vivid"
     ],
+    "sectors": [
+      "kids",
+      "education",
+      "commerce"
+    ],
+    "types": [
+      "landing",
+      "web-app"
+    ],
     "templates": {
       "colors": "palette-tweakcn-bubblegum",
       "modes": "modes-light-first",
@@ -333,6 +429,16 @@
     "tags": [
       "minimal",
       "corporate"
+    ],
+    "sectors": [
+      "technology",
+      "commerce",
+      "professional"
+    ],
+    "types": [
+      "web-app",
+      "landing",
+      "html-page"
     ],
     "templates": {
       "colors": "palette-tailwind-zinc-emerald",
@@ -362,6 +468,14 @@
       "corporate",
       "data-dense"
     ],
+    "sectors": [
+      "finance",
+      "professional"
+    ],
+    "types": [
+      "dashboard",
+      "web-app"
+    ],
     "templates": {
       "colors": "palette-tailwind-navy-emerald",
       "modes": "modes-light-first",
@@ -389,6 +503,16 @@
     "tags": [
       "soft",
       "playful"
+    ],
+    "sectors": [
+      "food",
+      "nonprofit",
+      "commerce",
+      "kids"
+    ],
+    "types": [
+      "landing",
+      "website"
     ],
     "templates": {
       "colors": "palette-teal",
