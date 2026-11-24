@@ -295,3 +295,19 @@ test('phone 375x800: the «المثال» button and the close key reach WCAG AA
     await page.keyboard.press('Escape');
   }
 });
+
+test('the line is at 760 px: 760 is wide (pinned preview, no button), 759 is narrow (button, not pinned)', async ({
+  page
+}) => {
+  await start(page);
+  const at = async (width) => {
+    await page.setViewportSize({ width, height: 900 });
+    return page.evaluate(() => ({
+      position: getComputedStyle(document.querySelector('.preview-wrap')).position,
+      columns: getComputedStyle(document.querySelector('.layout')).gridTemplateColumns.split(' ').length,
+      button: getComputedStyle(document.getElementById('preview-open')).display !== 'none'
+    }));
+  };
+  expect(await at(760)).toEqual({ position: 'sticky', columns: 2, button: false });
+  expect(await at(759)).toEqual({ position: 'static', columns: 1, button: true });
+});

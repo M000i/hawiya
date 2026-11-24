@@ -108,7 +108,8 @@ body {
   display: none;
 }
 
-@media (max-width: 760px) {
+/* Narrow = under 760 px; 760 itself is wide (R-111). The same query is in picker/js/ui/app.js. */
+@media (max-width: 759.98px) {
   .layout {
     grid-template-columns: 1fr;
     padding-inline: 16px;

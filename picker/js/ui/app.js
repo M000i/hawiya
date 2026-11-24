@@ -164,9 +164,9 @@
 
   // The preview.open button on narrow screens (task 10.2, R-111, AC-31): the preview opens over the page as a dialog;
   // the close key or Esc closes it, and the page goes back to where it was, with the focus on the button.
-  // Widening the window past 760 px closes it too, since the preview is then pinned beside the choices.
+  // Widening the window to 760 px or more closes it too, since the preview is then pinned beside the choices.
   function setupPreviewSheet() {
-    var narrow = window.matchMedia('(max-width: 760px)');
+    var narrow = window.matchMedia('(max-width: 759.98px)'); // under 760 px, as in picker.css (R-111)
     var openBtn = document.getElementById('preview-open');
     var closeBtn = document.getElementById('preview-close');
     var wrap = document.getElementById('preview-wrap');
