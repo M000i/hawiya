@@ -493,5 +493,5 @@ npm run dev
 | R-108 | `tools/font-faces.js` + `library/font-faces.json` + البناء + `npm run check` | اختبار وحدة على عيّنات ثابتة + الفحص الآلي |
 | R-109 | القاعدة في `picker/js/core/generate.js` (`deviceFont`) والقائمة في `tools/build.js` (`templateFamilies`)، يستعملهما `tools/check.js` و `tools/font-faces.js`؛ والمولّد (`fontFamilies` و `cssFont`) و `picker/js/core/resolve.js` ومعاينة الصفحة (`picker/js/ui/app.js`) ومعرض الخطوط (`picker/js/ui/elements/fonts.js`) بالقاعدة نفسها (CHG-8) | اختبار وحدة بتمبلت فيه خط من خطوط الجهاز + اختبار متصفح + الفحص الآلي |
 | R-110 | `picker/js/core/export-format.js` (`agentText`) | اختبار وحدة لنص النسخ + اختبار المتصفح |
-| R-111 | `picker/css/` (تثبيت المعاينة) + `picker/index.html` و `picker/js/ui/preview.js` و `picker/i18n/` (زر «المثال») | اختبار متصفح على 1440 و 1100 و 375 باللغتين (AC-31) |
+| R-111 | `picker/css/picker.css` (تثبيت المعاينة وشكل الزر) + `picker/index.html` و `picker/js/ui/app.js` (`setupPreviewSheet`) و `picker/i18n/` (زر «المثال») | اختبار متصفح على 1440 و 1100 و 375 باللغتين (AC-31) |
 | R-100 | المرحلة 0 | معايير AC-01 إلى AC-03 |
