@@ -243,16 +243,39 @@ test('phone 375x800: the «المثال» button opens the preview over the page
   expect(errors).toEqual([]);
 });
 
-test('phone 375x800: the button leaves the first ready identity card uncovered, in both languages', async ({
+test('phones: the button leaves every card on the first screen tappable, and the first card whole at 375x800', async ({
   page
 }) => {
-  await page.setViewportSize({ width: 375, height: 800 });
-  await start(page);
-  for (const lang of ['ar', 'en']) {
-    if (lang === 'en') await page.locator('#lang-toggle').click();
-    const card = await page.locator('#identity-list [data-identity]').first().boundingBox();
-    const btn = await page.locator('#preview-open').boundingBox();
-    expect([lang, card.y + card.height < 800, card.y + card.height <= btn.y]).toEqual([lang, true, true]);
+  for (const viewport of [
+    { width: 375, height: 800 },
+    { width: 360, height: 640 }
+  ]) {
+    await page.setViewportSize(viewport);
+    await start(page);
+    for (const lang of ['ar', 'en']) {
+      if ((await page.locator('html').getAttribute('lang')) !== lang) await page.locator('#lang-toggle').click();
+      await expect(page.locator('html')).toHaveAttribute('lang', lang);
+      if (viewport.height === 800) {
+        const card = await page.locator('#identity-list [data-identity]').first().boundingBox();
+        const btn = await page.locator('#preview-open').boundingBox();
+        expect([lang, card.y + card.height <= btn.y]).toEqual([lang, true]);
+      }
+      // Every card that shows on the first screen can still be tapped at its middle (B-139).
+      const blocked = await page.evaluate(() =>
+        [...document.querySelectorAll('#identity-list [data-identity]')]
+          .map((c) => {
+            const r = c.getBoundingClientRect();
+            const y = Math.min(r.top + r.height / 2, (r.top + window.innerHeight) / 2);
+            return { id: c.getAttribute('data-identity'), r, y };
+          })
+          .filter((c) => c.r.top < window.innerHeight)
+          .filter(
+            (c) => !c.r.width || !document.elementFromPoint(c.r.left + c.r.width / 2, c.y).closest('[data-identity]')
+          )
+          .map((c) => c.id)
+      );
+      expect([viewport.height, lang, blocked]).toEqual([viewport.height, lang, []]);
+    }
   }
 });
 
@@ -266,10 +289,44 @@ test('wide screen: no «المثال» button and no close key; widening the win
   await page.setViewportSize({ width: 375, height: 800 });
   await page.locator('#preview-open').click();
   expect((await sheet(page)).open).toBe(true);
+  expect((await sheet(page)).focus).toBe('preview-close');
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect.poll(async () => (await sheet(page)).open).toBe(false);
   const s = await sheet(page);
   expect([s.role, s.choicesInert, s.closeShown]).toEqual([null, false, false]);
+  // The close key is hidden now, so the focus moves to the preview's first key, on screen (B-140).
+  const focus = await page.evaluate(() => {
+    const el = document.activeElement;
+    const r = el.getBoundingClientRect();
+    return { key: el.getAttribute('data-preview-lang'), shown: r.width > 0 && r.top >= 0 && r.bottom <= innerHeight };
+  });
+  expect(focus).toEqual({ key: 'ar', shown: true });
+});
+
+test('wide screen: a preview taller than its box takes a tab stop and scrolls from the keyboard; otherwise no stop', async ({
+  page
+}) => {
+  await start(page);
+  const stop = () => page.evaluate(() => document.getElementById('preview-wrap').getAttribute('tabindex'));
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect.poll(stop).toBe(null);
+  await page.setViewportSize({ width: 375, height: 800 });
+  await expect.poll(stop).toBe(null);
+  await page.setViewportSize({ width: 1100, height: 600 });
+  await expect.poll(stop).toBe('0');
+  await page.evaluate(() => document.getElementById('guided-title').scrollIntoView({ block: 'start' }));
+  await page.locator('#preview-wrap').focus({ preventScroll: true });
+  await page.keyboard.press('End');
+  await expect.poll(() => page.evaluate(() => document.getElementById('preview-wrap').scrollTop)).toBeGreaterThan(0);
+  // The note under the scene is reachable (End may scroll smoothly, so wait until it settles).
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const r = document.getElementById('mobile-notice').getBoundingClientRect();
+        return r.bottom <= innerHeight && r.top >= 0;
+      })
+    )
+    .toBe(true);
 });
 
 test('phone 375x800: the «المثال» button and the close key reach WCAG AA in both languages', async ({ page }) => {

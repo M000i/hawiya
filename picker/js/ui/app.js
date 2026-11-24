@@ -164,7 +164,10 @@
 
   // The preview.open button on narrow screens (task 10.2, R-111, AC-31): the preview opens over the page as a dialog;
   // the close key or Esc closes it, and the page goes back to where it was, with the focus on the button.
-  // Widening the window to 760 px or more closes it too, since the preview is then pinned beside the choices.
+  // Widening the window to 760 px or more closes it too, since the preview is then pinned beside the choices; the
+  // button and the close key are hidden there, so the focus goes to the preview's first key instead (B-140).
+  // On a wide screen a preview taller than its box can be scrolled from the keyboard: the box takes a tab stop
+  // only while it really scrolls (Safari does not make a scroll box focusable by itself).
   function setupPreviewSheet() {
     var narrow = window.matchMedia('(max-width: 759.98px)'); // under 760 px, as in picker.css (R-111)
     var openBtn = document.getElementById('preview-open');
@@ -198,8 +201,9 @@
       closeBtn.focus();
     }
 
-    function close() {
+    function close(byWidth) {
       if (!isOpen()) return;
+      var active = document.activeElement;
       document.body.classList.remove('preview-sheet-open');
       inerted.forEach(function (n) {
         n.inert = false;
@@ -209,20 +213,37 @@
       wrap.removeAttribute('aria-modal');
       openBtn.setAttribute('aria-expanded', 'false');
       window.scrollTo(0, savedY);
-      openBtn.focus({ preventScroll: true });
+      if (!byWidth) openBtn.focus({ preventScroll: true });
+      else if (active === closeBtn || !wrap.contains(active)) {
+        wrap.querySelector('[data-preview-lang]').focus({ preventScroll: true });
+      }
+    }
+
+    function syncScrollStop() {
+      var scrolls = !narrow.matches && wrap.scrollHeight > wrap.clientHeight + 1;
+      if (scrolls) wrap.setAttribute('tabindex', '0');
+      else wrap.removeAttribute('tabindex');
     }
 
     openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
+    closeBtn.addEventListener('click', function () {
+      close(false);
+    });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen()) {
         e.preventDefault();
-        close();
+        close(false);
       }
     });
     var onWidth = function () {
-      if (!narrow.matches) close();
+      if (!narrow.matches) close(true);
+      syncScrollStop();
     };
+    window.addEventListener('resize', syncScrollStop);
+    document.addEventListener('hawiya:preview', syncScrollStop);
+    document.addEventListener('hawiya:lang', syncScrollStop);
+    if (window.ResizeObserver) new window.ResizeObserver(syncScrollStop).observe(document.getElementById('preview'));
+    syncScrollStop();
     if (narrow.addEventListener) narrow.addEventListener('change', onWidth);
     else narrow.addListener(onWidth);
   }
